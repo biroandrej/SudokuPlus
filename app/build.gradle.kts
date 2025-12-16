@@ -10,12 +10,12 @@ plugins {
 
 android {
     namespace = "com.kaajjo.libresudoku"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.kaajjo.libresudoku"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 22
         versionName = "2.0.2"
 
@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.ui.util)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
+    implementation(libs.material)
     implementation(libs.material3)
     implementation(libs.material.icons.extended)
     implementation(project(":Color-Picker"))

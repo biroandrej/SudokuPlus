@@ -1,6 +1,7 @@
 package com.kaajjo.color_picker.picker.model
 
-import androidx.compose.material.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.State
@@ -38,7 +39,7 @@ data class SliderBrushColor(
 
 /**
  * Creates a [MaterialSliderColors] that represents the different colors used in parts of the
- * [Slider] in different states.
+ * slider in different states.
  *
  * For the name references below the words "active" and "inactive" are used. Active part of
  * the slider is filled with progress, so if slider's progress is 30% out of 100%, left (or
@@ -66,7 +67,7 @@ data class SliderBrushColor(
 object MaterialSliderDefaults {
 
     @Composable
-    private fun primarySolidColor() = MaterialTheme.colors.primary
+    private fun primarySolidColor() = MaterialTheme.colorScheme.primary
 
     /*
         Thumb
@@ -75,9 +76,9 @@ object MaterialSliderDefaults {
     private fun activeThumbSolidColor() = primarySolidColor()
 
     @Composable
-    private fun disabledThumbSolidColor() = MaterialTheme.colors.onSurface
-        .copy(alpha = ContentAlpha.disabled)
-        .compositeOver(MaterialTheme.colors.surface)
+    private fun disabledThumbSolidColor() = MaterialTheme.colorScheme.onSurface
+        .copy(alpha = DisabledAlpha)
+        .compositeOver(MaterialTheme.colorScheme.surface)
 
     /*
         Active Track
@@ -87,7 +88,7 @@ object MaterialSliderDefaults {
 
     @Composable
     private fun disabledActiveTrackSolidColor() =
-        MaterialTheme.colors.onSurface.copy(alpha = DisabledActiveTrackAlpha)
+        MaterialTheme.colorScheme.onSurface.copy(alpha = DisabledActiveTrackAlpha)
 
     /*
         InActive Track
@@ -106,20 +107,20 @@ object MaterialSliderDefaults {
      */
     @Composable
     private fun activeTickSolidColor(color: SliderBrushColor) =
-        contentColorFor(color.color).copy(alpha = SliderDefaults.TickAlpha)
+        contentColorFor(color.color).copy(alpha = TickAlpha)
 
     @Composable
     private fun inActiveTickSolidColor(color: SliderBrushColor) =
-        color.color.copy(alpha = SliderDefaults.TickAlpha)
+        color.color.copy(alpha = TickAlpha)
 
     @Composable
     private fun disabledActiveTickSolidColor(color: SliderBrushColor) =
-        color.color.copy(alpha = SliderDefaults.DisabledTickAlpha)
+        color.color.copy(alpha = DisabledTickAlpha)
 
 
     @Composable
     private fun disabledInactiveTickSolidColor(color: SliderBrushColor) =
-        color.color.copy(alpha = SliderDefaults.DisabledTickAlpha)
+        color.color.copy(alpha = DisabledTickAlpha)
 
 
     /**
@@ -334,6 +335,11 @@ object MaterialSliderDefaults {
     }
 
     /**
+     * M3 disabled content alpha
+     */
+    private const val DisabledAlpha = 0.38f
+
+    /**
      * Default alpha of the inactive part of the track
      */
     private const val InactiveTrackAlpha = 0.24f
@@ -371,7 +377,7 @@ interface MaterialSliderColors {
     /**
      * Represents the [SliderBrushColor] used for the sliders's thumb, depending on [enabled].
      *
-     * @param enabled whether the [Slider] is enabled or not
+     * @param enabled whether the slider is enabled or not
      */
     @Composable
     fun thumbColor(enabled: Boolean): State<Brush>
@@ -382,7 +388,7 @@ interface MaterialSliderColors {
      * Active part is filled with progress, so if sliders progress is 30% out of 100%, left (or
      * right in RTL) 30% of the track will be active, the rest is not active.
      *
-     * @param enabled whether the [Slider] is enabled or not
+     * @param enabled whether the slider is enabled or not
      * @param active whether the part of the track is active of not
      */
     @Composable
@@ -396,7 +402,7 @@ interface MaterialSliderColors {
      * sliders progress is 30% out of 100%, left (or right in RTL) 30% of the track and the ticks
      * in this 30% will be active, the rest is not active.
      *
-     * @param enabled whether the [Slider] is enabled or not
+     * @param enabled whether the slider is enabled or not
      * @param active whether the part of the track this tick is in is active of not
      */
     @Composable

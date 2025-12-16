@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.LibreSudoku" parent="Theme.AppCompat.NoActionBar" />
+    <style name="Theme.LibreSudoku" parent="Theme.Material3.DayNight.NoActionBar" />
+
 </resources>

@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.kaajjo.color_picker"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 26
@@ -37,10 +37,8 @@ android {
 }
 
 dependencies {
-
     implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
+    implementation(libs.material3)
     implementation(libs.ui)
     implementation(libs.foundation.android)
     testImplementation(libs.junit)
