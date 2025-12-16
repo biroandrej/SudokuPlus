@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.kaajjo.libresudoku"
+    namespace = "sk.awisoft.sudokuplus"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.kaajjo.libresudoku"
+        applicationId = "sk.awisoft.sudokuplus"
         minSdk = 26
         targetSdk = 36
         versionCode = 22
@@ -21,10 +21,6 @@ android {
 
         vectorDrawables {
             useSupportLibrary = true
-        }
-
-        ksp {
-            arg("room.schemaLocation", "${projectDir}/schemas")
         }
     }
 
