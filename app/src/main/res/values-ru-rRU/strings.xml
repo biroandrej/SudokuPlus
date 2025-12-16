@@ -206,8 +206,6 @@
     <string name="sort_by_game_id">ID</string>
     <string name="sort_label">Сортировка</string>
     <string name="filter_label">Фильтр</string>
-    <string name="weblate" translatable="false">Weblate</string>
-    <string name="help_translate">Помочь с переводом</string>
     <string name="create_folder">Создать папку</string>
     <string name="delete_folder">Удалить папку</string>
     <string name="title_folders">Папки</string>
@@ -265,7 +263,7 @@
     <string name="pref_cross_highlight_subtitle">Выделение некоторых блоков на доске</string>
     <string name="pref_cross_highlight">Крестовое выделение</string>
     <string name="pref_crash_reporting">Отчеты об ошибках</string>
-    <string name="dialog_crash_report_text">Упс, в LibreSudoku произошла ошибка. Желаете отправить отчет об ошибке разработчикам\?</string>
+    <string name="dialog_crash_report_text">Упс, в SudokuPlus произошла ошибка. Желаете отправить отчет об ошибке разработчикам\?</string>
     <string name="pref_crash_reporting_subtitle">Помощь в исправлении ошибок. Приложение не отсылает ничего самостоятельно, вам будет предложено отослать отчет об ошибке через почту</string>
     <string name="pref_fun_keyboard_over_num_subtitle">Поместить функциональную клавиатуру над числами</string>
     <string name="pref_fun_keyboard_over_num">Функциональная клавиатура над числовой</string>
@@ -345,17 +343,7 @@
         <item quantity="many">Последние %1$d игр</item>
         <item quantity="other">Последние %1$d игр</item>
     </plurals>
-
-    <string name="telegram" translatable="false">Telegram</string>
-    <string name="telegram_link">Присоединяйтесь в Telegram</string>
-    <string name="donation_title">Пожертвование</string>
-    <string name="donation_description">Это приложение бесплатно и без реклам навсегда. Вы можете поддержать меня ниже</string>
-    <string name="crypto_bitcoin" translatable="false">Bitcoin</string>
-    <string name="crypto_ton" translatable="false">TON</string>
-    <string name="crypto_usdt" translatable="false">USDT (TRC20)</string>
-    <string name="card_mir" translatable="false">MIR</string>
     <string name="app_version">Версия %1$s (%2$s)</string>
-    <string name="hosted_weblate">Вы можете помочь с переводом на Hosted Webalte</string>
     <string name="perf_appearance_summary">Темная тема, цветовая схема, тема поля, формат даты…</string>
     <string name="perf_gameplay_summary">Метод ввода, лимит ошибок, таймер…</string>
     <string name="perf_assistance_summary">Проверка ошибок, подсветка одинаковых чисел, оставшиеся использования…</string>

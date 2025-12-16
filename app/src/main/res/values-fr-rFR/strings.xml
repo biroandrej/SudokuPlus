@@ -202,7 +202,6 @@
     <string name="sort_by_game_id">ID</string>
     <string name="sort_label">Trier</string>
     <string name="filter_label">Filtre</string>
-    <string name="help_translate">Aidez à la traduction</string>
     <string name="title_folders">Dossiers</string>
     <string name="folder_name">Dossier : %1$s</string>
     <string name="edit_sudoku">Modifier un Sudoku</string>
@@ -257,7 +256,7 @@
     <string name="pref_cross_highlight_subtitle">Mettre en surbrillance certains blocs sur le plateau de jeu</string>
     <string name="pref_cross_highlight">Mise en évidence des croisements</string>
     <string name="pref_crash_reporting">Rapport d\'incident</string>
-    <string name="dialog_crash_report_text">Oups, LibreSudoku vient de planter. Souhaitez-vous envoyer un rapport de plantage aux développeurs \?</string>
+    <string name="dialog_crash_report_text">Oups, SudokuPlus vient de planter. Souhaitez-vous envoyer un rapport de plantage aux développeurs \?</string>
     <string name="pref_crash_reporting_subtitle">Aidez-nous à corriger les bugs. L\'application n\'envoie aucun journal par elle-même, vous serez invité à envoyer un rapport de plantage par e-mail</string>
     <string name="pref_date_format_custom_label">Personnalisé</string>
     <string name="redo">Refaire</string>

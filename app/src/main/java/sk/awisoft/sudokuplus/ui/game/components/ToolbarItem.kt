@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.ui.theme.LibreSudokuTheme
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
 
 enum class ToolBarItem {
@@ -67,7 +67,7 @@ fun ToolbarItem(
 @LightDarkPreview
 @Composable
 private fun KeyboardItemPreview() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         Surface {
             Row {
                 ToolbarItem(

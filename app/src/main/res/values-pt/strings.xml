@@ -203,7 +203,6 @@
     <string name="sort_by_game_id">ID</string>
     <string name="sort_label">Ordenar</string>
     <string name="filter_label">Filtrar</string>
-    <string name="help_translate">Ajude na tradução 🤩</string>
     <string name="title_folders">Pasta</string>
     <string name="create_folder">Criar uma pasta</string>
     <string name="delete_folder">Apagar uma pasta</string>
@@ -255,7 +254,7 @@
     <string name="move_games_to_folder_subtitle">Selecione a pasta que deseja mover os jogos selecionados</string>
     <string name="pref_cross_highlight_subtitle">Destaque alguns blocos no tabuleiro</string>
     <string name="pref_cross_highlight">Destaque cruzado</string>
-    <string name="dialog_crash_report_text">Oops, o LibreSudoku não funciona corretamente. Gostaria de enviar um relatório de bug aos programadores?</string>
+    <string name="dialog_crash_report_text">Oops, o SudokuPlus não funciona corretamente. Gostaria de enviar um relatório de bug aos programadores?</string>
     <string name="pref_crash_reporting">Relatório de falhas</string>
     <string name="pref_crash_reporting_subtitle">Ajude-nos a corrigir erros. O app não envia nenhum log por si só, será solicitado a enviar um relatório de falha por e-mail</string>
     <string name="pref_fun_keyboard_over_num">Painel de função sobre os números</string>

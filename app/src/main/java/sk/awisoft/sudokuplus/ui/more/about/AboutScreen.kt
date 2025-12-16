@@ -21,8 +21,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.rounded.ContentCopy
-import androidx.compose.material.icons.rounded.Payments
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -34,32 +32,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import sk.awisoft.sudokuplus.BuildConfig
 import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.core.CARD_MIR
-import sk.awisoft.sudokuplus.core.CRYPTO_BTC
-import sk.awisoft.sudokuplus.core.CRYPTO_TON
-import sk.awisoft.sudokuplus.core.CRYPTO_USDT_TRC20
 import sk.awisoft.sudokuplus.core.GITHUB_REPOSITORY
-import sk.awisoft.sudokuplus.core.TELEGRAM_CHANNEL
-import sk.awisoft.sudokuplus.core.WEBLATE_ENGAGE
 import sk.awisoft.sudokuplus.destinations.AboutLibrariesScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
-import sk.awisoft.sudokuplus.ui.theme.icons.Bitcoin
-import sk.awisoft.sudokuplus.ui.theme.icons.ExteraGram
-import sk.awisoft.sudokuplus.ui.theme.icons.LibreSudokuIconAlt
-import sk.awisoft.sudokuplus.ui.theme.icons.Mir
-import sk.awisoft.sudokuplus.ui.theme.icons.Ton
-import sk.awisoft.sudokuplus.ui.theme.icons.Usdt
 import sk.awisoft.sudokuplus.util.FlavorUtil
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -71,7 +56,6 @@ fun AboutScreen(
     navigator: DestinationsNavigator
 ) {
     val uriHandler = LocalUriHandler.current
-    val clipboardManager = LocalClipboardManager.current
 
     Scaffold(
         topBar = {
@@ -95,22 +79,17 @@ fun AboutScreen(
                 .verticalScroll(rememberScrollState())
         ) {
 
-            Box(
+            Icon(
                 modifier = Modifier
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                    .padding(12.dp)
                     .align(Alignment.CenterHorizontally)
-            ) {
-                Icon(
-                    modifier = Modifier
-                        .padding(12.dp)
-                        .align(Alignment.Center)
-                        .size(48.dp),
-                    imageVector = Icons.Rounded.LibreSudokuIconAlt,
-                    contentDescription = null
-                )
-            }
-            Spacer(modifier = Modifier.height(16.dp))
+                    .size(48.dp),
+                painter = painterResource(R.drawable.ic_app_icon),
+                tint = Color.Unspecified,
+                contentDescription = null
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -156,92 +135,11 @@ fun AboutScreen(
                     onClick = { uriHandler.openUri(GITHUB_REPOSITORY) }
                 )
                 AboutSectionBox(
-                    title = stringResource(R.string.weblate),
-                    subtitle = stringResource(R.string.help_translate),
-                    icon = ImageVector.vectorResource(R.drawable.ic_weblate),
-                    onClick = { uriHandler.openUri(WEBLATE_ENGAGE) }
-                )
-                AboutSectionBox(
-                    title = stringResource(R.string.telegram),
-                    subtitle = stringResource(R.string.telegram_link),
-                    icon = Icons.Rounded.ExteraGram,
-                    onClick = { uriHandler.openUri(TELEGRAM_CHANNEL) }
-                )
-                AboutSectionBox(
                     title = stringResource(R.string.libraries_licenses),
                     subtitle = stringResource(R.string.libraries_licenses_title),
                     icon = Icons.Outlined.Info,
                     onClick = { navigator.navigate(AboutLibrariesScreenDestination()) }
                 )
-            }
-
-            Box(
-                modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .clip(MaterialTheme.shapes.large)
-                    .background(MaterialTheme.colorScheme.surfaceContainer)
-                    .fillMaxWidth()
-            ) {
-                Column(
-                    modifier = Modifier
-                        .padding(vertical = 12.dp, horizontal = 8.dp)
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Icon(
-                            imageVector = Icons.Rounded.Payments,
-                            contentDescription = null
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            text = stringResource(R.string.donation_title),
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    }
-                    Column(
-                        modifier = Modifier
-                            .padding(top = 4.dp)
-                            .clip(MaterialTheme.shapes.medium)
-                            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
-                    ) {
-                        Text(
-                            text = stringResource(R.string.donation_description),
-                            style = MaterialTheme.typography.labelMedium,
-                            modifier = Modifier.padding(8.dp)
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        DonationItem(
-                            title = stringResource(R.string.crypto_bitcoin),
-                            information = CRYPTO_BTC,
-                            icon = Icons.Filled.Bitcoin,
-                            onClick = { clipboardManager.setText(AnnotatedString(text = CRYPTO_BTC)) }
-                        )
-                        DonationItem(
-                            title = stringResource(R.string.crypto_ton),
-                            information = CRYPTO_TON,
-                            icon = Icons.Rounded.Ton,
-                            onClick = { clipboardManager.setText(AnnotatedString(text = CRYPTO_TON)) }
-                        )
-                        DonationItem(
-                            title = stringResource(R.string.crypto_usdt),
-                            information = CRYPTO_USDT_TRC20,
-                            icon = Icons.Rounded.Usdt,
-                            onClick = { clipboardManager.setText(AnnotatedString(text = CRYPTO_USDT_TRC20)) }
-                        )
-                        DonationItem(
-                            title = stringResource(R.string.card_mir),
-                            information = CARD_MIR,
-                            icon = Icons.Filled.Mir,
-                            onClick = { clipboardManager.setText(AnnotatedString(text = CARD_MIR.filter { it != ' ' })) }
-                        )
-                    }
-                }
             }
         }
     }
@@ -293,54 +191,6 @@ fun FlowRowScope.AboutSectionBox(
             if (additionalContent != null) {
                 additionalContent()
             }
-        }
-    }
-}
-
-@Composable
-fun DonationItem(
-    title: String,
-    information: String,
-    icon: ImageVector,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier
-            .clip(MaterialTheme.shapes.medium)
-            .background(MaterialTheme.colorScheme.surfaceContainerHighest.harmonizeWithPrimary())
-            .fillMaxWidth()
-            .clickable(onClick = onClick)
-            .padding(start = 12.dp, top = 8.dp, bottom = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-
-        Row(
-            modifier = Modifier.weight(1f),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Column {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.labelLarge
-                )
-                Text(
-                    text = information,
-                    style = MaterialTheme.typography.bodySmall
-                )
-            }
-        }
-        IconButton(onClick = onClick) {
-            Icon(
-                imageVector = Icons.Rounded.ContentCopy,
-                contentDescription = null
-            )
         }
     }
 }

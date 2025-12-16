@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import sk.awisoft.sudokuplus.LocalBoardColors
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
-import sk.awisoft.sudokuplus.ui.theme.LibreSudokuTheme
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
@@ -153,7 +153,7 @@ fun BoardPreview(
 @LightDarkPreview
 @Composable
 private fun BoardPreviewPreview() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         Surface {
             BoardPreview(
                 boardString = "0000100000040000000000000700000000000900000000680000000000000005000000000000000",

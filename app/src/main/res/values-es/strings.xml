@@ -168,7 +168,6 @@
     <string name="filter_not_started">Sin iniciar</string>
     <string name="sort_ascending">Ascendiente</string>
     <string name="sort_descending">Descendiente</string>
-    <string name="help_translate">Ayuda a traducir</string>
     <string name="folder_name">Carpeta:%1$s</string>
     <string name="create_folder">Crear una carpeta</string>
     <string name="sort_by_timer">Tiempo</string>
@@ -215,7 +214,7 @@
     <string name="pref_cross_highlight_subtitle">Resaltar algunas casillas en la pizarra</string>
     <string name="pref_crash_reporting">Reportar incidente</string>
     <string name="pref_crash_reporting_subtitle">Ayúdanos a corregir los errores. La aplicación no envía registros por sí misma, se le pedirá que envíe un informe de bloqueo por correo electrónico</string>
-    <string name="dialog_crash_report_text">Ups, LibreSudoku se bloqueó. ¿Quieres enviar un informe de error a los desarrolladores\?</string>
+    <string name="dialog_crash_report_text">Ups, SudokuPlus se bloqueó. ¿Quieres enviar un informe de error a los desarrolladores\?</string>
     <string name="pref_fun_keyboard_over_num">Panel de funciones sobre los valores</string>
     <string name="pref_fun_keyboard_over_num_subtitle">Coloque el panel de funciones sobre el teclado de valores</string>
     <string name="sudoku_rules_mistakes_explanation">El primer error son dos 2 en la sexta casilla. ¿Recuerdas la regla de que no puede haber valores dobles en una casilla? El segundo error es el número 6 en la fila 2, columna 8 (R2C8), porque ya hay un 6 en esa columna (R5C8)</string>
@@ -336,9 +335,6 @@
     </plurals>
     <string name="libraries_licenses">Licencias</string>
     <string name="about_github_source_code">Código fuente en GitHub</string>
-    <string name="donation_title">Donación</string>
-    <string name="telegram_link">Únase a nosotros en Telegram</string>
-    <string name="donation_description">Esta aplicación es gratuita y no tiene publicidad para siempre. Puedes apoyarme a continuación</string>
     <string name="app_version">Versión %1$s (%2$s)</string>
     <string name="type_killer_12x12">Asesino 12x12</string>
     <string name="type_killer_9x9">Asesino 9x9</string>
@@ -349,7 +345,6 @@
     <string name="perf_appearance_summary">Tema oscuro, combinación de colores, tema del tablero, formato de fecha…</string>
     <string name="perf_gameplay_summary">Método de entrada, límite de errores, temporizador…</string>
     <string name="perf_assistance_summary">Comprobación de errores, resaltar valores idénticos, usos restantes…</string>
-    <string name="hosted_weblate">Puedes ayudar con la traducción en Hosted Weblate</string>
     <string name="perf_other_summary">Recuerda la dificultad, mantén la pantalla activa, reinicia las estadísticas…</string>
     <string name="pref_board_theme_summary">Aplicar colores de acento, posición de resaltado, tamaño de fuente…</string>
     <string name="action_generate">Generar</string>

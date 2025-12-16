@@ -32,7 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import sk.awisoft.sudokuplus.core.qqwing.GameType
-import sk.awisoft.sudokuplus.ui.theme.LibreSudokuTheme
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -204,7 +204,7 @@ private fun KeyboardRow(
 @LightDarkPreview
 @Composable
 private fun KeyboardItemPreview() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         Surface {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -238,7 +238,7 @@ private fun KeyboardItemPreview() {
 @LightDarkPreview
 @Composable
 private fun KeyboardPreview9x9() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         Surface {
             DefaultGameKeyboard(
                 onClick = { },
@@ -253,7 +253,7 @@ private fun KeyboardPreview9x9() {
 @LightDarkPreview
 @Composable
 private fun KeyboardPreview12x12() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         Surface {
             DefaultGameKeyboard(
                 onClick = { },

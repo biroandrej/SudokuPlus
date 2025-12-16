@@ -214,7 +214,6 @@
     <string name="sort_ascending">Urutkan naik</string>
     <string name="sort_descending">Urutkan menurun</string>
     <string name="sort_label">Urutkan</string>
-    <string name="help_translate">Bantu terjemahkan</string>
     <string name="title_folders">Folder</string>
     <string name="create_folder">Buat folder</string>
     <string name="delete_folder">Hapus folder</string>
@@ -248,7 +247,7 @@
     <string name="move_games_to_folder_subtitle">Pilih folder yang menjadi tujuan babak yang dipilih</string>
     <string name="pref_cross_highlight_subtitle">Sorot beberapa kotak pada papan</string>
     <string name="pref_cross_highlight">Silang sorotan</string>
-    <string name="dialog_crash_report_text">Ups, LibreSudoku baru saja macet. Apakah Anda ingin mengirimkan laporan macet ke para pengembang?</string>
+    <string name="dialog_crash_report_text">Ups, SudokuPlus baru saja macet. Apakah Anda ingin mengirimkan laporan macet ke para pengembang?</string>
     <string name="pref_crash_reporting">Melaporkan aplikasi macet</string>
     <string name="folder_import_supported_types">Berikut adalah jenis file yang didukung:
 \n.sdm (atau file .txt berstruktur sama)

@@ -8,10 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -43,18 +41,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.materialkolor.PaletteStyle
+import dagger.hilt.android.AndroidEntryPoint
 import sk.awisoft.sudokuplus.MainActivity
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.GITHUB_NEW_ISSUE
 import sk.awisoft.sudokuplus.core.GITHUB_REPOSITORY
 import sk.awisoft.sudokuplus.core.PreferencesConstants
-import sk.awisoft.sudokuplus.core.TELEGRAM_CHANNEL
 import sk.awisoft.sudokuplus.core.utils.GlobalExceptionHandler.Companion.getExceptionString
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
-import sk.awisoft.sudokuplus.ui.theme.LibreSudokuTheme
-import sk.awisoft.sudokuplus.ui.theme.icons.ExteraGram
-import com.materialkolor.PaletteStyle
-import dagger.hilt.android.AndroidEntryPoint
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 
 @AndroidEntryPoint
 class CrashActivity : ComponentActivity() {
@@ -66,14 +62,14 @@ class CrashActivity : ComponentActivity() {
         setContent {
             val viewModel: CrashViewModel = hiltViewModel()
             val dynamicColors by viewModel.dc.collectAsStateWithLifecycle(isSystemInDarkTheme())
-            val darkTheme by viewModel.darkTheme.collectAsStateWithLifecycle(PreferencesConstants.Companion.DEFAULT_DARK_THEME)
+            val darkTheme by viewModel.darkTheme.collectAsStateWithLifecycle(PreferencesConstants.DEFAULT_DARK_THEME)
             val amoledBlack by viewModel.amoledBlack.collectAsStateWithLifecycle(
-                PreferencesConstants.Companion.DEFAULT_AMOLED_BLACK
+                PreferencesConstants.DEFAULT_AMOLED_BLACK
             )
             val colorSeed by viewModel.colorSeed.collectAsStateWithLifecycle(initialValue = Color.Red)
             val paletteStyle by viewModel.paletteStyle.collectAsStateWithLifecycle(initialValue = PaletteStyle.TonalSpot)
 
-            LibreSudokuTheme(
+            SudokuPlusTheme(
                 darkTheme = when (darkTheme) {
                     1 -> false
                     2 -> true
@@ -171,25 +167,13 @@ class CrashActivity : ComponentActivity() {
                                 Text(stringResource(R.string.action_restart_app))
                             }
                             Spacer(modifier = Modifier.height(8.dp))
-                            Row(
-                                horizontalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                IconButton(onClick = {
-                                    uriHandler.openUri(TELEGRAM_CHANNEL)
-                                }) {
-                                    Icon(
-                                        imageVector = Icons.Rounded.ExteraGram,
-                                        contentDescription = null
-                                    )
-                                }
-                                IconButton(onClick = {
-                                    uriHandler.openUri(GITHUB_REPOSITORY)
-                                }) {
-                                    Icon(
-                                        painter = painterResource(R.drawable.ic_github_24dp),
-                                        contentDescription = null
-                                    )
-                                }
+                            IconButton(onClick = {
+                                uriHandler.openUri(GITHUB_REPOSITORY)
+                            }) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_github_24dp),
+                                    contentDescription = null
+                                )
                             }
                         }
                     }

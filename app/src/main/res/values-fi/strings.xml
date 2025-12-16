@@ -145,7 +145,6 @@
     <string name="sort_by_timer">Ajastin</string>
     <string name="sort_label">Järjestä</string>
     <string name="filter_label">Suodata</string>
-    <string name="help_translate">Auta kääntämisessä</string>
     <string name="title_folders">Kansiot</string>
     <string name="create_folder">Luo kansio</string>
     <string name="folder_name">Kansio: %1$s</string>
@@ -191,9 +190,6 @@
     <string name="onboard_restore_backup">Palauta varmuuskopio</string>
     <string name="onboard_restore_backup_description">Onko sinulla jo varmuuskopio? Palauta se nyt</string>
     <string name="onboard_settings_description">Säädä sovellus mieluisaksesi</string>
-    <string name="donation_title">Lahjoitus</string>
-    <string name="donation_description">Tämä sovellus on ilmainen ja mainokseton ikuisesti. Voit tukea minua alla olevilla vaihtoehdoilla</string>
-    <string name="hosted_weblate">Voit auttaa käännöksissä Hosted Weblate:ssa</string>
     <string name="action_restart_app">Käynnistä sovellus uudelleen</string>
     <string name="nav_bar_statistics">Tilastot</string>
     <string name="nav_bar_home">Koti</string>
@@ -202,7 +198,7 @@
     <string name="difficulty_unspecified">Määrittelemätön</string>
     <string name="difficulty_simple">Yksinkertainen</string>
     <string name="pref_crash_reporting">Kaatumisraportointi</string>
-    <string name="dialog_crash_report_text">Hups, LibreSudoku kaatui. Haluatko lähettää kaatumisraportin kehittäjille?</string>
+    <string name="dialog_crash_report_text">Hups, SudokuPlus kaatui. Haluatko lähettää kaatumisraportin kehittäjille?</string>
     <string name="pref_crash_reporting_subtitle">Auta meitä korjaamaan vikoja. Sovellus ei lähetä lokeja itsestään, sinua pyydetään lähettämään kaatumisraportti sähköpostitse</string>
     <string name="type_unspecified">Määrittelemätön</string>
     <string name="pref_appearance">Ulkoasu</string>

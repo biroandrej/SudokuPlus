@@ -22,9 +22,9 @@ import okhttp3.ResponseBody
 import java.io.File
 
 object UpdateUtil {
-    private const val OWNER = "kaajjo"
-    private const val REPO = "LibreSudoku"
-    private const val GITHUB_URL = "https://github.com/kaajjo/LibreSudoku"
+    private const val OWNER = "biroandrej"
+    private const val REPO = "SudokuPlus"
+    private const val GITHUB_URL = "https://github.com/biroandrej/SudokuPlus"
 
     private val requestLatestRelease =
         Request.Builder()

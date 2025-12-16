@@ -28,13 +28,13 @@ data class BackupData(
         /**
          * Regex for auto backups
          */
-        val regexAuto = """LibreSudoku-AutoBackup-\d+-\d+-\d+--\d+-\d+-\d+.json""".toRegex()
+        val regexAuto = """SudokuPlus-AutoBackup-\d+-\d+-\d+--\d+-\d+-\d+.json""".toRegex()
 
         /**
          * Filename for manual backups
          */
         val nameManual: String
-            get() = "LibreSudoku-Backup-${
+            get() = "SudokuPlus-Backup-${
                 ZonedDateTime.now()
                     .format(DateTimeFormatter.ofPattern("yyyy-MM-dd--HH-mm-ss"))
 
@@ -44,7 +44,7 @@ data class BackupData(
          * Filename for auto backups
          */
         val nameAuto: String
-            get() = "LibreSudoku-AutoBackup-${
+            get() = "SudokuPlus-AutoBackup-${
             ZonedDateTime.now()
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd--HH-mm-ss"))
         }"

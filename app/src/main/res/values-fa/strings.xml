@@ -73,7 +73,6 @@
         <item quantity="one">%1$d بازی آخر</item>
         <item quantity="other">%1$d بازی آخر</item>
     </plurals>
-    <string name="hosted_weblate">شما می‌توانید از طریق Hosted Weblate در ترجمه‌ی برنامه کمک کنید</string>
     <string name="perf_appearance_summary">تم تیره، رنگ‌بندی، تم جدول، فرمت تاریخ…</string>
     <string name="about_github_source_code">سورس‌کد روی گیت‌هاب</string>
     <string name="action_reset_game">بازنشانی بازی</string>
@@ -94,8 +93,6 @@
     <string name="theme_cyan">فیروزه‌ای</string>
     <string name="parse_color_fail">یک رنگ نیست</string>
     <string name="onboard_settings_description">برنامه را به دلخواه خود تنظیم کنید</string>
-    <string name="telegram_link">در تلگرام به ما بپیوندید</string>
-    <string name="donation_description">این برنامه برای همیشه رایگان و فاقد تبلیغات است. شما می‌توانید در پایین از من حمایت کنید</string>
     <string name="onboard_restore_backup_description">آیا از قبل نسخه‌ی پشتیبان دارید؟ آن را بازیابی کنید</string>
     <string name="app_version">نسخه‌ی %1$s (%2$s)</string>
     <string name="theme_orange">نارنجی</string>

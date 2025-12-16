@@ -54,7 +54,7 @@ import sk.awisoft.sudokuplus.ui.app_crash.CrashActivity
 import sk.awisoft.sudokuplus.ui.components.navigation_bar.NavigationBarComponent
 import sk.awisoft.sudokuplus.ui.settings.autoupdate.UpdateChannel
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
-import sk.awisoft.sudokuplus.ui.theme.LibreSudokuTheme
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
 import sk.awisoft.sudokuplus.ui.util.findActivity
 import javax.inject.Inject
@@ -88,7 +88,7 @@ class MainActivity : ComponentActivity() {
                 UpdateChannel.Disabled)
             val updateDismissedName by mainViewModel.updateDismissedName.collectAsStateWithLifecycle("")
 
-            LibreSudokuTheme(
+            SudokuPlusTheme(
                 darkTheme = when (darkTheme) {
                     1 -> false
                     2 -> true

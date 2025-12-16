@@ -27,7 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
-import sk.awisoft.sudokuplus.ui.theme.LibreSudokuTheme
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
 
 @Composable
@@ -84,7 +84,7 @@ fun HelpCard(
 @LightDarkPreview
 @Composable
 fun HelpCardPreview() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         HelpCard(
             title = "This is the title",
             details = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempus arcu vitae elit congue scelerisque. Sed a vestibulum tellus. Suspendisse tristique dui eget nisi dictum tempus",
@@ -153,7 +153,7 @@ fun GrantPermissionCard(
 @LightDarkPreview
 @Composable
 fun GrantPermissionCardPreview() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         GrantPermissionCard(
             title = "This is the title",
             details = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempus arcu vitae elit congue scelerisque. Sed a vestibulum tellus. Suspendisse tristique dui eget nisi dictum tempus",

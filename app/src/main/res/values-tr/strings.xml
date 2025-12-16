@@ -168,7 +168,6 @@
     <string name="create_import_set">Ayarla</string>
     <string name="custom_sudoku_no_added">Henüz bir sudoku eklemediniz</string>
     <string name="custom_sudoku_delete_dialog_title">Seçileni sil</string>
-    <string name="help_translate">Çeviriye yardım edin</string>
     <string name="pref_delete_stats_summ">Bu işlem, tüm istatistiklerinizi, kaydedilmiş oyunlarınızı ve kayıtlarınızı silecektir ve geri alınamaz</string>
     <string name="action_deleted">Silindi</string>
     <string name="pref_app_theme">Uygulama teması</string>
@@ -287,7 +286,7 @@
     <string name="import_saving">Kaydediliyor</string>
     <string name="action_move_selected">Seçileni taşı</string>
     <string name="move_games_to_folder_subtitle">Seçilen oyunları taşımak istediğiniz klasörü seçin</string>
-    <string name="dialog_crash_report_text">Tüh, LibreSudoku az önce çöktü. Geliştiricilere bir çökme bildirimi göndermek ister misiniz?</string>
+    <string name="dialog_crash_report_text">Tüh, SudokuPlus az önce çöktü. Geliştiricilere bir çökme bildirimi göndermek ister misiniz?</string>
     <string name="pref_crash_reporting_subtitle">Hataları düzeltmemize yardımcı olun. Uygulama günlükleri kendi kendine göndermez, e-posta ile bir çökme bildirimi göndermeniz istenir</string>
     <string name="pref_fun_keyboard_over_num_subtitle">İşlev panelini değerler klavyesinin üzerine yerleştir</string>
     <string name="pref_save_last_diff_and_type">Tür ve zorluğu hatırla</string>
@@ -330,10 +329,7 @@
         <item quantity="other">Son %1$d oyun</item>
     </plurals>
     <string name="about_github_source_code">Kaynak kodu GitHub\'da</string>
-    <string name="donation_description">Bu uygulama sonsuza kadar ücretsiz ve reklamsızdır. Beni aşağıdaki şekilde destekleyebilirsiniz</string>
     <string name="libraries_licenses">Lisanslar</string>
-    <string name="telegram_link">Telegram\'da bize katılın</string>
-    <string name="donation_title">Bağış</string>
     <string name="type_killer_9x9">Kazık 9x9</string>
     <string name="type_killer_6x6">Kazık 6x6</string>
     <string name="type_killer_12x12">Kazık 12x12</string>
@@ -341,7 +337,6 @@
     <string name="action_restart_app">Uygulamayı yeniden başlat</string>
     <string name="crash_screen_title">Tüh, bir şeyler yanlış gitti</string>
     <string name="action_share_crash_log">Çökme günlüğünü paylaş</string>
-    <string name="hosted_weblate">Hosted Weblate üzerinde çevirilere yardım edebilirsiniz</string>
     <string name="perf_appearance_summary">Koyu tema, renk düzeni, tahta teması, tarih biçimi…</string>
     <string name="perf_gameplay_summary">Giriş yöntemi, hata sınırı, zamanlayıcı…</string>
     <string name="perf_assistance_summary">Hata denetimi, aynı değerleri vurgula, kalan kullanımlar…</string>

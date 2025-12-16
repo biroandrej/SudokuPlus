@@ -212,10 +212,7 @@
     <string name="date_last_played">上次遊玩日期</string>
     <string name="onboard_restore_backup">還原備份</string>
     <string name="onboard_settings_description">根據您的喜好調整應用程式</string>
-    <string name="donation_title">捐款</string>
-    <string name="donation_description">這個應用程式永遠免費且沒有廣告。您可以透過下面支持我</string>
     <string name="onboard_restore_backup_description">您已經有備份了嗎？立即還原</string>
-    <string name="hosted_weblate">您可以在 Hosted Weblate 上幫助翻譯</string>
     <string name="app_version">版本 %1$s (%2$s)</string>
     <string name="nav_back">返回</string>
     <string name="action_apply">套用</string>
@@ -264,7 +261,6 @@
     <string name="title_folders">資料夾</string>
     <string name="delete_folder">刪除資料夾</string>
     <string name="dialog_delete_folder_text">名為 %1$s 的資料夾將被刪除</string>
-    <string name="help_translate">幫助翻譯</string>
     <string name="create_folder_name">資料夾名稱</string>
     <string name="dialog_yes">是</string>
     <string name="edit_sudoku">編輯數獨</string>
@@ -316,7 +312,6 @@
     <string name="pref_fun_keyboard_over_num">功能面板在數值上方</string>
     <string name="theme_orange">橙色</string>
     <string name="theme_cyan">青色</string>
-    <string name="telegram_link">在 Telegram 加入我們</string>
     <string name="learn_sudoku_rules">數獨規則</string>
     <string name="learn_basic_title">基礎</string>
     <string name="pref_crash_reporting">崩潰報告</string>

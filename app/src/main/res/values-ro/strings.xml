@@ -255,7 +255,6 @@
     <string name="sort_label">Sortare</string>
     <string name="export_string_text">Selectați textul din câmpul de text sau apăsați pur și simplu pe butonul de copiere</string>
     <string name="sort_descending">Descendentă</string>
-    <string name="help_translate">Ajutați la traducere</string>
     <string name="filter_all">Toate</string>
     <string name="filter_completed">Completate</string>
     <string name="folder_name">Dosar: %1$s</string>
@@ -292,7 +291,7 @@
     <string name="pref_boardtheme_accent">Aplicați culori de accent</string>
     <string name="pref_cross_highlight_subtitle">Evidențiați unele căsuțe în tabel</string>
     <string name="move_games_to_folder_subtitle">Selectați dosarul în care doriți să mutați jocurile selectate</string>
-    <string name="dialog_crash_report_text">Ups, LibreSudoku s-a oprit neintenționat. Doriți să trimiteți un raport al crash-ului către dezvoltatori?</string>
+    <string name="dialog_crash_report_text">Ups, SudokuPlus s-a oprit neintenționat. Doriți să trimiteți un raport al crash-ului către dezvoltatori?</string>
     <string name="pref_crash_reporting_subtitle">Ajutați-ne să remediem erorile. Aplicația nu trimite rapoartele de la sine, vi se va solicita să trimiteți un raport prin e-mail</string>
     <string name="pref_date_format">Format dată</string>
     <string name="mistakes_made">Greșeli: %1$d</string>
@@ -342,11 +341,7 @@
     <string name="type_killer_6x6">Killer 6x6</string>
     <string name="type_killer_12x12">Killer 12x12</string>
     <string name="libraries_licenses">Licențe</string>
-    <string name="telegram_link">Alăturați-vă pe Telegram</string>
-    <string name="donation_title">Donație</string>
-    <string name="donation_description">Această aplicație este gratuită și nu va avea anunțuri vreodată. Mă puteți ajuta mai jos</string>
     <string name="app_version">Versiune %1$s (%2$s)</string>
-    <string name="hosted_weblate">Puteți ajuta cu traducerea pe Hosted Weblate</string>
     <string name="perf_appearance_summary">Temă întunecată, culori schemă, temă tabel, format dată…</string>
     <string name="perf_gameplay_summary">Metodă de introducere, limită greșeli, temporizator…</string>
     <string name="perf_assistance_summary">Verificare greșeli, evidențiere valori identice, folosiri rămase…</string>

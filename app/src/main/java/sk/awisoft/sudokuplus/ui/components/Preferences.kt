@@ -26,7 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.ui.theme.LibreSudokuTheme
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -137,7 +137,7 @@ fun PreferenceRowSwitch(
 @LightDarkPreview
 @Composable
 private fun PreferenceRowPreview() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         Surface {
             Column {
                 PreferenceRow(
@@ -157,7 +157,7 @@ private fun PreferenceRowPreview() {
 @LightDarkPreview
 @Composable
 private fun PreferenceRowSwitchPreview() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         Surface {
             Column {
                 PreferenceRowSwitch(

@@ -191,7 +191,7 @@
     <string name="new_game">新游戏</string>
     <string name="dialog_new_game_text">您有一局未完成的游戏，您真的想开始一个新的吗\?</string>
     <string name="pref_crash_reporting">报告崩溃日志</string>
-    <string name="dialog_crash_report_text">LibreSudoku 崩溃了。您想要向开发人员发送崩溃日志吗\?</string>
+    <string name="dialog_crash_report_text">SudokuPlus 崩溃了。您想要向开发人员发送崩溃日志吗\?</string>
     <string name="pref_cross_highlight_subtitle">在纸板上标出一些方框</string>
     <string name="move_games_to_folder_subtitle">选择要移动所选游戏的文件夹</string>
     <string name="help">帮助</string>
@@ -211,7 +211,6 @@
 \n.1gsudoku</string>
     <string name="folder_empty_label">这个文件夹是空的</string>
     <string name="create_folder">新建文件夹</string>
-    <string name="help_translate">帮助翻译</string>
     <string name="sort_descending">降序</string>
     <string name="filter_not_started">未开始</string>
     <string name="game_not_started">未开始</string>
@@ -337,11 +336,7 @@
     <string name="type_killer_9x9">杀手 9x9</string>
     <string name="type_killer_6x6">杀手 6x6</string>
     <string name="type_killer_12x12">杀手 12x12</string>
-    <string name="donation_title">捐赠</string>
-    <string name="telegram_link">查看我们的 Telegram 频道</string>
-    <string name="hosted_weblate">您可在 Hosted Weblate 上参与项目翻译工作</string>
     <string name="libraries_licenses">许可证</string>
     <string name="app_version">版本 %1$s (%2$s)</string>
-    <string name="donation_description">永无广告的免费应用。您可以通过下面支持</string>
     <string name="perf_other_summary">记住上次类型和难度，保持屏幕常亮，重置状态…</string>
 </resources>

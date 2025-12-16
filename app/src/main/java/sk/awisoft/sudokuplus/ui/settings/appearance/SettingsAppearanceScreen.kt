@@ -56,7 +56,7 @@ import sk.awisoft.sudokuplus.ui.settings.SetDateFormatPatternDialog
 import sk.awisoft.sudokuplus.ui.settings.SettingsScaffoldLazyColumn
 import sk.awisoft.sudokuplus.ui.settings.components.AppThemePreviewItem
 import sk.awisoft.sudokuplus.ui.settings.components.ColorPickerDialog
-import sk.awisoft.sudokuplus.ui.theme.LibreSudokuTheme
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import com.materialkolor.PaletteStyle
 import com.materialkolor.rememberDynamicColorScheme
 import com.ramcosta.composedestinations.annotation.Destination
@@ -133,7 +133,7 @@ fun SettingsAppearanceScreen(
                 ) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                         item {
-                            LibreSudokuTheme(
+                            SudokuPlusTheme(
                                 dynamicColor = true,
                                 darkTheme = when (darkTheme) {
                                     0 -> isSystemInDarkTheme()

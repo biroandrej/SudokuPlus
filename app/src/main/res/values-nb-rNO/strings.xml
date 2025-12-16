@@ -234,8 +234,7 @@
     <string name="custom_sudoku_delete_dialog_text">Slett valgte sudokuer for godt\?</string>
     <string name="learn_basic_2">Sjekk så 8, i rad fire, tredje kolonne (F4C3). Det blokkerer hele kolonnen i vår boks. 8 kan ikke stå der.</string>
     <string name="learn_basic_5">Samme logikk brukes for rader og kolonner. 4 i første rad, kolonne 3 (R7C3) blokkerer tredje kolonne i vår rad. 4 i R3C5 blokkerer to kolonner samtidig (fire go seks), fordi 4 må være unikt for samme boks. R6C7 blokkerer kolonne syv.</string>
-    <string name="help_translate">Bistå oversettelsen</string>
-    <string name="dialog_crash_report_text">Oida. LibreSudoku krasjet. Send en rapport til utviklerne\?</string>
+    <string name="dialog_crash_report_text">Oida. SudokuPlus krasjet. Send en rapport til utviklerne\?</string>
     <string name="learn_app_toolbar_desc">Et panel under tastaturet</string>
     <string name="pref_disable_hints_summ">Liker du ikke hint? De kan skrus av!</string>
     <string name="pref_reset_timer">Tilbakestill tidsuret når spillet startes på ny</string>
@@ -306,8 +305,6 @@
     <string name="restore_existing_data_alert">Eksisterende data vil bli slettet!</string>
     <string name="onboard_restore_backup">Gjenopprett fra sikkerhetskopi</string>
     <string name="onboard_settings_description">Still inn appen slik at den passer deg</string>
-    <string name="donation_title">Donasjon</string>
-    <string name="donation_description">Denne appen er gratis og uten reklame for alltid. Under er noen måter å støtte meg på</string>
     <string name="date_started">Dato startet</string>
     <string name="date_last_played">Dato sist spilt</string>
     <string name="hint_naked_single_detail">Cellen %1$s har bare en mulig verdi igjen, så du kan plassere %2$s der</string>
@@ -344,9 +341,7 @@
     <string name="creating_backup_error">Sikkerhetskopiering feilet</string>
     <string name="update_channel_beta_summary">Vær den første til å få tilgang til beta-utgaver, nye funksjoner og feilfikser</string>
     <string name="onboard_restore_backup_description">Har du allerede en sikkerhetskopi? Gjennopprett den nå</string>
-    <string name="hosted_weblate">Du kan hjelpe med oversettelse på Hosted Weblate</string>
     <string name="auto_backup_folder_access_description">For automatiske sikkerhetskopiering må du gi tilgang til en katalog. Appen vil lage sikkerhetskopier i katalogen du velger</string>
-    <string name="telegram_link">Bli med oss på Telegram</string>
     <string name="update_channel_disable_summary">Slå av automatiske oppdateringer</string>
     <string name="check_for_update_checking_summary">Dette kan ta litt tid</string>
     <string name="hint_hidden_single_detail">Cellen %1$s er den eneste cellen i denne gruppen hvor %2$s kan være</string>

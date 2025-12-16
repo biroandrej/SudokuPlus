@@ -42,7 +42,7 @@ import sk.awisoft.sudokuplus.core.qqwing.Cage
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
-import sk.awisoft.sudokuplus.ui.theme.LibreSudokuTheme
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
@@ -481,7 +481,7 @@ fun Board(
 @LightDarkPreview
 @Composable
 private fun BoardPreviewLight() {
-    LibreSudokuTheme {
+    SudokuPlusTheme {
         Surface {
             val sudokuParser = SudokuParser()
             val board by remember {

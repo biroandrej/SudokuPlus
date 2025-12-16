@@ -224,7 +224,6 @@
     <string name="export_string_text">Vælg tekst fra tekstfeltet eller klik blot på kopieringsknappen</string>
     <string name="sort_descending">Faldende</string>
     <string name="filter_not_started">Ikke begyndt</string>
-    <string name="help_translate">Hjælp med at oversætte</string>
     <string name="edit_sudoku">Rediger sudoku</string>
     <string name="add_to_folder">Tilføj til mappe</string>
     <string name="create_folder">Opret en mappe</string>
@@ -250,7 +249,7 @@
     </plurals>
     <string name="last_played_section_title">Senest spillede spil</string>
     <string name="pref_board_theme_subtitle">Tilpas sudoku-brættets udseende</string>
-    <string name="dialog_crash_report_text">Ups, LibreSudoku er lige gået ned. Vil du sende en nedbrudsrapport til udviklerne\?</string>
+    <string name="dialog_crash_report_text">Ups, SudokuPlus er lige gået ned. Vil du sende en nedbrudsrapport til udviklerne\?</string>
     <plurals name="puzzles_in_folder">
         <item quantity="one">%1$d spil</item>
         <item quantity="other">%1$d spil</item>
@@ -328,7 +327,6 @@
     <string name="onboard_settings_description">Juster appen til lige din smag</string>
     <string name="pref_monet_style">Monet-stil</string>
     <string name="monet_fidelity">Fidelitet</string>
-    <string name="hosted_weblate">Du kan hjælpe med oversættelse på Hosted Weblate</string>
     <string name="perf_appearance_summary">Mørkt designtema, farveskema, spillefladedesigntema, dataformat…</string>
     <string name="perf_gameplay_summary">Inputmetode, fejlgrænse, timer…</string>
     <string name="action_restart_app">Genstart appen</string>
@@ -339,9 +337,6 @@
     <string name="crash_screen_title">Ups, noget gik galt</string>
     <string name="about_github_source_code">Kildekode på GitHub</string>
     <string name="libraries_licenses">Licenser</string>
-    <string name="telegram_link">Slut dig til os på Telegram</string>
-    <string name="donation_title">Donation</string>
-    <string name="donation_description">Denne app er gratis og for altid reklamefri. Du kan støtte mig nedenfor</string>
     <string name="action_generate">Generér</string>
     <string name="generating_number_of">Genererer %1$s/%2$s</string>
     <string name="type_killer_9x9">Killer 9x9</string>

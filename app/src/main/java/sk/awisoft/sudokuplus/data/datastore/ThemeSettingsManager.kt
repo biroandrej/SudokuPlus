@@ -63,7 +63,7 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
     }
 
     val darkTheme = dataStore.data.map { preferences ->
-        preferences[darkThemeKey] ?: PreferencesConstants.Companion.DEFAULT_DARK_THEME
+        preferences[darkThemeKey] ?: PreferencesConstants.DEFAULT_DARK_THEME
     }
 
     suspend fun setAmoledBlack(enabled: Boolean) {
@@ -73,7 +73,7 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
     }
 
     val amoledBlack = dataStore.data.map { preferences ->
-        preferences[amoledBlackKey] ?: PreferencesConstants.Companion.DEFAULT_AMOLED_BLACK
+        preferences[amoledBlackKey] ?: false
     }
 
     suspend fun setMonetSudokuBoard(enabled: Boolean) {
@@ -83,7 +83,7 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
     }
 
     val monetSudokuBoard = dataStore.data.map { preferences ->
-        preferences[monetSudokuBoardKey] ?: PreferencesConstants.Companion.DEFAULT_MONET_SUDOKU_BOARD
+        preferences[monetSudokuBoardKey] ?: true
     }
 
     suspend fun setBoardCrossHighlight(enabled: Boolean) {
