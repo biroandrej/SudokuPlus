@@ -26,7 +26,6 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -167,7 +166,7 @@ fun ItemRowBigIcon(
     onLongClick: ((() -> Unit))? = null,
     titleStyle: TextStyle = MaterialTheme.typography.titleMedium,
     subtitleStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(fontSize = 12.sp),
-    containerColor: Color = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp),
+    containerColor: Color = MaterialTheme.colorScheme.surfaceContainer,
     iconBackground: Color = MaterialTheme.colorScheme.secondaryContainer,
     iconSize: Dp = 42.dp
 ) {

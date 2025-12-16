@@ -30,7 +30,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -205,7 +204,7 @@ fun AboutScreen(
                         modifier = Modifier
                             .padding(top = 4.dp)
                             .clip(MaterialTheme.shapes.medium)
-                            .background(MaterialTheme.colorScheme.surfaceColorAtElevation(7.dp))
+                            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
                     ) {
                         Text(
                             text = stringResource(R.string.donation_description),

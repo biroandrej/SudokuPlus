@@ -35,7 +35,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -262,8 +261,8 @@ fun GeneratingDialog(
 ) {
     Dialog(onDismissRequest = onDismiss) {
         Surface(
-            shape = RoundedCornerShape(28.dp),
-            color = MaterialTheme.colorScheme.surfaceColorAtElevation(6.dp)
+            shape = MaterialTheme.shapes.extraLarge,
+            color = MaterialTheme.colorScheme.surfaceContainerHigh
         ) {
             Box(
                 contentAlignment = Alignment.Center,
@@ -337,7 +336,7 @@ fun SavedSudokuPreview(
         modifier = modifier
             .clip(MaterialTheme.shapes.medium)
             .clickable(onClick = onClick)
-            .background(MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp))
+            .background(MaterialTheme.colorScheme.surfaceContainer)
     ) {
         Row(
             modifier = Modifier

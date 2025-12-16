@@ -39,7 +39,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -529,7 +528,7 @@ fun CardRow(
         modifier = modifier
             .padding(horizontal = 12.dp)
             .clip(MaterialTheme.shapes.medium)
-            .background(MaterialTheme.colorScheme.surfaceColorAtElevation(6.dp))
+            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
             .fillMaxWidth()
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically

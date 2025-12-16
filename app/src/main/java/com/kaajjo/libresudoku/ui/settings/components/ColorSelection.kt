@@ -24,7 +24,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -169,7 +168,7 @@ fun ColorPickerDialog(
                             .clip(RoundedCornerShape(6.dp))
                             .background(
                                 MaterialTheme.colorScheme
-                                    .surfaceColorAtElevation(6.dp)
+                                    .surfaceContainerHigh
                                     .harmonizeWithPrimary()
                             )
                     ) {

@@ -88,7 +88,7 @@ fun KeyboardItem(
             if (remainingUses != null) {
                 Text(
                     text = remainingUses.toString(),
-                    fontSize = 11.sp
+                    style = MaterialTheme.typography.labelSmall
                 )
             }
         }

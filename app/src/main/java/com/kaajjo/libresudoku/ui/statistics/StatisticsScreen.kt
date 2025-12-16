@@ -454,7 +454,7 @@ fun ChipRowType(
                 selected = type.first == selected,
                 onClick = { onSelected(type.first) },
                 label = { Text(type.second) },
-                shape = RoundedCornerShape(16.dp),
+                shape = MaterialTheme.shapes.large,
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = selectedColor,
                     containerColor = MaterialTheme.colorScheme.surface
@@ -494,7 +494,7 @@ fun ChipRowDifficulty(
                         }
                     )
                 },
-                shape = RoundedCornerShape(16.dp),
+                shape = MaterialTheme.shapes.large,
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = selectedColor,
                     containerColor = MaterialTheme.colorScheme.surface

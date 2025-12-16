@@ -15,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,9 +41,8 @@ fun CollapsingTopAppBar(
     additionalContent: (@Composable () -> Unit)? = null,
     collapsingTitle: CollapsingTitle? = null,
     scrollBehavior: CollapsingTopAppBarScrollBehavior? = null,
-    collapsedElevation: Dp = DefaultCollapsedElevation,
     windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
-    elevatedColor: Color = MaterialTheme.colorScheme.surfaceColorAtElevation(collapsedElevation),
+    elevatedColor: Color = MaterialTheme.colorScheme.surfaceContainer,
     surfaceColor: Color = MaterialTheme.colorScheme.surface
 ) {
     val collapsedFraction = when {
@@ -356,7 +354,6 @@ private val ExpandedTitleBottomPadding = 26.dp
 private val ExpandedTitleTopPadding = 12.dp
 private val ExpandedTitleStartPadding = 16.dp
 private val CollapsedTitleLineHeight = 28.sp
-private val DefaultCollapsedElevation = 3.0.dp
 
 private const val ExpandedTitleId = "expandedTitle"
 private const val CollapsedTitleId = "collapsedTitle"
