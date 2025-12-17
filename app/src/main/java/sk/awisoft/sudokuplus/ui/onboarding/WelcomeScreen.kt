@@ -5,7 +5,6 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
@@ -14,32 +13,40 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.FlowRowScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.Language
 import androidx.compose.material.icons.rounded.Restore
 import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Button
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -50,14 +57,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
@@ -65,12 +70,10 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -97,7 +100,7 @@ import kotlin.random.Random
 
 @Destination
 @Composable
-fun WelcomeScreen(
+fun WelcomeScreen (
     viewModel: WelcomeViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
@@ -131,7 +134,46 @@ fun WelcomeScreen(
         }
     }
 
-    Scaffold { paddingValues ->
+    Scaffold(
+        bottomBar = {
+            AnimatedVisibility(
+                visible = showButton,
+                enter = slideInVertically(
+                    initialOffsetY = { it / 2 },
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessMedium
+                    )
+                ) + fadeIn()
+            ) {
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .windowInsetsPadding(WindowInsets.navigationBars),
+                    tonalElevation = 3.dp,
+                    color = MaterialTheme.colorScheme.surface
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Button(
+                            onClick = {
+                                viewModel.setFirstLaunch()
+                                navigator.popBackStack()
+                                navigator.navigate(HomeScreenDestination())
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(stringResource(R.string.action_start))
+                        }
+                    }
+                }
+            }
+        }
+    ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {
             // Floating numbers background
             FloatingNumbersBackground(
@@ -143,144 +185,128 @@ fun WelcomeScreen(
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .padding(paddingValues)
-                    .systemBarsPadding(),
-                verticalArrangement = Arrangement.SpaceBetween
+                    .padding(horizontal = 16.dp, vertical = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // Animated logo and title section
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                WelcomeHeroCard(
+                    showLogo = showLogo,
+                    showTitle = showTitle,
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                AnimatedVisibility(
+                    visible = showBoard,
+                    enter = fadeIn() + scaleIn(initialScale = 0.98f)
                 ) {
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    AnimatedVisibility(
-                        visible = showLogo,
-                        enter = scaleIn(
-                            animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioMediumBouncy,
-                                stiffness = Spring.StiffnessLow
-                            )
-                        ) + fadeIn()
-                    ) {
-                        AnimatedSudokuLogo(
-                            modifier = Modifier.size(80.dp)
+                    ElevatedCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.elevatedCardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
                         )
-                    }
-
-                    Spacer(modifier = Modifier.height(12.dp))
-
-                    AnimatedVisibility(
-                        visible = showTitle,
-                        enter = slideInVertically(
-                            initialOffsetY = { -it / 2 },
-                            animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioMediumBouncy,
-                                stiffness = Spring.StiffnessMedium
-                            )
-                        ) + fadeIn()
                     ) {
-                        Text(
-                            modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.Center,
-                            text = stringResource(R.string.app_name),
-                            style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.primary
-                        )
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            Text(
+                                text = stringResource(R.string.intro_rules),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Board(
+                                board = viewModel.previewBoard,
+                                size = 9,
+                                selectedCell = viewModel.selectedCell,
+                                onClick = { cell -> viewModel.selectedCell = cell }
+                            )
+                        }
                     }
                 }
 
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top
+                WelcomeQuickActions(
+                    visibleItemIndex = visibleItemIndex,
+                    currentLanguage = currentLanguage,
+                    onLanguageClick = { navigator.navigate(SettingsLanguageScreenDestination()) },
+                    onRestoreBackupClick = { navigator.navigate(BackupScreenDestination) },
+                    onSettingsClick = { navigator.navigate(SettingsCategoriesScreenDestination(false)) },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun WelcomeHeroCard(
+    showLogo: Boolean,
+    showTitle: Boolean,
+    modifier: Modifier = Modifier
+) {
+    val colorScheme = MaterialTheme.colorScheme
+    val gradient = remember(colorScheme.primaryContainer, colorScheme.secondaryContainer) {
+        Brush.linearGradient(
+            colors = listOf(
+                colorScheme.primaryContainer,
+                colorScheme.secondaryContainer
+            )
+        )
+    }
+
+    ElevatedCard(
+        modifier = modifier,
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+        )
+    ) {
+        Box(
+            modifier = Modifier
+                .background(gradient)
+                .padding(16.dp)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                AnimatedVisibility(
+                    visible = showLogo,
+                    enter = scaleIn(
+                        animationSpec = spring(
+                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                            stiffness = Spring.StiffnessLow
+                        )
+                    ) + fadeIn()
                 ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 12.dp, vertical = 8.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    Surface(
+                        shape = MaterialTheme.shapes.extraLarge,
+                        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f)
                     ) {
-                        AnimatedVisibility(
-                            visible = showBoard,
-                            enter = fadeIn() + scaleIn(initialScale = 0.9f)
-                        ) {
-                            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                Text(
-                                    text = stringResource(R.string.intro_rules),
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                                Board(
-                                    board = viewModel.previewBoard,
-                                    size = 9,
-                                    selectedCell = viewModel.selectedCell,
-                                    onClick = { cell -> viewModel.selectedCell = cell }
-                                )
-                            }
-                        }
-
-                        AnimatedVisibility(
-                            visible = showButton,
-                            enter = scaleIn(
-                                animationSpec = spring(
-                                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                                    stiffness = Spring.StiffnessMedium
-                                )
-                            ) + fadeIn()
-                        ) {
-                            Button(
-                                onClick = {
-                                    viewModel.setFirstLaunch()
-                                    navigator.popBackStack()
-                                    navigator.navigate(HomeScreenDestination())
-                                },
-                                modifier = Modifier.align(Alignment.CenterHorizontally)
-                            ) {
-                                Text(stringResource(R.string.action_start))
-                            }
-                        }
-
-                        // Staggered option items
-                        AnimatedOptionItem(
-                            visible = visibleItemIndex >= 1,
-                            delayIndex = 0
-                        ) {
-                            ItemRowBigIcon(
-                                title = stringResource(R.string.pref_app_language),
-                                icon = Icons.Rounded.Language,
-                                subtitle = currentLanguage,
-                                onClick = { navigator.navigate(SettingsLanguageScreenDestination()) },
+                        Box(modifier = Modifier.padding(12.dp)) {
+                            AnimatedSudokuLogo(
+                                modifier = Modifier.size(72.dp)
                             )
                         }
+                    }
+                }
 
-                        AnimatedOptionItem(
-                            visible = visibleItemIndex >= 2,
-                            delayIndex = 1
-                        ) {
-                            ItemRowBigIcon(
-                                title = stringResource(R.string.onboard_restore_backup),
-                                icon = Icons.Rounded.Restore,
-                                subtitle = stringResource(R.string.onboard_restore_backup_description),
-                                onClick = {
-                                    navigator.navigate(BackupScreenDestination)
-                                }
-                            )
-                        }
-
-                        AnimatedOptionItem(
-                            visible = visibleItemIndex >= 3,
-                            delayIndex = 2
-                        ) {
-                            ItemRowBigIcon(
-                                title = stringResource(R.string.settings_title),
-                                icon = Icons.Rounded.Settings,
-                                subtitle = stringResource(R.string.onboard_settings_description),
-                                onClick = {
-                                    navigator.navigate(SettingsCategoriesScreenDestination(false))
-                                }
-                            )
-                        }
+                AnimatedVisibility(
+                    visible = showTitle,
+                    enter = slideInVertically(
+                        initialOffsetY = { -it / 2 },
+                        animationSpec = spring(
+                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                            stiffness = Spring.StiffnessMedium
+                        )
+                    ) + fadeIn()
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = stringResource(R.string.app_name),
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
                     }
                 }
             }
@@ -288,32 +314,124 @@ fun WelcomeScreen(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun AnimatedOptionItem(
-    visible: Boolean,
-    delayIndex: Int,
-    content: @Composable () -> Unit
+private fun WelcomeQuickActions(
+    visibleItemIndex: Int,
+    currentLanguage: String,
+    onLanguageClick: () -> Unit,
+    onRestoreBackupClick: () -> Unit,
+    onSettingsClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    val alpha by animateFloatAsState(
-        targetValue = if (visible) 1f else 0f,
-        animationSpec = tween(durationMillis = 300),
-        label = "option alpha"
-    )
-    val scale by animateFloatAsState(
-        targetValue = if (visible) 1f else 0.9f,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMedium
-        ),
-        label = "option scale"
-    )
-
-    Box(
-        modifier = Modifier
-            .alpha(alpha)
-            .scale(scale)
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        content()
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            maxItemsInEachRow = 2
+        ) {
+            AnimatedVisibility(
+                visible = visibleItemIndex >= 1,
+                enter = fadeIn() + scaleIn(initialScale = 0.96f)
+            ) {
+                WelcomeActionTile(
+                    title = stringResource(R.string.pref_app_language),
+                    subtitle = currentLanguage,
+                    icon = Icons.Rounded.Language,
+                    onClick = onLanguageClick
+                )
+            }
+
+            AnimatedVisibility(
+                visible = visibleItemIndex >= 2,
+                enter = fadeIn() + scaleIn(initialScale = 0.96f)
+            ) {
+                WelcomeActionTile(
+                    title = stringResource(R.string.onboard_restore_backup),
+                    subtitle = stringResource(R.string.onboard_restore_backup_description),
+                    icon = Icons.Rounded.Restore,
+                    onClick = onRestoreBackupClick
+                )
+            }
+
+            AnimatedVisibility(
+                visible = visibleItemIndex >= 3,
+                enter = fadeIn() + scaleIn(initialScale = 0.96f)
+            ) {
+                WelcomeActionTile(
+                    title = stringResource(R.string.settings_title),
+                    subtitle = stringResource(R.string.onboard_settings_description),
+                    icon = Icons.Rounded.Settings,
+                    onClick = onSettingsClick
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun FlowRowScope.WelcomeActionTile(
+    title: String,
+    subtitle: String,
+    icon: ImageVector,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    ElevatedCard(
+        modifier = modifier.weight(1f),
+        onClick = onClick,
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer
+        )
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(44.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.secondaryContainer,
+                        shape = MaterialTheme.shapes.large
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null
+                )
+            }
+
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+
+            Icon(
+                imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
     }
 }
 
@@ -473,75 +591,6 @@ private fun AnimatedSudokuLogo(
             cornerRadius = CornerRadius(cornerRadius * 2, cornerRadius * 2),
             style = Stroke(width = 3f)
         )
-    }
-}
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-fun ItemRowBigIcon(
-    title: String,
-    icon: ImageVector,
-    modifier: Modifier = Modifier,
-    trailing: @Composable () -> Unit = { },
-    onClick: () -> Unit = { },
-    subtitle: String? = null,
-    shape: Shape = MaterialTheme.shapes.large,
-    onLongClick: ((() -> Unit))? = null,
-    titleStyle: TextStyle = MaterialTheme.typography.titleMedium,
-    subtitleStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(fontSize = 12.sp),
-    containerColor: Color = MaterialTheme.colorScheme.surfaceContainer,
-    iconBackground: Color = MaterialTheme.colorScheme.secondaryContainer,
-    iconSize: Dp = 42.dp
-) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(shape)
-            .background(containerColor)
-            .combinedClickable(onClick = onClick, onLongClick = onLongClick)
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(12.dp)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.weight(1f)
-            ) {
-                Box(
-                    modifier = Modifier.background(
-                        color = iconBackground,
-                        shape = MaterialTheme.shapes.medium
-                    )
-                ) {
-                    Icon(
-                        imageVector = icon,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(iconSize)
-                            .padding(6.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column {
-                    Text(
-                        text = title,
-                        style = titleStyle
-                    )
-                    if (subtitle != null) {
-                        Text(
-                            text = subtitle,
-                            style = subtitleStyle,
-                            color = LocalContentColor.current.copy(alpha = 0.8f)
-                        )
-                    }
-                }
-            }
-            trailing()
-        }
     }
 }
 
