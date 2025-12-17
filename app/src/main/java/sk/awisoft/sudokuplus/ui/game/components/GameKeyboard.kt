@@ -7,6 +7,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,12 +27,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import sk.awisoft.sudokuplus.core.qqwing.GameType
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
 
@@ -46,9 +47,24 @@ fun KeyboardItem(
     selected: Boolean = false
 ) {
     val mutableInteractionSource by remember { mutableStateOf(MutableInteractionSource()) }
-    val color by animateColorAsState(
-        targetValue = if (selected) MaterialTheme.colorScheme.primary.copy(alpha = 0.5f) else Color.Transparent
+    val isDarkTheme = isSystemInDarkTheme()
+
+    // Numpad button background: Muted Teal (both modes), lighter when selected
+    val backgroundColor by animateColorAsState(
+        targetValue = when {
+            selected -> SudokuPlusColors.MutedTeal.copy(alpha = 0.85f)
+            else -> SudokuPlusColors.MutedTeal.copy(alpha = 0.2f)
+        },
+        label = "keyboard background color"
     )
+
+    // Numpad text: Soft Cream in light mode, Deepest Slate in dark mode
+    val textColor = if (isDarkTheme) {
+        if (selected) SudokuPlusColors.SoftCream else SudokuPlusColors.DeepestSlate
+    } else {
+        if (selected) SudokuPlusColors.SoftCream else SudokuPlusColors.DeepSlateBlue
+    }
+
     val localView = LocalView.current
     val keyboardFontSize = if (remainingUses != null) {
         25.sp
@@ -58,7 +74,7 @@ fun KeyboardItem(
     Box(
         modifier = modifier
             .clip(CircleShape)
-            .background(color)
+            .background(backgroundColor)
             .combinedClickable(
                 interactionSource = mutableInteractionSource,
                 onClick = {
@@ -70,7 +86,7 @@ fun KeyboardItem(
                 },
                 indication = ripple(
                     bounded = true,
-                    color = MaterialTheme.colorScheme.primary
+                    color = SudokuPlusColors.MutedTeal
                 )
             ),
         contentAlignment = Alignment.Center
@@ -84,11 +100,13 @@ fun KeyboardItem(
                 text = number.toString(16).uppercase(),
                 fontWeight = FontWeight.Bold,
                 fontSize = keyboardFontSize,
+                color = textColor
             )
             if (remainingUses != null) {
                 Text(
                     text = remainingUses.toString(),
-                    style = MaterialTheme.typography.labelSmall
+                    style = MaterialTheme.typography.labelSmall,
+                    color = textColor.copy(alpha = 0.7f)
                 )
             }
         }
@@ -117,8 +135,8 @@ fun DefaultGameKeyboard(
                 chunkedNumbers.forEachIndexed { index, chunked ->
                     AnimatedVisibility(
                         visible =
-                        (remainingUses != null && remainingUses.chunked(6)[index].any { it > 0 }) ||
-                                remainingUses == null
+                            (remainingUses != null && remainingUses.chunked(6)[index].any { it > 0 }) ||
+                                    remainingUses == null
                     ) {
                         KeyboardRow {
                             chunked.forEach { number ->

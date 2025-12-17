@@ -3,6 +3,12 @@ package sk.awisoft.sudokuplus.ui.statistics
 import android.text.format.DateUtils
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -24,6 +30,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ElevatedFilterChip
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChipDefaults
@@ -48,6 +56,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -71,8 +81,11 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import java.time.Duration
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.collections.get
 import kotlin.collections.sumOf
+import kotlin.div
 import kotlin.math.roundToInt
+import kotlin.toString
 
 @Destination(style = AnimatedNavigation::class)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -350,34 +363,66 @@ fun StatisticsSection(
     painter: Painter,
     statRows: List<List<String>>
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(12.dp)
-    ) {
-        StatsSectionName(
-            title = title,
-            painter = painter
-        )
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Column(
-                modifier = Modifier.padding(12.dp)
-            ) {
+    // Animation state for staggered entry
+    var visible by remember { mutableStateOf(false) }
 
-                statRows.forEachIndexed { index, arr ->
-                    StatRow(
-                        startText = arr[0],
-                        endText = arr[1],
-                        modifier = Modifier.padding(vertical = 8.dp)
+    LaunchedEffect(Unit) {
+        visible = true
+    }
+
+    val scale by animateFloatAsState(
+        targetValue = if (visible) 1f else 0.9f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMedium
+        ),
+        label = "card scale"
+    )
+
+    AnimatedVisibility(
+        visible = visible,
+        enter = fadeIn(animationSpec = tween(300)) +
+                slideInVertically(
+                    initialOffsetY = { it / 4 },
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessMedium
                     )
-                    if (index + 1 != statRows.size) {
-                        HorizontalDivider(
-                            modifier = Modifier.fillMaxWidth(),
-                            color = MaterialTheme.colorScheme.outline
+                )
+    ) {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+                .scale(scale)
+        ) {
+            StatsSectionName(
+                title = title,
+                painter = painter
+            )
+            ElevatedCard(
+                modifier = Modifier.fillMaxWidth(),
+                elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp),
+                colors = CardDefaults.elevatedCardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceContainerLow
+                )
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    statRows.forEachIndexed { index, arr ->
+                        AnimatedStatRow(
+                            startText = arr[0],
+                            endText = arr[1],
+                            delayMillis = index * 100,
+                            modifier = Modifier.padding(vertical = 10.dp)
                         )
+                        if (index + 1 != statRows.size) {
+                            HorizontalDivider(
+                                modifier = Modifier.fillMaxWidth(),
+                                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                            )
+                        }
                     }
                 }
             }
@@ -431,6 +476,62 @@ fun StatRow(
         )
     }
 }
+
+@Composable
+fun AnimatedStatRow(
+    startText: String,
+    endText: String,
+    delayMillis: Int = 0,
+    modifier: Modifier = Modifier
+) {
+    var visible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        kotlinx.coroutines.delay(delayMillis.toLong())
+        visible = true
+    }
+
+    val alpha by animateFloatAsState(
+        targetValue = if (visible) 1f else 0f,
+        animationSpec = tween(durationMillis = 300),
+        label = "stat row alpha"
+    )
+
+    val scale by animateFloatAsState(
+        targetValue = if (visible) 1f else 0.8f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMedium
+        ),
+        label = "stat row scale"
+    )
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .scale(scale)
+            .alpha(alpha),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = startText,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
+            style = MaterialTheme.typography.bodyLarge
+        )
+        Text(
+            text = endText,
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.primary
+        )
+    }
+}
+
+@Composable
+private fun Modifier.alpha(alpha: Float): Modifier = this.then(
+    Modifier.graphicsLayer { this.alpha = alpha }
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -545,7 +646,7 @@ fun RecordItem(
             }
             Row {
                 Text(
-                    text = date.format(AppSettingsManager.Companion.dateFormat(dateFormat))
+                    text = date.format(AppSettingsManager.dateFormat(dateFormat))
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(

@@ -14,8 +14,10 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.Note
+import kotlin.compareTo
 import kotlin.math.floor
 import kotlin.math.sqrt
+import kotlin.times
 
 fun DrawScope.drawRoundCell(
     row: Int,
@@ -39,6 +41,33 @@ fun DrawScope.drawRoundCell(
     drawPath(
         path = path,
         color = color
+    )
+}
+
+fun DrawScope.drawRoundCellBorder(
+    row: Int,
+    col: Int,
+    gameSize: Int,
+    rect: Rect,
+    color: Color,
+    cornerRadius: CornerRadius = CornerRadius.Zero,
+    strokeWidth: Float = 2f
+) {
+    val path = Path().apply {
+        addRoundRect(
+            roundRectForCell(
+                row = row,
+                col = col,
+                gameSize = gameSize,
+                rect = rect,
+                cornerRadius = cornerRadius
+            )
+        )
+    }
+    drawPath(
+        path = path,
+        color = color,
+        style = Stroke(width = strokeWidth)
     )
 }
 
@@ -187,6 +216,106 @@ fun DrawScope.drawCrossSelection(
                     size = Size(cellSize * sectionWidth, cellSize * sectionHeight)
                 )
             }
+        }
+    }
+}
+
+/**
+ * Draw alternating cell backgrounds for subtle visual texture
+ */
+fun DrawScope.drawCellBackgrounds(
+    gameSize: Int,
+    cellSize: Float,
+    color: Color,
+    cornerRadius: CornerRadius
+) {
+    for (row in 0 until gameSize) {
+        for (col in 0 until gameSize) {
+            // Create subtle checkerboard pattern within each 3x3 box
+            val boxRow = row / 3
+            val boxCol = col / 3
+            val isAlternateBox = (boxRow + boxCol) % 2 == 1
+
+            if (isAlternateBox) {
+                drawRoundCell(
+                    row = row,
+                    col = col,
+                    gameSize = gameSize,
+                    rect = Rect(
+                        offset = Offset(col * cellSize, row * cellSize),
+                        size = Size(cellSize, cellSize)
+                    ),
+                    color = color,
+                    cornerRadius = cornerRadius
+                )
+            }
+        }
+    }
+}
+
+/**
+ * Draw enhanced grid lines with varying opacity for visual hierarchy
+ */
+fun DrawScope.drawEnhancedGridLines(
+    gameSize: Int,
+    cellSize: Float,
+    thinLineColor: Color,
+    thickLineColor: Color,
+    thinLineWidth: Float,
+    thickLineWidth: Float,
+    horThick: Int,
+    vertThick: Int,
+    maxWidth: Float
+) {
+    // Draw thin lines first (behind thick lines)
+    for (i in 1 until gameSize) {
+        val isThickHorizontal = i % horThick == 0
+        val isThickVertical = i % vertThick == 0
+
+        // Vertical lines
+        if (!isThickHorizontal) {
+            drawLine(
+                color = thinLineColor,
+                start = Offset(cellSize * i, 0f),
+                end = Offset(cellSize * i, maxWidth),
+                strokeWidth = thinLineWidth
+            )
+        }
+
+        // Horizontal lines
+        if (!isThickVertical && maxWidth >= cellSize * i) {
+            drawLine(
+                color = thinLineColor,
+                start = Offset(0f, cellSize * i),
+                end = Offset(maxWidth, cellSize * i),
+                strokeWidth = thinLineWidth
+            )
+        }
+    }
+
+    // Draw thick lines on top
+    for (i in 1 until gameSize) {
+        val isThickHorizontal = i % horThick == 0
+        val isThickVertical = i % vertThick == 0
+
+        // Vertical thick lines
+        if (isThickHorizontal) {
+            drawLine(
+                color = thickLineColor,
+                start = Offset(cellSize * i, 0f),
+                end = Offset(cellSize * i, maxWidth),
+                strokeWidth = thickLineWidth
+            )
+        }
+
+        // Horizontal thick lines
+        if (isThickVertical && maxWidth >= cellSize * i) {
+            drawLine(
+                color = thickLineColor,
+                start = Offset(0f, cellSize * i),
+                end = Offset(maxWidth, cellSize * i),
+                strokeWidth = thickLineWidth
+            )
         }
     }
 }

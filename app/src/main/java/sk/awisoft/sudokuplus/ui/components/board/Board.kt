@@ -1,6 +1,9 @@
 package sk.awisoft.sudokuplus.ui.components.board
 
 import android.graphics.Paint
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectTransformGestures
@@ -46,9 +49,12 @@ import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
+import kotlin.compareTo
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.sqrt
+import kotlin.times
+import kotlin.toString
 
 /**
  * Sudoku board
@@ -150,8 +156,9 @@ fun Board(
         val noteSizePx = with(LocalDensity.current) { (cellSizeDivWidth * 0.8f).toSp().toPx() }
         val killerSumSizePx = with(LocalDensity.current) { noteSizePx * 1.1f }
 
-        val thinLineWidth = with(LocalDensity.current) { 1.3.dp.toPx() }
-        val thickLineWidth = with(LocalDensity.current) { 1.3.dp.toPx() }
+        val thinLineWidth = with(LocalDensity.current) { 1.dp.toPx() }
+        val thickLineWidth = with(LocalDensity.current) { 2.dp.toPx() }
+        val boardCornerRadius = with(LocalDensity.current) { 16.dp.toPx() }
 
         val killerSumBounds by remember { mutableStateOf(android.graphics.Rect()) }
 
@@ -249,6 +256,26 @@ fun Board(
         var zoom by remember(enabled) { mutableFloatStateOf(1f) }
         var offset by remember(enabled) { mutableStateOf(Offset.Zero) }
 
+        // Selection animation state
+        val selectionScale by animateFloatAsState(
+            targetValue = if (selectedCell.row >= 0 && selectedCell.col >= 0) 1.0f else 0f,
+            animationSpec = spring(
+                dampingRatio = Spring.DampingRatioMediumBouncy,
+                stiffness = Spring.StiffnessMedium
+            ),
+            label = "selection scale"
+        )
+
+        // Glow animation for selected cell
+        val glowAlpha by animateFloatAsState(
+            targetValue = if (selectedCell.row >= 0 && selectedCell.col >= 0) 0.35f else 0f,
+            animationSpec = spring(
+                dampingRatio = Spring.DampingRatioNoBouncy,
+                stiffness = Spring.StiffnessLow
+            ),
+            label = "glow alpha"
+        )
+
         val boardModifier = Modifier
             .fillMaxSize()
             .pointerInput(key1 = enabled, key2 = board) {
@@ -312,10 +339,38 @@ fun Board(
         Canvas(
             modifier = if (zoomable) boardModifier.then(zoomModifier) else boardModifier
         ) {
-            val cornerRadius = CornerRadius(15f, 15f)
+            val cornerRadius = CornerRadius(boardCornerRadius, boardCornerRadius)
+
+            // Draw board background with rounded corners
+            drawRoundRect(
+                color = thinLineColor.copy(alpha = 0.05f),
+                topLeft = Offset.Zero,
+                size = Size(maxWidth, maxWidth),
+                cornerRadius = cornerRadius
+            )
 
             if (selectedCell.row >= 0 && selectedCell.col >= 0) {
-                // current cell
+                // Draw glow effect behind selected cell
+                if (glowAlpha > 0f) {
+                    val glowSize = cellSize * 1.15f
+                    val glowOffset = (glowSize - cellSize) / 2f
+                    drawRoundCell(
+                        row = selectedCell.row,
+                        col = selectedCell.col,
+                        gameSize = size,
+                        rect = Rect(
+                            offset = Offset(
+                                x = selectedCell.col * cellSize - glowOffset,
+                                y = selectedCell.row * cellSize - glowOffset
+                            ),
+                            size = Size(glowSize, glowSize)
+                        ),
+                        color = highlightColor.copy(alpha = glowAlpha * 0.4f),
+                        cornerRadius = CornerRadius(20f, 20f)
+                    )
+                }
+
+                // Current cell with animated highlight
                 drawRoundCell(
                     row = selectedCell.row,
                     col = selectedCell.col,
@@ -327,15 +382,33 @@ fun Board(
                         ),
                         size = Size(cellSize, cellSize)
                     ),
-                    color = highlightColor.copy(alpha = 0.2f),
+                    color = highlightColor.copy(alpha = 0.25f * selectionScale),
                     cornerRadius = cornerRadius
                 )
+
+                // Draw selection border for better visibility
+                drawRoundCellBorder(
+                    row = selectedCell.row,
+                    col = selectedCell.col,
+                    gameSize = size,
+                    rect = Rect(
+                        offset = Offset(
+                            x = selectedCell.col * cellSize,
+                            y = selectedCell.row * cellSize
+                        ),
+                        size = Size(cellSize, cellSize)
+                    ),
+                    color = highlightColor.copy(alpha = 0.6f * selectionScale),
+                    cornerRadius = cornerRadius,
+                    strokeWidth = 2.5f
+                )
+
                 if (positionLines) {
                     drawPositionLines(
                         row = selectedCell.row,
                         col = selectedCell.col,
                         gameSize = size,
-                        color = highlightColor.copy(alpha = 0.1f),
+                        color = highlightColor.copy(alpha = 0.1f * selectionScale),
                         cellSize = cellSize,
                         lineLength = maxWidth,
                         cornerRadius = cornerRadius
@@ -383,33 +456,23 @@ fun Board(
 
             drawBoardFrame(
                 thickLineColor = thickLineColor,
-                thickLineWidth = thickLineWidth,
+                thickLineWidth = thickLineWidth * 1.5f,
                 maxWidth = maxWidth,
-                cornerRadius = CornerRadius(15f, 15f)
+                cornerRadius = cornerRadius
             )
 
-            // horizontal line
-            for (i in 1 until size) {
-                val isThickLine = i % horThick == 0
-                drawLine(
-                    color = if (isThickLine) thickLineColor else thinLineColor,
-                    start = Offset(cellSize * i.toFloat(), 0f),
-                    end = Offset(cellSize * i.toFloat(), maxWidth),
-                    strokeWidth = if (isThickLine) thickLineWidth else thinLineWidth
-                )
-            }
-            // vertical line
-            for (i in 1 until size) {
-                val isThickLine = i % vertThick == 0
-                if (maxWidth >= cellSize * i) {
-                    drawLine(
-                        color = if (isThickLine) thickLineColor else thinLineColor,
-                        start = Offset(0f, cellSize * i.toFloat()),
-                        end = Offset(maxWidth, cellSize * i.toFloat()),
-                        strokeWidth = if (isThickLine) thickLineWidth else thinLineWidth
-                    )
-                }
-            }
+            // Draw enhanced grid lines with better visual hierarchy
+            drawEnhancedGridLines(
+                gameSize = size,
+                cellSize = cellSize,
+                thinLineColor = thinLineColor,
+                thickLineColor = thickLineColor,
+                thinLineWidth = thinLineWidth,
+                thickLineWidth = thickLineWidth,
+                horThick = horThick,
+                vertThick = vertThick,
+                maxWidth = maxWidth
+            )
 
             drawNumbers(
                 size = size,
