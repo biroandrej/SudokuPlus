@@ -1,0 +1,104 @@
+name: Bump Version and Create Release Tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g., 2.1.0)'
+        required: true
+        type: string
+      changelog:
+        description: 'Changelog entry for this version'
+        required: true
+        type: string
+      prerelease:
+        description: 'Is this a pre-release? (beta, alpha, rc)'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  bump_version:
+    name: Bump Version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Extract current version code
+        id: current_version
+        run: |
+          VERSION_CODE=$(grep -oP 'versionCode\s*=\s*\K\d+' app/build.gradle.kts)
+          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "Current version code: $VERSION_CODE"
+
+      - name: Bump version in build.gradle.kts
+        run: |
+          NEW_VERSION_CODE=$((${{ steps.current_version.outputs.version_code }} + 1))
+
+          # Update versionCode
+          sed -i "s/versionCode = [0-9]*/versionCode = $NEW_VERSION_CODE/" app/build.gradle.kts
+
+          # Update versionName
+          sed -i "s/versionName = \"[^\"]*\"/versionName = \"${{ inputs.version }}\"/" app/build.gradle.kts
+
+          echo "Updated to version ${{ inputs.version }} (code: $NEW_VERSION_CODE)"
+          echo "new_version_code=$NEW_VERSION_CODE" >> $GITHUB_ENV
+
+      - name: Create changelog file
+        run: |
+          mkdir -p fastlane/metadata/android/en-US/changelogs
+          echo "${{ inputs.changelog }}" > "fastlane/metadata/android/en-US/changelogs/${{ env.new_version_code }}.txt"
+
+      - name: Update CHANGELOG.md
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          VERSION="${{ inputs.version }}"
+          CHANGELOG="${{ inputs.changelog }}"
+
+          # Create temp file with new entry
+          cat > /tmp/new_entry.txt << EOF
+
+          ## [$VERSION] - $DATE
+
+          $CHANGELOG
+          EOF
+
+          # Insert after the header (line 7, after the semver link)
+          head -n 7 CHANGELOG.md > /tmp/changelog_new.md
+          cat /tmp/new_entry.txt >> /tmp/changelog_new.md
+          tail -n +8 CHANGELOG.md >> /tmp/changelog_new.md
+          mv /tmp/changelog_new.md CHANGELOG.md
+
+      - name: Commit changes
+        run: |
+          git add app/build.gradle.kts
+          git add fastlane/metadata/android/en-US/changelogs/
+          git add CHANGELOG.md
+          git commit -m "chore(release): bump version to ${{ inputs.version }} (${{ env.new_version_code }})"
+
+      - name: Create and push tag
+        run: |
+          git tag -a "v${{ inputs.version }}" -m "Release v${{ inputs.version }}"
+          git push origin HEAD
+          git push origin "v${{ inputs.version }}"
+
+      - name: Summary
+        run: |
+          echo "## Release Prepared" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version:** ${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version Code:** ${{ env.new_version_code }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Tag:** v${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The release workflow will now automatically build and publish the APKs." >> $GITHUB_STEP_SUMMARY

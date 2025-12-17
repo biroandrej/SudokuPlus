@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">LibreSudoku</string>
+    <string name="app_name" translatable="false">Sudoku Plus</string>
     <string name="nav_bar_statistics">Statistics</string>
     <string name="nav_bar_home">Home</string>
     <string name="nav_bar_more">More</string>
@@ -45,13 +45,8 @@
     <string name="pref_delete_stats">Clear all statistics</string>
     <string name="pref_delete_stats_summ">This action will delete all your statistics, saved games and records. It can\'t be undone</string>
     <string name="action_deleted">Deleted</string>
-    <string name="pref_app_theme">App theme</string>
-    <string name="theme_dynamic">Dynamic</string>
-    <string name="theme_green">Green</string>
-    <string name="theme_peach">Peach</string>
-    <string name="theme_yellow">Yellow</string>
-    <string name="theme_lavender">Lavender</string>
-    <string name="theme_black_and_white">Black and white</string>
+    <string name="pref_dynamic_colors_title">Dynamic colors</string>
+    <string name="pref_dynamic_colors_summary">Use colors from your wallpaper (Android 12+)</string>
     <string name="pref_pure_black">Pure black dark theme</string>
     <string name="pref_gameplay">Gameplay</string>
     <string name="pref_mistakes_limit">Mistakes limit</string>
@@ -209,8 +204,6 @@
     <string name="sort_by_game_id">ID</string>
     <string name="sort_label">Sort</string>
     <string name="filter_label">Filter</string>
-    <string name="weblate" translatable="false">Weblate</string>
-    <string name="help_translate">Help translate</string>
     <string name="title_folders">Folders</string>
     <string name="create_folder">Create a folder</string>
     <string name="delete_folder">Delete a folder</string>
@@ -267,7 +260,7 @@
     <string name="move_games_to_folder_subtitle">Select the folder to which you want to move the selected games</string>
     <string name="pref_cross_highlight_subtitle">Highlight some boxes on the board</string>
     <string name="pref_cross_highlight">Cross highlight</string>
-    <string name="dialog_crash_report_text">Oops, LibreSudoku just crashed. Do you want to send a crash report to the developers?</string>
+    <string name="dialog_crash_report_text">Oops, SudokuPlus just crashed. Do you want to send a crash report to the developers?</string>
     <string name="pref_crash_reporting">Crash reporting</string>
     <string name="pref_crash_reporting_subtitle">Help us fix bugs. App doesn\'t send logs by itself, you will be prompted to send a crash report by email</string>
     <string name="pref_fun_keyboard_over_num">Function panel over the values</string>
@@ -276,6 +269,7 @@
     <string name="pref_save_last_diff_and_type">Remember type and difficulty</string>
     <string name="pref_save_last_diff_and_type_subtitle">Remember the last game\'s type and difficulty</string>
     <string name="hints_used">Hints: %1$d</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
     <string name="mistakes_made">Mistakes: %1$d</string>
     <string name="notes_taken">Notes: %1$d</string>
     <string name="stat_time_current">Current: %1$s</string>
@@ -285,7 +279,6 @@
     <string name="pref_date_format_custom_summ">Enter date pattern according to Java DateTimeFormatter</string>
     <string name="pref_date_format_custom_textfield_label">Pattern</string>
     <string name="pref_date_format_custom_label">Custom</string>
-    <string name="theme_blue">Blue</string>
     <string name="redo">Redo</string>
     <string name="backup_restore_title">Backup &amp; restore</string>
     <string name="action_create_backup">Backup</string>
@@ -322,19 +315,6 @@
     <string name="last_backup_date">Most recent backup: %1$s</string>
     <string name="date_started">Date started</string>
     <string name="date_last_played">Date last played</string>
-    <string name="pref_monet_style">Monet style</string>
-    <string name="monet_tonalspot">Tonal Spot</string>
-    <string name="monet_neutral">Neutral</string>
-    <string name="monet_vibrant">Vibrant</string>
-    <string name="monet_expressive">Expressive</string>
-    <string name="monet_rainbow">Rainbow</string>
-    <string name="monet_fruitsalad">Fruit Salad</string>
-    <string name="monet_monochrome">Monochrome</string>
-    <string name="monet_fidelity">Fidelity</string>
-    <string name="monet_content">Content</string>
-    <string name="theme_orange">Orange</string>
-    <string name="theme_cyan">Cyan</string>
-    <string name="theme_custom">Custom</string>
     <string name="color_picker_title">Pick a color</string>
     <string name="parse_color_fail">Not a color</string>
     <string name="onboard_restore_backup">Restore backup</string>
@@ -344,17 +324,8 @@
         <item quantity="one">Last %1$d game</item>
         <item quantity="other">Last %1$d games</item>
     </plurals>
-    <string name="telegram" translatable="false">Telegram</string>
-    <string name="telegram_link">Join us on Telegram</string>
-    <string name="donation_title">Donation</string>
-    <string name="donation_description">This app is free and ad-free forever. You can support me below</string>
-    <string name="crypto_bitcoin" translatable="false">Bitcoin</string>
-    <string name="crypto_ton" translatable="false">TON</string>
-    <string name="crypto_usdt" translatable="false">USDT (TRC20)</string>
-    <string name="card_mir" translatable="false">MIR</string>
     <string name="app_version">Version %1$s (%2$s)</string>
-    <string name="hosted_weblate">You can help with translation on Hosted Weblate</string>
-    <string name="perf_appearance_summary">Dark theme, color scheme, board theme, date format…</string>
+    <string name="perf_appearance_summary">Dark theme, dynamic colors, board theme, date format…</string>
     <string name="perf_gameplay_summary">Input method, mistake limit, timer…</string>
     <string name="perf_assistance_summary">Mistakes checking, highlight identical values, remaining uses…</string>
     <string name="perf_other_summary">Remember type and difficulty, keep screen awake, reset stats…</string>
@@ -379,31 +350,8 @@
     <string name="advanced_hint_in_development">More techniques in development…</string>
     <string name="label_beta">Beta</string>
     <string name="settings_advanced_hint_category_techniques">Techniques</string>
-    <string name="auto_update_title">Auto Update</string>
-    <string name="update_whats_new">What\'s new</string>
-    <string name="action_download">Download</string>
-    <string name="update_found">New update found</string>
-    <string name="update_channel_stable">Stable</string>
-    <string name="update_channel_stable_summary">Get stable tested releases</string>
-    <string name="update_channel_beta">Beta</string>
-    <string name="update_channel_beta_summary">Get beta releases, access new features and fixes first</string>
-    <string name="update_channel_disable">Disable</string>
-    <string name="update_channel_disable_summary">Disable automatic updates</string>
-    <string name="update_found_version">Update found %1$s</string>
-    <string name="whats_new_in_version">What\'s new in %1$s</string>
-    <string name="check_for_updates_error">Couldn\'t check for updates</string>
-    <string name="check_for_update_error_summary">Check your connection or try again later (GitHub API rate limit may have been exceeded)</string>
-    <string name="action_retry">Retry</string>
-    <string name="check_for_updates_checking">Checking for updates…</string>
-    <string name="check_for_update_using_latest">You\'re up to date</string>
-    <string name="check_for_update_checking_summary">This can take some time</string>
-    <string name="check_for_update_latest_summary">Keep it up!</string>
-    <string name="action_view_on_github">View on GitHub</string>
-    <string name="new_update_found_action">Go to settings to update</string>
-    <string name="auto_updates_summary">Automatically check for updates</string>
     <string name="advanced_hint_no_hint">Couldn\'t get a hint. Maybe it\'s too hard for us at the moment</string>
     <string name="advanced_hint_no_hint_title">No hint</string>
     <string name="export_empty_cell">Empty cell</string>
-    <string name="update_channel">Update channel</string>
     <string name="font_size_automatic">Automatic</string>
 </resources>

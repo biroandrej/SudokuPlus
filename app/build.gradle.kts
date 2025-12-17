@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
@@ -8,45 +10,64 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+// Load keystore properties for local signing
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(keystorePropertiesFile.inputStream())
+}
+
 android {
-    namespace = "com.kaajjo.libresudoku"
-    compileSdk = 35
+    namespace = "sk.awisoft.sudokuplus"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.kaajjo.libresudoku"
+        applicationId = "sk.awisoft.sudokuplus"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 22
-        versionName = "2.0.2"
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0.0"
 
         vectorDrawables {
             useSupportLibrary = true
         }
-
-        ksp {
-            arg("room.schemaLocation", "${projectDir}/schemas")
-        }
     }
-
-    // F-Droid
+    
     dependenciesInfo {
         includeInApk = false
         includeInBundle = false
+    }
+
+    signingConfigs {
+        create("release") {
+            if (keystorePropertiesFile.exists()) {
+                storeFile = rootProject.file(keystoreProperties["storeFile"] as String)
+                storePassword = keystoreProperties["storePassword"] as String
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+            }
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = if (keystorePropertiesFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                null // CI will sign separately
+            }
         }
     }
 
     flavorDimensions += "version"
     productFlavors {
-        create("foss") {
+        create("dev") {
             dimension = "version"
+            applicationIdSuffix = ".dev"
         }
-        create("nonFOSS") {
+        create("prod") {
             dimension = "version"
         }
     }
@@ -85,9 +106,9 @@ dependencies {
     implementation(libs.ui.util)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
+    implementation(libs.material)
     implementation(libs.material3)
     implementation(libs.material.icons.extended)
-    implementation(project(":Color-Picker"))
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
     testImplementation(libs.junit)
@@ -122,6 +143,5 @@ dependencies {
     ksp(libs.hilt.work)
     implementation(libs.materialKolor)
 
-    implementation(libs.okhttp)
     implementation(libs.composeMarkdown)
 }

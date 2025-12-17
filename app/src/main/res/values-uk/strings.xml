@@ -33,10 +33,6 @@
     <string name="pref_input_digit_first">Спершу число</string>
     <string name="pref_delete_stats">Очистити всю статистику</string>
     <string name="action_deleted">Видалено</string>
-    <string name="theme_dynamic">Динамічний</string>
-    <string name="theme_peach">Персиковий</string>
-    <string name="theme_yellow">Жовтий</string>
-    <string name="theme_lavender">Лаванда</string>
     <string name="pref_gameplay">Геймплей</string>
     <string name="pref_mistakes_limit">Ліміт помилок</string>
     <string name="pref_mistakes_limit_summ">3 помилки - і вам кінець</string>
@@ -122,10 +118,7 @@
     <string name="pref_input_cell_first">Спершу клітка</string>
     <string name="pref_dark_theme">Темна тема</string>
     <string name="pref_board_font_size_medium">Середнє</string>
-    <string name="theme_green">Зелений</string>
     <string name="pref_disable_hints_summ">Не подобаються підказки\? Просто видаліть їх!</string>
-    <string name="pref_app_theme">Тема програми</string>
-    <string name="theme_black_and_white">Чорно-білий</string>
     <string name="pref_mistakes_check_final">Порівняння з рішенням</string>
     <string name="pref_highlight_identical_summ">При виборі числа на полі, всі клітини з таким же числом будуть підсвічені</string>
     <string name="pref_app_language">Мова додатка</string>
@@ -177,7 +170,6 @@
     <string name="sort_descending">За спаданням</string>
     <string name="sort_label">Сортування</string>
     <string name="filter_label">Фільтр</string>
-    <string name="help_translate">Допоможіть перекласти</string>
     <string name="delete_folder">Видалити папку</string>
     <string name="folder_name">Папка: %1$s</string>
     <plurals name="puzzles_in_folder">
@@ -206,7 +198,7 @@
     <string name="pref_board_theme_subtitle">Налаштувати вигляд дошки судоку</string>
     <string name="pref_cross_highlight_subtitle">Виділення деяких полів на дошці</string>
     <string name="pref_cross_highlight">Перехресне виділення</string>
-    <string name="dialog_crash_report_text">Упс, у LibreSudoku щойно стався збій. Хочете надіслати звіт про збій розробникам\?</string>
+    <string name="dialog_crash_report_text">Упс, у SudokuPlus щойно стався збій. Хочете надіслати звіт про збій розробникам\?</string>
     <string name="pref_crash_reporting">Звіт про збої</string>
     <string name="pref_save_last_diff_and_type">Запомніть тип і складність</string>
     <string name="pref_save_last_diff_and_type_subtitle">Запам\'ятати тип і складність останньої гри</string>
@@ -276,5 +268,5 @@
     <string name="pref_date_format_custom">Корист. формат дати</string>
     <string name="pref_date_format_custom_summ">Введіть шаблон дати відповідно до формату Java DateTimeFormatter</string>
     <string name="pref_date_format_custom_textfield_label">Шаблон</string>
-    <string name="theme_blue">Синій</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

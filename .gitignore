@@ -25,9 +25,12 @@ render.experimental.xml
 # Keystore files
 *.jks
 *.keystore
+keystore/
+keystore.properties
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
 # Android Profiling
 *.hprof
+.claude/settings.local.json

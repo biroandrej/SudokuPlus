@@ -22,12 +22,6 @@
     <string name="pref_input">इनपुट विधि</string>
     <string name="pref_input_cell_first">पहले खाना</string>
     <string name="action_deleted">हटाए गए</string>
-    <string name="pref_app_theme">ऐप थीम</string>
-    <string name="theme_green">हरा</string>
-    <string name="theme_peach">आड़ू</string>
-    <string name="theme_yellow">पीला</string>
-    <string name="theme_lavender">लैवेंडर</string>
-    <string name="theme_black_and_white">काला और सफेद</string>
     <string name="pref_pure_black">शुद्ध काली डार्क थीम</string>
     <string name="pref_mistakes_limit_summ">3 गलतियाँ और आप हार जाओगे</string>
     <string name="pref_disable_hints">संकेत बंद करें</string>
@@ -110,7 +104,6 @@
     <string name="average_time">औसत समय</string>
     <string name="pref_auto_erase_notes">नोट स्वतः मिटाएं</string>
     <string name="pref_tipcards_reset">टिप कार्ड रीसेट कर दिए गए!</string>
-    <string name="theme_dynamic">गतिशील</string>
     <string name="pref_reset_tipcards">सभी टिप कार्ड रीसेट करें</string>
     <string name="difficulty_custom">कस्टम</string>
     <string name="settings_title">सेटिंग्स</string>
@@ -206,10 +199,9 @@
     <string name="pref_fun_keyboard_over_num_subtitle">फ़ंक्शन पैनल को मान कीबोर्ड के ऊपर रखें</string>
     <string name="pref_fun_keyboard_over_num">मानों पर फ़ंक्शन पैनल</string>
     <string name="pref_crash_reporting">क्रैश रिपोर्टिंग</string>
-    <string name="dialog_crash_report_text">उफ़, LibreSudoku अभी क्रैश हो गया। क्या आप डेवलपर्स को क्रैश रिपोर्ट भेजना चाहते हैं?</string>
+    <string name="dialog_crash_report_text">उफ़, SudokuPlus अभी क्रैश हो गया। क्या आप डेवलपर्स को क्रैश रिपोर्ट भेजना चाहते हैं?</string>
     <string name="pref_date_format_custom">कस्टम दिनांक प्रारूप</string>
     <string name="stat_time_best">सर्वोत्तम: %1$s</string>
-    <string name="theme_blue">नीला</string>
     <string name="create_backup_description">बैकअप फ़ाइल बनाएं</string>
     <string name="action_create_backup">बैकअप</string>
     <string name="backup_restore_title">बैकअप और पुनर्स्थापना</string>
@@ -295,7 +287,6 @@
         <item quantity="other">आयात करने के लिए %1$d पहेलियाँ</item>
     </plurals>
     <string name="title_folders">फ़ोल्डर्स</string>
-    <string name="help_translate">अनुवाद में सहायता करें</string>
     <string name="filter_label">फिल्टर</string>
     <string name="naked_pairs_explanation">दो कोशिकाएँ हैं जो समान दो पेंसिल चिह्नों को साझा करती हैं। अभी, हम यह नहीं बता सकते कि कौन सा 2 है और कौन सा 3 है।
 \nलेकिन चूंकि Sudoku नियम हमें बताते हैं कि प्रत्येक बॉक्स में केवल एक 2 और केवल एक 3 हो सकता है, हम मान सकते हैं कि उनमें से एक 2 है और दूसरा 3 है</string>
@@ -307,19 +298,6 @@
 \n.sdm (या .txt समान संरचना के साथ)
 \n.opensudoku
 \n.1gsudoku</string>
-    <string name="pref_monet_style">Monet शैली</string>
-    <string name="monet_neutral">तटस्थ</string>
-    <string name="monet_vibrant">जीवंत</string>
-    <string name="monet_expressive">अभिव्यंजक</string>
-    <string name="monet_fruitsalad">फलों का सलाद</string>
-    <string name="monet_monochrome">मोनोक्रोम</string>
-    <string name="monet_fidelity">निष्ठा</string>
-    <string name="theme_orange">नारंगी</string>
-    <string name="theme_cyan">सायन</string>
-    <string name="monet_tonalspot">टोनल स्पॉट</string>
-    <string name="monet_rainbow">इंद्रधनुष</string>
-    <string name="monet_content">सामग्री</string>
-    <string name="theme_custom">कस्टम</string>
     <string name="color_picker_title">एक रंग चुनें</string>
     <string name="parse_color_fail">रंग नहीं है</string>
     <string name="onboard_restore_backup">बैकअप पुनर्स्थापित करें</string>
@@ -330,16 +308,12 @@
         <item quantity="other">अंतिम %1$d खेल</item>
     </plurals>
     <string name="about_github_source_code">GitHub पर स्रोत कोड</string>
-    <string name="donation_title">अनुदान</string>
-    <string name="donation_description">यह ऐप हमेशा के लिए मुफ़्त और विज्ञापन-मुक्त है। आप नीचे मेरा समर्थन कर सकते हैं</string>
     <string name="libraries_licenses">लाइसेंस</string>
-    <string name="telegram_link">टेलीग्राम पर हमसे जुड़ें</string>
     <string name="type_killer_9x9">किलर 9x9</string>
     <string name="type_killer_6x6">किलर 6x6</string>
     <string name="type_killer_12x12">किलर 12x12</string>
     <string name="app_version">संस्करण %1$s (%2$s)</string>
-    <string name="hosted_weblate">आप होस्टेड वेबलेट पर अनुवाद में सहायता कर सकते हैं</string>
-    <string name="perf_appearance_summary">डार्क थीम, रंग योजना, बोर्ड थीम, दिनांक प्रारूप…</string>
+    <string name="perf_appearance_summary">डार्क थीम, गतिशील रंग, बोर्ड थीम, दिनांक प्रारूप…</string>
     <string name="action_share_crash_log">क्रैश लॉग शेयर करें</string>
     <string name="action_restart_app">ऐप पुनः प्रारंभ करें</string>
     <string name="crash_screen_title">ओह, कुछ ग़लत हो गया</string>
@@ -349,4 +323,5 @@
     <string name="pref_board_theme_summary">एक्सेंट रंग, स्थिति रेखाएँ, फ़ॉन्ट आकार लागू करें…</string>
     <string name="action_generate">उत्पन्न करें</string>
     <string name="generating_number_of">%1$s/%2$s उत्पन्न किया जा रहा है</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

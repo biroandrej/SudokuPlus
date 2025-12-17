@@ -1,0 +1,122 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+default_platform(:android)
+
+platform :android do
+  desc "Get current version name from build.gradle.kts"
+  lane :get_version do
+    gradle_file = File.read("../app/build.gradle.kts")
+    version_name = gradle_file.match(/versionName\s*=\s*"([^"]+)"/)[1]
+    version_code = gradle_file.match(/versionCode\s*=\s*(\d+)/)[1]
+    UI.message("Version: #{version_name} (#{version_code})")
+    { version_name: version_name, version_code: version_code }
+  end
+
+  desc "Bump version code"
+  lane :bump_version_code do
+    gradle_file_path = "../app/build.gradle.kts"
+    gradle_file = File.read(gradle_file_path)
+
+    current_code = gradle_file.match(/versionCode\s*=\s*(\d+)/)[1].to_i
+    new_code = current_code + 1
+
+    new_content = gradle_file.gsub(/versionCode\s*=\s*\d+/, "versionCode = #{new_code}")
+    File.write(gradle_file_path, new_content)
+
+    UI.success("Bumped version code from #{current_code} to #{new_code}")
+    new_code
+  end
+
+  desc "Set version name"
+  lane :set_version_name do |options|
+    version = options[:version]
+    UI.user_error!("Missing version parameter") unless version
+
+    gradle_file_path = "../app/build.gradle.kts"
+    gradle_file = File.read(gradle_file_path)
+
+    new_content = gradle_file.gsub(/versionName\s*=\s*"[^"]+"/, "versionName = \"#{version}\"")
+    File.write(gradle_file_path, new_content)
+
+    UI.success("Set version name to #{version}")
+  end
+
+  desc "Build release APKs for both flavors"
+  lane :build_release do
+    gradle(
+      task: "assemble",
+      build_type: "Release"
+    )
+  end
+
+  desc "Build dev release APK (no ads)"
+  lane :build_dev do
+    gradle(
+      task: "assemble",
+      flavor: "dev",
+      build_type: "Release"
+    )
+  end
+
+  desc "Build prod release APK (with ads)"
+  lane :build_prod do
+    gradle(
+      task: "assemble",
+      flavor: "prod",
+      build_type: "Release"
+    )
+  end
+
+  desc "Create a new release"
+  lane :release do |options|
+    version = options[:version]
+    UI.user_error!("Missing version parameter. Usage: fastlane release version:x.y.z") unless version
+
+    # Ensure we're on a clean branch
+    ensure_git_status_clean
+
+    # Set version name
+    set_version_name(version: version)
+
+    # Bump version code
+    new_code = bump_version_code
+
+    # Build release APKs
+    build_release
+
+    # Commit version changes
+    git_commit(
+      path: ["app/build.gradle.kts"],
+      message: "chore(release): bump version to #{version} (#{new_code})"
+    )
+
+    # Create and push tag
+    add_git_tag(tag: "v#{version}")
+
+    UI.success("Release v#{version} prepared! Push the tag with: git push origin v#{version}")
+  end
+
+  desc "Create changelog file for current version"
+  lane :create_changelog do |options|
+    changelog = options[:changelog]
+    UI.user_error!("Missing changelog parameter") unless changelog
+
+    version_info = get_version
+    version_code = version_info[:version_code]
+
+    changelog_path = "metadata/android/en-US/changelogs/#{version_code}.txt"
+    File.write(changelog_path, changelog)
+
+    UI.success("Created changelog at #{changelog_path}")
+  end
+end

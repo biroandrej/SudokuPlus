@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".LibreSudokuApp"
+        android:name=".SudokuPlusApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:enableOnBackInvokedCallback="true"
@@ -13,19 +13,19 @@
         android:localeConfig="@xml/locales_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LibreSudoku"
+        android:theme="@style/Theme.SudokuPlus"
         tools:targetApi="tiramisu">
         <activity
             android:name=".ui.app_crash.CrashActivity"
             android:exported="false"
-            android:theme="@style/Theme.LibreSudoku" />
+            android:theme="@style/Theme.SudokuPlus" />
 
         <activity
             android:name=".MainActivity"
             android:configChanges="locale|layoutDirection"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.LibreSudoku">
+            android:theme="@style/Theme.SudokuPlus">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,15 +67,6 @@
                 tools:node="remove" />
         </provider>
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
-        </provider>
     </application>
 
 </manifest>

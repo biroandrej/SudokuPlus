@@ -42,13 +42,6 @@
     <string name="pref_delete_stats">Удалить всю статистику</string>
     <string name="pref_delete_stats_summ">Это удалит всю вашу статистику, сохраненные игры и рекорды. Это действие нельзя отменить</string>
     <string name="action_deleted">Удалено</string>
-    <string name="pref_app_theme">Тема приложения</string>
-    <string name="theme_dynamic">Динамическая</string>
-    <string name="theme_green">Зеленая</string>
-    <string name="theme_peach">Персиковая</string>
-    <string name="theme_yellow">Желтая</string>
-    <string name="theme_lavender">Лавандовая</string>
-    <string name="theme_black_and_white">Черно-белая</string>
     <string name="pref_pure_black">Очень черный в темной теме</string>
     <string name="pref_gameplay">Геймплей</string>
     <string name="pref_mistakes_limit">Лимит ошибок</string>
@@ -206,8 +199,6 @@
     <string name="sort_by_game_id">ID</string>
     <string name="sort_label">Сортировка</string>
     <string name="filter_label">Фильтр</string>
-    <string name="weblate" translatable="false">Weblate</string>
-    <string name="help_translate">Помочь с переводом</string>
     <string name="create_folder">Создать папку</string>
     <string name="delete_folder">Удалить папку</string>
     <string name="title_folders">Папки</string>
@@ -265,7 +256,7 @@
     <string name="pref_cross_highlight_subtitle">Выделение некоторых блоков на доске</string>
     <string name="pref_cross_highlight">Крестовое выделение</string>
     <string name="pref_crash_reporting">Отчеты об ошибках</string>
-    <string name="dialog_crash_report_text">Упс, в LibreSudoku произошла ошибка. Желаете отправить отчет об ошибке разработчикам\?</string>
+    <string name="dialog_crash_report_text">Упс, в SudokuPlus произошла ошибка. Желаете отправить отчет об ошибке разработчикам\?</string>
     <string name="pref_crash_reporting_subtitle">Помощь в исправлении ошибок. Приложение не отсылает ничего самостоятельно, вам будет предложено отослать отчет об ошибке через почту</string>
     <string name="pref_fun_keyboard_over_num_subtitle">Поместить функциональную клавиатуру над числами</string>
     <string name="pref_fun_keyboard_over_num">Функциональная клавиатура над числовой</string>
@@ -282,7 +273,6 @@
     <string name="pref_date_format_custom_summ">Введите шаблон даты в соответствии с Java DateTimeFormatter</string>
     <string name="pref_date_format_custom_textfield_label">Шаблон</string>
     <string name="pref_date_format_custom_label">Пользовательский</string>
-    <string name="theme_blue">Синяя</string>
     <string name="redo">Вернуть</string>
     <string name="action_create">Создать</string>
     <string name="restore_backup_error">Не удалось восстановить копию</string>
@@ -321,20 +311,7 @@
     <string name="restore_existing_data_alert">Существующие данные будут удалены!</string>
     <string name="date_started">Дата начала</string>
     <string name="date_last_played">Дата последней игры</string>
-    <string name="monet_tonalspot">Тональное пятно</string>
-    <string name="monet_vibrant">Яркий</string>
-    <string name="monet_expressive">Выразительный</string>
-    <string name="monet_rainbow">Радуга</string>
-    <string name="monet_monochrome">Монохромный</string>
-    <string name="monet_fidelity">Точность</string>
-    <string name="monet_content">Содержание</string>
-    <string name="theme_cyan">Голубая</string>
-    <string name="pref_monet_style">Стиль Monet</string>
-    <string name="monet_neutral">Нейтральный</string>
-    <string name="monet_fruitsalad">Фруктовый салат</string>
-    <string name="theme_orange">Оранжевая</string>
     <string name="parse_color_fail">Не цвет</string>
-    <string name="theme_custom">Своя</string>
     <string name="color_picker_title">Выберите цвет</string>
     <string name="onboard_restore_backup">Восстановить копию</string>
     <string name="onboard_settings_description">Настройте приложение под ваш вкус</string>
@@ -345,18 +322,8 @@
         <item quantity="many">Последние %1$d игр</item>
         <item quantity="other">Последние %1$d игр</item>
     </plurals>
-
-    <string name="telegram" translatable="false">Telegram</string>
-    <string name="telegram_link">Присоединяйтесь в Telegram</string>
-    <string name="donation_title">Пожертвование</string>
-    <string name="donation_description">Это приложение бесплатно и без реклам навсегда. Вы можете поддержать меня ниже</string>
-    <string name="crypto_bitcoin" translatable="false">Bitcoin</string>
-    <string name="crypto_ton" translatable="false">TON</string>
-    <string name="crypto_usdt" translatable="false">USDT (TRC20)</string>
-    <string name="card_mir" translatable="false">MIR</string>
     <string name="app_version">Версия %1$s (%2$s)</string>
-    <string name="hosted_weblate">Вы можете помочь с переводом на Hosted Webalte</string>
-    <string name="perf_appearance_summary">Темная тема, цветовая схема, тема поля, формат даты…</string>
+    <string name="perf_appearance_summary">Темная тема, динамические цвета, тема поля, формат даты…</string>
     <string name="perf_gameplay_summary">Метод ввода, лимит ошибок, таймер…</string>
     <string name="perf_assistance_summary">Проверка ошибок, подсветка одинаковых чисел, оставшиеся использования…</string>
     <string name="perf_other_summary">Запоминать сложность и тип, не выключать экран, сброс статистики…</string>
@@ -379,33 +346,11 @@
     <string name="advanced_hint_in_development">Больше техник в разработке…</string>
     <string name="label_beta">Бета</string>
     <string name="settings_advanced_hint_category_techniques">Техники</string>
-    <string name="auto_update_title">Автоматические обновления</string>
-    <string name="update_whats_new">Что нового</string>
-    <string name="action_download">Скачать</string>
-    <string name="update_found">Обновление найдено</string>
-    <string name="update_channel_stable">Стабильный</string>
-    <string name="update_channel_stable_summary">Получать стабильные протестированные релизы</string>
-    <string name="update_channel_beta">Бета</string>
-    <string name="update_channel_beta_summary">Получать бета релизы, доступ к новым функциям и исправлениям в числе первых (возможны баги)</string>
-    <string name="update_channel_disable">Отключить</string>
-    <string name="update_channel_disable_summary">Отключить автоматические обновления</string>
-    <string name="update_found_version">Найдено обновление %1$s</string>
-    <string name="whats_new_in_version">Что нового в %1$s</string>
-    <string name="check_for_updates_error">Не удалось проверить обновления</string>
-    <string name="check_for_update_error_summary">Проверьте подключение к интернету или попробуйте позже (возможно, превышен лимит запросов к GitHub API)</string>
-    <string name="action_retry">Повторить</string>
-    <string name="check_for_updates_checking">Ищем обновления…</string>
-    <string name="check_for_update_using_latest">Вы используете последнюю версию</string>
-    <string name="check_for_update_checking_summary">Это займет немного времени</string>
-    <string name="action_view_on_github">Посмотреть на GitHub</string>
-    <string name="new_update_found_action">Перейти в настройки, чтобы установить</string>
-    <string name="auto_updates_summary">Автоматическая проверка обновлений</string>
     <string name="advanced_hint_no_hint">Не удалось найти подсказку. Может быть, это слишком трудно для нас на текущий момент</string>
     <string name="advanced_hint_no_hint_title">Нет подсказки</string>
     <string name="export_empty_cell">Пустая клетка</string>
     <string name="action_apply">Применить</string>
     <string name="nav_back">Назад</string>
-    <string name="check_for_update_latest_summary">Так держать!</string>
-    <string name="update_channel">Канал обновлений</string>
     <string name="font_size_automatic">Автоматически</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

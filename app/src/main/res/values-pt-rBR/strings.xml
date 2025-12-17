@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">LibreSudoku</string>
+    <string name="app_name" translatable="false">Libre Plus</string>
     <string name="nav_bar_statistics">Estatísticas</string>
     <string name="nav_bar_more">Mais</string>
     <string name="nav_bar_home">Início</string>
@@ -42,13 +42,6 @@
     <string name="pref_delete_stats">Limpar todas as estatísticas</string>
     <string name="pref_delete_stats_summ">Esta ação excluirá todas as suas estatísticas, jogos salvos e recordes e não poderá ser desfeita</string>
     <string name="action_deleted">Remover</string>
-    <string name="pref_app_theme">Tema</string>
-    <string name="theme_dynamic">Dinâmico</string>
-    <string name="theme_green">Verde</string>
-    <string name="theme_peach">Pêssego</string>
-    <string name="theme_yellow">Amarelo</string>
-    <string name="theme_lavender">Roxo</string>
-    <string name="theme_black_and_white">Preto e Branco</string>
     <string name="pref_pure_black">Puro tema escuro</string>
     <string name="pref_gameplay">Jogabilidade</string>
     <string name="pref_mistakes_limit">limite de erro</string>
@@ -203,7 +196,6 @@
     <string name="sort_by_game_id">ID</string>
     <string name="sort_label">Ordenar</string>
     <string name="filter_label">Filtrar</string>
-    <string name="help_translate">Ajude na tradução 🤩</string>
     <plurals name="number_puzzles_to_import">
         <item quantity="one">%1$d quebra-cabeça para importar</item>
         <item quantity="many">%1$d quebra-cabeças para importar</item>
@@ -257,7 +249,7 @@
     <string name="move_games_to_folder_subtitle">Selecione a pasta que você deseja mover os jogos selecionados</string>
     <string name="pref_cross_highlight">Destaque cruzado</string>
     <string name="pref_cross_highlight_subtitle">Destaque alguns blocos no tabuleiro</string>
-    <string name="dialog_crash_report_text">Oops, o LibreSudoku não está funcionando corretamente. Gostaria de enviar um relatório de bug para os desenvolvedores?</string>
+    <string name="dialog_crash_report_text">Oops, o SudokuPlus não está funcionando corretamente. Gostaria de enviar um relatório de bug para os desenvolvedores?</string>
     <string name="pref_crash_reporting">Relatório de falhas</string>
     <string name="pref_crash_reporting_subtitle">Ajude-nos a corrigir erros. O aplicativo não envia nenhum log por si só, você será solicitado a enviar um relatório de falha por e-mail</string>
     <string name="pref_fun_keyboard_over_num">Painel de função sobre os números</string>
@@ -270,7 +262,6 @@
     <string name="restoring_backup">Restaurando</string>
     <string name="last_backup_date">Backup mais recente: %1$s</string>
     <string name="pref_date_format_custom_label">Personalizado</string>
-    <string name="theme_blue">Azul</string>
     <string name="creating_backup_error">Falha de backup</string>
     <string name="auto_backups_max">Quantidade máxima de backups automáticos</string>
     <string name="pref_date_format_custom_summ">Insira um padrão de data de acordo com o DateTimeFormatter do Java</string>
@@ -313,26 +304,14 @@
     <string name="action_grant">Conceder</string>
     <string name="autobackup_never">Nunca</string>
     <string name="restore_existing_data_alert">Dados existentes serão deletados!</string>
-    <string name="pref_monet_style">Estilo Monet</string>
     <string name="type_killer_6x6">Assassino 6x6</string>
     <string name="type_killer_12x12">Assassino 12x12</string>
-    <string name="monet_tonalspot">Ponto tonal</string>
-    <string name="monet_neutral">Neutro</string>
-    <string name="monet_vibrant">Vibrante</string>
-    <string name="monet_expressive">Expressivo</string>
-    <string name="monet_rainbow">Arco-íris</string>
-    <string name="monet_fruitsalad">Salada de frutas</string>
-    <string name="monet_monochrome">Monocromático</string>
     <string name="type_killer_9x9">Assassino 9x9</string>
     <string name="about_github_source_code">Código fonte no Github</string>
     <string name="libraries_licenses">Licenças</string>
-    <string name="theme_custom">Personalizado</string>
     <string name="color_picker_title">Escolha uma cor</string>
     <string name="parse_color_fail">Não é uma cor</string>
-    <string name="monet_fidelity">Fidelidade</string>
-    <string name="monet_content">Conteúdo</string>
-    <string name="theme_cyan">Ciano</string>
-    <string name="theme_orange">Laranja</string>
     <string name="onboard_restore_backup">Restaurar backup</string>
     <string name="onboard_restore_backup_description">Você já tem um backup? Restaure-o agora</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

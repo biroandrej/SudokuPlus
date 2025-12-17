@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">LibreSudoku</string>
+    <string name="app_name" translatable="false">Sudoku Plus</string>
     <string name="nav_bar_statistics">Statistiques</string>
     <string name="nav_bar_home">Accueil</string>
     <string name="nav_bar_more">Plus</string>
@@ -42,13 +42,6 @@
     <string name="pref_delete_stats">Supprimer toutes les statistiques</string>
     <string name="pref_delete_stats_summ">Cette action supprimera toutes vos statistiques, vos parties sauvegardées et vos records. Cette action ne peut être annulée.</string>
     <string name="action_deleted">Supprimé</string>
-    <string name="pref_app_theme">Thème de l\'application</string>
-    <string name="theme_dynamic">Dynamique</string>
-    <string name="theme_green">Vert</string>
-    <string name="theme_peach">Pêche</string>
-    <string name="theme_yellow">Jaune</string>
-    <string name="theme_lavender">Lavande</string>
-    <string name="theme_black_and_white">Noir et blanc</string>
     <string name="pref_pure_black">Thème noir pur</string>
     <string name="pref_gameplay">Jouabilité</string>
     <string name="pref_mistakes_limit">Limite d\'erreurs</string>
@@ -202,7 +195,6 @@
     <string name="sort_by_game_id">ID</string>
     <string name="sort_label">Trier</string>
     <string name="filter_label">Filtre</string>
-    <string name="help_translate">Aidez à la traduction</string>
     <string name="title_folders">Dossiers</string>
     <string name="folder_name">Dossier : %1$s</string>
     <string name="edit_sudoku">Modifier un Sudoku</string>
@@ -257,11 +249,10 @@
     <string name="pref_cross_highlight_subtitle">Mettre en surbrillance certains blocs sur le plateau de jeu</string>
     <string name="pref_cross_highlight">Mise en évidence des croisements</string>
     <string name="pref_crash_reporting">Rapport d\'incident</string>
-    <string name="dialog_crash_report_text">Oups, LibreSudoku vient de planter. Souhaitez-vous envoyer un rapport de plantage aux développeurs \?</string>
+    <string name="dialog_crash_report_text">Oups, SudokuPlus vient de planter. Souhaitez-vous envoyer un rapport de plantage aux développeurs \?</string>
     <string name="pref_crash_reporting_subtitle">Aidez-nous à corriger les bugs. L\'application n\'envoie aucun journal par elle-même, vous serez invité à envoyer un rapport de plantage par e-mail</string>
     <string name="pref_date_format_custom_label">Personnalisé</string>
     <string name="redo">Refaire</string>
-    <string name="theme_blue">Bleu</string>
     <string name="pref_date_format">Format de date</string>
     <string name="pref_save_last_diff_and_type">Se souvenir du type et de la difficulté</string>
     <string name="pref_save_last_diff_and_type_subtitle">Se souvenir du type et de la difficulté de la dernière partie</string>
@@ -296,15 +287,8 @@
     <string name="last_backup_date">Sauvegarde la plus récente : %1$s</string>
     <string name="onboard_restore_backup">Restaurer une sauvegarde</string>
     <string name="onboard_restore_backup_description">Avez-vous déjà une sauvegarde ? Restaurez-la maintenant</string>
-    <string name="theme_custom">Personnalisé</string>
     <string name="color_picker_title">Choisissez une couleur</string>
     <string name="parse_color_fail">Pas une couleur</string>
-    <string name="monet_rainbow">Arc-en-ciel</string>
-    <string name="monet_fruitsalad">Salade de fruits</string>
-    <string name="monet_monochrome">Monochrome</string>
-    <string name="monet_fidelity">Fidélité</string>
-    <string name="monet_content">Contenu</string>
-    <string name="theme_orange">Orange</string>
     <string name="backup_restore_title">Sauvegarde &amp; restauration</string>
     <string name="creating_backup_error">Sauvegarde échouée</string>
     <string name="restore_backup_error">Restauration échouée</string>
@@ -312,4 +296,5 @@
     <string name="libraries_licenses">Licences</string>
     <string name="auto_backups_directory">Répertoire de sauvegarde</string>
     <string name="about_github_source_code">Code source sur GitHub</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

@@ -40,13 +40,6 @@
     <string name="pref_delete_stats">Alle Statistiken zurücksetzen</string>
     <string name="pref_delete_stats_summ">Diese Aktion wird all deine Statistiken, gespeicherten Spiele und Rekorde löschen. Dies kann nicht rückgängig gemacht werden</string>
     <string name="action_deleted">Gelöscht</string>
-    <string name="pref_app_theme">App Design</string>
-    <string name="theme_dynamic">Dynamisch</string>
-    <string name="theme_green">Grün</string>
-    <string name="theme_peach">Pfirsich</string>
-    <string name="theme_yellow">Gelb</string>
-    <string name="theme_lavender">Lavendel</string>
-    <string name="theme_black_and_white">Schwarz und Weiß</string>
     <string name="pref_pure_black">Pures schwarzes Design</string>
     <string name="pref_gameplay">Spielweise</string>
     <string name="pref_mistakes_limit">Fehlerlimit</string>
@@ -147,7 +140,6 @@
     <string name="sort_by_game_id">Nr</string>
     <string name="sort_label">Sortieren</string>
     <string name="filter_label">Filtern</string>
-    <string name="help_translate">Hilf beim übersetzen</string>
     <string name="title_folders">Ordner</string>
     <string name="create_folder">Erstelle einen Ordner</string>
     <string name="delete_folder">Lösche einen Ordner</string>
@@ -178,7 +170,7 @@
     <string name="move_games_to_folder_subtitle">Wähle den Ordner in den du die ausgewählten Spiele verschieben willst</string>
     <string name="pref_cross_highlight_subtitle">Hebe einige Boxen auf dem Brett hervor</string>
     <string name="pref_cross_highlight">Hebe das Kreuz hervor</string>
-    <string name="dialog_crash_report_text">Ups, LibreSudoku ist gerade abgestürzt. Willst du einen Fehlerbericht an die Entwickler senden\?</string>
+    <string name="dialog_crash_report_text">Ups, SudokuPlus ist gerade abgestürzt. Willst du einen Fehlerbericht an die Entwickler senden\?</string>
     <string name="pref_fun_keyboard_over_num">Funktionsleiste über den Zahlen</string>
     <string name="pref_fun_keyboard_over_num_subtitle">Platziere die Funktionsleiste über die Zahlen-Tastatur</string>
     <plurals name="puzzles_in_folder">
@@ -258,7 +250,6 @@
     <string name="learn_basic_5">Die gleiche Logik gilt für Zeilen und Spalten. Schau dir die erste Zeile an. Hier blockiert die Zahl 4 in R7C3 die dritte Spalte in unserer Reihe. Die Zahl 4 in R3C5 blockiert zwei Spalten auf einmal (4 und 6), weil es keine anderen Vieren in der selben Box geben kann. R6C7 blockiert Spalte Nummer 7</string>
     <string name="win_rate_percentage">%1$d%%</string>
     <string name="pref_date_format">Datumsformat</string>
-    <string name="theme_blue">Blau</string>
     <string name="pref_save_last_diff_and_type">Typ und Schwierigkeit merken</string>
     <string name="pref_save_last_diff_and_type_subtitle">Typ und Schwierigkeit des letzten Spiels merken</string>
     <string name="mistakes_made">Fehler: %1$d</string>
@@ -307,4 +298,5 @@
     <string name="action_create">Erstellen</string>
     <string name="restore_existing_data_alert">Vorhandene Daten werden gelöscht!</string>
     <string name="date_last_played">Datum des letzten Spiels</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

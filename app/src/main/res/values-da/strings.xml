@@ -27,11 +27,6 @@
     <string name="pref_input_cell_first">Celle først</string>
     <string name="pref_delete_stats">Ryd al statistik</string>
     <string name="action_deleted">Slettet</string>
-    <string name="theme_dynamic">Dynamisk</string>
-    <string name="theme_green">Grøn</string>
-    <string name="theme_peach">Fersken</string>
-    <string name="theme_lavender">Lavendel</string>
-    <string name="theme_black_and_white">Sort og hvid</string>
     <string name="pref_pure_black">Rent sort mørkt tema</string>
     <string name="nav_bar_more">Mere</string>
     <string name="action_confirm">Ja</string>
@@ -44,8 +39,6 @@
     <string name="pref_dark_theme">Mørkt tema</string>
     <string name="more_title">Mere</string>
     <string name="pref_delete_stats_summ">Denne handling vil slette statistikker, gemte spil og rekorder. Den kan ikke fortrydes</string>
-    <string name="pref_app_theme">Apptema</string>
-    <string name="theme_yellow">Gul</string>
     <string name="pref_mistakes_limit">Grænse for fejl</string>
     <string name="type_default_6x6">6x6</string>
     <string name="type_default_9x9">9x9</string>
@@ -224,7 +217,6 @@
     <string name="export_string_text">Vælg tekst fra tekstfeltet eller klik blot på kopieringsknappen</string>
     <string name="sort_descending">Faldende</string>
     <string name="filter_not_started">Ikke begyndt</string>
-    <string name="help_translate">Hjælp med at oversætte</string>
     <string name="edit_sudoku">Rediger sudoku</string>
     <string name="add_to_folder">Tilføj til mappe</string>
     <string name="create_folder">Opret en mappe</string>
@@ -250,7 +242,7 @@
     </plurals>
     <string name="last_played_section_title">Senest spillede spil</string>
     <string name="pref_board_theme_subtitle">Tilpas sudoku-brættets udseende</string>
-    <string name="dialog_crash_report_text">Ups, LibreSudoku er lige gået ned. Vil du sende en nedbrudsrapport til udviklerne\?</string>
+    <string name="dialog_crash_report_text">Ups, SudokuPlus er lige gået ned. Vil du sende en nedbrudsrapport til udviklerne\?</string>
     <plurals name="puzzles_in_folder">
         <item quantity="one">%1$d spil</item>
         <item quantity="other">%1$d spil</item>
@@ -273,7 +265,6 @@
     <string name="restoring_backup">Gendanner</string>
     <string name="last_backup_date">Seneste sikkerhedskopi: %1$s</string>
     <string name="pref_date_format_custom_label">Brugerdefineret</string>
-    <string name="theme_blue">Blå</string>
     <string name="creating_backup_error">Sikkerhedskopiering mislykket</string>
     <string name="auto_backups_max">Maks. antal automatiske sikkerhedskopier</string>
     <string name="pref_date_format_custom_summ">Indtast datomønster ifølge Java DateTimeFormatter</string>
@@ -313,23 +304,10 @@
         <item quantity="one">Sidste spil</item>
         <item quantity="other">Sidste %1$d spil</item>
     </plurals>
-    <string name="theme_custom">Brugertilpasset</string>
     <string name="color_picker_title">Vælg en farve</string>
     <string name="parse_color_fail">Ikke en farve</string>
-    <string name="monet_rainbow">Regnbue</string>
-    <string name="monet_fruitsalad">Frugtsalat</string>
-    <string name="monet_monochrome">Monokrom</string>
-    <string name="theme_orange">Orange</string>
-    <string name="theme_cyan">Cyan</string>
-    <string name="monet_neutral">Neutral</string>
-    <string name="monet_vibrant">Livlig</string>
-    <string name="monet_expressive">Udtryksfuld</string>
-    <string name="monet_content">Tilfreds</string>
     <string name="onboard_settings_description">Juster appen til lige din smag</string>
-    <string name="pref_monet_style">Monet-stil</string>
-    <string name="monet_fidelity">Fidelitet</string>
-    <string name="hosted_weblate">Du kan hjælpe med oversættelse på Hosted Weblate</string>
-    <string name="perf_appearance_summary">Mørkt designtema, farveskema, spillefladedesigntema, dataformat…</string>
+    <string name="perf_appearance_summary">Mørkt tema, dynamiske farver, bræt-tema, datoformat…</string>
     <string name="perf_gameplay_summary">Inputmetode, fejlgrænse, timer…</string>
     <string name="action_restart_app">Genstart appen</string>
     <string name="perf_assistance_summary">Fejltjek, markering af ens værdier, tilbageværende brug…</string>
@@ -339,14 +317,11 @@
     <string name="crash_screen_title">Ups, noget gik galt</string>
     <string name="about_github_source_code">Kildekode på GitHub</string>
     <string name="libraries_licenses">Licenser</string>
-    <string name="telegram_link">Slut dig til os på Telegram</string>
-    <string name="donation_title">Donation</string>
-    <string name="donation_description">Denne app er gratis og for altid reklamefri. Du kan støtte mig nedenfor</string>
     <string name="action_generate">Generér</string>
     <string name="generating_number_of">Genererer %1$s/%2$s</string>
     <string name="type_killer_9x9">Killer 9x9</string>
     <string name="type_killer_6x6">Killer 6x6</string>
     <string name="app_version">Version %1$s (%2$s)</string>
-    <string name="monet_tonalspot">Tonalpunkt</string>
     <string name="type_killer_12x12">Killer 12x12</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

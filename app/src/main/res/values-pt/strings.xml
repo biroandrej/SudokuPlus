@@ -45,13 +45,6 @@
     <string name="pref_delete_stats">Limpar todas as estatísticas</string>
     <string name="pref_delete_stats_summ">Esta ação excluirá todas as suas estatísticas, jogos salvos e recordes. não poderá ser desfeita</string>
     <string name="action_deleted">Remover</string>
-    <string name="pref_app_theme">Tema</string>
-    <string name="theme_dynamic">Dinâmico</string>
-    <string name="theme_green">Verde</string>
-    <string name="theme_peach">Pêssego</string>
-    <string name="theme_yellow">Amarelo</string>
-    <string name="theme_lavender">Roxo</string>
-    <string name="theme_black_and_white">Preto e Branco</string>
     <string name="pref_pure_black">Puro tema escuro</string>
     <string name="pref_gameplay">Jogabilidade</string>
     <string name="pref_mistakes_limit">limite de erro</string>
@@ -203,7 +196,6 @@
     <string name="sort_by_game_id">ID</string>
     <string name="sort_label">Ordenar</string>
     <string name="filter_label">Filtrar</string>
-    <string name="help_translate">Ajude na tradução 🤩</string>
     <string name="title_folders">Pasta</string>
     <string name="create_folder">Criar uma pasta</string>
     <string name="delete_folder">Apagar uma pasta</string>
@@ -255,7 +247,7 @@
     <string name="move_games_to_folder_subtitle">Selecione a pasta que deseja mover os jogos selecionados</string>
     <string name="pref_cross_highlight_subtitle">Destaque alguns blocos no tabuleiro</string>
     <string name="pref_cross_highlight">Destaque cruzado</string>
-    <string name="dialog_crash_report_text">Oops, o LibreSudoku não funciona corretamente. Gostaria de enviar um relatório de bug aos programadores?</string>
+    <string name="dialog_crash_report_text">Oops, o SudokuPlus não funciona corretamente. Gostaria de enviar um relatório de bug aos programadores?</string>
     <string name="pref_crash_reporting">Relatório de falhas</string>
     <string name="pref_crash_reporting_subtitle">Ajude-nos a corrigir erros. O app não envia nenhum log por si só, será solicitado a enviar um relatório de falha por e-mail</string>
     <string name="pref_fun_keyboard_over_num">Painel de função sobre os números</string>
@@ -266,7 +258,6 @@
     <string name="restoring_backup">A restaurar</string>
     <string name="last_backup_date">Backup mais recente: %1$s</string>
     <string name="pref_date_format_custom_label">Personalizado</string>
-    <string name="theme_blue">Azul</string>
     <string name="creating_backup_error">Falha de backup</string>
     <string name="auto_backups_max">Quantidade máxima de backups automáticos</string>
     <string name="pref_date_format_custom_summ">Insira um padrão de data de acordo com o DateTimeFormatter do Java</string>
@@ -311,4 +302,5 @@
     <string name="action_grant">Conceder</string>
     <string name="autobackup_never">Nunca</string>
     <string name="restore_existing_data_alert">Dados existentes serão deletados!</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

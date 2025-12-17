@@ -40,13 +40,6 @@
     <string name="pref_dark_theme_follow">Motyw systemu</string>
     <string name="pref_board_font_size">Wielkość czcionki planszy</string>
     <string name="pref_delete_stats">Usuń statystyki</string>
-    <string name="pref_app_theme">Motyw aplikacji</string>
-    <string name="theme_dynamic">Dynamiczny</string>
-    <string name="theme_green">Zielony</string>
-    <string name="theme_peach">Brzoskwiniowy</string>
-    <string name="theme_yellow">Żółty</string>
-    <string name="theme_lavender">Lawendowy</string>
-    <string name="theme_black_and_white">Czarno-Biały</string>
     <string name="pref_pure_black">Głęboka czerń</string>
     <string name="pref_gameplay">Rozgrywka</string>
     <string name="pref_mistakes_limit">Limit błędów</string>
@@ -149,7 +142,6 @@
     <string name="sort_by_timer">Timer</string>
     <string name="filter_label">Filtr</string>
     <string name="sort_by_game_id">ID</string>
-    <string name="help_translate">Pomóż w tłumaczeniu</string>
     <string name="title_folders">Foldery</string>
     <string name="create_folder">Utwórz folder</string>
     <string name="delete_folder">Usuń folder</string>
@@ -198,7 +190,7 @@
     <string name="action_move_selected">Przenieś wybrane</string>
     <string name="pref_cross_highlight_subtitle">Zaznacz niektóre kwadraty na tablicy</string>
     <string name="pref_cross_highlight">Krzyżowe zaznaczenie</string>
-    <string name="dialog_crash_report_text">Ups, LibreSudoku właśnie się zawiesiło. Czy chcesz wysłać raport o awarii do programistów\?</string>
+    <string name="dialog_crash_report_text">Ups, SudokuPlus właśnie się zawiesiło. Czy chcesz wysłać raport o awarii do programistów\?</string>
     <string name="pref_save_last_diff_and_type_subtitle">Zapamiętaj typ i poziom trudności ostatniej gry</string>
     <string name="pref_date_format">Format daty</string>
     <string name="pref_crash_reporting">Raportowanie błędu</string>
@@ -266,7 +258,6 @@
     <string name="export_string_state_copied">Skopiowany</string>
     <string name="sort_descending">Malejąco</string>
     <string name="create_import_set">Ustaw</string>
-    <string name="theme_blue">Niebieski</string>
     <string name="redo">Alternatywny</string>
     <string name="hints_used">Wskazówki: %1$d</string>
     <string name="mistakes_made">Błędy: %1$d</string>
@@ -315,19 +306,14 @@
     <string name="action_grant">Udziel</string>
     <string name="autobackup_never">Nigdy</string>
     <string name="restore_existing_data_alert">Istniejące dane zostaną usunięte!</string>
-    <string name="monet_fruitsalad">Sałatka owocowa</string>
-    <string name="monet_monochrome">Monochromatyczny</string>
     <string name="onboard_restore_backup">Przywróć z kopii zapasowej</string>
     <string name="onboard_settings_description">Dostosuj aplikację do swoich preferencji</string>
     <string name="color_picker_title">Wybierz kolor</string>
-    <string name="monet_neutral">Neutralny</string>
-    <string name="monet_rainbow">Tęcza</string>
-    <string name="monet_content">Treść</string>
-    <string name="theme_orange">Pomarańczowy</string>
     <plurals name="last_x_games">
         <item quantity="one">Ostatnia %1$d gra</item>
         <item quantity="few">Ostatnie %1$d gry</item>
         <item quantity="many">Ostatnie %1$d gier</item>
         <item quantity="other">Ostatnie %1$d gier</item>
     </plurals>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>
