@@ -28,10 +28,11 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Button
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -111,9 +112,11 @@ fun HomeScreen(
         }
     }
 
+    val hasGameInProgress = (lastGame != null && !lastGame!!.completed)
+
     Scaffold(
         topBar = {
-            TopAppBar(
+            CenterAlignedTopAppBar(
                 title = {
                     Text(
                         text = stringResource(R.string.app_name),
@@ -125,6 +128,20 @@ fun HomeScreen(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             )
+        },
+        floatingActionButton = {
+            if (hasGameInProgress) {
+                ExtendedFloatingActionButton(
+                    onClick = { continueGameDialog = true },
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Rounded.Add,
+                            contentDescription = null
+                        )
+                    },
+                    text = { Text(stringResource(R.string.new_game)) }
+                )
+            }
         }
     ) { paddingValues ->
         if (viewModel.readyToPlay) {
@@ -156,7 +173,7 @@ fun HomeScreen(
                     onIncreaseDifficulty = { viewModel.changeDifficulty(1) },
                     onDecreaseType = { viewModel.changeType(-1) },
                     onIncreaseType = { viewModel.changeType(1) },
-                    canContinue = (lastGame != null && !lastGame!!.completed),
+                    canContinue = hasGameInProgress,
                     onContinue = {
                         if (lastGames.size <= 1) {
                             lastGame?.let {
@@ -171,13 +188,9 @@ fun HomeScreen(
                             lastGamesBottomSheet = true
                         }
                     },
-                    onNewGame = {
-                        if (lastGame != null && !lastGame!!.completed) {
-                            continueGameDialog = true
-                        } else {
-                            viewModel.giveUpLastGame()
-                            viewModel.startGame()
-                        }
+                    onPlay = {
+                        viewModel.giveUpLastGame()
+                        viewModel.startGame()
                     }
                 )
             }
@@ -333,7 +346,7 @@ private fun HomeHeroCard(
     onIncreaseType: () -> Unit,
     canContinue: Boolean,
     onContinue: () -> Unit,
-    onNewGame: () -> Unit,
+    onPlay: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     ElevatedCard(
@@ -381,7 +394,7 @@ private fun HomeHeroCard(
                 if (canContinue) {
                     Button(
                         onClick = onContinue,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.fillMaxWidth()
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.PlayArrow,
@@ -390,20 +403,9 @@ private fun HomeHeroCard(
                         Spacer(modifier = Modifier.size(8.dp))
                         Text(stringResource(R.string.action_continue))
                     }
-                    FilledTonalButton(
-                        onClick = onNewGame,
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Rounded.Add,
-                            contentDescription = null
-                        )
-                        Spacer(modifier = Modifier.size(8.dp))
-                        Text(stringResource(R.string.dialog_new_game))
-                    }
                 } else {
                     Button(
-                        onClick = onNewGame,
+                        onClick = onPlay,
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Icon(
