@@ -35,7 +35,6 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
@@ -523,45 +522,52 @@ fun SavedSudokuPreview(
             containerColor = MaterialTheme.colorScheme.surfaceContainer
         )
     ) {
-        ListItem(
-            leadingContent = {
-                Box(
-                    modifier = Modifier
-                        .clip(MaterialTheme.shapes.small)
-                        .size(72.dp)
-                ) {
-                    BoardPreview(
-                        size = sqrt(board.length.toFloat()).toInt(),
-                        boardString = board
-                    )
-                }
-            },
-            headlineContent = {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .clip(MaterialTheme.shapes.small)
+                    .size(72.dp)
+            ) {
+                BoardPreview(
+                    size = sqrt(board.length.toFloat()).toInt(),
+                    boardString = board
+                )
+            }
+
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = "$difficulty $type",
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-            },
-            supportingContent = {
-                Column {
-                    Text(
-                        text = stringResource(
-                            R.string.history_item_time,
-                            savedGame.timer.toKotlinDuration().toFormattedString()
-                        )
-                    )
-                    if (lastPlayedRelative != null) {
-                        Text(lastPlayedRelative)
-                    }
-                }
-            },
-            trailingContent = {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
-                    contentDescription = null,
+                Text(
+                    text = stringResource(
+                        R.string.history_item_time,
+                        savedGame.timer.toKotlinDuration().toFormattedString()
+                    ),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+                if (lastPlayedRelative != null) {
+                    Text(
+                        text = lastPlayedRelative,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
-        )
+
+            Icon(
+                imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
     }
 }
