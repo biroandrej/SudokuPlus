@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SudokuPlus"
 include(":app")
-include(":Color-Picker")
