@@ -45,15 +45,8 @@
     <string name="pref_delete_stats">Clear all statistics</string>
     <string name="pref_delete_stats_summ">This action will delete all your statistics, saved games and records. It can\'t be undone</string>
     <string name="action_deleted">Deleted</string>
-    <string name="pref_app_theme">App theme</string>
     <string name="pref_dynamic_colors_title">Dynamic colors</string>
     <string name="pref_dynamic_colors_summary">Use colors from your wallpaper (Android 12+)</string>
-    <string name="theme_dynamic">Dynamic</string>
-    <string name="theme_green">Green</string>
-    <string name="theme_peach">Peach</string>
-    <string name="theme_yellow">Yellow</string>
-    <string name="theme_lavender">Lavender</string>
-    <string name="theme_black_and_white">Black and white</string>
     <string name="pref_pure_black">Pure black dark theme</string>
     <string name="pref_gameplay">Gameplay</string>
     <string name="pref_mistakes_limit">Mistakes limit</string>
@@ -285,7 +278,6 @@
     <string name="pref_date_format_custom_summ">Enter date pattern according to Java DateTimeFormatter</string>
     <string name="pref_date_format_custom_textfield_label">Pattern</string>
     <string name="pref_date_format_custom_label">Custom</string>
-    <string name="theme_blue">Blue</string>
     <string name="redo">Redo</string>
     <string name="backup_restore_title">Backup &amp; restore</string>
     <string name="action_create_backup">Backup</string>
@@ -322,19 +314,6 @@
     <string name="last_backup_date">Most recent backup: %1$s</string>
     <string name="date_started">Date started</string>
     <string name="date_last_played">Date last played</string>
-    <string name="pref_monet_style">Monet style</string>
-    <string name="monet_tonalspot">Tonal Spot</string>
-    <string name="monet_neutral">Neutral</string>
-    <string name="monet_vibrant">Vibrant</string>
-    <string name="monet_expressive">Expressive</string>
-    <string name="monet_rainbow">Rainbow</string>
-    <string name="monet_fruitsalad">Fruit Salad</string>
-    <string name="monet_monochrome">Monochrome</string>
-    <string name="monet_fidelity">Fidelity</string>
-    <string name="monet_content">Content</string>
-    <string name="theme_orange">Orange</string>
-    <string name="theme_cyan">Cyan</string>
-    <string name="theme_custom">Custom</string>
     <string name="color_picker_title">Pick a color</string>
     <string name="parse_color_fail">Not a color</string>
     <string name="onboard_restore_backup">Restore backup</string>
@@ -345,7 +324,7 @@
         <item quantity="other">Last %1$d games</item>
     </plurals>
     <string name="app_version">Version %1$s (%2$s)</string>
-    <string name="perf_appearance_summary">Dark theme, color scheme, board theme, date format…</string>
+    <string name="perf_appearance_summary">Dark theme, dynamic colors, board theme, date format…</string>
     <string name="perf_gameplay_summary">Input method, mistake limit, timer…</string>
     <string name="perf_assistance_summary">Mistakes checking, highlight identical values, remaining uses…</string>
     <string name="perf_other_summary">Remember type and difficulty, keep screen awake, reset stats…</string>

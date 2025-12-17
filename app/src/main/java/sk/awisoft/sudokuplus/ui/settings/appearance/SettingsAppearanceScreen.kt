@@ -10,7 +10,6 @@ import androidx.compose.material.icons.outlined.Contrast
 import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.EditCalendar
 import androidx.compose.material.icons.outlined.Tag
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -83,11 +82,6 @@ fun SettingsAppearanceScreen(
             }
 
             item {
-                Text(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    text = stringResource(R.string.pref_app_theme)
-                )
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     PreferenceRowSwitch(
                         title = stringResource(R.string.pref_dynamic_colors_title),

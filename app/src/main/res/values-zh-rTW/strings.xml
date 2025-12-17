@@ -26,10 +26,6 @@
     <string name="pref_input">輸入方法</string>
     <string name="pref_delete_stats_summ">這項動作將會刪除你的統計資料，已儲存遊戲和記錄。這項動作不可復原</string>
     <string name="action_deleted">已刪除</string>
-    <string name="theme_dynamic">動態</string>
-    <string name="theme_green">綠色</string>
-    <string name="theme_peach">桃色</string>
-    <string name="theme_lavender">淡紫</string>
     <string name="pref_pure_black">純黑主題</string>
     <string name="pref_disable_hints">禁用提示</string>
     <string name="pref_disable_hints_summ">不喜歡提示？儘管移除它們！</string>
@@ -52,8 +48,6 @@
     <string name="pref_appearance">外觀</string>
     <string name="pref_board_font_size_large">大</string>
     <string name="pref_delete_stats">清除所有統計</string>
-    <string name="theme_yellow">黃色</string>
-    <string name="theme_black_and_white">黑白</string>
     <string name="about_github_source_code">GitHub 上的原始碼</string>
     <string name="pref_other">其他</string>
     <string name="pref_keep_screen_on">保持螢幕開啟</string>
@@ -63,7 +57,6 @@
     <string name="pref_dark_theme_follow">跟隨系統</string>
     <string name="pref_board_font_size">數獨板字型大小</string>
     <string name="pref_input_cell_first">先按格子</string>
-    <string name="pref_app_theme">應用程式佈景主題</string>
     <string name="pref_mistakes_limit">錯誤限制</string>
     <string name="pref_gameplay">遊戲設定</string>
     <string name="pref_mistakes_limit_summ">3 個錯誤就輸了</string>
@@ -283,14 +276,12 @@
     <string name="redo">重做</string>
     <string name="pref_date_format_custom_textfield_label">模式</string>
     <string name="pref_date_format_custom_label">自訂</string>
-    <string name="theme_blue">藍色</string>
     <string name="autobackup_never">永不</string>
     <string name="backup_restore_title">備份與還原</string>
     <string name="backup_restore_settings">還原設定</string>
     <string name="auto_backups_frequency">備份頻率</string>
     <string name="color_picker_title">選擇顏色</string>
     <string name="crash_screen_title">糟糕，發生問題了</string>
-    <string name="theme_custom">自訂</string>
     <string name="parse_color_fail">不是顏色</string>
     <plurals name="last_x_games">
         <item quantity="other">最後的 %1$d 個遊戲</item>
@@ -310,8 +301,6 @@
     <string name="pref_highlight_identical_summ">在數獨版上選擇一個值會突顯具有相同值的格子</string>
     <string name="pref_cross_highlight">交叉突顯</string>
     <string name="pref_fun_keyboard_over_num">功能面板在數值上方</string>
-    <string name="theme_orange">橙色</string>
-    <string name="theme_cyan">青色</string>
     <string name="learn_sudoku_rules">數獨規則</string>
     <string name="learn_basic_title">基礎</string>
     <string name="pref_crash_reporting">崩潰報告</string>

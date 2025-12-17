@@ -5,7 +5,6 @@
     <string name="pref_dark_theme_follow">مطابقت با سیستم</string>
     <string name="pref_input_cell_first">ابتدا سلول</string>
     <string name="action_deleted">حذف شده</string>
-    <string name="theme_lavender">اسطوخودوس</string>
     <string name="nav_bar_statistics">آمار</string>
     <string name="nav_bar_home">خانه</string>
     <string name="dialog_new_game">بازی در جریان</string>
@@ -31,11 +30,6 @@
     <string name="pref_board_font_size_large">بزرگ</string>
     <string name="pref_board_font_size_medium">متوسط</string>
     <string name="pref_delete_stats_summ">این عمل تمام آمار، بازی‌های ذخیره شده و رکوردهای شما را حذف می‌کند.این عمل را نمی‌توان واگرد کرد.</string>
-    <string name="theme_dynamic">پویا</string>
-    <string name="theme_green">سبز</string>
-    <string name="theme_peach">هلویی</string>
-    <string name="theme_yellow">زرد</string>
-    <string name="theme_black_and_white">سیاه و سفید</string>
     <string name="pref_show_timer">نمایش زمان‌سنج</string>
     <string name="onboard_restore_backup">بازیابی نسخه‌ی پشتیبان</string>
     <string name="difficulty_custom">سفارشی</string>
@@ -44,7 +38,6 @@
     <string name="type_default_12x12">۱۲×۱۲</string>
     <string name="pref_board_font_size">اندازه‌ی فونت جدول</string>
     <string name="pref_input_digit_first">ابتدا مقدار</string>
-    <string name="pref_app_theme">تم برنامه</string>
     <string name="pref_mistakes_limit">محدود کردن تعداد اشتباه</string>
     <string name="pref_reset_timer">بازنشانی زمان‌سنج با بازنشانی بازی</string>
     <string name="pref_position_lines">خط‌های موقعیت</string>
@@ -68,12 +61,11 @@
     <string name="toolbar_undo_description">واگرد</string>
     <string name="toolbar_hint_description">مقدار صحیح را در سلول انتخاب شده قرار می‌دهد. از طریق تنظیمات می‌توان آن را غیر فعال کرد</string>
     <string name="toolbar_erase_description">مقدار یا یادداشت‌های سلول انتخاب شده را پاک می‌کند</string>
-    <string name="theme_custom">سفارشی</string>
     <plurals name="last_x_games">
         <item quantity="one">%1$d بازی آخر</item>
         <item quantity="other">%1$d بازی آخر</item>
     </plurals>
-    <string name="perf_appearance_summary">تم تیره، رنگ‌بندی، تم جدول، فرمت تاریخ…</string>
+    <string name="perf_appearance_summary">تم تیره، رنگ‌های پویا، تم جدول، فرمت تاریخ…</string>
     <string name="about_github_source_code">سورس‌کد روی گیت‌هاب</string>
     <string name="action_reset_game">بازنشانی بازی</string>
     <string name="intro_rules">هدف بازی پر کردن تمام سلول ها با اعداد ۱ تا ۹ است. به طوری که مقادیر در هیچ ستون، ردیف و یا کادر ۳×۳ کوچک‌تری تکرار نشوند</string>
@@ -90,12 +82,10 @@
     <string name="pref_remaining_uses">استفاده‌های باقی‌مانده</string>
     <string name="dialog_yes">بله</string>
     <string name="pref_app_language">زبان برنامه</string>
-    <string name="theme_cyan">فیروزه‌ای</string>
     <string name="parse_color_fail">یک رنگ نیست</string>
     <string name="onboard_settings_description">برنامه را به دلخواه خود تنظیم کنید</string>
     <string name="onboard_restore_backup_description">آیا از قبل نسخه‌ی پشتیبان دارید؟ آن را بازیابی کنید</string>
     <string name="app_version">نسخه‌ی %1$s (%2$s)</string>
-    <string name="theme_orange">نارنجی</string>
     <string name="color_picker_title">یک رنگ انتخاب کنید</string>
     <string name="pref_appearance">ظاهر</string>
     <string name="pref_delete_stats">پاکسازی تمام آمار</string>

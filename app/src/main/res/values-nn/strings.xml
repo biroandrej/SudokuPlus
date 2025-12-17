@@ -26,9 +26,6 @@
     <string name="pref_board_font_size_large">Store</string>
     <string name="pref_input_digit_first">Tal, so rute</string>
     <string name="action_deleted">Sletta</string>
-    <string name="pref_app_theme">Appletar</string>
-    <string name="theme_peach">Raud</string>
-    <string name="theme_black_and_white">Svartkvit</string>
     <string name="pref_pure_black">Kolsvart</string>
     <string name="pref_gameplay">Speling</string>
     <string name="pref_mistakes_limit">Mistaksgrense</string>
@@ -52,10 +49,6 @@
     <string name="action_delete">Slett</string>
     <string name="difficulty_simple">Ovlett</string>
     <string name="difficulty_easy">Lett</string>
-    <string name="theme_dynamic">Skiftande</string>
-    <string name="theme_green">Grøn</string>
-    <string name="theme_yellow">Gulgrøn</string>
-    <string name="theme_lavender">Lillarosa</string>
     <string name="pref_mistakes_limit_summ">End spelet ved tre mistak</string>
     <string name="pref_disable_hints">Slå av juks (ljospæra)</string>
     <string name="pref_disable_hints_summ">Unngå juks</string>

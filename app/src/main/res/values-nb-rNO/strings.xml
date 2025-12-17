@@ -20,8 +20,6 @@
     <string name="settings_title">Innstillinger</string>
     <string name="pref_dark_theme_follow">Følg systemet</string>
     <string name="pref_dark_theme_on">På</string>
-    <string name="pref_app_theme">Programdrakt</string>
-    <string name="theme_yellow">Gul</string>
     <string name="dialog_new_game">Spill underveis</string>
     <string name="more_title">Mer</string>
     <string name="pref_appearance">Utseende</string>
@@ -32,8 +30,6 @@
     <string name="difficulty_simple">Nybegynner</string>
     <string name="pref_dark_theme_off">Av</string>
     <string name="pref_delete_stats">Tøm all statistikk</string>
-    <string name="theme_green">Grønn</string>
-    <string name="theme_peach">Pære</string>
     <string name="pref_pure_black">Helsvart</string>
     <string name="pref_disable_hints">Skru av hint</string>
     <string name="pref_mistakes_check_off">Av</string>
@@ -78,10 +74,7 @@
     <string name="about_title">Om</string>
     <string name="difficulty_moderate">Moderat</string>
     <string name="type_default_12x12">12x12</string>
-    <string name="theme_lavender">Levendel</string>
-    <string name="theme_black_and_white">Svart og hvit</string>
     <string name="pref_dark_theme">Mørk drakt</string>
-    <string name="theme_dynamic">Dynamisk</string>
     <string name="pref_show_timer">Vis tidsur</string>
     <string name="pref_assistance">Hjelp</string>
     <string name="label_default">Forvalg</string>
@@ -269,10 +262,8 @@
     <string name="stat_time_average">Gjen.: %1$s</string>
     <string name="pref_date_format_custom">Egendefinert datoformat</string>
     <string name="pref_date_format_custom_label">Egendefinert</string>
-    <string name="theme_blue">Blå</string>
     <string name="redo">Gjenta</string>
     <string name="font_size_automatic">Automatisk</string>
-    <string name="theme_custom">Tilpasset</string>
     <string name="color_picker_title">Velg en farge</string>
     <string name="parse_color_fail">Ikke en farge</string>
     <string name="create_backup_description">Lag sikkerhetskopieringsfil</string>
@@ -288,7 +279,7 @@
     <string name="autobackup_never">Aldri</string>
     <string name="daily">Daglig</string>
     <string name="last_backup_date">Siste sikkerhetskopi: %1$s</string>
-    <string name="perf_appearance_summary">Mørkt tema, fargevalg, brett-tema, datoformat…</string>
+    <string name="perf_appearance_summary">Mørkt tema, dynamiske farger, brett-tema, datoformat…</string>
     <string name="perf_gameplay_summary">Inndatametode, feilgrense, tidtaker…</string>
     <string name="perf_other_summary">Husk type og vanskelighetsgrad, hold skjermen våken, tilbakestill statistikk…</string>
     <string name="action_share_crash_log">Del krasj-logg</string>
@@ -358,13 +349,6 @@
     <string name="action_grant">Gi tilgang</string>
     <string name="app_version">Versjon %1$s (%2$s)</string>
     <string name="update_channel">Oppdateringskanal</string>
-    <string name="monet_neutral">Nøytral</string>
-    <string name="monet_rainbow">Regnbue</string>
-    <string name="monet_fruitsalad">Fruktsalat</string>
-    <string name="monet_monochrome">Monokrom</string>
-    <string name="theme_orange">Appelsin</string>
-    <string name="theme_cyan">Cyan</string>
-    <string name="monet_vibrant">Levende</string>
     <plurals name="last_x_games">
         <item quantity="one">Siste spill</item>
         <item quantity="other">Siste %1$d spill</item>

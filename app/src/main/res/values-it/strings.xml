@@ -23,12 +23,10 @@
     <string name="difficulty_hard">Difficile</string>
     <string name="type_default_6x6">6x6</string>
     <string name="type_default_9x9">9x9</string>
-    <string name="theme_yellow">Giallo</string>
     <string name="type_default_12x12">12x12</string>
     <string name="type_unspecified">Non specificato</string>
     <string name="settings_title">Impostazioni</string>
     <string name="about_title">Informazioni</string>
-    <string name="theme_peach">Pera</string>
     <string name="more_title">Di più</string>
     <string name="pref_dark_theme_follow">Segui sistema</string>
     <string name="pref_dark_theme">Tema scuro</string>
@@ -38,14 +36,12 @@
     <string name="pref_board_font_size">Dimensione font della tavola</string>
     <string name="pref_board_font_size_medium">Medio</string>
     <string name="pref_board_font_size_large">Grande</string>
-    <string name="pref_app_theme">Tema app</string>
     <string name="pref_board_font_size_small">Piccolo</string>
     <string name="pref_input_cell_first">Prima la cella</string>
     <string name="pref_input_digit_first">Prima il valore</string>
     <string name="pref_input">Modalità di input</string>
     <string name="pref_delete_stats">Elimina tutte le statistiche</string>
-    <string name="theme_dynamic">Dinamico</string>
-    <string name="theme_green">Verde</string>
+    
     <string name="dialog_new_game_text">Hai una partita incompleta, vuoi davvero iniziarne una nuova\?</string>
     <string name="nav_bar_statistics">Statistiche</string>
     <string name="dialog_new_game_positive">Inizia nuova</string>
@@ -96,11 +92,9 @@
     <string name="action_reset_game">Ripristina la partita</string>
     <string name="onboard_title">Benvenuto</string>
     <string name="pref_position_lines">Righe posizione</string>
-    <string name="theme_lavender">Lavanda</string>
     <string name="pref_gameplay">Gameplay</string>
     <string name="pref_disable_hints_summ">Non ti piacciono i suggerimenti\? Disabilitali!</string>
     <string name="pref_assistance">Assistenza</string>
-    <string name="theme_black_and_white">Bianco e nero</string>
     <string name="pref_pure_black">Tema scuro amoled</string>
     <string name="pref_show_timer">Mostra timer</string>
     <string name="pref_mistakes_check_final">Con soluzione finale</string>
@@ -203,7 +197,6 @@
     <string name="create_from_string_hint">Puzzle</string>
     <string name="last_played_section_title">Partite recenti</string>
     <string name="pref_date_format_custom_label">Personalizzato</string>
-    <string name="theme_blue">Blu</string>
     <string name="pref_board_theme_subtitle">Personalizza l\'aspetto della tavola del sudoku</string>
     <string name="pref_board_theme_title">Tema della tavola del sudoku</string>
     <string name="board_theme_title">Tema della tavola</string>
@@ -274,7 +267,6 @@
     <string name="pref_cross_highlight">Scacchiera</string>
     <string name="pref_fun_keyboard_over_num">Pannello strumenti sopra i numeri</string>
     <string name="pref_fun_keyboard_over_num_subtitle">Sposta il pannello degli strumenti sopra alla tastiera dei numeri</string>
-    <string name="theme_custom">Personalizzato</string>
     <string name="parse_color_fail">Non è un colore</string>
     <string name="backup_restore_title">Backup e Ripristino</string>
     <string name="action_create_backup">Backup</string>
@@ -305,11 +297,7 @@
     <string name="auto_backup_folder_access">Accesso alla cartella per backup automatici</string>
     <string name="auto_backup_folder_access_description">Per i backup automatici, devi permettere l\'accesso ad una cartella. L\'applicazione creerà i backup nella cartella selezionata</string>
     <string name="action_grant">Permetti</string>
-    <string name="monet_expressive">Espressivo</string>
-    <string name="monet_rainbow">Arcobaleno</string>
     <string name="last_backup_date">Backup più recente: %1$s</string>
-    <string name="pref_monet_style">Stile Monet</string>
-    <string name="monet_fruitsalad">Insalata di frutta</string>
     <string name="onboard_restore_backup_description">Hai già un backup? Ripristinalo ora</string>
     <plurals name="every_x_hours">
         <item quantity="one">Ogni ora</item>
@@ -353,9 +341,6 @@
     <string name="every_2_days">Ogni 2 giorni</string>
     <string name="action_create">Crea</string>
     <string name="restore_existing_data_alert">I dati esistenti verranno eliminati!</string>
-    <string name="monet_fidelity">Fedeltà</string>
-    <string name="monet_content">Contenuto</string>
-    <string name="theme_orange">Arancione</string>
     <string name="color_picker_title">Scegli un colore</string>
     <string name="onboard_restore_backup">Ripristina backup</string>
     <string name="app_version">Versione %1$s(%2$s)</string>

@@ -37,13 +37,6 @@
     <string name="pref_delete_stats">مسح جميع الإحصائيات</string>
     <string name="pref_delete_stats_summ">سيؤدي هذا الإجراء إلى حذف جميع الإحصائيات والألعاب والسجلات المحفوظة. لا يمكن التراجع عن هذا القرار</string>
     <string name="action_deleted">تم الحذف</string>
-    <string name="pref_app_theme">سمة التطبيق</string>
-    <string name="theme_dynamic">حيوي</string>
-    <string name="theme_green">أخضر</string>
-    <string name="theme_peach">خوخي</string>
-    <string name="theme_yellow">أصفر</string>
-    <string name="theme_lavender">خزامي</string>
-    <string name="theme_black_and_white">أبيض وأسود</string>
     <string name="pref_pure_black">السمة الداكنة المظلمة</string>
     <string name="pref_gameplay">إعدادات اللعب</string>
     <string name="pref_mistakes_limit_summ">3 أخطاء كحد أقصى</string>
@@ -227,7 +220,6 @@
     <string name="pref_date_format_custom_label">مخصص</string>
     <string name="nav_bar_statistics">إحصائيات</string>
     <string name="type_unspecified">غير محدد</string>
-    <string name="theme_blue">أزرق</string>
     <string name="difficulty_hard">صعب</string>
     <string name="settings_title">الإعدادات</string>
     <string name="pref_remaining_uses">الاستخدامات المتبقية</string>
@@ -290,6 +282,6 @@
     <string name="perf_other_summary">تذكر النوع والصعوبة، وأبق الشاشة نشطة، وأعد ضبط الإحصائيات…</string>
     <string name="onboard_settings_description">ضبط التطبيق حسب رغبتك</string>
     <string name="app_version">"الاصدار   %1$s (%2$s)"</string>
-    <string name="perf_appearance_summary">المظهر الداكن ونظام الألوان ومظهر لوحة اللعب وتنسيق التاريخ…</string>
+    <string name="perf_appearance_summary">المظهر الداكن والألوان الديناميكية ومظهر لوحة اللعب وتنسيق التاريخ…</string>
     <string name="color_picker_title">اختر لون</string>
 </resources>

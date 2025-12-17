@@ -26,11 +26,6 @@
     <string name="pref_dark_theme_on">இயக்கு</string>
     <string name="pref_board_font_size_small">சிறிய</string>
     <string name="pref_board_font_size_medium">நடுத்தரம்</string>
-    <string name="pref_app_theme">செயலி வடிவு</string>
-    <string name="theme_dynamic">மாறும் வகை</string>
-    <string name="theme_green">பச்சை</string>
-    <string name="theme_lavender">கத்தரி</string>
-    <string name="theme_black_and_white">கறுப்பு வெள்ளை</string>
     <string name="pref_mistakes_limit">தவறுகள் வரம்பு</string>
     <string name="pref_mistakes_limit_summ">3 தவறுகள் மட்டும் அனுமதி</string>
     <string name="pref_disable_hints">உதவி வசதி அணை</string>
@@ -66,7 +61,6 @@
     <string name="difficulty_unspecified">குறிப்பிடாத</string>
     <string name="difficulty_moderate">நடுத்தரம்</string>
     <string name="type_default_9x9">9x9</string>
-    <string name="theme_peach">அடர் மஞ்சள்</string>
     <string name="type_default_12x12">12x12</string>
     <string name="pref_delete_stats_summ">அனைத்து புள்ளிவிபரங்களும் அழிக்கப்படும். இதை மீட்டமைக்க முடியாது</string>
     <string name="pref_dark_theme_off">அணை</string>
@@ -77,7 +71,6 @@
     <string name="pref_board_font_size_large">பெரிய</string>
     <string name="pref_input">உள்ளீடு முறை</string>
     <string name="pref_input_cell_first">அறை முதலில்</string>
-    <string name="theme_yellow">மஞ்சள்</string>
     <string name="pref_pure_black">மொத்த கறுப்பு இருள்வடிவு</string>
     <string name="pref_tipcards_reset">உதவி அட்டைகள் மீட்டமைக்கப்பட்டன!</string>
     <string name="action_compute_notes">குறிப்புகள் கணக்கிடு</string>

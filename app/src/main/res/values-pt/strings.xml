@@ -45,13 +45,6 @@
     <string name="pref_delete_stats">Limpar todas as estatísticas</string>
     <string name="pref_delete_stats_summ">Esta ação excluirá todas as suas estatísticas, jogos salvos e recordes. não poderá ser desfeita</string>
     <string name="action_deleted">Remover</string>
-    <string name="pref_app_theme">Tema</string>
-    <string name="theme_dynamic">Dinâmico</string>
-    <string name="theme_green">Verde</string>
-    <string name="theme_peach">Pêssego</string>
-    <string name="theme_yellow">Amarelo</string>
-    <string name="theme_lavender">Roxo</string>
-    <string name="theme_black_and_white">Preto e Branco</string>
     <string name="pref_pure_black">Puro tema escuro</string>
     <string name="pref_gameplay">Jogabilidade</string>
     <string name="pref_mistakes_limit">limite de erro</string>
@@ -265,7 +258,6 @@
     <string name="restoring_backup">A restaurar</string>
     <string name="last_backup_date">Backup mais recente: %1$s</string>
     <string name="pref_date_format_custom_label">Personalizado</string>
-    <string name="theme_blue">Azul</string>
     <string name="creating_backup_error">Falha de backup</string>
     <string name="auto_backups_max">Quantidade máxima de backups automáticos</string>
     <string name="pref_date_format_custom_summ">Insira um padrão de data de acordo com o DateTimeFormatter do Java</string>

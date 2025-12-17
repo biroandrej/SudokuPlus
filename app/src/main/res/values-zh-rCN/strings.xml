@@ -30,11 +30,6 @@
     <string name="pref_delete_stats">清除所有统计信息</string>
     <string name="pref_input_digit_first">值优先</string>
     <string name="pref_delete_stats_summ">此操作将删除您的所有统计信息、保存的游戏和记录。此操作无法撤消</string>
-    <string name="theme_yellow">黄色</string>
-    <string name="pref_app_theme">应用主题</string>
-    <string name="theme_peach">桃红</string>
-    <string name="theme_lavender">淡紫色</string>
-    <string name="theme_black_and_white">黑白</string>
     <string name="pref_pure_black">纯黑色深色主题</string>
     <string name="pref_gameplay">玩法</string>
     <string name="pref_mistakes_limit">错误限制</string>
@@ -183,7 +178,6 @@
     <string name="stat_time_average">平均：%1$s</string>
     <string name="stat_time_best">最佳：%1$s</string>
     <string name="notes_taken">标记：%1$d</string>
-    <string name="theme_blue">蓝色</string>
     <string name="pref_date_format_custom_textfield_label">模式</string>
     <string name="pref_date_format_custom_label">自定义</string>
     <string name="nav_bar_statistics">统计数据</string>
@@ -231,8 +225,6 @@
     <string name="pref_board_font_size">数独板字体大小</string>
     <string name="pref_board_font_size_medium">中等</string>
     <string name="pref_input">输入方法</string>
-    <string name="theme_dynamic">动态</string>
-    <string name="theme_green">绿色</string>
     <string name="page_next">下一个</string>
     <string name="learn_hidden_pairs_1">隐藏的配对和裸露的配对几乎是一样的，唯一的区别是它们隐藏在其他配对中。这两个格子有一些共同之处，它们可以容纳数字 6 和 9，而且这也是这里唯一两个可以站在上面的方格</string>
     <string name="learn_hidden_pairs_title">隐藏对</string>
@@ -303,27 +295,14 @@
     <string name="autobackup_never">从不</string>
     <string name="restore_existing_data_alert">现有的数据将会被删除！</string>
     <string name="onboard_settings_description">根据您的喜好调整应用程序</string>
-    <string name="theme_custom">自定义</string>
     <string name="color_picker_title">选择一种颜色</string>
     <string name="parse_color_fail">不是颜色</string>
-    <string name="pref_monet_style">莫奈风格</string>
-    <string name="monet_tonalspot">色调点</string>
-    <string name="monet_fruitsalad">水果沙拉</string>
-    <string name="theme_orange">橙色</string>
     <string name="onboard_restore_backup">恢复备份</string>
     <string name="onboard_restore_backup_description">您已经有备份了吗？立即恢复</string>
-    <string name="monet_neutral">中性</string>
-    <string name="monet_vibrant">鲜艳</string>
-    <string name="monet_expressive">表现力</string>
-    <string name="monet_rainbow">彩虹</string>
-    <string name="monet_monochrome">单色</string>
-    <string name="monet_fidelity">逼真</string>
-    <string name="monet_content">内容</string>
-    <string name="theme_cyan">青色</string>
     <plurals name="last_x_games">
         <item quantity="other">最后的 %1$d 个游戏</item>
     </plurals>
-    <string name="perf_appearance_summary">深色主题，配色方案，数板主题，日期格式…</string>
+    <string name="perf_appearance_summary">深色主题，动态颜色，数板主题，日期格式…</string>
     <string name="perf_gameplay_summary">输入法，错误限制，计时器…</string>
     <string name="perf_assistance_summary">错误检查，同值高亮，剩余填入次数…</string>
     <string name="pref_board_theme_summary">应用强调色，位置线，字体大小…</string>

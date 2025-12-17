@@ -39,9 +39,6 @@
     <string name="pref_input_digit_first">Önce değer</string>
     <string name="pref_input_cell_first">Önce hücre</string>
     <string name="pref_delete_stats">Tüm istatistikleri temizle</string>
-    <string name="theme_dynamic">Dinamik</string>
-    <string name="theme_green">Yeşil</string>
-    <string name="theme_peach">Şeftali</string>
     <string name="pref_mistakes_limit_summ">3 hata yaparsan işin biter</string>
     <string name="pref_disable_hints">İpuçlarını devre dışı bırak</string>
     <string name="pref_show_timer">Zamanlayıcıyı göster</string>
@@ -170,9 +167,6 @@
     <string name="custom_sudoku_delete_dialog_title">Seçileni sil</string>
     <string name="pref_delete_stats_summ">Bu işlem, tüm istatistiklerinizi, kaydedilmiş oyunlarınızı ve kayıtlarınızı silecektir ve geri alınamaz</string>
     <string name="action_deleted">Silindi</string>
-    <string name="pref_app_theme">Uygulama teması</string>
-    <string name="theme_yellow">Sarı</string>
-    <string name="theme_lavender">Lavanta</string>
     <string name="pref_pure_black">Saf siyah koyu tema</string>
     <string name="pref_gameplay">Oynanış</string>
     <string name="pref_mistakes_limit">Hata sınırı</string>
@@ -180,7 +174,6 @@
     <string name="pref_disable_hints_summ">İpuçlarını sevmiyor musunuz\? O zaman onları kaldırın!</string>
     <string name="pref_assistance">Yardım</string>
     <string name="pref_mistakes_check_violations">Kural ihlalleri</string>
-    <string name="theme_black_and_white">Siyah ve beyaz</string>
     <string name="pref_position_lines_summ">Seçilen hücrenin satırı ve sütunu vurgulanır</string>
     <string name="dialog_yes">Evet</string>
     <string name="action_show_notes">Notları göster</string>
@@ -217,7 +210,6 @@
         <item quantity="other">%1$d bulmaca</item>
     </plurals>
     <string name="pref_date_format_custom_label">Özel</string>
-    <string name="theme_blue">Mavi</string>
     <string name="board_theme_title">Tahta teması</string>
     <string name="folder_empty_label">Bu klasör boş</string>
     <string name="add_to_folder">Klasöre ekle</string>
@@ -309,21 +301,8 @@
     <string name="onboard_restore_backup">Yedeklemeyi geri yükle</string>
     <string name="onboard_restore_backup_description">Zaten bir yedeklemeniz var mı? Şimdi geri yükleyin</string>
     <string name="onboard_settings_description">Uygulamayı istediğiniz gibi ayarlayın</string>
-    <string name="theme_custom">Özel</string>
-    <string name="monet_expressive">Açıklayıcı</string>
-    <string name="monet_monochrome">Tek Renkli</string>
-    <string name="monet_rainbow">Gökkuşağı</string>
-    <string name="monet_fruitsalad">Meyve Salatası</string>
-    <string name="monet_fidelity">Güven</string>
-    <string name="monet_content">Memnun</string>
-    <string name="theme_orange">Turuncu</string>
-    <string name="theme_cyan">Camgöbeği</string>
     <string name="color_picker_title">Renk seç</string>
     <string name="parse_color_fail">Renk değil</string>
-    <string name="pref_monet_style">Monet tarzı</string>
-    <string name="monet_tonalspot">Tonlamalı Nokta</string>
-    <string name="monet_neutral">Nötr</string>
-    <string name="monet_vibrant">Canlı</string>
     <plurals name="last_x_games">
         <item quantity="one">Son %1$d oyun</item>
         <item quantity="other">Son %1$d oyun</item>
@@ -337,7 +316,7 @@
     <string name="action_restart_app">Uygulamayı yeniden başlat</string>
     <string name="crash_screen_title">Tüh, bir şeyler yanlış gitti</string>
     <string name="action_share_crash_log">Çökme günlüğünü paylaş</string>
-    <string name="perf_appearance_summary">Koyu tema, renk düzeni, tahta teması, tarih biçimi…</string>
+    <string name="perf_appearance_summary">Koyu tema, dinamik renkler, tahta teması, tarih biçimi…</string>
     <string name="perf_gameplay_summary">Giriş yöntemi, hata sınırı, zamanlayıcı…</string>
     <string name="perf_assistance_summary">Hata denetimi, aynı değerleri vurgula, kalan kullanımlar…</string>
     <string name="perf_other_summary">Türü ve zorluğu hatırla, ekranı uyanık tut, istatistikleri sıfırla…</string>

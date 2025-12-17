@@ -37,8 +37,6 @@
     <string name="pref_input_cell_first">Ruutu ensin</string>
     <string name="pref_delete_stats">Tyhjennä kaikki tilastot</string>
     <string name="action_deleted">Poistettu</string>
-    <string name="pref_app_theme">Sovelluksen teema</string>
-    <string name="theme_dynamic">Dynaaminen</string>
     <string name="pref_input_digit_first">Arvo ensin</string>
     <string name="pref_mistakes_limit">Virheiden enimmäismäärä</string>
     <string name="pref_gameplay">Pelaaminen</string>
@@ -184,9 +182,6 @@
     <string name="backup_option_settings">Asetukset</string>
     <string name="autobackup_never">Ei koskaan</string>
     <string name="last_backup_date">Viimeisin varmuuskopio: %1$s</string>
-    <string name="theme_orange">Oranssi</string>
-    <string name="theme_cyan">Sinivihreä</string>
-    <string name="theme_custom">Mukautettu</string>
     <string name="onboard_restore_backup">Palauta varmuuskopio</string>
     <string name="onboard_restore_backup_description">Onko sinulla jo varmuuskopio? Palauta se nyt</string>
     <string name="onboard_settings_description">Säädä sovellus mieluisaksesi</string>
@@ -204,11 +199,6 @@
     <string name="pref_appearance">Ulkoasu</string>
     <string name="pref_dark_theme">Tumma teema</string>
     <string name="pref_delete_stats_summ">Tämä toimenpide poistaa kaikki tilastosi, tallennetut pelit ja ennätykset. Sitä ei voi perua</string>
-    <string name="theme_yellow">Keltainen</string>
-    <string name="theme_lavender">Laventeli</string>
-    <string name="theme_green">Vihreä</string>
-    <string name="theme_peach">Persikka</string>
-    <string name="theme_black_and_white">Mustavalkoinen</string>
     <string name="pref_reset_timer">Nollaa ajastin kun peli aloitetaan alusta</string>
     <string name="pref_mistakes_check_off">Pois päältä</string>
     <string name="pref_mistakes_check_violations">Sääntöjen rikkominen</string>
@@ -235,7 +225,6 @@
     <string name="custom_sudoku_delete_dialog_title">Poista valittu</string>
     <string name="custom_sudoku_delete_dialog_text">Oletko varma, että haluat poistaa valitut sudokut? Tätä ei voi perua</string>
     <string name="export_string_state_error">Virhe</string>
-    <string name="theme_blue">Sininen</string>
     <string name="auto_backups">Automaattiset varmuuskopiot</string>
     <string name="backup_restore_settings">Palauta asetukset</string>
     <string name="restoring_backup">Palautetaan</string>

@@ -60,7 +60,6 @@
     <string name="pref_date_format_custom_label">Προσαρμοσμένη</string>
     <string name="action_exit">Εξοδος</string>
     <string name="pref_cross_highlight">Φωτισμός σταυρού</string>
-    <string name="theme_blue">Μπλε</string>
     <string name="pref_boardtheme_accent">Εφαρμογή ανάλογων χρωμάτων</string>
     <string name="saved_game_progress_percentage">Εξέλιξη %1$d%%</string>
     <string name="saved_game_completed">Το παιχνίδι ολοκληρώθηκε</string>
@@ -98,7 +97,6 @@
     <string name="mistakes_number_out_of">"Λάθη  %1$d/%2$d"</string>
     <string name="history_no_games">Δεν έχετε παίξει ακόμα</string>
     <string name="export">Εξαγωγή</string>
-    <string name="pref_app_theme">Θέμα εφαρμογής</string>
     <string name="pref_remaining_uses_summ">Ο αριθμός των χρήσεων που απομένουν για μια τιμή φαίνεται στα πλήκτρα</string>
     <string name="backup_option_settings">Ρυθμίσεις</string>
     <string name="dialog_new_game">Παιχνίδι σε εξέλιξη</string>
@@ -145,7 +143,6 @@
     <string name="pref_board_font_size_small">Μικρό</string>
     <string name="first_game_dialog_got_it">Το κατάλαβα</string>
     <string name="history_item_time">Χρόνος: %1$s</string>
-    <string name="theme_dynamic">Δυναμικό</string>
     <string name="auto_backups_frequency">Συχνότητα backup</string>
     <string name="learn_hidden_pairs_1">Τα κρυφά ζεύγη είναι σχεδόν τα ίδια με τα γυμνά ζευγάρια, με τη μόνη διαφορά ότι είναι κρυμμένα μεταξύ των άλλων. Αυτά τα δύο κελιά έχουν κάτι κοινό, μπορούν να χωρέσουν τους αριθμούς 6 και 9, και αυτά είναι τα μόνα δύο τετράγωνα εδώ στα οποία μπορούν να σταθούν</string>
     <string name="saved_game_progress">Εξέλιξη %1$d/%2$d</string>
@@ -158,9 +155,7 @@
     <string name="action_start">Εναρξη</string>
     <string name="first_game_dialog_title">Γρήγορη ξενάγηση</string>
     <string name="type_unspecified">Απροσδιόριστο</string>
-    <string name="theme_yellow">Κίτρινο</string>
     <string name="dialog_solving">Επίλυση…</string>
-    <string name="theme_peach">Ροδακινί</string>
     <string name="filter_in_progress">Σε εξέλιξη</string>
     <string name="empty_screen_something_went_wrong">Ουπς, κάτι πήγε στραβά…</string>
     <string name="pref_highlight_identical">Φωτισμός ίδιων τιμών</string>
@@ -177,7 +172,6 @@
     <string name="backup_restore_title">Backup και restore</string>
     <string name="action_edit">Επεξεργασία</string>
     <string name="intro_rules">Ο σκοπός του παιχνιδιού είναι να γεμίσουν όλα τα κελιά με αριθμούς από το 1 ως το 9, ώστε οι τιμές να μην επαναλαμβάνονται σε καμία στήλη, γραμμή ή μικρότερο κουτί (3x3)</string>
-    <string name="theme_green">Πράσινο</string>
     <string name="reset_game_text">Θέλετε να μηδενίσετε το τρέχον παιχνίδι;</string>
     <string name="dialog_delete_folder_text">Ο φάκελος με όνομα %1$s θα διαγραφεί</string>
     <string name="intro_what_is_sudoku">Ενα κλασσικό παιχνίδι sudoku έχει ως εξής</string>
@@ -253,12 +247,10 @@
     <string name="action_give_up">Παραίτηση</string>
     <string name="auto_backups">Αυτόματα αντίγραφα ασφαλείας</string>
     <string name="pref_app_language">Γλώσσα εφαρμογής</string>
-    <string name="theme_black_and_white">Ασπρόμαυρο</string>
     <plurals name="every_x_hours">
         <item quantity="one">Κάθε %1$d ώρα</item>
         <item quantity="other">Κάθε %1$d ώρες</item>
     </plurals>
-    <string name="theme_lavender">Λεβάντα</string>
     <string name="notes_taken">Σημειώσεις: %1$d</string>
     <string name="pref_mistakes_check_violations">Σε παραβίαση κανόνων</string>
     <string name="folder_empty_label">Ο φάκελος αυτός είναι άδειος</string>

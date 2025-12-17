@@ -37,13 +37,6 @@
     <string name="pref_input_digit_first">Najskôr číslo</string>
     <string name="pref_delete_stats">Vymazať všetky štatistiky</string>
     <string name="action_deleted">Odstránené</string>
-    <string name="pref_app_theme">Téma aplikácie</string>
-    <string name="theme_dynamic">Dynamická</string>
-    <string name="theme_green">Zelená</string>
-    <string name="theme_peach">Broskyňa</string>
-    <string name="theme_yellow">Žltá</string>
-    <string name="theme_lavender">Levanduľa</string>
-    <string name="theme_black_and_white">Čiernobiela</string>
     <string name="pref_pure_black">Čisto čierna tmavá téma</string>
     <string name="pref_gameplay">Hra</string>
     <string name="pref_mistakes_limit">Limit chýb</string>

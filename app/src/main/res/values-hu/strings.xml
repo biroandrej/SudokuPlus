@@ -29,10 +29,6 @@
     <string name="pref_input_cell_first">Cella először</string>
     <string name="pref_delete_stats">Statisztika visszaállítása</string>
     <string name="action_deleted">Törölt</string>
-    <string name="pref_app_theme">App téma</string>
-    <string name="theme_dynamic">Dinamikus</string>
-    <string name="theme_green">Zöld</string>
-    <string name="theme_yellow">Sárga</string>
     <string name="pref_pure_black">Teljesen sötét téma</string>
     <string name="pref_gameplay">Játékmenet</string>
     <string name="pref_disable_hints">Tippek kikapcsolása</string>
@@ -48,9 +44,6 @@
     <string name="pref_dark_theme_on">Be</string>
     <string name="pref_input_digit_first">Érték először</string>
     <string name="pref_delete_stats_summ">Ez a művelet törli minden statisztikádat, a mentett játékaidat és eredményeidet. Ez visszavonhatatlan</string>
-    <string name="theme_peach">Barack</string>
-    <string name="theme_lavender">Levendula</string>
-    <string name="theme_black_and_white">Fekete és fehér</string>
     <string name="pref_mistakes_limit">Hibalimit</string>
     <string name="pref_mistakes_limit_summ">3 hiba és vesztettél</string>
     <string name="pref_disable_hints_summ">Nem szereted a tippeket\? Csak tiltsd le őket!</string>

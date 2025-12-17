@@ -35,7 +35,6 @@
     <string name="learn_app_toolbar_desc">Sebuah panel di bawah keyboard</string>
     <string name="pref_date_format_custom_label">Khusus</string>
     <string name="action_exit">Keluar</string>
-    <string name="theme_blue">Biru</string>
     <string name="saved_game_progress_percentage">Kemajuan %1$d%%</string>
     <string name="saved_game_completed">Permainan telah selesai</string>
     <string name="pref_mistakes_check_off">Mati</string>
@@ -62,7 +61,6 @@
     <string name="pref_dark_theme_on">Hidup</string>
     <string name="mistakes_number_out_of">Kesalahan %1$d/%2$d</string>
     <string name="history_no_games">Kamu belum pernah bermain</string>
-    <string name="pref_app_theme">Tema aplikasi</string>
     <string name="pref_remaining_uses_summ">Jumlah sisa penggunaan suatu nilai ditampilkan pada keyboard</string>
     <string name="dialog_new_game">Sedang berlangsung</string>
     <string name="sudoku_rules_mistakes_explanation">Kesalahan pertama adalah dua angka 2 di kotak keenam. Ingat aturan bahwa tidak boleh ada nilai ganda di dalam kotak? Kesalahan kedua adalah angka 6 pada baris 2 kolom 8 (R2C8), karena sudah ada 6 di kolom R5C8</string>
@@ -100,7 +98,6 @@
     <string name="pref_board_font_size_small">Kecil</string>
     <string name="first_game_dialog_got_it">Oke sip</string>
     <string name="history_item_time">Waktu: %1$s</string>
-    <string name="theme_dynamic">Dinamis</string>
     <string name="learn_hidden_pairs_1">Pasangan tersembunyi hampir sama dengan pasangan terekspos, perbedaannya hanya tersembunyi di antara yang lain. Kedua sel ini memiliki kesamaan, keduanya dapat menampung angka 6 dan 9, dan hanya dua kotak inilah yang dapat dijadikan tempat berdirinya</string>
     <string name="saved_game_progress">Kemajuan %1$d/%2$d</string>
     <string name="action_play">Main</string>
@@ -110,9 +107,7 @@
     <string name="action_start">Mulai</string>
     <string name="first_game_dialog_title">Tur singkat</string>
     <string name="type_unspecified">Tidak ditentukan</string>
-    <string name="theme_yellow">Kuning</string>
     <string name="dialog_solving">Menyelesaikan…</string>
-    <string name="theme_peach">Persik</string>
     <string name="empty_screen_something_went_wrong">Ups! Ada yang tidak beres…</string>
     <string name="pref_highlight_identical">Soroti nilai yang identik</string>
     <string name="label_default">Bawaan</string>
@@ -124,7 +119,6 @@
     <string name="pref_highlight_identical_summ">Pemilihan nilai di papan menyorot sel dengan nilai yang sama</string>
     <string name="new_game">Mulai</string>
     <string name="intro_rules">Tujuan permainan ini adalah mengisi semua sel dengan angka dari 1 hingga 9. Agar nilai tidak terulang di kolom, baris, atau kotak yang lebih kecil (3x3)</string>
-    <string name="theme_green">Hijau</string>
     <string name="reset_game_text">Ingin mengatur ulang teka-teki saat ini\?</string>
     <string name="intro_what_is_sudoku">Sudoku klasik terlihat sebagai berikut</string>
     <string name="pref_date_format_custom">Format tanggal khususFormat tanggal khusus</string>
@@ -179,7 +173,6 @@
     <string name="page_previous">Sebelumnya</string>
     <string name="action_give_up">Menyerah</string>
     <string name="pref_app_language">Bahasa aplikasi</string>
-    <string name="theme_black_and_white">Hitam putih</string>
     <string name="notes_taken">Catatan: %1$d</string>
     <string name="pref_mistakes_check_violations">Pelanggaran aturan</string>
     <string name="difficulty_unspecified">Tak diketahui</string>
@@ -270,5 +263,4 @@
     <string name="edit_sudoku">Sunting sudoku</string>
     <string name="pref_crash_reporting_subtitle">Bantu kami memperbaiki bug. Aplikasi tidak mengirim log dengan sendirinya, Anda akan diminta untuk mengirim laporan kerusakan melalui email</string>
     <string name="pref_fun_keyboard_over_num">Panel fungsi di atas nilai</string>
-    <string name="theme_lavender">Lavender</string>
 </resources>
