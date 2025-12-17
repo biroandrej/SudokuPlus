@@ -23,8 +23,7 @@ android {
             useSupportLibrary = true
         }
     }
-
-    // F-Droid
+    
     dependenciesInfo {
         includeInApk = false
         includeInBundle = false
@@ -118,6 +117,5 @@ dependencies {
     ksp(libs.hilt.work)
     implementation(libs.materialKolor)
 
-    implementation(libs.okhttp)
     implementation(libs.composeMarkdown)
 }
