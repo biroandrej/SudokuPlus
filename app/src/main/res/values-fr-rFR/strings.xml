@@ -296,4 +296,5 @@
     <string name="libraries_licenses">Licences</string>
     <string name="auto_backups_directory">Répertoire de sauvegarde</string>
     <string name="about_github_source_code">Code source sur GitHub</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

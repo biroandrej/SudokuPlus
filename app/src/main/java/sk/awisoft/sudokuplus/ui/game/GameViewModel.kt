@@ -74,11 +74,13 @@ class GameViewModel @Inject constructor(
         data object NoHintsRemaining : UiEvent
     }
 
-    private val _uiEvents = MutableSharedFlow<UiEvent>()
+    private val _uiEvents = MutableSharedFlow<UiEvent>(extraBufferCapacity = 1)
     val uiEvents = _uiEvents.asSharedFlow()
 
+    private val navArgs: GameScreenNavArgs = savedStateHandle.navArgs()
+    private val gameUid: Long = navArgs.gameUid
+
     init {
-        val navArgs: GameScreenNavArgs = savedStateHandle.navArgs()
         val sudokuParser = SudokuParser()
         val continueSaved = navArgs.playedBefore
 
@@ -92,7 +94,7 @@ class GameViewModel @Inject constructor(
             }
 
             if (!continueSaved) {
-                appSettingsManager.resetHintsRemaining()
+                appSettingsManager.resetHintsRemaining(gameUid)
             }
 
 
@@ -194,7 +196,7 @@ class GameViewModel @Inject constructor(
     var resetTimerOnRestart = appSettingsManager.resetTimerEnabled
 
     var disableHints = appSettingsManager.hintsDisabled
-    val hintsRemaining = appSettingsManager.hintsRemaining.stateIn(
+    val hintsRemaining = appSettingsManager.hintsRemaining(gameUid).stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
         PreferencesConstants.DEFAULT_HINTS_PER_GAME
@@ -509,7 +511,9 @@ class GameViewModel @Inject constructor(
                 ToolBarItem.Hint -> {
                     if (!canApplyHint()) return
                     viewModelScope.launch {
-                        val consumed = withContext(Dispatchers.IO) { appSettingsManager.tryConsumeHint() }
+                        val consumed = withContext(Dispatchers.IO) {
+                            appSettingsManager.tryConsumeHint(gameUid)
+                        }
                         if (consumed) {
                             applyHint()
                         } else {
@@ -583,7 +587,7 @@ class GameViewModel @Inject constructor(
 
         hintsUsed = 0
         viewModelScope.launch(Dispatchers.IO) {
-            appSettingsManager.resetHintsRemaining()
+            appSettingsManager.resetHintsRemaining(gameUid)
         }
         mistakesMade = 0
         notesTaken = 0

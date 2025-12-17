@@ -328,4 +328,5 @@
     <string name="pref_board_theme_summary">Aplicare culori de accent, poziționare linii, mărime font…</string>
     <string name="action_generate">Generați</string>
     <string name="generating_number_of">Se generează %1$s/%2$s</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

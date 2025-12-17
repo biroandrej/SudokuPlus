@@ -298,4 +298,5 @@
     <string name="action_create">Erstellen</string>
     <string name="restore_existing_data_alert">Vorhandene Daten werden gelöscht!</string>
     <string name="date_last_played">Datum des letzten Spiels</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

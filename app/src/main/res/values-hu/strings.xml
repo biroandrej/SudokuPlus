@@ -147,4 +147,5 @@
     <string name="history_title">Előzmények</string>
     <string name="saved_game_difficulty">Nehézség: %1$s</string>
     <string name="saved_game_initial">Kezdeti</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

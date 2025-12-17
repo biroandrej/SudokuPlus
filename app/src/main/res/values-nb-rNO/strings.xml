@@ -330,4 +330,5 @@
         <item quantity="one">Siste spill</item>
         <item quantity="other">Siste %1$d spill</item>
     </plurals>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

@@ -105,4 +105,5 @@
     <string name="board_theme_title">تم جدول</string>
     <string name="action_move_selected">جابه‌جایی انتخاب شده</string>
     <string name="edit_sudoku">ویرایش سودوکو</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

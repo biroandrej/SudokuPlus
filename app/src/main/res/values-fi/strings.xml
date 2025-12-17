@@ -251,4 +251,5 @@
     <string name="sudoku_rules_mistakes_explanation">Ensimmäinen virhe on kaksi kakkosta kuudennessa osaneliössä. Muistatko säännön, että yhdessä osaneliössä ei voi olla sama numero kahteen kertaan? Toinen virhe on numero kuusi toisessa rivissä, kahdeksannessa sarakkeessa (R2C8), koska samassa sarakkeessa on jo numero kuusi sijainnissa R5C8</string>
     <string name="learn_basic_2">Katsotaan seuraavaksi numeroa kahdeksan. Numero kahdeksan rivillä neljä, sarakkeessa 3 (R4C3) aiheuttaa sen, että numero kahdeksan ei voi sijaita samassa sarakkeessa osaneliön sisällä</string>
     <string name="learn_basic_5">Sama logiikka pätee rivissä ja sarakkeissa. Katso ensimmäistä riviä. Numero neljä ruudussa R7C3 estää saman numeron sijaitsevan kolmannessa sarakkeessa. Numero neljä ruudussa R3C5 estää kaksi saraketta kerralla (neljäs ja kuudes), koska samassa osaneliössä ei voi olla muita nelosia. R6C7 estää sarakkeen seitsemän</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

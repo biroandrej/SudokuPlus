@@ -143,4 +143,5 @@
     <string name="notes_taken">Anotacions: %1$d</string>
     <string name="folder_empty_label">La carpeta és buida</string>
     <string name="import_saving">S\'està desant</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

@@ -323,4 +323,5 @@
     <string name="type_killer_6x6">Killer 6x6</string>
     <string name="app_version">Version %1$s (%2$s)</string>
     <string name="type_killer_12x12">Killer 12x12</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

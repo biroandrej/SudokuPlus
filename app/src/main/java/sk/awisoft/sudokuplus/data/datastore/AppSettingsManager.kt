@@ -41,8 +41,8 @@ class AppSettingsManager(context: Context) {
     // disable hint button
     private val hintsDisabledKey = booleanPreferencesKey("hints_disabled")
 
-    // number of hints remaining for the current game
-    private val hintsRemainingKey = intPreferencesKey("hints_remaining")
+    // number of hints remaining for a specific game (keyed by board uid)
+    private fun hintsRemainingKey(gameUid: Long) = intPreferencesKey("hints_remaining_$gameUid")
 
     // show timer
     private val timerKey = booleanPreferencesKey("timer")
@@ -137,33 +137,42 @@ class AppSettingsManager(context: Context) {
         preferences[hintsDisabledKey] ?: PreferencesConstants.Companion.DEFAULT_HINTS_DISABLED
     }
 
-    val hintsRemaining = dataStore.data.map { preferences ->
-        preferences[hintsRemainingKey] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
-    }
-
-    suspend fun resetHintsRemaining() {
-        dataStore.edit { settings ->
-            settings[hintsRemainingKey] = PreferencesConstants.DEFAULT_HINTS_PER_GAME
+    fun hintsRemaining(gameUid: Long) = dataStore.data.map { preferences ->
+        if (gameUid <= 0L) {
+            PreferencesConstants.DEFAULT_HINTS_PER_GAME
+        } else {
+            preferences[hintsRemainingKey(gameUid)] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
         }
     }
 
-    suspend fun tryConsumeHint(): Boolean {
+    suspend fun resetHintsRemaining(gameUid: Long) {
+        if (gameUid <= 0L) return
+        dataStore.edit { settings ->
+            settings[hintsRemainingKey(gameUid)] = PreferencesConstants.DEFAULT_HINTS_PER_GAME
+        }
+    }
+
+    suspend fun tryConsumeHint(gameUid: Long): Boolean {
+        if (gameUid <= 0L) return false
         var consumed = false
         dataStore.edit { settings ->
-            val current = settings[hintsRemainingKey] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
+            val current =
+                settings[hintsRemainingKey(gameUid)] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
             if (current > 0) {
-                settings[hintsRemainingKey] = current - 1
+                settings[hintsRemainingKey(gameUid)] = current - 1
                 consumed = true
             }
         }
         return consumed
     }
 
-    suspend fun grantHints(amount: Int = 1) {
+    suspend fun grantHints(gameUid: Long, amount: Int = 1) {
+        if (gameUid <= 0L) return
         if (amount <= 0) return
         dataStore.edit { settings ->
-            val current = settings[hintsRemainingKey] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
-            settings[hintsRemainingKey] = current + amount
+            val current =
+                settings[hintsRemainingKey(gameUid)] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
+            settings[hintsRemainingKey(gameUid)] = current + amount
         }
     }
 

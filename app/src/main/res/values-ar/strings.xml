@@ -284,4 +284,5 @@
     <string name="app_version">"الاصدار   %1$s (%2$s)"</string>
     <string name="perf_appearance_summary">المظهر الداكن والألوان الديناميكية ومظهر لوحة اللعب وتنسيق التاريخ…</string>
     <string name="color_picker_title">اختر لون</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

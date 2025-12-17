@@ -18,7 +18,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -82,6 +84,7 @@ import sk.awisoft.sudokuplus.ui.game.components.GameMenu
 import sk.awisoft.sudokuplus.ui.game.components.NotesMenu
 import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
 import sk.awisoft.sudokuplus.ui.game.components.ToolbarItem
+import sk.awisoft.sudokuplus.ui.game.components.ToolbarItemHeight
 import sk.awisoft.sudokuplus.ui.game.components.UndoRedoMenu
 import sk.awisoft.sudokuplus.ui.onboarding.FirstGameDialog
 import sk.awisoft.sudokuplus.ui.util.ReverseArrangement
@@ -456,7 +459,9 @@ fun GameScreen(
                                     modifier = Modifier.padding(vertical = 8.dp)
                                 ) {
                                     Box(
-                                        modifier = Modifier.weight(1f)
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .height(ToolbarItemHeight)
                                     ) {
                                         UndoRedoMenu(
                                             expanded = viewModel.showUndoRedoMenu,
@@ -464,7 +469,7 @@ fun GameScreen(
                                             onRedoClick = { viewModel.toolbarClick(ToolBarItem.Redo) }
                                         )
                                         ToolbarItem(
-                                            modifier = Modifier.fillMaxWidth(),
+                                            modifier = Modifier.fillMaxSize(),
                                             painter = painterResource(R.drawable.ic_round_undo_24),
                                             onClick = { viewModel.toolbarClick(ToolBarItem.Undo) },
                                             onLongClick = { viewModel.showUndoRedoMenu = true }
@@ -479,7 +484,9 @@ fun GameScreen(
                                     )
                                     if (!hintsDisabled) {
                                         ToolbarItem(
-                                            modifier = Modifier.weight(1f),
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .height(ToolbarItemHeight),
                                             painter = painterResource(R.drawable.ic_lightbulb_stars_24),
                                             enabled = true,
                                             visualEnabled = hintsRemaining > 0,
@@ -489,7 +496,9 @@ fun GameScreen(
                                     }
 
                                     Box(
-                                        modifier = Modifier.weight(1f)
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .height(ToolbarItemHeight)
                                     ) {
                                         NotesMenu(
                                             expanded = viewModel.showNotesMenu,
@@ -500,7 +509,7 @@ fun GameScreen(
                                             onRenderNotesClick = { renderNotes = !renderNotes }
                                         )
                                         ToolbarItem(
-                                            modifier = Modifier.fillMaxWidth(),
+                                            modifier = Modifier.fillMaxSize(),
                                             painter = painterResource(R.drawable.ic_round_edit_24),
                                             toggled = viewModel.notesToggled,
                                             onClick = { viewModel.toolbarClick(ToolBarItem.Note) },
@@ -516,7 +525,9 @@ fun GameScreen(
 
                                     }
                                     ToolbarItem(
-                                        modifier = Modifier.weight(1f),
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .height(ToolbarItemHeight),
                                         painter = painterResource(R.drawable.ic_eraser_24),
                                         toggled = viewModel.eraseButtonToggled,
                                         onClick = {
@@ -533,7 +544,9 @@ fun GameScreen(
                                     )
                                     if (advancedHintEnabled) {
                                         ToolbarItem(
-                                            modifier = Modifier.weight(1f),
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .height(ToolbarItemHeight),
                                             painter = rememberVectorPainter(Icons.Rounded.AutoAwesome),
                                             onClick = {
                                                 if (viewModel.gamePlaying) {

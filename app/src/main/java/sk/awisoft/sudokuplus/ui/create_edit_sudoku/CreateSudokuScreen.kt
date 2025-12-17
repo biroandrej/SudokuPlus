@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -53,6 +54,7 @@ import sk.awisoft.sudokuplus.ui.components.board.Board
 import sk.awisoft.sudokuplus.ui.game.components.DefaultGameKeyboard
 import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
 import sk.awisoft.sudokuplus.ui.game.components.ToolbarItem
+import sk.awisoft.sudokuplus.ui.game.components.ToolbarItemHeight
 import sk.awisoft.sudokuplus.ui.util.ReverseArrangement
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -232,19 +234,25 @@ fun CreateSudokuScreen(
                     modifier = Modifier.padding(vertical = 8.dp)
                 ) {
                     ToolbarItem(
-                        modifier = Modifier.weight(0.5f),
+                        modifier = Modifier
+                            .weight(0.5f)
+                            .height(ToolbarItemHeight),
                         painter = painterResource(R.drawable.ic_round_undo_24),
                         onClick = { viewModel.toolbarClick(ToolBarItem.Undo) }
                     )
 
                     ToolbarItem(
-                        modifier = Modifier.weight(0.5f),
+                        modifier = Modifier
+                            .weight(0.5f)
+                            .height(ToolbarItemHeight),
                         painter = rememberVectorPainter(Icons.AutoMirrored.Rounded.Redo),
                         onClick = { viewModel.toolbarClick(ToolBarItem.Redo) }
                     )
 
                     ToolbarItem(
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(ToolbarItemHeight),
                         painter = painterResource(R.drawable.ic_eraser_24),
                         onClick = {
                             viewModel.toolbarClick(ToolBarItem.Remove)

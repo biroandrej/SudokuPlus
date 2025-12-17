@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -32,6 +33,7 @@ import androidx.compose.ui.window.Dialog
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.ui.game.components.NotesMenu
 import sk.awisoft.sudokuplus.ui.game.components.ToolbarItem
+import sk.awisoft.sudokuplus.ui.game.components.ToolbarItemHeight
 import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 
 @Composable
@@ -78,7 +80,9 @@ fun FirstGameScreen() {
         val toolbarWeight by remember { mutableFloatStateOf(0.35f) }
         ToolRow {
             ToolbarItem(
-                modifier = Modifier.weight(toolbarWeight),
+                modifier = Modifier
+                    .weight(toolbarWeight)
+                    .height(ToolbarItemHeight),
                 painter = painterResource(R.drawable.ic_round_undo_24),
                 onClick = { }
             )
@@ -90,7 +94,9 @@ fun FirstGameScreen() {
         }
         ToolRow {
             ToolbarItem(
-                modifier = Modifier.weight(toolbarWeight),
+                modifier = Modifier
+                    .weight(toolbarWeight)
+                    .height(ToolbarItemHeight),
                 painter = painterResource(R.drawable.ic_lightbulb_stars_24),
                 onClick = { }
             )
@@ -105,7 +111,9 @@ fun FirstGameScreen() {
             var noteToggled by remember { mutableStateOf(false) }
             var renderNotes by remember { mutableStateOf(true) }
             Box(
-                modifier = Modifier.weight(toolbarWeight)
+                modifier = Modifier
+                    .weight(toolbarWeight)
+                    .height(ToolbarItemHeight)
             ) {
                 NotesMenu(
                     expanded = notesMenu,
@@ -115,6 +123,7 @@ fun FirstGameScreen() {
                     renderNotes = renderNotes,
                     onRenderNotesClick = { renderNotes = !renderNotes })
                 ToolbarItem(
+                    modifier = Modifier.fillMaxSize(),
                     toggled = noteToggled,
                     painter = painterResource(R.drawable.ic_round_edit_24),
                     onClick = { noteToggled = !noteToggled },
@@ -131,7 +140,9 @@ fun FirstGameScreen() {
         }
         ToolRow {
             ToolbarItem(
-                modifier = Modifier.weight(toolbarWeight),
+                modifier = Modifier
+                    .weight(toolbarWeight)
+                    .height(ToolbarItemHeight),
                 painter = painterResource(R.drawable.ic_eraser_24),
                 onClick = { }
             )

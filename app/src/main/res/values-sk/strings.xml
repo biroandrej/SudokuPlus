@@ -79,4 +79,5 @@
     <string name="intro_what_is_sudoku">Klasické sudoku vyzerá takto</string>
     <string name="pref_delete_stats_summ">Táto akcia vymaže všetky vaše štatistiky, uložené hry a záznamy. Nie je možné ju vrátiť späť</string>
     <string name="pref_board_font_size">Veľkosť písma na doske</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

@@ -313,4 +313,5 @@
     <string name="parse_color_fail">Não é uma cor</string>
     <string name="onboard_restore_backup">Restaurar backup</string>
     <string name="onboard_restore_backup_description">Você já tem um backup? Restaure-o agora</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

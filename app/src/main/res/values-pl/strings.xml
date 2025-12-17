@@ -315,4 +315,5 @@
         <item quantity="many">Ostatnie %1$d gier</item>
         <item quantity="other">Ostatnie %1$d gier</item>
     </plurals>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>

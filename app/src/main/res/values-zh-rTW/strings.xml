@@ -292,4 +292,5 @@
     <string name="pref_cross_highlight_subtitle">在數獨板上突顯部分九宮格</string>
     <string name="advanced_hint_no_hint_title">沒有提示</string>
     <string name="font_size_automatic">自動</string>
+    <string name="hints_no_remaining">No hints left for this game</string>
 </resources>
