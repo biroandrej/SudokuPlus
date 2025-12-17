@@ -31,6 +31,8 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -101,6 +103,7 @@ fun GameScreen(
     val localView = LocalView.current // vibration
     val clipboardManager = LocalClipboardManager.current
     val context = LocalContext.current
+    val snackbarHostState = remember { SnackbarHostState() }
 
     val firstGame by viewModel.firstGame.collectAsStateWithLifecycle(initialValue = false)
     val resetTimer by viewModel.resetTimerOnRestart.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_GAME_RESET_TIMER)
@@ -163,7 +166,18 @@ fun GameScreen(
         label = "Game board scale"
     )
 
+    LaunchedEffect(Unit) {
+        viewModel.uiEvents.collect { event ->
+            when (event) {
+                GameViewModel.UiEvent.NoHintsRemaining -> {
+                    snackbarHostState.showSnackbar(context.getString(R.string.hints_no_remaining))
+                }
+            }
+        }
+    }
+
     Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             CenterAlignedTopAppBar(
                 title = { },
@@ -450,6 +464,7 @@ fun GameScreen(
                                             onRedoClick = { viewModel.toolbarClick(ToolBarItem.Redo) }
                                         )
                                         ToolbarItem(
+                                            modifier = Modifier.fillMaxWidth(),
                                             painter = painterResource(R.drawable.ic_round_undo_24),
                                             onClick = { viewModel.toolbarClick(ToolBarItem.Undo) },
                                             onLongClick = { viewModel.showUndoRedoMenu = true }
@@ -459,10 +474,16 @@ fun GameScreen(
                                     val hintsDisabled by viewModel.disableHints.collectAsStateWithLifecycle(
                                         initialValue = PreferencesConstants.Companion.DEFAULT_HINTS_DISABLED
                                     )
+                                    val hintsRemaining by viewModel.hintsRemaining.collectAsStateWithLifecycle(
+                                        initialValue = PreferencesConstants.DEFAULT_HINTS_PER_GAME
+                                    )
                                     if (!hintsDisabled) {
                                         ToolbarItem(
                                             modifier = Modifier.weight(1f),
                                             painter = painterResource(R.drawable.ic_lightbulb_stars_24),
+                                            enabled = true,
+                                            visualEnabled = hintsRemaining > 0,
+                                            badgeText = hintsRemaining.toString(),
                                             onClick = { viewModel.toolbarClick(ToolBarItem.Hint) }
                                         )
                                     }
@@ -479,6 +500,7 @@ fun GameScreen(
                                             onRenderNotesClick = { renderNotes = !renderNotes }
                                         )
                                         ToolbarItem(
+                                            modifier = Modifier.fillMaxWidth(),
                                             painter = painterResource(R.drawable.ic_round_edit_24),
                                             toggled = viewModel.notesToggled,
                                             onClick = { viewModel.toolbarClick(ToolBarItem.Note) },

@@ -147,11 +147,10 @@ fun HomeScreen(
             viewModel.readyToPlay = false
 
             runBlocking {
-                val saved = lastGame?.completed ?: false
                 navigator.navigate(
                     GameScreenDestination(
                         gameUid = viewModel.insertedBoardUid,
-                        playedBefore = saved
+                        playedBefore = false
                     )
                 )
             }

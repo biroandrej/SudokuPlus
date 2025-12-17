@@ -37,8 +37,10 @@ import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -68,6 +70,13 @@ class GameViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val getAllRecordsUseCase: GetAllRecordsUseCase
 ) : ViewModel() {
+    sealed interface UiEvent {
+        data object NoHintsRemaining : UiEvent
+    }
+
+    private val _uiEvents = MutableSharedFlow<UiEvent>()
+    val uiEvents = _uiEvents.asSharedFlow()
+
     init {
         val navArgs: GameScreenNavArgs = savedStateHandle.navArgs()
         val sudokuParser = SudokuParser()
@@ -80,6 +89,10 @@ class GameViewModel @Inject constructor(
             withContext(Dispatchers.Main) {
                 gameType = boardEntity.type
                 gameDifficulty = boardEntity.difficulty
+            }
+
+            if (!continueSaved) {
+                appSettingsManager.resetHintsRemaining()
             }
 
 
@@ -181,6 +194,11 @@ class GameViewModel @Inject constructor(
     var resetTimerOnRestart = appSettingsManager.resetTimerEnabled
 
     var disableHints = appSettingsManager.hintsDisabled
+    val hintsRemaining = appSettingsManager.hintsRemaining.stateIn(
+        viewModelScope,
+        SharingStarted.Eagerly,
+        PreferencesConstants.DEFAULT_HINTS_PER_GAME
+    )
 
     var endGame by mutableStateOf(false)
     var giveUpDialog by mutableStateOf(false)
@@ -489,7 +507,15 @@ class GameViewModel @Inject constructor(
                 }
 
                 ToolBarItem.Hint -> {
-                    useHint()
+                    if (!canApplyHint()) return
+                    viewModelScope.launch {
+                        val consumed = withContext(Dispatchers.IO) { appSettingsManager.tryConsumeHint() }
+                        if (consumed) {
+                            applyHint()
+                        } else {
+                            _uiEvents.emit(UiEvent.NoHintsRemaining)
+                        }
+                    }
                 }
 
                 ToolBarItem.Note -> {
@@ -517,7 +543,7 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    private fun useHint() {
+    private fun applyHint() {
         if (solvedBoard.isEmpty()) solveBoard()
         if (currCell.row >= 0 && currCell.col >= 0 && !currCell.locked) {
             notes = clearNotesAtCell(notes, currCell.row, currCell.col)
@@ -532,6 +558,10 @@ class GameViewModel @Inject constructor(
             undoRedoManager.addState(GameState(gameBoard, notes))
             hintsUsed++
         }
+    }
+
+    private fun canApplyHint(): Boolean {
+        return currCell.row >= 0 && currCell.col >= 0 && !currCell.locked
     }
 
     fun resetGame(resetTimer: Boolean) {
@@ -552,6 +582,9 @@ class GameViewModel @Inject constructor(
         remainingUsesList = countRemainingUses(gameBoard)
 
         hintsUsed = 0
+        viewModelScope.launch(Dispatchers.IO) {
+            appSettingsManager.resetHintsRemaining()
+        }
         mistakesMade = 0
         notesTaken = 0
     }

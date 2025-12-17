@@ -80,6 +80,10 @@ class HomeViewModel
         isSolving = false
         isGenerating = false
 
+        viewModelScope.launch(Dispatchers.IO) {
+            appSettingsManager.resetHintsRemaining()
+        }
+
         val gameTypeToGenerate = selectedType
         val gameDifficultyToGenerate = selectedDifficulty
         val size = gameTypeToGenerate.size

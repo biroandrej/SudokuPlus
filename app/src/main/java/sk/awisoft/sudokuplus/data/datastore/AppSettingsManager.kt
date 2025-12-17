@@ -41,6 +41,9 @@ class AppSettingsManager(context: Context) {
     // disable hint button
     private val hintsDisabledKey = booleanPreferencesKey("hints_disabled")
 
+    // number of hints remaining for the current game
+    private val hintsRemainingKey = intPreferencesKey("hints_remaining")
+
     // show timer
     private val timerKey = booleanPreferencesKey("timer")
 
@@ -132,6 +135,36 @@ class AppSettingsManager(context: Context) {
 
     val hintsDisabled = dataStore.data.map { preferences ->
         preferences[hintsDisabledKey] ?: PreferencesConstants.Companion.DEFAULT_HINTS_DISABLED
+    }
+
+    val hintsRemaining = dataStore.data.map { preferences ->
+        preferences[hintsRemainingKey] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
+    }
+
+    suspend fun resetHintsRemaining() {
+        dataStore.edit { settings ->
+            settings[hintsRemainingKey] = PreferencesConstants.DEFAULT_HINTS_PER_GAME
+        }
+    }
+
+    suspend fun tryConsumeHint(): Boolean {
+        var consumed = false
+        dataStore.edit { settings ->
+            val current = settings[hintsRemainingKey] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
+            if (current > 0) {
+                settings[hintsRemainingKey] = current - 1
+                consumed = true
+            }
+        }
+        return consumed
+    }
+
+    suspend fun grantHints(amount: Int = 1) {
+        if (amount <= 0) return
+        dataStore.edit { settings ->
+            val current = settings[hintsRemainingKey] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
+            settings[hintsRemainingKey] = current + amount
+        }
     }
 
     suspend fun setTimer(enabled: Boolean) {
