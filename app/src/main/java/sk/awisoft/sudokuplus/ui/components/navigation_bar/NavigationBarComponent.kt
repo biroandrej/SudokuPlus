@@ -3,8 +3,6 @@ package sk.awisoft.sudokuplus.ui.components.navigation_bar
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
-import androidx.compose.material3.Badge
-import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -19,10 +17,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
 import sk.awisoft.sudokuplus.NavGraphs
 import sk.awisoft.sudokuplus.appCurrentDestinationAsState
-import sk.awisoft.sudokuplus.destinations.MoreScreenDestination
 import sk.awisoft.sudokuplus.startAppDestination
 import com.ramcosta.composedestinations.utils.toDestinationsNavigator
 
@@ -30,7 +26,6 @@ import com.ramcosta.composedestinations.utils.toDestinationsNavigator
 fun NavigationBarComponent(
     navController: NavController,
     isVisible: Boolean,
-    updateAvailable: Boolean = false,
 ) {
     val directions = listOf(
         NavigationBarDestination.Home,
@@ -62,30 +57,11 @@ fun NavigationBarComponent(
                 NavigationBarItem(
                     alwaysShowLabel = false,
                     icon = {
-                        if (destination.direction.route == MoreScreenDestination.route
-                            && updateAvailable
-                        ) {
-                            BadgedBox(
-                                badge = {
-                                    Badge(
-                                        containerColor = MaterialTheme.colorScheme.tertiary
-                                            .harmonizeWithPrimary()
-                                    )
-                                }
-                            ) {
-                                Icon(
-                                    imageVector = destination.icon,
-                                    contentDescription = null,
-                                    modifier = Modifier.scale(iconScale)
-                                )
-                            }
-                        } else {
-                            Icon(
-                                imageVector = destination.icon,
-                                contentDescription = null,
-                                modifier = Modifier.scale(iconScale)
-                            )
-                        }
+                        Icon(
+                            imageVector = destination.icon,
+                            contentDescription = null,
+                            modifier = Modifier.scale(iconScale)
+                        )
                     },
                     selected = isSelected,
                     label = {

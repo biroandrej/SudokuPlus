@@ -33,7 +33,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.destinations.AutoUpdateScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsAdvancedHintScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsAppearanceScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsAssistanceScreenDestination
@@ -47,7 +46,6 @@ import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.CollapsingTitle
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.CollapsingTopAppBar
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.rememberTopAppBarScrollBehavior
 import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleString
-import sk.awisoft.sudokuplus.util.FlavorUtil
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -119,18 +117,6 @@ fun SettingsCategoriesScreen(
                     },
                     painter = rememberVectorPainter(Icons.Outlined.Language)
                 )
-            }
-            if (!FlavorUtil.isFoss()) {
-                item {
-                    PreferenceRow(
-                        title = stringResource(R.string.auto_update_title),
-                        subtitle = stringResource(R.string.auto_updates_summary),
-                        onClick = {
-                            navigator.navigate(AutoUpdateScreenDestination())
-                        },
-                        painter = rememberVectorPainter(Icons.Rounded.SystemUpdate)
-                    )
-                }
             }
             item {
                 PreferenceRow(

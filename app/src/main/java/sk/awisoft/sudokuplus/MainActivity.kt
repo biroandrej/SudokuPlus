@@ -2,7 +2,6 @@ package sk.awisoft.sudokuplus
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -41,17 +40,12 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import sk.awisoft.sudokuplus.core.PreferencesConstants
-import sk.awisoft.sudokuplus.core.update.Release
-import sk.awisoft.sudokuplus.core.update.UpdateUtil
 import sk.awisoft.sudokuplus.core.utils.GlobalExceptionHandler
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.ui.app_crash.CrashActivity
 import sk.awisoft.sudokuplus.ui.components.navigation_bar.NavigationBarComponent
-import sk.awisoft.sudokuplus.ui.settings.autoupdate.UpdateChannel
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
@@ -81,9 +75,6 @@ class MainActivity : ComponentActivity() {
             val amoledBlack by mainViewModel.amoledBlack.collectAsStateWithLifecycle(
                 PreferencesConstants.DEFAULT_AMOLED_BLACK)
             val firstLaunch by mainViewModel.firstLaunch.collectAsStateWithLifecycle(false)
-            val autoUpdateChannel by mainViewModel.autoUpdateChannel.collectAsStateWithLifecycle(
-                UpdateChannel.Disabled)
-            val updateDismissedName by mainViewModel.updateDismissedName.collectAsStateWithLifecycle("")
 
             SudokuPlusTheme(
                 darkTheme = when (darkTheme) {
@@ -145,32 +136,12 @@ class MainActivity : ComponentActivity() {
                             thinLineColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.25f)
                         )
                     }
-                var latestRelease by remember { mutableStateOf<Release?>(null) }
-                if (autoUpdateChannel != UpdateChannel.Disabled) {
-                    LaunchedEffect(Unit) {
-                        if (latestRelease == null) {
-                            withContext(Dispatchers.IO) {
-                                try {
-                                    latestRelease =
-                                        UpdateUtil.checkForUpdate(autoUpdateChannel == UpdateChannel.Beta)
-                                } catch (e: Exception) {
-                                    Log.e(
-                                        "UpdateUtil",
-                                        "Failed to check for update: ${e.message.toString()}"
-                                    )
-                                    e.printStackTrace()
-                                }
-                            }
-                        }
-                    }
-                }
                 CompositionLocalProvider(LocalBoardColors provides boardColors) {
                     Scaffold(
                         bottomBar = {
                             NavigationBarComponent(
                                 navController = navController,
-                                isVisible = bottomBarState,
-                                updateAvailable = latestRelease != null && latestRelease!!.name.toString() != updateDismissedName
+                                isVisible = bottomBarState
                             )
                         },
                         contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
@@ -199,8 +170,6 @@ class MainActivityViewModel
     val amoledBlack = themeSettingsManager.amoledBlack
     val firstLaunch = appSettingsManager.firstLaunch
     val monetSudokuBoard = themeSettingsManager.monetSudokuBoard
-    val autoUpdateChannel = appSettingsManager.autoUpdateChannel
-    val updateDismissedName = appSettingsManager.updateDismissedName
 }
 
 @Destination(
