@@ -1,0 +1,160 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build Release APKs and AABs
+    runs-on: ubuntu-latest
+    outputs:
+      version_name: ${{ steps.version.outputs.version_name }}
+      version_code: ${{ steps.version.outputs.version_code }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract version from build.gradle.kts
+        id: version
+        run: |
+          VERSION_NAME=$(grep -oP 'versionName\s*=\s*"\K[^"]+' app/build.gradle.kts)
+          VERSION_CODE=$(grep -oP 'versionCode\s*=\s*\K\d+' app/build.gradle.kts)
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "Extracted version: $VERSION_NAME (code: $VERSION_CODE)"
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v2
+
+      - name: Set Up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+
+      - name: Build Release APKs and AABs
+        run: ./gradlew assembleRelease bundleRelease
+
+      - name: Sign prod APK
+        uses: ilharp/sign-android-release@v1
+        id: sign_prod
+        with:
+          releaseDir: app/build/outputs/apk/prod/release/
+          signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
+          keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          buildToolsVersion: 35.0.0
+
+      - name: Sign dev APK
+        uses: ilharp/sign-android-release@v1
+        id: sign_dev
+        with:
+          releaseDir: app/build/outputs/apk/dev/release/
+          signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
+          keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          buildToolsVersion: 35.0.0
+
+      - name: Sign prod AAB
+        uses: ilharp/sign-android-release@v1
+        id: sign_prod_aab
+        with:
+          releaseDir: app/build/outputs/bundle/prodRelease/
+          signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
+          keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          buildToolsVersion: 35.0.0
+
+      - name: Sign dev AAB
+        uses: ilharp/sign-android-release@v1
+        id: sign_dev_aab
+        with:
+          releaseDir: app/build/outputs/bundle/devRelease/
+          signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
+          keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          buildToolsVersion: 35.0.0
+
+      - name: Rename APKs and AABs
+        run: |
+          mv "${{ steps.sign_prod.outputs.signedFile }}" "app/build/outputs/apk/SudokuPlus-${{ steps.version.outputs.version_name }}-prod.apk"
+          mv "${{ steps.sign_dev.outputs.signedFile }}" "app/build/outputs/apk/SudokuPlus-${{ steps.version.outputs.version_name }}-dev.apk"
+          mv "${{ steps.sign_prod_aab.outputs.signedFile }}" "app/build/outputs/bundle/SudokuPlus-${{ steps.version.outputs.version_name }}-prod.aab"
+          mv "${{ steps.sign_dev_aab.outputs.signedFile }}" "app/build/outputs/bundle/SudokuPlus-${{ steps.version.outputs.version_name }}-dev.aab"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: |
+            app/build/outputs/apk/SudokuPlus-${{ steps.version.outputs.version_name }}-prod.apk
+            app/build/outputs/apk/SudokuPlus-${{ steps.version.outputs.version_name }}-dev.apk
+            app/build/outputs/bundle/SudokuPlus-${{ steps.version.outputs.version_name }}-prod.aab
+            app/build/outputs/bundle/SudokuPlus-${{ steps.version.outputs.version_name }}-dev.aab
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-artifacts
+          path: ./artifacts
+
+      - name: Get changelog for version
+        id: changelog
+        run: |
+          VERSION_CODE="${{ needs.build.outputs.version_code }}"
+          CHANGELOG_FILE="fastlane/metadata/android/en-US/changelogs/${VERSION_CODE}.txt"
+          if [ -f "$CHANGELOG_FILE" ]; then
+            echo "changelog<<EOF" >> $GITHUB_OUTPUT
+            cat "$CHANGELOG_FILE" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "changelog=Release ${{ needs.build.outputs.version_name }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Sudoku Plus ${{ needs.build.outputs.version_name }}"
+          body: |
+            ## What's New
+            ${{ steps.changelog.outputs.changelog }}
+
+            ## Downloads
+
+            ### APK (for direct install)
+            - **SudokuPlus-${{ needs.build.outputs.version_name }}-prod.apk** - Production version with ads
+            - **SudokuPlus-${{ needs.build.outputs.version_name }}-dev.apk** - Development version (no ads)
+
+            ### AAB (for Play Store)
+            - **SudokuPlus-${{ needs.build.outputs.version_name }}-prod.aab** - Production bundle for Play Store
+            - **SudokuPlus-${{ needs.build.outputs.version_name }}-dev.aab** - Development bundle
+          files: |
+            ./artifacts/SudokuPlus-${{ needs.build.outputs.version_name }}-prod.apk
+            ./artifacts/SudokuPlus-${{ needs.build.outputs.version_name }}-dev.apk
+            ./artifacts/SudokuPlus-${{ needs.build.outputs.version_name }}-prod.aab
+            ./artifacts/SudokuPlus-${{ needs.build.outputs.version_name }}-dev.aab
+          draft: false
+          prerelease: ${{ contains(github.ref, 'beta') || contains(github.ref, 'alpha') || contains(github.ref, 'rc') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

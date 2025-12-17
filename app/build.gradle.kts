@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
@@ -8,6 +10,13 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+// Load keystore properties for local signing
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(keystorePropertiesFile.inputStream())
+}
+
 android {
     namespace = "sk.awisoft.sudokuplus"
     compileSdk = 36
@@ -16,8 +25,8 @@ android {
         applicationId = "sk.awisoft.sudokuplus"
         minSdk = 26
         targetSdk = 36
-        versionCode = 22
-        versionName = "2.0.2"
+        versionCode = 1
+        versionName = "1.0.0"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -29,19 +38,36 @@ android {
         includeInBundle = false
     }
 
+    signingConfigs {
+        create("release") {
+            if (keystorePropertiesFile.exists()) {
+                storeFile = rootProject.file(keystoreProperties["storeFile"] as String)
+                storePassword = keystoreProperties["storePassword"] as String
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = if (keystorePropertiesFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                null // CI will sign separately
+            }
         }
     }
 
     flavorDimensions += "version"
     productFlavors {
-        create("foss") {
+        create("dev") {
             dimension = "version"
+            applicationIdSuffix = ".dev"
         }
-        create("nonFOSS") {
+        create("prod") {
             dimension = "version"
         }
     }
