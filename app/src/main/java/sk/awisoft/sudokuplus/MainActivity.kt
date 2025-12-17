@@ -35,7 +35,6 @@ import sk.awisoft.sudokuplus.destinations.ImportFromFileScreenDestination
 import sk.awisoft.sudokuplus.destinations.MoreScreenDestination
 import sk.awisoft.sudokuplus.destinations.StatisticsScreenDestination
 import sk.awisoft.sudokuplus.destinations.WelcomeScreenDestination
-import com.materialkolor.PaletteStyle
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.DeepLink
 import com.ramcosta.composedestinations.annotation.Destination
@@ -82,8 +81,6 @@ class MainActivity : ComponentActivity() {
             val amoledBlack by mainViewModel.amoledBlack.collectAsStateWithLifecycle(
                 PreferencesConstants.DEFAULT_AMOLED_BLACK)
             val firstLaunch by mainViewModel.firstLaunch.collectAsStateWithLifecycle(false)
-            val colorSeed by mainViewModel.colorSeed.collectAsStateWithLifecycle(initialValue = Color.Red)
-            val paletteStyle by mainViewModel.paletteStyle.collectAsStateWithLifecycle(initialValue = PaletteStyle.TonalSpot)
             val autoUpdateChannel by mainViewModel.autoUpdateChannel.collectAsStateWithLifecycle(
                 UpdateChannel.Disabled)
             val updateDismissedName by mainViewModel.updateDismissedName.collectAsStateWithLifecycle("")
@@ -96,8 +93,7 @@ class MainActivity : ComponentActivity() {
                 },
                 dynamicColor = dynamicColors,
                 amoled = amoledBlack,
-                colorSeed = colorSeed,
-                paletteStyle = paletteStyle
+                colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR),
             ) {
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -203,8 +199,6 @@ class MainActivityViewModel
     val amoledBlack = themeSettingsManager.amoledBlack
     val firstLaunch = appSettingsManager.firstLaunch
     val monetSudokuBoard = themeSettingsManager.monetSudokuBoard
-    val colorSeed = themeSettingsManager.themeColorSeed
-    val paletteStyle = themeSettingsManager.themePaletteStyle
     val autoUpdateChannel = appSettingsManager.autoUpdateChannel
     val updateDismissedName = appSettingsManager.updateDismissedName
 }

@@ -3,8 +3,6 @@ package sk.awisoft.sudokuplus.data.datastore
 import android.content.Context
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -12,7 +10,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import sk.awisoft.sudokuplus.core.PreferencesConstants
-import com.materialkolor.PaletteStyle
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -36,14 +33,6 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
     private val monetSudokuBoardKey = booleanPreferencesKey("monet_sudoku_board")
 
     private val boardCrossHighlightKey = booleanPreferencesKey("board_cross_highlight")
-
-    // seed color for the custom dynamic color scheme
-    private val themeSeedColorKey = intPreferencesKey("theme_seed_color")
-
-    // palette style for the custom dynamic color scheme
-    private val paletteStyleKey = intPreferencesKey("palette_style")
-
-    private val isUserDefinedSeedColorKey = booleanPreferencesKey("is_user_defined_seed_color")
 
     suspend fun setDynamicColors(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -94,62 +83,5 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
 
     val boardCrossHighlight = dataStore.data.map { preferences ->
         preferences[boardCrossHighlightKey] ?: PreferencesConstants.Companion.DEFAULT_BOARD_CROSS_HIGHLIGHT
-    }
-
-    suspend fun setCurrentThemeColor(color: Color) {
-        dataStore.edit { prefs ->
-            prefs[themeSeedColorKey] = color.toArgb()
-        }
-    }
-
-    val themeColorSeed = dataStore.data.map { prefs ->
-        Color(prefs[themeSeedColorKey] ?: Color.Green.toArgb())
-    }
-
-    suspend fun setPaletteStyle(style: PaletteStyle) {
-        dataStore.edit { prefs ->
-            val index = paletteStyles.find { it.first == style }?.second ?: 0
-            prefs[paletteStyleKey] = index
-        }
-    }
-
-    val themePaletteStyle = dataStore.data.map { prefs ->
-        val index = prefs[paletteStyleKey] ?: 0
-        if (index in paletteStyles.indices) {
-            paletteStyles[index].first
-        } else {
-            paletteStyles.first().first
-        }
-    }
-
-    suspend fun setIsUserDefinedSeedColor(value: Boolean) {
-        dataStore.edit { prefs ->
-            prefs[isUserDefinedSeedColorKey] = value
-        }
-    }
-
-    val isUserDefinedSeedColor = dataStore.data.map { prefs ->
-        prefs[isUserDefinedSeedColorKey] ?: false
-    }
-
-
-    companion object {
-        val paletteStyles = listOf(
-            PaletteStyle.TonalSpot to 0,
-            PaletteStyle.Neutral to 1,
-            PaletteStyle.Vibrant to 2,
-            PaletteStyle.Expressive to 3,
-            PaletteStyle.Rainbow to 4,
-            PaletteStyle.FruitSalad to 5,
-            PaletteStyle.Monochrome to 6,
-            PaletteStyle.Fidelity to 7,
-            PaletteStyle.Content to 8,
-        )
-
-        fun getPaletteStyle(index: Int) =
-            if (index in paletteStyles.indices) paletteStyles[index].first else paletteStyles[0].first
-
-        fun getPaletteIndex(paletteStyle: PaletteStyle, default: Int = 0) =
-            paletteStyles.find { it.first == paletteStyle }?.second ?: default
     }
 }

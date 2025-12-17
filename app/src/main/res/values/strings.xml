@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Sudoku <Plus></Plus></string>
+    <string name="app_name" translatable="false">Sudoku Plus</string>
     <string name="nav_bar_statistics">Statistics</string>
     <string name="nav_bar_home">Home</string>
     <string name="nav_bar_more">More</string>
@@ -46,6 +46,8 @@
     <string name="pref_delete_stats_summ">This action will delete all your statistics, saved games and records. It can\'t be undone</string>
     <string name="action_deleted">Deleted</string>
     <string name="pref_app_theme">App theme</string>
+    <string name="pref_dynamic_colors_title">Dynamic colors</string>
+    <string name="pref_dynamic_colors_summary">Use colors from your wallpaper (Android 12+)</string>
     <string name="theme_dynamic">Dynamic</string>
     <string name="theme_green">Green</string>
     <string name="theme_peach">Peach</string>

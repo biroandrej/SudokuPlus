@@ -1,6 +1,5 @@
 package sk.awisoft.sudokuplus.ui.settings.appearance
 
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
@@ -47,26 +46,6 @@ class SettingsAppearanceViewModel @Inject constructor(
     fun updateDateFormat(format: String) {
         viewModelScope.launch(Dispatchers.IO) {
             settings.setDateFormat(format)
-        }
-    }
-
-    val paletteStyle by lazy { themeSettings.themePaletteStyle }
-    fun updatePaletteStyle(index: Int) =
-        viewModelScope.launch(Dispatchers.IO) {
-            themeSettings.setPaletteStyle(ThemeSettingsManager.Companion.paletteStyles[index].first)
-        }
-
-    val isUserDefinedSeedColor by lazy { themeSettings.isUserDefinedSeedColor }
-    fun updateIsUserDefinedSeedColor(value: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
-            themeSettings.setIsUserDefinedSeedColor(value)
-        }
-    }
-
-    val seedColor by lazy { themeSettings.themeColorSeed }
-    fun updateCurrentSeedColor(seedColor: Color) {
-        viewModelScope.launch(Dispatchers.IO) {
-            themeSettings.setCurrentThemeColor(seedColor)
         }
     }
 

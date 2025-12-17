@@ -16,6 +16,4 @@ class CrashViewModel @Inject constructor(
     val amoledBlack = themeSettingsManager.amoledBlack
     val firstLaunch = appSettingsManager.firstLaunch
     val monetSudokuBoard = themeSettingsManager.monetSudokuBoard
-    val colorSeed = themeSettingsManager.themeColorSeed
-    val paletteStyle = themeSettingsManager.themePaletteStyle
 }

@@ -41,7 +41,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.materialkolor.PaletteStyle
 import dagger.hilt.android.AndroidEntryPoint
 import sk.awisoft.sudokuplus.MainActivity
 import sk.awisoft.sudokuplus.R
@@ -66,8 +65,6 @@ class CrashActivity : ComponentActivity() {
             val amoledBlack by viewModel.amoledBlack.collectAsStateWithLifecycle(
                 PreferencesConstants.DEFAULT_AMOLED_BLACK
             )
-            val colorSeed by viewModel.colorSeed.collectAsStateWithLifecycle(initialValue = Color.Red)
-            val paletteStyle by viewModel.paletteStyle.collectAsStateWithLifecycle(initialValue = PaletteStyle.TonalSpot)
 
             SudokuPlusTheme(
                 darkTheme = when (darkTheme) {
@@ -77,8 +74,7 @@ class CrashActivity : ComponentActivity() {
                 },
                 dynamicColor = dynamicColors,
                 amoled = amoledBlack,
-                colorSeed = colorSeed,
-                paletteStyle = paletteStyle
+                colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR),
             ) {
                 val clipboardManager = LocalClipboardManager.current
                 val uriHandler = LocalUriHandler.current

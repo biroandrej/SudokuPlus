@@ -1,12 +1,10 @@
 package sk.awisoft.sudokuplus.ui.settings
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Extension
 import androidx.compose.material.icons.outlined.Language
@@ -15,7 +13,6 @@ import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.TipsAndUpdates
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.SystemUpdate
-import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,7 +26,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -50,7 +46,6 @@ import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.CollapsingTitle
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.CollapsingTopAppBar
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.rememberTopAppBarScrollBehavior
-import sk.awisoft.sudokuplus.ui.settings.components.AppThemePreviewItem
 import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleString
 import sk.awisoft.sudokuplus.util.FlavorUtil
 import com.ramcosta.composedestinations.annotation.Destination
@@ -165,42 +160,6 @@ fun SettingsCategory(
             text = title,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.primary,
-        )
-    }
-}
-
-@Composable
-fun AppThemeItem(
-    title: String,
-    colorScheme: ColorScheme,
-    amoledBlack: Boolean,
-    darkTheme: Int,
-    selected: Boolean,
-    onClick: () -> Unit,
-) {
-    Column(
-        modifier = Modifier
-            .width(115.dp)
-            .padding(start = 8.dp, end = 8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        AppThemePreviewItem(
-            selected = selected,
-            onClick = onClick,
-            colorScheme = colorScheme.copy(
-                background =
-                    if (amoledBlack && (darkTheme == 0 && isSystemInDarkTheme() || darkTheme == 2)) {
-                        Color.Black
-                    } else {
-                        colorScheme.background
-                    }
-            ),
-            shapes = MaterialTheme.shapes
-        )
-        Text(
-            text = title,
-            style = MaterialTheme.typography.labelSmall
         )
     }
 }

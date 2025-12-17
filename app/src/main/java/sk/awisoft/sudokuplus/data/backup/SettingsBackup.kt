@@ -1,7 +1,5 @@
 package sk.awisoft.sudokuplus.data.backup
 
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
@@ -32,9 +30,6 @@ data class SettingsBackup(
     val darkTheme: Int = PreferencesConstants.Companion.DEFAULT_DARK_THEME,
     val monetSudokuBoard: Boolean = PreferencesConstants.Companion.DEFAULT_MONET_SUDOKU_BOARD,
     val boardCrossHighlight: Boolean = PreferencesConstants.Companion.DEFAULT_BOARD_CROSS_HIGHLIGHT,
-    val currentThemeSeedColor: Int = PreferencesConstants.Companion.DEFAULT_THEME_SEED_COLOR,
-    val paletteStyle: Int = PreferencesConstants.Companion.DEFAULT_PALETTE_STYLE,
-    val isUserDefinedSeedColor: Boolean = false,
     val advancedHint: Boolean = PreferencesConstants.Companion.DEFAULT_ADVANCED_HINT
 ) {
     suspend fun setSettings(settings: AppSettingsManager, themeSettings: ThemeSettingsManager) {
@@ -61,9 +56,6 @@ data class SettingsBackup(
         themeSettings.setDarkTheme(darkTheme)
         themeSettings.setMonetSudokuBoard(monetSudokuBoard)
         themeSettings.setBoardCrossHighlight(boardCrossHighlight)
-        themeSettings.setCurrentThemeColor(Color(currentThemeSeedColor))
-        themeSettings.setPaletteStyle(ThemeSettingsManager.Companion.getPaletteStyle(paletteStyle))
-        themeSettings.setIsUserDefinedSeedColor(isUserDefinedSeedColor)
     }
 
     companion object {
@@ -93,9 +85,6 @@ data class SettingsBackup(
                 darkTheme = runBlocking { themeSettings.darkTheme.first() },
                 monetSudokuBoard = runBlocking { themeSettings.monetSudokuBoard.first() },
                 boardCrossHighlight = runBlocking { themeSettings.boardCrossHighlight.first() },
-                currentThemeSeedColor = runBlocking { themeSettings.themeColorSeed.first().toArgb() },
-                paletteStyle = runBlocking { ThemeSettingsManager.Companion.getPaletteIndex(themeSettings.themePaletteStyle.first()) },
-                isUserDefinedSeedColor = runBlocking { themeSettings.isUserDefinedSeedColor.first() },
                 advancedHint = runBlocking { settings.advancedHintEnabled.first() }
             )
         }

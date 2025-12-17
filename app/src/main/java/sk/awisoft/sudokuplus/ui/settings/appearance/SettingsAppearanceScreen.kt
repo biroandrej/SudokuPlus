@@ -1,64 +1,39 @@
 package sk.awisoft.sudokuplus.ui.settings.appearance
 
 import android.os.Build
-import android.widget.Toast
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Contrast
 import androidx.compose.material.icons.outlined.DarkMode
-import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.EditCalendar
-import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.Tag
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
-import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.destinations.SettingsBoardThemeDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.PreferenceRow
 import sk.awisoft.sudokuplus.ui.components.PreferenceRowSwitch
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
-import sk.awisoft.sudokuplus.ui.settings.AppThemeItem
 import sk.awisoft.sudokuplus.ui.settings.DateFormatDialog
 import sk.awisoft.sudokuplus.ui.settings.SelectionDialog
 import sk.awisoft.sudokuplus.ui.settings.SetDateFormatPatternDialog
 import sk.awisoft.sudokuplus.ui.settings.SettingsScaffoldLazyColumn
-import sk.awisoft.sudokuplus.ui.settings.components.AppThemePreviewItem
-import sk.awisoft.sudokuplus.ui.settings.components.ColorPickerDialog
-import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
-import com.materialkolor.PaletteStyle
-import com.materialkolor.rememberDynamicColorScheme
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import java.time.ZonedDateTime
@@ -75,28 +50,14 @@ fun SettingsAppearanceScreen(
     viewModel: SettingsAppearanceViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
-    val context = LocalContext.current
-
     var darkModeDialog by rememberSaveable { mutableStateOf(false) }
     var dateFormatDialog by rememberSaveable { mutableStateOf(false) }
     var customFormatDialog by rememberSaveable { mutableStateOf(false) }
-    var paletteStyleDialog by rememberSaveable { mutableStateOf(false) }
-    var colorPickerDialog by rememberSaveable { mutableStateOf(false) }
 
     val darkTheme by viewModel.darkTheme.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_DARK_THEME)
     val dateFormat by viewModel.dateFormat.collectAsStateWithLifecycle(initialValue = "")
     val dynamicColors by viewModel.dynamicColors.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_DYNAMIC_COLORS)
     val amoledBlack by viewModel.amoledBlack.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_AMOLED_BLACK)
-
-    val currentPaletteStyle by viewModel.paletteStyle.collectAsStateWithLifecycle(initialValue = PaletteStyle.TonalSpot)
-    val currentSeedColor by viewModel.seedColor.collectAsStateWithLifecycle(
-        initialValue = Color(
-            PreferencesConstants.Companion.DEFAULT_THEME_SEED_COLOR
-        )
-    )
-    val isUserDefinedSeedColor by viewModel.isUserDefinedSeedColor.collectAsStateWithLifecycle(
-        initialValue = false
-    )
 
     SettingsScaffoldLazyColumn(
         titleText = stringResource(R.string.pref_appearance),
@@ -126,131 +87,16 @@ fun SettingsAppearanceScreen(
                     modifier = Modifier.padding(horizontal = 16.dp),
                     text = stringResource(R.string.pref_app_theme)
                 )
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp, bottom = 8.dp)
-                ) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                        item {
-                            SudokuPlusTheme(
-                                dynamicColor = true,
-                                darkTheme = when (darkTheme) {
-                                    0 -> isSystemInDarkTheme()
-                                    1 -> false
-                                    else -> true
-                                },
-                                amoled = amoledBlack
-                            ) {
-                                Column(
-                                    modifier = Modifier
-                                        .width(115.dp)
-                                        .padding(start = 8.dp, end = 8.dp),
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                ) {
-                                    AppThemePreviewItem(
-                                        selected = dynamicColors,
-                                        onClick = {
-                                            viewModel.updateDynamicColors(true)
-                                            viewModel.updateIsUserDefinedSeedColor(false)
-                                        },
-                                        colorScheme = MaterialTheme.colorScheme,
-                                        shapes = MaterialTheme.shapes
-                                    )
-                                    Text(
-                                        text = stringResource(R.string.theme_dynamic),
-                                        style = MaterialTheme.typography.labelSmall
-                                    )
-                                }
-                            }
-                        }
-                    }
-                    items(
-                        listOf(
-                            Color.Green to context.getString(R.string.theme_green),
-                            Color.Red to context.getString(R.string.theme_peach),
-                            Color.Yellow to context.getString(R.string.theme_yellow),
-                            Color.Blue to context.getString(R.string.theme_blue),
-                            Color(0xFFC97820) to context.getString(R.string.theme_orange),
-                            Color.Cyan to context.getString(R.string.theme_cyan),
-                            Color.Magenta to context.getString(R.string.theme_lavender)
-                        )
-                    ) {
-                        AppThemeItem(
-                            title = it.second,
-                            colorScheme = rememberDynamicColorScheme(
-                                seedColor = it.first,
-                                isDark = when (darkTheme) {
-                                    0 -> isSystemInDarkTheme()
-                                    1 -> false
-                                    else -> true
-                                },
-                                style = currentPaletteStyle,
-                                isAmoled = amoledBlack
-                            ),
-                            onClick = {
-                                viewModel.updateDynamicColors(false)
-                                viewModel.updateCurrentSeedColor(it.first)
-                                viewModel.updateIsUserDefinedSeedColor(false)
-                            },
-                            selected = currentSeedColor == it.first && !dynamicColors && !isUserDefinedSeedColor,
-                            amoledBlack = amoledBlack,
-                            darkTheme = darkTheme,
-                        )
-                    }
 
-                    item {
-                        Box {
-                            AppThemeItem(
-                                title = stringResource(R.string.theme_custom),
-                                colorScheme = rememberDynamicColorScheme(
-                                    seedColor = currentSeedColor,
-                                    isDark = when (darkTheme) {
-                                        0 -> isSystemInDarkTheme()
-                                        1 -> false
-                                        else -> true
-                                    },
-                                    style = currentPaletteStyle,
-                                    isAmoled = amoledBlack
-                                ),
-                                onClick = {
-                                    viewModel.updateDynamicColors(false)
-                                    viewModel.updateIsUserDefinedSeedColor(true)
-                                    colorPickerDialog = true
-                                },
-                                selected = isUserDefinedSeedColor,
-                                amoledBlack = amoledBlack,
-                                darkTheme = darkTheme,
-                            )
-                            Icon(
-                                imageVector = Icons.Outlined.Edit,
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .padding(top = 8.dp, end = 16.dp)
-                                    .align(Alignment.TopEnd)
-                                    .size(24.dp)
-                            )
-                        }
-                    }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    PreferenceRowSwitch(
+                        title = stringResource(R.string.pref_dynamic_colors_title),
+                        subtitle = stringResource(R.string.pref_dynamic_colors_summary),
+                        checked = dynamicColors,
+                        onClick = { viewModel.updateDynamicColors(!dynamicColors) },
+                        painter = rememberVectorPainter(Icons.Outlined.DarkMode)
+                    )
                 }
-            }
-            item {
-                PreferenceRow(
-                    title = stringResource(R.string.pref_monet_style),
-                    subtitle = when (currentPaletteStyle) {
-                        PaletteStyle.TonalSpot -> stringResource(R.string.monet_tonalspot)
-                        PaletteStyle.Neutral -> stringResource(R.string.monet_neutral)
-                        PaletteStyle.Vibrant -> stringResource(R.string.monet_vibrant)
-                        PaletteStyle.Expressive -> stringResource(R.string.monet_expressive)
-                        PaletteStyle.Rainbow -> stringResource(R.string.monet_rainbow)
-                        PaletteStyle.FruitSalad -> stringResource(R.string.monet_fruitsalad)
-                        PaletteStyle.Monochrome -> stringResource(R.string.monet_monochrome)
-                        PaletteStyle.Fidelity -> stringResource(R.string.monet_fidelity)
-                        PaletteStyle.Content -> stringResource(R.string.monet_content)
-                    },
-                    onClick = { paletteStyleDialog = true },
-                    painter = rememberVectorPainter(Icons.Outlined.Palette)
-                )
             }
             item {
                 PreferenceRowSwitch(
@@ -299,7 +145,7 @@ fun SettingsAppearanceScreen(
                 viewModel.updateDarkTheme(index)
             },
             onDismiss = { darkModeDialog = false }
-        )
+            )
     } else if (dateFormatDialog) {
         DateFormatDialog(
             title = stringResource(R.string.pref_date_format),
@@ -342,81 +188,6 @@ fun SettingsAppearanceScreen(
             onDismiss = { dateFormatDialog = false },
 
             )
-    } else if (paletteStyleDialog) {
-        SelectionDialog(
-            title = stringResource(R.string.pref_monet_style),
-            selections = listOf(
-                stringResource(R.string.monet_tonalspot),
-                stringResource(R.string.monet_neutral),
-                stringResource(R.string.monet_vibrant),
-                stringResource(R.string.monet_expressive),
-                stringResource(R.string.monet_rainbow),
-                stringResource(R.string.monet_fruitsalad),
-                stringResource(R.string.monet_monochrome),
-                stringResource(R.string.monet_fidelity),
-                stringResource(R.string.monet_content)
-            ),
-            selected = ThemeSettingsManager.Companion.paletteStyles.find { it.first == currentPaletteStyle }?.second
-                ?: 0,
-            onSelect = { index ->
-                viewModel.updatePaletteStyle(index)
-            },
-            onDismiss = { paletteStyleDialog = false }
-        )
-    } else if (colorPickerDialog) {
-        val clipboardManager = LocalClipboardManager.current
-        var currentColor by remember {
-            mutableIntStateOf(currentSeedColor.toArgb())
-        }
-        ColorPickerDialog(
-            currentColor = currentColor,
-            onConfirm = {
-                viewModel.updateCurrentSeedColor(Color(currentColor))
-                colorPickerDialog = false
-            },
-            onDismiss = {
-                colorPickerDialog = false
-            },
-            onHexColorClick = {
-                clipboardManager.setText(
-                    AnnotatedString(
-                        "#" + currentColor.toHexString(
-                            HexFormat.UpperCase
-                        )
-                    )
-                )
-            },
-            onRandomColorClick = {
-                currentColor = (Math.random() * 16777215).toInt() or (0xFF shl 24)
-            },
-            onColorChange = {
-                currentColor = it
-            },
-            onPaste = {
-                val clipboardContent = clipboardManager.getText()
-                var parsedColor: Int? = null
-                if (clipboardContent != null) {
-                    try {
-                        parsedColor = android.graphics.Color.parseColor(
-                            clipboardContent.text
-                        )
-                    } catch (_: Exception) {
-
-                    }
-                }
-                if (parsedColor != null) {
-                    currentColor = parsedColor
-                } else {
-                    Toast
-                        .makeText(
-                            context,
-                            context.getString(R.string.parse_color_fail),
-                            Toast.LENGTH_SHORT
-                        )
-                        .show()
-                }
-            }
-        )
     }
 
     if (customFormatDialog) {
