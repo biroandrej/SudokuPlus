@@ -302,7 +302,10 @@ fun StatisticsScreen(
                     )
                 }
             } else {
-                EmptyScreen(stringResource(R.string.statistics_no_records))
+                EmptyScreen(
+                    modifier = Modifier.weight(1f),
+                    text = stringResource(R.string.statistics_no_records)
+                )
             }
         }
     }
@@ -457,27 +460,6 @@ fun StatsSectionName(
 }
 
 @Composable
-fun StatRow(
-    startText: String,
-    endText: String,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = startText,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.9f)
-        )
-        Text(
-            text = endText,
-            fontWeight = FontWeight(700)
-        )
-    }
-}
-
-@Composable
 fun AnimatedStatRow(
     startText: String,
     endText: String,
@@ -543,7 +525,8 @@ fun ChipRowType(
 ) {
     LazyRow(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        contentPadding = PaddingValues(horizontal = 8.dp)
     ) {
         items(types) { type ->
             val selectedColor by animateColorAsState(

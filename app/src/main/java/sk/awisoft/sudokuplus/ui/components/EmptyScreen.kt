@@ -1,12 +1,7 @@
 package sk.awisoft.sudokuplus.ui.components
 
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
@@ -106,18 +101,6 @@ private fun SudokuGridIllustration(
     val gridColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
     val thickLineColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
     val accentColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
-
-    // Subtle floating animation
-    val infiniteTransition = rememberInfiniteTransition(label = "empty illustration")
-    val floatOffset by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 8f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(2000, easing = LinearEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "float offset"
-    )
 
     Canvas(modifier = modifier) {
         val gridSize = size.minDimension

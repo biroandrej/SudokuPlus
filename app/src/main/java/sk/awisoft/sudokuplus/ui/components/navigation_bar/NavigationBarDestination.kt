@@ -3,14 +3,14 @@ package sk.awisoft.sudokuplus.ui.components.navigation_bar
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Info
-import androidx.compose.material.icons.rounded.MoreHoriz
+import androidx.compose.material.icons.rounded.MoreVert
+import androidx.compose.material.icons.rounded.StackedBarChart
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.ramcosta.composedestinations.spec.DirectionDestinationSpec
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.destinations.HomeScreenDestination
 import sk.awisoft.sudokuplus.destinations.MoreScreenDestination
 import sk.awisoft.sudokuplus.destinations.StatisticsScreenDestination
-import com.ramcosta.composedestinations.spec.DirectionDestinationSpec
 
 sealed class NavigationBarDestination(
     val direction: DirectionDestinationSpec,
@@ -25,13 +25,13 @@ sealed class NavigationBarDestination(
 
     data object Statistics : NavigationBarDestination(
         StatisticsScreenDestination,
-        Icons.Rounded.Info,
+        Icons.Rounded.StackedBarChart,
         R.string.nav_bar_statistics
     )
 
     data object More : NavigationBarDestination(
         MoreScreenDestination,
-        Icons.Rounded.MoreHoriz,
+        Icons.Rounded.MoreVert,
         R.string.nav_bar_more
     )
 }

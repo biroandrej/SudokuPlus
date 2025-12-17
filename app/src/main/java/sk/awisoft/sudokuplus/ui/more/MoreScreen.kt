@@ -14,30 +14,32 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.SettingsBackupRestore
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -52,9 +54,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.graphics.shapes.CornerRounding
 import androidx.graphics.shapes.RoundedPolygon
@@ -72,6 +77,7 @@ import sk.awisoft.sudokuplus.destinations.LearnScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsCategoriesScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.PreferenceRow
+import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.settings.autoupdate.UpdateChannel
 import sk.awisoft.sudokuplus.ui.theme.RoundedPolygonShape
 import sk.awisoft.sudokuplus.util.FlavorUtil
@@ -82,6 +88,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 @Destination(style = AnimatedNavigation::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoreScreen(
     navigator: DestinationsNavigator,
@@ -91,93 +98,169 @@ fun MoreScreen(
     val updateDismissedName by viewModel.updateDismissedName.collectAsStateWithLifecycle("")
 
     Scaffold(
-        contentWindowInsets = WindowInsets.statusBars
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.app_name)) },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
+            )
+        }
     ) { innerPadding ->
-        Column(
+        ScrollbarLazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(innerPadding)
+                .padding(innerPadding),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .statusBarsPadding(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = stringResource(R.string.app_name),
-                    style = MaterialTheme.typography.headlineLarge
+            item {
+                ElevatedCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.elevatedCardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(vertical = 4.dp)
+                    ) {
+                        PreferenceRow(
+                            title = stringResource(R.string.settings_title),
+                            subtitle = stringResource(R.string.perf_appearance_summary),
+                            painter = painterResource(R.drawable.ic_settings_24),
+                            onClick = { navigator.navigate(SettingsCategoriesScreenDestination()) },
+                            shape = MaterialTheme.shapes.large
+                        )
+                    }
+                }
+            }
+
+            item {
+                MoreSectionHeader(title = stringResource(R.string.backup_restore_title))
+            }
+            item {
+                MoreQuickActionsRow(
+                    leftTitle = stringResource(R.string.backup_restore_title),
+                    leftPainter = rememberVectorPainter(image = Icons.Rounded.SettingsBackupRestore),
+                    onLeftClick = { navigator.navigate(BackupScreenDestination()) },
+                    rightTitle = stringResource(R.string.title_folders),
+                    rightPainter = rememberVectorPainter(Icons.Outlined.Folder),
+                    onRightClick = { navigator.navigate(FoldersScreenDestination()) },
                 )
             }
 
-            HorizontalDivider(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 12.dp)
-            )
-
-            PreferenceRow(
-                title = stringResource(R.string.settings_title),
-                painter = painterResource(R.drawable.ic_settings_24),
-                onClick = { navigator.navigate(SettingsCategoriesScreenDestination()) }
-            )
-            PreferenceRow(
-                title = stringResource(R.string.backup_restore_title),
-                painter = rememberVectorPainter(image = Icons.Rounded.SettingsBackupRestore),
-                onClick = { navigator.navigate(BackupScreenDestination()) }
-            )
-            PreferenceRow(
-                title = stringResource(R.string.title_folders),
-                painter = rememberVectorPainter(Icons.Outlined.Folder),
-                onClick = { navigator.navigate(FoldersScreenDestination()) }
-            )
-            PreferenceRow(
-                title = stringResource(R.string.learn_screen_title),
-                painter = painterResource(R.drawable.ic_outline_help_outline_24),
-                onClick = { navigator.navigate(LearnScreenDestination()) }
-            )
-            PreferenceRow(
-                title = stringResource(R.string.about_title),
-                painter = painterResource(R.drawable.ic_outline_info_24),
-                onClick = { navigator.navigate(AboutScreenDestination()) }
-            )
+            item {
+                MoreSectionHeader(title = stringResource(R.string.more_title))
+            }
+            item {
+                MoreQuickActionsRow(
+                    leftTitle = stringResource(R.string.learn_screen_title),
+                    leftPainter = painterResource(R.drawable.ic_outline_help_outline_24),
+                    onLeftClick = { navigator.navigate(LearnScreenDestination()) },
+                    rightTitle = stringResource(R.string.about_title),
+                    rightPainter = painterResource(R.drawable.ic_outline_info_24),
+                    onRightClick = { navigator.navigate(AboutScreenDestination()) },
+                )
+            }
 
             if (!FlavorUtil.isFoss()) {
-                AnimatedVisibility(autoUpdateChannel != UpdateChannel.Disabled) {
-                    var latestRelease by remember { mutableStateOf<Release?>(null) }
-                    LaunchedEffect(Unit) {
-                        if (latestRelease == null) {
-                            withContext(Dispatchers.IO) {
-                                runCatching {
-                                    latestRelease =
-                                        UpdateUtil.checkForUpdate(autoUpdateChannel == UpdateChannel.Beta)
+                item {
+                    AnimatedVisibility(autoUpdateChannel != UpdateChannel.Disabled) {
+                        var latestRelease by remember { mutableStateOf<Release?>(null) }
+                        LaunchedEffect(Unit) {
+                            if (latestRelease == null) {
+                                withContext(Dispatchers.IO) {
+                                    runCatching {
+                                        latestRelease =
+                                            UpdateUtil.checkForUpdate(autoUpdateChannel == UpdateChannel.Beta)
+                                    }
                                 }
                             }
                         }
-                    }
-                    latestRelease?.let { release ->
-                        AnimatedVisibility(
-                            visible = release.name.toString() != updateDismissedName,
-                            enter = expandVertically() + fadeIn(),
-                            exit = shrinkVertically() + fadeOut()
-                        ) {
-                            UpdateFoundBox(
-                                versionToUpdate = release.name ?: "?",
-                                onClick = {
-                                    navigator.navigate(AutoUpdateScreenDestination())
-                                },
-                                onDismissed = {
-                                    viewModel.dismissUpdate(release)
-                                },
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 12.dp)
-                                    .padding(top = 8.dp)
-                            )
+                        latestRelease?.let { release ->
+                            AnimatedVisibility(
+                                visible = release.name.toString() != updateDismissedName,
+                                enter = expandVertically() + fadeIn(),
+                                exit = shrinkVertically() + fadeOut()
+                            ) {
+                                UpdateFoundBox(
+                                    versionToUpdate = release.name ?: "?",
+                                    onClick = { navigator.navigate(AutoUpdateScreenDestination()) },
+                                    onDismissed = { viewModel.dismissUpdate(release) },
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                            }
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun MoreSectionHeader(
+    title: String,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = title,
+        style = MaterialTheme.typography.titleMedium,
+        modifier = modifier.padding(top = 4.dp),
+    )
+}
+
+@Composable
+private fun MoreQuickActionsRow(
+    leftTitle: String,
+    leftPainter: Painter,
+    onLeftClick: () -> Unit,
+    rightTitle: String,
+    rightPainter: Painter,
+    onRightClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        ElevatedCard(
+            modifier = Modifier.weight(1f),
+            onClick = onLeftClick,
+            colors = CardDefaults.elevatedCardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainer
+            )
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(painter = leftPainter, contentDescription = null)
+                Spacer(modifier = Modifier.size(12.dp))
+                Text(
+                    text = leftTitle,
+                    style = MaterialTheme.typography.titleMedium,
+                )
+            }
+        }
+
+        ElevatedCard(
+            modifier = Modifier.weight(1f),
+            onClick = onRightClick,
+            colors = CardDefaults.elevatedCardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainer
+            )
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(painter = rightPainter, contentDescription = null)
+                Spacer(modifier = Modifier.size(12.dp))
+                Text(
+                    text = rightTitle,
+                    style = MaterialTheme.typography.titleMedium,
+                )
             }
         }
     }
@@ -264,4 +347,3 @@ fun UpdateFoundBox(
         }
     }
 }
-

@@ -78,9 +78,9 @@ class MainActivity : ComponentActivity() {
 
             val dynamicColors by mainViewModel.dc.collectAsStateWithLifecycle(isSystemInDarkTheme())
             val darkTheme by mainViewModel.darkTheme.collectAsStateWithLifecycle(
-                PreferencesConstants.Companion.DEFAULT_DARK_THEME)
+                PreferencesConstants.DEFAULT_DARK_THEME)
             val amoledBlack by mainViewModel.amoledBlack.collectAsStateWithLifecycle(
-                PreferencesConstants.Companion.DEFAULT_AMOLED_BLACK)
+                PreferencesConstants.DEFAULT_AMOLED_BLACK)
             val firstLaunch by mainViewModel.firstLaunch.collectAsStateWithLifecycle(false)
             val colorSeed by mainViewModel.colorSeed.collectAsStateWithLifecycle(initialValue = Color.Red)
             val paletteStyle by mainViewModel.paletteStyle.collectAsStateWithLifecycle(initialValue = PaletteStyle.TonalSpot)

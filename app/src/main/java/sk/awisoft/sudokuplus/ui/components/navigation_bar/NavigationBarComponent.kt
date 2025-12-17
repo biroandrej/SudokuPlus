@@ -8,6 +8,8 @@ import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,7 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
 import sk.awisoft.sudokuplus.NavGraphs
 import sk.awisoft.sudokuplus.appCurrentDestinationAsState
 import sk.awisoft.sudokuplus.destinations.MoreScreenDestination
@@ -29,8 +33,8 @@ fun NavigationBarComponent(
     updateAvailable: Boolean = false,
 ) {
     val directions = listOf(
-        NavigationBarDestination.Statistics,
         NavigationBarDestination.Home,
+        NavigationBarDestination.Statistics,
         NavigationBarDestination.More
     )
 
@@ -38,7 +42,10 @@ fun NavigationBarComponent(
         ?: NavGraphs.root.startAppDestination
 
     if (isVisible) {
-        NavigationBar {
+        NavigationBar(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            tonalElevation = 3.dp
+        ) {
             directions.forEach { destination ->
                 val isSelected = currentDestination == destination.direction
 
@@ -53,13 +60,17 @@ fun NavigationBarComponent(
                 )
 
                 NavigationBarItem(
+                    alwaysShowLabel = false,
                     icon = {
                         if (destination.direction.route == MoreScreenDestination.route
                             && updateAvailable
                         ) {
                             BadgedBox(
                                 badge = {
-                                    Badge()
+                                    Badge(
+                                        containerColor = MaterialTheme.colorScheme.tertiary
+                                            .harmonizeWithPrimary()
+                                    )
                                 }
                             ) {
                                 Icon(
@@ -80,9 +91,17 @@ fun NavigationBarComponent(
                     label = {
                         Text(
                             text = stringResource(destination.label),
-                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium
+                            fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Medium,
+                            style = MaterialTheme.typography.labelSmall
                         )
                     },
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                        selectedTextColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                        indicatorColor = MaterialTheme.colorScheme.secondaryContainer,
+                        unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    ),
                     onClick = {
                         navController.toDestinationsNavigator().navigate(destination.direction) {
                             launchSingleTop = true

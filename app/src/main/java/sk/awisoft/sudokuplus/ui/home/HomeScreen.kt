@@ -2,39 +2,48 @@ package sk.awisoft.sudokuplus.ui.home
 
 import android.text.format.DateUtils
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material.icons.rounded.Tune
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -48,6 +57,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -102,51 +112,53 @@ fun HomeScreen(
         }
     }
 
-    Scaffold { paddingValues ->
-        Column(
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = stringResource(R.string.app_name),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
+            )
+        }
+    ) { paddingValues ->
+        if (viewModel.readyToPlay) {
+            viewModel.readyToPlay = false
+
+            runBlocking {
+                val saved = lastGame?.completed ?: false
+                navigator.navigate(
+                    GameScreenDestination(
+                        gameUid = viewModel.insertedBoardUid,
+                        playedBefore = saved
+                    )
+                )
+            }
+        }
+
+        ScrollbarLazyColumn(
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceAround
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            if (viewModel.readyToPlay) {
-                viewModel.readyToPlay = false
-
-                runBlocking {
-                    //viewModel.saveToDatabase()
-                    val saved = lastGame?.completed ?: false
-                    navigator.navigate(
-                        GameScreenDestination(
-                            gameUid = viewModel.insertedBoardUid,
-                            playedBefore = saved
-                        )
-                    )
-                }
-            }
-
-            Text(
-                text = stringResource(R.string.app_name),
-                style = MaterialTheme.typography.headlineLarge
-            )
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                HorizontalPicker(
-                    text = stringResource(viewModel.selectedDifficulty.resName),
-                    onLeftClick = { viewModel.changeDifficulty(-1) },
-                    onRightClick = { viewModel.changeDifficulty(1) }
-                )
-                HorizontalPicker(
-                    text = stringResource(viewModel.selectedType.resName),
-                    onLeftClick = { viewModel.changeType(-1) },
-                    onRightClick = { viewModel.changeType(1) }
-                )
-
-                Spacer(Modifier.height(12.dp))
-
-                if (lastGame != null && !lastGame!!.completed) {
-                    Button(onClick = {
+            item {
+                HomeHeroCard(
+                    difficultyLabel = stringResource(viewModel.selectedDifficulty.resName),
+                    typeLabel = stringResource(viewModel.selectedType.resName),
+                    onDecreaseDifficulty = { viewModel.changeDifficulty(-1) },
+                    onIncreaseDifficulty = { viewModel.changeDifficulty(1) },
+                    onDecreaseType = { viewModel.changeType(-1) },
+                    onIncreaseType = { viewModel.changeType(1) },
+                    canContinue = (lastGame != null && !lastGame!!.completed),
+                    onContinue = {
                         if (lastGames.size <= 1) {
                             lastGame?.let {
                                 navigator.navigate(
@@ -159,21 +171,45 @@ fun HomeScreen(
                         } else {
                             lastGamesBottomSheet = true
                         }
-                    }) {
-                        Text(stringResource(R.string.action_continue))
+                    },
+                    onNewGame = {
+                        if (lastGame != null && !lastGame!!.completed) {
+                            continueGameDialog = true
+                        } else {
+                            viewModel.giveUpLastGame()
+                            viewModel.startGame()
+                        }
                     }
-                    FilledTonalButton(onClick = {
-                        continueGameDialog = true
-                    }) {
-                        Text(stringResource(R.string.action_play))
-                    }
-                } else {
-                    Button(onClick = {
-                        viewModel.giveUpLastGame()
-                        viewModel.startGame()
-                    }) {
-                        Text(stringResource(R.string.action_play))
-                    }
+                )
+            }
+
+            if (lastGames.isNotEmpty()) {
+                item {
+                    HomeSectionHeader(
+                        title = pluralStringResource(
+                            id = R.plurals.last_x_games,
+                            count = lastGames.size,
+                            lastGames.size
+                        ),
+                        actionText = stringResource(R.string.more_title),
+                        onActionClick = { lastGamesBottomSheet = true }
+                    )
+                }
+                items(lastGames.toList().take(3)) { item ->
+                    SavedSudokuPreview(
+                        board = item.first.currentBoard,
+                        difficulty = stringResource(item.second.difficulty.resName),
+                        type = stringResource(item.second.type.resName),
+                        savedGame = item.first,
+                        onClick = {
+                            navigator.navigate(
+                                GameScreenDestination(
+                                    gameUid = item.first.uid,
+                                    playedBefore = true
+                                )
+                            )
+                        }
+                    )
                 }
             }
         }
@@ -227,9 +263,9 @@ fun HomeScreen(
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 ScrollbarLazyColumn(
-                    contentPadding = PaddingValues(horizontal = 6.dp),
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.clip(MaterialTheme.shapes.large)
+                    modifier = Modifier.clip(MaterialTheme.shapes.large),
                 ) {
                     items(lastGames.toList()) { item ->
                         SavedSudokuPreview(
@@ -289,36 +325,172 @@ fun GeneratingDialog(
 }
 
 @Composable
-fun HorizontalPicker(
+private fun HomeHeroCard(
+    difficultyLabel: String,
+    typeLabel: String,
+    onDecreaseDifficulty: () -> Unit,
+    onIncreaseDifficulty: () -> Unit,
+    onDecreaseType: () -> Unit,
+    onIncreaseType: () -> Unit,
+    canContinue: Boolean,
+    onContinue: () -> Unit,
+    onNewGame: () -> Unit,
     modifier: Modifier = Modifier,
-    text: String,
-    onLeftClick: () -> Unit,
-    onRightClick: () -> Unit
+) {
+    ElevatedCard(
+        modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "$difficultyLabel • $typeLabel",
+                        style = MaterialTheme.typography.headlineSmall,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
+
+            HorizontalDivider()
+
+            HomePickerRow(
+                value = stringResource(R.string.saved_game_difficulty, difficultyLabel),
+                onPrevious = onDecreaseDifficulty,
+                onNext = onIncreaseDifficulty
+            )
+            HomePickerRow(
+                value = stringResource(R.string.saved_game_type, typeLabel),
+                onPrevious = onDecreaseType,
+                onNext = onIncreaseType
+            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                if (canContinue) {
+                    Button(
+                        onClick = onContinue,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.PlayArrow,
+                            contentDescription = null
+                        )
+                        Spacer(modifier = Modifier.size(8.dp))
+                        Text(stringResource(R.string.action_continue))
+                    }
+                    FilledTonalButton(
+                        onClick = onNewGame,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Add,
+                            contentDescription = null
+                        )
+                        Spacer(modifier = Modifier.size(8.dp))
+                        Text(stringResource(R.string.dialog_new_game))
+                    }
+                } else {
+                    Button(
+                        onClick = onNewGame,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.PlayArrow,
+                            contentDescription = null
+                        )
+                        Spacer(modifier = Modifier.size(8.dp))
+                        Text(
+                            text = if (canContinue) stringResource(R.string.action_continue)
+                            else stringResource(R.string.action_play)
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun HomePickerRow(
+    value: String,
+    onPrevious: () -> Unit,
+    onNext: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            IconButton(onClick = onPrevious) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_round_keyboard_arrow_left_24),
+                    contentDescription = null
+                )
+            }
+            AnimatedContent(
+                targetState = value,
+                transitionSpec = {
+                    fadeIn() togetherWith fadeOut() using SizeTransform(clip = false)
+                },
+                label = "Picker value"
+            ) { animatedValue ->
+                Text(
+                    text = animatedValue,
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            IconButton(onClick = onNext) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_round_keyboard_arrow_right_24),
+                    contentDescription = null
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun HomeSectionHeader(
+    title: String,
+    actionText: String?,
+    onActionClick: (() -> Unit)?,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 36.dp),
+            .padding(top = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        IconButton(onClick = onLeftClick) {
-            Icon(
-                painter = painterResource(R.drawable.ic_round_keyboard_arrow_left_24),
-                contentDescription = null
-            )
-        }
-        AnimatedContent(
-            targetState = text,
-            transitionSpec = { fadeIn() togetherWith fadeOut() }, label = "Animated text"
-        ) { text ->
-            Text(text)
-        }
-        IconButton(onClick = onRightClick) {
-            Icon(
-                painter = painterResource(R.drawable.ic_round_keyboard_arrow_right_24),
-                contentDescription = null
-            )
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleMedium
+        )
+        if (actionText != null && onActionClick != null) {
+            TextButton(onClick = onActionClick) {
+                Text(actionText)
+            }
         }
     }
 }
@@ -332,66 +504,64 @@ fun SavedSudokuPreview(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { }
 ) {
-    Box(
-        modifier = modifier
-            .clip(MaterialTheme.shapes.medium)
-            .clickable(onClick = onClick)
-            .background(MaterialTheme.colorScheme.surfaceContainer)
+    val lastPlayedRelative: String? = if (savedGame.lastPlayed != null) {
+        remember(savedGame) {
+            DateUtils.getRelativeTimeSpanString(
+                savedGame.lastPlayed.toEpochSecond() * 1000L,
+                ZonedDateTime.now().toEpochSecond() * 1000L,
+                DateUtils.MINUTE_IN_MILLIS
+            ).toString()
+        }
+    } else {
+        null
+    }
+
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        onClick = onClick,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer
+        )
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+        ListItem(
+            leadingContent = {
                 Box(
                     modifier = Modifier
-                        .clip(RoundedCornerShape(4.dp))
-                        .size(130.dp)
-                        .align(Alignment.CenterVertically)
+                        .clip(MaterialTheme.shapes.small)
+                        .size(72.dp)
                 ) {
                     BoardPreview(
                         size = sqrt(board.length.toFloat()).toInt(),
                         boardString = board
                     )
                 }
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                ) {
-                    Text("$difficulty $type")
+            },
+            headlineContent = {
+                Text(
+                    text = "$difficulty $type",
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            },
+            supportingContent = {
+                Column {
                     Text(
                         text = stringResource(
                             R.string.history_item_time,
-                            savedGame.timer
-                                .toKotlinDuration()
-                                .toFormattedString()
+                            savedGame.timer.toKotlinDuration().toFormattedString()
                         )
                     )
-                    if (savedGame.lastPlayed != null) {
-                        val lastPlayedRelative by remember(savedGame) {
-                            mutableStateOf(
-                                DateUtils.getRelativeTimeSpanString(
-                                    savedGame.lastPlayed.toEpochSecond() * 1000L,
-                                    ZonedDateTime.now().toEpochSecond() * 1000L,
-                                    DateUtils.MINUTE_IN_MILLIS
-                                ).toString()
-                            )
-                        }
+                    if (lastPlayedRelative != null) {
                         Text(lastPlayedRelative)
                     }
                 }
-            }
-            IconButton(
-                onClick = onClick
-            ) {
+            },
+            trailingContent = {
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
-        }
+        )
     }
 }
