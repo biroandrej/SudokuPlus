@@ -81,4 +81,8 @@
     <string name="action_show_mine_sudoku">என்னுடையது காட்டு</string>
     <string name="intro_rules">ஒவ்வொரு கட்டத்திலும் 1 முதல் 9 வரை எண்களை இந்த விளையாட்டில் நிரப்ப வேண்டும். அவ்வாறு நிரப்பும் போது நிரலிலோ, நிரையிலோ அல்லது உள்ளிருக்கும் 3x3 சிற்றறையிலோ எந்த எண்ணும் மீண்டும் ஒருமுறை வரக்கூடாது.</string>
     <string name="hints_no_remaining">No hints left for this game</string>
+    <string name="hints_ad_title">Out of hints</string>
+    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
+    <string name="hints_ad_watch">Watch ad</string>
+    <string name="hints_ad_cancel">Not now</string>
 </resources>

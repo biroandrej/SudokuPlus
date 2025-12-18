@@ -23,6 +23,7 @@ import java.time.format.DateTimeFormatterBuilder
 import java.time.format.FormatStyle
 import java.util.Locale
 import javax.inject.Singleton
+import kotlin.random.Random
 
 @Singleton
 class AppSettingsManager(context: Context) {
@@ -43,6 +44,12 @@ class AppSettingsManager(context: Context) {
 
     // number of hints remaining for a specific game (keyed by board uid)
     private fun hintsRemainingKey(gameUid: Long) = intPreferencesKey("hints_remaining_$gameUid")
+
+    // interstitial ad gating
+    private val interstitialGamesCompletedKey =
+        intPreferencesKey("interstitial_games_completed")
+    private val interstitialNextThresholdKey =
+        intPreferencesKey("interstitial_next_threshold")
 
     // show timer
     private val timerKey = booleanPreferencesKey("timer")
@@ -124,7 +131,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val mistakesLimit = dataStore.data.map { preferences ->
-        preferences[mistakesLimitKey] ?: PreferencesConstants.Companion.DEFAULT_MISTAKES_LIMIT
+        preferences[mistakesLimitKey] ?: PreferencesConstants.DEFAULT_MISTAKES_LIMIT
     }
 
     suspend fun setHintsDisabled(disabled: Boolean) {
@@ -134,7 +141,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val hintsDisabled = dataStore.data.map { preferences ->
-        preferences[hintsDisabledKey] ?: PreferencesConstants.Companion.DEFAULT_HINTS_DISABLED
+        preferences[hintsDisabledKey] ?: PreferencesConstants.DEFAULT_HINTS_DISABLED
     }
 
     fun hintsRemaining(gameUid: Long) = dataStore.data.map { preferences ->
@@ -176,6 +183,24 @@ class AppSettingsManager(context: Context) {
         }
     }
 
+    suspend fun shouldShowInterstitialAfterGameComplete(): Boolean {
+        var shouldShow = false
+        dataStore.edit { settings ->
+            val nextThreshold = settings[interstitialNextThresholdKey]
+                ?: Random.nextInt(2, 4)
+            val completedCount = (settings[interstitialGamesCompletedKey] ?: 0) + 1
+            if (completedCount >= nextThreshold) {
+                settings[interstitialGamesCompletedKey] = 0
+                settings[interstitialNextThresholdKey] = Random.nextInt(2, 4)
+                shouldShow = true
+            } else {
+                settings[interstitialGamesCompletedKey] = completedCount
+                settings[interstitialNextThresholdKey] = nextThreshold
+            }
+        }
+        return shouldShow
+    }
+
     suspend fun setTimer(enabled: Boolean) {
         dataStore.edit { settings ->
             settings[timerKey] = enabled
@@ -183,7 +208,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val timerEnabled = dataStore.data.map { preferences ->
-        preferences[timerKey] ?: PreferencesConstants.Companion.DEFAULT_SHOW_TIMER
+        preferences[timerKey] ?: PreferencesConstants.DEFAULT_SHOW_TIMER
     }
 
     suspend fun setResetTimer(enabled: Boolean) {
@@ -193,7 +218,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val resetTimerEnabled = dataStore.data.map { preferences ->
-        preferences[resetTimerKey] ?: PreferencesConstants.Companion.DEFAULT_GAME_RESET_TIMER
+        preferences[resetTimerKey] ?: PreferencesConstants.DEFAULT_GAME_RESET_TIMER
     }
 
     suspend fun setHighlightMistakes(value: Int) {
@@ -203,7 +228,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val highlightMistakes = dataStore.data.map { preferences ->
-        preferences[highlightMistakesKey] ?: PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_MISTAKES
+        preferences[highlightMistakesKey] ?: PreferencesConstants.DEFAULT_HIGHLIGHT_MISTAKES
     }
 
     suspend fun setSameValuesHighlight(enabled: Boolean) {
@@ -213,7 +238,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val highlightIdentical = dataStore.data.map { preferences ->
-        preferences[highlightIdenticalKey] ?: PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_IDENTICAL
+        preferences[highlightIdenticalKey] ?: PreferencesConstants.DEFAULT_HIGHLIGHT_IDENTICAL
     }
 
     suspend fun setRemainingUse(enabled: Boolean) {
@@ -223,7 +248,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val remainingUse = dataStore.data.map { preferences ->
-        preferences[remainingUseKey] ?: PreferencesConstants.Companion.DEFAULT_REMAINING_USES
+        preferences[remainingUseKey] ?: PreferencesConstants.DEFAULT_REMAINING_USES
     }
 
     suspend fun setPositionLines(enabled: Boolean) {
@@ -233,7 +258,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val positionLines = dataStore.data.map { preferences ->
-        preferences[positionLinesKey] ?: PreferencesConstants.Companion.DEFAULT_POSITION_LINES
+        preferences[positionLinesKey] ?: PreferencesConstants.DEFAULT_POSITION_LINES
     }
 
     suspend fun setAutoEraseNotes(enabled: Boolean) {
@@ -243,7 +268,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val autoEraseNotes = dataStore.data.map { preferences ->
-        preferences[autoEraseNotesKey] ?: PreferencesConstants.Companion.DEFAULT_AUTO_ERASE_NOTES
+        preferences[autoEraseNotesKey] ?: PreferencesConstants.DEFAULT_AUTO_ERASE_NOTES
     }
 
     suspend fun setInputMethod(value: Int) {
@@ -253,7 +278,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val inputMethod = dataStore.data.map { preferences ->
-        preferences[inputMethodKey] ?: PreferencesConstants.Companion.DEFAULT_INPUT_METHOD
+        preferences[inputMethodKey] ?: PreferencesConstants.DEFAULT_INPUT_METHOD
     }
 
     suspend fun setFontSize(value: Int) {
@@ -263,7 +288,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val fontSize = dataStore.data.map { preferences ->
-        preferences[fontSizeKey] ?: PreferencesConstants.Companion.DEFAULT_FONT_SIZE_FACTOR
+        preferences[fontSizeKey] ?: PreferencesConstants.DEFAULT_FONT_SIZE_FACTOR
     }
 
     suspend fun setKeepScreenOn(enabled: Boolean) {
@@ -273,7 +298,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val keepScreenOn = dataStore.data.map { preferences ->
-        preferences[keepScreenOnKey] ?: PreferencesConstants.Companion.DEFAULT_KEEP_SCREEN_ON
+        preferences[keepScreenOnKey] ?: PreferencesConstants.DEFAULT_KEEP_SCREEN_ON
     }
 
     suspend fun setFirstGame(value: Boolean) {
@@ -293,7 +318,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val funKeyboardOverNumbers = dataStore.data.map { prefs ->
-        prefs[funKeyboardOverNumKey] ?: PreferencesConstants.Companion.DEFAULT_FUN_KEYBOARD_OVER_NUM
+        prefs[funKeyboardOverNumKey] ?: PreferencesConstants.DEFAULT_FUN_KEYBOARD_OVER_NUM
     }
 
     suspend fun setDateFormat(format: String) {
@@ -317,7 +342,7 @@ class AppSettingsManager(context: Context) {
      */
     val saveSelectedGameDifficultyType = dataStore.data.map { prefs ->
         prefs[saveSelectedGameDifficultyTypeKey]
-            ?: PreferencesConstants.Companion.DEFAULT_SAVE_LAST_SELECTED_DIFF_TYPE
+            ?: PreferencesConstants.DEFAULT_SAVE_LAST_SELECTED_DIFF_TYPE
     }
 
     suspend fun setLastSelectedGameDifficultyType(
@@ -396,7 +421,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val autoBackupInterval = dataStore.data.map { prefs ->
-        prefs[autoBackupIntervalKey] ?: PreferencesConstants.Companion.DEFAULT_AUTOBACKUP_INTERVAL
+        prefs[autoBackupIntervalKey] ?: PreferencesConstants.DEFAULT_AUTOBACKUP_INTERVAL
     }
 
     suspend fun setAutoBackupsNumber(value: Int) {
@@ -406,7 +431,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val autoBackupsNumber = dataStore.data.map { prefs ->
-        prefs[autoBackupsNumberKey] ?: PreferencesConstants.Companion.DEFAULT_AUTO_BACKUPS_NUMBER
+        prefs[autoBackupsNumberKey] ?: PreferencesConstants.DEFAULT_AUTO_BACKUPS_NUMBER
     }
 
     suspend fun setLastBackupDate(date: ZonedDateTime) {
@@ -431,7 +456,7 @@ class AppSettingsManager(context: Context) {
     }
 
     val advancedHintEnabled = dataStore.data.map { settings ->
-        settings[advancedHintKey] ?: PreferencesConstants.Companion.DEFAULT_ADVANCED_HINT
+        settings[advancedHintKey] ?: PreferencesConstants.DEFAULT_ADVANCED_HINT
     }
 
     suspend fun setAdvancedHint(enabled: Boolean) {

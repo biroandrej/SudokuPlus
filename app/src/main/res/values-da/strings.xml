@@ -324,4 +324,8 @@
     <string name="app_version">Version %1$s (%2$s)</string>
     <string name="type_killer_12x12">Killer 12x12</string>
     <string name="hints_no_remaining">No hints left for this game</string>
+    <string name="hints_ad_title">Out of hints</string>
+    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
+    <string name="hints_ad_watch">Watch ad</string>
+    <string name="hints_ad_cancel">Not now</string>
 </resources>
