@@ -20,6 +20,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -41,6 +42,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import sk.awisoft.sudokuplus.BuildConfig
 import sk.awisoft.sudokuplus.R
+import sk.awisoft.sudokuplus.core.DEVELOPER_EMAIL
 import sk.awisoft.sudokuplus.core.GITHUB_REPOSITORY
 import sk.awisoft.sudokuplus.destinations.AboutLibrariesScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
@@ -139,6 +141,12 @@ fun AboutScreen(
                     subtitle = stringResource(R.string.libraries_licenses_title),
                     icon = Icons.Outlined.Info,
                     onClick = { navigator.navigate(AboutLibrariesScreenDestination()) }
+                )
+                AboutSectionBox(
+                    title = stringResource(R.string.about_contact_developer),
+                    subtitle = stringResource(R.string.about_contact_developer_summary),
+                    icon = Icons.Outlined.Email,
+                    onClick = { uriHandler.openUri("mailto:$DEVELOPER_EMAIL") }
                 )
             }
         }

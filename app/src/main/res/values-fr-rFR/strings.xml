@@ -296,6 +296,8 @@
     <string name="libraries_licenses">Licences</string>
     <string name="auto_backups_directory">Répertoire de sauvegarde</string>
     <string name="about_github_source_code">Code source sur GitHub</string>
+    <string name="about_contact_developer">Contact</string>
+    <string name="about_contact_developer_summary">Demandes de fonctionnalités, commentaires ou questions</string>
     <string name="hints_no_remaining">No hints left for this game</string>
     <string name="hints_ad_title">Out of hints</string>
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>

@@ -20,6 +20,8 @@
     <string name="settings_title">அமைவு</string>
     <string name="more_title">மேலும்</string>
     <string name="about_title">பற்றி</string>
+    <string name="about_contact_developer">தொடர்பு</string>
+    <string name="about_contact_developer_summary">அம்ச கோரிக்கைகள், கருத்துகள் அல்லது கேள்விகள்</string>
     <string name="pref_appearance">தோற்றம்</string>
     <string name="pref_dark_theme">இருள் வடிவு</string>
     <string name="pref_dark_theme_follow">முன்னமைவு வடிவு</string>

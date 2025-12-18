@@ -125,6 +125,8 @@
     <string name="pref_auto_erase_notes">Automatické mazání poznámek</string>
     <string name="label_default">Výchozí</string>
     <string name="about_version">Verze</string>
+    <string name="about_contact_developer">Kontakt</string>
+    <string name="about_contact_developer_summary">Požadavky na funkce, zpětná vazba nebo dotazy</string>
     <string name="action_reset_game">Resetovat hru</string>
     <string name="pref_mistakes_limit">Limit chyb</string>
     <string name="pref_disable_hints_summ">Nemáte rádi nápovědy\? Prostě je vypněte!</string>

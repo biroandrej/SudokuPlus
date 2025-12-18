@@ -18,6 +18,8 @@
     <string name="type_default_9x9">9x9</string>
     <string name="more_title">Meir</string>
     <string name="about_title">Om</string>
+    <string name="about_contact_developer">Kontakt</string>
+    <string name="about_contact_developer_summary">Funksjonskrav, tilbakemeldingar eller spørsmål</string>
     <string name="pref_dark_theme">Mørk vising</string>
     <string name="pref_dark_theme_follow">Lyd systemet</string>
     <string name="pref_dark_theme_off">Av</string>
