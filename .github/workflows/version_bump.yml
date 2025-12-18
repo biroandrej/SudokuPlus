@@ -4,18 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version number (e.g., 2.1.0)'
+        description: 'Version number (e.g., 2.1.0 or 2.1.0-beta01)'
         required: true
         type: string
       changelog:
         description: 'Changelog entry for this version'
         required: true
         type: string
-      prerelease:
-        description: 'Is this a pre-release? (beta, alpha, rc)'
-        required: false
-        type: boolean
-        default: false
 
 jobs:
   bump_version:
@@ -25,10 +20,22 @@ jobs:
       contents: write
 
     steps:
+      - name: Validate version format
+        run: |
+          VERSION="${{ inputs.version }}"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
+            echo "❌ Invalid version format: $VERSION"
+            echo "Expected format: X.Y.Z or X.Y.Z-suffix (e.g., 2.1.0 or 2.1.0-beta01)"
+            exit 1
+          fi
+          echo "✅ Version format valid: $VERSION"
+
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Use PAT if available for triggering other workflows, otherwise GITHUB_TOKEN
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Configure Git
         run: |
@@ -38,11 +45,12 @@ jobs:
       - name: Extract current version code
         id: current_version
         run: |
-          VERSION_CODE=$(grep -oP 'versionCode\s*=\s*\K\d+' app/build.gradle.kts)
+          VERSION_CODE=$(grep 'versionCode' app/build.gradle.kts | head -1 | sed 's/[^0-9]*//g')
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "Current version code: $VERSION_CODE"
 
       - name: Bump version in build.gradle.kts
+        id: new_version
         run: |
           NEW_VERSION_CODE=$((${{ steps.current_version.outputs.version_code }} + 1))
 
@@ -50,42 +58,54 @@ jobs:
           sed -i "s/versionCode = [0-9]*/versionCode = $NEW_VERSION_CODE/" app/build.gradle.kts
 
           # Update versionName
-          sed -i "s/versionName = \"[^\"]*\"/versionName = \"${{ inputs.version }}\"/" app/build.gradle.kts
+          sed -i 's/versionName = "[^"]*"/versionName = "${{ inputs.version }}"/' app/build.gradle.kts
 
+          echo "new_version_code=$NEW_VERSION_CODE" >> $GITHUB_OUTPUT
           echo "Updated to version ${{ inputs.version }} (code: $NEW_VERSION_CODE)"
-          echo "new_version_code=$NEW_VERSION_CODE" >> $GITHUB_ENV
 
       - name: Create changelog file
         run: |
           mkdir -p fastlane/metadata/android/en-US/changelogs
-          echo "${{ inputs.changelog }}" > "fastlane/metadata/android/en-US/changelogs/${{ env.new_version_code }}.txt"
+          # Write changelog to file safely (handles special characters)
+          cat > "fastlane/metadata/android/en-US/changelogs/${{ steps.new_version.outputs.new_version_code }}.txt" << 'CHANGELOG_EOF'
+          ${{ inputs.changelog }}
+          CHANGELOG_EOF
 
       - name: Update CHANGELOG.md
         run: |
           DATE=$(date +%Y-%m-%d)
           VERSION="${{ inputs.version }}"
-          CHANGELOG="${{ inputs.changelog }}"
 
-          # Create temp file with new entry
-          cat > /tmp/new_entry.txt << EOF
+          # Create the new entry in a temp file
+          {
+            echo ""
+            echo "## [$VERSION] - $DATE"
+            echo ""
+            cat << 'CHANGELOG_EOF'
+          ${{ inputs.changelog }}
+          CHANGELOG_EOF
+          } > /tmp/new_entry.txt
 
-          ## [$VERSION] - $DATE
-
-          $CHANGELOG
-          EOF
-
-          # Insert after the header (line 7, after the semver link)
-          head -n 7 CHANGELOG.md > /tmp/changelog_new.md
-          cat /tmp/new_entry.txt >> /tmp/changelog_new.md
-          tail -n +8 CHANGELOG.md >> /tmp/changelog_new.md
-          mv /tmp/changelog_new.md CHANGELOG.md
+          # Find the line with first ## entry and insert before it
+          if grep -n "^## \[" CHANGELOG.md | head -1 | cut -d: -f1 > /tmp/line_num; then
+            LINE_NUM=$(cat /tmp/line_num)
+            if [ -n "$LINE_NUM" ]; then
+              head -n $((LINE_NUM - 1)) CHANGELOG.md > /tmp/changelog_new.md
+              cat /tmp/new_entry.txt >> /tmp/changelog_new.md
+              tail -n +$LINE_NUM CHANGELOG.md >> /tmp/changelog_new.md
+              mv /tmp/changelog_new.md CHANGELOG.md
+            fi
+          else
+            # If no existing entries, append to end
+            cat /tmp/new_entry.txt >> CHANGELOG.md
+          fi
 
       - name: Commit changes
         run: |
           git add app/build.gradle.kts
           git add fastlane/metadata/android/en-US/changelogs/
           git add CHANGELOG.md
-          git commit -m "chore(release): bump version to ${{ inputs.version }} (${{ env.new_version_code }})"
+          git commit -m "chore(release): bump version to ${{ inputs.version }} (${{ steps.new_version.outputs.new_version_code }})"
 
       - name: Create and push tag
         run: |
@@ -98,7 +118,14 @@ jobs:
           echo "## Release Prepared" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Version:** ${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Version Code:** ${{ env.new_version_code }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version Code:** ${{ steps.new_version.outputs.new_version_code }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Tag:** v${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "The release workflow will now automatically build and publish the APKs." >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ secrets.PAT_TOKEN }}" ]; then
+            echo "✅ Using PAT_TOKEN - release workflow will be triggered automatically." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Using GITHUB_TOKEN - release workflow may NOT trigger automatically." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "To enable automatic triggering, create a Personal Access Token (PAT) with 'repo' scope" >> $GITHUB_STEP_SUMMARY
+            echo "and add it as a secret named \`PAT_TOKEN\`." >> $GITHUB_STEP_SUMMARY
+          fi

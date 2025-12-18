@@ -20,8 +20,8 @@ jobs:
       - name: Extract version from build.gradle.kts
         id: version
         run: |
-          VERSION_NAME=$(grep -oP 'versionName\s*=\s*"\K[^"]+' app/build.gradle.kts)
-          VERSION_CODE=$(grep -oP 'versionCode\s*=\s*\K\d+' app/build.gradle.kts)
+          VERSION_NAME=$(grep 'versionName' app/build.gradle.kts | head -1 | sed 's/.*"\(.*\)".*/\1/')
+          VERSION_CODE=$(grep 'versionCode' app/build.gradle.kts | head -1 | sed 's/[^0-9]*//g')
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "Extracted version: $VERSION_NAME (code: $VERSION_CODE)"
@@ -41,6 +41,14 @@ jobs:
       - name: Build Release APKs and AABs
         run: ./gradlew assembleRelease bundleRelease
 
+      - name: Get Build Tools Version
+        id: build_tools
+        run: |
+          # Get the latest installed build tools version
+          BUILD_TOOLS=$(ls $ANDROID_HOME/build-tools/ | sort -V | tail -1)
+          echo "version=$BUILD_TOOLS" >> $GITHUB_OUTPUT
+          echo "Using Build Tools: $BUILD_TOOLS"
+
       - name: Sign prod APK
         uses: ilharp/sign-android-release@v1
         id: sign_prod
@@ -50,7 +58,7 @@ jobs:
           keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          buildToolsVersion: 35.0.0
+          buildToolsVersion: ${{ steps.build_tools.outputs.version }}
 
       - name: Sign dev APK
         uses: ilharp/sign-android-release@v1
@@ -61,7 +69,7 @@ jobs:
           keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          buildToolsVersion: 35.0.0
+          buildToolsVersion: ${{ steps.build_tools.outputs.version }}
 
       - name: Sign prod AAB
         uses: ilharp/sign-android-release@v1
@@ -72,7 +80,7 @@ jobs:
           keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          buildToolsVersion: 35.0.0
+          buildToolsVersion: ${{ steps.build_tools.outputs.version }}
 
       - name: Sign dev AAB
         uses: ilharp/sign-android-release@v1
@@ -83,7 +91,7 @@ jobs:
           keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          buildToolsVersion: 35.0.0
+          buildToolsVersion: ${{ steps.build_tools.outputs.version }}
 
       - name: Rename APKs and AABs
         run: |
@@ -125,9 +133,10 @@ jobs:
           VERSION_CODE="${{ needs.build.outputs.version_code }}"
           CHANGELOG_FILE="fastlane/metadata/android/en-US/changelogs/${VERSION_CODE}.txt"
           if [ -f "$CHANGELOG_FILE" ]; then
-            echo "changelog<<EOF" >> $GITHUB_OUTPUT
+            # Use delimiter to handle multiline and special characters
+            echo "changelog<<CHANGELOG_EOF" >> $GITHUB_OUTPUT
             cat "$CHANGELOG_FILE" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
+            echo "CHANGELOG_EOF" >> $GITHUB_OUTPUT
           else
             echo "changelog=Release ${{ needs.build.outputs.version_name }}" >> $GITHUB_OUTPUT
           fi
