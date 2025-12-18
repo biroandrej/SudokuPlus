@@ -29,6 +29,7 @@ espressoCore = "3.6.1"
 foundationAndroid = "1.7.5"
 graphicsShape = "1.0.1"
 composeMarkdown = "0.5.4"
+playServicesAds = "23.4.0"
 
 [libraries]
 # Android App
@@ -89,6 +90,7 @@ serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serializ
 aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose", version.ref = "aboutLibraries" }
 composeMarkdown = { group = "com.github.jeziellago", name = "compose-markdown", version.ref = "composeMarkdown"}
 materialKolor = { group = "com.materialkolor", name = "material-kolor", version.ref = "materialKolor" }
+play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

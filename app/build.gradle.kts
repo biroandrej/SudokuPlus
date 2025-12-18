@@ -50,6 +50,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField(
+                "String",
+                "ADMOB_REWARDED_AD_UNIT_ID",
+                "\"ca-app-pub-3940256099942544/5224354917\""
+            )
+        }
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -58,6 +65,7 @@ android {
             } else {
                 null // CI will sign separately
             }
+            buildConfigField("String", "ADMOB_REWARDED_AD_UNIT_ID", "\"\"")
         }
     }
 
@@ -144,4 +152,6 @@ dependencies {
     implementation(libs.materialKolor)
 
     implementation(libs.composeMarkdown)
+
+    add("prodImplementation", libs.play.services.ads)
 }
