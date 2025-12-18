@@ -60,7 +60,9 @@ class CrashActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val viewModel: CrashViewModel = hiltViewModel()
-            val dynamicColors by viewModel.dc.collectAsStateWithLifecycle(isSystemInDarkTheme())
+            val dynamicColors by viewModel.dc.collectAsStateWithLifecycle(
+                PreferencesConstants.DEFAULT_DYNAMIC_COLORS
+            )
             val darkTheme by viewModel.darkTheme.collectAsStateWithLifecycle(PreferencesConstants.DEFAULT_DARK_THEME)
             val amoledBlack by viewModel.amoledBlack.collectAsStateWithLifecycle(
                 PreferencesConstants.DEFAULT_AMOLED_BLACK

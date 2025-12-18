@@ -63,13 +63,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         if (!BuildConfig.DEBUG) {
-            GlobalExceptionHandler.Companion.initialize(applicationContext, CrashActivity::class.java)
+            GlobalExceptionHandler.initialize(applicationContext, CrashActivity::class.java)
         }
 
         setContent {
             val mainViewModel: MainActivityViewModel = hiltViewModel()
 
-            val dynamicColors by mainViewModel.dc.collectAsStateWithLifecycle(isSystemInDarkTheme())
+            val dynamicColors by mainViewModel.dc.collectAsStateWithLifecycle(
+                PreferencesConstants.DEFAULT_DYNAMIC_COLORS
+            )
             val darkTheme by mainViewModel.darkTheme.collectAsStateWithLifecycle(
                 PreferencesConstants.DEFAULT_DARK_THEME)
             val amoledBlack by mainViewModel.amoledBlack.collectAsStateWithLifecycle(
@@ -111,9 +113,8 @@ class MainActivity : ComponentActivity() {
                 }
 
                 val monetSudokuBoard by mainViewModel.monetSudokuBoard.collectAsStateWithLifecycle(
-                    initialValue = PreferencesConstants.Companion.DEFAULT_MONET_SUDOKU_BOARD
+                    initialValue = PreferencesConstants.DEFAULT_MONET_SUDOKU_BOARD
                 )
-
                 val boardColors =
                     if (monetSudokuBoard) {
                         SudokuBoardColorsImpl(
