@@ -36,6 +36,8 @@
     <string name="difficulty_unspecified">Niezdefiniowany</string>
     <string name="difficulty_simple">Proste</string>
     <string name="about_title">O alikacji</string>
+    <string name="about_contact_developer">Kontakt</string>
+    <string name="about_contact_developer_summary">Prośby o funkcje, opinie lub pytania</string>
     <string name="pref_save_last_diff_and_type">Zapamiętaj typ i poziom trudności</string>
     <string name="pref_dark_theme_follow">Motyw systemu</string>
     <string name="pref_board_font_size">Wielkość czcionki planszy</string>

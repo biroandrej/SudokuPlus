@@ -18,6 +18,8 @@
     <string name="type_unspecified">Meghatározatlan</string>
     <string name="more_title">Több</string>
     <string name="about_title">Névjegy</string>
+    <string name="about_contact_developer">Kapcsolat</string>
+    <string name="about_contact_developer_summary">Funkciókérések, visszajelzés vagy kérdések</string>
     <string name="pref_appearance">Megjelenés</string>
     <string name="pref_dark_theme">Sötét téma</string>
     <string name="pref_dark_theme_off">Ki</string>

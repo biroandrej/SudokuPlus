@@ -17,6 +17,8 @@
     <string name="dialog_new_game_text">Teniu un joc inacabat, de veritat en voleu començar un de nou\?</string>
     <string name="difficulty_easy">Fàcil</string>
     <string name="about_title">Quant a</string>
+    <string name="about_contact_developer">Contacte</string>
+    <string name="about_contact_developer_summary">Sol·licituds de funcions, comentaris o preguntes</string>
     <string name="difficulty_moderate">Moderat</string>
     <string name="type_default_9x9">9x9</string>
     <string name="pref_dark_theme">Tema fosc</string>
