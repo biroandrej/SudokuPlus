@@ -18,9 +18,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -45,6 +47,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -62,6 +66,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -76,6 +81,7 @@ import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintData
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
 import sk.awisoft.sudokuplus.destinations.SettingsAdvancedHintScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsCategoriesScreenDestination
+import sk.awisoft.sudokuplus.ads.AdsManager
 import sk.awisoft.sudokuplus.ui.components.AdvancedHintContainer
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.board.Board
@@ -87,9 +93,11 @@ import sk.awisoft.sudokuplus.ui.game.components.ToolbarItem
 import sk.awisoft.sudokuplus.ui.game.components.ToolbarItemHeight
 import sk.awisoft.sudokuplus.ui.game.components.UndoRedoMenu
 import sk.awisoft.sudokuplus.ui.onboarding.FirstGameDialog
+import sk.awisoft.sudokuplus.ui.util.findActivity
 import sk.awisoft.sudokuplus.ui.util.ReverseArrangement
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlinx.coroutines.launch
 import kotlin.collections.filter
 import kotlin.collections.plus
 
@@ -107,6 +115,7 @@ fun GameScreen(
     val clipboardManager = LocalClipboardManager.current
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
+    val snackbarScope = rememberCoroutineScope()
 
     val firstGame by viewModel.firstGame.collectAsStateWithLifecycle(initialValue = false)
     val resetTimer by viewModel.resetTimerOnRestart.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_GAME_RESET_TIMER)
@@ -144,6 +153,13 @@ fun GameScreen(
         KeepScreenOn()
     }
 
+    var showRewardedHintDialog by rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        AdsManager.preloadInterstitial(context)
+        AdsManager.preloadRewarded(context)
+    }
+
     if (firstGame) {
         viewModel.pauseTimer()
         FirstGameDialog(
@@ -175,12 +191,72 @@ fun GameScreen(
                 GameViewModel.UiEvent.NoHintsRemaining -> {
                     snackbarHostState.showSnackbar(context.getString(R.string.hints_no_remaining))
                 }
+                GameViewModel.UiEvent.ShowInterstitial -> {
+                    context.findActivity()?.let { activity ->
+                        AdsManager.showInterstitialIfAvailable(activity)
+                    }
+                }
+                GameViewModel.UiEvent.RequestRewardedHint -> {
+                    showRewardedHintDialog = true
+                }
             }
         }
     }
 
+    if (showRewardedHintDialog) {
+        AlertDialog(
+            title = { Text(stringResource(R.string.hints_ad_title)) },
+            text = { Text(stringResource(R.string.hints_ad_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showRewardedHintDialog = false
+                        val activity = context.findActivity()
+                        if (activity == null) {
+                            snackbarScope.launch {
+                                snackbarHostState.showSnackbar(
+                                    context.getString(R.string.hints_no_remaining)
+                                )
+                            }
+                            return@TextButton
+                        }
+                        val shown = AdsManager.showRewardedIfAvailable(activity) {
+                            viewModel.applyRewardedHint()
+                        }
+                        if (!shown) {
+                            snackbarScope.launch {
+                                snackbarHostState.showSnackbar(
+                                    context.getString(R.string.hints_no_remaining)
+                                )
+                            }
+                        }
+                    }
+                ) {
+                    Text(stringResource(R.string.hints_ad_watch))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showRewardedHintDialog = false }) {
+                    Text(stringResource(R.string.hints_ad_cancel))
+                }
+            },
+            onDismissRequest = { showRewardedHintDialog = false }
+        )
+    }
+
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
+        bottomBar = {
+            Column(
+                modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars)
+            ) {
+                AdsManager.BannerAd(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                )
+            }
+        },
         topBar = {
             CenterAlignedTopAppBar(
                 title = { },

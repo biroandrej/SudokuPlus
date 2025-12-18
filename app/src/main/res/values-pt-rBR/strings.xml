@@ -314,4 +314,8 @@
     <string name="onboard_restore_backup">Restaurar backup</string>
     <string name="onboard_restore_backup_description">Você já tem um backup? Restaure-o agora</string>
     <string name="hints_no_remaining">No hints left for this game</string>
+    <string name="hints_ad_title">Out of hints</string>
+    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
+    <string name="hints_ad_watch">Watch ad</string>
+    <string name="hints_ad_cancel">Not now</string>
 </resources>

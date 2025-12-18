@@ -297,4 +297,8 @@
     <string name="auto_backups_directory">Répertoire de sauvegarde</string>
     <string name="about_github_source_code">Code source sur GitHub</string>
     <string name="hints_no_remaining">No hints left for this game</string>
+    <string name="hints_ad_title">Out of hints</string>
+    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
+    <string name="hints_ad_watch">Watch ad</string>
+    <string name="hints_ad_cancel">Not now</string>
 </resources>

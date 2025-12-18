@@ -335,4 +335,8 @@
     <string name="settings_advanced_hint_category_techniques">Teknikler</string>
     <string name="hint_full_house_group_detail">%1$s Hücresi bu kutudaki son boş hücre olduğundan, onu %2$s ile doldurabilrsin</string>
     <string name="hints_no_remaining">No hints left for this game</string>
+    <string name="hints_ad_title">Out of hints</string>
+    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
+    <string name="hints_ad_watch">Watch ad</string>
+    <string name="hints_ad_cancel">Not now</string>
 </resources>

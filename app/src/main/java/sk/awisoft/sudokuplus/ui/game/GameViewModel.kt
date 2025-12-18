@@ -72,6 +72,8 @@ class GameViewModel @Inject constructor(
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
+        data object ShowInterstitial : UiEvent
+        data object RequestRewardedHint : UiEvent
     }
 
     private val _uiEvents = MutableSharedFlow<UiEvent>(extraBufferCapacity = 1)
@@ -517,7 +519,7 @@ class GameViewModel @Inject constructor(
                         if (consumed) {
                             applyHint()
                         } else {
-                            _uiEvents.emit(UiEvent.NoHintsRemaining)
+                            _uiEvents.emit(UiEvent.RequestRewardedHint)
                         }
                     }
                 }
@@ -593,6 +595,16 @@ class GameViewModel @Inject constructor(
         notesTaken = 0
     }
 
+    fun applyRewardedHint() {
+        if (canApplyHint()) {
+            applyHint()
+        } else {
+            viewModelScope.launch(Dispatchers.IO) {
+                appSettingsManager.grantHints(gameUid, amount = 1)
+            }
+        }
+    }
+
     private fun isValidCell(
         board: List<List<Cell>> = getBoardNoRef(),
         cell: Cell
@@ -626,6 +638,9 @@ class GameViewModel @Inject constructor(
                         finishedAt = ZonedDateTime.now()
                     )
                 )
+            }
+            if (appSettingsManager.shouldShowInterstitialAfterGameComplete()) {
+                _uiEvents.emit(UiEvent.ShowInterstitial)
             }
         }
         return true

@@ -56,6 +56,16 @@ android {
                 "ADMOB_REWARDED_AD_UNIT_ID",
                 "\"ca-app-pub-3940256099942544/5224354917\""
             )
+            buildConfigField(
+                "String",
+                "ADMOB_INTERSTITIAL_AD_UNIT_ID",
+                "\"ca-app-pub-3940256099942544/1033173712\""
+            )
+            buildConfigField(
+                "String",
+                "ADMOB_BANNER_AD_UNIT_ID",
+                "\"ca-app-pub-3940256099942544/6300978111\""
+            )
         }
         release {
             isMinifyEnabled = true
@@ -65,7 +75,21 @@ android {
             } else {
                 null // CI will sign separately
             }
-            buildConfigField("String", "ADMOB_REWARDED_AD_UNIT_ID", "\"\"")
+            buildConfigField(
+                "String",
+                "ADMOB_REWARDED_AD_UNIT_ID",
+                "\"ca-app-pub-7274028794873245/1430859443\""
+            )
+            buildConfigField(
+                "String",
+                "ADMOB_INTERSTITIAL_AD_UNIT_ID",
+                "\"ca-app-pub-7274028794873245/8455432793\""
+            )
+            buildConfigField(
+                "String",
+                "ADMOB_BANNER_AD_UNIT_ID",
+                "\"ca-app-pub-7274028794873245/2613731562\""
+            )
         }
     }
 

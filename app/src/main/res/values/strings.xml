@@ -270,6 +270,10 @@
     <string name="pref_save_last_diff_and_type_subtitle">Remember the last game\'s type and difficulty</string>
     <string name="hints_used">Hints: %1$d</string>
     <string name="hints_no_remaining">No hints left for this game</string>
+    <string name="hints_ad_title">Out of hints</string>
+    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
+    <string name="hints_ad_watch">Watch ad</string>
+    <string name="hints_ad_cancel">Not now</string>
     <string name="mistakes_made">Mistakes: %1$d</string>
     <string name="notes_taken">Notes: %1$d</string>
     <string name="stat_time_current">Current: %1$s</string>
