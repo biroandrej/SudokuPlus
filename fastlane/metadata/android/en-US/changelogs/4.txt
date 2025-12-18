@@ -1,6 +1,1 @@
-New:
-Folders
-Importing files
-More customizations, improvements and bug fixes
-
-Full changelogs available on GitHub
+first release version, the same as rc-01

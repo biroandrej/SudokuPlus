@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+
+## [1.0.0] - 2025-12-18
+
+first release version, the same as rc-01
 ## [1.0.0-rc01] - 2025-12-18
 
 first release candidate of the sudoku plus app
