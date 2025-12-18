@@ -60,7 +60,7 @@ fun KeyboardItem(
 
     // Numpad text: Soft Cream in light mode, Deepest Slate in dark mode
     val textColor = if (isDarkTheme) {
-        if (selected) SudokuPlusColors.SoftCream else SudokuPlusColors.DeepestSlate
+        if (selected) SudokuPlusColors.SoftCream else SudokuPlusColors.MutedTeal
     } else {
         if (selected) SudokuPlusColors.SoftCream else SudokuPlusColors.DeepSlateBlue
     }

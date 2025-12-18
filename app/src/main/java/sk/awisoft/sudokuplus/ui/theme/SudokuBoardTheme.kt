@@ -38,9 +38,9 @@ object BoardColors {
     inline val highlightColor: Color
         @Composable
         get() = if (isSystemInDarkTheme()) {
-            SudokuPlusColors.WarmCoralLight.copy(alpha = 0.4f)
+            SudokuPlusColors.SurfaceContainerLight.copy(alpha = 0.4f)
         } else {
-            SudokuPlusColors.WarmCoral.copy(alpha = 0.35f)
+            SudokuPlusColors.MutedTeal.copy(alpha = 0.35f)
         }
 
     // Thick grid lines (3x3 box separators) - Deep Slate Blue (light) / Soft Cream (dark)
