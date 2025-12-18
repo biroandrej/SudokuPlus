@@ -25,8 +25,8 @@ android {
         applicationId = "sk.awisoft.sudokuplus"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.0-alpha02"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -50,6 +50,23 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField(
+                "String",
+                "ADMOB_REWARDED_AD_UNIT_ID",
+                "\"ca-app-pub-3940256099942544/5224354917\""
+            )
+            buildConfigField(
+                "String",
+                "ADMOB_INTERSTITIAL_AD_UNIT_ID",
+                "\"ca-app-pub-3940256099942544/1033173712\""
+            )
+            buildConfigField(
+                "String",
+                "ADMOB_BANNER_AD_UNIT_ID",
+                "\"ca-app-pub-3940256099942544/6300978111\""
+            )
+        }
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -58,6 +75,21 @@ android {
             } else {
                 null // CI will sign separately
             }
+            buildConfigField(
+                "String",
+                "ADMOB_REWARDED_AD_UNIT_ID",
+                "\"ca-app-pub-7274028794873245/1430859443\""
+            )
+            buildConfigField(
+                "String",
+                "ADMOB_INTERSTITIAL_AD_UNIT_ID",
+                "\"ca-app-pub-7274028794873245/8455432793\""
+            )
+            buildConfigField(
+                "String",
+                "ADMOB_BANNER_AD_UNIT_ID",
+                "\"ca-app-pub-7274028794873245/2613731562\""
+            )
         }
     }
 
@@ -144,4 +176,6 @@ dependencies {
     implementation(libs.materialKolor)
 
     implementation(libs.composeMarkdown)
+
+    add("prodImplementation", libs.play.services.ads)
 }

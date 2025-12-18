@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import kotlin.system.exitProcess
 
 class GlobalExceptionHandler<T : Activity> private constructor(
     private val applicationContext: Context,
@@ -16,7 +15,7 @@ class GlobalExceptionHandler<T : Activity> private constructor(
         runCatching {
             Log.e(this.toString(), p1.stackTraceToString())
             applicationContext.launchActivity(activityToBeLaunched, p1)
-            exitProcess(0)
+            defaultHandler.uncaughtException(p0, p1)
         }.getOrElse {
             defaultHandler.uncaughtException(p0, p1)
         }

@@ -53,10 +53,10 @@ fun SettingsAppearanceScreen(
     var dateFormatDialog by rememberSaveable { mutableStateOf(false) }
     var customFormatDialog by rememberSaveable { mutableStateOf(false) }
 
-    val darkTheme by viewModel.darkTheme.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_DARK_THEME)
+    val darkTheme by viewModel.darkTheme.collectAsStateWithLifecycle(initialValue = PreferencesConstants.DEFAULT_DARK_THEME)
     val dateFormat by viewModel.dateFormat.collectAsStateWithLifecycle(initialValue = "")
-    val dynamicColors by viewModel.dynamicColors.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_DYNAMIC_COLORS)
-    val amoledBlack by viewModel.amoledBlack.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_AMOLED_BLACK)
+    val dynamicColors by viewModel.dynamicColors.collectAsStateWithLifecycle(initialValue = PreferencesConstants.DEFAULT_DYNAMIC_COLORS)
+    val amoledBlack by viewModel.amoledBlack.collectAsStateWithLifecycle(initialValue = PreferencesConstants.DEFAULT_AMOLED_BLACK)
 
     SettingsScaffoldLazyColumn(
         titleText = stringResource(R.string.pref_appearance),
@@ -117,7 +117,7 @@ fun SettingsAppearanceScreen(
                     title = stringResource(R.string.pref_date_format),
                     subtitle = "${dateFormat.ifEmpty { stringResource(R.string.label_default) }} (${
                         ZonedDateTime.now()
-                            .format(AppSettingsManager.Companion.dateFormat(dateFormat))
+                            .format(AppSettingsManager.dateFormat(dateFormat))
                     })",
                     onClick = { dateFormatDialog = true },
                     painter = rememberVectorPainter(Icons.Outlined.EditCalendar)
