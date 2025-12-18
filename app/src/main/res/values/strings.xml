@@ -360,4 +360,17 @@
     <string name="advanced_hint_no_hint_title">No hint</string>
     <string name="export_empty_cell">Empty cell</string>
     <string name="font_size_automatic">Automatic</string>
+    <string name="action_back">Back</string>
+    <string name="game_mistakes">Mistakes</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Daily Challenge</string>
+    <string name="daily_challenge_subtitle">New puzzle every day</string>
+    <string name="daily_streak">%d day streak</string>
+    <string name="daily_completed">Completed!</string>
+    <string name="daily_play">Play</string>
+    <string name="daily_continue">Continue</string>
+    <string name="view_calendar">Calendar</string>
+    <string name="daily_challenge_calendar">Challenge Calendar</string>
+    <string name="total_completed">Total Completed</string>
 </resources>

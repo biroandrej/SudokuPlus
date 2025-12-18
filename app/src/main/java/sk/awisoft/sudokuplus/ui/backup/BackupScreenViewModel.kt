@@ -11,6 +11,7 @@ import sk.awisoft.sudokuplus.data.backup.SettingsBackup
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
+import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.DatabaseRepository
 import sk.awisoft.sudokuplus.domain.repository.FolderRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
@@ -37,6 +38,7 @@ class BackupScreenViewModel @Inject constructor(
     private val folderRepository: FolderRepository,
     private val recordRepository: RecordRepository,
     private val savedGameRepository: SavedGameRepository,
+    private val dailyChallengeRepository: DailyChallengeRepository,
     private val databaseRepository: DatabaseRepository
 ) : ViewModel() {
     val backupUri = appSettingsManager.backupUri.stateIn(
@@ -64,6 +66,7 @@ class BackupScreenViewModel @Inject constructor(
             val folders = runBlocking { folderRepository.getAll().first() }
             val records = runBlocking { recordRepository.getAll().first() }
             val savedGames = runBlocking { savedGameRepository.getAll().first() }
+            val dailyChallenges = runBlocking { dailyChallengeRepository.getAll().first() }
 
             backupData = BackupData(
                 appVersionName = BuildConfig.VERSION_NAME + if (FlavorUtil.isFoss()) "-FOSS" else "",
@@ -73,6 +76,7 @@ class BackupScreenViewModel @Inject constructor(
                 folders = folders,
                 records = records,
                 savedGames = savedGames,
+                dailyChallenges = dailyChallenges,
                 settings = if (backupSettings) SettingsBackup.Companion.getSettings(
                     appSettingsManager,
                     themeSettingsManager
@@ -146,6 +150,10 @@ class BackupScreenViewModel @Inject constructor(
                         boardRepository.insert(backup.boards)
                         savedGameRepository.insert(backup.savedGames)
                         recordRepository.insert(backup.records)
+                    }
+
+                    if (backup.dailyChallenges.isNotEmpty()) {
+                        dailyChallengeRepository.insertAll(backup.dailyChallenges)
                     }
 
                     backup.settings?.setSettings(appSettingsManager, themeSettingsManager)
