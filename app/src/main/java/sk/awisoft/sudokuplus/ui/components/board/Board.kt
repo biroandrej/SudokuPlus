@@ -563,13 +563,13 @@ private fun BoardPreviewLight() {
                 selectedCell = Cell(-1, -1),
                 onClick = { },
                 boardColors = SudokuBoardColorsImpl(
-                    foregroundColor = BoardColors.foregroundColor,
-                    notesColor = BoardColors.notesColor,
-                    altForegroundColor = BoardColors.altForegroundColor,
-                    errorColor = BoardColors.errorColor,
-                    highlightColor = BoardColors.highlightColor,
-                    thickLineColor = BoardColors.thickLineColor,
-                    thinLineColor = BoardColors.thinLineColor
+                    foregroundColor = BoardColors.foregroundColor(),
+                    notesColor = BoardColors.notesColor(),
+                    altForegroundColor = BoardColors.altForegroundColor(),
+                    errorColor = BoardColors.errorColor(),
+                    highlightColor = BoardColors.highlightColor(),
+                    thickLineColor = BoardColors.thickLineColor(),
+                    thinLineColor = BoardColors.thinLineColor()
                 )
             )
         }
