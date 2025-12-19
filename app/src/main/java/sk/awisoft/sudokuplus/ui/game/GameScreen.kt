@@ -79,12 +79,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.PreferencesConstants
+import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintData
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
 import sk.awisoft.sudokuplus.destinations.SettingsAdvancedHintScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsCategoriesScreenDestination
 import sk.awisoft.sudokuplus.ads.AdsManager
+import sk.awisoft.sudokuplus.ui.achievements.AchievementUnlockDialog
 import sk.awisoft.sudokuplus.ui.components.AdvancedHintContainer
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.board.Board
@@ -166,6 +168,7 @@ fun GameScreen(
     }
 
     var showRewardedHintDialog by rememberSaveable { mutableStateOf(false) }
+    var unlockedAchievements by remember { mutableStateOf<List<AchievementDefinition>>(emptyList()) }
 
     LaunchedEffect(Unit) {
         AdsManager.preloadInterstitial(context)
@@ -210,6 +213,9 @@ fun GameScreen(
                 }
                 GameViewModel.UiEvent.RequestRewardedHint -> {
                     showRewardedHintDialog = true
+                }
+                is GameViewModel.UiEvent.AchievementsUnlocked -> {
+                    unlockedAchievements = event.achievements
                 }
             }
         }
@@ -726,6 +732,14 @@ fun GameScreen(
                 viewModel.giveUpDialog = false
                 viewModel.startTimer()
             },
+        )
+    }
+
+    // Achievement unlock dialog
+    if (unlockedAchievements.isNotEmpty()) {
+        AchievementUnlockDialog(
+            achievements = unlockedAchievements,
+            onDismiss = { unlockedAchievements = emptyList() }
         )
     }
 

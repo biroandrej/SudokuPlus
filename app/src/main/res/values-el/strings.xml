@@ -300,9 +300,129 @@
     <string name="action_grant">Χορήγηση άδειας</string>
     <string name="autobackup_never">Ποτέ</string>
     <string name="restore_existing_data_alert">Τα υπάρχοντα δεδομένα θα διαγραφούν!</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Δεν απομένουν υποδείξεις για αυτό το παιχνίδι</string>
+    <string name="hints_ad_title">Τέλος υποδείξεων</string>
+    <string name="hints_ad_message">Παρακολουθήστε μια σύντομη διαφήμιση για να αποκαλυφθεί μια υπόδειξη;</string>
+    <string name="hints_ad_watch">Παρακολούθηση διαφήμισης</string>
+    <string name="hints_ad_cancel">Όχι τώρα</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Ημερήσια Πρόκληση</string>
+    <string name="daily_challenge_subtitle">Νέο παζλ κάθε μέρα</string>
+    <string name="daily_streak">%d ημέρες σερί</string>
+    <string name="daily_completed">Ολοκληρώθηκε!</string>
+    <string name="daily_play">Παίξτε</string>
+    <string name="daily_continue">Συνέχεια</string>
+    <string name="view_calendar">Ημερολόγιο</string>
+    <string name="daily_challenge_calendar">Ημερολόγιο Προκλήσεων</string>
+    <string name="total_completed">Σύνολο Ολοκληρωμένων</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Επιτεύγματα</string>
+    <string name="achievements_unlocked">Ξεκλειδωμένο</string>
+    <string name="achievement_unlocked">Επίτευγμα Ξεκλειδώθηκε!</string>
+    <string name="achievements_unlocked_multiple">%d Επιτεύγματα Ξεκλειδώθηκαν!</string>
+    <string name="action_awesome">Υπέροχα!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">Όλα</string>
+    <string name="achievement_category_completion">Ολοκλήρωση</string>
+    <string name="achievement_category_speed">Ταχύτητα</string>
+    <string name="achievement_category_accuracy">Ακρίβεια</string>
+    <string name="achievement_category_streak">Σερί</string>
+    <string name="achievement_category_variety">Ποικιλία</string>
+    <string name="achievement_category_mastery">Κυριαρχία</string>
+    <string name="achievement_category_daily">Ημερήσια</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">Χάλκινο</string>
+    <string name="achievement_tier_silver">Ασημένιο</string>
+    <string name="achievement_tier_gold">Χρυσό</string>
+    <string name="achievement_tier_platinum">Λευκόχρυσο</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">Πρώτα Βήματα</string>
+    <string name="achievement_first_win_desc">Ολοκληρώστε το πρώτο σας παζλ</string>
+    <string name="achievement_ten_games">Ξεκινώντας</string>
+    <string name="achievement_ten_games_desc">Ολοκληρώστε 10 παζλ</string>
+    <string name="achievement_fifty_games">Λάτρης των Παζλ</string>
+    <string name="achievement_fifty_games_desc">Ολοκληρώστε 50 παζλ</string>
+    <string name="achievement_centurion">Εκατόνταρχος</string>
+    <string name="achievement_centurion_desc">Ολοκληρώστε 100 παζλ</string>
+    <string name="achievement_dedicated_player">Αφοσιωμένος Παίκτης</string>
+    <string name="achievement_dedicated_player_desc">Ολοκληρώστε 500 παζλ</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">Γρήγορος Στοχαστής</string>
+    <string name="achievement_speed_easy_5_desc">Ολοκληρώστε ένα εύκολο παζλ σε λιγότερο από 5 λεπτά</string>
+    <string name="achievement_speed_easy_3">Δαίμονας Ταχύτητας</string>
+    <string name="achievement_speed_easy_3_desc">Ολοκληρώστε ένα εύκολο παζλ σε λιγότερο από 3 λεπτά</string>
+    <string name="achievement_speed_moderate_10">Γρήγορος Λύτης</string>
+    <string name="achievement_speed_moderate_10_desc">Ολοκληρώστε ένα μέτριο παζλ σε λιγότερο από 10 λεπτά</string>
+    <string name="achievement_speed_hard_15">Αστραπιαίος</string>
+    <string name="achievement_speed_hard_15_desc">Ολοκληρώστε ένα δύσκολο παζλ σε λιγότερο από 15 λεπτά</string>
+    <string name="achievement_speed_challenge_20">Κύριος Χρόνου</string>
+    <string name="achievement_speed_challenge_20_desc">Ολοκληρώστε μια πρόκληση σε λιγότερο από 20 λεπτά</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">Τελειομανής</string>
+    <string name="achievement_perfectionist_1_desc">Ολοκληρώστε ένα παζλ χωρίς λάθη</string>
+    <string name="achievement_perfectionist_10">Άψογη Δεκάδα</string>
+    <string name="achievement_perfectionist_10_desc">Ολοκληρώστε 10 παζλ χωρίς λάθη</string>
+    <string name="achievement_perfectionist_50">Κύριος Ακριβείας</string>
+    <string name="achievement_perfectionist_50_desc">Ολοκληρώστε 50 παζλ χωρίς λάθη</string>
+    <string name="achievement_no_hints_1">Αυτάρκης</string>
+    <string name="achievement_no_hints_1_desc">Ολοκληρώστε ένα παζλ χωρίς χρήση υποδείξεων</string>
+    <string name="achievement_no_hints_25">Ανεξάρτητος Λύτης</string>
+    <string name="achievement_no_hints_25_desc">Ολοκληρώστε 25 παζλ χωρίς χρήση υποδείξεων</string>
+    <string name="achievement_no_hints_100">Εμπειρογνώμονας Χωρίς Υποδείξεις</string>
+    <string name="achievement_no_hints_100_desc">Ολοκληρώστε 100 παζλ χωρίς χρήση υποδείξεων</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">Τριπλό Σερί</string>
+    <string name="achievement_streak_3_desc">Παίξτε για 3 μέρες στη σειρά</string>
+    <string name="achievement_streak_7">Πολεμιστής Εβδομάδας</string>
+    <string name="achievement_streak_7_desc">Παίξτε για 7 μέρες στη σειρά</string>
+    <string name="achievement_streak_30">Μηνιαίος Κύριος</string>
+    <string name="achievement_streak_30_desc">Παίξτε για 30 μέρες στη σειρά</string>
+    <string name="achievement_streak_100">Σερί Αιώνα</string>
+    <string name="achievement_streak_100_desc">Παίξτε για 100 μέρες στη σειρά</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">Μίνι Sudoku</string>
+    <string name="achievement_try_6x6_desc">Ολοκληρώστε ένα παζλ 6x6</string>
+    <string name="achievement_try_12x12">Γιγαντοκτόνος</string>
+    <string name="achievement_try_12x12_desc">Ολοκληρώστε ένα παζλ 12x12</string>
+    <string name="achievement_try_killer">Ένστικτο Killer</string>
+    <string name="achievement_try_killer_desc">Ολοκληρώστε ένα παζλ Killer Sudoku</string>
+    <string name="achievement_killer_10">Λάτρης Killer</string>
+    <string name="achievement_killer_10_desc">Ολοκληρώστε 10 παζλ Killer Sudoku</string>
+    <string name="achievement_killer_50">Εμπειρογνώμονας Killer</string>
+    <string name="achievement_killer_50_desc">Ολοκληρώστε 50 παζλ Killer Sudoku</string>
+    <string name="achievement_giant_10">Το Μέγεθος Δεν Μετράει</string>
+    <string name="achievement_giant_10_desc">Ολοκληρώστε 10 παζλ 12x12</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">Κύριος Εύκολου</string>
+    <string name="achievement_easy_master_desc">Ολοκληρώστε 25 εύκολα παζλ</string>
+    <string name="achievement_moderate_master">Κύριος Μέτριου</string>
+    <string name="achievement_moderate_master_desc">Ολοκληρώστε 25 μέτρια παζλ</string>
+    <string name="achievement_hard_master">Κύριος Δύσκολου</string>
+    <string name="achievement_hard_master_desc">Ολοκληρώστε 25 δύσκολα παζλ</string>
+    <string name="achievement_challenge_master">Κύριος Πρόκλησης</string>
+    <string name="achievement_challenge_master_desc">Ολοκληρώστε 25 προκλήσεις</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">Ημερήσιο Ντεμπούτο</string>
+    <string name="achievement_daily_first_desc">Ολοκληρώστε την πρώτη σας ημερήσια πρόκληση</string>
+    <string name="achievement_daily_week">Εβδομαδιαίος Προκλητής</string>
+    <string name="achievement_daily_week_desc">Ολοκληρώστε 7 ημερήσιες προκλήσεις</string>
+    <string name="achievement_daily_month">Μηνιαίος Πρωταθλητής</string>
+    <string name="achievement_daily_month_desc">Ολοκληρώστε 30 ημερήσιες προκλήσεις</string>
+    <string name="achievement_daily_streak_7">Ημερήσια Αφοσίωση</string>
+    <string name="achievement_daily_streak_7_desc">Σερί 7 ημερών ημερήσιας πρόκλησης</string>
+    <string name="achievement_daily_streak_30">Ημερήσιος Πιστός</string>
+    <string name="achievement_daily_streak_30_desc">Σερί 30 ημερών ημερήσιας πρόκλησης</string>
+    <string name="achievement_daily_streak_100">Ημερήσιος Θρύλος</string>
+    <string name="achievement_daily_streak_100_desc">Σερί 100 ημερών ημερήσιας πρόκλησης</string>
 </resources>

@@ -2,6 +2,7 @@ package sk.awisoft.sudokuplus.di
 
 import android.app.Application
 import android.content.Context
+import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.data.database.AppDatabase
 import sk.awisoft.sudokuplus.data.database.dao.BoardDao
@@ -9,6 +10,8 @@ import sk.awisoft.sudokuplus.data.database.dao.DailyChallengeDao
 import sk.awisoft.sudokuplus.data.database.dao.FolderDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
+import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
+import sk.awisoft.sudokuplus.data.database.repository.AchievementRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.BoardRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.DailyChallengeRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.DatabaseRepositoryImpl
@@ -17,6 +20,7 @@ import sk.awisoft.sudokuplus.data.database.repository.RecordRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.SavedGameRepositoryImpl
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
+import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.DatabaseRepository
@@ -104,4 +108,30 @@ class AppModule {
     @Provides
     fun provideDailyChallengeManager(repository: DailyChallengeRepository): DailyChallengeManager =
         DailyChallengeManager(repository)
+
+    @Singleton
+    @Provides
+    fun provideUserAchievementDao(appDatabase: AppDatabase): UserAchievementDao =
+        appDatabase.userAchievementDao()
+
+    @Singleton
+    @Provides
+    fun provideAchievementRepository(dao: UserAchievementDao): AchievementRepository =
+        AchievementRepositoryImpl(dao)
+
+    @Singleton
+    @Provides
+    fun provideAchievementEngine(
+        achievementRepository: AchievementRepository,
+        savedGameRepository: SavedGameRepository,
+        recordRepository: RecordRepository,
+        dailyChallengeRepository: DailyChallengeRepository,
+        dailyChallengeManager: DailyChallengeManager
+    ): AchievementEngine = AchievementEngine(
+        achievementRepository,
+        savedGameRepository,
+        recordRepository,
+        dailyChallengeRepository,
+        dailyChallengeManager
+    )
 }

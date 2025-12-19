@@ -286,9 +286,129 @@
     <string name="app_version">"الاصدار   %1$s (%2$s)"</string>
     <string name="perf_appearance_summary">المظهر الداكن والألوان الديناميكية ومظهر لوحة اللعب وتنسيق التاريخ…</string>
     <string name="color_picker_title">اختر لون</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">لا توجد تلميحات متبقية لهذه اللعبة</string>
+    <string name="hints_ad_title">نفذت التلميحات</string>
+    <string name="hints_ad_message">شاهد إعلانًا قصيرًا للحصول على تلميح؟</string>
+    <string name="hints_ad_watch">شاهد الإعلان</string>
+    <string name="hints_ad_cancel">ليس الآن</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">التحدي اليومي</string>
+    <string name="daily_challenge_subtitle">لغز جديد كل يوم</string>
+    <string name="daily_streak">سلسلة %d يوم</string>
+    <string name="daily_completed">مكتمل!</string>
+    <string name="daily_play">العب</string>
+    <string name="daily_continue">استمر</string>
+    <string name="view_calendar">التقويم</string>
+    <string name="daily_challenge_calendar">تقويم التحدي</string>
+    <string name="total_completed">المجموع المكتمل</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">الإنجازات</string>
+    <string name="achievements_unlocked">تم فتحه</string>
+    <string name="achievement_unlocked">تم فتح الإنجاز!</string>
+    <string name="achievements_unlocked_multiple">تم فتح %d إنجازات!</string>
+    <string name="action_awesome">رائع!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">الكل</string>
+    <string name="achievement_category_completion">الإكمال</string>
+    <string name="achievement_category_speed">السرعة</string>
+    <string name="achievement_category_accuracy">الدقة</string>
+    <string name="achievement_category_streak">السلسلة</string>
+    <string name="achievement_category_variety">التنوع</string>
+    <string name="achievement_category_mastery">الإتقان</string>
+    <string name="achievement_category_daily">يومي</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">برونزي</string>
+    <string name="achievement_tier_silver">فضي</string>
+    <string name="achievement_tier_gold">ذهبي</string>
+    <string name="achievement_tier_platinum">بلاتيني</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">الخطوات الأولى</string>
+    <string name="achievement_first_win_desc">أكمل لغزك الأول</string>
+    <string name="achievement_ten_games">البداية</string>
+    <string name="achievement_ten_games_desc">أكمل 10 ألغاز</string>
+    <string name="achievement_fifty_games">عاشق الألغاز</string>
+    <string name="achievement_fifty_games_desc">أكمل 50 لغزا</string>
+    <string name="achievement_centurion">المئوي</string>
+    <string name="achievement_centurion_desc">أكمل 100 لغز</string>
+    <string name="achievement_dedicated_player">لاعب مخلص</string>
+    <string name="achievement_dedicated_player_desc">أكمل 500 لغز</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">مفكر سريع</string>
+    <string name="achievement_speed_easy_5_desc">أكمل لغزًا سهلًا في أقل من 5 دقائق</string>
+    <string name="achievement_speed_easy_3">شيطان السرعة</string>
+    <string name="achievement_speed_easy_3_desc">أكمل لغزًا سهلًا في أقل من 3 دقائق</string>
+    <string name="achievement_speed_moderate_10">محلل سريع</string>
+    <string name="achievement_speed_moderate_10_desc">أكمل لغزًا متوسطًا في أقل من 10 دقائق</string>
+    <string name="achievement_speed_hard_15">سريع كالبرق</string>
+    <string name="achievement_speed_hard_15_desc">أكمل لغزًا صعبًا في أقل من 15 دقيقة</string>
+    <string name="achievement_speed_challenge_20">سيد الوقت</string>
+    <string name="achievement_speed_challenge_20_desc">أكمل تحديًا في أقل من 20 دقيقة</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">الكمالي</string>
+    <string name="achievement_perfectionist_1_desc">أكمل لغزًا بدون أخطاء</string>
+    <string name="achievement_perfectionist_10">العشرة المثالية</string>
+    <string name="achievement_perfectionist_10_desc">أكمل 10 ألغاز بدون أخطاء</string>
+    <string name="achievement_perfectionist_50">سيد الدقة</string>
+    <string name="achievement_perfectionist_50_desc">أكمل 50 لغزًا بدون أخطاء</string>
+    <string name="achievement_no_hints_1">معتمد على النفس</string>
+    <string name="achievement_no_hints_1_desc">أكمل لغزًا بدون استخدام التلميحات</string>
+    <string name="achievement_no_hints_25">محلل مستقل</string>
+    <string name="achievement_no_hints_25_desc">أكمل 25 لغزًا بدون استخدام التلميحات</string>
+    <string name="achievement_no_hints_100">خبير بدون تلميحات</string>
+    <string name="achievement_no_hints_100_desc">أكمل 100 لغز بدون استخدام التلميحات</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">سلسلة ثلاثية</string>
+    <string name="achievement_streak_3_desc">العب لمدة 3 أيام متتالية</string>
+    <string name="achievement_streak_7">محارب الأسبوع</string>
+    <string name="achievement_streak_7_desc">العب لمدة 7 أيام متتالية</string>
+    <string name="achievement_streak_30">سيد الشهر</string>
+    <string name="achievement_streak_30_desc">العب لمدة 30 يومًا متتاليًا</string>
+    <string name="achievement_streak_100">سلسلة المئة</string>
+    <string name="achievement_streak_100_desc">العب لمدة 100 يوم متتالي</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">سودوكو صغير</string>
+    <string name="achievement_try_6x6_desc">أكمل لغز 6×6</string>
+    <string name="achievement_try_12x12">قاتل العمالقة</string>
+    <string name="achievement_try_12x12_desc">أكمل لغز 12×12</string>
+    <string name="achievement_try_killer">غريزة القاتل</string>
+    <string name="achievement_try_killer_desc">أكمل لغز سودوكو القاتل</string>
+    <string name="achievement_killer_10">عاشق القاتل</string>
+    <string name="achievement_killer_10_desc">أكمل 10 ألغاز سودوكو القاتل</string>
+    <string name="achievement_killer_50">خبير القاتل</string>
+    <string name="achievement_killer_50_desc">أكمل 50 لغز سودوكو القاتل</string>
+    <string name="achievement_giant_10">الحجم لا يهم</string>
+    <string name="achievement_giant_10_desc">أكمل 10 ألغاز 12×12</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">سيد السهل</string>
+    <string name="achievement_easy_master_desc">أكمل 25 لغزًا سهلًا</string>
+    <string name="achievement_moderate_master">سيد المتوسط</string>
+    <string name="achievement_moderate_master_desc">أكمل 25 لغزًا متوسطًا</string>
+    <string name="achievement_hard_master">سيد الصعب</string>
+    <string name="achievement_hard_master_desc">أكمل 25 لغزًا صعبًا</string>
+    <string name="achievement_challenge_master">سيد التحدي</string>
+    <string name="achievement_challenge_master_desc">أكمل 25 تحديًا</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">الظهور اليومي الأول</string>
+    <string name="achievement_daily_first_desc">أكمل تحديك اليومي الأول</string>
+    <string name="achievement_daily_week">المتحدي الأسبوعي</string>
+    <string name="achievement_daily_week_desc">أكمل 7 تحديات يومية</string>
+    <string name="achievement_daily_month">بطل الشهر</string>
+    <string name="achievement_daily_month_desc">أكمل 30 تحديًا يوميًا</string>
+    <string name="achievement_daily_streak_7">التفاني اليومي</string>
+    <string name="achievement_daily_streak_7_desc">سلسلة 7 أيام من التحدي اليومي</string>
+    <string name="achievement_daily_streak_30">المخلص اليومي</string>
+    <string name="achievement_daily_streak_30_desc">سلسلة 30 يومًا من التحدي اليومي</string>
+    <string name="achievement_daily_streak_100">أسطورة التحدي اليومي</string>
+    <string name="achievement_daily_streak_100_desc">سلسلة 100 يوم من التحدي اليومي</string>
 </resources>

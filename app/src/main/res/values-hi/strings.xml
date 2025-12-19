@@ -325,9 +325,129 @@
     <string name="pref_board_theme_summary">एक्सेंट रंग, स्थिति रेखाएँ, फ़ॉन्ट आकार लागू करें…</string>
     <string name="action_generate">उत्पन्न करें</string>
     <string name="generating_number_of">%1$s/%2$s उत्पन्न किया जा रहा है</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">इस गेम के लिए कोई संकेत शेष नहीं</string>
+    <string name="hints_ad_title">संकेत समाप्त</string>
+    <string name="hints_ad_message">संकेत प्रकट करने के लिए एक छोटा विज्ञापन देखें?</string>
+    <string name="hints_ad_watch">विज्ञापन देखें</string>
+    <string name="hints_ad_cancel">अभी नहीं</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">दैनिक चुनौती</string>
+    <string name="daily_challenge_subtitle">हर दिन नई पहेली</string>
+    <string name="daily_streak">%d दिन की लकीर</string>
+    <string name="daily_completed">पूर्ण!</string>
+    <string name="daily_play">खेलें</string>
+    <string name="daily_continue">जारी रखें</string>
+    <string name="view_calendar">कैलेंडर</string>
+    <string name="daily_challenge_calendar">चुनौती कैलेंडर</string>
+    <string name="total_completed">कुल पूर्ण</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">उपलब्धियां</string>
+    <string name="achievements_unlocked">अनलॉक किया गया</string>
+    <string name="achievement_unlocked">उपलब्धि अनलॉक!</string>
+    <string name="achievements_unlocked_multiple">%d उपलब्धियां अनलॉक!</string>
+    <string name="action_awesome">शानदार!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">सभी</string>
+    <string name="achievement_category_completion">पूर्णता</string>
+    <string name="achievement_category_speed">गति</string>
+    <string name="achievement_category_accuracy">सटीकता</string>
+    <string name="achievement_category_streak">लकीर</string>
+    <string name="achievement_category_variety">विविधता</string>
+    <string name="achievement_category_mastery">महारत</string>
+    <string name="achievement_category_daily">दैनिक</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">कांस्य</string>
+    <string name="achievement_tier_silver">रजत</string>
+    <string name="achievement_tier_gold">स्वर्ण</string>
+    <string name="achievement_tier_platinum">प्लैटिनम</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">पहले कदम</string>
+    <string name="achievement_first_win_desc">अपनी पहली पहेली पूरी करें</string>
+    <string name="achievement_ten_games">शुरुआत</string>
+    <string name="achievement_ten_games_desc">10 पहेलियां पूरी करें</string>
+    <string name="achievement_fifty_games">पहेली उत्साही</string>
+    <string name="achievement_fifty_games_desc">50 पहेलियां पूरी करें</string>
+    <string name="achievement_centurion">शतक</string>
+    <string name="achievement_centurion_desc">100 पहेलियां पूरी करें</string>
+    <string name="achievement_dedicated_player">समर्पित खिलाड़ी</string>
+    <string name="achievement_dedicated_player_desc">500 पहेलियां पूरी करें</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">त्वरित विचारक</string>
+    <string name="achievement_speed_easy_5_desc">5 मिनट से कम में आसान पहेली पूरी करें</string>
+    <string name="achievement_speed_easy_3">गति राक्षस</string>
+    <string name="achievement_speed_easy_3_desc">3 मिनट से कम में आसान पहेली पूरी करें</string>
+    <string name="achievement_speed_moderate_10">तेज़ समाधानकर्ता</string>
+    <string name="achievement_speed_moderate_10_desc">10 मिनट से कम में मध्यम पहेली पूरी करें</string>
+    <string name="achievement_speed_hard_15">बिजली तेज़</string>
+    <string name="achievement_speed_hard_15_desc">15 मिनट से कम में कठिन पहेली पूरी करें</string>
+    <string name="achievement_speed_challenge_20">समय मास्टर</string>
+    <string name="achievement_speed_challenge_20_desc">20 मिनट से कम में चुनौती पूरी करें</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">पूर्णतावादी</string>
+    <string name="achievement_perfectionist_1_desc">बिना गलती के एक पहेली पूरी करें</string>
+    <string name="achievement_perfectionist_10">त्रुटिहीन दस</string>
+    <string name="achievement_perfectionist_10_desc">बिना गलती के 10 पहेलियां पूरी करें</string>
+    <string name="achievement_perfectionist_50">सटीकता मास्टर</string>
+    <string name="achievement_perfectionist_50_desc">बिना गलती के 50 पहेलियां पूरी करें</string>
+    <string name="achievement_no_hints_1">आत्मनिर्भर</string>
+    <string name="achievement_no_hints_1_desc">बिना संकेत के एक पहेली पूरी करें</string>
+    <string name="achievement_no_hints_25">स्वतंत्र समाधानकर्ता</string>
+    <string name="achievement_no_hints_25_desc">बिना संकेत के 25 पहेलियां पूरी करें</string>
+    <string name="achievement_no_hints_100">संकेत-मुक्त विशेषज्ञ</string>
+    <string name="achievement_no_hints_100_desc">बिना संकेत के 100 पहेलियां पूरी करें</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">तीन दिन की लकीर</string>
+    <string name="achievement_streak_3_desc">लगातार 3 दिन खेलें</string>
+    <string name="achievement_streak_7">सप्ताह योद्धा</string>
+    <string name="achievement_streak_7_desc">लगातार 7 दिन खेलें</string>
+    <string name="achievement_streak_30">मासिक मास्टर</string>
+    <string name="achievement_streak_30_desc">लगातार 30 दिन खेलें</string>
+    <string name="achievement_streak_100">शताब्दी लकीर</string>
+    <string name="achievement_streak_100_desc">लगातार 100 दिन खेलें</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">मिनी सुडोकू</string>
+    <string name="achievement_try_6x6_desc">6x6 पहेली पूरी करें</string>
+    <string name="achievement_try_12x12">विशाल वध</string>
+    <string name="achievement_try_12x12_desc">12x12 पहेली पूरी करें</string>
+    <string name="achievement_try_killer">किलर प्रवृत्ति</string>
+    <string name="achievement_try_killer_desc">किलर सुडोकू पहेली पूरी करें</string>
+    <string name="achievement_killer_10">किलर उत्साही</string>
+    <string name="achievement_killer_10_desc">10 किलर सुडोकू पहेलियां पूरी करें</string>
+    <string name="achievement_killer_50">किलर विशेषज्ञ</string>
+    <string name="achievement_killer_50_desc">50 किलर सुडोकू पहेलियां पूरी करें</string>
+    <string name="achievement_giant_10">आकार मायने नहीं रखता</string>
+    <string name="achievement_giant_10_desc">10 12x12 पहेलियां पूरी करें</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">आसान मास्टर</string>
+    <string name="achievement_easy_master_desc">25 आसान पहेलियां पूरी करें</string>
+    <string name="achievement_moderate_master">मध्यम मास्टर</string>
+    <string name="achievement_moderate_master_desc">25 मध्यम पहेलियां पूरी करें</string>
+    <string name="achievement_hard_master">कठिन मास्टर</string>
+    <string name="achievement_hard_master_desc">25 कठिन पहेलियां पूरी करें</string>
+    <string name="achievement_challenge_master">चुनौती मास्टर</string>
+    <string name="achievement_challenge_master_desc">25 चुनौतियां पूरी करें</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">दैनिक शुरुआत</string>
+    <string name="achievement_daily_first_desc">अपनी पहली दैनिक चुनौती पूरी करें</string>
+    <string name="achievement_daily_week">साप्ताहिक चैलेंजर</string>
+    <string name="achievement_daily_week_desc">7 दैनिक चुनौतियां पूरी करें</string>
+    <string name="achievement_daily_month">मासिक चैंपियन</string>
+    <string name="achievement_daily_month_desc">30 दैनिक चुनौतियां पूरी करें</string>
+    <string name="achievement_daily_streak_7">दैनिक समर्पण</string>
+    <string name="achievement_daily_streak_7_desc">7-दिन की दैनिक चुनौती लकीर</string>
+    <string name="achievement_daily_streak_30">दैनिक भक्त</string>
+    <string name="achievement_daily_streak_30_desc">30-दिन की दैनिक चुनौती लकीर</string>
+    <string name="achievement_daily_streak_100">दैनिक दिग्गज</string>
+    <string name="achievement_daily_streak_100_desc">100-दिन की दैनिक चुनौती लकीर</string>
 </resources>

@@ -145,9 +145,129 @@
     <string name="notes_taken">Anotacions: %1$d</string>
     <string name="folder_empty_label">La carpeta és buida</string>
     <string name="import_saving">S\'està desant</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">No queden pistes per a aquesta partida</string>
+    <string name="hints_ad_title">Sense pistes</string>
+    <string name="hints_ad_message">Veure un anunci curt per revelar una pista?</string>
+    <string name="hints_ad_watch">Veure anunci</string>
+    <string name="hints_ad_cancel">Ara no</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Repte Diari</string>
+    <string name="daily_challenge_subtitle">Nou trencaclosques cada dia</string>
+    <string name="daily_streak">%d dies seguits</string>
+    <string name="daily_completed">Completat!</string>
+    <string name="daily_play">Jugar</string>
+    <string name="daily_continue">Continuar</string>
+    <string name="view_calendar">Calendari</string>
+    <string name="daily_challenge_calendar">Calendari de Reptes</string>
+    <string name="total_completed">Total Completats</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Assoliments</string>
+    <string name="achievements_unlocked">Desbloquejat</string>
+    <string name="achievement_unlocked">Assoliment Desbloquejat!</string>
+    <string name="achievements_unlocked_multiple">%d Assoliments Desbloquejats!</string>
+    <string name="action_awesome">Genial!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">Tot</string>
+    <string name="achievement_category_completion">Compleció</string>
+    <string name="achievement_category_speed">Velocitat</string>
+    <string name="achievement_category_accuracy">Precisió</string>
+    <string name="achievement_category_streak">Ratxa</string>
+    <string name="achievement_category_variety">Varietat</string>
+    <string name="achievement_category_mastery">Mestratge</string>
+    <string name="achievement_category_daily">Diari</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">Bronze</string>
+    <string name="achievement_tier_silver">Plata</string>
+    <string name="achievement_tier_gold">Or</string>
+    <string name="achievement_tier_platinum">Platí</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">Primers Passos</string>
+    <string name="achievement_first_win_desc">Completa el teu primer trencaclosques</string>
+    <string name="achievement_ten_games">Començant</string>
+    <string name="achievement_ten_games_desc">Completa 10 trencaclosques</string>
+    <string name="achievement_fifty_games">Entusiasta dels Trencaclosques</string>
+    <string name="achievement_fifty_games_desc">Completa 50 trencaclosques</string>
+    <string name="achievement_centurion">Centurió</string>
+    <string name="achievement_centurion_desc">Completa 100 trencaclosques</string>
+    <string name="achievement_dedicated_player">Jugador Dedicat</string>
+    <string name="achievement_dedicated_player_desc">Completa 500 trencaclosques</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">Pensador Ràpid</string>
+    <string name="achievement_speed_easy_5_desc">Completa un trencaclosques fàcil en menys de 5 minuts</string>
+    <string name="achievement_speed_easy_3">Dimoni de la Velocitat</string>
+    <string name="achievement_speed_easy_3_desc">Completa un trencaclosques fàcil en menys de 3 minuts</string>
+    <string name="achievement_speed_moderate_10">Resolutor Ràpid</string>
+    <string name="achievement_speed_moderate_10_desc">Completa un trencaclosques moderat en menys de 10 minuts</string>
+    <string name="achievement_speed_hard_15">Llampec</string>
+    <string name="achievement_speed_hard_15_desc">Completa un trencaclosques difícil en menys de 15 minuts</string>
+    <string name="achievement_speed_challenge_20">Mestre del Temps</string>
+    <string name="achievement_speed_challenge_20_desc">Completa un repte en menys de 20 minuts</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">Perfeccionista</string>
+    <string name="achievement_perfectionist_1_desc">Completa un trencaclosques sense errors</string>
+    <string name="achievement_perfectionist_10">Deu Impecables</string>
+    <string name="achievement_perfectionist_10_desc">Completa 10 trencaclosques sense errors</string>
+    <string name="achievement_perfectionist_50">Mestre de la Precisió</string>
+    <string name="achievement_perfectionist_50_desc">Completa 50 trencaclosques sense errors</string>
+    <string name="achievement_no_hints_1">Autosuficient</string>
+    <string name="achievement_no_hints_1_desc">Completa un trencaclosques sense utilitzar pistes</string>
+    <string name="achievement_no_hints_25">Resolutor Independent</string>
+    <string name="achievement_no_hints_25_desc">Completa 25 trencaclosques sense utilitzar pistes</string>
+    <string name="achievement_no_hints_100">Expert Sense Pistes</string>
+    <string name="achievement_no_hints_100_desc">Completa 100 trencaclosques sense utilitzar pistes</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">Ratxa Triple</string>
+    <string name="achievement_streak_3_desc">Juga durant 3 dies seguits</string>
+    <string name="achievement_streak_7">Guerrer de la Setmana</string>
+    <string name="achievement_streak_7_desc">Juga durant 7 dies seguits</string>
+    <string name="achievement_streak_30">Mestre Mensual</string>
+    <string name="achievement_streak_30_desc">Juga durant 30 dies seguits</string>
+    <string name="achievement_streak_100">Ratxa del Segle</string>
+    <string name="achievement_streak_100_desc">Juga durant 100 dies seguits</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">Mini Sudoku</string>
+    <string name="achievement_try_6x6_desc">Completa un trencaclosques 6x6</string>
+    <string name="achievement_try_12x12">Matador de Gegants</string>
+    <string name="achievement_try_12x12_desc">Completa un trencaclosques 12x12</string>
+    <string name="achievement_try_killer">Instint Killer</string>
+    <string name="achievement_try_killer_desc">Completa un trencaclosques Killer Sudoku</string>
+    <string name="achievement_killer_10">Entusiasta Killer</string>
+    <string name="achievement_killer_10_desc">Completa 10 trencaclosques Killer Sudoku</string>
+    <string name="achievement_killer_50">Expert Killer</string>
+    <string name="achievement_killer_50_desc">Completa 50 trencaclosques Killer Sudoku</string>
+    <string name="achievement_giant_10">La Mida No Importa</string>
+    <string name="achievement_giant_10_desc">Completa 10 trencaclosques 12x12</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">Mestre Fàcil</string>
+    <string name="achievement_easy_master_desc">Completa 25 trencaclosques fàcils</string>
+    <string name="achievement_moderate_master">Mestre Moderat</string>
+    <string name="achievement_moderate_master_desc">Completa 25 trencaclosques moderats</string>
+    <string name="achievement_hard_master">Mestre Difícil</string>
+    <string name="achievement_hard_master_desc">Completa 25 trencaclosques difícils</string>
+    <string name="achievement_challenge_master">Mestre del Repte</string>
+    <string name="achievement_challenge_master_desc">Completa 25 reptes</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">Debut Diari</string>
+    <string name="achievement_daily_first_desc">Completa el teu primer repte diari</string>
+    <string name="achievement_daily_week">Retador Setmanal</string>
+    <string name="achievement_daily_week_desc">Completa 7 reptes diaris</string>
+    <string name="achievement_daily_month">Campió Mensual</string>
+    <string name="achievement_daily_month_desc">Completa 30 reptes diaris</string>
+    <string name="achievement_daily_streak_7">Dedicació Diària</string>
+    <string name="achievement_daily_streak_7_desc">Ratxa de 7 dies de repte diari</string>
+    <string name="achievement_daily_streak_30">Devot Diari</string>
+    <string name="achievement_daily_streak_30_desc">Ratxa de 30 dies de repte diari</string>
+    <string name="achievement_daily_streak_100">Llegenda Diària</string>
+    <string name="achievement_daily_streak_100_desc">Ratxa de 100 dies de repte diari</string>
 </resources>

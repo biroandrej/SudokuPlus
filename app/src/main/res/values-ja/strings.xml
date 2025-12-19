@@ -75,9 +75,129 @@
     <string name="redo">繰り返す</string>
     <string name="daily">毎日</string>
     <string name="weekly">毎週</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">このゲームのヒントは残っていません</string>
+    <string name="hints_ad_title">ヒント切れ</string>
+    <string name="hints_ad_message">短い広告を見てヒントを表示しますか？</string>
+    <string name="hints_ad_watch">広告を見る</string>
+    <string name="hints_ad_cancel">今はしない</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">デイリーチャレンジ</string>
+    <string name="daily_challenge_subtitle">毎日新しいパズル</string>
+    <string name="daily_streak">%d日連続</string>
+    <string name="daily_completed">完了！</string>
+    <string name="daily_play">プレイ</string>
+    <string name="daily_continue">続ける</string>
+    <string name="view_calendar">カレンダー</string>
+    <string name="daily_challenge_calendar">チャレンジカレンダー</string>
+    <string name="total_completed">合計完了数</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">実績</string>
+    <string name="achievements_unlocked">解除済み</string>
+    <string name="achievement_unlocked">実績解除！</string>
+    <string name="achievements_unlocked_multiple">%d個の実績解除！</string>
+    <string name="action_awesome">素晴らしい！</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">すべて</string>
+    <string name="achievement_category_completion">完了</string>
+    <string name="achievement_category_speed">スピード</string>
+    <string name="achievement_category_accuracy">正確性</string>
+    <string name="achievement_category_streak">連続</string>
+    <string name="achievement_category_variety">多様性</string>
+    <string name="achievement_category_mastery">マスター</string>
+    <string name="achievement_category_daily">デイリー</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">ブロンズ</string>
+    <string name="achievement_tier_silver">シルバー</string>
+    <string name="achievement_tier_gold">ゴールド</string>
+    <string name="achievement_tier_platinum">プラチナ</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">最初の一歩</string>
+    <string name="achievement_first_win_desc">最初のパズルを完了する</string>
+    <string name="achievement_ten_games">スタート</string>
+    <string name="achievement_ten_games_desc">10個のパズルを完了する</string>
+    <string name="achievement_fifty_games">パズル愛好家</string>
+    <string name="achievement_fifty_games_desc">50個のパズルを完了する</string>
+    <string name="achievement_centurion">センチュリオン</string>
+    <string name="achievement_centurion_desc">100個のパズルを完了する</string>
+    <string name="achievement_dedicated_player">献身的なプレイヤー</string>
+    <string name="achievement_dedicated_player_desc">500個のパズルを完了する</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">速い思考者</string>
+    <string name="achievement_speed_easy_5_desc">イージーパズルを5分以内にクリア</string>
+    <string name="achievement_speed_easy_3">スピードデーモン</string>
+    <string name="achievement_speed_easy_3_desc">イージーパズルを3分以内にクリア</string>
+    <string name="achievement_speed_moderate_10">スイフトソルバー</string>
+    <string name="achievement_speed_moderate_10_desc">ノーマルパズルを10分以内にクリア</string>
+    <string name="achievement_speed_hard_15">電光石火</string>
+    <string name="achievement_speed_hard_15_desc">ハードパズルを15分以内にクリア</string>
+    <string name="achievement_speed_challenge_20">タイムマスター</string>
+    <string name="achievement_speed_challenge_20_desc">チャレンジを20分以内にクリア</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">完璧主義者</string>
+    <string name="achievement_perfectionist_1_desc">ミスなしでパズルを完了する</string>
+    <string name="achievement_perfectionist_10">完璧な10個</string>
+    <string name="achievement_perfectionist_10_desc">ミスなしで10個のパズルを完了する</string>
+    <string name="achievement_perfectionist_50">精密のマスター</string>
+    <string name="achievement_perfectionist_50_desc">ミスなしで50個のパズルを完了する</string>
+    <string name="achievement_no_hints_1">自立</string>
+    <string name="achievement_no_hints_1_desc">ヒントを使わずにパズルを完了する</string>
+    <string name="achievement_no_hints_25">独立ソルバー</string>
+    <string name="achievement_no_hints_25_desc">ヒントを使わずに25個のパズルを完了する</string>
+    <string name="achievement_no_hints_100">ヒント不要のエキスパート</string>
+    <string name="achievement_no_hints_100_desc">ヒントを使わずに100個のパズルを完了する</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">3日連続</string>
+    <string name="achievement_streak_3_desc">3日間連続でプレイ</string>
+    <string name="achievement_streak_7">週間ウォリアー</string>
+    <string name="achievement_streak_7_desc">7日間連続でプレイ</string>
+    <string name="achievement_streak_30">月間マスター</string>
+    <string name="achievement_streak_30_desc">30日間連続でプレイ</string>
+    <string name="achievement_streak_100">100日連続</string>
+    <string name="achievement_streak_100_desc">100日間連続でプレイ</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">ミニ数独</string>
+    <string name="achievement_try_6x6_desc">6x6パズルを完了する</string>
+    <string name="achievement_try_12x12">ジャイアントスレイヤー</string>
+    <string name="achievement_try_12x12_desc">12x12パズルを完了する</string>
+    <string name="achievement_try_killer">キラー本能</string>
+    <string name="achievement_try_killer_desc">キラー数独パズルを完了する</string>
+    <string name="achievement_killer_10">キラー愛好家</string>
+    <string name="achievement_killer_10_desc">キラー数独を10個完了する</string>
+    <string name="achievement_killer_50">キラーエキスパート</string>
+    <string name="achievement_killer_50_desc">キラー数独を50個完了する</string>
+    <string name="achievement_giant_10">サイズは関係ない</string>
+    <string name="achievement_giant_10_desc">12x12パズルを10個完了する</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">イージーマスター</string>
+    <string name="achievement_easy_master_desc">イージーパズルを25個完了する</string>
+    <string name="achievement_moderate_master">ノーマルマスター</string>
+    <string name="achievement_moderate_master_desc">ノーマルパズルを25個完了する</string>
+    <string name="achievement_hard_master">ハードマスター</string>
+    <string name="achievement_hard_master_desc">ハードパズルを25個完了する</string>
+    <string name="achievement_challenge_master">チャレンジマスター</string>
+    <string name="achievement_challenge_master_desc">チャレンジを25個完了する</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">デイリーデビュー</string>
+    <string name="achievement_daily_first_desc">最初のデイリーチャレンジを完了する</string>
+    <string name="achievement_daily_week">週間チャレンジャー</string>
+    <string name="achievement_daily_week_desc">デイリーチャレンジを7回完了する</string>
+    <string name="achievement_daily_month">月間チャンピオン</string>
+    <string name="achievement_daily_month_desc">デイリーチャレンジを30回完了する</string>
+    <string name="achievement_daily_streak_7">デイリー献身</string>
+    <string name="achievement_daily_streak_7_desc">7日連続デイリーチャレンジ</string>
+    <string name="achievement_daily_streak_30">デイリー信者</string>
+    <string name="achievement_daily_streak_30_desc">30日連続デイリーチャレンジ</string>
+    <string name="achievement_daily_streak_100">デイリーレジェンド</string>
+    <string name="achievement_daily_streak_100_desc">100日連続デイリーチャレンジ</string>
 </resources>

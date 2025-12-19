@@ -8,9 +8,12 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
 import sk.awisoft.sudokuplus.core.Cell
+import sk.awisoft.sudokuplus.core.achievement.GameCompletionData
 import sk.awisoft.sudokuplus.core.Note
 import sk.awisoft.sudokuplus.core.PreferencesConstants
+import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.core.qqwing.Cage
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
@@ -68,12 +71,14 @@ class GameViewModel @Inject constructor(
     private val getBoardUseCase: GetBoardUseCase,
     themeSettingsManager: ThemeSettingsManager,
     private val savedStateHandle: SavedStateHandle,
-    private val getAllRecordsUseCase: GetAllRecordsUseCase
+    private val getAllRecordsUseCase: GetAllRecordsUseCase,
+    private val achievementEngine: AchievementEngine
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
         data object ShowInterstitial : UiEvent
         data object RequestRewardedHint : UiEvent
+        data class AchievementsUnlocked(val achievements: List<AchievementDefinition>) : UiEvent
     }
 
     private val _uiEvents = MutableSharedFlow<UiEvent>(extraBufferCapacity = 1)
@@ -762,6 +767,20 @@ class GameViewModel @Inject constructor(
                     time = duration.toJavaDuration()
                 )
             )
+
+            // Check for newly unlocked achievements
+            val completionData = GameCompletionData(
+                difficulty = gameDifficulty,
+                gameType = gameType,
+                completionTime = duration.toJavaDuration(),
+                mistakes = mistakesMade,
+                hintsUsed = hintsUsed,
+                isDailyChallenge = false
+            )
+            val unlockedAchievements = achievementEngine.checkAchievements(completionData)
+            if (unlockedAchievements.isNotEmpty()) {
+                _uiEvents.emit(UiEvent.AchievementsUnlocked(unlockedAchievements))
+            }
         }
         endGame = true
     }
