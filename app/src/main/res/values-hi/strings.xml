@@ -450,4 +450,32 @@
     <string name="achievement_daily_streak_30_desc">30-दिन की दैनिक चुनौती लकीर</string>
     <string name="achievement_daily_streak_100">दैनिक दिग्गज</string>
     <string name="achievement_daily_streak_100_desc">100-दिन की दैनिक चुनौती लकीर</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">दैनिक चुनौती</string>
+    <string name="notification_channel_daily_challenge_desc">नई दैनिक चुनौतियों के लिए सूचनाएं</string>
+    <string name="notification_channel_streak_reminder">लकीर अनुस्मारक</string>
+    <string name="notification_channel_streak_reminder_desc">अपनी लकीर बनाए रखने के लिए अनुस्मारक</string>
+    <string name="notification_daily_challenge_title">दैनिक चुनौती तैयार!</string>
+    <string name="notification_daily_challenge_text">एक नई दैनिक पहेली आपका इंतजार कर रही है</string>
+    <string name="notification_streak_reminder_title">अपनी लकीर मत खोइए!</string>
+    <string name="notification_streak_reminder_text">आपने आज नहीं खेला है। अपनी लकीर जारी रखें!</string>
+    <string name="notification_streak_reminder_text_with_streak">आपकी %d दिन की लकीर खतरे में है! इसे बनाए रखने के लिए अभी खेलें</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">सूचनाएं</string>
+    <string name="notifications_permission_required">सूचना अनुमति आवश्यक</string>
+    <string name="notifications_permission_rationale">दैनिक चुनौती अनुस्मारक और लकीर अलर्ट प्राप्त करने के लिए सूचनाओं की अनुमति दें</string>
+    <string name="notifications_daily_challenge">दैनिक चुनौती अनुस्मारक</string>
+    <string name="notifications_daily_challenge_desc">जब नई दैनिक चुनौती उपलब्ध हो तो सूचित हों</string>
+    <string name="notifications_daily_challenge_time">दैनिक चुनौती समय</string>
+    <string name="notifications_streak_reminder">लकीर अनुस्मारक</string>
+    <string name="notifications_streak_reminder_desc">यदि आपने आज नहीं खेला है तो अनुस्मारक प्राप्त करें</string>
+    <string name="notifications_streak_reminder_time">लकीर अनुस्मारक समय</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">अपडेट रहें</string>
+    <string name="notification_permission_dialog_message">दैनिक चुनौती अनुस्मारक और लकीर अलर्ट प्राप्त करने के लिए सूचनाओं की अनुमति दें। आप इसे बाद में सेटिंग्स में बदल सकते हैं।</string>
+    <string name="notification_permission_dialog_allow">अनुमति दें</string>
+    <string name="notification_permission_dialog_later">अभी नहीं</string>
 </resources>

@@ -270,4 +270,32 @@
     <string name="achievement_daily_streak_30_desc">Ratxa de 30 dies de repte diari</string>
     <string name="achievement_daily_streak_100">Llegenda Diària</string>
     <string name="achievement_daily_streak_100_desc">Ratxa de 100 dies de repte diari</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Repte Diari</string>
+    <string name="notification_channel_daily_challenge_desc">Notificacions per a nous reptes diaris</string>
+    <string name="notification_channel_streak_reminder">Recordatori de Ratxa</string>
+    <string name="notification_channel_streak_reminder_desc">Recordatoris per mantenir la teva ratxa</string>
+    <string name="notification_daily_challenge_title">Repte Diari Llest!</string>
+    <string name="notification_daily_challenge_text">Un nou trencaclosques diari t\'espera</string>
+    <string name="notification_streak_reminder_title">No perdis la teva ratxa!</string>
+    <string name="notification_streak_reminder_text">No has jugat avui. Mantén la teva ratxa viva!</string>
+    <string name="notification_streak_reminder_text_with_streak">La teva ratxa de %d dies està en perill! Juga ara per mantenir-la</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notificacions</string>
+    <string name="notifications_permission_required">Permís de notificació requerit</string>
+    <string name="notifications_permission_rationale">Permet les notificacions per rebre recordatoris de reptes diaris i alertes de ratxa</string>
+    <string name="notifications_daily_challenge">Recordatori de repte diari</string>
+    <string name="notifications_daily_challenge_desc">Rep notificacions quan hi hagi un nou repte diari disponible</string>
+    <string name="notifications_daily_challenge_time">Hora del repte diari</string>
+    <string name="notifications_streak_reminder">Recordatori de ratxa</string>
+    <string name="notifications_streak_reminder_desc">Rep un recordatori si no has jugat avui</string>
+    <string name="notifications_streak_reminder_time">Hora del recordatori de ratxa</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Mantén-te informat</string>
+    <string name="notification_permission_dialog_message">Permet les notificacions per rebre recordatoris del repte diari i alertes de ratxa. Pots canviar-ho més tard a la configuració.</string>
+    <string name="notification_permission_dialog_allow">Permetre</string>
+    <string name="notification_permission_dialog_later">Ara no</string>
 </resources>

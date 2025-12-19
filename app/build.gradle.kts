@@ -23,7 +23,7 @@ android {
 
     defaultConfig {
         applicationId = "sk.awisoft.sudokuplus"
-        minSdk = 26
+        minSdk = 28
         targetSdk = 36
         versionCode = 5
         versionName = "1.0.0"
@@ -169,6 +169,7 @@ dependencies {
     implementation(libs.serialization.json)
     implementation(libs.documentFile)
     implementation(libs.workRuntimeKtx)
+    implementation(libs.startupRuntime)
     implementation(libs.hilt.work)
     implementation(libs.hilt.common)
     ksp(libs.hilt.common.compiler)

@@ -265,9 +265,37 @@
     <string name="edit_sudoku">Sunting sudoku</string>
     <string name="pref_crash_reporting_subtitle">Bantu kami memperbaiki bug. Aplikasi tidak mengirim log dengan sendirinya, Anda akan diminta untuk mengirim laporan kerusakan melalui email</string>
     <string name="pref_fun_keyboard_over_num">Panel fungsi di atas nilai</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Tidak ada petunjuk tersisa untuk permainan ini</string>
+    <string name="hints_ad_title">Kehabisan petunjuk</string>
+    <string name="hints_ad_message">Tonton iklan singkat untuk mendapatkan petunjuk?</string>
+    <string name="hints_ad_watch">Tonton iklan</string>
+    <string name="hints_ad_cancel">Nanti saja</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Tantangan Harian</string>
+    <string name="notification_channel_daily_challenge_desc">Notifikasi untuk tantangan harian baru</string>
+    <string name="notification_channel_streak_reminder">Pengingat Streak</string>
+    <string name="notification_channel_streak_reminder_desc">Pengingat untuk menjaga streak Anda</string>
+    <string name="notification_daily_challenge_title">Tantangan Harian Siap!</string>
+    <string name="notification_daily_challenge_text">Teka-teki harian baru menunggu Anda</string>
+    <string name="notification_streak_reminder_title">Jangan kehilangan streak Anda!</string>
+    <string name="notification_streak_reminder_text">Anda belum bermain hari ini. Jaga streak Anda tetap hidup!</string>
+    <string name="notification_streak_reminder_text_with_streak">Streak %d hari Anda dalam bahaya! Mainkan sekarang untuk mempertahankannya</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notifikasi</string>
+    <string name="notifications_permission_required">Izin notifikasi diperlukan</string>
+    <string name="notifications_permission_rationale">Izinkan notifikasi untuk menerima pengingat tantangan harian dan peringatan streak</string>
+    <string name="notifications_daily_challenge">Pengingat tantangan harian</string>
+    <string name="notifications_daily_challenge_desc">Dapatkan notifikasi saat tantangan harian baru tersedia</string>
+    <string name="notifications_daily_challenge_time">Waktu tantangan harian</string>
+    <string name="notifications_streak_reminder">Pengingat streak</string>
+    <string name="notifications_streak_reminder_desc">Dapatkan pengingat jika Anda belum bermain hari ini</string>
+    <string name="notifications_streak_reminder_time">Waktu pengingat streak</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Tetap terhubung</string>
+    <string name="notification_permission_dialog_message">Izinkan notifikasi untuk menerima pengingat tantangan harian dan peringatan streak. Anda dapat mengubahnya nanti di pengaturan.</string>
+    <string name="notification_permission_dialog_allow">Izinkan</string>
+    <string name="notification_permission_dialog_later">Nanti saja</string>
 </resources>

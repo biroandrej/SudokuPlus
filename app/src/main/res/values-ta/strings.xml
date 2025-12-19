@@ -82,9 +82,37 @@
     <string name="dialog_no">இல்லை</string>
     <string name="action_show_mine_sudoku">என்னுடையது காட்டு</string>
     <string name="intro_rules">ஒவ்வொரு கட்டத்திலும் 1 முதல் 9 வரை எண்களை இந்த விளையாட்டில் நிரப்ப வேண்டும். அவ்வாறு நிரப்பும் போது நிரலிலோ, நிரையிலோ அல்லது உள்ளிருக்கும் 3x3 சிற்றறையிலோ எந்த எண்ணும் மீண்டும் ஒருமுறை வரக்கூடாது.</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">இந்த விளையாட்டிற்கு உதவிகள் எஞ்சியில்லை</string>
+    <string name="hints_ad_title">உதவிகள் தீர்ந்துவிட்டன</string>
+    <string name="hints_ad_message">உதவியைக் காண சிறிய விளம்பரம் பார்க்கவா?</string>
+    <string name="hints_ad_watch">விளம்பரம் பார்</string>
+    <string name="hints_ad_cancel">இப்போது வேண்டாம்</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">தினசரி சவால்</string>
+    <string name="notification_channel_daily_challenge_desc">புதிய தினசரி சவால்களுக்கான அறிவிப்புகள்</string>
+    <string name="notification_channel_streak_reminder">ஸ்ட்ரீக் நினைவூட்டல்</string>
+    <string name="notification_channel_streak_reminder_desc">உங்கள் ஸ்ட்ரீக்கை பராமரிக்க நினைவூட்டல்கள்</string>
+    <string name="notification_daily_challenge_title">தினசரி சவால் தயார்!</string>
+    <string name="notification_daily_challenge_text">புதிய தினசரி புதிர் உங்களுக்காக காத்திருக்கிறது</string>
+    <string name="notification_streak_reminder_title">உங்கள் ஸ்ட்ரீக்கை இழக்காதீர்கள்!</string>
+    <string name="notification_streak_reminder_text">நீங்கள் இன்று விளையாடவில்லை. உங்கள் ஸ்ட்ரீக்கை உயிருடன் வைத்திருங்கள்!</string>
+    <string name="notification_streak_reminder_text_with_streak">உங்கள் %d நாள் ஸ்ட்ரீக் ஆபத்தில் உள்ளது! அதை வைத்திருக்க இப்போது விளையாடுங்கள்</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">அறிவிப்புகள்</string>
+    <string name="notifications_permission_required">அறிவிப்பு அனுமதி தேவை</string>
+    <string name="notifications_permission_rationale">தினசரி சவால் நினைவூட்டல்கள் மற்றும் ஸ்ட்ரீக் எச்சரிக்கைகளைப் பெற அறிவிப்புகளை அனுமதிக்கவும்</string>
+    <string name="notifications_daily_challenge">தினசரி சவால் நினைவூட்டல்</string>
+    <string name="notifications_daily_challenge_desc">புதிய தினசரி சவால் கிடைக்கும்போது அறிவிக்கப்படுங்கள்</string>
+    <string name="notifications_daily_challenge_time">தினசரி சவால் நேரம்</string>
+    <string name="notifications_streak_reminder">ஸ்ட்ரீக் நினைவூட்டல்</string>
+    <string name="notifications_streak_reminder_desc">நீங்கள் இன்று விளையாடவில்லை என்றால் நினைவூட்டல் பெறுங்கள்</string>
+    <string name="notifications_streak_reminder_time">ஸ்ட்ரீக் நினைவூட்டல் நேரம்</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">புதுப்பிப்புகளைப் பெறுங்கள்</string>
+    <string name="notification_permission_dialog_message">தினசரி சவால் நினைவூட்டல்கள் மற்றும் ஸ்ட்ரீக் எச்சரிக்கைகளைப் பெற அறிவிப்புகளை அனுமதிக்கவும். இதை பின்னர் அமைப்புகளில் மாற்றலாம்.</string>
+    <string name="notification_permission_dialog_allow">அனுமதி</string>
+    <string name="notification_permission_dialog_later">இப்போது வேண்டாம்</string>
 </resources>

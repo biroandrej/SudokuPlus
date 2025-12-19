@@ -450,4 +450,32 @@
     <string name="achievement_daily_streak_30_desc">30-dages daglig udfordrings streak</string>
     <string name="achievement_daily_streak_100">Daglig Legende</string>
     <string name="achievement_daily_streak_100_desc">100-dages daglig udfordrings streak</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Daglig Udfordring</string>
+    <string name="notification_channel_daily_challenge_desc">Notifikationer for nye daglige udfordringer</string>
+    <string name="notification_channel_streak_reminder">Streak Påmindelse</string>
+    <string name="notification_channel_streak_reminder_desc">Påmindelser for at bevare din streak</string>
+    <string name="notification_daily_challenge_title">Daglig Udfordring Klar!</string>
+    <string name="notification_daily_challenge_text">Et nyt dagligt puslespil venter på dig</string>
+    <string name="notification_streak_reminder_title">Mist ikke din streak!</string>
+    <string name="notification_streak_reminder_text">Du har ikke spillet i dag. Hold din streak i live!</string>
+    <string name="notification_streak_reminder_text_with_streak">Din %d-dages streak er i fare! Spil nu for at beholde den</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notifikationer</string>
+    <string name="notifications_permission_required">Notifikationstilladelse påkrævet</string>
+    <string name="notifications_permission_rationale">Tillad notifikationer for at modtage daglige udfordrings påmindelser og streak-advarsler</string>
+    <string name="notifications_daily_challenge">Daglig udfordrings påmindelse</string>
+    <string name="notifications_daily_challenge_desc">Bliv underrettet når en ny daglig udfordring er tilgængelig</string>
+    <string name="notifications_daily_challenge_time">Daglig udfordrings tid</string>
+    <string name="notifications_streak_reminder">Streak påmindelse</string>
+    <string name="notifications_streak_reminder_desc">Bliv mindet om hvis du ikke har spillet i dag</string>
+    <string name="notifications_streak_reminder_time">Streak påmindelses tid</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Hold dig opdateret</string>
+    <string name="notification_permission_dialog_message">Tillad notifikationer for at modtage daglige udfordrings påmindelser og streak advarsler. Du kan ændre dette senere i indstillinger.</string>
+    <string name="notification_permission_dialog_allow">Tillad</string>
+    <string name="notification_permission_dialog_later">Ikke nu</string>
 </resources>

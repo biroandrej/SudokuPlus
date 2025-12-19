@@ -1,5 +1,9 @@
 package sk.awisoft.sudokuplus.ui.onboarding
 
+import android.Manifest
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -79,9 +83,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.Cell
+import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
+import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 import sk.awisoft.sudokuplus.destinations.BackupScreenDestination
 import sk.awisoft.sudokuplus.destinations.HomeScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsCategoriesScreenDestination
@@ -91,8 +98,11 @@ import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleString
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.sin
@@ -117,6 +127,34 @@ fun WelcomeScreen (
     var showBoard by remember { mutableStateOf(false) }
     var showButton by remember { mutableStateOf(false) }
     var visibleItemIndex by remember { mutableIntStateOf(0) }
+
+    // Permission launcher for notifications
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        // Schedule notifications if permission was granted
+        if (isGranted) {
+            viewModel.scheduleNotifications()
+        }
+        // Navigate to home regardless of permission result
+        viewModel.setFirstLaunch()
+        navigator.popBackStack()
+        navigator.navigate(HomeScreenDestination())
+    }
+
+    // Function to handle start button click
+    fun onStartClick() {
+        // On Android 13+, request notification permission first
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            // On older Android versions, just schedule notifications and proceed
+            viewModel.scheduleNotifications()
+            viewModel.setFirstLaunch()
+            navigator.popBackStack()
+            navigator.navigate(HomeScreenDestination())
+        }
+    }
 
     LaunchedEffect(Unit) {
         delay(100)
@@ -160,11 +198,7 @@ fun WelcomeScreen (
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Button(
-                            onClick = {
-                                viewModel.setFirstLaunch()
-                                navigator.popBackStack()
-                                navigator.navigate(HomeScreenDestination())
-                            },
+                            onClick = { onStartClick() },
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text(stringResource(R.string.action_start))
@@ -597,7 +631,9 @@ private fun AnimatedSudokuLogo(
 @HiltViewModel
 class WelcomeViewModel
 @Inject constructor(
-    private val settingsDataManager: AppSettingsManager
+    private val settingsDataManager: AppSettingsManager,
+    private val notificationSettingsManager: NotificationSettingsManager,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
     var selectedCell by mutableStateOf(Cell(-1, -1, 0))
 
@@ -620,6 +656,20 @@ class WelcomeViewModel
     fun setFirstLaunch(value: Boolean = false) {
         viewModelScope.launch(Dispatchers.IO) {
             settingsDataManager.setFirstLaunch(value)
+        }
+    }
+
+    fun scheduleNotifications() {
+        viewModelScope.launch(Dispatchers.IO) {
+            // Get default times from settings
+            val dailyHour = notificationSettingsManager.dailyChallengeNotificationHour.first()
+            val dailyMinute = notificationSettingsManager.dailyChallengeNotificationMinute.first()
+            val streakHour = notificationSettingsManager.streakReminderHour.first()
+            val streakMinute = notificationSettingsManager.streakReminderMinute.first()
+
+            // Schedule the notifications with default times
+            DailyChallengeNotificationWorker.schedule(context, dailyHour, dailyMinute)
+            StreakReminderWorker.schedule(context, streakHour, streakMinute)
         }
     }
 }

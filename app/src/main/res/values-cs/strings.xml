@@ -429,4 +429,32 @@
     <string name="achievement_daily_streak_30_desc">30denní série denních výzev</string>
     <string name="achievement_daily_streak_100">Denní legenda</string>
     <string name="achievement_daily_streak_100_desc">100denní série denních výzev</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Denní výzva</string>
+    <string name="notification_channel_daily_challenge_desc">Oznámení o nových denních výzvách</string>
+    <string name="notification_channel_streak_reminder">Připomínka série</string>
+    <string name="notification_channel_streak_reminder_desc">Připomínky k udržení vaší série</string>
+    <string name="notification_daily_challenge_title">Denní výzva je připravena!</string>
+    <string name="notification_daily_challenge_text">Nová denní hádanka na vás čeká</string>
+    <string name="notification_streak_reminder_title">Neztraťte svou sérii!</string>
+    <string name="notification_streak_reminder_text">Dnes jste ještě nehráli. Udržte svou sérii!</string>
+    <string name="notification_streak_reminder_text_with_streak">Vaše %d denní série je v ohrožení! Hrajte teď a udržte ji</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Oznámení</string>
+    <string name="notifications_permission_required">Vyžadováno povolení oznámení</string>
+    <string name="notifications_permission_rationale">Povolte oznámení pro připomínky denních výzev a upozornění na sérii</string>
+    <string name="notifications_daily_challenge">Připomínka denní výzvy</string>
+    <string name="notifications_daily_challenge_desc">Buďte upozorněni, když je k dispozici nová denní výzva</string>
+    <string name="notifications_daily_challenge_time">Čas denní výzvy</string>
+    <string name="notifications_streak_reminder">Připomínka série</string>
+    <string name="notifications_streak_reminder_desc">Buďte upozorněni, pokud jste dnes ještě nehráli</string>
+    <string name="notifications_streak_reminder_time">Čas připomínky série</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Zůstaňte informováni</string>
+    <string name="notification_permission_dialog_message">Povolte oznámení pro připomínky denních výzev a upozornění na série. Toto můžete později změnit v nastavení.</string>
+    <string name="notification_permission_dialog_allow">Povolit</string>
+    <string name="notification_permission_dialog_later">Teď ne</string>
 </resources>

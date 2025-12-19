@@ -41,10 +41,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import sk.awisoft.sudokuplus.core.PreferencesConstants
-import sk.awisoft.sudokuplus.core.utils.GlobalExceptionHandler
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
-import sk.awisoft.sudokuplus.ui.app_crash.CrashActivity
 import sk.awisoft.sudokuplus.ui.components.navigation_bar.NavigationBarComponent
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
@@ -62,9 +60,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        if (!BuildConfig.DEBUG) {
-            GlobalExceptionHandler.initialize(applicationContext, CrashActivity::class.java)
-        }
 
         setContent {
             val mainViewModel: MainActivityViewModel = hiltViewModel()

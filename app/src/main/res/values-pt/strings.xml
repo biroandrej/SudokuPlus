@@ -304,9 +304,37 @@
     <string name="action_grant">Conceder</string>
     <string name="autobackup_never">Nunca</string>
     <string name="restore_existing_data_alert">Dados existentes serão deletados!</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Não há dicas restantes para este jogo</string>
+    <string name="hints_ad_title">Sem dicas</string>
+    <string name="hints_ad_message">Ver um anúncio curto para revelar uma dica?</string>
+    <string name="hints_ad_watch">Ver anúncio</string>
+    <string name="hints_ad_cancel">Agora não</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Desafio Diário</string>
+    <string name="notification_channel_daily_challenge_desc">Notificações para novos desafios diários</string>
+    <string name="notification_channel_streak_reminder">Lembrete de Sequência</string>
+    <string name="notification_channel_streak_reminder_desc">Lembretes para manter a sua sequência</string>
+    <string name="notification_daily_challenge_title">Desafio Diário Pronto!</string>
+    <string name="notification_daily_challenge_text">Um novo puzzle diário está à sua espera</string>
+    <string name="notification_streak_reminder_title">Não perca a sua sequência!</string>
+    <string name="notification_streak_reminder_text">Ainda não jogou hoje. Mantenha a sua sequência viva!</string>
+    <string name="notification_streak_reminder_text_with_streak">A sua sequência de %d dias está em risco! Jogue agora para a manter</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notificações</string>
+    <string name="notifications_permission_required">Permissão de notificação necessária</string>
+    <string name="notifications_permission_rationale">Permitir notificações para receber lembretes de desafios diários e alertas de sequência</string>
+    <string name="notifications_daily_challenge">Lembrete de desafio diário</string>
+    <string name="notifications_daily_challenge_desc">Ser notificado quando um novo desafio diário estiver disponível</string>
+    <string name="notifications_daily_challenge_time">Hora do desafio diário</string>
+    <string name="notifications_streak_reminder">Lembrete de sequência</string>
+    <string name="notifications_streak_reminder_desc">Receber um lembrete se não jogou hoje</string>
+    <string name="notifications_streak_reminder_time">Hora do lembrete de sequência</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Mantenha-se atualizado</string>
+    <string name="notification_permission_dialog_message">Permitir notificações para receber lembretes de desafios diários e alertas de sequência. Pode alterar isto mais tarde nas definições.</string>
+    <string name="notification_permission_dialog_allow">Permitir</string>
+    <string name="notification_permission_dialog_later">Agora não</string>
 </resources>

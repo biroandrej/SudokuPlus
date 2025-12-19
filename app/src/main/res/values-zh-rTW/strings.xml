@@ -299,4 +299,32 @@
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
     <string name="hints_ad_cancel">Not now</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">每日挑戰</string>
+    <string name="notification_channel_daily_challenge_desc">新每日挑戰通知</string>
+    <string name="notification_channel_streak_reminder">連續記錄提醒</string>
+    <string name="notification_channel_streak_reminder_desc">保持連續記錄的提醒</string>
+    <string name="notification_daily_challenge_title">每日挑戰已準備好！</string>
+    <string name="notification_daily_challenge_text">新的每日謎題正等著您</string>
+    <string name="notification_streak_reminder_title">不要失去您的連續記錄！</string>
+    <string name="notification_streak_reminder_text">您今天還沒有玩過。保持您的連續記錄！</string>
+    <string name="notification_streak_reminder_text_with_streak">您的 %d 天連續記錄有風險！立即遊戲以保持它</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">通知</string>
+    <string name="notifications_permission_required">需要通知權限</string>
+    <string name="notifications_permission_rationale">允許通知以接收每日挑戰提醒和連續記錄警報</string>
+    <string name="notifications_daily_challenge">每日挑戰提醒</string>
+    <string name="notifications_daily_challenge_desc">當新的每日挑戰可用時獲得通知</string>
+    <string name="notifications_daily_challenge_time">每日挑戰時間</string>
+    <string name="notifications_streak_reminder">連續記錄提醒</string>
+    <string name="notifications_streak_reminder_desc">如果您今天還沒玩過，會收到提醒</string>
+    <string name="notifications_streak_reminder_time">連續記錄提醒時間</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">保持更新</string>
+    <string name="notification_permission_dialog_message">允許通知以接收每日挑戰提醒和連續記錄警報。您可以稍後在設定中更改此選項。</string>
+    <string name="notification_permission_dialog_allow">允許</string>
+    <string name="notification_permission_dialog_later">稍後再說</string>
 </resources>

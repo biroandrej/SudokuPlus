@@ -19,6 +19,11 @@ import sk.awisoft.sudokuplus.data.database.repository.FolderRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.RecordRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.SavedGameRepositoryImpl
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.AssistanceSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.BackupSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.GameplaySettingsManager
+import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.SettingsDataStore
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
@@ -82,8 +87,38 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideAppSettingsManager(@ApplicationContext context: Context) =
-        AppSettingsManager(context)
+    fun provideSettingsDataStore(@ApplicationContext context: Context) =
+        SettingsDataStore(context)
+
+    @Provides
+    @Singleton
+    fun provideGameplaySettingsManager(settingsDataStore: SettingsDataStore) =
+        GameplaySettingsManager(settingsDataStore)
+
+    @Provides
+    @Singleton
+    fun provideAssistanceSettingsManager(settingsDataStore: SettingsDataStore) =
+        AssistanceSettingsManager(settingsDataStore)
+
+    @Provides
+    @Singleton
+    fun provideBackupSettingsManager(settingsDataStore: SettingsDataStore) =
+        BackupSettingsManager(settingsDataStore)
+
+    @Provides
+    @Singleton
+    fun provideNotificationSettingsManager(settingsDataStore: SettingsDataStore) =
+        NotificationSettingsManager(settingsDataStore)
+
+    @Provides
+    @Singleton
+    fun provideAppSettingsManager(
+        settingsDataStore: SettingsDataStore,
+        gameplay: GameplaySettingsManager,
+        assistance: AssistanceSettingsManager,
+        backup: BackupSettingsManager,
+        notification: NotificationSettingsManager
+    ) = AppSettingsManager(settingsDataStore, gameplay, assistance, backup, notification)
 
     @Provides
     @Singleton

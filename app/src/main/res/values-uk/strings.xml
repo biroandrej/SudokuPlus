@@ -275,4 +275,32 @@
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
     <string name="hints_ad_cancel">Not now</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Щоденний виклик</string>
+    <string name="notification_channel_daily_challenge_desc">Сповіщення про нові щоденні виклики</string>
+    <string name="notification_channel_streak_reminder">Нагадування про серію</string>
+    <string name="notification_channel_streak_reminder_desc">Нагадування для підтримки вашої серії</string>
+    <string name="notification_daily_challenge_title">Щоденний виклик готовий!</string>
+    <string name="notification_daily_challenge_text">Нова щоденна головоломка чекає на вас</string>
+    <string name="notification_streak_reminder_title">Не втратьте свою серію!</string>
+    <string name="notification_streak_reminder_text">Ви сьогодні ще не грали. Підтримайте свою серію!</string>
+    <string name="notification_streak_reminder_text_with_streak">Ваша серія у %d днів під загрозою! Зіграйте зараз, щоб її зберегти</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Сповіщення</string>
+    <string name="notifications_permission_required">Потрібен дозвіл на сповіщення</string>
+    <string name="notifications_permission_rationale">Дозвольте сповіщення, щоб отримувати нагадування про щоденні виклики та сповіщення про серію</string>
+    <string name="notifications_daily_challenge">Нагадування про щоденний виклик</string>
+    <string name="notifications_daily_challenge_desc">Отримувати сповіщення про нові щоденні виклики</string>
+    <string name="notifications_daily_challenge_time">Час сповіщення про виклик</string>
+    <string name="notifications_streak_reminder">Нагадування про серію</string>
+    <string name="notifications_streak_reminder_desc">Отримувати нагадування, якщо ви сьогодні не грали</string>
+    <string name="notifications_streak_reminder_time">Час нагадування про серію</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Будьте в курсі</string>
+    <string name="notification_permission_dialog_message">Дозвольте сповіщення для отримання нагадувань про щоденні виклики та попереджень про серії. Ви можете змінити це пізніше в налаштуваннях.</string>
+    <string name="notification_permission_dialog_allow">Дозволити</string>
+    <string name="notification_permission_dialog_later">Не зараз</string>
 </resources>

@@ -1,29 +1,65 @@
 package sk.awisoft.sudokuplus
 
 import android.app.Application
-import android.content.Context
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
+import androidx.work.WorkManager
 import dagger.hilt.android.HiltAndroidApp
-import sk.awisoft.sudokuplus.ads.AdsInitializer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
+import sk.awisoft.sudokuplus.core.notification.NotificationHelper
+import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
+import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 import javax.inject.Inject
 
 @HiltAndroidApp
 class SudokuPlusApp : Application(), Configuration.Provider {
-    override fun onCreate() {
-        super.onCreate()
-        AdsInitializer.initialize(this)
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-    }
 
     @Inject
     lateinit var hiltWorkerFactory: HiltWorkerFactory
+
+    @Inject
+    lateinit var notificationSettingsManager: NotificationSettingsManager
+
+    @Inject
+    lateinit var notificationHelper: NotificationHelper
+
+    private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder()
             .setWorkerFactory(hiltWorkerFactory)
             .build()
 
+    override fun onCreate() {
+        super.onCreate()
+        WorkManager.initialize(this, workManagerConfiguration)
+        scheduleNotificationWorkersIfEnabled()
+    }
+
+    private fun scheduleNotificationWorkersIfEnabled() {
+        applicationScope.launch {
+            // Only schedule if we have notification permission
+            if (!notificationHelper.hasNotificationPermission()) return@launch
+
+            val dailyEnabled = notificationSettingsManager.dailyChallengeNotificationEnabled.first()
+            val streakEnabled = notificationSettingsManager.streakReminderEnabled.first()
+
+            if (dailyEnabled) {
+                val hour = notificationSettingsManager.dailyChallengeNotificationHour.first()
+                val minute = notificationSettingsManager.dailyChallengeNotificationMinute.first()
+                DailyChallengeNotificationWorker.schedule(this@SudokuPlusApp, hour, minute)
+            }
+
+            if (streakEnabled) {
+                val hour = notificationSettingsManager.streakReminderHour.first()
+                val minute = notificationSettingsManager.streakReminderMinute.first()
+                StreakReminderWorker.schedule(this@SudokuPlusApp, hour, minute)
+            }
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package sk.awisoft.sudokuplus.ui.home
 
+import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -7,6 +8,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
+import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
+import sk.awisoft.sudokuplus.core.notification.NotificationHelper
+import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
 import sk.awisoft.sudokuplus.core.qqwing.Cage
 import sk.awisoft.sudokuplus.core.qqwing.CageGenerator
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
@@ -16,10 +20,12 @@ import sk.awisoft.sudokuplus.core.utils.SudokuParser
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -41,13 +47,16 @@ class HomeViewModel
     private val boardRepository: BoardRepository,
     private val savedGameRepository: SavedGameRepository,
     private val dailyChallengeManager: DailyChallengeManager,
-    private val dailyChallengeRepository: DailyChallengeRepository
+    private val dailyChallengeRepository: DailyChallengeRepository,
+    private val notificationSettingsManager: NotificationSettingsManager,
+    private val notificationHelper: NotificationHelper,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     val lastSavedGame = savedGameRepository.getLast()
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
-    // Daily Challenge State
+    // Daily Challenge StateO
     private val _dailyChallenge = MutableStateFlow<DailyChallenge?>(null)
     val dailyChallenge: StateFlow<DailyChallenge?> = _dailyChallenge.asStateFlow()
 
@@ -63,8 +72,63 @@ class HomeViewModel
     var dailyChallengeGameUid = -1L
     var dailyChallengeReadyToPlay by mutableStateOf(false)
 
+    // Notification permission state
+    private val _shouldShowNotificationPermission = MutableStateFlow(false)
+    val shouldShowNotificationPermission: StateFlow<Boolean> = _shouldShowNotificationPermission.asStateFlow()
+
     init {
         loadDailyChallenge()
+        checkNotificationPermission()
+    }
+
+    private fun checkNotificationPermission() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val alreadyRequested = notificationSettingsManager.notificationPermissionRequested.first()
+            val hasPermission = notificationHelper.hasNotificationPermission()
+
+            // Show permission dialog if not already requested and don't have permission
+            if (!alreadyRequested && !hasPermission) {
+                _shouldShowNotificationPermission.value = true
+            } else if (hasPermission) {
+                // If we have permission, make sure notifications are scheduled
+                scheduleNotificationsIfEnabled()
+            }
+        }
+    }
+
+    fun onNotificationPermissionRequested() {
+        viewModelScope.launch(Dispatchers.IO) {
+            notificationSettingsManager.setNotificationPermissionRequested(true)
+            _shouldShowNotificationPermission.value = false
+        }
+    }
+
+    fun onNotificationPermissionResult(granted: Boolean) {
+        viewModelScope.launch(Dispatchers.IO) {
+            notificationSettingsManager.setNotificationPermissionRequested(true)
+            _shouldShowNotificationPermission.value = false
+
+            if (granted) {
+                scheduleNotificationsIfEnabled()
+            }
+        }
+    }
+
+    private suspend fun scheduleNotificationsIfEnabled() {
+        val dailyEnabled = notificationSettingsManager.dailyChallengeNotificationEnabled.first()
+        val streakEnabled = notificationSettingsManager.streakReminderEnabled.first()
+
+        if (dailyEnabled) {
+            val hour = notificationSettingsManager.dailyChallengeNotificationHour.first()
+            val minute = notificationSettingsManager.dailyChallengeNotificationMinute.first()
+            DailyChallengeNotificationWorker.schedule(context, hour, minute)
+        }
+
+        if (streakEnabled) {
+            val hour = notificationSettingsManager.streakReminderHour.first()
+            val minute = notificationSettingsManager.streakReminderMinute.first()
+            StreakReminderWorker.schedule(context, hour, minute)
+        }
     }
 
     private fun loadDailyChallenge() {

@@ -378,4 +378,32 @@
     <string name="achievement_daily_streak_30_desc">30 päivän päivittäinen haaste putki</string>
     <string name="achievement_daily_streak_100">Päivittäinen Legenda</string>
     <string name="achievement_daily_streak_100_desc">100 päivän päivittäinen haaste putki</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Päivittäinen Haaste</string>
+    <string name="notification_channel_daily_challenge_desc">Ilmoitukset uusista päivittäisistä haasteista</string>
+    <string name="notification_channel_streak_reminder">Putkimuistutus</string>
+    <string name="notification_channel_streak_reminder_desc">Muistutukset putkesi ylläpitämiseksi</string>
+    <string name="notification_daily_challenge_title">Päivittäinen Haaste Valmiina!</string>
+    <string name="notification_daily_challenge_text">Uusi päivittäinen pulmapeli odottaa sinua</string>
+    <string name="notification_streak_reminder_title">Älä menetä putkiasi!</string>
+    <string name="notification_streak_reminder_text">Et ole pelannut tänään. Pidä putkesi elossa!</string>
+    <string name="notification_streak_reminder_text_with_streak">%d päivän putkesi on vaarassa! Pelaa nyt säilyttääksesi sen</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Ilmoitukset</string>
+    <string name="notifications_permission_required">Ilmoituslupa vaaditaan</string>
+    <string name="notifications_permission_rationale">Salli ilmoitukset saadaksesi päivittäisiä haaste muistutuksia ja putkihälytyksiä</string>
+    <string name="notifications_daily_challenge">Päivittäinen haaste muistutus</string>
+    <string name="notifications_daily_challenge_desc">Saa ilmoitus kun uusi päivittäinen haaste on saatavilla</string>
+    <string name="notifications_daily_challenge_time">Päivittäisen haasteen aika</string>
+    <string name="notifications_streak_reminder">Putkimuistutus</string>
+    <string name="notifications_streak_reminder_desc">Saa muistutus jos et ole pelannut tänään</string>
+    <string name="notifications_streak_reminder_time">Putkimuistutuksen aika</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Pysy ajan tasalla</string>
+    <string name="notification_permission_dialog_message">Salli ilmoitukset saadaksesi päivittäisen haasteen muistutuksia ja putkihälytyksiä. Voit muuttaa tätä myöhemmin asetuksissa.</string>
+    <string name="notification_permission_dialog_allow">Salli</string>
+    <string name="notification_permission_dialog_later">Ei nyt</string>
 </resources>

@@ -479,4 +479,32 @@
     <string name="achievement_daily_streak_30_desc">30-дневная серия ежедневных вызовов</string>
     <string name="achievement_daily_streak_100">Ежедневная легенда</string>
     <string name="achievement_daily_streak_100_desc">100-дневная серия ежедневных вызовов</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Ежедневный вызов</string>
+    <string name="notification_channel_daily_challenge_desc">Уведомления о новых ежедневных вызовах</string>
+    <string name="notification_channel_streak_reminder">Напоминание о серии</string>
+    <string name="notification_channel_streak_reminder_desc">Напоминания для поддержания вашей серии</string>
+    <string name="notification_daily_challenge_title">Ежедневный вызов готов!</string>
+    <string name="notification_daily_challenge_text">Новая ежедневная головоломка ждёт вас</string>
+    <string name="notification_streak_reminder_title">Не потеряйте свою серию!</string>
+    <string name="notification_streak_reminder_text">Вы сегодня ещё не играли. Поддержите свою серию!</string>
+    <string name="notification_streak_reminder_text_with_streak">Ваша серия в %d дней под угрозой! Сыграйте сейчас, чтобы её сохранить</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Уведомления</string>
+    <string name="notifications_permission_required">Требуется разрешение на уведомления</string>
+    <string name="notifications_permission_rationale">Разрешите уведомления, чтобы получать напоминания о ежедневных вызовах и оповещения о серии</string>
+    <string name="notifications_daily_challenge">Напоминание о ежедневном вызове</string>
+    <string name="notifications_daily_challenge_desc">Получать уведомления о новых ежедневных вызовах</string>
+    <string name="notifications_daily_challenge_time">Время уведомления о вызове</string>
+    <string name="notifications_streak_reminder">Напоминание о серии</string>
+    <string name="notifications_streak_reminder_desc">Получать напоминание, если вы сегодня не играли</string>
+    <string name="notifications_streak_reminder_time">Время напоминания о серии</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Будьте в курсе</string>
+    <string name="notification_permission_dialog_message">Разрешите уведомления для получения напоминаний о ежедневных вызовах и предупреждений о сериях. Вы можете изменить это позже в настройках.</string>
+    <string name="notification_permission_dialog_allow">Разрешить</string>
+    <string name="notification_permission_dialog_later">Не сейчас</string>
 </resources>

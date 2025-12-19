@@ -154,4 +154,32 @@
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
     <string name="hints_ad_cancel">Not now</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Napi kihívás</string>
+    <string name="notification_channel_daily_challenge_desc">Értesítések az új napi kihívásokról</string>
+    <string name="notification_channel_streak_reminder">Sorozat emlékeztető</string>
+    <string name="notification_channel_streak_reminder_desc">Emlékeztetők a sorozat fenntartásához</string>
+    <string name="notification_daily_challenge_title">Napi kihívás kész!</string>
+    <string name="notification_daily_challenge_text">Egy új napi feladvány vár rád</string>
+    <string name="notification_streak_reminder_title">Ne veszítsd el a sorozatod!</string>
+    <string name="notification_streak_reminder_text">Ma még nem játszottál. Tartsd életben a sorozatod!</string>
+    <string name="notification_streak_reminder_text_with_streak">A %d napos sorozatod veszélyben van! Játssz most, hogy megtartsd</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Értesítések</string>
+    <string name="notifications_permission_required">Értesítési engedély szükséges</string>
+    <string name="notifications_permission_rationale">Engedélyezd az értesítéseket a napi kihívás emlékeztetőkhöz és sorozat figyelmeztetésekhez</string>
+    <string name="notifications_daily_challenge">Napi kihívás emlékeztető</string>
+    <string name="notifications_daily_challenge_desc">Értesítést kapsz, ha új napi kihívás érhető el</string>
+    <string name="notifications_daily_challenge_time">Napi kihívás ideje</string>
+    <string name="notifications_streak_reminder">Sorozat emlékeztető</string>
+    <string name="notifications_streak_reminder_desc">Emlékeztető, ha ma még nem játszottál</string>
+    <string name="notifications_streak_reminder_time">Sorozat emlékeztető ideje</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Maradj naprakész</string>
+    <string name="notification_permission_dialog_message">Engedélyezd az értesítéseket a napi kihívás emlékeztetők és sorozat figyelmeztetések fogadásához. Ezt később megváltoztathatod a beállításokban.</string>
+    <string name="notification_permission_dialog_allow">Engedélyezés</string>
+    <string name="notification_permission_dialog_later">Most nem</string>
 </resources>
