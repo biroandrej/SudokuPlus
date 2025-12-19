@@ -330,9 +330,37 @@
     <string name="pref_board_theme_summary">Aplicare culori de accent, poziționare linii, mărime font…</string>
     <string name="action_generate">Generați</string>
     <string name="generating_number_of">Se generează %1$s/%2$s</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Nu mai sunt sugestii pentru acest joc</string>
+    <string name="hints_ad_title">Fără sugestii</string>
+    <string name="hints_ad_message">Vizionați o reclamă scurtă pentru a dezvălui o sugestie?</string>
+    <string name="hints_ad_watch">Vizionați reclama</string>
+    <string name="hints_ad_cancel">Nu acum</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Provocare Zilnică</string>
+    <string name="notification_channel_daily_challenge_desc">Notificări pentru noi provocări zilnice</string>
+    <string name="notification_channel_streak_reminder">Memento Serie</string>
+    <string name="notification_channel_streak_reminder_desc">Memento-uri pentru a vă menține seria</string>
+    <string name="notification_daily_challenge_title">Provocarea Zilnică este Gata!</string>
+    <string name="notification_daily_challenge_text">Un nou puzzle zilnic vă așteaptă</string>
+    <string name="notification_streak_reminder_title">Nu vă pierdeți seria!</string>
+    <string name="notification_streak_reminder_text">Nu ați jucat astăzi. Păstrați-vă seria vie!</string>
+    <string name="notification_streak_reminder_text_with_streak">Seria dumneavoastră de %d zile este în pericol! Jucați acum pentru a o păstra</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notificări</string>
+    <string name="notifications_permission_required">Permisiune de notificare necesară</string>
+    <string name="notifications_permission_rationale">Permiteți notificările pentru a primi memento-uri pentru provocări zilnice și alerte de serie</string>
+    <string name="notifications_daily_challenge">Memento provocare zilnică</string>
+    <string name="notifications_daily_challenge_desc">Fiți notificat când o nouă provocare zilnică este disponibilă</string>
+    <string name="notifications_daily_challenge_time">Ora provocării zilnice</string>
+    <string name="notifications_streak_reminder">Memento serie</string>
+    <string name="notifications_streak_reminder_desc">Primiți un memento dacă nu ați jucat astăzi</string>
+    <string name="notifications_streak_reminder_time">Ora memento-ului de serie</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Rămâneți la curent</string>
+    <string name="notification_permission_dialog_message">Permiteți notificările pentru a primi mementouri pentru provocări zilnice și alerte de serie. Puteți schimba acest lucru mai târziu în setări.</string>
+    <string name="notification_permission_dialog_allow">Permite</string>
+    <string name="notification_permission_dialog_later">Nu acum</string>
 </resources>

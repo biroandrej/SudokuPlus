@@ -1,6 +1,10 @@
 package sk.awisoft.sudokuplus.ui.home
 
+import android.Manifest
+import android.os.Build
 import android.text.format.DateUtils
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.fadeIn
@@ -110,6 +114,7 @@ fun HomeScreen(
     val isDailyLoading by viewModel.isDailyLoading.collectAsStateWithLifecycle()
     val dailyCurrentStreak by viewModel.dailyCurrentStreak.collectAsStateWithLifecycle()
 
+    Notifications(viewModel = viewModel)
 
     LaunchedEffect(saveSelectedGameDifficultyType) {
         if (saveSelectedGameDifficultyType) {
@@ -330,6 +335,42 @@ fun HomeScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun Notifications(viewModel: HomeViewModel) {
+    // Notification permission
+    val shouldShowNotificationPermission by viewModel.shouldShowNotificationPermission.collectAsStateWithLifecycle()
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        viewModel.onNotificationPermissionResult(isGranted)
+    }
+
+    // Show notification permission dialog on Android 13+
+    if (shouldShowNotificationPermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        AlertDialog(
+            onDismissRequest = { viewModel.onNotificationPermissionRequested() },
+            title = { Text(stringResource(R.string.notification_permission_dialog_title)) },
+            text = { Text(stringResource(R.string.notification_permission_dialog_message)) },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        viewModel.onNotificationPermissionRequested()
+                        permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    }
+                ) {
+                    Text(stringResource(R.string.notification_permission_dialog_allow))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { viewModel.onNotificationPermissionRequested() }) {
+                    Text(stringResource(R.string.notification_permission_dialog_later))
+                }
+            }
+        )
     }
 }
 

@@ -459,4 +459,32 @@
     <string name="achievement_daily_streak_30_desc">Serie di 30 giorni di sfida giornaliera</string>
     <string name="achievement_daily_streak_100">Leggenda Giornaliera</string>
     <string name="achievement_daily_streak_100_desc">Serie di 100 giorni di sfida giornaliera</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Sfida Giornaliera</string>
+    <string name="notification_channel_daily_challenge_desc">Notifiche per nuove sfide giornaliere</string>
+    <string name="notification_channel_streak_reminder">Promemoria Serie</string>
+    <string name="notification_channel_streak_reminder_desc">Promemoria per mantenere la tua serie</string>
+    <string name="notification_daily_challenge_title">Sfida Giornaliera Pronta!</string>
+    <string name="notification_daily_challenge_text">Un nuovo puzzle giornaliero ti aspetta</string>
+    <string name="notification_streak_reminder_title">Non perdere la tua serie!</string>
+    <string name="notification_streak_reminder_text">Non hai giocato oggi. Mantieni viva la tua serie!</string>
+    <string name="notification_streak_reminder_text_with_streak">La tua serie di %d giorni è a rischio! Gioca ora per mantenerla</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notifiche</string>
+    <string name="notifications_permission_required">Permesso notifiche richiesto</string>
+    <string name="notifications_permission_rationale">Consenti le notifiche per ricevere promemoria delle sfide giornaliere e avvisi sulla serie</string>
+    <string name="notifications_daily_challenge">Promemoria sfida giornaliera</string>
+    <string name="notifications_daily_challenge_desc">Ricevi notifica quando una nuova sfida giornaliera è disponibile</string>
+    <string name="notifications_daily_challenge_time">Orario sfida giornaliera</string>
+    <string name="notifications_streak_reminder">Promemoria serie</string>
+    <string name="notifications_streak_reminder_desc">Ricevi promemoria se non hai giocato oggi</string>
+    <string name="notifications_streak_reminder_time">Orario promemoria serie</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Rimani aggiornato</string>
+    <string name="notification_permission_dialog_message">Consenti le notifiche per ricevere promemoria della sfida giornaliera e avvisi sulla serie. Puoi modificare questa impostazione più tardi.</string>
+    <string name="notification_permission_dialog_allow">Consenti</string>
+    <string name="notification_permission_dialog_later">Non ora</string>
 </resources>

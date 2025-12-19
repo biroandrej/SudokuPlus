@@ -425,4 +425,32 @@
     <string name="achievement_daily_streak_30_desc">Σερί 30 ημερών ημερήσιας πρόκλησης</string>
     <string name="achievement_daily_streak_100">Ημερήσιος Θρύλος</string>
     <string name="achievement_daily_streak_100_desc">Σερί 100 ημερών ημερήσιας πρόκλησης</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Ημερήσια Πρόκληση</string>
+    <string name="notification_channel_daily_challenge_desc">Ειδοποιήσεις για νέες ημερήσιες προκλήσεις</string>
+    <string name="notification_channel_streak_reminder">Υπενθύμιση Σερί</string>
+    <string name="notification_channel_streak_reminder_desc">Υπενθυμίσεις για τη διατήρηση του σερί σας</string>
+    <string name="notification_daily_challenge_title">Ημερήσια Πρόκληση Έτοιμη!</string>
+    <string name="notification_daily_challenge_text">Ένα νέο ημερήσιο παζλ σας περιμένει</string>
+    <string name="notification_streak_reminder_title">Μη χάσετε το σερί σας!</string>
+    <string name="notification_streak_reminder_text">Δεν έχετε παίξει σήμερα. Διατηρήστε το σερί σας ζωντανό!</string>
+    <string name="notification_streak_reminder_text_with_streak">Το σερί σας %d ημερών κινδυνεύει! Παίξτε τώρα για να το διατηρήσετε</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Ειδοποιήσεις</string>
+    <string name="notifications_permission_required">Απαιτείται άδεια ειδοποιήσεων</string>
+    <string name="notifications_permission_rationale">Επιτρέψτε τις ειδοποιήσεις για να λαμβάνετε υπενθυμίσεις ημερήσιας πρόκλησης και ειδοποιήσεις σερί</string>
+    <string name="notifications_daily_challenge">Υπενθύμιση ημερήσιας πρόκλησης</string>
+    <string name="notifications_daily_challenge_desc">Ενημερωθείτε όταν είναι διαθέσιμη μια νέα ημερήσια πρόκληση</string>
+    <string name="notifications_daily_challenge_time">Ώρα ημερήσιας πρόκλησης</string>
+    <string name="notifications_streak_reminder">Υπενθύμιση σερί</string>
+    <string name="notifications_streak_reminder_desc">Λάβετε υπενθύμιση αν δεν έχετε παίξει σήμερα</string>
+    <string name="notifications_streak_reminder_time">Ώρα υπενθύμισης σερί</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Μείνετε ενημερωμένοι</string>
+    <string name="notification_permission_dialog_message">Επιτρέψτε τις ειδοποιήσεις για να λαμβάνετε υπενθυμίσεις ημερήσιας πρόκλησης και ειδοποιήσεις σερί. Μπορείτε να το αλλάξετε αργότερα στις ρυθμίσεις.</string>
+    <string name="notification_permission_dialog_allow">Να επιτραπεί</string>
+    <string name="notification_permission_dialog_later">Όχι τώρα</string>
 </resources>

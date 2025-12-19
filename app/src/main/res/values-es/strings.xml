@@ -474,4 +474,32 @@
     <string name="achievement_daily_streak_30_desc">Racha de 30 días de desafíos diarios</string>
     <string name="achievement_daily_streak_100">Leyenda diaria</string>
     <string name="achievement_daily_streak_100_desc">Racha de 100 días de desafíos diarios</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Desafío diario</string>
+    <string name="notification_channel_daily_challenge_desc">Notificaciones para nuevos desafíos diarios</string>
+    <string name="notification_channel_streak_reminder">Recordatorio de racha</string>
+    <string name="notification_channel_streak_reminder_desc">Recordatorios para mantener tu racha</string>
+    <string name="notification_daily_challenge_title">¡Desafío diario listo!</string>
+    <string name="notification_daily_challenge_text">Un nuevo puzzle diario te está esperando</string>
+    <string name="notification_streak_reminder_title">¡No pierdas tu racha!</string>
+    <string name="notification_streak_reminder_text">No has jugado hoy. ¡Mantén tu racha viva!</string>
+    <string name="notification_streak_reminder_text_with_streak">¡Tu racha de %d días está en riesgo! Juega ahora para mantenerla</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notificaciones</string>
+    <string name="notifications_permission_required">Se requiere permiso de notificaciones</string>
+    <string name="notifications_permission_rationale">Permite notificaciones para recibir recordatorios de desafíos diarios y alertas de racha</string>
+    <string name="notifications_daily_challenge">Recordatorio de desafío diario</string>
+    <string name="notifications_daily_challenge_desc">Recibe notificación cuando un nuevo desafío diario esté disponible</string>
+    <string name="notifications_daily_challenge_time">Hora del desafío diario</string>
+    <string name="notifications_streak_reminder">Recordatorio de racha</string>
+    <string name="notifications_streak_reminder_desc">Recibe recordatorio si no has jugado hoy</string>
+    <string name="notifications_streak_reminder_time">Hora del recordatorio de racha</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Mantente informado</string>
+    <string name="notification_permission_dialog_message">Permite las notificaciones para recibir recordatorios del desafío diario y alertas de racha. Puedes cambiar esto más tarde en ajustes.</string>
+    <string name="notification_permission_dialog_allow">Permitir</string>
+    <string name="notification_permission_dialog_later">Ahora no</string>
 </resources>

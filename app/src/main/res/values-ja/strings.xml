@@ -200,4 +200,32 @@
     <string name="achievement_daily_streak_30_desc">30日連続デイリーチャレンジ</string>
     <string name="achievement_daily_streak_100">デイリーレジェンド</string>
     <string name="achievement_daily_streak_100_desc">100日連続デイリーチャレンジ</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">デイリーチャレンジ</string>
+    <string name="notification_channel_daily_challenge_desc">新しいデイリーチャレンジの通知</string>
+    <string name="notification_channel_streak_reminder">連続記録リマインダー</string>
+    <string name="notification_channel_streak_reminder_desc">連続記録を維持するためのリマインダー</string>
+    <string name="notification_daily_challenge_title">デイリーチャレンジ準備完了！</string>
+    <string name="notification_daily_challenge_text">新しいデイリーパズルがお待ちしています</string>
+    <string name="notification_streak_reminder_title">連続記録を失わないで！</string>
+    <string name="notification_streak_reminder_text">今日はまだプレイしていません。連続記録を維持しましょう！</string>
+    <string name="notification_streak_reminder_text_with_streak">あなたの%d日連続記録が危険です！今すぐプレイして維持しましょう</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">通知</string>
+    <string name="notifications_permission_required">通知の許可が必要です</string>
+    <string name="notifications_permission_rationale">デイリーチャレンジのリマインダーと連続記録アラートを受け取るために通知を許可してください</string>
+    <string name="notifications_daily_challenge">デイリーチャレンジリマインダー</string>
+    <string name="notifications_daily_challenge_desc">新しいデイリーチャレンジが利用可能になったら通知を受け取る</string>
+    <string name="notifications_daily_challenge_time">デイリーチャレンジの時間</string>
+    <string name="notifications_streak_reminder">連続記録リマインダー</string>
+    <string name="notifications_streak_reminder_desc">今日まだプレイしていない場合にリマインダーを受け取る</string>
+    <string name="notifications_streak_reminder_time">連続記録リマインダーの時間</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">最新情報を受け取る</string>
+    <string name="notification_permission_dialog_message">デイリーチャレンジのリマインダーと連続記録のアラートを受け取るために通知を許可してください。後で設定で変更できます。</string>
+    <string name="notification_permission_dialog_allow">許可する</string>
+    <string name="notification_permission_dialog_later">後で</string>
 </resources>

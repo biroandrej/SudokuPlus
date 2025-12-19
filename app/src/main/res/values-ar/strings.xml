@@ -411,4 +411,32 @@
     <string name="achievement_daily_streak_30_desc">سلسلة 30 يومًا من التحدي اليومي</string>
     <string name="achievement_daily_streak_100">أسطورة التحدي اليومي</string>
     <string name="achievement_daily_streak_100_desc">سلسلة 100 يوم من التحدي اليومي</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">التحدي اليومي</string>
+    <string name="notification_channel_daily_challenge_desc">إشعارات للتحديات اليومية الجديدة</string>
+    <string name="notification_channel_streak_reminder">تذكير السلسلة</string>
+    <string name="notification_channel_streak_reminder_desc">تذكيرات للحفاظ على سلسلتك</string>
+    <string name="notification_daily_challenge_title">التحدي اليومي جاهز!</string>
+    <string name="notification_daily_challenge_text">لغز يومي جديد ينتظرك</string>
+    <string name="notification_streak_reminder_title">لا تفقد سلسلتك!</string>
+    <string name="notification_streak_reminder_text">لم تلعب اليوم. حافظ على سلسلتك!</string>
+    <string name="notification_streak_reminder_text_with_streak">سلسلتك البالغة %d يوم في خطر! العب الآن للحفاظ عليها</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">الإشعارات</string>
+    <string name="notifications_permission_required">مطلوب إذن الإشعارات</string>
+    <string name="notifications_permission_rationale">اسمح بالإشعارات لتلقي تذكيرات التحدي اليومي وتنبيهات السلسلة</string>
+    <string name="notifications_daily_challenge">تذكير التحدي اليومي</string>
+    <string name="notifications_daily_challenge_desc">احصل على إشعار عند توفر تحدي يومي جديد</string>
+    <string name="notifications_daily_challenge_time">وقت التحدي اليومي</string>
+    <string name="notifications_streak_reminder">تذكير السلسلة</string>
+    <string name="notifications_streak_reminder_desc">احصل على تذكير إذا لم تلعب اليوم</string>
+    <string name="notifications_streak_reminder_time">وقت تذكير السلسلة</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">ابقَ على اطلاع</string>
+    <string name="notification_permission_dialog_message">اسمح بالإشعارات لتلقي تذكيرات التحدي اليومي وتنبيهات السلسلة. يمكنك تغيير هذا لاحقاً في الإعدادات.</string>
+    <string name="notification_permission_dialog_allow">السماح</string>
+    <string name="notification_permission_dialog_later">ليس الآن</string>
 </resources>

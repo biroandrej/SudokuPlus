@@ -423,4 +423,32 @@
     <string name="achievement_daily_streak_30_desc">Série de 30 jours de défis quotidiens</string>
     <string name="achievement_daily_streak_100">Légende quotidienne</string>
     <string name="achievement_daily_streak_100_desc">Série de 100 jours de défis quotidiens</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Défi quotidien</string>
+    <string name="notification_channel_daily_challenge_desc">Notifications pour les nouveaux défis quotidiens</string>
+    <string name="notification_channel_streak_reminder">Rappel de série</string>
+    <string name="notification_channel_streak_reminder_desc">Rappels pour maintenir votre série</string>
+    <string name="notification_daily_challenge_title">Défi quotidien prêt !</string>
+    <string name="notification_daily_challenge_text">Un nouveau puzzle quotidien vous attend</string>
+    <string name="notification_streak_reminder_title">Ne perdez pas votre série !</string>
+    <string name="notification_streak_reminder_text">Vous n\'avez pas joué aujourd\'hui. Maintenez votre série !</string>
+    <string name="notification_streak_reminder_text_with_streak">Votre série de %d jours est en danger ! Jouez maintenant pour la conserver</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_permission_required">Autorisation de notification requise</string>
+    <string name="notifications_permission_rationale">Autorisez les notifications pour recevoir des rappels de défis quotidiens et des alertes de série</string>
+    <string name="notifications_daily_challenge">Rappel de défi quotidien</string>
+    <string name="notifications_daily_challenge_desc">Soyez notifié lorsqu\'un nouveau défi quotidien est disponible</string>
+    <string name="notifications_daily_challenge_time">Heure du défi quotidien</string>
+    <string name="notifications_streak_reminder">Rappel de série</string>
+    <string name="notifications_streak_reminder_desc">Soyez rappelé si vous n\'avez pas joué aujourd\'hui</string>
+    <string name="notifications_streak_reminder_time">Heure du rappel de série</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Restez informé</string>
+    <string name="notification_permission_dialog_message">Autorisez les notifications pour recevoir des rappels de défi quotidien et des alertes de série. Vous pouvez modifier cela plus tard dans les paramètres.</string>
+    <string name="notification_permission_dialog_allow">Autoriser</string>
+    <string name="notification_permission_dialog_later">Pas maintenant</string>
 </resources>

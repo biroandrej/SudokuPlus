@@ -425,4 +425,32 @@
     <string name="achievement_daily_streak_30_desc">30-Tage tägliche Herausforderungs-Serie</string>
     <string name="achievement_daily_streak_100">Tägliche Legende</string>
     <string name="achievement_daily_streak_100_desc">100-Tage tägliche Herausforderungs-Serie</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Tägliche Herausforderung</string>
+    <string name="notification_channel_daily_challenge_desc">Benachrichtigungen für neue tägliche Herausforderungen</string>
+    <string name="notification_channel_streak_reminder">Serien-Erinnerung</string>
+    <string name="notification_channel_streak_reminder_desc">Erinnerungen zur Aufrechterhaltung deiner Serie</string>
+    <string name="notification_daily_challenge_title">Tägliche Herausforderung bereit!</string>
+    <string name="notification_daily_challenge_text">Ein neues tägliches Puzzle wartet auf dich</string>
+    <string name="notification_streak_reminder_title">Verliere deine Serie nicht!</string>
+    <string name="notification_streak_reminder_text">Du hast heute noch nicht gespielt. Halte deine Serie aufrecht!</string>
+    <string name="notification_streak_reminder_text_with_streak">Deine %d-Tage-Serie ist in Gefahr! Spiele jetzt, um sie zu behalten</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Benachrichtigungen</string>
+    <string name="notifications_permission_required">Benachrichtigungsberechtigung erforderlich</string>
+    <string name="notifications_permission_rationale">Erlaube Benachrichtigungen für Erinnerungen an tägliche Herausforderungen und Serien-Warnungen</string>
+    <string name="notifications_daily_challenge">Erinnerung an tägliche Herausforderung</string>
+    <string name="notifications_daily_challenge_desc">Werde benachrichtigt, wenn eine neue tägliche Herausforderung verfügbar ist</string>
+    <string name="notifications_daily_challenge_time">Zeit für tägliche Herausforderung</string>
+    <string name="notifications_streak_reminder">Serien-Erinnerung</string>
+    <string name="notifications_streak_reminder_desc">Werde erinnert, wenn du heute noch nicht gespielt hast</string>
+    <string name="notifications_streak_reminder_time">Zeit für Serien-Erinnerung</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Bleiben Sie informiert</string>
+    <string name="notification_permission_dialog_message">Erlauben Sie Benachrichtigungen für tägliche Herausforderungs-Erinnerungen und Serien-Warnungen. Sie können dies später in den Einstellungen ändern.</string>
+    <string name="notification_permission_dialog_allow">Erlauben</string>
+    <string name="notification_permission_dialog_later">Nicht jetzt</string>
 </resources>

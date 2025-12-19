@@ -320,4 +320,32 @@
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
     <string name="hints_ad_cancel">Not now</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Desafio Diário</string>
+    <string name="notification_channel_daily_challenge_desc">Notificações para novos desafios diários</string>
+    <string name="notification_channel_streak_reminder">Lembrete de Sequência</string>
+    <string name="notification_channel_streak_reminder_desc">Lembretes para manter sua sequência</string>
+    <string name="notification_daily_challenge_title">Desafio Diário Pronto!</string>
+    <string name="notification_daily_challenge_text">Um novo quebra-cabeça diário está esperando por você</string>
+    <string name="notification_streak_reminder_title">Não perca sua sequência!</string>
+    <string name="notification_streak_reminder_text">Você não jogou hoje. Mantenha sua sequência viva!</string>
+    <string name="notification_streak_reminder_text_with_streak">Sua sequência de %d dias está em risco! Jogue agora para mantê-la</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notificações</string>
+    <string name="notifications_permission_required">Permissão de notificação necessária</string>
+    <string name="notifications_permission_rationale">Permita notificações para receber lembretes de desafio diário e alertas de sequência</string>
+    <string name="notifications_daily_challenge">Lembrete de desafio diário</string>
+    <string name="notifications_daily_challenge_desc">Receba notificações quando um novo desafio diário estiver disponível</string>
+    <string name="notifications_daily_challenge_time">Horário do desafio diário</string>
+    <string name="notifications_streak_reminder">Lembrete de sequência</string>
+    <string name="notifications_streak_reminder_desc">Receba um lembrete se você não jogou hoje</string>
+    <string name="notifications_streak_reminder_time">Horário do lembrete de sequência</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Fique atualizado</string>
+    <string name="notification_permission_dialog_message">Permita notificações para receber lembretes de desafios diários e alertas de sequência. Você pode alterar isso mais tarde nas configurações.</string>
+    <string name="notification_permission_dialog_allow">Permitir</string>
+    <string name="notification_permission_dialog_later">Agora não</string>
 </resources>

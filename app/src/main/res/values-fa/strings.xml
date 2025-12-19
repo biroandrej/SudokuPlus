@@ -232,4 +232,32 @@
     <string name="achievement_daily_streak_30_desc">30 روز پیوسته چالش روزانه</string>
     <string name="achievement_daily_streak_100">افسانه روزانه</string>
     <string name="achievement_daily_streak_100_desc">100 روز پیوسته چالش روزانه</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">چالش روزانه</string>
+    <string name="notification_channel_daily_challenge_desc">اعلان‌ها برای چالش‌های روزانه جدید</string>
+    <string name="notification_channel_streak_reminder">یادآوری پیوستگی</string>
+    <string name="notification_channel_streak_reminder_desc">یادآوری‌ها برای حفظ پیوستگی شما</string>
+    <string name="notification_daily_challenge_title">چالش روزانه آماده است!</string>
+    <string name="notification_daily_challenge_text">یک پازل روزانه جدید منتظر شماست</string>
+    <string name="notification_streak_reminder_title">پیوستگی خود را از دست ندهید!</string>
+    <string name="notification_streak_reminder_text">امروز بازی نکرده‌اید. پیوستگی خود را زنده نگه دارید!</string>
+    <string name="notification_streak_reminder_text_with_streak">پیوستگی %d روزه شما در خطر است! اکنون بازی کنید تا آن را حفظ کنید</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">اعلان‌ها</string>
+    <string name="notifications_permission_required">مجوز اعلان لازم است</string>
+    <string name="notifications_permission_rationale">برای دریافت یادآوری‌های چالش روزانه و هشدارهای پیوستگی، اعلان‌ها را مجاز کنید</string>
+    <string name="notifications_daily_challenge">یادآوری چالش روزانه</string>
+    <string name="notifications_daily_challenge_desc">هنگام در دسترس بودن چالش روزانه جدید مطلع شوید</string>
+    <string name="notifications_daily_challenge_time">زمان چالش روزانه</string>
+    <string name="notifications_streak_reminder">یادآوری پیوستگی</string>
+    <string name="notifications_streak_reminder_desc">اگر امروز بازی نکرده‌اید یادآوری دریافت کنید</string>
+    <string name="notifications_streak_reminder_time">زمان یادآوری پیوستگی</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">به‌روز بمانید</string>
+    <string name="notification_permission_dialog_message">برای دریافت یادآوری‌های چالش روزانه و هشدارهای پیوستگی، اعلان‌ها را مجاز کنید. بعداً می‌توانید این را در تنظیمات تغییر دهید.</string>
+    <string name="notification_permission_dialog_allow">مجاز</string>
+    <string name="notification_permission_dialog_later">الان نه</string>
 </resources>

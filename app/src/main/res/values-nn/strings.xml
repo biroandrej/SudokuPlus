@@ -68,9 +68,37 @@
     <string name="action_show_notes">Vis merknadar</string>
     <string name="action_give_up">Gjev opp</string>
     <string name="nav_bar_statistics">Statistikk</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Ingen hint att for dette spelet</string>
+    <string name="hints_ad_title">Tom for hint</string>
+    <string name="hints_ad_message">Sjå ei kort reklame for å avsløre eit hint?</string>
+    <string name="hints_ad_watch">Sjå reklame</string>
+    <string name="hints_ad_cancel">Ikkje no</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Dagleg utfordring</string>
+    <string name="notification_channel_daily_challenge_desc">Varslar for nye daglege utfordringar</string>
+    <string name="notification_channel_streak_reminder">Sekvens-påminning</string>
+    <string name="notification_channel_streak_reminder_desc">Påminningar for å halde sekvensen din</string>
+    <string name="notification_daily_challenge_title">Dagleg utfordring klar!</string>
+    <string name="notification_daily_challenge_text">Ei ny dagleg oppgåve ventar på deg</string>
+    <string name="notification_streak_reminder_title">Ikkje mist sekvensen din!</string>
+    <string name="notification_streak_reminder_text">Du har ikkje spelt i dag. Hald sekvensen din i live!</string>
+    <string name="notification_streak_reminder_text_with_streak">Sekvensen din på %d dagar er i fare! Spel no for å halde han</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Varslar</string>
+    <string name="notifications_permission_required">Varslingsløyve krevst</string>
+    <string name="notifications_permission_rationale">Tillat varslar for å motta påminningar om daglege utfordringar og sekvensvarslar</string>
+    <string name="notifications_daily_challenge">Påminning for dagleg utfordring</string>
+    <string name="notifications_daily_challenge_desc">Bli varsla når ei ny dagleg utfordring er tilgjengeleg</string>
+    <string name="notifications_daily_challenge_time">Tid for dagleg utfordring</string>
+    <string name="notifications_streak_reminder">Sekvens-påminning</string>
+    <string name="notifications_streak_reminder_desc">Få ei påminning viss du ikkje har spelt i dag</string>
+    <string name="notifications_streak_reminder_time">Tid for sekvens-påminning</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Hald deg oppdatert</string>
+    <string name="notification_permission_dialog_message">Tillat varslar for å motta påminningar om daglege utfordringar og sekvensvarslar. Du kan endre dette seinare i innstillingar.</string>
+    <string name="notification_permission_dialog_allow">Tillat</string>
+    <string name="notification_permission_dialog_later">Ikkje no</string>
 </resources>

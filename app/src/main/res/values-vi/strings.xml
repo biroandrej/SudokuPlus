@@ -46,4 +46,32 @@
     <string name="hints_ad_cancel">Not now</string>
     <string name="about_contact_developer">Liên hệ</string>
     <string name="about_contact_developer_summary">Yêu cầu tính năng, phản hồi hoặc câu hỏi</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Thử thách hàng ngày</string>
+    <string name="notification_channel_daily_challenge_desc">Thông báo cho các thử thách hàng ngày mới</string>
+    <string name="notification_channel_streak_reminder">Nhắc nhở chuỗi</string>
+    <string name="notification_channel_streak_reminder_desc">Nhắc nhở để duy trì chuỗi của bạn</string>
+    <string name="notification_daily_challenge_title">Thử thách hàng ngày đã sẵn sàng!</string>
+    <string name="notification_daily_challenge_text">Một câu đố hàng ngày mới đang chờ bạn</string>
+    <string name="notification_streak_reminder_title">Đừng mất chuỗi của bạn!</string>
+    <string name="notification_streak_reminder_text">Bạn chưa chơi hôm nay. Hãy duy trì chuỗi của bạn!</string>
+    <string name="notification_streak_reminder_text_with_streak">Chuỗi %d ngày của bạn đang gặp nguy hiểm! Chơi ngay để duy trì</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Thông báo</string>
+    <string name="notifications_permission_required">Cần có quyền thông báo</string>
+    <string name="notifications_permission_rationale">Cho phép thông báo để nhận nhắc nhở thử thách hàng ngày và cảnh báo chuỗi</string>
+    <string name="notifications_daily_challenge">Nhắc nhở thử thách hàng ngày</string>
+    <string name="notifications_daily_challenge_desc">Nhận thông báo khi có thử thách hàng ngày mới</string>
+    <string name="notifications_daily_challenge_time">Thời gian thử thách hàng ngày</string>
+    <string name="notifications_streak_reminder">Nhắc nhở chuỗi</string>
+    <string name="notifications_streak_reminder_desc">Nhận nhắc nhở nếu bạn chưa chơi hôm nay</string>
+    <string name="notifications_streak_reminder_time">Thời gian nhắc nhở chuỗi</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Luôn cập nhật</string>
+    <string name="notification_permission_dialog_message">Cho phép thông báo để nhận nhắc nhở thử thách hàng ngày và cảnh báo chuỗi. Bạn có thể thay đổi điều này sau trong cài đặt.</string>
+    <string name="notification_permission_dialog_allow">Cho phép</string>
+    <string name="notification_permission_dialog_later">Để sau</string>
 </resources>

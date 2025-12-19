@@ -482,4 +482,32 @@
     <string name="achievement_daily_streak_30_desc">30-day daily challenge streak</string>
     <string name="achievement_daily_streak_100">Daily Legend</string>
     <string name="achievement_daily_streak_100_desc">100-day daily challenge streak</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Daily Challenge</string>
+    <string name="notification_channel_daily_challenge_desc">Notifications for new daily challenges</string>
+    <string name="notification_channel_streak_reminder">Streak Reminder</string>
+    <string name="notification_channel_streak_reminder_desc">Reminders to maintain your streak</string>
+    <string name="notification_daily_challenge_title">Daily Challenge Ready!</string>
+    <string name="notification_daily_challenge_text">A new daily puzzle is waiting for you</string>
+    <string name="notification_streak_reminder_title">Don\'t lose your streak!</string>
+    <string name="notification_streak_reminder_text">You haven\'t played today. Keep your streak alive!</string>
+    <string name="notification_streak_reminder_text_with_streak">Your %d-day streak is at risk! Play now to keep it going</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_permission_required">Notification permission required</string>
+    <string name="notifications_permission_rationale">Allow notifications to receive daily challenge reminders and streak alerts</string>
+    <string name="notifications_daily_challenge">Daily challenge reminder</string>
+    <string name="notifications_daily_challenge_desc">Get notified when a new daily challenge is available</string>
+    <string name="notifications_daily_challenge_time">Daily challenge time</string>
+    <string name="notifications_streak_reminder">Streak reminder</string>
+    <string name="notifications_streak_reminder_desc">Get reminded if you haven\'t played today</string>
+    <string name="notifications_streak_reminder_time">Streak reminder time</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Stay Updated</string>
+    <string name="notification_permission_dialog_message">Allow notifications to receive daily challenge reminders and streak alerts. You can change this later in settings.</string>
+    <string name="notification_permission_dialog_allow">Allow</string>
+    <string name="notification_permission_dialog_later">Not now</string>
 </resources>

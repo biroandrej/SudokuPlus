@@ -1,117 +1,46 @@
 package sk.awisoft.sudokuplus.data.datastore
 
-import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import sk.awisoft.sudokuplus.core.PreferencesConstants
-import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
-import sk.awisoft.sudokuplus.core.qqwing.GameType
-import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintSettings
 import kotlinx.coroutines.flow.map
-import java.time.Instant
-import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.time.chrono.IsoChronology
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatterBuilder
 import java.time.format.FormatStyle
 import java.util.Locale
+import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.random.Random
 
+/**
+ * Core app settings manager.
+ * For specific settings, use the dedicated managers:
+ * - [GameplaySettingsManager] - Input method, mistakes, hints, timer, etc.
+ * - [AssistanceSettingsManager] - Highlighting, auto-erase notes, advanced hints
+ * - [BackupSettingsManager] - Backup URI, intervals, dates
+ * - [NotificationSettingsManager] - Daily challenge and streak notifications
+ */
 @Singleton
-class AppSettingsManager(context: Context) {
-    private val Context.createDataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-    private val dataStore = context.createDataStore
+class AppSettingsManager @Inject constructor(
+    settingsDataStore: SettingsDataStore,
+    val gameplay: GameplaySettingsManager,
+    val assistance: AssistanceSettingsManager,
+    val backup: BackupSettingsManager,
+    val notification: NotificationSettingsManager
+) {
+    private val dataStore = settingsDataStore.dataStore
 
-    // first app launch
     private val firstLaunchKey = booleanPreferencesKey("first_launch")
-
-    // input method (0 -> cell first, 1 -> digit first)
-    private val inputMethodKey = intPreferencesKey("input_method")
-
-    // mistakes limit
-    private val mistakesLimitKey = booleanPreferencesKey("mistakes_limit")
-
-    // disable hint button
-    private val hintsDisabledKey = booleanPreferencesKey("hints_disabled")
-
-    // number of hints remaining for a specific game (keyed by board uid)
-    private fun hintsRemainingKey(gameUid: Long) = intPreferencesKey("hints_remaining_$gameUid")
-
-    // interstitial ad gating
-    private val interstitialGamesCompletedKey =
-        intPreferencesKey("interstitial_games_completed")
-    private val interstitialNextThresholdKey =
-        intPreferencesKey("interstitial_next_threshold")
-
-    // show timer
-    private val timerKey = booleanPreferencesKey("timer")
-
-    // game reset resets timer
-    private val resetTimerKey = booleanPreferencesKey("timer_reset")
-
-    // highlight mistakes
-    private val highlightMistakesKey = intPreferencesKey("mistakes_highlight")
-
-    // highlight same numbers
-    private val highlightIdenticalKey = booleanPreferencesKey("same_values_highlight")
-
-    // count and show remaining uses for numbers
-    private val remainingUseKey = booleanPreferencesKey("remaining_use")
-
-    // highlight current position with horizontal and vertical lines
-    private val positionLinesKey = booleanPreferencesKey("position_lines")
-
-    // auto erase notes
-    private val autoEraseNotesKey = booleanPreferencesKey("notes_auto_erase")
-
-    // font size (0 automatic (default), 1 - small, 2 - medium, 3 - big)
     private val fontSizeKey = intPreferencesKey("board_font_size")
-
-    // keep screen on
     private val keepScreenOnKey = booleanPreferencesKey("keep_screen_on")
-
-    // first game
-    private val firstGameKey = booleanPreferencesKey("first_game")
-
-    // place function keyboard (undo, erase etc.) above the numbers keyboard
-    private val funKeyboardOverNumKey = booleanPreferencesKey("fun_keyboard_over_numbers")
-
-    // custom date format
     private val dateFormatKey = stringPreferencesKey("date_format")
 
-    // whether to save the last selected type and difficulty in the HomeScreen
-    private val saveSelectedGameDifficultyTypeKey =
-        booleanPreferencesKey("save_last_selected_difficulty_type")
-
-    // last selected difficulty and type
-    private val lastSelectedGameDifficultyTypeKey =
-        stringPreferencesKey("last_selected_difficulty_type")
-
-    // URI for automatic backups
-    private val backupUriKey = stringPreferencesKey("backup_persistent_uri")
-
-    // Interval in hours between automatic backups
-    private val autoBackupIntervalKey = longPreferencesKey("auto_backup_interval")
-
-    // Max number of automatic backup files
-    private val autoBackupsNumberKey = intPreferencesKey("auto_backups_max_number")
-
-    private val lastBackupDateKey = longPreferencesKey("last_backup_date")
-
-    private val advancedHintKey = booleanPreferencesKey("advanced_hint")
-
-    private val ahFullHouseKey = booleanPreferencesKey("ah_full_house")
-    private val ahNakedSingle = booleanPreferencesKey("ah_naked_single")
-    private val ahHiddenSingle = booleanPreferencesKey("ah_hidden_single")
-    private val ahCheckWrongValue = booleanPreferencesKey("ah_check_wrong_value")
+    // First launch
+    val firstLaunch = dataStore.data.map { preferences ->
+        preferences[firstLaunchKey] ?: true
+    }
 
     suspend fun setFirstLaunch(value: Boolean) {
         dataStore.edit { settings ->
@@ -119,165 +48,9 @@ class AppSettingsManager(context: Context) {
         }
     }
 
-    val firstLaunch = dataStore.data.map { preferences ->
-        preferences[firstLaunchKey] ?: true
-    }
-
-    suspend fun setMistakesLimit(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[mistakesLimitKey] = enabled
-        }
-    }
-
-    val mistakesLimit = dataStore.data.map { preferences ->
-        preferences[mistakesLimitKey] ?: PreferencesConstants.DEFAULT_MISTAKES_LIMIT
-    }
-
-    suspend fun setHintsDisabled(disabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[hintsDisabledKey] = disabled
-        }
-    }
-
-    val hintsDisabled = dataStore.data.map { preferences ->
-        preferences[hintsDisabledKey] ?: PreferencesConstants.DEFAULT_HINTS_DISABLED
-    }
-
-    fun hintsRemaining(gameUid: Long) = dataStore.data.map { preferences ->
-        if (gameUid <= 0L) {
-            PreferencesConstants.DEFAULT_HINTS_PER_GAME
-        } else {
-            preferences[hintsRemainingKey(gameUid)] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
-        }
-    }
-
-    suspend fun resetHintsRemaining(gameUid: Long) {
-        if (gameUid <= 0L) return
-        dataStore.edit { settings ->
-            settings[hintsRemainingKey(gameUid)] = PreferencesConstants.DEFAULT_HINTS_PER_GAME
-        }
-    }
-
-    suspend fun tryConsumeHint(gameUid: Long): Boolean {
-        if (gameUid <= 0L) return false
-        var consumed = false
-        dataStore.edit { settings ->
-            val current =
-                settings[hintsRemainingKey(gameUid)] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
-            if (current > 0) {
-                settings[hintsRemainingKey(gameUid)] = current - 1
-                consumed = true
-            }
-        }
-        return consumed
-    }
-
-    suspend fun grantHints(gameUid: Long, amount: Int = 1) {
-        if (gameUid <= 0L) return
-        if (amount <= 0) return
-        dataStore.edit { settings ->
-            val current =
-                settings[hintsRemainingKey(gameUid)] ?: PreferencesConstants.DEFAULT_HINTS_PER_GAME
-            settings[hintsRemainingKey(gameUid)] = current + amount
-        }
-    }
-
-    suspend fun shouldShowInterstitialAfterGameComplete(): Boolean {
-        var shouldShow = false
-        dataStore.edit { settings ->
-            val nextThreshold = settings[interstitialNextThresholdKey]
-                ?: Random.nextInt(2, 4)
-            val completedCount = (settings[interstitialGamesCompletedKey] ?: 0) + 1
-            if (completedCount >= nextThreshold) {
-                settings[interstitialGamesCompletedKey] = 0
-                settings[interstitialNextThresholdKey] = Random.nextInt(2, 4)
-                shouldShow = true
-            } else {
-                settings[interstitialGamesCompletedKey] = completedCount
-                settings[interstitialNextThresholdKey] = nextThreshold
-            }
-        }
-        return shouldShow
-    }
-
-    suspend fun setTimer(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[timerKey] = enabled
-        }
-    }
-
-    val timerEnabled = dataStore.data.map { preferences ->
-        preferences[timerKey] ?: PreferencesConstants.DEFAULT_SHOW_TIMER
-    }
-
-    suspend fun setResetTimer(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[resetTimerKey] = enabled
-        }
-    }
-
-    val resetTimerEnabled = dataStore.data.map { preferences ->
-        preferences[resetTimerKey] ?: PreferencesConstants.DEFAULT_GAME_RESET_TIMER
-    }
-
-    suspend fun setHighlightMistakes(value: Int) {
-        dataStore.edit { settings ->
-            settings[highlightMistakesKey] = value
-        }
-    }
-
-    val highlightMistakes = dataStore.data.map { preferences ->
-        preferences[highlightMistakesKey] ?: PreferencesConstants.DEFAULT_HIGHLIGHT_MISTAKES
-    }
-
-    suspend fun setSameValuesHighlight(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[highlightIdenticalKey] = enabled
-        }
-    }
-
-    val highlightIdentical = dataStore.data.map { preferences ->
-        preferences[highlightIdenticalKey] ?: PreferencesConstants.DEFAULT_HIGHLIGHT_IDENTICAL
-    }
-
-    suspend fun setRemainingUse(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[remainingUseKey] = enabled
-        }
-    }
-
-    val remainingUse = dataStore.data.map { preferences ->
-        preferences[remainingUseKey] ?: PreferencesConstants.DEFAULT_REMAINING_USES
-    }
-
-    suspend fun setPositionLines(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[positionLinesKey] = enabled
-        }
-    }
-
-    val positionLines = dataStore.data.map { preferences ->
-        preferences[positionLinesKey] ?: PreferencesConstants.DEFAULT_POSITION_LINES
-    }
-
-    suspend fun setAutoEraseNotes(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[autoEraseNotesKey] = enabled
-        }
-    }
-
-    val autoEraseNotes = dataStore.data.map { preferences ->
-        preferences[autoEraseNotesKey] ?: PreferencesConstants.DEFAULT_AUTO_ERASE_NOTES
-    }
-
-    suspend fun setInputMethod(value: Int) {
-        dataStore.edit { settings ->
-            settings[inputMethodKey] = value
-        }
-    }
-
-    val inputMethod = dataStore.data.map { preferences ->
-        preferences[inputMethodKey] ?: PreferencesConstants.DEFAULT_INPUT_METHOD
+    // Font size
+    val fontSize = dataStore.data.map { preferences ->
+        preferences[fontSizeKey] ?: PreferencesConstants.DEFAULT_FONT_SIZE_FACTOR
     }
 
     suspend fun setFontSize(value: Int) {
@@ -286,8 +59,9 @@ class AppSettingsManager(context: Context) {
         }
     }
 
-    val fontSize = dataStore.data.map { preferences ->
-        preferences[fontSizeKey] ?: PreferencesConstants.DEFAULT_FONT_SIZE_FACTOR
+    // Keep screen on
+    val keepScreenOn = dataStore.data.map { preferences ->
+        preferences[keepScreenOnKey] ?: PreferencesConstants.DEFAULT_KEEP_SCREEN_ON
     }
 
     suspend fun setKeepScreenOn(enabled: Boolean) {
@@ -296,28 +70,9 @@ class AppSettingsManager(context: Context) {
         }
     }
 
-    val keepScreenOn = dataStore.data.map { preferences ->
-        preferences[keepScreenOnKey] ?: PreferencesConstants.DEFAULT_KEEP_SCREEN_ON
-    }
-
-    suspend fun setFirstGame(value: Boolean) {
-        dataStore.edit { settings ->
-            settings[firstGameKey] = value
-        }
-    }
-
-    val firstGame = dataStore.data.map { preferences ->
-        preferences[firstGameKey] ?: true
-    }
-
-    suspend fun setFunKeyboardOverNum(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[funKeyboardOverNumKey] = enabled
-        }
-    }
-
-    val funKeyboardOverNumbers = dataStore.data.map { prefs ->
-        prefs[funKeyboardOverNumKey] ?: PreferencesConstants.DEFAULT_FUN_KEYBOARD_OVER_NUM
+    // Date format
+    val dateFormat = dataStore.data.map { prefs ->
+        prefs[dateFormatKey] ?: ""
     }
 
     suspend fun setDateFormat(format: String) {
@@ -326,183 +81,97 @@ class AppSettingsManager(context: Context) {
         }
     }
 
-    val dateFormat = dataStore.data.map { prefs ->
-        prefs[dateFormatKey] ?: ""
-    }
+    // ===========================================
+    // Delegation to GameplaySettingsManager
+    // ===========================================
+    val inputMethod get() = gameplay.inputMethod
+    suspend fun setInputMethod(value: Int) = gameplay.setInputMethod(value)
 
-    suspend fun setSaveSelectedGameDifficultyType(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[saveSelectedGameDifficultyTypeKey] = enabled
-        }
-    }
+    val mistakesLimit get() = gameplay.mistakesLimit
+    suspend fun setMistakesLimit(enabled: Boolean) = gameplay.setMistakesLimit(enabled)
 
-    /**
-     * Whether to save the last selected type and difficulty in the HomeScreen
-     */
-    val saveSelectedGameDifficultyType = dataStore.data.map { prefs ->
-        prefs[saveSelectedGameDifficultyTypeKey]
-            ?: PreferencesConstants.DEFAULT_SAVE_LAST_SELECTED_DIFF_TYPE
-    }
+    val hintsDisabled get() = gameplay.hintsDisabled
+    suspend fun setHintsDisabled(disabled: Boolean) = gameplay.setHintsDisabled(disabled)
 
+    fun hintsRemaining(gameUid: Long) = gameplay.hintsRemaining(gameUid)
+    suspend fun resetHintsRemaining(gameUid: Long) = gameplay.resetHintsRemaining(gameUid)
+    suspend fun tryConsumeHint(gameUid: Long) = gameplay.tryConsumeHint(gameUid)
+    suspend fun grantHints(gameUid: Long, amount: Int = 1) = gameplay.grantHints(gameUid, amount)
+
+    suspend fun shouldShowInterstitialAfterGameComplete() = gameplay.shouldShowInterstitialAfterGameComplete()
+
+    val timerEnabled get() = gameplay.timerEnabled
+    suspend fun setTimer(enabled: Boolean) = gameplay.setTimer(enabled)
+
+    val resetTimerEnabled get() = gameplay.resetTimerEnabled
+    suspend fun setResetTimer(enabled: Boolean) = gameplay.setResetTimer(enabled)
+
+    val firstGame get() = gameplay.firstGame
+    suspend fun setFirstGame(value: Boolean) = gameplay.setFirstGame(value)
+
+    val funKeyboardOverNumbers get() = gameplay.funKeyboardOverNumbers
+    suspend fun setFunKeyboardOverNum(enabled: Boolean) = gameplay.setFunKeyboardOverNum(enabled)
+
+    val saveSelectedGameDifficultyType get() = gameplay.saveSelectedGameDifficultyType
+    suspend fun setSaveSelectedGameDifficultyType(enabled: Boolean) = gameplay.setSaveSelectedGameDifficultyType(enabled)
+
+    val lastSelectedGameDifficultyType get() = gameplay.lastSelectedGameDifficultyType
     suspend fun setLastSelectedGameDifficultyType(
-        difficulty: GameDifficulty,
-        type: GameType
-    ) {
-        dataStore.edit { settings ->
-            var difficultyAndType = when (difficulty) {
-                GameDifficulty.Unspecified -> "0"
-                GameDifficulty.Simple -> "1"
-                GameDifficulty.Easy -> "2"
-                GameDifficulty.Moderate -> "3"
-                GameDifficulty.Hard -> "4"
-                GameDifficulty.Challenge -> "5"
-                GameDifficulty.Custom -> "6"
-            }
-            difficultyAndType += ";"
-            difficultyAndType += when (type) {
-                GameType.Unspecified -> "0"
-                GameType.Default9x9 -> "1"
-                GameType.Default12x12 -> "2"
-                GameType.Default6x6 -> "3"
-                GameType.Killer9x9 -> "4"
-                GameType.Killer12x12 -> "5"
-                GameType.Killer6x6 -> "6"
-            }
-            settings[lastSelectedGameDifficultyTypeKey] = difficultyAndType
-        }
-    }
+        difficulty: sk.awisoft.sudokuplus.core.qqwing.GameDifficulty,
+        type: sk.awisoft.sudokuplus.core.qqwing.GameType
+    ) = gameplay.setLastSelectedGameDifficultyType(difficulty, type)
 
-    /**
-     * Last selected difficulty and type. Returns Pair<GameDifficulty, GameType>
-     */
-    val lastSelectedGameDifficultyType = dataStore.data.map { prefs ->
-        var gameDifficulty = GameDifficulty.Easy
-        var gameType = GameType.Default9x9
+    // ===========================================
+    // Delegation to AssistanceSettingsManager
+    // ===========================================
+    val highlightMistakes get() = assistance.highlightMistakes
+    suspend fun setHighlightMistakes(value: Int) = assistance.setHighlightMistakes(value)
 
-        val key = prefs[lastSelectedGameDifficultyTypeKey] ?: ""
-        if (key.isNotEmpty() && key.contains(";")) {
-            gameDifficulty = when (key.substring(0, key.indexOf(";"))) {
-                "0" -> GameDifficulty.Unspecified
-                "1" -> GameDifficulty.Simple
-                "2" -> GameDifficulty.Easy
-                "3" -> GameDifficulty.Moderate
-                "4" -> GameDifficulty.Hard
-                "5" -> GameDifficulty.Challenge
-                "6" -> GameDifficulty.Custom
-                else -> GameDifficulty.Easy
-            }
-            gameType = when (key.substring(key.indexOf(";") + 1)) {
-                "0" -> GameType.Unspecified
-                "1" -> GameType.Default9x9
-                "2" -> GameType.Default12x12
-                "3" -> GameType.Default6x6
-                "4" -> GameType.Killer9x9
-                "5" -> GameType.Killer12x12
-                "6" -> GameType.Killer6x6
-                else -> GameType.Default9x9
-            }
-        }
-        Pair(gameDifficulty, gameType)
-    }
+    val highlightIdentical get() = assistance.highlightIdentical
+    suspend fun setSameValuesHighlight(enabled: Boolean) = assistance.setSameValuesHighlight(enabled)
 
-    suspend fun setBackupUri(uri: String) {
-        dataStore.edit { settings ->
-            settings[backupUriKey] = uri
-        }
-    }
+    val remainingUse get() = assistance.remainingUse
+    suspend fun setRemainingUse(enabled: Boolean) = assistance.setRemainingUse(enabled)
 
-    val backupUri = dataStore.data.map { prefs -> prefs[backupUriKey] ?: "" }
+    val positionLines get() = assistance.positionLines
+    suspend fun setPositionLines(enabled: Boolean) = assistance.setPositionLines(enabled)
 
-    suspend fun setAutoBackupInterval(hours: Long) {
-        dataStore.edit { settings ->
-            settings[autoBackupIntervalKey] = hours
-        }
-    }
+    val autoEraseNotes get() = assistance.autoEraseNotes
+    suspend fun setAutoEraseNotes(enabled: Boolean) = assistance.setAutoEraseNotes(enabled)
 
-    val autoBackupInterval = dataStore.data.map { prefs ->
-        prefs[autoBackupIntervalKey] ?: PreferencesConstants.DEFAULT_AUTOBACKUP_INTERVAL
-    }
+    val advancedHintEnabled get() = assistance.advancedHintEnabled
+    suspend fun setAdvancedHint(enabled: Boolean) = assistance.setAdvancedHint(enabled)
 
-    suspend fun setAutoBackupsNumber(value: Int) {
-        dataStore.edit { settings ->
-            settings[autoBackupsNumberKey] = value
-        }
-    }
+    val advancedHintSettings get() = assistance.advancedHintSettings
+    suspend fun updateAdvancedHintSettings(ahSettings: sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintSettings) =
+        assistance.updateAdvancedHintSettings(ahSettings)
 
-    val autoBackupsNumber = dataStore.data.map { prefs ->
-        prefs[autoBackupsNumberKey] ?: PreferencesConstants.DEFAULT_AUTO_BACKUPS_NUMBER
-    }
+    // ===========================================
+    // Delegation to BackupSettingsManager
+    // ===========================================
+    val backupUri get() = backup.backupUri
+    suspend fun setBackupUri(uri: String) = backup.setBackupUri(uri)
 
-    suspend fun setLastBackupDate(date: ZonedDateTime) {
-        dataStore.edit {  settings ->
-            settings[lastBackupDateKey] = date.toInstant().epochSecond
-        }
-    }
+    val autoBackupInterval get() = backup.autoBackupInterval
+    suspend fun setAutoBackupInterval(hours: Long) = backup.setAutoBackupInterval(hours)
 
-    val lastBackupDate = dataStore.data.map { prefs ->
-        val date = prefs[lastBackupDateKey]
-        if (date != null) {
-            ZonedDateTime.ofInstant(
-                Instant.ofEpochSecond(date),
-                ZoneId.systemDefault()
-            )
-        } else {
-            null
-        }
+    val autoBackupsNumber get() = backup.autoBackupsNumber
+    suspend fun setAutoBackupsNumber(value: Int) = backup.setAutoBackupsNumber(value)
 
-
-
-    }
-
-    val advancedHintEnabled = dataStore.data.map { settings ->
-        settings[advancedHintKey] ?: PreferencesConstants.DEFAULT_ADVANCED_HINT
-    }
-
-    suspend fun setAdvancedHint(enabled: Boolean) {
-        dataStore.edit { settings ->
-            settings[advancedHintKey] = enabled
-        }
-    }
-
-    val advancedHintSettings = dataStore.data.map { settings ->
-        val fullHouse = settings[ahFullHouseKey] ?: true
-        val nakedSingle = settings[ahNakedSingle] ?: true
-        val hiddenSingle = settings[ahHiddenSingle] ?: true
-        val checkWrongValue = settings[ahCheckWrongValue] ?: true
-
-        AdvancedHintSettings(
-            fullHouse = fullHouse,
-            nakedSingle = nakedSingle,
-            hiddenSingle = hiddenSingle,
-            checkWrongValue = checkWrongValue
-        )
-    }
-
-    suspend fun updateAdvancedHintSettings(ahSettings: AdvancedHintSettings) {
-        dataStore.edit { settings ->
-            settings[ahFullHouseKey] = ahSettings.fullHouse
-            settings[ahNakedSingle] = ahSettings.nakedSingle
-            settings[ahHiddenSingle] = ahSettings.hiddenSingle
-            settings[ahCheckWrongValue] = ahSettings.checkWrongValue
-        }
-    }
+    val lastBackupDate get() = backup.lastBackupDate
+    suspend fun setLastBackupDate(date: java.time.ZonedDateTime) = backup.setLastBackupDate(date)
 
     companion object {
         fun dateFormat(format: String): DateTimeFormatter = when (format) {
-            "" -> {
-                DateTimeFormatter.ofPattern(
-                    DateTimeFormatterBuilder.getLocalizedDateTimePattern(
-                        FormatStyle.SHORT,
-                        null,
-                        IsoChronology.INSTANCE,
-                        Locale.getDefault()
-                    )
+            "" -> DateTimeFormatter.ofPattern(
+                DateTimeFormatterBuilder.getLocalizedDateTimePattern(
+                    FormatStyle.SHORT,
+                    null,
+                    IsoChronology.INSTANCE,
+                    Locale.getDefault()
                 )
-            }
-
-            else -> {
-                DateTimeFormatter.ofPattern(format, Locale.getDefault())
-            }
+            )
+            else -> DateTimeFormatter.ofPattern(format, Locale.getDefault())
         }
     }
 }

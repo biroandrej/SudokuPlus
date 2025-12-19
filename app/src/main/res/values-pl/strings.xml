@@ -442,4 +442,32 @@
     <string name="achievement_daily_streak_30_desc">30-dniowa seria codziennych wyzwań</string>
     <string name="achievement_daily_streak_100">Codzienna legenda</string>
     <string name="achievement_daily_streak_100_desc">100-dniowa seria codziennych wyzwań</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Codzienne wyzwanie</string>
+    <string name="notification_channel_daily_challenge_desc">Powiadomienia o nowych codziennych wyzwaniach</string>
+    <string name="notification_channel_streak_reminder">Przypomnienie o serii</string>
+    <string name="notification_channel_streak_reminder_desc">Przypomnienia o utrzymaniu serii</string>
+    <string name="notification_daily_challenge_title">Codzienne wyzwanie gotowe!</string>
+    <string name="notification_daily_challenge_text">Nowa codzienna łamigłówka na Ciebie czeka</string>
+    <string name="notification_streak_reminder_title">Nie trać swojej serii!</string>
+    <string name="notification_streak_reminder_text">Nie grałeś dzisiaj. Utrzymaj swoją serię!</string>
+    <string name="notification_streak_reminder_text_with_streak">Twoja %d-dniowa seria jest zagrożona! Zagraj teraz, aby ją utrzymać</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Powiadomienia</string>
+    <string name="notifications_permission_required">Wymagane uprawnienie do powiadomień</string>
+    <string name="notifications_permission_rationale">Zezwól na powiadomienia, aby otrzymywać przypomnienia o codziennych wyzwaniach i alerty o serii</string>
+    <string name="notifications_daily_challenge">Przypomnienie o codziennym wyzwaniu</string>
+    <string name="notifications_daily_challenge_desc">Otrzymuj powiadomienia, gdy nowe codzienne wyzwanie jest dostępne</string>
+    <string name="notifications_daily_challenge_time">Godzina codziennego wyzwania</string>
+    <string name="notifications_streak_reminder">Przypomnienie o serii</string>
+    <string name="notifications_streak_reminder_desc">Otrzymuj przypomnienie, jeśli dzisiaj nie grałeś</string>
+    <string name="notifications_streak_reminder_time">Godzina przypomnienia o serii</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Bądź na bieżąco</string>
+    <string name="notification_permission_dialog_message">Zezwól na powiadomienia, aby otrzymywać przypomnienia o codziennych wyzwaniach i alerty o seriach. Możesz to zmienić później w ustawieniach.</string>
+    <string name="notification_permission_dialog_allow">Zezwól</string>
+    <string name="notification_permission_dialog_later">Nie teraz</string>
 </resources>

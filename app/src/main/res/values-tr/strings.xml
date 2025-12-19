@@ -341,4 +341,32 @@
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
     <string name="hints_ad_cancel">Not now</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Günlük Meydan Okuma</string>
+    <string name="notification_channel_daily_challenge_desc">Yeni günlük meydan okumalar için bildirimler</string>
+    <string name="notification_channel_streak_reminder">Seri Hatırlatıcısı</string>
+    <string name="notification_channel_streak_reminder_desc">Serinizi korumak için hatırlatmalar</string>
+    <string name="notification_daily_challenge_title">Günlük Meydan Okuma Hazır!</string>
+    <string name="notification_daily_challenge_text">Yeni bir günlük bulmaca sizi bekliyor</string>
+    <string name="notification_streak_reminder_title">Serinizi kaybetmeyin!</string>
+    <string name="notification_streak_reminder_text">Bugün oynamadınız. Serinizi canlı tutun!</string>
+    <string name="notification_streak_reminder_text_with_streak">%d günlük seriniz tehlikede! Korumak için şimdi oynayın</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Bildirimler</string>
+    <string name="notifications_permission_required">Bildirim izni gerekli</string>
+    <string name="notifications_permission_rationale">Günlük meydan okuma hatırlatıcıları ve seri uyarıları almak için bildirimlere izin verin</string>
+    <string name="notifications_daily_challenge">Günlük meydan okuma hatırlatıcısı</string>
+    <string name="notifications_daily_challenge_desc">Yeni bir günlük meydan okuma mevcut olduğunda bildirim alın</string>
+    <string name="notifications_daily_challenge_time">Günlük meydan okuma zamanı</string>
+    <string name="notifications_streak_reminder">Seri hatırlatıcısı</string>
+    <string name="notifications_streak_reminder_desc">Bugün oynamadıysanız hatırlatma alın</string>
+    <string name="notifications_streak_reminder_time">Seri hatırlatıcı zamanı</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Güncel kalın</string>
+    <string name="notification_permission_dialog_message">Günlük meydan okuma hatırlatıcıları ve seri uyarıları almak için bildirimlere izin verin. Bunu daha sonra ayarlardan değiştirebilirsiniz.</string>
+    <string name="notification_permission_dialog_allow">İzin ver</string>
+    <string name="notification_permission_dialog_later">Şimdi değil</string>
 </resources>

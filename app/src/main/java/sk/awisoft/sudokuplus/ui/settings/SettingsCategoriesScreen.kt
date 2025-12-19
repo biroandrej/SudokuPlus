@@ -9,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Extension
 import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.MoreHoriz
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.TipsAndUpdates
 import androidx.compose.material.icons.rounded.AutoAwesome
@@ -38,6 +39,7 @@ import sk.awisoft.sudokuplus.destinations.SettingsAppearanceScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsAssistanceScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsGameplayScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsLanguageScreenDestination
+import sk.awisoft.sudokuplus.destinations.SettingsNotificationsScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsOtherScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.PreferenceRow
@@ -116,6 +118,16 @@ fun SettingsCategoriesScreen(
                         navigator.navigate(SettingsLanguageScreenDestination())
                     },
                     painter = rememberVectorPainter(Icons.Outlined.Language)
+                )
+            }
+            item {
+                PreferenceRow(
+                    title = stringResource(R.string.notifications_title),
+                    subtitle = stringResource(R.string.notifications_daily_challenge_desc),
+                    onClick = {
+                        navigator.navigate(SettingsNotificationsScreenDestination)
+                    },
+                    painter = rememberVectorPainter(Icons.Outlined.Notifications)
                 )
             }
             item {
