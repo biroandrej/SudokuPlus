@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+
+## [1.0.1-rc01] - 2025-12-19
+
+preview version 1.0.1 rc 01, add daily challenge, fix correctly loading dark theme not just by system but also by user preference
 ## [1.0.0] - 2025-12-18
 
 first release version,  based on rc-01, fixed highlight color on the board
