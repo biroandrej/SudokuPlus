@@ -11,6 +11,7 @@ class PreferencesConstants {
         const val DEFAULT_SHOW_TIMER = true
         const val DEFAULT_GAME_RESET_TIMER = true
         const val DEFAULT_HIGHLIGHT_MISTAKES = 2
+
         const val DEFAULT_HIGHLIGHT_IDENTICAL = true
         const val DEFAULT_REMAINING_USES = true
         const val DEFAULT_POSITION_LINES = true

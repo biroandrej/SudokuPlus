@@ -18,15 +18,17 @@ import sk.awisoft.sudokuplus.data.database.dao.DatabaseDao
 import sk.awisoft.sudokuplus.data.database.dao.FolderDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
+import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.Folder
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
+import sk.awisoft.sudokuplus.data.database.model.UserAchievement
 
 @Database(
-    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class],
-    version = 2
+    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class, UserAchievement::class],
+    version = 3
 )
 @TypeConverters(
     DurationConverter::class,
@@ -42,6 +44,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun folderDao(): FolderDao
     abstract fun databaseDao(): DatabaseDao
     abstract fun dailyChallengeDao(): DailyChallengeDao
+    abstract fun userAchievementDao(): UserAchievementDao
 
     companion object {
         private var INSTANCE: AppDatabase? = null
@@ -69,6 +72,20 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS user_achievement (
+                        achievement_id TEXT PRIMARY KEY NOT NULL,
+                        progress INTEGER NOT NULL DEFAULT 0,
+                        unlocked_at INTEGER
+                    )
+                    """.trimIndent()
+                )
+            }
+        }
+
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
@@ -76,7 +93,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "main_database"
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build()
             }
 

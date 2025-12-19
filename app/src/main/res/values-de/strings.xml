@@ -300,9 +300,129 @@
     <string name="action_create">Erstellen</string>
     <string name="restore_existing_data_alert">Vorhandene Daten werden gelöscht!</string>
     <string name="date_last_played">Datum des letzten Spiels</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Keine Hinweise mehr für dieses Spiel</string>
+    <string name="hints_ad_title">Keine Hinweise mehr</string>
+    <string name="hints_ad_message">Eine kurze Werbung ansehen, um einen Hinweis zu erhalten?</string>
+    <string name="hints_ad_watch">Werbung ansehen</string>
+    <string name="hints_ad_cancel">Nicht jetzt</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Tägliche Herausforderung</string>
+    <string name="daily_challenge_subtitle">Neues Puzzle jeden Tag</string>
+    <string name="daily_streak">%d Tage Serie</string>
+    <string name="daily_completed">Abgeschlossen!</string>
+    <string name="daily_play">Spielen</string>
+    <string name="daily_continue">Fortsetzen</string>
+    <string name="view_calendar">Kalender</string>
+    <string name="daily_challenge_calendar">Herausforderungs-Kalender</string>
+    <string name="total_completed">Insgesamt abgeschlossen</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Erfolge</string>
+    <string name="achievements_unlocked">Freigeschaltet</string>
+    <string name="achievement_unlocked">Erfolg freigeschaltet!</string>
+    <string name="achievements_unlocked_multiple">%d Erfolge freigeschaltet!</string>
+    <string name="action_awesome">Großartig!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">Alle</string>
+    <string name="achievement_category_completion">Abschluss</string>
+    <string name="achievement_category_speed">Geschwindigkeit</string>
+    <string name="achievement_category_accuracy">Genauigkeit</string>
+    <string name="achievement_category_streak">Serie</string>
+    <string name="achievement_category_variety">Vielfalt</string>
+    <string name="achievement_category_mastery">Meisterschaft</string>
+    <string name="achievement_category_daily">Täglich</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">Bronze</string>
+    <string name="achievement_tier_silver">Silber</string>
+    <string name="achievement_tier_gold">Gold</string>
+    <string name="achievement_tier_platinum">Platin</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">Erste Schritte</string>
+    <string name="achievement_first_win_desc">Schließe dein erstes Puzzle ab</string>
+    <string name="achievement_ten_games">Anfänger</string>
+    <string name="achievement_ten_games_desc">Schließe 10 Puzzles ab</string>
+    <string name="achievement_fifty_games">Puzzle-Fan</string>
+    <string name="achievement_fifty_games_desc">Schließe 50 Puzzles ab</string>
+    <string name="achievement_centurion">Zenturio</string>
+    <string name="achievement_centurion_desc">Schließe 100 Puzzles ab</string>
+    <string name="achievement_dedicated_player">Engagierter Spieler</string>
+    <string name="achievement_dedicated_player_desc">Schließe 500 Puzzles ab</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">Schnelldenker</string>
+    <string name="achievement_speed_easy_5_desc">Schließe ein einfaches Puzzle in unter 5 Minuten ab</string>
+    <string name="achievement_speed_easy_3">Blitzschnell</string>
+    <string name="achievement_speed_easy_3_desc">Schließe ein einfaches Puzzle in unter 3 Minuten ab</string>
+    <string name="achievement_speed_moderate_10">Flinker Löser</string>
+    <string name="achievement_speed_moderate_10_desc">Schließe ein mittleres Puzzle in unter 10 Minuten ab</string>
+    <string name="achievement_speed_hard_15">Blitzartig</string>
+    <string name="achievement_speed_hard_15_desc">Schließe ein schweres Puzzle in unter 15 Minuten ab</string>
+    <string name="achievement_speed_challenge_20">Zeitmeister</string>
+    <string name="achievement_speed_challenge_20_desc">Schließe eine Herausforderung in unter 20 Minuten ab</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">Perfektionist</string>
+    <string name="achievement_perfectionist_1_desc">Schließe ein Puzzle ohne Fehler ab</string>
+    <string name="achievement_perfectionist_10">Makellose Zehn</string>
+    <string name="achievement_perfectionist_10_desc">Schließe 10 Puzzles ohne Fehler ab</string>
+    <string name="achievement_perfectionist_50">Meister der Präzision</string>
+    <string name="achievement_perfectionist_50_desc">Schließe 50 Puzzles ohne Fehler ab</string>
+    <string name="achievement_no_hints_1">Selbstständig</string>
+    <string name="achievement_no_hints_1_desc">Schließe ein Puzzle ohne Hinweise ab</string>
+    <string name="achievement_no_hints_25">Unabhängiger Löser</string>
+    <string name="achievement_no_hints_25_desc">Schließe 25 Puzzles ohne Hinweise ab</string>
+    <string name="achievement_no_hints_100">Hinweis-freier Experte</string>
+    <string name="achievement_no_hints_100_desc">Schließe 100 Puzzles ohne Hinweise ab</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">Dreifach-Serie</string>
+    <string name="achievement_streak_3_desc">Spiele 3 Tage hintereinander</string>
+    <string name="achievement_streak_7">Wochen-Krieger</string>
+    <string name="achievement_streak_7_desc">Spiele 7 Tage hintereinander</string>
+    <string name="achievement_streak_30">Monats-Meister</string>
+    <string name="achievement_streak_30_desc">Spiele 30 Tage hintereinander</string>
+    <string name="achievement_streak_100">Jahrhundert-Serie</string>
+    <string name="achievement_streak_100_desc">Spiele 100 Tage hintereinander</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">Mini Sudoku</string>
+    <string name="achievement_try_6x6_desc">Schließe ein 6x6 Puzzle ab</string>
+    <string name="achievement_try_12x12">Riesen-Bezwinger</string>
+    <string name="achievement_try_12x12_desc">Schließe ein 12x12 Puzzle ab</string>
+    <string name="achievement_try_killer">Killer-Instinkt</string>
+    <string name="achievement_try_killer_desc">Schließe ein Killer Sudoku Puzzle ab</string>
+    <string name="achievement_killer_10">Killer-Enthusiast</string>
+    <string name="achievement_killer_10_desc">Schließe 10 Killer Sudoku Puzzles ab</string>
+    <string name="achievement_killer_50">Killer-Experte</string>
+    <string name="achievement_killer_50_desc">Schließe 50 Killer Sudoku Puzzles ab</string>
+    <string name="achievement_giant_10">Größe spielt keine Rolle</string>
+    <string name="achievement_giant_10_desc">Schließe 10 12x12 Puzzles ab</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">Einfach-Meister</string>
+    <string name="achievement_easy_master_desc">Schließe 25 einfache Puzzles ab</string>
+    <string name="achievement_moderate_master">Mittel-Meister</string>
+    <string name="achievement_moderate_master_desc">Schließe 25 mittlere Puzzles ab</string>
+    <string name="achievement_hard_master">Schwer-Meister</string>
+    <string name="achievement_hard_master_desc">Schließe 25 schwere Puzzles ab</string>
+    <string name="achievement_challenge_master">Herausforderungs-Meister</string>
+    <string name="achievement_challenge_master_desc">Schließe 25 Herausforderungen ab</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">Tägliches Debüt</string>
+    <string name="achievement_daily_first_desc">Schließe deine erste tägliche Herausforderung ab</string>
+    <string name="achievement_daily_week">Wöchentlicher Herausforderer</string>
+    <string name="achievement_daily_week_desc">Schließe 7 tägliche Herausforderungen ab</string>
+    <string name="achievement_daily_month">Monatlicher Champion</string>
+    <string name="achievement_daily_month_desc">Schließe 30 tägliche Herausforderungen ab</string>
+    <string name="achievement_daily_streak_7">Tägliche Hingabe</string>
+    <string name="achievement_daily_streak_7_desc">7-Tage tägliche Herausforderungs-Serie</string>
+    <string name="achievement_daily_streak_30">Täglicher Anhänger</string>
+    <string name="achievement_daily_streak_30_desc">30-Tage tägliche Herausforderungs-Serie</string>
+    <string name="achievement_daily_streak_100">Tägliche Legende</string>
+    <string name="achievement_daily_streak_100_desc">100-Tage tägliche Herausforderungs-Serie</string>
 </resources>

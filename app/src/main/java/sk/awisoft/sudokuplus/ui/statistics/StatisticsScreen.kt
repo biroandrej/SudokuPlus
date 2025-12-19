@@ -28,6 +28,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.EmojiEvents
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -71,6 +73,7 @@ import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.destinations.AchievementsScreenDestination
 import sk.awisoft.sudokuplus.destinations.GamesHistoryScreenDestination
 import sk.awisoft.sudokuplus.destinations.SavedGameScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
@@ -104,6 +107,12 @@ fun StatisticsScreen(
                 title = { Text(stringResource(R.string.statistics)) },
                 scrollBehavior = scrollBehavior,
                 actions = {
+                    IconButton(onClick = { navigator.navigate(AchievementsScreenDestination) }) {
+                        Icon(
+                            imageVector = Icons.Rounded.EmojiEvents,
+                            contentDescription = stringResource(R.string.achievements_title)
+                        )
+                    }
                     IconButton(onClick = { navigator.navigate(GamesHistoryScreenDestination()) }) {
                         Icon(
                             painter = painterResource(R.drawable.ic_round_history_24),
