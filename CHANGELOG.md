@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+
+## [1.0.1-rc02] - 2025-12-19
+
+### Added - **Achievements System**: 36 achievements to unlock across various gameplay milestones - **Push Notifications**: Daily challenge reminders and streak alerts   - Configurable notification times in settings   - Notifications enabled by default (opt-out available)   - Permission request dialog on Android 13+  ### Changed - Refactored settings architecture into dedicated managers for better maintainability  ### Translations - Added notification strings to all 29 supported languages
 ## [1.0.0] - 2025-12-18
 
 first release version,  based on rc-01, fixed highlight color on the board

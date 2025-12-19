@@ -25,8 +25,8 @@ android {
         applicationId = "sk.awisoft.sudokuplus"
         minSdk = 28
         targetSdk = 36
-        versionCode = 5
-        versionName = "1.0.0"
+        versionCode = 6
+        versionName = "1.0.1-rc02"
 
         vectorDrawables {
             useSupportLibrary = true

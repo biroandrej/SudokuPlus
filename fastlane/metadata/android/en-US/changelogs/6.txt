@@ -1,1 +1,1 @@
-Bug fixes
+### Added - **Achievements System**: 36 achievements to unlock across various gameplay milestones - **Push Notifications**: Daily challenge reminders and streak alerts   - Configurable notification times in settings   - Notifications enabled by default (opt-out available)   - Permission request dialog on Android 13+  ### Changed - Refactored settings architecture into dedicated managers for better maintainability  ### Translations - Added notification strings to all 29 supported languages
