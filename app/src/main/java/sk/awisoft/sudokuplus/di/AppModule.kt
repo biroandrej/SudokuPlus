@@ -2,12 +2,15 @@ package sk.awisoft.sudokuplus.di
 
 import android.app.Application
 import android.content.Context
+import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.data.database.AppDatabase
 import sk.awisoft.sudokuplus.data.database.dao.BoardDao
+import sk.awisoft.sudokuplus.data.database.dao.DailyChallengeDao
 import sk.awisoft.sudokuplus.data.database.dao.FolderDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
 import sk.awisoft.sudokuplus.data.database.repository.BoardRepositoryImpl
+import sk.awisoft.sudokuplus.data.database.repository.DailyChallengeRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.DatabaseRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.FolderRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.RecordRepositoryImpl
@@ -15,6 +18,7 @@ import sk.awisoft.sudokuplus.data.database.repository.SavedGameRepositoryImpl
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
+import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.DatabaseRepository
 import sk.awisoft.sudokuplus.domain.repository.FolderRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
@@ -85,4 +89,19 @@ class AppModule {
     @Singleton
     @Provides
     fun provideAppDatabase(app: Application): AppDatabase = AppDatabase.Companion.getInstance(context = app)
+
+    @Singleton
+    @Provides
+    fun provideDailyChallengeDao(appDatabase: AppDatabase): DailyChallengeDao =
+        appDatabase.dailyChallengeDao()
+
+    @Singleton
+    @Provides
+    fun provideDailyChallengeRepository(dao: DailyChallengeDao): DailyChallengeRepository =
+        DailyChallengeRepositoryImpl(dao)
+
+    @Singleton
+    @Provides
+    fun provideDailyChallengeManager(repository: DailyChallengeRepository): DailyChallengeManager =
+        DailyChallengeManager(repository)
 }

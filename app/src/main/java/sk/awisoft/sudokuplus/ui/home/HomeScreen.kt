@@ -67,10 +67,12 @@ import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.utils.toFormattedString
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
+import sk.awisoft.sudokuplus.destinations.DailyChallengeCalendarScreenDestination
 import sk.awisoft.sudokuplus.destinations.GameScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
+import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -102,6 +104,11 @@ fun HomeScreen(
             GameDifficulty.Easy, GameType.Default9x9
         )
     )
+
+    // Daily Challenge
+    val dailyChallenge by viewModel.dailyChallenge.collectAsStateWithLifecycle()
+    val isDailyLoading by viewModel.isDailyLoading.collectAsStateWithLifecycle()
+    val dailyCurrentStreak by viewModel.dailyCurrentStreak.collectAsStateWithLifecycle()
 
 
     LaunchedEffect(saveSelectedGameDifficultyType) {
@@ -158,6 +165,20 @@ fun HomeScreen(
             }
         }
 
+        // Daily Challenge navigation
+        if (viewModel.dailyChallengeReadyToPlay) {
+            viewModel.dailyChallengeReadyToPlay = false
+
+            runBlocking {
+                navigator.navigate(
+                    GameScreenDestination(
+                        gameUid = viewModel.dailyChallengeGameUid,
+                        playedBefore = false
+                    )
+                )
+            }
+        }
+
         ScrollbarLazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -165,6 +186,16 @@ fun HomeScreen(
             contentPadding = PaddingValues(all = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
+            item {
+                DailyChallengeCard(
+                    challenge = dailyChallenge,
+                    currentStreak = dailyCurrentStreak,
+                    isLoading = isDailyLoading,
+                    onPlay = { viewModel.playDailyChallenge() },
+                    onViewCalendar = { navigator.navigate(DailyChallengeCalendarScreenDestination) }
+                )
+            }
+
             item {
                 HomeHeroCard(
                     difficultyLabel = stringResource(viewModel.selectedDifficulty.resName),

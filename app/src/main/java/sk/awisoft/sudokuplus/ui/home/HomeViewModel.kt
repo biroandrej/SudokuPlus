@@ -6,20 +6,27 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import sk.awisoft.sudokuplus.core.Cell
+import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.core.qqwing.Cage
 import sk.awisoft.sudokuplus.core.qqwing.CageGenerator
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.qqwing.QQWingController
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
+import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
+import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -32,11 +39,60 @@ class HomeViewModel
 @Inject constructor(
     private val appSettingsManager: AppSettingsManager,
     private val boardRepository: BoardRepository,
-    private val savedGameRepository: SavedGameRepository
+    private val savedGameRepository: SavedGameRepository,
+    private val dailyChallengeManager: DailyChallengeManager,
+    private val dailyChallengeRepository: DailyChallengeRepository
 ) : ViewModel() {
 
     val lastSavedGame = savedGameRepository.getLast()
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    // Daily Challenge State
+    private val _dailyChallenge = MutableStateFlow<DailyChallenge?>(null)
+    val dailyChallenge: StateFlow<DailyChallenge?> = _dailyChallenge.asStateFlow()
+
+    private val _isDailyLoading = MutableStateFlow(false)
+    val isDailyLoading: StateFlow<Boolean> = _isDailyLoading.asStateFlow()
+
+    val dailyCurrentStreak: StateFlow<Int> = dailyChallengeRepository.getCompleted()
+        .map { challenges ->
+            dailyChallengeManager.calculateCurrentStreak(challenges.map { it.date })
+        }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+
+    var dailyChallengeGameUid = -1L
+    var dailyChallengeReadyToPlay by mutableStateOf(false)
+
+    init {
+        loadDailyChallenge()
+    }
+
+    private fun loadDailyChallenge() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _isDailyLoading.value = true
+            _dailyChallenge.value = dailyChallengeManager.getOrCreateTodayChallenge()
+            _isDailyLoading.value = false
+        }
+    }
+
+    fun playDailyChallenge() {
+        val challenge = _dailyChallenge.value ?: return
+
+        viewModelScope.launch(Dispatchers.IO) {
+            // Create a SudokuBoard from the DailyChallenge
+            val board = SudokuBoard(
+                uid = 0,
+                initialBoard = challenge.initialBoard,
+                solvedBoard = challenge.solvedBoard,
+                difficulty = challenge.difficulty,
+                type = challenge.gameType
+            )
+            dailyChallengeGameUid = boardRepository.insert(board)
+            withContext(Dispatchers.Main) {
+                dailyChallengeReadyToPlay = true
+            }
+        }
+    }
 
     private val lastGamesLimit = 5
     val lastGames = savedGameRepository.getLastPlayable(limit = lastGamesLimit)
