@@ -47,6 +47,8 @@
     <string name="pref_show_timer">タイマーを表示する</string>
     <string name="more_title">メニュー</string>
     <string name="about_title">アプリについて</string>
+    <string name="about_contact_developer">連絡先</string>
+    <string name="about_contact_developer_summary">機能リクエスト、フィードバック、質問</string>
     <string name="pref_dark_theme_follow">システムのテーマに合わせる</string>
     <string name="nav_bar_more">メニュー</string>
     <string name="nav_bar_statistics">統計</string>

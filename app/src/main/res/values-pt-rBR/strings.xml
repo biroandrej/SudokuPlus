@@ -308,6 +308,8 @@
     <string name="type_killer_12x12">Assassino 12x12</string>
     <string name="type_killer_9x9">Assassino 9x9</string>
     <string name="about_github_source_code">Código fonte no Github</string>
+    <string name="about_contact_developer">Contato</string>
+    <string name="about_contact_developer_summary">Solicitações de recursos, feedback ou perguntas</string>
     <string name="libraries_licenses">Licenças</string>
     <string name="color_picker_title">Escolha uma cor</string>
     <string name="parse_color_fail">Não é uma cor</string>

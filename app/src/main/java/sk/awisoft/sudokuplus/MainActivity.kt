@@ -115,23 +115,28 @@ class MainActivity : ComponentActivity() {
                 val monetSudokuBoard by mainViewModel.monetSudokuBoard.collectAsStateWithLifecycle(
                     initialValue = PreferencesConstants.DEFAULT_MONET_SUDOKU_BOARD
                 )
+                val resolvedDarkTheme = when (darkTheme) {
+                    1 -> false
+                    2 -> true
+                    else -> isSystemInDarkTheme()
+                }
                 val boardColors =
                     if (monetSudokuBoard) {
                         SudokuBoardColorsImpl(
-                            foregroundColor = BoardColors.foregroundColor,
-                            notesColor = BoardColors.notesColor,
-                            altForegroundColor = BoardColors.altForegroundColor,
-                            errorColor = BoardColors.errorColor,
-                            highlightColor = BoardColors.highlightColor,
-                            thickLineColor = BoardColors.thickLineColor,
-                            thinLineColor = BoardColors.thinLineColor
+                            foregroundColor = BoardColors.foregroundColor(resolvedDarkTheme),
+                            notesColor = BoardColors.notesColor(resolvedDarkTheme),
+                            altForegroundColor = BoardColors.altForegroundColor(),
+                            errorColor = BoardColors.errorColor(),
+                            highlightColor = BoardColors.highlightColor(resolvedDarkTheme),
+                            thickLineColor = BoardColors.thickLineColor(resolvedDarkTheme),
+                            thinLineColor = BoardColors.thinLineColor(resolvedDarkTheme)
                         )
                     } else {
                         SudokuBoardColorsImpl(
                             foregroundColor = MaterialTheme.colorScheme.onSurface,
                             notesColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f),
                             altForegroundColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                            errorColor = BoardColors.errorColor,
+                            errorColor = BoardColors.errorColor(),
                             highlightColor = MaterialTheme.colorScheme.outline,
                             thickLineColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.55f),
                             thinLineColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.25f)

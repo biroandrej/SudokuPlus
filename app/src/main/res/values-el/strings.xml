@@ -283,6 +283,8 @@
     <string name="more_title">Περισσότερα</string>
     <string name="statistics_no_records">Δεν έχετε ακόμα κάποιο ρεκόρ</string>
     <string name="about_title">Σχετικά</string>
+    <string name="about_contact_developer">Επικοινωνία</string>
+    <string name="about_contact_developer_summary">Αιτήματα χαρακτηριστικών, σχόλια ή ερωτήσεις</string>
     <string name="pref_dark_theme_follow">Ομοιο με το σύστημα</string>
     <string name="saved_game_initial">Αρχικό</string>
     <string name="pref_board_theme_title">Θέμα πίνακα sudoku</string>

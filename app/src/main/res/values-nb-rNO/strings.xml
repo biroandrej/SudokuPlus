@@ -72,6 +72,8 @@
     <string name="type_default_9x9">9x9</string>
     <string name="difficulty_hard">Vanskelig</string>
     <string name="about_title">Om</string>
+    <string name="about_contact_developer">Kontakt</string>
+    <string name="about_contact_developer_summary">Funksjonsforespørsler, tilbakemeldinger eller spørsmål</string>
     <string name="difficulty_moderate">Moderat</string>
     <string name="type_default_12x12">12x12</string>
     <string name="pref_dark_theme">Mørk drakt</string>

@@ -1,6 +1,7 @@
 package sk.awisoft.sudokuplus.data.backup
 
 import sk.awisoft.sudokuplus.data.backup.serializer.ZonedDateTimeLongSerializer
+import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.Folder
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
@@ -9,7 +10,7 @@ import kotlinx.serialization.Serializable
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
-const val BACKUP_SCHEME_VERSION = 1
+const val BACKUP_SCHEME_VERSION = 2
 
 @Serializable
 data class BackupData(
@@ -22,6 +23,7 @@ data class BackupData(
     val records: List<Record> = emptyList(),
     val folders: List<Folder> = emptyList(),
     val savedGames: List<SavedGame>,
+    val dailyChallenges: List<DailyChallenge> = emptyList(),
     val settings: SettingsBackup? = null
 ) {
     companion object {

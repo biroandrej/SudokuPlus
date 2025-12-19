@@ -1,3 +1,1 @@
-- Fixed crash when trying to edit 6x6 sudoku
-- Fixed wrong difficulty when generating
-- Fixed Wrong row/col of initial digits in saved game screen
+first release version,  based on rc-01, fixed highlight color on the board
