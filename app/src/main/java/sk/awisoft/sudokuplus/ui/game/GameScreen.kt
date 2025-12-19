@@ -32,6 +32,7 @@ import androidx.compose.material.icons.rounded.PlayCircle
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -40,6 +41,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -64,6 +66,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -116,6 +119,15 @@ fun GameScreen(
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
     val snackbarScope = rememberCoroutineScope()
+    val darkThemeSetting by viewModel.darkTheme.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.DEFAULT_DARK_THEME
+    )
+    val resolvedDarkTheme = when (darkThemeSetting) {
+        1 -> false
+        2 -> true
+        else -> isSystemInDarkTheme()
+    }
+    val darkTheme = resolvedDarkTheme
 
     val firstGame by viewModel.firstGame.collectAsStateWithLifecycle(initialValue = false)
     val resetTimer by viewModel.resetTimerOnRestart.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_GAME_RESET_TIMER)
@@ -145,7 +157,7 @@ fun GameScreen(
         )
     }
     val advancedHintEnabled by viewModel.advancedHintEnabled.collectAsStateWithLifecycle(
-        initialValue = PreferencesConstants.Companion.DEFAULT_ADVANCED_HINT
+        initialValue = PreferencesConstants.DEFAULT_ADVANCED_HINT
     )
     val advancedHintMode by viewModel.advancedHintMode.collectAsStateWithLifecycle(false)
     val advancedHintData by viewModel.advancedHintData.collectAsStateWithLifecycle(null)
@@ -528,7 +540,8 @@ fun GameScreen(
                                             longTap = true
                                         )
                                     },
-                                    selected = viewModel.digitFirstNumber
+                                    selected = viewModel.digitFirstNumber,
+                                    isDarkTheme = resolvedDarkTheme
                                 )
                                 Row(
                                     horizontalArrangement = Arrangement.spacedBy(8.dp),

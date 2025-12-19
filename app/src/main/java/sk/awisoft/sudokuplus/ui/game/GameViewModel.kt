@@ -181,6 +181,7 @@ class GameViewModel @Inject constructor(
 
     var positionLines = appSettingsManager.positionLines
     val crossHighlight = themeSettingsManager.boardCrossHighlight
+    val darkTheme = themeSettingsManager.darkTheme
     val funKeyboardOverNum = appSettingsManager.funKeyboardOverNumbers
 
     var mistakesLimit = appSettingsManager.mistakesLimit.stateIn(

@@ -37,11 +37,11 @@ fun SettingsAssistanceScreen(
     var mistakesDialog by rememberSaveable { mutableStateOf(false) }
 
     val highlightMistakes by viewModel.highlightMistakes.collectAsStateWithLifecycle(
-        initialValue = PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_MISTAKES
+        initialValue = PreferencesConstants.DEFAULT_HIGHLIGHT_MISTAKES
     )
     val autoEraseNotes by viewModel.autoEraseNotes.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_AUTO_ERASE_NOTES)
     val highlightIdentical by viewModel.highlightIdentical.collectAsStateWithLifecycle(
-        initialValue = PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_IDENTICAL
+        initialValue = PreferencesConstants.DEFAULT_HIGHLIGHT_IDENTICAL
     )
     val remainingUse by viewModel.remainingUse.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_REMAINING_USES)
 

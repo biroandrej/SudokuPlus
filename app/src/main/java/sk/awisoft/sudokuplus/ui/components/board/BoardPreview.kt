@@ -158,13 +158,13 @@ private fun BoardPreviewPreview() {
             BoardPreview(
                 boardString = "0000100000040000000000000700000000000900000000680000000000000005000000000000000",
                 boardColors = SudokuBoardColorsImpl(
-                    foregroundColor = BoardColors.foregroundColor,
-                    notesColor = BoardColors.notesColor,
-                    altForegroundColor = BoardColors.altForegroundColor,
-                    errorColor = BoardColors.errorColor,
-                    highlightColor = BoardColors.highlightColor,
-                    thickLineColor = BoardColors.thickLineColor,
-                    thinLineColor = BoardColors.thinLineColor
+                    foregroundColor = BoardColors.foregroundColor(),
+                    notesColor = BoardColors.notesColor(),
+                    altForegroundColor = BoardColors.altForegroundColor(),
+                    errorColor = BoardColors.errorColor(),
+                    highlightColor = BoardColors.highlightColor(),
+                    thickLineColor = BoardColors.thickLineColor(),
+                    thinLineColor = BoardColors.thinLineColor()
                 )
             )
         }

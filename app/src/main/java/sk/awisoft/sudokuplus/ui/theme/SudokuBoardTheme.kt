@@ -7,59 +7,41 @@ import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
 
 object BoardColors {
     // "Given" numbers - Deep Slate Blue (light) / Soft Cream (dark)
-    inline val foregroundColor: Color
-        @Composable
-        get() = if (isSystemInDarkTheme()) {
-            SudokuPlusColors.SoftCream
-        } else {
-            SudokuPlusColors.DeepSlateBlue
-        }
+    @Composable
+    fun foregroundColor(isDark: Boolean = isSystemInDarkTheme()): Color =
+        if (isDark) SudokuPlusColors.SoftCream else SudokuPlusColors.DeepSlateBlue
 
     // Notes color - slightly muted version of foreground
-    inline val notesColor: Color
-        @Composable
-        get() = if (isSystemInDarkTheme()) {
-            SudokuPlusColors.SoftCreamDark.copy(alpha = 0.75f)
-        } else {
-            SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.7f)
-        }
+    @Composable
+    fun notesColor(isDark: Boolean = isSystemInDarkTheme()): Color =
+        if (isDark) SudokuPlusColors.SoftCreamDark.copy(alpha = 0.75f)
+        else SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.7f)
 
     // User-entered numbers - Muted Teal (both modes)
-    inline val altForegroundColor: Color
-        @Composable
-        get() = SudokuPlusColors.MutedTeal
+    @Composable
+    fun altForegroundColor(): Color = SudokuPlusColors.MutedTeal
 
     // Error color - harmonized red
-    inline val errorColor: Color
-        @Composable
-        get() = Color(230, 67, 83).harmonizeWithPrimary()
+    @Composable
+    fun errorColor(): Color = Color(230, 67, 83).harmonizeWithPrimary()
 
     // Selected cell highlight - Warm Coral (both modes)
-    inline val highlightColor: Color
-        @Composable
-        get() = if (isSystemInDarkTheme()) {
-            SudokuPlusColors.SurfaceContainerLight.copy(alpha = 0.4f)
-        } else {
-            SudokuPlusColors.MutedTeal.copy(alpha = 0.35f)
-        }
+    @Composable
+    fun highlightColor(isDark: Boolean = isSystemInDarkTheme()): Color =
+        if (isDark) SudokuPlusColors.SurfaceContainerLight.copy(alpha = 0.4f)
+        else SudokuPlusColors.MutedTeal.copy(alpha = 0.35f)
 
     // Thick grid lines (3x3 box separators) - Deep Slate Blue (light) / Soft Cream (dark)
-    inline val thickLineColor: Color
-        @Composable
-        get() = if (isSystemInDarkTheme()) {
-            SudokuPlusColors.SoftCream.copy(alpha = 0.6f)
-        } else {
-            SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.7f)
-        }
+    @Composable
+    fun thickLineColor(isDark: Boolean = isSystemInDarkTheme()): Color =
+        if (isDark) SudokuPlusColors.SoftCream.copy(alpha = 0.6f)
+        else SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.7f)
 
     // Thin grid lines (cell separators)
-    inline val thinLineColor: Color
-        @Composable
-        get() = if (isSystemInDarkTheme()) {
-            SudokuPlusColors.SoftCream.copy(alpha = 0.25f)
-        } else {
-            SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.3f)
-        }
+    @Composable
+    fun thinLineColor(isDark: Boolean = isSystemInDarkTheme()): Color =
+        if (isDark) SudokuPlusColors.SoftCream.copy(alpha = 0.25f)
+        else SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.3f)
 }
 
 interface SudokuBoardColors {

@@ -108,7 +108,6 @@ class AppSettingsManager(context: Context) {
 
     private val advancedHintKey = booleanPreferencesKey("advanced_hint")
 
-    private val advancedHintTechniqueKey = booleanPreferencesKey("hint_technique_")
     private val ahFullHouseKey = booleanPreferencesKey("ah_full_house")
     private val ahNakedSingle = booleanPreferencesKey("ah_naked_single")
     private val ahHiddenSingle = booleanPreferencesKey("ah_hidden_single")

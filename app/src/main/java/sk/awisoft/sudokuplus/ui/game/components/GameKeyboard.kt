@@ -7,7 +7,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -41,13 +41,13 @@ import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
 fun KeyboardItem(
     modifier: Modifier = Modifier,
     number: Int,
+    isDarkTheme: Boolean = false,
     remainingUses: Int? = null,
     onClick: (Int) -> Unit,
     onLongClick: (Int) -> Unit = { },
     selected: Boolean = false
 ) {
     val mutableInteractionSource by remember { mutableStateOf(MutableInteractionSource()) }
-    val isDarkTheme = isSystemInDarkTheme()
 
     // Numpad button background: Muted Teal (both modes), lighter when selected
     val backgroundColor by animateColorAsState(
@@ -117,11 +117,12 @@ fun KeyboardItem(
 fun DefaultGameKeyboard(
     modifier: Modifier = Modifier,
     itemModifier: Modifier = Modifier,
+    isDarkTheme: Boolean = false,
     remainingUses: List<Int>? = null,
     onClick: (Int) -> Unit,
     onLongClick: (Int) -> Unit,
     size: Int,
-    selected: Int = 0
+    selected: Int = 0,
 ) {
     val numbers by remember(size) { mutableStateOf((1..size).toList()) }
 
@@ -162,7 +163,8 @@ fun DefaultGameKeyboard(
                                     } else {
                                         null
                                     },
-                                    selected = number == selected
+                                    selected = number == selected,
+                                    isDarkTheme = isDarkTheme
                                 )
                             }
                         }
@@ -194,7 +196,8 @@ fun DefaultGameKeyboard(
                         } else {
                             null
                         },
-                        selected = number == selected
+                        selected = number == selected,
+                        isDarkTheme = isDarkTheme
                     )
                 }
             }
