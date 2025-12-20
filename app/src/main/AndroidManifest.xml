@@ -27,7 +27,7 @@
             android:configChanges="locale|layoutDirection"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SudokuPlus">
+            android:theme="@style/Theme.SudokuPlus.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

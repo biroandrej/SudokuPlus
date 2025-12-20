@@ -3,8 +3,18 @@
 
     <style name="Theme.SudokuPlus" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- M3 dark surface color to prevent flash before Compose renders -->
-        <item name="android:colorBackground">#1C1B1F</item>
-        <item name="android:windowBackground">#1C1B1F</item>
+        <item name="android:colorBackground">@color/splash_background_dark</item>
+        <item name="android:windowBackground">@color/splash_background_dark</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
     </style>
+
+    <!-- Splash screen theme (night) -->
+    <style name="Theme.SudokuPlus.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background_dark</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_animated</item>
+        <item name="windowSplashScreenAnimationDuration">500</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.SudokuPlus</item>
+    </style>
+
 </resources>

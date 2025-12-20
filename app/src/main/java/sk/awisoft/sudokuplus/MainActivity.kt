@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
@@ -26,6 +27,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
@@ -58,29 +64,38 @@ class MainActivity : ComponentActivity() {
     lateinit var settings: AppSettingsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Install splash screen before super.onCreate()
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // Track whether settings have been loaded
+        var settingsLoaded = false
+
+        // Keep splash screen visible until theme settings are loaded
+        splashScreen.setKeepOnScreenCondition { !settingsLoaded }
 
         setContent {
             val mainViewModel: MainActivityViewModel = hiltViewModel()
 
-            val dynamicColors by mainViewModel.dc.collectAsStateWithLifecycle(
-                PreferencesConstants.DEFAULT_DYNAMIC_COLORS
-            )
-            val darkTheme by mainViewModel.darkTheme.collectAsStateWithLifecycle(
-                PreferencesConstants.DEFAULT_DARK_THEME)
-            val amoledBlack by mainViewModel.amoledBlack.collectAsStateWithLifecycle(
-                PreferencesConstants.DEFAULT_AMOLED_BLACK)
+            // Collect combined theme settings - null until all settings are loaded
+            val themeSettings by mainViewModel.themeSettings.collectAsStateWithLifecycle()
             val firstLaunch by mainViewModel.firstLaunch.collectAsStateWithLifecycle(false)
 
+            // Wait for theme settings to load before rendering
+            val settings = themeSettings ?: return@setContent
+
+            // Mark settings as loaded to dismiss splash screen
+            settingsLoaded = true
+
             SudokuPlusTheme(
-                darkTheme = when (darkTheme) {
+                darkTheme = when (settings.darkTheme) {
                     1 -> false
                     2 -> true
                     else -> isSystemInDarkTheme()
                 },
-                dynamicColor = dynamicColors,
-                amoled = amoledBlack,
+                dynamicColor = settings.dynamicColors,
+                amoled = settings.amoledBlack,
                 colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR),
             ) {
                 val navController = rememberNavController()
@@ -107,16 +122,13 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                val monetSudokuBoard by mainViewModel.monetSudokuBoard.collectAsStateWithLifecycle(
-                    initialValue = PreferencesConstants.DEFAULT_MONET_SUDOKU_BOARD
-                )
-                val resolvedDarkTheme = when (darkTheme) {
+                val resolvedDarkTheme = when (settings.darkTheme) {
                     1 -> false
                     2 -> true
                     else -> isSystemInDarkTheme()
                 }
                 val boardColors =
-                    if (monetSudokuBoard) {
+                    if (settings.monetSudokuBoard) {
                         SudokuBoardColorsImpl(
                             foregroundColor = BoardColors.foregroundColor(resolvedDarkTheme),
                             notesColor = BoardColors.notesColor(resolvedDarkTheme),
@@ -160,17 +172,40 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+data class ThemeSettings(
+    val dynamicColors: Boolean,
+    val darkTheme: Int,
+    val amoledBlack: Boolean,
+    val monetSudokuBoard: Boolean
+)
+
 @HiltViewModel
 class MainActivityViewModel
 @Inject constructor(
     themeSettingsManager: ThemeSettingsManager,
     appSettingsManager: AppSettingsManager
 ) : ViewModel() {
-    val dc = themeSettingsManager.dynamicColors
-    val darkTheme = themeSettingsManager.darkTheme
-    val amoledBlack = themeSettingsManager.amoledBlack
     val firstLaunch = appSettingsManager.firstLaunch
-    val monetSudokuBoard = themeSettingsManager.monetSudokuBoard
+
+    // Combine all theme settings into a single flow
+    // This ensures we only render once ALL settings are loaded
+    val themeSettings: StateFlow<ThemeSettings?> = combine(
+        themeSettingsManager.dynamicColors,
+        themeSettingsManager.darkTheme,
+        themeSettingsManager.amoledBlack,
+        themeSettingsManager.monetSudokuBoard
+    ) { dynamicColors, darkTheme, amoledBlack, monetSudokuBoard ->
+        ThemeSettings(
+            dynamicColors = dynamicColors,
+            darkTheme = darkTheme,
+            amoledBlack = amoledBlack,
+            monetSudokuBoard = monetSudokuBoard
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = null
+    )
 }
 
 @Destination(
