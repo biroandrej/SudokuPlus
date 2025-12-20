@@ -43,6 +43,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -72,8 +73,12 @@ import sk.awisoft.sudokuplus.core.reward.BadgeRarity
 import sk.awisoft.sudokuplus.core.reward.DailyReward
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarState
 import sk.awisoft.sudokuplus.core.reward.RewardType
+import sk.awisoft.sudokuplus.core.reward.RewardDefinitions
 import sk.awisoft.sudokuplus.data.database.model.RewardBadge
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
+import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
+import java.time.ZonedDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination(style = AnimatedNavigation::class)
@@ -229,7 +234,9 @@ private fun ProgressSection(
                     .height(8.dp)
                     .clip(RoundedCornerShape(4.dp)),
                 color = MaterialTheme.colorScheme.primary,
-                trackColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.2f)
+                trackColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.2f),
+                gapSize = 0.dp,
+                drawStopIndicator = {}
             )
 
             Spacer(modifier = Modifier.height(4.dp))
@@ -566,6 +573,60 @@ private fun BadgeItem(
                     color = badgeColor,
                     textAlign = TextAlign.Center,
                     maxLines = 2
+                )
+            }
+        }
+    }
+}
+
+@LightDarkPreview
+@Composable
+private fun RewardCalendarScreenPreview() {
+    val sampleState = RewardCalendarState(
+        currentDay = 12,
+        canClaimToday = true,
+        todayReward = RewardDefinitions.getRewardForDay(12),
+        bonusHints = 2,
+        xpBoostGamesRemaining = 1,
+        totalDaysClaimed = 11,
+        cycleProgress = 12f / RewardDefinitions.CYCLE_LENGTH
+    )
+    val earnedBadges = listOf(
+        RewardBadge(
+            badgeId = BadgeDefinitions.all.first().id,
+            earnedAt = ZonedDateTime.now(),
+            cycleNumber = 1
+        )
+    )
+    SudokuPlusTheme {
+        Surface {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                ProgressSection(state = sampleState)
+                Spacer(modifier = Modifier.height(16.dp))
+                BonusesSection(
+                    bonusHints = sampleState.bonusHints,
+                    xpBoostGames = sampleState.xpBoostGamesRemaining
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                ClaimButton(
+                    reward = sampleState.todayReward,
+                    isLoading = false,
+                    onClick = {}
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                RewardCalendarGrid(
+                    rewards = RewardDefinitions.rewardCycle,
+                    currentDay = sampleState.currentDay,
+                    canClaimToday = sampleState.canClaimToday
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                EarnedBadgesSection(
+                    earnedBadges = earnedBadges,
+                    badgeDefinitions = BadgeDefinitions.all
                 )
             }
         }

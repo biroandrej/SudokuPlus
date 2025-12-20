@@ -187,27 +187,37 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
 
     /**
      * Get the gameDifficulty rating.
+     *
+     * Difficulty is based on solving techniques required:
+     * - Challenge: Requires guessing/backtracking
+     * - Hard: Requires box/line reduction, pointing pairs/triples, or pair techniques
+     * - Moderate: Many hidden singles required
+     * - Easy: Many naked singles with few hidden singles
+     * - Simple: Very straightforward, mostly naked singles with minimal hidden singles
      */
     @JvmName("getDifficulty1")
     fun getDifficulty(): GameDifficulty {
         if (getGuessCount() > 0) return GameDifficulty.Challenge
         if (getBoxLineReductionCount() > 0) return GameDifficulty.Hard
         if (getPointingPairTripleCount() > 0) return GameDifficulty.Hard
-        if (getHiddenPairCount() > 0) return GameDifficulty.Moderate
-        if (getNakedPairCount() > 0) return GameDifficulty.Moderate
+        if (getHiddenPairCount() > 0) return GameDifficulty.Hard
+        if (getNakedPairCount() > 0) return GameDifficulty.Hard
+        // Moderate: many hidden singles required
         when (gameType) {
-            GameType.Default6x6 -> if (getHiddenSingleCount() > 0) return GameDifficulty.Moderate
-            GameType.Default9x9 -> if (getHiddenSingleCount() > 10) return GameDifficulty.Moderate
-            GameType.Default12x12 -> if (getHiddenSingleCount() > 20) return GameDifficulty.Moderate
-            else -> if (getHiddenSingleCount() > 10) return GameDifficulty.Moderate
+            GameType.Default6x6 -> if (getHiddenSingleCount() > 4) return GameDifficulty.Moderate
+            GameType.Default9x9 -> if (getHiddenSingleCount() > 14) return GameDifficulty.Moderate
+            GameType.Default12x12 -> if (getHiddenSingleCount() > 25) return GameDifficulty.Moderate
+            else -> if (getHiddenSingleCount() > 14) return GameDifficulty.Moderate
         }
+        // Easy: many naked singles with some hidden singles
         when (gameType) {
-            GameType.Default6x6 -> if (getSingleCount() > 10) return GameDifficulty.Easy
-            GameType.Default9x9 -> if (getSingleCount() > 35) return GameDifficulty.Easy
-            GameType.Default12x12 -> if (getSingleCount() > 50) return GameDifficulty.Easy
-            else -> if (getSingleCount() > 20) return GameDifficulty.Easy
+            GameType.Default6x6 -> if (getSingleCount() > 8 || getHiddenSingleCount() > 2) return GameDifficulty.Easy
+            GameType.Default9x9 -> if (getSingleCount() > 30 || getHiddenSingleCount() > 6) return GameDifficulty.Easy
+            GameType.Default12x12 -> if (getSingleCount() > 45 || getHiddenSingleCount() > 10) return GameDifficulty.Easy
+            else -> if (getSingleCount() > 30 || getHiddenSingleCount() > 6) return GameDifficulty.Easy
         }
-        return GameDifficulty.Unspecified
+        // Simple: very few techniques needed
+        return GameDifficulty.Simple
     }
 
     /**

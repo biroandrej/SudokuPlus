@@ -88,17 +88,13 @@ fun MoreScreen(
                         containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
                     )
                 ) {
-                    Column(
-                        modifier = Modifier.padding(vertical = 4.dp)
-                    ) {
-                        PreferenceRow(
-                            title = stringResource(R.string.settings_title),
-                            subtitle = stringResource(R.string.perf_appearance_summary),
-                            painter = painterResource(R.drawable.ic_settings_24),
-                            onClick = { navigator.navigate(SettingsCategoriesScreenDestination()) },
-                            shape = MaterialTheme.shapes.large
-                        )
-                    }
+                    PreferenceRow(
+                        title = stringResource(R.string.settings_title),
+                        subtitle = stringResource(R.string.perf_appearance_summary),
+                        painter = painterResource(R.drawable.ic_settings_24),
+                        onClick = { navigator.navigate(SettingsCategoriesScreenDestination()) },
+                        shape = MaterialTheme.shapes.large
+                    )
                 }
             }
 
