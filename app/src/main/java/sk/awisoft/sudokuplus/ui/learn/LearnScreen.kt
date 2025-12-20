@@ -23,9 +23,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.rememberPagerState
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.learn.learnapp.LearnAppScreen
@@ -37,7 +37,7 @@ import kotlinx.coroutines.launch
 
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
-@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 fun LearnScreen(
     navigator: DestinationsNavigator
 ) {
@@ -61,7 +61,6 @@ fun LearnScreen(
                 .padding(innerPadding)
         ) {
             val context = LocalContext.current
-            val pagerState = rememberPagerState()
             val pages by remember {
                 mutableStateOf(
                     listOf(
@@ -70,6 +69,7 @@ fun LearnScreen(
                     )
                 )
             }
+            val pagerState = rememberPagerState(pageCount = { pages.size })
             val coroutineScope = rememberCoroutineScope()
             TabRow(selectedTabIndex = pagerState.currentPage) {
                 pages.forEachIndexed { index, title ->
@@ -77,7 +77,7 @@ fun LearnScreen(
                         selected = pagerState.currentPage == index,
                         onClick = {
                             coroutineScope.launch {
-                                pagerState.animateScrollToPage(index, 0f)
+                                pagerState.animateScrollToPage(index)
                             }
                         },
                         text = {
@@ -93,7 +93,6 @@ fun LearnScreen(
             HorizontalPager(
                 modifier = Modifier
                     .fillMaxHeight(),
-                count = pages.size,
                 state = pagerState,
                 verticalAlignment = Alignment.Top
             ) { page ->
