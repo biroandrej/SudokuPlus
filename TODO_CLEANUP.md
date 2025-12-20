@@ -15,6 +15,9 @@
 - [x] **P1** - Remove Accompanist from libs.versions.toml and build.gradle.kts
 - [x] **P2** - Remove deprecated composeOptions.kotlinCompilerExtensionVersion
 - [x] **P3** - Remove unused dependencies (foundation-android, espresso-core, ext-junit)
+- [x] **P2** - Address TODO in GameStatsSection.kt - FlowRow now supports verticalArrangement
+- [x] **P3** - Configure Room schema export (added ksp arg)
+- [x] **P3** - Add missing database index for folder_id in SudokuBoard entity
 
 ---
 
@@ -171,14 +174,14 @@ composeOptions {
 
 ## Code TODOs
 
-### P2 - Address Existing TODOs in Code
+### ~~P2 - Address Existing TODOs in Code~~ DONE / DEFERRED
 
-| File | Line | Description |
-|------|------|-------------|
-| `GameStatsSection.kt` | 333 | FlowRow cross-axis arrangement workaround - check if now supported |
-| `BackupScreen.kt` | 558 | Get readable name from other sources |
-| `AdvancedHint.kt` | 15 | Incomplete TODO documentation |
-| `AdvancedHint.kt` | 145 | Add boxes to hint system |
+| File | Line | Description | Status |
+|------|------|-------------|--------|
+| ~~`GameStatsSection.kt`~~ | ~~333~~ | ~~FlowRow cross-axis arrangement workaround~~ | **FIXED** - using verticalArrangement |
+| `BackupScreen.kt` | 558 | Get readable name from other sources | Deferred - feature request |
+| `AdvancedHint.kt` | 15 | Incomplete TODO documentation | Deferred - feature wishlist |
+| `AdvancedHint.kt` | 145 | Add boxes to hint system | Deferred - feature request |
 
 ---
 
@@ -193,21 +196,23 @@ composeOptions {
   - Database repositories
   - XP/Level calculations
 
-### P3 - Configure Room Schema Export
+### ~~P3 - Configure Room Schema Export~~ DONE
 
-Add to `build.gradle.kts` in ksp block:
+Added to `build.gradle.kts`:
 ```kotlin
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
 ```
 
-### P3 - Add Missing Database Index
+### ~~P3 - Add Missing Database Index~~ DONE
 
-`SudokuBoard` entity has `folder_id` foreign key but no index. Add:
+Added index to `SudokuBoard` entity:
 ```kotlin
 @Entity(
-    indices = [Index(value = ["folder_id"])]
+    tableName = "board",
+    indices = [Index(value = ["folder_id"])],
+    ...
 )
 ```
 
@@ -228,9 +233,14 @@ ksp {
 | Category | P0 | P1 | P2 | P3 | Total | Completed |
 |----------|----|----|----|----|-------|-----------|
 | Dependencies | 0 | ~~1~~ | ~~2~~ | ~~1~~ | 4 | **4** |
-| Code TODOs | 0 | 0 | 4 | 0 | 4 | 0 |
-| Code Quality | 0 | 0 | 1 | 2 | 3 | 0 |
+| Code TODOs | 0 | 0 | ~~1~~ | 0 | 4 | **1** (3 deferred) |
+| Code Quality | 0 | 0 | 1 | ~~2~~ | 3 | **2** |
 | Build Config | 0 | 0 | 0 | 1 | 1 | 0 |
-| **Total** | **0** | **1** | **7** | **4** | **12** | **4** |
+| **Total** | **0** | **1** | **7** | **4** | **12** | **7** |
 
-### Progress: 4/12 tasks completed (33%)
+### Progress: 7/12 tasks completed (58%)
+
+**Remaining:**
+- P2: Add unit tests
+- P2: Update aboutLibraries, compose-destinations, composeMarkdown
+- P3: Clean up Gradle/ProGuard configuration

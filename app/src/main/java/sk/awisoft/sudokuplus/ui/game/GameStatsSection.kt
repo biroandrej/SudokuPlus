@@ -167,7 +167,8 @@ fun AfterGameStats(
                         )
 
                         FlowRow(
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             AnimatedStatBox(
                                 visible = true,
@@ -224,7 +225,8 @@ fun AfterGameStats(
                         modifier = Modifier.padding(top = 12.dp, bottom = 8.dp)
                     )
                     FlowRow(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         AnimatedStatBox(
                             visible = visibleStatIndex >= 1,
@@ -299,14 +301,13 @@ private fun AnimatedStatBox(
             )
         )
     ) {
-        StatBoxWithBottomPadding(
+        StatBox(
             text = text,
             icon = icon,
             modifier = modifier
         )
     }
 }
-
 
 @Composable
 fun StatBox(
@@ -328,19 +329,4 @@ fun StatBox(
             text()
         }
     }
-}
-
-// TODO: Remove this when cross-axis arrangement support is added to FlowRow
-// https://android-review.googlesource.com/c/platform/frameworks/support/+/2478295
-@Composable
-fun StatBoxWithBottomPadding(
-    text: @Composable () -> Unit,
-    modifier: Modifier = Modifier,
-    icon: @Composable () -> Unit = { }
-) {
-    StatBox(
-        text = text,
-        icon = icon,
-        modifier = modifier.padding(bottom = 8.dp)
-    )
 }

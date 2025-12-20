@@ -10,6 +10,10 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 // Load keystore properties for local signing
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
