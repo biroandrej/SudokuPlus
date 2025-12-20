@@ -11,6 +11,8 @@ import androidx.lifecycle.viewModelScope
 import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.achievement.GameCompletionData
+import sk.awisoft.sudokuplus.core.xp.XPEngine
+import sk.awisoft.sudokuplus.core.xp.XPResult
 import sk.awisoft.sudokuplus.core.Note
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
@@ -72,13 +74,16 @@ class GameViewModel @Inject constructor(
     themeSettingsManager: ThemeSettingsManager,
     private val savedStateHandle: SavedStateHandle,
     private val getAllRecordsUseCase: GetAllRecordsUseCase,
-    private val achievementEngine: AchievementEngine
+    private val achievementEngine: AchievementEngine,
+    private val xpEngine: XPEngine
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
         data object ShowInterstitial : UiEvent
         data object RequestRewardedHint : UiEvent
         data class AchievementsUnlocked(val achievements: List<AchievementDefinition>) : UiEvent
+        data class XPEarned(val xpResult: XPResult) : UiEvent
+        data class LevelUp(val newLevel: Int) : UiEvent
     }
 
     private val _uiEvents = MutableSharedFlow<UiEvent>(extraBufferCapacity = 1)
@@ -775,11 +780,18 @@ class GameViewModel @Inject constructor(
                 completionTime = duration.toJavaDuration(),
                 mistakes = mistakesMade,
                 hintsUsed = hintsUsed,
-                isDailyChallenge = false
+                isDailyChallenge = navArgs.isDailyChallenge
             )
             val unlockedAchievements = achievementEngine.checkAchievements(completionData)
             if (unlockedAchievements.isNotEmpty()) {
                 _uiEvents.emit(UiEvent.AchievementsUnlocked(unlockedAchievements))
+            }
+
+            // Award XP
+            val xpResult = xpEngine.awardXP(completionData)
+            _uiEvents.emit(UiEvent.XPEarned(xpResult))
+            if (xpResult.leveledUp) {
+                _uiEvents.emit(UiEvent.LevelUp(xpResult.newLevel))
             }
         }
         endGame = true

@@ -298,4 +298,28 @@
     <string name="notification_permission_dialog_message">Izinkan notifikasi untuk menerima pengingat tantangan harian dan peringatan streak. Anda dapat mengubahnya nanti di pengaturan.</string>
     <string name="notification_permission_dialog_allow">Izinkan</string>
     <string name="notification_permission_dialog_later">Nanti saja</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Pemula</string>
+    <string name="level_title_novice">Novis</string>
+    <string name="level_title_apprentice">Murid</string>
+    <string name="level_title_solver">Pemecah</string>
+    <string name="level_title_expert">Ahli</string>
+    <string name="level_title_master">Master</string>
+    <string name="level_title_grandmaster">Grandmaster</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Level %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP ke level berikutnya</string>
+    <string name="level_up_title">Naik Level!</string>
+    <string name="level_up_message">Selamat! Terus selesaikan teka-teki untuk naik lebih tinggi!</string>
+    <string name="xp_earned_title">XP Diperoleh</string>
+    <string name="xp_bonuses">Bonus Diterapkan</string>
+    <string name="xp_base">Dasar: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Permainan sempurna</string>
+    <string name="xp_bonus_no_hints">Tanpa petunjuk</string>
+    <string name="xp_bonus_daily_challenge">Tantangan harian</string>
+    <string name="xp_bonus_streak">Streak %1$d hari</string>
 </resources>

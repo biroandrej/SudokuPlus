@@ -228,4 +228,28 @@
     <string name="notification_permission_dialog_message">デイリーチャレンジのリマインダーと連続記録のアラートを受け取るために通知を許可してください。後で設定で変更できます。</string>
     <string name="notification_permission_dialog_allow">許可する</string>
     <string name="notification_permission_dialog_later">後で</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">初心者</string>
+    <string name="level_title_novice">見習い</string>
+    <string name="level_title_apprentice">修行者</string>
+    <string name="level_title_solver">解答者</string>
+    <string name="level_title_expert">エキスパート</string>
+    <string name="level_title_master">マスター</string>
+    <string name="level_title_grandmaster">グランドマスター</string>
+
+    <!-- XP Display -->
+    <string name="level_label">レベル %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">次のレベルまで %1$d XP</string>
+    <string name="level_up_title">レベルアップ！</string>
+    <string name="level_up_message">おめでとうございます！パズルを解き続けて、もっと上を目指しましょう！</string>
+    <string name="xp_earned_title">獲得XP</string>
+    <string name="xp_bonuses">適用ボーナス</string>
+    <string name="xp_base">基本: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">パーフェクトゲーム</string>
+    <string name="xp_bonus_no_hints">ヒントなし</string>
+    <string name="xp_bonus_daily_challenge">デイリーチャレンジ</string>
+    <string name="xp_bonus_streak">%1$d日連続</string>
 </resources>

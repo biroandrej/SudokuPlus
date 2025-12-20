@@ -507,4 +507,28 @@
     <string name="notification_permission_dialog_message">Разрешите уведомления для получения напоминаний о ежедневных вызовах и предупреждений о сериях. Вы можете изменить это позже в настройках.</string>
     <string name="notification_permission_dialog_allow">Разрешить</string>
     <string name="notification_permission_dialog_later">Не сейчас</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Новичок</string>
+    <string name="level_title_novice">Начинающий</string>
+    <string name="level_title_apprentice">Ученик</string>
+    <string name="level_title_solver">Решатель</string>
+    <string name="level_title_expert">Эксперт</string>
+    <string name="level_title_master">Мастер</string>
+    <string name="level_title_grandmaster">Гроссмейстер</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Уровень %1$d</string>
+    <string name="total_xp_label">%1$d ОО</string>
+    <string name="xp_progress_label">%1$d / %2$d ОО</string>
+    <string name="xp_to_next_level">%1$d ОО до следующего уровня</string>
+    <string name="level_up_title">Новый уровень!</string>
+    <string name="level_up_message">Поздравляем! Продолжайте решать головоломки, чтобы подняться выше!</string>
+    <string name="xp_earned_title">Получено ОО</string>
+    <string name="xp_bonuses">Применённые бонусы</string>
+    <string name="xp_base">База: %1$d ОО</string>
+    <string name="xp_bonus_no_mistakes">Идеальная игра</string>
+    <string name="xp_bonus_no_hints">Без подсказок</string>
+    <string name="xp_bonus_daily_challenge">Ежедневный вызов</string>
+    <string name="xp_bonus_streak">Серия %1$d дней</string>
 </resources>

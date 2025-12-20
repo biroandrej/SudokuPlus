@@ -13,6 +13,7 @@ import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.TipCardsDataStore
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -25,8 +26,10 @@ class StatisticsViewModel
     private val recordRepository: RecordRepository,
     private val tipCardsDataStore: TipCardsDataStore,
     savedGameRepository: SavedGameRepository,
-    appSettingsManager: AppSettingsManager
+    appSettingsManager: AppSettingsManager,
+    userProgressRepository: UserProgressRepository
 ) : ViewModel() {
+    val userProgress = userProgressRepository.get()
     var showDeleteDialog by mutableStateOf(false)
     var selectedDifficulty by mutableStateOf(GameDifficulty.Unspecified)
     var selectedType by mutableStateOf(GameType.Unspecified)

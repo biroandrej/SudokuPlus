@@ -178,7 +178,8 @@ fun HomeScreen(
                 navigator.navigate(
                     GameScreenDestination(
                         gameUid = viewModel.dailyChallengeGameUid,
-                        playedBefore = false
+                        playedBefore = false,
+                        isDailyChallenge = true
                     )
                 )
             }

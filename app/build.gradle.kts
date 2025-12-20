@@ -25,7 +25,7 @@ android {
         applicationId = "sk.awisoft.sudokuplus"
         minSdk = 28
         targetSdk = 36
-        versionCode = 6
+        versionCode = 8
         versionName = "1.0.1-rc02"
 
         vectorDrawables {
@@ -74,6 +74,9 @@ android {
                 signingConfigs.getByName("release")
             } else {
                 null // CI will sign separately
+            }
+            ndk {
+                debugSymbolLevel = "FULL"
             }
             buildConfigField(
                 "String",
