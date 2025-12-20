@@ -18,6 +18,10 @@
 - [x] **P2** - Address TODO in GameStatsSection.kt - FlowRow now supports verticalArrangement
 - [x] **P3** - Configure Room schema export (added ksp arg)
 - [x] **P3** - Add missing database index for folder_id in SudokuBoard entity
+- [x] **P3** - Add database migration 6→7 for folder_id index
+- [x] **P2** - Update aboutLibraries from 10.6.1 to 11.6.3
+- [x] **P2** - Update composeMarkdown from 0.5.4 to 0.5.8
+- [x] **P3** - Review Gradle/ProGuard configuration (no changes needed)
 
 ---
 
@@ -162,13 +166,13 @@ composeOptions {
 
 ## Dependency Updates
 
-### P2 - Update Outdated Libraries
+### ~~P2 - Update Outdated Libraries~~ PARTIALLY DONE
 
-| Library | Current | Latest | Notes |
-|---------|---------|--------|-------|
-| `aboutLibraries` | 10.6.1 | 11.x | Minor breaking changes |
-| `compose-destinations` | 1.11.6 | 2.x | Major breaking changes - evaluate effort |
-| `composeMarkdown` | 0.5.4 | Check latest | Third-party library |
+| Library | Old | New | Status |
+|---------|-----|-----|--------|
+| ~~`aboutLibraries`~~ | ~~10.6.1~~ | 11.6.3 | **DONE** |
+| `compose-destinations` | 1.11.6 | 2.x | Deferred - requires extensive migration (114 usages in 37 files) |
+| ~~`composeMarkdown`~~ | ~~0.5.4~~ | 0.5.8 | **DONE** |
 
 ---
 
@@ -233,14 +237,18 @@ Added index to `SudokuBoard` entity:
 | Category | P0 | P1 | P2 | P3 | Total | Completed |
 |----------|----|----|----|----|-------|-----------|
 | Dependencies | 0 | ~~1~~ | ~~2~~ | ~~1~~ | 4 | **4** |
+| Dep Updates | 0 | 0 | ~~2~~ | 0 | 3 | **2** (1 deferred) |
 | Code TODOs | 0 | 0 | ~~1~~ | 0 | 4 | **1** (3 deferred) |
 | Code Quality | 0 | 0 | 1 | ~~2~~ | 3 | **2** |
-| Build Config | 0 | 0 | 0 | 1 | 1 | 0 |
-| **Total** | **0** | **1** | **7** | **4** | **12** | **7** |
+| Build Config | 0 | 0 | 0 | ~~1~~ | 1 | **1** |
+| **Total** | **0** | **1** | **8** | **5** | **15** | **10** |
 
-### Progress: 7/12 tasks completed (58%)
+### Progress: 10/15 tasks completed (67%)
 
 **Remaining:**
 - P2: Add unit tests
-- P2: Update aboutLibraries, compose-destinations, composeMarkdown
-- P3: Clean up Gradle/ProGuard configuration
+- P2: Update compose-destinations to 2.x (major migration - separate PR recommended)
+
+**Deferred (not bugs, feature requests):**
+- BackupScreen.kt:558 - readable name from non-primary storage
+- AdvancedHint.kt - additional solving techniques
