@@ -365,4 +365,28 @@
     <string name="notification_permission_dialog_message">Tillat varsler for å motta påminnelser om daglige utfordringer og sekvensadvarsler. Du kan endre dette senere i innstillinger.</string>
     <string name="notification_permission_dialog_allow">Tillat</string>
     <string name="notification_permission_dialog_later">Ikke nå</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Nybegynner</string>
+    <string name="level_title_novice">Novise</string>
+    <string name="level_title_apprentice">Lærling</string>
+    <string name="level_title_solver">Løser</string>
+    <string name="level_title_expert">Ekspert</string>
+    <string name="level_title_master">Mester</string>
+    <string name="level_title_grandmaster">Stormester</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Nivå %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP til neste nivå</string>
+    <string name="level_up_title">Nivå opp!</string>
+    <string name="level_up_message">Gratulerer! Fortsett å løse oppgaver for å klatre høyere!</string>
+    <string name="xp_earned_title">XP Opptjent</string>
+    <string name="xp_bonuses">Anvendte Bonuser</string>
+    <string name="xp_base">Basis: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Perfekt spill</string>
+    <string name="xp_bonus_no_hints">Ingen hint brukt</string>
+    <string name="xp_bonus_daily_challenge">Daglig utfordring</string>
+    <string name="xp_bonus_streak">%1$d dagers rekke</string>
 </resources>

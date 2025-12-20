@@ -457,4 +457,28 @@
     <string name="notification_permission_dialog_message">Povolte oznámení pro připomínky denních výzev a upozornění na série. Toto můžete později změnit v nastavení.</string>
     <string name="notification_permission_dialog_allow">Povolit</string>
     <string name="notification_permission_dialog_later">Teď ne</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Začátečník</string>
+    <string name="level_title_novice">Nováček</string>
+    <string name="level_title_apprentice">Učeň</string>
+    <string name="level_title_solver">Řešitel</string>
+    <string name="level_title_expert">Expert</string>
+    <string name="level_title_master">Mistr</string>
+    <string name="level_title_grandmaster">Velmistr</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Úroveň %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP do další úrovně</string>
+    <string name="level_up_title">Nová úroveň!</string>
+    <string name="level_up_message">Gratulujeme! Pokračujte v řešení hádanek a stoupejte výš!</string>
+    <string name="xp_earned_title">Získané XP</string>
+    <string name="xp_bonuses">Použité bonusy</string>
+    <string name="xp_base">Základ: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Bezchybná hra</string>
+    <string name="xp_bonus_no_hints">Bez nápověd</string>
+    <string name="xp_bonus_daily_challenge">Denní výzva</string>
+    <string name="xp_bonus_streak">%1$d denní série</string>
 </resources>

@@ -19,16 +19,18 @@ import sk.awisoft.sudokuplus.data.database.dao.FolderDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
 import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
+import sk.awisoft.sudokuplus.data.database.dao.UserProgressDao
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.Folder
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.database.model.UserAchievement
+import sk.awisoft.sudokuplus.data.database.model.UserProgress
 
 @Database(
-    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class, UserAchievement::class],
-    version = 3
+    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class, UserAchievement::class, UserProgress::class],
+    version = 4
 )
 @TypeConverters(
     DurationConverter::class,
@@ -45,6 +47,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun databaseDao(): DatabaseDao
     abstract fun dailyChallengeDao(): DailyChallengeDao
     abstract fun userAchievementDao(): UserAchievementDao
+    abstract fun userProgressDao(): UserProgressDao
 
     companion object {
         private var INSTANCE: AppDatabase? = null
@@ -86,6 +89,25 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS user_progress (
+                        id INTEGER PRIMARY KEY NOT NULL DEFAULT 1,
+                        total_xp INTEGER NOT NULL DEFAULT 0,
+                        level INTEGER NOT NULL DEFAULT 1,
+                        current_level_xp INTEGER NOT NULL DEFAULT 0,
+                        xp_to_next_level INTEGER NOT NULL DEFAULT 100,
+                        games_for_xp INTEGER NOT NULL DEFAULT 0,
+                        last_xp_earned_at INTEGER,
+                        created_at INTEGER NOT NULL
+                    )
+                    """.trimIndent()
+                )
+            }
+        }
+
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
@@ -93,7 +115,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "main_database"
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                     .build()
             }
 

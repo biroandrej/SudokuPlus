@@ -79,6 +79,7 @@ import sk.awisoft.sudokuplus.destinations.SavedGameScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.EmptyScreen
 import sk.awisoft.sudokuplus.ui.components.HelpCard
+import sk.awisoft.sudokuplus.ui.xp.XPProgressSection
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import java.time.Duration
@@ -126,6 +127,7 @@ fun StatisticsScreen(
     ) { scaffoldPadding ->
         val recordListState = viewModel.recordList.collectAsState(initial = emptyList())
         val savedGameList = viewModel.savedGamesList.collectAsState(initial = emptyList())
+        val userProgress by viewModel.userProgress.collectAsStateWithLifecycle(initialValue = null)
 
         Column(
             modifier = Modifier
@@ -134,6 +136,9 @@ fun StatisticsScreen(
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // XP Progress Section at the top
+            XPProgressSection(userProgress = userProgress)
+
             ChipRowDifficulty(
                 items = listOf(
                     GameDifficulty.Unspecified,

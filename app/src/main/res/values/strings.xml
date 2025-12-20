@@ -510,4 +510,28 @@
     <string name="notification_permission_dialog_message">Allow notifications to receive daily challenge reminders and streak alerts. You can change this later in settings.</string>
     <string name="notification_permission_dialog_allow">Allow</string>
     <string name="notification_permission_dialog_later">Not now</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Beginner</string>
+    <string name="level_title_novice">Novice</string>
+    <string name="level_title_apprentice">Apprentice</string>
+    <string name="level_title_solver">Solver</string>
+    <string name="level_title_expert">Expert</string>
+    <string name="level_title_master">Master</string>
+    <string name="level_title_grandmaster">Grandmaster</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Level %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP to next level</string>
+    <string name="level_up_title">Level Up!</string>
+    <string name="level_up_message">Congratulations! Keep solving puzzles to climb higher!</string>
+    <string name="xp_earned_title">XP Earned</string>
+    <string name="xp_bonuses">Bonuses Applied</string>
+    <string name="xp_base">Base: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Perfect Game</string>
+    <string name="xp_bonus_no_hints">No Hints Used</string>
+    <string name="xp_bonus_daily_challenge">Daily Challenge</string>
+    <string name="xp_bonus_streak">%1$d Day Streak</string>
 </resources>

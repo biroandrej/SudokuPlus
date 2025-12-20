@@ -406,4 +406,28 @@
     <string name="notification_permission_dialog_message">Salli ilmoitukset saadaksesi päivittäisen haasteen muistutuksia ja putkihälytyksiä. Voit muuttaa tätä myöhemmin asetuksissa.</string>
     <string name="notification_permission_dialog_allow">Salli</string>
     <string name="notification_permission_dialog_later">Ei nyt</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Aloittelija</string>
+    <string name="level_title_novice">Noviisi</string>
+    <string name="level_title_apprentice">Oppipoika</string>
+    <string name="level_title_solver">Ratkaisija</string>
+    <string name="level_title_expert">Asiantuntija</string>
+    <string name="level_title_master">Mestari</string>
+    <string name="level_title_grandmaster">Suurmestari</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Taso %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP seuraavalle tasolle</string>
+    <string name="level_up_title">Tasonousu!</string>
+    <string name="level_up_message">Onnittelut! Jatka pulmien ratkaisemista noustaksesi korkeammalle!</string>
+    <string name="xp_earned_title">Ansaittu XP</string>
+    <string name="xp_bonuses">Käytetyt bonukset</string>
+    <string name="xp_base">Perus: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Täydellinen peli</string>
+    <string name="xp_bonus_no_hints">Ei vihjeitä käytetty</string>
+    <string name="xp_bonus_daily_challenge">Päivittäinen haaste</string>
+    <string name="xp_bonus_streak">%1$d päivän putkeen</string>
 </resources>

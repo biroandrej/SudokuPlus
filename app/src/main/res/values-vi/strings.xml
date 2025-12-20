@@ -74,4 +74,28 @@
     <string name="notification_permission_dialog_message">Cho phép thông báo để nhận nhắc nhở thử thách hàng ngày và cảnh báo chuỗi. Bạn có thể thay đổi điều này sau trong cài đặt.</string>
     <string name="notification_permission_dialog_allow">Cho phép</string>
     <string name="notification_permission_dialog_later">Để sau</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Người mới</string>
+    <string name="level_title_novice">Tân binh</string>
+    <string name="level_title_apprentice">Học viên</string>
+    <string name="level_title_solver">Người giải</string>
+    <string name="level_title_expert">Chuyên gia</string>
+    <string name="level_title_master">Bậc thầy</string>
+    <string name="level_title_grandmaster">Đại kiện tướng</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Cấp %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP đến cấp tiếp theo</string>
+    <string name="level_up_title">Lên cấp!</string>
+    <string name="level_up_message">Xin chúc mừng! Tiếp tục giải câu đố để leo cao hơn!</string>
+    <string name="xp_earned_title">XP Nhận được</string>
+    <string name="xp_bonuses">Thưởng Áp dụng</string>
+    <string name="xp_base">Cơ bản: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Hoàn hảo</string>
+    <string name="xp_bonus_no_hints">Không dùng gợi ý</string>
+    <string name="xp_bonus_daily_challenge">Thử thách hàng ngày</string>
+    <string name="xp_bonus_streak">Chuỗi %1$d ngày</string>
 </resources>

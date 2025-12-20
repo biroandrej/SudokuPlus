@@ -115,4 +115,28 @@
     <string name="notification_permission_dialog_message">தினசரி சவால் நினைவூட்டல்கள் மற்றும் ஸ்ட்ரீக் எச்சரிக்கைகளைப் பெற அறிவிப்புகளை அனுமதிக்கவும். இதை பின்னர் அமைப்புகளில் மாற்றலாம்.</string>
     <string name="notification_permission_dialog_allow">அனுமதி</string>
     <string name="notification_permission_dialog_later">இப்போது வேண்டாம்</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">புதியவர்</string>
+    <string name="level_title_novice">தொடக்கநிலை</string>
+    <string name="level_title_apprentice">பயிற்சியாளர்</string>
+    <string name="level_title_solver">தீர்வாளர்</string>
+    <string name="level_title_expert">நிபுணர்</string>
+    <string name="level_title_master">மாஸ்டர்</string>
+    <string name="level_title_grandmaster">கிராண்ட்மாஸ்டர்</string>
+
+    <!-- XP Display -->
+    <string name="level_label">நிலை %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">அடுத்த நிலைக்கு %1$d XP</string>
+    <string name="level_up_title">நிலை உயர்வு!</string>
+    <string name="level_up_message">வாழ்த்துக்கள்! மேலே ஏற புதிர்களை தொடர்ந்து தீர்க்கவும்!</string>
+    <string name="xp_earned_title">பெற்ற XP</string>
+    <string name="xp_bonuses">பயன்படுத்தப்பட்ட போனஸ்கள்</string>
+    <string name="xp_base">அடிப்படை: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">பர்ஃபெக்ட் கேம்</string>
+    <string name="xp_bonus_no_hints">குறிப்புகள் இல்லை</string>
+    <string name="xp_bonus_daily_challenge">தினசரி சவால்</string>
+    <string name="xp_bonus_streak">%1$d நாள் தொடர்</string>
 </resources>

@@ -86,8 +86,11 @@ import sk.awisoft.sudokuplus.core.utils.SudokuParser
 import sk.awisoft.sudokuplus.destinations.SettingsAdvancedHintScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsCategoriesScreenDestination
 import sk.awisoft.sudokuplus.ads.AdsManager
+import sk.awisoft.sudokuplus.core.xp.XPResult
 import sk.awisoft.sudokuplus.ui.achievements.AchievementUnlockDialog
 import sk.awisoft.sudokuplus.ui.components.AdvancedHintContainer
+import sk.awisoft.sudokuplus.ui.xp.LevelUpDialog
+import sk.awisoft.sudokuplus.ui.xp.XPEarnedDisplay
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.board.Board
 import sk.awisoft.sudokuplus.ui.game.components.DefaultGameKeyboard
@@ -169,6 +172,8 @@ fun GameScreen(
 
     var showRewardedHintDialog by rememberSaveable { mutableStateOf(false) }
     var unlockedAchievements by remember { mutableStateOf<List<AchievementDefinition>>(emptyList()) }
+    var xpResult by remember { mutableStateOf<XPResult?>(null) }
+    var showLevelUpDialog by remember { mutableStateOf<Int?>(null) }
 
     LaunchedEffect(Unit) {
         AdsManager.preloadInterstitial(context)
@@ -216,6 +221,12 @@ fun GameScreen(
                 }
                 is GameViewModel.UiEvent.AchievementsUnlocked -> {
                     unlockedAchievements = event.achievements
+                }
+                is GameViewModel.UiEvent.XPEarned -> {
+                    xpResult = event.xpResult
+                }
+                is GameViewModel.UiEvent.LevelUp -> {
+                    showLevelUpDialog = event.newLevel
                 }
             }
         }
@@ -657,19 +668,34 @@ fun GameScreen(
                             val allRecords by viewModel.allRecords.collectAsStateWithLifecycle(
                                 initialValue = emptyList()
                             )
-                            AfterGameStats(
+                            Column(
                                 modifier = Modifier.fillMaxWidth(),
-                                difficulty = viewModel.gameDifficulty,
-                                type = viewModel.gameType,
-                                hintsUsed = viewModel.hintsUsed,
-                                mistakesMade = viewModel.mistakesMade,
-                                mistakesLimit = mistakesLimit,
-                                mistakesLimitCount = viewModel.mistakesCount,
-                                giveUp = viewModel.giveUp,
-                                notesTaken = viewModel.notesTaken,
-                                records = allRecords,
-                                timeText = viewModel.timeText
-                            )
+                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                // Show XP earned if game was completed successfully
+                                if (!viewModel.giveUp && viewModel.mistakesCount < PreferencesConstants.MISTAKES_LIMIT) {
+                                    xpResult?.let { result ->
+                                        XPEarnedDisplay(
+                                            xpResult = result,
+                                            modifier = Modifier.padding(horizontal = 4.dp)
+                                        )
+                                    }
+                                }
+
+                                AfterGameStats(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    difficulty = viewModel.gameDifficulty,
+                                    type = viewModel.gameType,
+                                    hintsUsed = viewModel.hintsUsed,
+                                    mistakesMade = viewModel.mistakesMade,
+                                    mistakesLimit = mistakesLimit,
+                                    mistakesLimitCount = viewModel.mistakesCount,
+                                    giveUp = viewModel.giveUp,
+                                    notesTaken = viewModel.notesTaken,
+                                    records = allRecords,
+                                    timeText = viewModel.timeText
+                                )
+                            }
                         }
                     }
                 }
@@ -740,6 +766,14 @@ fun GameScreen(
         AchievementUnlockDialog(
             achievements = unlockedAchievements,
             onDismiss = { unlockedAchievements = emptyList() }
+        )
+    }
+
+    // Level up dialog
+    showLevelUpDialog?.let { newLevel ->
+        LevelUpDialog(
+            newLevel = newLevel,
+            onDismiss = { showLevelUpDialog = null }
         )
     }
 

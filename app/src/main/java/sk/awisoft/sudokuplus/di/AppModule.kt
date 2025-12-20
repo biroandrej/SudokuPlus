@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
+import sk.awisoft.sudokuplus.core.xp.XPEngine
 import sk.awisoft.sudokuplus.data.database.AppDatabase
 import sk.awisoft.sudokuplus.data.database.dao.BoardDao
 import sk.awisoft.sudokuplus.data.database.dao.DailyChallengeDao
@@ -11,6 +12,7 @@ import sk.awisoft.sudokuplus.data.database.dao.FolderDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
 import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
+import sk.awisoft.sudokuplus.data.database.dao.UserProgressDao
 import sk.awisoft.sudokuplus.data.database.repository.AchievementRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.BoardRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.DailyChallengeRepositoryImpl
@@ -18,6 +20,7 @@ import sk.awisoft.sudokuplus.data.database.repository.DatabaseRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.FolderRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.RecordRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.SavedGameRepositoryImpl
+import sk.awisoft.sudokuplus.data.database.repository.UserProgressRepositoryImpl
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.AssistanceSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.BackupSettingsManager
@@ -32,6 +35,7 @@ import sk.awisoft.sudokuplus.domain.repository.DatabaseRepository
 import sk.awisoft.sudokuplus.domain.repository.FolderRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -166,6 +170,28 @@ class AppModule {
         achievementRepository,
         savedGameRepository,
         recordRepository,
+        dailyChallengeRepository,
+        dailyChallengeManager
+    )
+
+    @Singleton
+    @Provides
+    fun provideUserProgressDao(appDatabase: AppDatabase): UserProgressDao =
+        appDatabase.userProgressDao()
+
+    @Singleton
+    @Provides
+    fun provideUserProgressRepository(dao: UserProgressDao): UserProgressRepository =
+        UserProgressRepositoryImpl(dao)
+
+    @Singleton
+    @Provides
+    fun provideXPEngine(
+        userProgressRepository: UserProgressRepository,
+        dailyChallengeRepository: DailyChallengeRepository,
+        dailyChallengeManager: DailyChallengeManager
+    ): XPEngine = XPEngine(
+        userProgressRepository,
         dailyChallengeRepository,
         dailyChallengeManager
     )

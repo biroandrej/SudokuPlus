@@ -453,4 +453,28 @@
     <string name="notification_permission_dialog_message">Erlauben Sie Benachrichtigungen für tägliche Herausforderungs-Erinnerungen und Serien-Warnungen. Sie können dies später in den Einstellungen ändern.</string>
     <string name="notification_permission_dialog_allow">Erlauben</string>
     <string name="notification_permission_dialog_later">Nicht jetzt</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Anfänger</string>
+    <string name="level_title_novice">Neuling</string>
+    <string name="level_title_apprentice">Lehrling</string>
+    <string name="level_title_solver">Löser</string>
+    <string name="level_title_expert">Experte</string>
+    <string name="level_title_master">Meister</string>
+    <string name="level_title_grandmaster">Großmeister</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Stufe %1$d</string>
+    <string name="total_xp_label">%1$d EP</string>
+    <string name="xp_progress_label">%1$d / %2$d EP</string>
+    <string name="xp_to_next_level">%1$d EP bis zur nächsten Stufe</string>
+    <string name="level_up_title">Stufenaufstieg!</string>
+    <string name="level_up_message">Glückwunsch! Löse weiter Rätsel, um höher zu steigen!</string>
+    <string name="xp_earned_title">EP verdient</string>
+    <string name="xp_bonuses">Angewandte Boni</string>
+    <string name="xp_base">Basis: %1$d EP</string>
+    <string name="xp_bonus_no_mistakes">Perfektes Spiel</string>
+    <string name="xp_bonus_no_hints">Keine Hinweise verwendet</string>
+    <string name="xp_bonus_daily_challenge">Tägliche Herausforderung</string>
+    <string name="xp_bonus_streak">%1$d Tage Serie</string>
 </resources>
