@@ -10,11 +10,9 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import sk.awisoft.sudokuplus.core.PreferencesConstants
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.materialkolor.DynamicMaterialTheme
 import com.materialkolor.PaletteStyle
 import com.materialkolor.rememberDynamicMaterialThemeState
@@ -128,8 +126,6 @@ fun SudokuPlusTheme(
         }
     }
 
-    val systemUiController = rememberSystemUiController()
-
     val materialThemeState = rememberDynamicMaterialThemeState(
         seedColor = colorSeed,
         isDark = darkTheme,
@@ -146,15 +142,6 @@ fun SudokuPlusTheme(
             easing = FastOutSlowInEasing
         ),
         typography = Typography,
-        content = {
-            SideEffect {
-                systemUiController.setSystemBarsColor(
-                    color = Color.Transparent,
-                    darkIcons = !darkTheme
-                )
-            }
-
-            content()
-        }
+        content = content
     )
 }
