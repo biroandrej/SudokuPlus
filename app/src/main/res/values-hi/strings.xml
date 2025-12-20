@@ -502,4 +502,25 @@
     <string name="xp_bonus_no_hints">कोई संकेत नहीं</string>
     <string name="xp_bonus_daily_challenge">दैनिक चुनौती</string>
     <string name="xp_bonus_streak">%1$d दिन की स्ट्रीक</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">दैनिक पुरस्कार</string>
+    <string name="reward_calendar_day">दिन %1$d</string>
+    <string name="reward_calendar_claim">प्राप्त करें</string>
+    <string name="reward_calendar_claimed">प्राप्त किया</string>
+    <string name="reward_calendar_locked">लॉक्ड</string>
+    <string name="reward_calendar_today">आज</string>
+    <string name="reward_calendar_streak">%1$d दिन की स्ट्रीक</string>
+    <string name="reward_calendar_total_claimed">कुल प्राप्त: %1$d</string>
+    <string name="reward_claim_title">पुरस्कार प्राप्त!</string>
+    <string name="reward_claim_message">आपको मिला:</string>
+    <string name="reward_type_hints">बोनस संकेत</string>
+    <string name="reward_type_xp_boost">XP बूस्ट</string>
+    <string name="reward_type_theme">थीम अनलॉक</string>
+    <string name="reward_type_badge">विशेष बैज</string>
+    <string name="reward_hints_amount">+%1$d संकेत</string>
+    <string name="reward_xp_boost_amount">%1$d गेम के लिए 2x XP</string>
+    <string name="reward_bonus_hints_available">%1$d बोनस संकेत उपलब्ध</string>
+    <string name="reward_xp_boost_active">XP बूस्ट: %1$d गेम शेष</string>
+
 </resources>

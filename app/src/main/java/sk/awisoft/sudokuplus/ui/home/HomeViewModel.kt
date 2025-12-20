@@ -9,6 +9,10 @@ import androidx.lifecycle.viewModelScope
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
+import sk.awisoft.sudokuplus.core.reward.ClaimResult
+import sk.awisoft.sudokuplus.core.reward.DailyReward
+import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
+import sk.awisoft.sudokuplus.core.reward.RewardCalendarState
 import sk.awisoft.sudokuplus.core.notification.NotificationHelper
 import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
 import sk.awisoft.sudokuplus.core.qqwing.Cage
@@ -50,6 +54,7 @@ class HomeViewModel
     private val dailyChallengeRepository: DailyChallengeRepository,
     private val notificationSettingsManager: NotificationSettingsManager,
     private val notificationHelper: NotificationHelper,
+    private val rewardCalendarManager: RewardCalendarManager,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -75,6 +80,13 @@ class HomeViewModel
     // Notification permission state
     private val _shouldShowNotificationPermission = MutableStateFlow(false)
     val shouldShowNotificationPermission: StateFlow<Boolean> = _shouldShowNotificationPermission.asStateFlow()
+
+    // Reward Calendar State
+    val rewardCalendarState: StateFlow<RewardCalendarState?> = rewardCalendarManager.getCalendarState()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    private val _claimedReward = MutableStateFlow<DailyReward?>(null)
+    val claimedReward: StateFlow<DailyReward?> = _claimedReward.asStateFlow()
 
     init {
         loadDailyChallenge()
@@ -294,5 +306,23 @@ class HomeViewModel
                 }
             }
         }
+    }
+
+    fun claimReward() {
+        viewModelScope.launch {
+            when (val result = rewardCalendarManager.claimTodayReward()) {
+                is ClaimResult.Success -> {
+                    _claimedReward.value = result.reward
+                }
+                is ClaimResult.AlreadyClaimedToday,
+                is ClaimResult.Error -> {
+                    // Handle silently
+                }
+            }
+        }
+    }
+
+    fun dismissClaimedReward() {
+        _claimedReward.value = null
     }
 }

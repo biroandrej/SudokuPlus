@@ -477,4 +477,26 @@
     <string name="xp_bonus_no_hints">Χωρίς βοήθεια</string>
     <string name="xp_bonus_daily_challenge">Ημερήσια πρόκληση</string>
     <string name="xp_bonus_streak">%1$d ημέρες σερί</string>
+    <string name="xp_bonus_reward_boost">Ενίσχυση καθημερινής ανταμοιβής</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Καθημερινές Ανταμοιβές</string>
+    <string name="reward_calendar_day">Ημέρα %1$d</string>
+    <string name="reward_calendar_claim">Διεκδίκηση</string>
+    <string name="reward_calendar_claimed">Διεκδικήθηκε</string>
+    <string name="reward_calendar_locked">Κλειδωμένο</string>
+    <string name="reward_calendar_today">Σήμερα</string>
+    <string name="reward_calendar_streak">%1$d ημέρες σειρά</string>
+    <string name="reward_calendar_total_claimed">Σύνολο διεκδικήσεων: %1$d</string>
+    <string name="reward_claim_title">Ανταμοιβή διεκδικήθηκε!</string>
+    <string name="reward_claim_message">Λάβατε:</string>
+    <string name="reward_type_hints">Μπόνους υποδείξεις</string>
+    <string name="reward_type_xp_boost">Ενίσχυση XP</string>
+    <string name="reward_type_theme">Θέμα ξεκλειδώθηκε</string>
+    <string name="reward_type_badge">Ειδικό σήμα</string>
+    <string name="reward_hints_amount">+%1$d Υποδείξεις</string>
+    <string name="reward_xp_boost_amount">2x XP για %1$d παιχνίδια</string>
+    <string name="reward_bonus_hints_available">%1$d μπόνους υποδείξεις διαθέσιμες</string>
+    <string name="reward_xp_boost_active">Ενίσχυση XP: %1$d παιχνίδια απομένουν</string>
+
 </resources>

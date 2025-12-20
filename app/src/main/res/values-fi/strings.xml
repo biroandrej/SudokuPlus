@@ -430,4 +430,25 @@
     <string name="xp_bonus_no_hints">Ei vihjeitä käytetty</string>
     <string name="xp_bonus_daily_challenge">Päivittäinen haaste</string>
     <string name="xp_bonus_streak">%1$d päivän putkeen</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Päivittäiset palkinnot</string>
+    <string name="reward_calendar_day">Päivä %1$d</string>
+    <string name="reward_calendar_claim">Lunasta</string>
+    <string name="reward_calendar_claimed">Lunastettu</string>
+    <string name="reward_calendar_locked">Lukittu</string>
+    <string name="reward_calendar_today">Tänään</string>
+    <string name="reward_calendar_streak">%1$d päivän putki</string>
+    <string name="reward_calendar_total_claimed">Yhteensä lunastettu: %1$d</string>
+    <string name="reward_claim_title">Palkinto lunastettu!</string>
+    <string name="reward_claim_message">Sait:</string>
+    <string name="reward_type_hints">Bonusvihjeet</string>
+    <string name="reward_type_xp_boost">XP-tehostus</string>
+    <string name="reward_type_theme">Teema avattu</string>
+    <string name="reward_type_badge">Erikoismerkki</string>
+    <string name="reward_hints_amount">+%1$d Vihjettä</string>
+    <string name="reward_xp_boost_amount">2x XP %1$d peliin</string>
+    <string name="reward_bonus_hints_available">%1$d bonusvihjettä käytettävissä</string>
+    <string name="reward_xp_boost_active">XP-tehostus: %1$d peliä jäljellä</string>
+
 </resources>

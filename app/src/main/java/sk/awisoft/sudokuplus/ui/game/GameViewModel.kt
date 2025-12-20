@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.achievement.GameCompletionData
+import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
 import sk.awisoft.sudokuplus.core.xp.XPEngine
 import sk.awisoft.sudokuplus.core.xp.XPResult
 import sk.awisoft.sudokuplus.core.Note
@@ -75,7 +76,8 @@ class GameViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val getAllRecordsUseCase: GetAllRecordsUseCase,
     private val achievementEngine: AchievementEngine,
-    private val xpEngine: XPEngine
+    private val xpEngine: XPEngine,
+    private val rewardCalendarManager: RewardCalendarManager
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
@@ -107,6 +109,15 @@ class GameViewModel @Inject constructor(
 
             if (!continueSaved) {
                 appSettingsManager.resetHintsRemaining(gameUid)
+                // Add bonus hints from reward calendar
+                val bonusHints = rewardCalendarManager.getBonusHints()
+                if (bonusHints > 0) {
+                    appSettingsManager.grantHints(gameUid, bonusHints)
+                    // Consume all bonus hints from the reward calendar
+                    repeat(bonusHints) {
+                        rewardCalendarManager.useHint()
+                    }
+                }
             }
 
 

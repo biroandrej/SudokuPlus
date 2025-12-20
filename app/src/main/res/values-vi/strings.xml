@@ -98,4 +98,25 @@
     <string name="xp_bonus_no_hints">Không dùng gợi ý</string>
     <string name="xp_bonus_daily_challenge">Thử thách hàng ngày</string>
     <string name="xp_bonus_streak">Chuỗi %1$d ngày</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Phần thưởng hàng ngày</string>
+    <string name="reward_calendar_day">Ngày %1$d</string>
+    <string name="reward_calendar_claim">Nhận</string>
+    <string name="reward_calendar_claimed">Đã nhận</string>
+    <string name="reward_calendar_locked">Đã khóa</string>
+    <string name="reward_calendar_today">Hôm nay</string>
+    <string name="reward_calendar_streak">Chuỗi %1$d ngày</string>
+    <string name="reward_calendar_total_claimed">Tổng đã nhận: %1$d</string>
+    <string name="reward_claim_title">Đã nhận phần thưởng!</string>
+    <string name="reward_claim_message">Bạn nhận được:</string>
+    <string name="reward_type_hints">Gợi ý thưởng</string>
+    <string name="reward_type_xp_boost">Tăng XP</string>
+    <string name="reward_type_theme">Mở khóa chủ đề</string>
+    <string name="reward_type_badge">Huy hiệu đặc biệt</string>
+    <string name="reward_hints_amount">+%1$d Gợi ý</string>
+    <string name="reward_xp_boost_amount">2x XP cho %1$d ván</string>
+    <string name="reward_bonus_hints_available">%1$d gợi ý thưởng có sẵn</string>
+    <string name="reward_xp_boost_active">Tăng XP: còn %1$d ván</string>
+
 </resources>

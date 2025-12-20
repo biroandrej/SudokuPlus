@@ -206,4 +206,25 @@
     <string name="xp_bonus_no_hints">Nem használt tippeket</string>
     <string name="xp_bonus_daily_challenge">Napi kihívás</string>
     <string name="xp_bonus_streak">%1$d napos széria</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Napi jutalmak</string>
+    <string name="reward_calendar_day">%1$d. nap</string>
+    <string name="reward_calendar_claim">Átvétel</string>
+    <string name="reward_calendar_claimed">Átvéve</string>
+    <string name="reward_calendar_locked">Zárolva</string>
+    <string name="reward_calendar_today">Ma</string>
+    <string name="reward_calendar_streak">%1$d napos sorozat</string>
+    <string name="reward_calendar_total_claimed">Összesen átvéve: %1$d</string>
+    <string name="reward_claim_title">Jutalom átvéve!</string>
+    <string name="reward_claim_message">Kaptál:</string>
+    <string name="reward_type_hints">Bónusz tippek</string>
+    <string name="reward_type_xp_boost">XP növelés</string>
+    <string name="reward_type_theme">Téma feloldva</string>
+    <string name="reward_type_badge">Különleges jelvény</string>
+    <string name="reward_hints_amount">+%1$d Tipp</string>
+    <string name="reward_xp_boost_amount">2x XP %1$d játékra</string>
+    <string name="reward_bonus_hints_available">%1$d bónusz tipp elérhető</string>
+    <string name="reward_xp_boost_active">XP növelés: %1$d játék hátra</string>
+
 </resources>

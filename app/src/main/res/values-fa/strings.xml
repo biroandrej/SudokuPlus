@@ -284,4 +284,25 @@
     <string name="xp_bonus_no_hints">بدون راهنمایی</string>
     <string name="xp_bonus_daily_challenge">چالش روزانه</string>
     <string name="xp_bonus_streak">رکورد %1$d روزه</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">پاداش‌های روزانه</string>
+    <string name="reward_calendar_day">روز %1$d</string>
+    <string name="reward_calendar_claim">دریافت</string>
+    <string name="reward_calendar_claimed">دریافت شد</string>
+    <string name="reward_calendar_locked">قفل</string>
+    <string name="reward_calendar_today">امروز</string>
+    <string name="reward_calendar_streak">%1$d روز متوالی</string>
+    <string name="reward_calendar_total_claimed">کل دریافت شده: %1$d</string>
+    <string name="reward_claim_title">پاداش دریافت شد!</string>
+    <string name="reward_claim_message">شما دریافت کردید:</string>
+    <string name="reward_type_hints">راهنمایی اضافی</string>
+    <string name="reward_type_xp_boost">تقویت XP</string>
+    <string name="reward_type_theme">تم باز شد</string>
+    <string name="reward_type_badge">نشان ویژه</string>
+    <string name="reward_hints_amount">+%1$d راهنمایی</string>
+    <string name="reward_xp_boost_amount">2x XP برای %1$d بازی</string>
+    <string name="reward_bonus_hints_available">%1$d راهنمایی اضافی موجود</string>
+    <string name="reward_xp_boost_active">تقویت XP: %1$d بازی باقیمانده</string>
+
 </resources>

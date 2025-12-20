@@ -252,4 +252,26 @@
     <string name="xp_bonus_no_hints">ヒントなし</string>
     <string name="xp_bonus_daily_challenge">デイリーチャレンジ</string>
     <string name="xp_bonus_streak">%1$d日連続</string>
+    <string name="xp_bonus_reward_boost">デイリー報酬ブースト</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">デイリー報酬</string>
+    <string name="reward_calendar_day">%1$d日目</string>
+    <string name="reward_calendar_claim">受け取る</string>
+    <string name="reward_calendar_claimed">受取済み</string>
+    <string name="reward_calendar_locked">ロック中</string>
+    <string name="reward_calendar_today">今日</string>
+    <string name="reward_calendar_streak">%1$d日連続</string>
+    <string name="reward_calendar_total_claimed">合計受取: %1$d</string>
+    <string name="reward_claim_title">報酬を獲得!</string>
+    <string name="reward_claim_message">獲得したもの:</string>
+    <string name="reward_type_hints">ボーナスヒント</string>
+    <string name="reward_type_xp_boost">XPブースト</string>
+    <string name="reward_type_theme">テーマ解除</string>
+    <string name="reward_type_badge">特別バッジ</string>
+    <string name="reward_hints_amount">+%1$d ヒント</string>
+    <string name="reward_xp_boost_amount">%1$dゲーム分 2倍XP</string>
+    <string name="reward_bonus_hints_available">%1$dボーナスヒント利用可能</string>
+    <string name="reward_xp_boost_active">XPブースト: 残り%1$dゲーム</string>
+
 </resources>

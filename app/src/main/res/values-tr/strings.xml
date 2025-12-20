@@ -393,4 +393,25 @@
     <string name="xp_bonus_no_hints">İpucu kullanılmadı</string>
     <string name="xp_bonus_daily_challenge">Günlük meydan okuma</string>
     <string name="xp_bonus_streak">%1$d günlük seri</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Günlük Ödüller</string>
+    <string name="reward_calendar_day">Gün %1$d</string>
+    <string name="reward_calendar_claim">Al</string>
+    <string name="reward_calendar_claimed">Alındı</string>
+    <string name="reward_calendar_locked">Kilitli</string>
+    <string name="reward_calendar_today">Bugün</string>
+    <string name="reward_calendar_streak">%1$d gün seri</string>
+    <string name="reward_calendar_total_claimed">Toplam alınan: %1$d</string>
+    <string name="reward_claim_title">Ödül Alındı!</string>
+    <string name="reward_claim_message">Aldığınız:</string>
+    <string name="reward_type_hints">Bonus İpuçları</string>
+    <string name="reward_type_xp_boost">XP Artışı</string>
+    <string name="reward_type_theme">Tema Açıldı</string>
+    <string name="reward_type_badge">Özel Rozet</string>
+    <string name="reward_hints_amount">+%1$d İpucu</string>
+    <string name="reward_xp_boost_amount">%1$d oyun için 2x XP</string>
+    <string name="reward_bonus_hints_available">%1$d bonus ipucu mevcut</string>
+    <string name="reward_xp_boost_active">XP Artışı: %1$d oyun kaldı</string>
+
 </resources>

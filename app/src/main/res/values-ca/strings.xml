@@ -322,4 +322,25 @@
     <string name="xp_bonus_no_hints">Sense pistes</string>
     <string name="xp_bonus_daily_challenge">Repte diari</string>
     <string name="xp_bonus_streak">Ratxa de %1$d dies</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Recompenses diàries</string>
+    <string name="reward_calendar_day">Dia %1$d</string>
+    <string name="reward_calendar_claim">Reclamar</string>
+    <string name="reward_calendar_claimed">Reclamat</string>
+    <string name="reward_calendar_locked">Bloquejat</string>
+    <string name="reward_calendar_today">Avui</string>
+    <string name="reward_calendar_streak">%1$d dies seguits</string>
+    <string name="reward_calendar_total_claimed">Total reclamat: %1$d</string>
+    <string name="reward_claim_title">Recompensa reclamada!</string>
+    <string name="reward_claim_message">Has rebut:</string>
+    <string name="reward_type_hints">Pistes addicionals</string>
+    <string name="reward_type_xp_boost">Augment de XP</string>
+    <string name="reward_type_theme">Tema desbloquejat</string>
+    <string name="reward_type_badge">Insígnia especial</string>
+    <string name="reward_hints_amount">+%1$d Pistes</string>
+    <string name="reward_xp_boost_amount">2x XP per %1$d partides</string>
+    <string name="reward_bonus_hints_available">%1$d pistes addicionals disponibles</string>
+    <string name="reward_xp_boost_active">Augment XP: %1$d partides restants</string>
+
 </resources>

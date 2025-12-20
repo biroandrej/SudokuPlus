@@ -387,4 +387,25 @@
     <string name="xp_bonus_no_hints">Fără indicii</string>
     <string name="xp_bonus_daily_challenge">Provocare zilnică</string>
     <string name="xp_bonus_streak">Serie de %1$d zile</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Recompense zilnice</string>
+    <string name="reward_calendar_day">Ziua %1$d</string>
+    <string name="reward_calendar_claim">Revendică</string>
+    <string name="reward_calendar_claimed">Revendicat</string>
+    <string name="reward_calendar_locked">Blocat</string>
+    <string name="reward_calendar_today">Astăzi</string>
+    <string name="reward_calendar_streak">%1$d zile consecutive</string>
+    <string name="reward_calendar_total_claimed">Total revendicat: %1$d</string>
+    <string name="reward_claim_title">Recompensă revendicată!</string>
+    <string name="reward_claim_message">Ai primit:</string>
+    <string name="reward_type_hints">Indicii bonus</string>
+    <string name="reward_type_xp_boost">Amplificare XP</string>
+    <string name="reward_type_theme">Temă deblocată</string>
+    <string name="reward_type_badge">Insignă specială</string>
+    <string name="reward_hints_amount">+%1$d Indicii</string>
+    <string name="reward_xp_boost_amount">2x XP pentru %1$d jocuri</string>
+    <string name="reward_bonus_hints_available">%1$d indicii bonus disponibile</string>
+    <string name="reward_xp_boost_active">Amplificare XP: %1$d jocuri rămase</string>
+
 </resources>

@@ -73,10 +73,13 @@ import sk.awisoft.sudokuplus.core.utils.toFormattedString
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.destinations.DailyChallengeCalendarScreenDestination
 import sk.awisoft.sudokuplus.destinations.GameScreenDestination
+import sk.awisoft.sudokuplus.destinations.RewardCalendarScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
 import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
+import sk.awisoft.sudokuplus.ui.home.components.RewardCalendarCard
+import sk.awisoft.sudokuplus.ui.reward.RewardClaimDialog
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -113,6 +116,10 @@ fun HomeScreen(
     val dailyChallenge by viewModel.dailyChallenge.collectAsStateWithLifecycle()
     val isDailyLoading by viewModel.isDailyLoading.collectAsStateWithLifecycle()
     val dailyCurrentStreak by viewModel.dailyCurrentStreak.collectAsStateWithLifecycle()
+
+    // Reward Calendar
+    val rewardCalendarState by viewModel.rewardCalendarState.collectAsStateWithLifecycle()
+    val claimedReward by viewModel.claimedReward.collectAsStateWithLifecycle()
 
     Notifications(viewModel = viewModel)
 
@@ -199,6 +206,14 @@ fun HomeScreen(
                     isLoading = isDailyLoading,
                     onPlay = { viewModel.playDailyChallenge() },
                     onViewCalendar = { navigator.navigate(DailyChallengeCalendarScreenDestination) }
+                )
+            }
+
+            item {
+                RewardCalendarCard(
+                    state = rewardCalendarState,
+                    onClaim = { viewModel.claimReward() },
+                    onViewCalendar = { navigator.navigate(RewardCalendarScreenDestination) }
                 )
             }
 
@@ -335,6 +350,14 @@ fun HomeScreen(
                     }
                 }
             }
+        }
+
+        // Reward Claim Dialog
+        claimedReward?.let { reward ->
+            RewardClaimDialog(
+                reward = reward,
+                onDismiss = { viewModel.dismissClaimedReward() }
+            )
         }
     }
 }

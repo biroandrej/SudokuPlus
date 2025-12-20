@@ -372,4 +372,25 @@
     <string name="xp_bonus_no_hints">Sem dicas</string>
     <string name="xp_bonus_daily_challenge">Desafio diário</string>
     <string name="xp_bonus_streak">Sequência de %1$d dias</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Recompensas diárias</string>
+    <string name="reward_calendar_day">Dia %1$d</string>
+    <string name="reward_calendar_claim">Resgatar</string>
+    <string name="reward_calendar_claimed">Resgatado</string>
+    <string name="reward_calendar_locked">Bloqueado</string>
+    <string name="reward_calendar_today">Hoje</string>
+    <string name="reward_calendar_streak">%1$d dias de sequência</string>
+    <string name="reward_calendar_total_claimed">Total resgatado: %1$d</string>
+    <string name="reward_claim_title">Recompensa resgatada!</string>
+    <string name="reward_claim_message">Você recebeu:</string>
+    <string name="reward_type_hints">Dicas bônus</string>
+    <string name="reward_type_xp_boost">Aumento de XP</string>
+    <string name="reward_type_theme">Tema desbloqueado</string>
+    <string name="reward_type_badge">Distintivo especial</string>
+    <string name="reward_hints_amount">+%1$d Dicas</string>
+    <string name="reward_xp_boost_amount">2x XP por %1$d jogos</string>
+    <string name="reward_bonus_hints_available">%1$d dicas bônus disponíveis</string>
+    <string name="reward_xp_boost_active">Aumento XP: %1$d jogos restantes</string>
+
 </resources>

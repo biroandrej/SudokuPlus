@@ -255,7 +255,6 @@ data class DailyReward(
 enum class RewardType {
     HINTS,          // Extra hints
     XP_BOOST,       // 2x XP for X games
-    THEME_UNLOCK,   // Unlock a theme
     BADGE           // Cosmetic badge
 }
 
@@ -266,9 +265,9 @@ val rewardCycle = listOf(
     DailyReward(4, RewardType.XP_BOOST, 1),
     DailyReward(5, RewardType.HINTS, 2),
     DailyReward(6, RewardType.XP_BOOST, 2),
-    DailyReward(7, RewardType.THEME_UNLOCK, 1),
+    DailyReward(7, RewardType.BADGE, 1),  // Weekly badge
     // ... continue to day 30
-    DailyReward(30, RewardType.BADGE, 1)  // Special monthly badge
+    DailyReward(30, RewardType.BADGE, 1)  // Monthly badge
 )
 ```
 
