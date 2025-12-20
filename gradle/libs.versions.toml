@@ -31,6 +31,7 @@ foundationAndroid = "1.7.5"
 graphicsShape = "1.0.1"
 composeMarkdown = "0.5.4"
 playServicesAds = "23.4.0"
+splashScreen = "1.0.1"
 
 [libraries]
 # Android App
@@ -95,6 +96,7 @@ aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose", vers
 composeMarkdown = { group = "com.github.jeziellago", name = "compose-markdown", version.ref = "composeMarkdown"}
 materialKolor = { group = "com.materialkolor", name = "material-kolor", version.ref = "materialKolor" }
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+splash-screen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreen" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -1,0 +1,39 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <!-- Sudoku grid icon centered for splash screen -->
+    <!-- Top-left: Coral -->
+    <path
+        android:pathData="M92,76L160,76A16,16 0,0 1,176 92L176,160A16,16 0,0 1,160 176L92,176A16,16 0,0 1,76 160L76,92A16,16 0,0 1,92 76z"
+        android:fillColor="#E88F7A"/>
+    <!-- Top-center: Teal -->
+    <path
+        android:pathData="M222,76L290,76A16,16 0,0 1,306 92L306,160A16,16 0,0 1,290 176L222,176A16,16 0,0 1,206 160L206,92A16,16 0,0 1,222 76z"
+        android:fillColor="#5B9EA6"/>
+    <!-- Middle-left: Teal -->
+    <path
+        android:pathData="M92,206L160,206A16,16 0,0 1,176 222L176,290A16,16 0,0 1,160 306L92,306A16,16 0,0 1,76 290L76,222A16,16 0,0 1,92 206z"
+        android:fillColor="#5B9EA6"/>
+    <!-- Center: Dark Blue -->
+    <path
+        android:pathData="M222,206L290,206A16,16 0,0 1,306 222L306,290A16,16 0,0 1,290 306L222,306A16,16 0,0 1,206 290L206,222A16,16 0,0 1,222 206z"
+        android:fillColor="#3C4A63"/>
+    <!-- Middle-right: Teal -->
+    <path
+        android:pathData="M352,206L420,206A16,16 0,0 1,436 222L436,290A16,16 0,0 1,420 306L352,306A16,16 0,0 1,336 290L336,222A16,16 0,0 1,352 206z"
+        android:fillColor="#5B9EA6"/>
+    <!-- Bottom-left: Coral -->
+    <path
+        android:pathData="M92,336L160,336A16,16 0,0 1,176 352L176,420A16,16 0,0 1,160 436L92,436A16,16 0,0 1,76 420L76,352A16,16 0,0 1,92 336z"
+        android:fillColor="#E88F7A"/>
+    <!-- Bottom-center: Teal -->
+    <path
+        android:pathData="M222,336L290,336A16,16 0,0 1,306 352L306,420A16,16 0,0 1,290 436L222,436A16,16 0,0 1,206 420L206,352A16,16 0,0 1,222 336z"
+        android:fillColor="#5B9EA6"/>
+    <!-- Bottom-right: Coral -->
+    <path
+        android:pathData="M352,336L420,336A16,16 0,0 1,436 352L436,420A16,16 0,0 1,420 436L352,436A16,16 0,0 1,336 420L336,352A16,16 0,0 1,352 336z"
+        android:fillColor="#E88F7A"/>
+</vector>

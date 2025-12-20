@@ -180,6 +180,7 @@ dependencies {
     implementation(libs.materialKolor)
 
     implementation(libs.composeMarkdown)
+    implementation(libs.splash.screen)
 
     add("prodImplementation", libs.play.services.ads)
 }
