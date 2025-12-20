@@ -28,7 +28,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -47,7 +46,7 @@ fun RewardCalendarCard(
             .fillMaxWidth()
             .clickable { onViewCalendar() },
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.tertiaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer
         ),
         shape = RoundedCornerShape(16.dp)
     ) {
@@ -63,13 +62,13 @@ fun RewardCalendarCard(
                     modifier = Modifier
                         .size(48.dp)
                         .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.tertiary.copy(alpha = 0.2f)),
+                        .background(MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f)),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.CardGiftcard,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.tertiary,
+                        tint = MaterialTheme.colorScheme.secondary,
                         modifier = Modifier.size(28.dp)
                     )
                 }
@@ -81,7 +80,7 @@ fun RewardCalendarCard(
                             .align(Alignment.TopEnd)
                             .size(12.dp)
                             .clip(CircleShape)
-                            .background(Color(0xFFE91E63))
+                            .background(MaterialTheme.colorScheme.primary)
                     )
                 }
             }
@@ -93,14 +92,14 @@ fun RewardCalendarCard(
                     text = stringResource(R.string.reward_calendar_title),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                    color = MaterialTheme.colorScheme.onSecondaryContainer
                 )
 
                 state?.let {
                     Text(
                         text = stringResource(R.string.reward_calendar_day, it.currentDay),
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.7f)
+                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f)
                     )
                 }
             }
@@ -109,7 +108,7 @@ fun RewardCalendarCard(
                 Button(
                     onClick = onClaim,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.tertiary
+                        containerColor = MaterialTheme.colorScheme.primary
                     ),
                     shape = RoundedCornerShape(12.dp)
                 ) {
@@ -122,7 +121,7 @@ fun RewardCalendarCard(
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.5f)
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.5f)
                 )
             }
         }
