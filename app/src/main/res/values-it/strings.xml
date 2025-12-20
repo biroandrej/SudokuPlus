@@ -511,4 +511,25 @@
     <string name="xp_bonus_no_hints">Nessun suggerimento</string>
     <string name="xp_bonus_daily_challenge">Sfida giornaliera</string>
     <string name="xp_bonus_streak">Serie di %1$d giorni</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Ricompense giornaliere</string>
+    <string name="reward_calendar_day">Giorno %1$d</string>
+    <string name="reward_calendar_claim">Riscatta</string>
+    <string name="reward_calendar_claimed">Riscattato</string>
+    <string name="reward_calendar_locked">Bloccato</string>
+    <string name="reward_calendar_today">Oggi</string>
+    <string name="reward_calendar_streak">%1$d giorni consecutivi</string>
+    <string name="reward_calendar_total_claimed">Totale riscattato: %1$d</string>
+    <string name="reward_claim_title">Ricompensa riscattata!</string>
+    <string name="reward_claim_message">Hai ricevuto:</string>
+    <string name="reward_type_hints">Suggerimenti bonus</string>
+    <string name="reward_type_xp_boost">Aumento XP</string>
+    <string name="reward_type_theme">Tema sbloccato</string>
+    <string name="reward_type_badge">Distintivo speciale</string>
+    <string name="reward_hints_amount">+%1$d Suggerimenti</string>
+    <string name="reward_xp_boost_amount">2x XP per %1$d partite</string>
+    <string name="reward_bonus_hints_available">%1$d suggerimenti bonus disponibili</string>
+    <string name="reward_xp_boost_active">Aumento XP: %1$d partite rimanenti</string>
+
 </resources>

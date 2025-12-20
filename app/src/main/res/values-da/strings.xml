@@ -502,4 +502,25 @@
     <string name="xp_bonus_no_hints">Ingen hints brugt</string>
     <string name="xp_bonus_daily_challenge">Daglig udfordring</string>
     <string name="xp_bonus_streak">%1$d dages stime</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Daglige belønninger</string>
+    <string name="reward_calendar_day">Dag %1$d</string>
+    <string name="reward_calendar_claim">Hent</string>
+    <string name="reward_calendar_claimed">Hentet</string>
+    <string name="reward_calendar_locked">Låst</string>
+    <string name="reward_calendar_today">I dag</string>
+    <string name="reward_calendar_streak">%1$d dages stime</string>
+    <string name="reward_calendar_total_claimed">Samlet hentet: %1$d</string>
+    <string name="reward_claim_title">Belønning hentet!</string>
+    <string name="reward_claim_message">Du modtog:</string>
+    <string name="reward_type_hints">Bonus tip</string>
+    <string name="reward_type_xp_boost">XP-boost</string>
+    <string name="reward_type_theme">Tema låst op</string>
+    <string name="reward_type_badge">Særlig badge</string>
+    <string name="reward_hints_amount">+%1$d Tips</string>
+    <string name="reward_xp_boost_amount">2x XP i %1$d spil</string>
+    <string name="reward_bonus_hints_available">%1$d bonus tips tilgængelige</string>
+    <string name="reward_xp_boost_active">XP-boost: %1$d spil tilbage</string>
+
 </resources>

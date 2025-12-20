@@ -258,4 +258,25 @@
     <string name="xp_bonus_no_hints">Bez nápovedy</string>
     <string name="xp_bonus_daily_challenge">Denná výzva</string>
     <string name="xp_bonus_streak">%1$d dňová séria</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Denné odmeny</string>
+    <string name="reward_calendar_day">Deň %1$d</string>
+    <string name="reward_calendar_claim">Vyzdvihnúť</string>
+    <string name="reward_calendar_claimed">Vyzdvihnuté</string>
+    <string name="reward_calendar_locked">Zamknuté</string>
+    <string name="reward_calendar_today">Dnes</string>
+    <string name="reward_calendar_streak">%1$d dní v rade</string>
+    <string name="reward_calendar_total_claimed">Celkom vyzdvihnuté: %1$d</string>
+    <string name="reward_claim_title">Odmena vyzdvihnutá!</string>
+    <string name="reward_claim_message">Získali ste:</string>
+    <string name="reward_type_hints">Bonusové nápovedy</string>
+    <string name="reward_type_xp_boost">XP boost</string>
+    <string name="reward_type_theme">Téma odomknutá</string>
+    <string name="reward_type_badge">Špeciálny odznak</string>
+    <string name="reward_hints_amount">+%1$d Nápoved</string>
+    <string name="reward_xp_boost_amount">2x XP za %1$d hier</string>
+    <string name="reward_bonus_hints_available">%1$d bonusových nápoved k dispozícii</string>
+    <string name="reward_xp_boost_active">XP boost: zostáva %1$d hier</string>
+
 </resources>

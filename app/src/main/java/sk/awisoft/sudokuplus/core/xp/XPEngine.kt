@@ -3,6 +3,7 @@ package sk.awisoft.sudokuplus.core.xp
 import kotlinx.coroutines.flow.first
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.core.achievement.GameCompletionData
+import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
 import sk.awisoft.sudokuplus.data.database.model.UserProgress
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
@@ -29,14 +30,16 @@ enum class XPBonusType {
     NO_MISTAKES,
     NO_HINTS,
     DAILY_CHALLENGE,
-    STREAK
+    STREAK,
+    REWARD_BOOST
 }
 
 @Singleton
 class XPEngine @Inject constructor(
     private val userProgressRepository: UserProgressRepository,
     private val dailyChallengeRepository: DailyChallengeRepository,
-    private val dailyChallengeManager: DailyChallengeManager
+    private val dailyChallengeManager: DailyChallengeManager,
+    private val rewardCalendarManager: RewardCalendarManager
 ) {
     /**
      * Award XP for completing a game
@@ -101,6 +104,19 @@ class XPEngine @Inject constructor(
                 )
             )
             multiplier *= streakMultiplier
+        }
+
+        // Reward calendar XP boost (2x XP)
+        if (rewardCalendarManager.hasXPBoost()) {
+            bonuses.add(
+                XPBonus(
+                    type = XPBonusType.REWARD_BOOST,
+                    multiplier = 2.0f
+                )
+            )
+            multiplier *= 2.0f
+            // Consume the boost
+            rewardCalendarManager.useXPBoost()
         }
 
         // Calculate total XP

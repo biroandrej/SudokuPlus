@@ -531,4 +531,25 @@
     <string name="xp_bonus_no_hints">Без подсказок</string>
     <string name="xp_bonus_daily_challenge">Ежедневный вызов</string>
     <string name="xp_bonus_streak">Серия %1$d дней</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Ежедневные награды</string>
+    <string name="reward_calendar_day">День %1$d</string>
+    <string name="reward_calendar_claim">Получить</string>
+    <string name="reward_calendar_claimed">Получено</string>
+    <string name="reward_calendar_locked">Заблокировано</string>
+    <string name="reward_calendar_today">Сегодня</string>
+    <string name="reward_calendar_streak">%1$d дней подряд</string>
+    <string name="reward_calendar_total_claimed">Всего получено: %1$d</string>
+    <string name="reward_claim_title">Награда получена!</string>
+    <string name="reward_claim_message">Вы получили:</string>
+    <string name="reward_type_hints">Бонусные подсказки</string>
+    <string name="reward_type_xp_boost">Буст опыта</string>
+    <string name="reward_type_theme">Тема разблокирована</string>
+    <string name="reward_type_badge">Особый значок</string>
+    <string name="reward_hints_amount">+%1$d Подсказок</string>
+    <string name="reward_xp_boost_amount">2x опыт за %1$d игр</string>
+    <string name="reward_bonus_hints_available">%1$d бонусных подсказок доступно</string>
+    <string name="reward_xp_boost_active">Буст опыта: осталось %1$d игр</string>
+
 </resources>

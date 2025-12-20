@@ -4,12 +4,15 @@ import android.app.Application
 import android.content.Context
 import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
+import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
 import sk.awisoft.sudokuplus.core.xp.XPEngine
 import sk.awisoft.sudokuplus.data.database.AppDatabase
 import sk.awisoft.sudokuplus.data.database.dao.BoardDao
 import sk.awisoft.sudokuplus.data.database.dao.DailyChallengeDao
 import sk.awisoft.sudokuplus.data.database.dao.FolderDao
+import sk.awisoft.sudokuplus.data.database.dao.LoginRewardDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
+import sk.awisoft.sudokuplus.data.database.dao.RewardBadgeDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
 import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
 import sk.awisoft.sudokuplus.data.database.dao.UserProgressDao
@@ -18,6 +21,7 @@ import sk.awisoft.sudokuplus.data.database.repository.BoardRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.DailyChallengeRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.DatabaseRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.FolderRepositoryImpl
+import sk.awisoft.sudokuplus.data.database.repository.LoginRewardRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.RecordRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.SavedGameRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.UserProgressRepositoryImpl
@@ -33,6 +37,7 @@ import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.DatabaseRepository
 import sk.awisoft.sudokuplus.domain.repository.FolderRepository
+import sk.awisoft.sudokuplus.domain.repository.LoginRewardRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
@@ -189,10 +194,35 @@ class AppModule {
     fun provideXPEngine(
         userProgressRepository: UserProgressRepository,
         dailyChallengeRepository: DailyChallengeRepository,
-        dailyChallengeManager: DailyChallengeManager
+        dailyChallengeManager: DailyChallengeManager,
+        rewardCalendarManager: RewardCalendarManager
     ): XPEngine = XPEngine(
         userProgressRepository,
         dailyChallengeRepository,
-        dailyChallengeManager
+        dailyChallengeManager,
+        rewardCalendarManager
     )
+
+    @Singleton
+    @Provides
+    fun provideLoginRewardDao(appDatabase: AppDatabase): LoginRewardDao =
+        appDatabase.loginRewardDao()
+
+    @Singleton
+    @Provides
+    fun provideLoginRewardRepository(dao: LoginRewardDao): LoginRewardRepository =
+        LoginRewardRepositoryImpl(dao)
+
+    @Singleton
+    @Provides
+    fun provideRewardBadgeDao(appDatabase: AppDatabase): RewardBadgeDao =
+        appDatabase.rewardBadgeDao()
+
+    @Singleton
+    @Provides
+    fun provideRewardCalendarManager(
+        repository: LoginRewardRepository,
+        badgeDao: RewardBadgeDao
+    ): RewardCalendarManager =
+        RewardCalendarManager(repository, badgeDao)
 }

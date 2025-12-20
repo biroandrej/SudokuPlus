@@ -526,4 +526,25 @@
     <string name="xp_bonus_no_hints">Sin pistas</string>
     <string name="xp_bonus_daily_challenge">Desafío diario</string>
     <string name="xp_bonus_streak">Racha de %1$d días</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Recompensas diarias</string>
+    <string name="reward_calendar_day">Día %1$d</string>
+    <string name="reward_calendar_claim">Reclamar</string>
+    <string name="reward_calendar_claimed">Reclamado</string>
+    <string name="reward_calendar_locked">Bloqueado</string>
+    <string name="reward_calendar_today">Hoy</string>
+    <string name="reward_calendar_streak">%1$d días de racha</string>
+    <string name="reward_calendar_total_claimed">Total reclamado: %1$d</string>
+    <string name="reward_claim_title">¡Recompensa reclamada!</string>
+    <string name="reward_claim_message">Has recibido:</string>
+    <string name="reward_type_hints">Pistas adicionales</string>
+    <string name="reward_type_xp_boost">Aumento de XP</string>
+    <string name="reward_type_theme">Tema desbloqueado</string>
+    <string name="reward_type_badge">Insignia especial</string>
+    <string name="reward_hints_amount">+%1$d Pistas</string>
+    <string name="reward_xp_boost_amount">2x XP por %1$d partidas</string>
+    <string name="reward_bonus_hints_available">%1$d pistas adicionales disponibles</string>
+    <string name="reward_xp_boost_active">Aumento XP: %1$d partidas restantes</string>
+
 </resources>

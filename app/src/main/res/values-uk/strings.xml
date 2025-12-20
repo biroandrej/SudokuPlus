@@ -327,4 +327,25 @@
     <string name="xp_bonus_no_hints">Без підказок</string>
     <string name="xp_bonus_daily_challenge">Щоденний виклик</string>
     <string name="xp_bonus_streak">Серія %1$d днів</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Щоденні нагороди</string>
+    <string name="reward_calendar_day">День %1$d</string>
+    <string name="reward_calendar_claim">Отримати</string>
+    <string name="reward_calendar_claimed">Отримано</string>
+    <string name="reward_calendar_locked">Заблоковано</string>
+    <string name="reward_calendar_today">Сьогодні</string>
+    <string name="reward_calendar_streak">%1$d днів поспіль</string>
+    <string name="reward_calendar_total_claimed">Всього отримано: %1$d</string>
+    <string name="reward_claim_title">Нагороду отримано!</string>
+    <string name="reward_claim_message">Ви отримали:</string>
+    <string name="reward_type_hints">Бонусні підказки</string>
+    <string name="reward_type_xp_boost">Буст досвіду</string>
+    <string name="reward_type_theme">Тему розблоковано</string>
+    <string name="reward_type_badge">Особливий значок</string>
+    <string name="reward_hints_amount">+%1$d Підказок</string>
+    <string name="reward_xp_boost_amount">2x досвід за %1$d ігор</string>
+    <string name="reward_bonus_hints_available">%1$d бонусних підказок доступно</string>
+    <string name="reward_xp_boost_active">Буст досвіду: залишилось %1$d ігор</string>
+
 </resources>

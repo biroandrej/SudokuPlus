@@ -377,4 +377,25 @@
     <string name="xp_bonus_no_hints">未使用提示</string>
     <string name="xp_bonus_daily_challenge">每日挑战</string>
     <string name="xp_bonus_streak">%1$d天连胜</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">每日奖励</string>
+    <string name="reward_calendar_day">第%1$d天</string>
+    <string name="reward_calendar_claim">领取</string>
+    <string name="reward_calendar_claimed">已领取</string>
+    <string name="reward_calendar_locked">锁定</string>
+    <string name="reward_calendar_today">今天</string>
+    <string name="reward_calendar_streak">连续%1$d天</string>
+    <string name="reward_calendar_total_claimed">共领取: %1$d</string>
+    <string name="reward_claim_title">奖励已领取!</string>
+    <string name="reward_claim_message">您获得了:</string>
+    <string name="reward_type_hints">奖励提示</string>
+    <string name="reward_type_xp_boost">经验加成</string>
+    <string name="reward_type_theme">主题解锁</string>
+    <string name="reward_type_badge">特殊徽章</string>
+    <string name="reward_hints_amount">+%1$d 提示</string>
+    <string name="reward_xp_boost_amount">%1$d局游戏2倍经验</string>
+    <string name="reward_bonus_hints_available">%1$d奖励提示可用</string>
+    <string name="reward_xp_boost_active">经验加成: 剩余%1$d局</string>
+
 </resources>

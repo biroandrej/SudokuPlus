@@ -534,4 +534,46 @@
     <string name="xp_bonus_no_hints">No Hints Used</string>
     <string name="xp_bonus_daily_challenge">Daily Challenge</string>
     <string name="xp_bonus_streak">%1$d Day Streak</string>
+    <string name="xp_bonus_reward_boost">Daily Reward Boost</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Daily Rewards</string>
+    <string name="reward_calendar_day">Day %1$d</string>
+    <string name="reward_calendar_claim">Claim</string>
+    <string name="reward_calendar_claimed">Claimed</string>
+    <string name="reward_calendar_locked">Locked</string>
+    <string name="reward_calendar_today">Today</string>
+    <string name="reward_calendar_streak">%1$d day streak</string>
+    <string name="reward_calendar_total_claimed">Total claimed: %1$d</string>
+    <string name="reward_claim_title">Reward Claimed!</string>
+    <string name="reward_claim_message">You received:</string>
+    <string name="reward_type_hints">Bonus Hints</string>
+    <string name="reward_type_xp_boost">XP Boost</string>
+    <string name="reward_type_theme">Theme Unlock</string>
+    <string name="reward_type_badge">Special Badge</string>
+    <string name="reward_hints_amount">+%1$d Hints</string>
+    <string name="reward_xp_boost_amount">2x XP for %1$d games</string>
+    <string name="reward_bonus_hints_available">%1$d bonus hints available</string>
+    <string name="reward_xp_boost_active">XP Boost: %1$d games remaining</string>
+
+    <!-- Badges -->
+    <string name="badge_rarity_common">Common</string>
+    <string name="badge_rarity_rare">Rare</string>
+    <string name="badge_rarity_epic">Epic</string>
+    <string name="badge_rarity_legendary">Legendary</string>
+    <string name="badge_week_1_name">Week 1 Warrior</string>
+    <string name="badge_week_1_desc">Claimed rewards for 7 consecutive days</string>
+    <string name="badge_week_2_name">Week 2 Warrior</string>
+    <string name="badge_week_2_desc">Claimed rewards for 14 consecutive days</string>
+    <string name="badge_week_3_name">Week 3 Warrior</string>
+    <string name="badge_week_3_desc">Claimed rewards for 21 consecutive days</string>
+    <string name="badge_week_4_name">Week 4 Warrior</string>
+    <string name="badge_week_4_desc">Claimed rewards for 28 consecutive days</string>
+    <string name="badge_monthly_name">Monthly Champion</string>
+    <string name="badge_monthly_desc">Completed a full 30-day reward cycle</string>
+    <string name="badges_title">Badges</string>
+    <string name="badges_earned">Earned Badges</string>
+    <string name="badges_earned_count">%1$d badges earned</string>
+    <string name="badge_earned">Badge Earned!</string>
+    <string name="badge_no_badges">No badges earned yet</string>
 </resources>

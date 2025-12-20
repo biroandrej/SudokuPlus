@@ -475,4 +475,25 @@
     <string name="xp_bonus_no_hints">Aucun indice utilisé</string>
     <string name="xp_bonus_daily_challenge">Défi quotidien</string>
     <string name="xp_bonus_streak">Série de %1$d jours</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Récompenses quotidiennes</string>
+    <string name="reward_calendar_day">Jour %1$d</string>
+    <string name="reward_calendar_claim">Récupérer</string>
+    <string name="reward_calendar_claimed">Récupéré</string>
+    <string name="reward_calendar_locked">Verrouillé</string>
+    <string name="reward_calendar_today">Aujourd\'hui</string>
+    <string name="reward_calendar_streak">%1$d jours de suite</string>
+    <string name="reward_calendar_total_claimed">Total récupéré: %1$d</string>
+    <string name="reward_claim_title">Récompense obtenue!</string>
+    <string name="reward_claim_message">Vous avez reçu:</string>
+    <string name="reward_type_hints">Indices bonus</string>
+    <string name="reward_type_xp_boost">Boost d\'XP</string>
+    <string name="reward_type_theme">Thème débloqué</string>
+    <string name="reward_type_badge">Badge spécial</string>
+    <string name="reward_hints_amount">+%1$d Indices</string>
+    <string name="reward_xp_boost_amount">2x XP pour %1$d parties</string>
+    <string name="reward_bonus_hints_available">%1$d indices bonus disponibles</string>
+    <string name="reward_xp_boost_active">Boost XP: %1$d parties restantes</string>
+
 </resources>

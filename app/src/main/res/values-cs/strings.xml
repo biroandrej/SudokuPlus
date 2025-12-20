@@ -481,4 +481,25 @@
     <string name="xp_bonus_no_hints">Bez nápověd</string>
     <string name="xp_bonus_daily_challenge">Denní výzva</string>
     <string name="xp_bonus_streak">%1$d denní série</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Denní odměny</string>
+    <string name="reward_calendar_day">Den %1$d</string>
+    <string name="reward_calendar_claim">Vyzvednout</string>
+    <string name="reward_calendar_claimed">Vyzvednuto</string>
+    <string name="reward_calendar_locked">Zamčeno</string>
+    <string name="reward_calendar_today">Dnes</string>
+    <string name="reward_calendar_streak">%1$d dní v řadě</string>
+    <string name="reward_calendar_total_claimed">Celkem vyzvednuto: %1$d</string>
+    <string name="reward_claim_title">Odměna vyzvednuta!</string>
+    <string name="reward_claim_message">Získali jste:</string>
+    <string name="reward_type_hints">Bonusové nápovědy</string>
+    <string name="reward_type_xp_boost">XP boost</string>
+    <string name="reward_type_theme">Téma odemčeno</string>
+    <string name="reward_type_badge">Speciální odznak</string>
+    <string name="reward_hints_amount">+%1$d Nápověd</string>
+    <string name="reward_xp_boost_amount">2x XP za %1$d her</string>
+    <string name="reward_bonus_hints_available">%1$d bonusových nápověd k dispozici</string>
+    <string name="reward_xp_boost_active">XP boost: zbývá %1$d her</string>
+
 </resources>

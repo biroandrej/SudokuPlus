@@ -389,4 +389,26 @@
     <string name="xp_bonus_no_hints">Ingen hint brukt</string>
     <string name="xp_bonus_daily_challenge">Daglig utfordring</string>
     <string name="xp_bonus_streak">%1$d dagers rekke</string>
+    <string name="xp_bonus_reward_boost">Daglig belønningsboost</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Daglige belønninger</string>
+    <string name="reward_calendar_day">Dag %1$d</string>
+    <string name="reward_calendar_claim">Hent</string>
+    <string name="reward_calendar_claimed">Hentet</string>
+    <string name="reward_calendar_locked">Låst</string>
+    <string name="reward_calendar_today">I dag</string>
+    <string name="reward_calendar_streak">%1$d dagers rekke</string>
+    <string name="reward_calendar_total_claimed">Totalt hentet: %1$d</string>
+    <string name="reward_claim_title">Belønning hentet!</string>
+    <string name="reward_claim_message">Du mottok:</string>
+    <string name="reward_type_hints">Bonustips</string>
+    <string name="reward_type_xp_boost">XP-boost</string>
+    <string name="reward_type_theme">Tema låst opp</string>
+    <string name="reward_type_badge">Spesielt merke</string>
+    <string name="reward_hints_amount">+%1$d Tips</string>
+    <string name="reward_xp_boost_amount">2x XP for %1$d spill</string>
+    <string name="reward_bonus_hints_available">%1$d bonustips tilgjengelig</string>
+    <string name="reward_xp_boost_active">XP-boost: %1$d spill igjen</string>
+
 </resources>

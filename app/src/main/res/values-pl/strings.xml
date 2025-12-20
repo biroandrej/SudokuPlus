@@ -494,4 +494,25 @@
     <string name="xp_bonus_no_hints">Bez podpowiedzi</string>
     <string name="xp_bonus_daily_challenge">Dzienne wyzwanie</string>
     <string name="xp_bonus_streak">Seria %1$d dni</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Codzienne nagrody</string>
+    <string name="reward_calendar_day">Dzień %1$d</string>
+    <string name="reward_calendar_claim">Odbierz</string>
+    <string name="reward_calendar_claimed">Odebrano</string>
+    <string name="reward_calendar_locked">Zablokowane</string>
+    <string name="reward_calendar_today">Dzisiaj</string>
+    <string name="reward_calendar_streak">%1$d dni z rzędu</string>
+    <string name="reward_calendar_total_claimed">Łącznie odebrano: %1$d</string>
+    <string name="reward_claim_title">Nagroda odebrana!</string>
+    <string name="reward_claim_message">Otrzymano:</string>
+    <string name="reward_type_hints">Dodatkowe podpowiedzi</string>
+    <string name="reward_type_xp_boost">Bonus XP</string>
+    <string name="reward_type_theme">Motyw odblokowany</string>
+    <string name="reward_type_badge">Specjalna odznaka</string>
+    <string name="reward_hints_amount">+%1$d Podpowiedzi</string>
+    <string name="reward_xp_boost_amount">2x XP za %1$d gier</string>
+    <string name="reward_bonus_hints_available">%1$d dodatkowych podpowiedzi dostępnych</string>
+    <string name="reward_xp_boost_active">Bonus XP: pozostało %1$d gier</string>
+
 </resources>

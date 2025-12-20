@@ -322,4 +322,25 @@
     <string name="xp_bonus_no_hints">Tanpa petunjuk</string>
     <string name="xp_bonus_daily_challenge">Tantangan harian</string>
     <string name="xp_bonus_streak">Streak %1$d hari</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Hadiah Harian</string>
+    <string name="reward_calendar_day">Hari %1$d</string>
+    <string name="reward_calendar_claim">Klaim</string>
+    <string name="reward_calendar_claimed">Diklaim</string>
+    <string name="reward_calendar_locked">Terkunci</string>
+    <string name="reward_calendar_today">Hari ini</string>
+    <string name="reward_calendar_streak">%1$d hari berturut-turut</string>
+    <string name="reward_calendar_total_claimed">Total diklaim: %1$d</string>
+    <string name="reward_claim_title">Hadiah Diklaim!</string>
+    <string name="reward_claim_message">Anda menerima:</string>
+    <string name="reward_type_hints">Petunjuk Bonus</string>
+    <string name="reward_type_xp_boost">Peningkatan XP</string>
+    <string name="reward_type_theme">Tema Terbuka</string>
+    <string name="reward_type_badge">Lencana Spesial</string>
+    <string name="reward_hints_amount">+%1$d Petunjuk</string>
+    <string name="reward_xp_boost_amount">2x XP untuk %1$d permainan</string>
+    <string name="reward_bonus_hints_available">%1$d petunjuk bonus tersedia</string>
+    <string name="reward_xp_boost_active">Peningkatan XP: %1$d permainan tersisa</string>
+
 </resources>

@@ -11,33 +11,40 @@ import sk.awisoft.sudokuplus.data.database.converters.DurationConverter
 import sk.awisoft.sudokuplus.data.database.converters.GameDifficultyConverter
 import sk.awisoft.sudokuplus.data.database.converters.GameTypeConverter
 import sk.awisoft.sudokuplus.data.database.converters.LocalDateConverter
+import sk.awisoft.sudokuplus.data.database.converters.RewardTypeConverter
 import sk.awisoft.sudokuplus.data.database.converters.ZonedDateTimeConverter
 import sk.awisoft.sudokuplus.data.database.dao.BoardDao
 import sk.awisoft.sudokuplus.data.database.dao.DailyChallengeDao
 import sk.awisoft.sudokuplus.data.database.dao.DatabaseDao
 import sk.awisoft.sudokuplus.data.database.dao.FolderDao
+import sk.awisoft.sudokuplus.data.database.dao.LoginRewardDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
 import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
+import sk.awisoft.sudokuplus.data.database.dao.RewardBadgeDao
 import sk.awisoft.sudokuplus.data.database.dao.UserProgressDao
+import sk.awisoft.sudokuplus.data.database.model.ClaimedReward
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.Folder
+import sk.awisoft.sudokuplus.data.database.model.LoginRewardStatus
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.database.model.UserAchievement
+import sk.awisoft.sudokuplus.data.database.model.RewardBadge
 import sk.awisoft.sudokuplus.data.database.model.UserProgress
 
 @Database(
-    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class, UserAchievement::class, UserProgress::class],
-    version = 4
+    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class, UserAchievement::class, UserProgress::class, LoginRewardStatus::class, ClaimedReward::class, RewardBadge::class],
+    version = 6
 )
 @TypeConverters(
     DurationConverter::class,
     ZonedDateTimeConverter::class,
     GameDifficultyConverter::class,
     GameTypeConverter::class,
-    LocalDateConverter::class
+    LocalDateConverter::class,
+    RewardTypeConverter::class
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun recordDao(): RecordDao
@@ -48,6 +55,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun dailyChallengeDao(): DailyChallengeDao
     abstract fun userAchievementDao(): UserAchievementDao
     abstract fun userProgressDao(): UserProgressDao
+    abstract fun loginRewardDao(): LoginRewardDao
+    abstract fun rewardBadgeDao(): RewardBadgeDao
 
     companion object {
         private var INSTANCE: AppDatabase? = null
@@ -108,6 +117,49 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS login_reward_status (
+                        id INTEGER PRIMARY KEY NOT NULL DEFAULT 1,
+                        current_day INTEGER NOT NULL DEFAULT 1,
+                        last_claim_date INTEGER,
+                        cycle_start_date INTEGER NOT NULL,
+                        total_days_claimed INTEGER NOT NULL DEFAULT 0,
+                        bonus_hints INTEGER NOT NULL DEFAULT 0,
+                        xp_boost_games_remaining INTEGER NOT NULL DEFAULT 0
+                    )
+                    """.trimIndent()
+                )
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS claimed_rewards (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        day INTEGER NOT NULL,
+                        reward_type INTEGER NOT NULL,
+                        amount INTEGER NOT NULL,
+                        claimed_at INTEGER NOT NULL
+                    )
+                    """.trimIndent()
+                )
+            }
+        }
+
+        private val MIGRATION_5_6 = object : Migration(5, 6) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS reward_badges (
+                        badge_id TEXT PRIMARY KEY NOT NULL,
+                        earned_at INTEGER NOT NULL,
+                        cycle_number INTEGER NOT NULL DEFAULT 1
+                    )
+                    """.trimIndent()
+                )
+            }
+        }
+
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
@@ -115,7 +167,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "main_database"
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
                     .build()
             }
 

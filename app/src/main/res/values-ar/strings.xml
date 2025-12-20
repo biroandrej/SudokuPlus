@@ -463,4 +463,26 @@
     <string name="xp_bonus_no_hints">لم يتم استخدام تلميحات</string>
     <string name="xp_bonus_daily_challenge">التحدي اليومي</string>
     <string name="xp_bonus_streak">سلسلة %1$d يوم</string>
+    <string name="xp_bonus_reward_boost">تعزيز المكافأة اليومية</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">المكافآت اليومية</string>
+    <string name="reward_calendar_day">اليوم %1$d</string>
+    <string name="reward_calendar_claim">استلم</string>
+    <string name="reward_calendar_claimed">تم الاستلام</string>
+    <string name="reward_calendar_locked">مقفل</string>
+    <string name="reward_calendar_today">اليوم</string>
+    <string name="reward_calendar_streak">سلسلة %1$d يوم</string>
+    <string name="reward_calendar_total_claimed">إجمالي المستلم: %1$d</string>
+    <string name="reward_claim_title">تم استلام المكافأة!</string>
+    <string name="reward_claim_message">لقد حصلت على:</string>
+    <string name="reward_type_hints">تلميحات إضافية</string>
+    <string name="reward_type_xp_boost">تعزيز XP</string>
+    <string name="reward_type_theme">تم فتح المظهر</string>
+    <string name="reward_type_badge">شارة خاصة</string>
+    <string name="reward_hints_amount">+%1$d تلميحات</string>
+    <string name="reward_xp_boost_amount">2x XP لـ %1$d ألعاب</string>
+    <string name="reward_bonus_hints_available">%1$d تلميحات إضافية متاحة</string>
+    <string name="reward_xp_boost_active">تعزيز XP: %1$d ألعاب متبقية</string>
+
 </resources>

@@ -139,4 +139,26 @@
     <string name="xp_bonus_no_hints">குறிப்புகள் இல்லை</string>
     <string name="xp_bonus_daily_challenge">தினசரி சவால்</string>
     <string name="xp_bonus_streak">%1$d நாள் தொடர்</string>
+    <string name="xp_bonus_reward_boost">தினசரி வெகுமதி ஊக்கம்</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">தினசரி வெகுமதிகள்</string>
+    <string name="reward_calendar_day">நாள் %1$d</string>
+    <string name="reward_calendar_claim">பெறுக</string>
+    <string name="reward_calendar_claimed">பெற்றது</string>
+    <string name="reward_calendar_locked">பூட்டப்பட்டது</string>
+    <string name="reward_calendar_today">இன்று</string>
+    <string name="reward_calendar_streak">%1$d நாள் தொடர்</string>
+    <string name="reward_calendar_total_claimed">மொத்தம் பெற்றது: %1$d</string>
+    <string name="reward_claim_title">வெகுமதி பெறப்பட்டது!</string>
+    <string name="reward_claim_message">நீங்கள் பெற்றது:</string>
+    <string name="reward_type_hints">போனஸ் குறிப்புகள்</string>
+    <string name="reward_type_xp_boost">XP ஊக்கம்</string>
+    <string name="reward_type_theme">தீம் திறக்கப்பட்டது</string>
+    <string name="reward_type_badge">சிறப்பு பதக்கம்</string>
+    <string name="reward_hints_amount">+%1$d குறிப்புகள்</string>
+    <string name="reward_xp_boost_amount">%1$d விளையாட்டுகளுக்கு 2x XP</string>
+    <string name="reward_bonus_hints_available">%1$d போனஸ் குறிப்புகள் கிடைக்கின்றன</string>
+    <string name="reward_xp_boost_active">XP ஊக்கம்: %1$d விளையாட்டுகள் மீதமுள்ளன</string>
+
 </resources>

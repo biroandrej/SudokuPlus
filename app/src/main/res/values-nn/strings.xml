@@ -125,4 +125,26 @@
     <string name="xp_bonus_no_hints">Ingen hint brukt</string>
     <string name="xp_bonus_daily_challenge">Dagleg utfordring</string>
     <string name="xp_bonus_streak">%1$d dagars rekke</string>
+    <string name="xp_bonus_reward_boost">Dagleg løningsauke</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Daglege løningar</string>
+    <string name="reward_calendar_day">Dag %1$d</string>
+    <string name="reward_calendar_claim">Hent</string>
+    <string name="reward_calendar_claimed">Henta</string>
+    <string name="reward_calendar_locked">Låst</string>
+    <string name="reward_calendar_today">I dag</string>
+    <string name="reward_calendar_streak">%1$d dagars rekke</string>
+    <string name="reward_calendar_total_claimed">Totalt henta: %1$d</string>
+    <string name="reward_claim_title">Løn henta!</string>
+    <string name="reward_claim_message">Du fekk:</string>
+    <string name="reward_type_hints">Bonustips</string>
+    <string name="reward_type_xp_boost">XP-auke</string>
+    <string name="reward_type_theme">Tema låst opp</string>
+    <string name="reward_type_badge">Spesielt merke</string>
+    <string name="reward_hints_amount">+%1$d Tips</string>
+    <string name="reward_xp_boost_amount">2x XP for %1$d spel</string>
+    <string name="reward_bonus_hints_available">%1$d bonustips tilgjengelege</string>
+    <string name="reward_xp_boost_active">XP-auke: %1$d spel att</string>
+
 </resources>

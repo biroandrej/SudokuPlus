@@ -477,4 +477,25 @@
     <string name="xp_bonus_no_hints">Keine Hinweise verwendet</string>
     <string name="xp_bonus_daily_challenge">Tägliche Herausforderung</string>
     <string name="xp_bonus_streak">%1$d Tage Serie</string>
+    <string name="xp_bonus_reward_boost">Täglicher Belohnungsboost</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Tägliche Belohnungen</string>
+    <string name="reward_calendar_day">Tag %1$d</string>
+    <string name="reward_calendar_claim">Abholen</string>
+    <string name="reward_calendar_claimed">Abgeholt</string>
+    <string name="reward_calendar_locked">Gesperrt</string>
+    <string name="reward_calendar_today">Heute</string>
+    <string name="reward_calendar_streak">%1$d Tage Serie</string>
+    <string name="reward_calendar_total_claimed">Insgesamt abgeholt: %1$d</string>
+    <string name="reward_claim_title">Belohnung erhalten!</string>
+    <string name="reward_claim_message">Du hast erhalten:</string>
+    <string name="reward_type_hints">Bonus-Hinweise</string>
+    <string name="reward_type_xp_boost">EP-Boost</string>
+    <string name="reward_type_theme">Thema freigeschaltet</string>
+    <string name="reward_type_badge">Spezial-Abzeichen</string>
+    <string name="reward_hints_amount">+%1$d Hinweise</string>
+    <string name="reward_xp_boost_amount">2x EP für %1$d Spiele</string>
+    <string name="reward_bonus_hints_available">%1$d Bonus-Hinweise verfügbar</string>
+    <string name="reward_xp_boost_active">EP-Boost: %1$d Spiele übrig</string>
 </resources>
