@@ -11,9 +11,10 @@ import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.learn.components.TutorialBase
 import sk.awisoft.sudokuplus.ui.onboarding.FirstGameScreen
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun ToolbarTutorialScreen(navigator: DestinationsNavigator) {
     TutorialBase(

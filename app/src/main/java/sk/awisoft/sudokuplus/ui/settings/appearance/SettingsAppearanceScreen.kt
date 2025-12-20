@@ -34,6 +34,7 @@ import sk.awisoft.sudokuplus.ui.settings.SelectionDialog
 import sk.awisoft.sudokuplus.ui.settings.SetDateFormatPatternDialog
 import sk.awisoft.sudokuplus.ui.settings.SettingsScaffoldLazyColumn
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import java.time.ZonedDateTime
 import java.time.chrono.IsoChronology
@@ -42,7 +43,7 @@ import java.time.format.DateTimeFormatterBuilder
 import java.time.format.FormatStyle
 import java.util.Locale
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @OptIn(ExperimentalStdlibApi::class)
 @Composable
 fun SettingsAppearanceScreen(

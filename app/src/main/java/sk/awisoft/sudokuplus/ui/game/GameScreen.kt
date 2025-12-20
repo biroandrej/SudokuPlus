@@ -104,14 +104,15 @@ import sk.awisoft.sudokuplus.ui.onboarding.FirstGameDialog
 import sk.awisoft.sudokuplus.ui.util.findActivity
 import sk.awisoft.sudokuplus.ui.util.ReverseArrangement
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 import kotlin.collections.filter
 import kotlin.collections.plus
 
-@Destination(
+@Destination<RootGraph>(
     style = AnimatedNavigation::class,
-    navArgsDelegate = GameScreenNavArgs::class
+    navArgs = GameScreenNavArgs::class
 )
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

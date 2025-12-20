@@ -57,11 +57,12 @@ import sk.awisoft.sudokuplus.ui.game.components.ToolbarItem
 import sk.awisoft.sudokuplus.ui.game.components.ToolbarItemHeight
 import sk.awisoft.sudokuplus.ui.util.ReverseArrangement
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination(
+@Destination<RootGraph>(
     style = AnimatedNavigation::class,
-    navArgsDelegate = CreateSudokuScreenNavArgs::class
+    navArgs = CreateSudokuScreenNavArgs::class
 )
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

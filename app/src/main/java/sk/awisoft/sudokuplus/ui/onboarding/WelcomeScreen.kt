@@ -96,6 +96,7 @@ import sk.awisoft.sudokuplus.destinations.SettingsLanguageScreenDestination
 import sk.awisoft.sudokuplus.ui.components.board.Board
 import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleString
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -108,7 +109,7 @@ import javax.inject.Inject
 import kotlin.math.sin
 import kotlin.random.Random
 
-@Destination
+@Destination<RootGraph>
 @Composable
 fun WelcomeScreen (
     viewModel: WelcomeViewModel = hiltViewModel(),

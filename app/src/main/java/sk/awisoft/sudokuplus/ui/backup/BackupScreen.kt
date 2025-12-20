@@ -83,6 +83,7 @@ import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
 import sk.awisoft.sudokuplus.ui.util.isScrolledToEnd
 import sk.awisoft.sudokuplus.ui.util.isScrolledToStart
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
@@ -94,7 +95,7 @@ private val autoBackupIntervalEntries = mapOf(
     168L to R.string.weekly,
 )
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun BackupScreen(
     navigator: DestinationsNavigator,

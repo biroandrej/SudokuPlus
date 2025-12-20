@@ -34,10 +34,11 @@ import sk.awisoft.sudokuplus.ui.components.PreferenceRowSwitch
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.settings.SettingsScaffoldLazyColumn
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun SettingsOtherScreen(
     viewModel: SettingsOtherViewModel = hiltViewModel(),

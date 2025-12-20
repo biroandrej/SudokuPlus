@@ -49,10 +49,11 @@ import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.CollapsingTopApp
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.rememberTopAppBarScrollBehavior
 import sk.awisoft.sudokuplus.ui.settings.SelectionDialog
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun SettingsBoardTheme(
     viewModel: SettingsBoardThemeViewModel = hiltViewModel(),

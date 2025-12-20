@@ -73,12 +73,13 @@ import sk.awisoft.sudokuplus.ui.util.findActivity
 import sk.awisoft.sudokuplus.ui.util.isScrolledToStart
 import sk.awisoft.sudokuplus.ui.util.isScrollingUp
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 import java.io.InputStreamReader
 
-@Destination(
-    navArgsDelegate = ImportFromFileScreenNavArgs::class,
+@Destination<RootGraph>(
+    navArgs = ImportFromFileScreenNavArgs::class,
     style = AnimatedNavigation::class
 )
 @OptIn(ExperimentalMaterial3Api::class)

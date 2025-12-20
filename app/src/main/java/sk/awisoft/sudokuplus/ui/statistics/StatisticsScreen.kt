@@ -81,6 +81,7 @@ import sk.awisoft.sudokuplus.ui.components.EmptyScreen
 import sk.awisoft.sudokuplus.ui.components.HelpCard
 import sk.awisoft.sudokuplus.ui.xp.XPProgressSection
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import java.time.Duration
 import java.time.LocalDateTime
@@ -91,7 +92,7 @@ import kotlin.div
 import kotlin.math.roundToInt
 import kotlin.toString
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StatisticsScreen(

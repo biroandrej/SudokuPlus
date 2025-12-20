@@ -75,14 +75,15 @@ import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.EmptyScreen
 import sk.awisoft.sudokuplus.ui.components.board.Board
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 import java.time.format.DateTimeFormatter
 import kotlin.time.toKotlinDuration
 
-@Destination(
+@Destination<RootGraph>(
     style = AnimatedNavigation::class,
-    navArgsDelegate = SavedGameScreenNavArgs::class
+    navArgs = SavedGameScreenNavArgs::class
 )
 @OptIn(
     ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,

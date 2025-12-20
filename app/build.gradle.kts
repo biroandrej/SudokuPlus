@@ -1,4 +1,5 @@
 import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -110,8 +111,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
     buildFeatures {
         compose = true
@@ -129,7 +132,17 @@ android {
 
 aboutLibraries {
     // Remove the "generated" timestamp to allow for reproducible builds
-    excludeFields = arrayOf("generated")
+    export {
+        excludeFields.set(listOf("generated"))
+    }
+    library {
+        duplicationMode.set(com.mikepenz.aboutlibraries.plugin.DuplicateMode.LINK)
+    }
+}
+
+ksp {
+    arg("compose-destinations.codeGenPackageName", "sk.awisoft.sudokuplus")
+    arg("room.schemaLocation", "$projectDir/schemas")
 }
 
 dependencies {
@@ -148,9 +161,6 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     testImplementation(libs.junit)
     implementation(libs.graphics.shape)
-
-    implementation(libs.accompanist.systemuicontroller)
-    implementation(libs.accompanist.pager.indicators)
 
     implementation(libs.hilt)
     implementation(libs.hilt.navigation)

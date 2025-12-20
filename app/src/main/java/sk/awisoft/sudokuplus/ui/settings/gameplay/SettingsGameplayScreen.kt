@@ -28,9 +28,10 @@ import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.settings.SelectionDialog
 import sk.awisoft.sudokuplus.ui.settings.SettingsScaffoldLazyColumn
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun SettingsGameplayScreen(
     viewModel: SettingsGameplayViewModel = hiltViewModel(),

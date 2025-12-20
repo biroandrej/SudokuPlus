@@ -119,14 +119,15 @@ import sk.awisoft.sudokuplus.ui.util.isScrolledToEnd
 import sk.awisoft.sudokuplus.ui.util.isScrolledToStart
 import sk.awisoft.sudokuplus.ui.util.isScrollingUp
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 import kotlin.math.sqrt
 import kotlin.time.toKotlinDuration
 
-@Destination(
+@Destination<RootGraph>(
     style = AnimatedNavigation::class,
-    navArgsDelegate = ExploreFolderScreenNavArgs::class
+    navArgs = ExploreFolderScreenNavArgs::class
 )
 @OptIn(
     ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class, ExperimentalLayoutApi::class

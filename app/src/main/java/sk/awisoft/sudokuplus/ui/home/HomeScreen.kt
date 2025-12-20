@@ -83,7 +83,7 @@ import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
 import sk.awisoft.sudokuplus.ui.home.components.RewardCalendarCard
 import sk.awisoft.sudokuplus.ui.reward.RewardClaimDialog
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.runBlocking
 import java.time.ZonedDateTime
@@ -91,8 +91,7 @@ import kotlin.math.sqrt
 import kotlin.time.toKotlinDuration
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination(style = AnimatedNavigation::class)
-@RootNavGraph(start = true)
+@Destination<RootGraph>(start = true, style = AnimatedNavigation::class)
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),

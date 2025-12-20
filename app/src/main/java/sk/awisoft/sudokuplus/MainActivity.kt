@@ -43,6 +43,7 @@ import sk.awisoft.sudokuplus.destinations.WelcomeScreenDestination
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.DeepLink
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -208,7 +209,7 @@ class MainActivityViewModel
     )
 }
 
-@Destination(
+@Destination<RootGraph>(
     deepLinks = [
         DeepLink(
             uriPattern = "content://",

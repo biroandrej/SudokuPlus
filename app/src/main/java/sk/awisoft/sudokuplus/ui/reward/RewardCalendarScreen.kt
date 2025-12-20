@@ -65,6 +65,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.reward.BadgeDefinition
@@ -81,7 +82,7 @@ import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
 import java.time.ZonedDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun RewardCalendarScreen(
     navigator: DestinationsNavigator,

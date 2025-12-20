@@ -16,14 +16,14 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.navigation.NavBackStackEntry
 import com.ramcosta.composedestinations.spec.DestinationStyle
 
-object AnimatedNavigation : DestinationStyle.Animated {
+object AnimatedNavigation : DestinationStyle.Animated() {
 
     private const val TRANSITION_DURATION = 300
     private const val FADE_DURATION = 150
 
-    override fun AnimatedContentTransitionScope<NavBackStackEntry>.enterTransition(): EnterTransition {
+    override val enterTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition?) = {
         // Forward navigation - slide in from right
-        return slideInHorizontally(
+        slideInHorizontally(
             initialOffsetX = { fullWidth -> fullWidth / 4 },
             animationSpec = tween(
                 durationMillis = TRANSITION_DURATION,
@@ -43,9 +43,9 @@ object AnimatedNavigation : DestinationStyle.Animated {
         )
     }
 
-    override fun AnimatedContentTransitionScope<NavBackStackEntry>.exitTransition(): ExitTransition {
+    override val exitTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition?) = {
         // Current screen slides out to left when new screen enters
-        return slideOutHorizontally(
+        slideOutHorizontally(
             targetOffsetX = { fullWidth -> -fullWidth / 4 },
             animationSpec = tween(
                 durationMillis = TRANSITION_DURATION,
@@ -59,9 +59,9 @@ object AnimatedNavigation : DestinationStyle.Animated {
         )
     }
 
-    override fun AnimatedContentTransitionScope<NavBackStackEntry>.popEnterTransition(): EnterTransition {
+    override val popEnterTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition?) = {
         // Back navigation - slide in from left
-        return slideInHorizontally(
+        slideInHorizontally(
             initialOffsetX = { fullWidth -> -fullWidth / 4 },
             animationSpec = tween(
                 durationMillis = TRANSITION_DURATION,
@@ -78,9 +78,9 @@ object AnimatedNavigation : DestinationStyle.Animated {
         )
     }
 
-    override fun AnimatedContentTransitionScope<NavBackStackEntry>.popExitTransition(): ExitTransition {
+    override val popExitTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition?) = {
         // Current screen slides out to right when going back
-        return slideOutHorizontally(
+        slideOutHorizontally(
             targetOffsetX = { fullWidth -> fullWidth / 4 },
             animationSpec = tween(
                 durationMillis = TRANSITION_DURATION,

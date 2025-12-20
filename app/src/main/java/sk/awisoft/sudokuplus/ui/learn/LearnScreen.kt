@@ -31,10 +31,11 @@ import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.learn.learnapp.LearnAppScreen
 import sk.awisoft.sudokuplus.ui.learn.learnsudoku.LearnSudokuScreen
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 fun LearnScreen(
