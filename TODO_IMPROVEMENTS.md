@@ -12,7 +12,7 @@
 - [x] **P2** Convert home navigation triggers to single-shot events backed by `StateFlow/SharedFlow` rather than mutable flags + `runBlocking` in composition so start/continue/daily flows survive process death and never double-navigate (`HomeViewModel` ready flags, `HomeScreen.kt`).
 - [x] **P2** Make the backup pipeline fully suspending and resilient: collect DataStore flows without `runBlocking`, return `Result.retry()` for transient I/O, validate persisted URI before work, and surface failures to UI/notifications (`BackupWorker.kt`, `SettingsBackup.kt`, `BackupScreen.kt`).
 - [ ] **P2** Add targeted tests: unit tests for `GameViewModel` timer/hint/mistake-limit paths, daily streak calculation, backup retention pruning, and import parsing; plus Compose UI smoke tests for bottom navigation and start/continue game flows.
-- [ ] **P3** Clean up Gradle config: merge duplicated `ksp {}` blocks, centralize schema export settings, and consider a Compose BOM to keep Kotlin 2.3 + Compose artifacts in sync (`app/build.gradle.kts`, `gradle/libs.versions.toml`).
+- [x] **P3** Clean up Gradle config: merge duplicated `ksp {}` blocks, centralize schema export settings, and consider a Compose BOM to keep Kotlin 2.3 + Compose artifacts in sync (`app/build.gradle.kts`, `gradle/libs.versions.toml`).
 
 ## User Experience
 - [x] **P1** Restore file-import deep link handling (commented out in `MainActivity.kt`): handle `ACTION_VIEW` in the manifest/activity and route safely to `ImportFromFileScreen` without relying on the broken compose-destinations deep link.
