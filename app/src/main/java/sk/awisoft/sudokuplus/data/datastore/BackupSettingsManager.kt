@@ -22,6 +22,8 @@ class BackupSettingsManager @Inject constructor(
     private val autoBackupIntervalKey = longPreferencesKey("auto_backup_interval")
     private val autoBackupsNumberKey = intPreferencesKey("auto_backups_max_number")
     private val lastBackupDateKey = longPreferencesKey("last_backup_date")
+    private val lastBackupFailureKey = stringPreferencesKey("last_backup_failure")
+    private val lastBackupFailureDateKey = longPreferencesKey("last_backup_failure_date")
 
     // Backup URI
     val backupUri = dataStore.data.map { prefs -> prefs[backupUriKey] ?: "" }
@@ -69,4 +71,37 @@ class BackupSettingsManager @Inject constructor(
             settings[lastBackupDateKey] = date.toInstant().epochSecond
         }
     }
+
+    // Last backup failure
+    val lastBackupFailure = dataStore.data.map { prefs ->
+        val reason = prefs[lastBackupFailureKey]
+        val date = prefs[lastBackupFailureDateKey]
+        if (reason != null && date != null) {
+            BackupFailure(
+                reason = reason,
+                date = ZonedDateTime.ofInstant(Instant.ofEpochSecond(date), ZoneId.systemDefault())
+            )
+        } else {
+            null
+        }
+    }
+
+    suspend fun setLastBackupFailure(reason: String) {
+        dataStore.edit { settings ->
+            settings[lastBackupFailureKey] = reason
+            settings[lastBackupFailureDateKey] = ZonedDateTime.now().toInstant().epochSecond
+        }
+    }
+
+    suspend fun clearLastBackupFailure() {
+        dataStore.edit { settings ->
+            settings.remove(lastBackupFailureKey)
+            settings.remove(lastBackupFailureDateKey)
+        }
+    }
 }
+
+data class BackupFailure(
+    val reason: String,
+    val date: ZonedDateTime
+)

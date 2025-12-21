@@ -54,6 +54,7 @@ class BackupScreenViewModel @Inject constructor(
     val autoBackupsNumber = appSettingsManager.autoBackupsNumber
     val autoBackupInterval = appSettingsManager.autoBackupInterval
     val lastBackupDate = appSettingsManager.lastBackupDate
+    val lastBackupFailure = appSettingsManager.lastBackupFailure
     val dateFormat = appSettingsManager.dateFormat
 
     fun createBackup(
@@ -176,6 +177,12 @@ class BackupScreenViewModel @Inject constructor(
     fun setAutoBackupInterval(hours: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             appSettingsManager.setAutoBackupInterval(hours)
+        }
+    }
+
+    fun clearBackupFailure() {
+        viewModelScope.launch(Dispatchers.IO) {
+            appSettingsManager.clearLastBackupFailure()
         }
     }
 }
