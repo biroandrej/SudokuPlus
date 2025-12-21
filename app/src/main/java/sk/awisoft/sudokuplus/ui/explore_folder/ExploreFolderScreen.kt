@@ -96,7 +96,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
@@ -119,14 +119,15 @@ import sk.awisoft.sudokuplus.ui.util.isScrolledToEnd
 import sk.awisoft.sudokuplus.ui.util.isScrolledToStart
 import sk.awisoft.sudokuplus.ui.util.isScrollingUp
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 import kotlin.math.sqrt
 import kotlin.time.toKotlinDuration
 
-@Destination(
+@Destination<RootGraph>(
     style = AnimatedNavigation::class,
-    navArgsDelegate = ExploreFolderScreenNavArgs::class
+    navArgs = ExploreFolderScreenNavArgs::class
 )
 @OptIn(
     ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class, ExperimentalLayoutApi::class
@@ -246,7 +247,7 @@ fun ExploreFolderScreen(
                                 fadeInSpec = null,
                                 fadeOutSpec = null
                             ),
-                            board = game.second?.currentBoard ?: game.first.initialBoard,
+                            board = game.second.currentBoard,
                             difficulty = stringResource(game.first.difficulty.resName),
                             type = stringResource(game.first.type.resName),
                             gameId = game.first.uid,

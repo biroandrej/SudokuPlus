@@ -29,23 +29,6 @@ class QQWingController {
         return generated.poll()
     }
 
-    fun generateMultiple(
-        type: GameType,
-        difficulty: GameDifficulty,
-        amount: Int
-    ): LinkedList<IntArray> {
-        generated.clear()
-        options.numberToGenerate = amount
-        options.gameDifficulty = difficulty
-        options.needNow = true
-        options.action = Action.GENERATE
-        options.printSolution = false
-        options.threads = Runtime.getRuntime().availableProcessors()
-        options.gameType = type
-        doAction()
-        return generated
-    }
-
     /**
      * Generate a new sudoku based on a given seed, but only accept challenge sudokus with a certain probability
      * @param seed the seed based on which the sudoku should be calculated

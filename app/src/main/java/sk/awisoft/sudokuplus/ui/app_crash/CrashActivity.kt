@@ -32,14 +32,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.platform.ClipEntry
+import android.content.ClipData
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import sk.awisoft.sudokuplus.MainActivity
@@ -78,8 +81,9 @@ class CrashActivity : ComponentActivity() {
                 amoled = amoledBlack,
                 colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR),
             ) {
-                val clipboardManager = LocalClipboardManager.current
+                val clipboardManager = LocalClipboard.current
                 val uriHandler = LocalUriHandler.current
+                val scope = rememberCoroutineScope()
 
                 Scaffold { innerPadding ->
                     Column(
@@ -107,11 +111,13 @@ class CrashActivity : ComponentActivity() {
                                 .padding(horizontal = 12.dp)
                                 .clip(MaterialTheme.shapes.large)
                                 .clickable {
-                                    clipboardManager.setText(
-                                        AnnotatedString(
-                                            text = crashReason
+                                    scope.launch {
+                                        clipboardManager.setClipEntry(
+                                            ClipEntry(
+                                                ClipData.newPlainText("crash_log", crashReason)
+                                            )
                                         )
-                                    )
+                                    }
                                 }
                                 .background(MaterialTheme.colorScheme.surfaceContainerHighest)
                                 .weight(1f)
@@ -134,11 +140,13 @@ class CrashActivity : ComponentActivity() {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Button(onClick = {
-                                clipboardManager.setText(
-                                    AnnotatedString(
-                                        text = crashReason
+                                scope.launch {
+                                    clipboardManager.setClipEntry(
+                                        ClipEntry(
+                                            ClipData.newPlainText("crash_log", crashReason)
+                                        )
                                     )
-                                )
+                                }
                                 uriHandler.openUri(GITHUB_NEW_ISSUE)
                             }) {
                                 Icon(

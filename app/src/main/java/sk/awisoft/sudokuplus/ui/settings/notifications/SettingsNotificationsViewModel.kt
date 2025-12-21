@@ -19,7 +19,7 @@ import javax.inject.Inject
 class SettingsNotificationsViewModel @Inject constructor(
     private val settings: NotificationSettingsManager,
     private val notificationHelper: NotificationHelper,
-    @ApplicationContext private val context: Context
+    @param: ApplicationContext private val context: Context
 ) : ViewModel() {
 
     val dailyChallengeEnabled = settings.dailyChallengeNotificationEnabled

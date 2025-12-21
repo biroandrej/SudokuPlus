@@ -15,7 +15,7 @@ import sk.awisoft.sudokuplus.destinations.StatisticsScreenDestination
 sealed class NavigationBarDestination(
     val direction: DirectionDestinationSpec,
     val icon: ImageVector,
-    @StringRes val label: Int
+    @param: StringRes val label: Int
 ) {
     data object Home : NavigationBarDestination(
         HomeScreenDestination,

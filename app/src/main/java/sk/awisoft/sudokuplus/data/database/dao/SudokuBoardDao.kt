@@ -32,7 +32,7 @@ interface BoardDao {
                 "LEFT OUTER JOIN saved_game ON board.uid = saved_game.board_uid " +
                 "ORDER BY uid DESC"
     )
-    fun getBoardsWithSavedGames(): Flow<Map<SudokuBoard, SavedGame?>>
+    fun getBoardsWithSavedGames(): Flow<Map<SudokuBoard, SavedGame>>
 
     @Query(
         "SELECT * FROM board " +
@@ -40,7 +40,7 @@ interface BoardDao {
                 "WHERE difficulty == :difficulty " +
                 "ORDER BY uid DESC"
     )
-    fun getBoardsWithSavedGames(difficulty: GameDifficulty): Flow<Map<SudokuBoard, SavedGame?>>
+    fun getBoardsWithSavedGames(difficulty: GameDifficulty): Flow<Map<SudokuBoard, SavedGame>>
 
 
     @Query("SELECT * FROM board WHERE folder_id == :uid")
@@ -52,7 +52,7 @@ interface BoardDao {
                 "WHERE folder_id == :folderUid " +
                 "ORDER BY uid DESC"
     )
-    fun getInFolderWithSaved(folderUid: Long): Flow<Map<SudokuBoard, SavedGame?>>
+    fun getInFolderWithSaved(folderUid: Long): Flow<Map<SudokuBoard, SavedGame>>
 
     @Query("SELECT * FROM board WHERE folder_id == :uid")
     fun getBoardsInFolder(uid: Long): List<SudokuBoard>

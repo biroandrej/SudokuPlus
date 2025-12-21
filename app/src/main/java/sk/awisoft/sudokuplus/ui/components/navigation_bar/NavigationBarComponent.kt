@@ -18,8 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import sk.awisoft.sudokuplus.NavGraphs
-import sk.awisoft.sudokuplus.appCurrentDestinationAsState
-import sk.awisoft.sudokuplus.startAppDestination
+import sk.awisoft.sudokuplus.destinations.HomeScreenDestination
+import com.ramcosta.composedestinations.utils.currentDestinationAsState
 import com.ramcosta.composedestinations.utils.toDestinationsNavigator
 
 @Composable
@@ -33,8 +33,8 @@ fun NavigationBarComponent(
         NavigationBarDestination.More
     )
 
-    val currentDestination = navController.appCurrentDestinationAsState().value
-        ?: NavGraphs.root.startAppDestination
+    val currentDestination = navController.currentDestinationAsState().value
+        ?: HomeScreenDestination
 
     if (isVisible) {
         NavigationBar(

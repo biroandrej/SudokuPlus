@@ -53,17 +53,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.platform.ClipEntry
+import android.content.ClipData
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
@@ -83,6 +84,7 @@ import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
 import sk.awisoft.sudokuplus.ui.util.isScrolledToEnd
 import sk.awisoft.sudokuplus.ui.util.isScrolledToStart
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
@@ -94,7 +96,7 @@ private val autoBackupIntervalEntries = mapOf(
     168L to R.string.weekly,
 )
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun BackupScreen(
     navigator: DestinationsNavigator,
@@ -462,7 +464,7 @@ fun BackupScreen(
                 Text(stringResource(R.string.restore_backup_error))
             },
             text = {
-                val clipboardManager = LocalClipboardManager.current
+                val clipboardManager = LocalClipboard.current
                 Column {
                     Box {
                         val lazyListState = rememberLazyListState()
@@ -499,7 +501,15 @@ fun BackupScreen(
                     }
                     Spacer(Modifier.height(12.dp))
                     Button(
-                        onClick = { clipboardManager.setText(AnnotatedString(text = viewModel.restoreExceptionString)) },
+                        onClick = {
+                            scope.launch {
+                                clipboardManager.setClipEntry(
+                                    ClipEntry(
+                                        ClipData.newPlainText("error", viewModel.restoreExceptionString)
+                                    )
+                                )
+                            }
+                        },
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     ) {
                         Icon(Icons.Rounded.ContentCopy, contentDescription = null)

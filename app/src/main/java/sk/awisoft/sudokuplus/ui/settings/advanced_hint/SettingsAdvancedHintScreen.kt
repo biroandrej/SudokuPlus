@@ -23,7 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
@@ -37,9 +37,10 @@ import sk.awisoft.sudokuplus.ui.settings.SettingsScaffoldLazyColumn
 import sk.awisoft.sudokuplus.ui.theme.ColorUtils.blend
 import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun SettingsAdvancedHintScreen(
     viewModel: SettingsAdvancedHintViewModel = hiltViewModel(),

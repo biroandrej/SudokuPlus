@@ -78,7 +78,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import sk.awisoft.sudokuplus.R
@@ -96,6 +96,7 @@ import sk.awisoft.sudokuplus.destinations.SettingsLanguageScreenDestination
 import sk.awisoft.sudokuplus.ui.components.board.Board
 import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleString
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -108,9 +109,9 @@ import javax.inject.Inject
 import kotlin.math.sin
 import kotlin.random.Random
 
-@Destination
+@Destination<RootGraph>
 @Composable
-fun WelcomeScreen (
+fun WelcomeScreen(
     viewModel: WelcomeViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
@@ -629,11 +630,10 @@ private fun AnimatedSudokuLogo(
 }
 
 @HiltViewModel
-class WelcomeViewModel
-@Inject constructor(
+class WelcomeViewModel @Inject constructor(
     private val settingsDataManager: AppSettingsManager,
     private val notificationSettingsManager: NotificationSettingsManager,
-    @ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     var selectedCell by mutableStateOf(Cell(-1, -1, 0))
 

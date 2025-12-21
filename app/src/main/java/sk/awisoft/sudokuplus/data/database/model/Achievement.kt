@@ -7,7 +7,7 @@ import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 
-enum class AchievementCategory(@StringRes val displayName: Int) {
+enum class AchievementCategory(@param: StringRes val displayName: Int) {
     COMPLETION(R.string.achievement_category_completion),
     SPEED(R.string.achievement_category_speed),
     ACCURACY(R.string.achievement_category_accuracy),
@@ -33,14 +33,14 @@ sealed class AchievementRequirement {
 data class AchievementDefinition(
     val id: String,
     val category: AchievementCategory,
-    @StringRes val nameRes: Int,
-    @StringRes val descriptionRes: Int,
-    @DrawableRes val iconRes: Int,
+    @param: StringRes val nameRes: Int,
+    @param: StringRes val descriptionRes: Int,
+    @param: DrawableRes val iconRes: Int,
     val requirement: AchievementRequirement,
     val tier: AchievementTier = AchievementTier.BRONZE
 )
 
-enum class AchievementTier(@StringRes val displayName: Int) {
+enum class AchievementTier(@param: StringRes val displayName: Int) {
     BRONZE(R.string.achievement_tier_bronze),
     SILVER(R.string.achievement_tier_silver),
     GOLD(R.string.achievement_tier_gold),
