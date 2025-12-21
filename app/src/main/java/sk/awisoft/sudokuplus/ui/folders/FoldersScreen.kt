@@ -24,6 +24,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.Help
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material.icons.rounded.AddCircleOutline
@@ -74,7 +75,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.destinations.ExploreFolderScreenDestination
@@ -151,7 +152,7 @@ fun FoldersScreen(
                     },
                     actions = {
                         IconButton(onClick = { helpDialog = true }) {
-                            Icon(Icons.Rounded.Help, contentDescription = null)
+                            Icon(Icons.AutoMirrored.Rounded.Help, contentDescription = null)
                         }
                         var showMenu by remember { mutableStateOf(false) }
                         Box {

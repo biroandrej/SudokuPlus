@@ -60,17 +60,18 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.platform.ClipEntry
+import android.content.ClipData
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -121,7 +122,7 @@ fun GameScreen(
     navigator: DestinationsNavigator
 ) {
     val localView = LocalView.current // vibration
-    val clipboardManager = LocalClipboardManager.current
+    val clipboardManager = LocalClipboard.current
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
     val snackbarScope = rememberCoroutineScope()
@@ -377,11 +378,16 @@ fun GameScreen(
                                         viewModel.gameBoard,
                                         emptySeparator = '.'
                                     )
-                                    clipboardManager.setText(
-                                        AnnotatedString(
-                                            stringBoard.uppercase()
+                                    snackbarScope.launch {
+                                        clipboardManager.setClipEntry(
+                                            ClipEntry(
+                                                ClipData.newPlainText(
+                                                    "sudoku",
+                                                    stringBoard.uppercase()
+                                                )
+                                            )
                                         )
-                                    )
+                                    }
 
                                     if (SDK_INT < 33) {
                                         Toast.makeText(

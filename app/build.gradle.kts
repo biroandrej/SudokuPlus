@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.serialization)
     alias(libs.plugins.compose.compiler)
+    id("kotlin-parcelize")
 }
 
 ksp {
@@ -143,6 +144,7 @@ aboutLibraries {
 
 ksp {
     arg("compose-destinations.codeGenPackageName", "sk.awisoft.sudokuplus")
+    arg("compose-destinations.logProcessing", "true")
     arg("room.schemaLocation", "$projectDir/schemas")
 }
 
@@ -162,11 +164,10 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     testImplementation(libs.junit)
     implementation(libs.graphics.shape)
-
     implementation(libs.hilt)
     implementation(libs.hilt.navigation)
+    implementation(libs.hilt.viewmodel.compose)
     ksp(libs.hilt.compiler)
-
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)

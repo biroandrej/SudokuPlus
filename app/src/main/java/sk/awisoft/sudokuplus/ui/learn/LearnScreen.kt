@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.SecondaryTabRow
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.learn.learnapp.LearnAppScreen
@@ -71,7 +72,7 @@ fun LearnScreen(
             }
             val pagerState = rememberPagerState(pageCount = { pages.size })
             val coroutineScope = rememberCoroutineScope()
-            TabRow(selectedTabIndex = pagerState.currentPage) {
+            SecondaryTabRow(selectedTabIndex = pagerState.currentPage) {
                 pages.forEachIndexed { index, title ->
                     Tab(
                         selected = pagerState.currentPage == index,

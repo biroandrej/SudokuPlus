@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
@@ -41,7 +41,6 @@ import sk.awisoft.sudokuplus.destinations.MoreScreenDestination
 import sk.awisoft.sudokuplus.destinations.StatisticsScreenDestination
 import sk.awisoft.sudokuplus.destinations.WelcomeScreenDestination
 import com.ramcosta.composedestinations.DestinationsNavHost
-import com.ramcosta.composedestinations.annotation.DeepLink
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -163,7 +162,6 @@ class MainActivity : ComponentActivity() {
                         DestinationsNavHost(
                             navGraph = NavGraphs.root,
                             navController = navController,
-                            startRoute = NavGraphs.root.startRoute,
                             modifier = Modifier.padding(paddingValues)
                         )
                     }
@@ -209,32 +207,33 @@ class MainActivityViewModel
     )
 }
 
-@Destination<RootGraph>(
-    deepLinks = [
-        DeepLink(
-            uriPattern = "content://",
-            mimeType = "*/*",
-            action = Intent.ACTION_VIEW
-        )
-    ]
-)
-@Composable
-fun HandleImportFromFileDeepLink(
-    navigator: DestinationsNavigator
-) {
-    val context = LocalContext.current
-    LaunchedEffect(Unit) {
-        val activity = context.findActivity()
-        if (activity != null) {
-            val intentData = activity.intent.data
-            if (intentData != null) {
-                navigator.navigate(
-                    ImportFromFileScreenDestination(
-                        fileUri = intentData.toString(),
-                        fromDeepLink = true
-                    )
-                )
-            }
-        }
-    }
-}
+// TODO: DeepLinks cause NPE in compose-destinations 2.3.0 - handle in AndroidManifest instead
+// @Destination<RootGraph>(
+//     deepLinks = [
+//         DeepLink(
+//             uriPattern = "content://",
+//             mimeType = "*/*",
+//             action = Intent.ACTION_VIEW
+//         )
+//     ]
+// )
+// @Composable
+// fun HandleImportFromFileDeepLink(
+//     navigator: DestinationsNavigator
+// ) {
+//     val context = LocalContext.current
+//     LaunchedEffect(Unit) {
+//         val activity = context.findActivity()
+//         if (activity != null) {
+//             val intentData = activity.intent.data
+//             if (intentData != null) {
+//                 navigator.navigate(
+//                     ImportFromFileScreenDestination(
+//                         fileUri = intentData.toString(),
+//                         fromDeepLink = true
+//                     )
+//                 )
+//             }
+//         }
+//     }
+// }

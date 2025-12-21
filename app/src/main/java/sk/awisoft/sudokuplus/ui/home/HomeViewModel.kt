@@ -47,15 +47,15 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel
 @Inject constructor(
+    dailyChallengeRepository: DailyChallengeRepository,
     private val appSettingsManager: AppSettingsManager,
     private val boardRepository: BoardRepository,
     private val savedGameRepository: SavedGameRepository,
     private val dailyChallengeManager: DailyChallengeManager,
-    private val dailyChallengeRepository: DailyChallengeRepository,
     private val notificationSettingsManager: NotificationSettingsManager,
     private val notificationHelper: NotificationHelper,
     private val rewardCalendarManager: RewardCalendarManager,
-    @ApplicationContext private val context: Context
+    @param: ApplicationContext private val context: Context
 ) : ViewModel() {
 
     val lastSavedGame = savedGameRepository.getLast()

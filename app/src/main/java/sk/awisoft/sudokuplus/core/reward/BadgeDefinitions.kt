@@ -7,7 +7,7 @@ import sk.awisoft.sudokuplus.R
 /**
  * Badge rarity determines the visual treatment and prestige
  */
-enum class BadgeRarity(@StringRes val displayName: Int) {
+enum class BadgeRarity(@param: StringRes val displayName: Int) {
     COMMON(R.string.badge_rarity_common),
     RARE(R.string.badge_rarity_rare),
     EPIC(R.string.badge_rarity_epic),
@@ -19,9 +19,9 @@ enum class BadgeRarity(@StringRes val displayName: Int) {
  */
 data class BadgeDefinition(
     val id: String,
-    @StringRes val nameRes: Int,
-    @StringRes val descriptionRes: Int,
-    @DrawableRes val iconRes: Int,
+    @param: StringRes val nameRes: Int,
+    @param: StringRes val descriptionRes: Int,
+    @param: DrawableRes val iconRes: Int,
     val rarity: BadgeRarity,
     val day: Int // Day in the 30-day cycle when this badge is awarded
 )

@@ -54,14 +54,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.platform.ClipEntry
+import android.content.ClipData
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.Cell
@@ -95,7 +96,8 @@ fun SavedGameScreen(
     navigator: DestinationsNavigator
 ) {
     val context = LocalContext.current
-    val clipboardManager = LocalClipboardManager.current
+    val clipboardManager = LocalClipboard.current
+    val clipboardScope = rememberCoroutineScope()
 
     val dateFormat by viewModel.dateFormat.collectAsStateWithLifecycle(
         initialValue = ""
@@ -437,9 +439,13 @@ fun SavedGameScreen(
                                         .replace('0', selectedEmptyCell)
                                         .uppercase()
 
-                                clipboardManager.setText(
-                                    AnnotatedString(exported)
-                                )
+                                clipboardScope.launch {
+                                    clipboardManager.setClipEntry(
+                                        ClipEntry(
+                                            ClipData.newPlainText("sudoku_board", exported)
+                                        )
+                                    )
+                                }
                                 // Android 13 and higher have its own notification when copying
                                 if (SDK_INT < 33) {
                                     Toast.makeText(

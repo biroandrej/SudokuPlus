@@ -3,7 +3,7 @@ package sk.awisoft.sudokuplus.core.reward
 import androidx.annotation.StringRes
 import sk.awisoft.sudokuplus.R
 
-enum class RewardType(@StringRes val displayName: Int) {
+enum class RewardType(@param: StringRes val displayName: Int) {
     HINTS(R.string.reward_type_hints),
     XP_BOOST(R.string.reward_type_xp_boost),
     BADGE(R.string.reward_type_badge)

@@ -96,7 +96,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
@@ -247,7 +247,7 @@ fun ExploreFolderScreen(
                                 fadeInSpec = null,
                                 fadeOutSpec = null
                             ),
-                            board = game.second?.currentBoard ?: game.first.initialBoard,
+                            board = game.second.currentBoard,
                             difficulty = stringResource(game.first.difficulty.resName),
                             type = stringResource(game.first.type.resName),
                             gameId = game.first.uid,

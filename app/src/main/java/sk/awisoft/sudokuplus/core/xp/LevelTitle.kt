@@ -6,7 +6,7 @@ import sk.awisoft.sudokuplus.R
 enum class LevelTitle(
     val minLevel: Int,
     val maxLevel: Int,
-    @StringRes val titleRes: Int
+    @param: StringRes val titleRes: Int
 ) {
     BEGINNER(1, 5, R.string.level_title_beginner),
     NOVICE(6, 10, R.string.level_title_novice),
