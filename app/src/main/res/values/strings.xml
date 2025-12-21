@@ -96,6 +96,15 @@
     <string name="toolbar_notes_description">Activates the note mode (pencil marks)</string>
     <string name="toolbar_hint_description">Inserts the correct value in the selected cell. Can be disabled in settings</string>
     <string name="toolbar_erase_description">Removes a value or all notes from the selected cell</string>
+    <!-- Accessibility labels for toolbar -->
+    <string name="action_undo">Undo</string>
+    <string name="action_hint">Hint</string>
+    <string name="action_notes">Notes</string>
+    <string name="action_erase">Erase</string>
+    <string name="action_advanced_hint">Advanced hint</string>
+    <!-- Accessibility labels for pickers -->
+    <string name="action_previous">Previous</string>
+    <string name="action_next">Next</string>
     <string name="first_game_dialog_title">Quick tour</string>
     <string name="first_game_dialog_got_it">Got it</string>
     <string name="action_exit">Exit</string>
@@ -319,6 +328,15 @@
     <string name="action_create">Create</string>
     <string name="restore_existing_data_alert">Existing data will be deleted!</string>
     <string name="last_backup_date">Most recent backup: %1$s</string>
+    <string name="backup_failed_title">Backup failed</string>
+    <string name="backup_failure_no_directory">No backup folder selected. Please select a folder for automatic backups.</string>
+    <string name="backup_failure_permission_lost">Backup folder access was lost. Please grant access again.</string>
+    <string name="backup_failure_directory_access">Cannot access the backup folder. Please select a different folder.</string>
+    <string name="backup_failure_file_create">Failed to create backup file. Check available storage space.</string>
+    <string name="backup_failure_io_error">A temporary error occurred. Backup will be retried automatically.</string>
+    <string name="backup_failure_unknown">An unexpected error occurred. Please try again.</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_dismiss">Dismiss</string>
     <string name="date_started">Date started</string>
     <string name="date_last_played">Date last played</string>
     <string name="color_picker_title">Pick a color</string>

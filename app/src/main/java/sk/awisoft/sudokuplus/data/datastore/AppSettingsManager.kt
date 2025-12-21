@@ -161,6 +161,10 @@ class AppSettingsManager @Inject constructor(
     val lastBackupDate get() = backup.lastBackupDate
     suspend fun setLastBackupDate(date: java.time.ZonedDateTime) = backup.setLastBackupDate(date)
 
+    val lastBackupFailure get() = backup.lastBackupFailure
+    suspend fun setLastBackupFailure(reason: String) = backup.setLastBackupFailure(reason)
+    suspend fun clearLastBackupFailure() = backup.clearLastBackupFailure()
+
     companion object {
         fun dateFormat(format: String): DateTimeFormatter = when (format) {
             "" -> DateTimeFormatter.ofPattern(

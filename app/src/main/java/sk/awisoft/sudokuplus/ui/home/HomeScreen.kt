@@ -85,7 +85,6 @@ import sk.awisoft.sudokuplus.ui.reward.RewardClaimDialog
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.runBlocking
 import java.time.ZonedDateTime
 import kotlin.math.sqrt
 import kotlin.time.toKotlinDuration
@@ -169,10 +168,10 @@ fun HomeScreen(
             }
         }
     ) { paddingValues ->
-        if (viewModel.readyToPlay) {
-            viewModel.readyToPlay = false
-
-            runBlocking {
+        // Navigate to new game when ready
+        LaunchedEffect(viewModel.readyToPlay) {
+            if (viewModel.readyToPlay) {
+                viewModel.readyToPlay = false
                 navigator.navigate(
                     GameScreenDestination(
                         gameUid = viewModel.insertedBoardUid,
@@ -183,10 +182,9 @@ fun HomeScreen(
         }
 
         // Daily Challenge navigation
-        if (viewModel.dailyChallengeReadyToPlay) {
-            viewModel.dailyChallengeReadyToPlay = false
-
-            runBlocking {
+        LaunchedEffect(viewModel.dailyChallengeReadyToPlay) {
+            if (viewModel.dailyChallengeReadyToPlay) {
+                viewModel.dailyChallengeReadyToPlay = false
                 navigator.navigate(
                     GameScreenDestination(
                         gameUid = viewModel.dailyChallengeGameUid,
@@ -544,7 +542,7 @@ private fun HomePickerRow(
             IconButton(onClick = onPrevious) {
                 Icon(
                     painter = painterResource(R.drawable.ic_round_keyboard_arrow_left_24),
-                    contentDescription = null
+                    contentDescription = stringResource(R.string.action_previous)
                 )
             }
             AnimatedContent(
@@ -564,7 +562,7 @@ private fun HomePickerRow(
             IconButton(onClick = onNext) {
                 Icon(
                     painter = painterResource(R.drawable.ic_round_keyboard_arrow_right_24),
-                    contentDescription = null
+                    contentDescription = stringResource(R.string.action_next)
                 )
             }
         }

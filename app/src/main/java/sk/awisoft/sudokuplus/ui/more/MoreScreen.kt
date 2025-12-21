@@ -172,7 +172,7 @@ private fun MoreQuickActionsRow(
                 modifier = Modifier.padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(painter = leftPainter, contentDescription = null)
+                Icon(painter = leftPainter, contentDescription = leftTitle)
                 Spacer(modifier = Modifier.size(12.dp))
                 Text(
                     text = leftTitle,
@@ -194,7 +194,7 @@ private fun MoreQuickActionsRow(
                 modifier = Modifier.padding(16.dp).fillMaxHeight(),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Icon(painter = rightPainter, contentDescription = null)
+                Icon(painter = rightPainter, contentDescription = rightTitle)
                 Spacer(modifier = Modifier.size(12.dp))
                 Text(
                     text = rightTitle,

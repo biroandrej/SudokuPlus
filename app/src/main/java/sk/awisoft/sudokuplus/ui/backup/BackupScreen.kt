@@ -24,6 +24,7 @@ import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material.icons.rounded.ContentCopy
 import androidx.compose.material.icons.rounded.FileDownload
 import androidx.compose.material.icons.rounded.FileUpload
+import androidx.compose.material.icons.rounded.ErrorOutline
 import androidx.compose.material.icons.rounded.History
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -70,8 +71,15 @@ import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.data.backup.BackupData
 import sk.awisoft.sudokuplus.data.backup.BackupWorker
+import sk.awisoft.sudokuplus.data.backup.FAILURE_NO_DIRECTORY
+import sk.awisoft.sudokuplus.data.backup.FAILURE_PERMISSION_LOST
+import sk.awisoft.sudokuplus.data.backup.FAILURE_DIRECTORY_ACCESS
+import sk.awisoft.sudokuplus.data.backup.FAILURE_FILE_CREATE
+import sk.awisoft.sudokuplus.data.backup.FAILURE_IO_ERROR
+import sk.awisoft.sudokuplus.data.backup.FAILURE_UNKNOWN
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
+import sk.awisoft.sudokuplus.ui.components.BackupFailureCard
 import sk.awisoft.sudokuplus.ui.components.GrantPermissionCard
 import sk.awisoft.sudokuplus.ui.components.PreferenceRow
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
@@ -119,6 +127,7 @@ fun BackupScreen(
     val autoBackupsNumber by viewModel.autoBackupsNumber.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_AUTO_BACKUPS_NUMBER)
     val autoBackupInterval by viewModel.autoBackupInterval.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_AUTOBACKUP_INTERVAL)
     val lastBackupDate by viewModel.lastBackupDate.collectAsStateWithLifecycle(initialValue = null)
+    val lastBackupFailure by viewModel.lastBackupFailure.collectAsStateWithLifecycle(initialValue = null)
     val dateFormat by viewModel.dateFormat.collectAsStateWithLifecycle(initialValue = "")
 
     LaunchedEffect(Unit) {
@@ -214,6 +223,40 @@ fun BackupScreen(
                         ),
                         icon = Icons.Rounded.History,
                         modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                }
+            }
+            lastBackupFailure?.let { failure ->
+                item {
+                    val failureMessage = when (failure.reason) {
+                        FAILURE_NO_DIRECTORY -> stringResource(R.string.backup_failure_no_directory)
+                        FAILURE_PERMISSION_LOST -> stringResource(R.string.backup_failure_permission_lost)
+                        FAILURE_DIRECTORY_ACCESS -> stringResource(R.string.backup_failure_directory_access)
+                        FAILURE_FILE_CREATE -> stringResource(R.string.backup_failure_file_create)
+                        FAILURE_IO_ERROR -> stringResource(R.string.backup_failure_io_error)
+                        FAILURE_UNKNOWN -> stringResource(R.string.backup_failure_unknown)
+                        else -> stringResource(R.string.backup_failure_unknown)
+                    }
+                    BackupFailureCard(
+                        title = stringResource(R.string.backup_failed_title),
+                        details = failureMessage,
+                        painter = rememberVectorPainter(image = Icons.Rounded.ErrorOutline),
+                        onDismiss = { viewModel.clearBackupFailure() },
+                        onRetry = {
+                            viewModel.clearBackupFailure()
+                            if (autoBackupAvailable) {
+                                BackupWorker.setupWorker(context, autoBackupInterval)
+                            } else {
+                                requestDirectoryAccess.launch(null)
+                            }
+                        },
+                        retryButtonText = if (autoBackupAvailable) {
+                            stringResource(R.string.action_retry)
+                        } else {
+                            stringResource(R.string.action_grant)
+                        },
+                        dismissButtonText = stringResource(R.string.action_dismiss),
+                        modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 8.dp)
                     )
                 }
             }

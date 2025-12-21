@@ -39,7 +39,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -220,7 +219,7 @@ class HomeViewModel
         solvedPuzzle = List(size) { row -> List(size) { col -> Cell(row, col, 0) } }
 
         viewModelScope.launch(Dispatchers.Default) {
-            val saveSelectedGameDifficultyAndType = runBlocking { appSettingsManager.saveSelectedGameDifficultyType.first() }
+            val saveSelectedGameDifficultyAndType = appSettingsManager.saveSelectedGameDifficultyType.first()
             if (saveSelectedGameDifficultyAndType) {
                 appSettingsManager.setLastSelectedGameDifficultyType(
                     difficulty = selectedDifficulty,

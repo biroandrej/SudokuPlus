@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import java.io.OutputStream
 import java.time.ZonedDateTime
@@ -55,42 +54,45 @@ class BackupScreenViewModel @Inject constructor(
     val autoBackupsNumber = appSettingsManager.autoBackupsNumber
     val autoBackupInterval = appSettingsManager.autoBackupInterval
     val lastBackupDate = appSettingsManager.lastBackupDate
+    val lastBackupFailure = appSettingsManager.lastBackupFailure
     val dateFormat = appSettingsManager.dateFormat
 
     fun createBackup(
         backupSettings: Boolean,
         onCreated: (Boolean) -> Unit
     ) {
-        try {
-            val boards = runBlocking { boardRepository.getAll().first() }
-            val folders = runBlocking { folderRepository.getAll().first() }
-            val records = runBlocking { recordRepository.getAll().first() }
-            val savedGames = runBlocking { savedGameRepository.getAll().first() }
-            val dailyChallenges = runBlocking { dailyChallengeRepository.getAll().first() }
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val boards = boardRepository.getAll().first()
+                val folders = folderRepository.getAll().first()
+                val records = recordRepository.getAll().first()
+                val savedGames = savedGameRepository.getAll().first()
+                val dailyChallenges = dailyChallengeRepository.getAll().first()
 
-            backupData = BackupData(
-                appVersionName = BuildConfig.VERSION_NAME + if (FlavorUtil.isFoss()) "-FOSS" else "",
-                appVersionCode = BuildConfig.VERSION_CODE,
-                createdAt = ZonedDateTime.now(),
-                boards = boards,
-                folders = folders,
-                records = records,
-                savedGames = savedGames,
-                dailyChallenges = dailyChallenges,
-                settings = if (backupSettings) SettingsBackup.Companion.getSettings(
-                    appSettingsManager,
-                    themeSettingsManager
-                ) else null
-            )
+                backupData = BackupData(
+                    appVersionName = BuildConfig.VERSION_NAME + if (FlavorUtil.isFoss()) "-FOSS" else "",
+                    appVersionCode = BuildConfig.VERSION_CODE,
+                    createdAt = ZonedDateTime.now(),
+                    boards = boards,
+                    folders = folders,
+                    records = records,
+                    savedGames = savedGames,
+                    dailyChallenges = dailyChallenges,
+                    settings = if (backupSettings) SettingsBackup.getSettings(
+                        appSettingsManager,
+                        themeSettingsManager
+                    ) else null
+                )
 
-            val json = Json {
-                encodeDefaults = true
-                ignoreUnknownKeys = true
+                val json = Json {
+                    encodeDefaults = true
+                    ignoreUnknownKeys = true
+                }
+                backupJson = json.encodeToString(backupData)
+                onCreated(true)
+            } catch (e: Exception) {
+                onCreated(false)
             }
-            backupJson = json.encodeToString(backupData)
-            onCreated(true)
-        } catch (e: Exception) {
-            onCreated(false)
         }
     }
 
@@ -143,7 +145,7 @@ class BackupScreenViewModel @Inject constructor(
             viewModelScope.launch(Dispatchers.IO) {
                 try {
                     // deleting all data from database
-                    runBlocking { databaseRepository.resetDb() }
+                    databaseRepository.resetDb()
 
                     if (backup.boards.isNotEmpty()) {
                         folderRepository.insert(backup.folders)
@@ -175,6 +177,12 @@ class BackupScreenViewModel @Inject constructor(
     fun setAutoBackupInterval(hours: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             appSettingsManager.setAutoBackupInterval(hours)
+        }
+    }
+
+    fun clearBackupFailure() {
+        viewModelScope.launch(Dispatchers.IO) {
+            appSettingsManager.clearLastBackupFailure()
         }
     }
 }

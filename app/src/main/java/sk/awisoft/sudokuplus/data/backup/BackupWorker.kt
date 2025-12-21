@@ -21,7 +21,6 @@ import sk.awisoft.sudokuplus.util.FlavorUtil
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import java.time.Duration
 import java.time.LocalDateTime
@@ -41,90 +40,101 @@ class BackupWorker @AssistedInject constructor(
 ) : CoroutineWorker(context, workerParameters) {
 
     override suspend fun doWork(): Result {
-        var backupSuccessfull = false
+        var backupSuccessful = false
 
         try {
-            val backupUri = runBlocking {appSettingsManager.backupUri.first() }
-
-            val boards = runBlocking { boardRepository.getAll().first() }
+            val backupUri = appSettingsManager.backupUri.first()
+            val boards = boardRepository.getAll().first()
 
             if (backupUri.isEmpty()) {
-                Log.i(
-                    WORK_NAME_AUTO_BACKUP,
-                    "Automatic backup skipped: URI is empty"
-                )
+                Log.i(WORK_NAME_AUTO_BACKUP, "Automatic backup skipped: URI is empty")
+                appSettingsManager.setLastBackupFailure(FAILURE_NO_DIRECTORY)
                 return Result.failure()
             } else if (boards.isEmpty()) {
-                Log.i(
-                    WORK_NAME_AUTO_BACKUP,
-                    "Automatic backup skipped: Nothing to backup"
-                )
+                // Nothing to backup is not really a failure, just skip silently
+                Log.i(WORK_NAME_AUTO_BACKUP, "Automatic backup skipped: Nothing to backup")
+                return Result.success()
+            }
+
+            if (!context.contentResolver.persistedUriPermissions.any { it.uri == backupUri.toUri() }) {
+                Log.i(WORK_NAME_AUTO_BACKUP, "Automatic backup skipped: not persisted URI")
+                appSettingsManager.setLastBackupFailure(FAILURE_PERMISSION_LOST)
                 return Result.failure()
             }
 
-            if(!context.contentResolver.persistedUriPermissions.any { it.uri == backupUri.toUri()}) {
-                Log.i(
-                    WORK_NAME_AUTO_BACKUP,
-                    "Automatic backup skipped: not persisted URI"
-                )
-                return Result.failure()
-            }
-
-            val folders = runBlocking { folderRepository.getAll().first() }
-            val records = runBlocking { recordRepository.getAll().first() }
-            val savedGames = runBlocking { savedGameRepository.getAll().first() }
+            val folders = folderRepository.getAll().first()
+            val records = recordRepository.getAll().first()
+            val savedGames = savedGameRepository.getAll().first()
 
             val documentFile = DocumentFile.fromTreeUri(context, backupUri.toUri())
-            if (documentFile != null) {
-                val backupData = BackupData(
-                    appVersionName = BuildConfig.VERSION_NAME + if (FlavorUtil.isFoss()) "-FOSS" else "",
-                    appVersionCode = BuildConfig.VERSION_CODE,
-                    createdAt = ZonedDateTime.now(),
-                    boards = boards,
-                    folders = folders,
-                    records = records,
-                    savedGames = savedGames,
-                    settings = SettingsBackup.getSettings(appSettingsManager, themeSettingsManager)
-                )
-
-                val json = Json {
-                    encodeDefaults = true
-                }
-                val backupJson = json.encodeToString(backupData)
-
-                val file = documentFile.createFile(
-                    "application/json",
-                    BackupData.nameAuto
-                )
-
-                if (file != null) {
-                    context.contentResolver.openOutputStream(file.uri).use { outputStream ->
-                        outputStream?.write(backupJson.toByteArray())
-                        outputStream?.close()
-                    }
-                    backupSuccessfull = true
-
-                    appSettingsManager.setLastBackupDate(ZonedDateTime.now())
-                }
-                val autoBackupsNumber = runBlocking { appSettingsManager.autoBackupsNumber.first() }
-
-                documentFile.listFiles()
-                    .filter { BackupData.regexAuto.matches(it.name ?: "") }
-                    .sortedByDescending { it.name }
-                    .drop(autoBackupsNumber)
-                    .forEach { it.delete() }
+            if (documentFile == null) {
+                Log.e(WORK_NAME_AUTO_BACKUP, "Failed to access backup directory")
+                appSettingsManager.setLastBackupFailure(FAILURE_DIRECTORY_ACCESS)
+                return Result.failure()
             }
+
+            val backupData = BackupData(
+                appVersionName = BuildConfig.VERSION_NAME + if (FlavorUtil.isFoss()) "-FOSS" else "",
+                appVersionCode = BuildConfig.VERSION_CODE,
+                createdAt = ZonedDateTime.now(),
+                boards = boards,
+                folders = folders,
+                records = records,
+                savedGames = savedGames,
+                settings = SettingsBackup.getSettings(appSettingsManager, themeSettingsManager)
+            )
+
+            val json = Json {
+                encodeDefaults = true
+            }
+            val backupJson = json.encodeToString(backupData)
+
+            val file = documentFile.createFile(
+                "application/json",
+                BackupData.nameAuto
+            )
+
+            if (file != null) {
+                context.contentResolver.openOutputStream(file.uri).use { outputStream ->
+                    outputStream?.write(backupJson.toByteArray())
+                    outputStream?.close()
+                }
+                backupSuccessful = true
+
+                appSettingsManager.setLastBackupDate(ZonedDateTime.now())
+                appSettingsManager.clearLastBackupFailure()
+            } else {
+                Log.e(WORK_NAME_AUTO_BACKUP, "Failed to create backup file")
+                appSettingsManager.setLastBackupFailure(FAILURE_FILE_CREATE)
+                return Result.failure()
+            }
+
+            val autoBackupsNumber = appSettingsManager.autoBackupsNumber.first()
+
+            documentFile.listFiles()
+                .filter { BackupData.regexAuto.matches(it.name ?: "") }
+                .sortedByDescending { it.name }
+                .drop(autoBackupsNumber)
+                .forEach { it.delete() }
+
+        } catch (e: java.io.IOException) {
+            // I/O errors are transient, retry
+            Log.e(WORK_NAME_AUTO_BACKUP, "I/O error during backup: ${e.message}")
+            appSettingsManager.setLastBackupFailure(FAILURE_IO_ERROR)
+            return Result.retry()
         } catch (e: Exception) {
             Log.e(WORK_NAME_AUTO_BACKUP, e.message.toString())
+            appSettingsManager.setLastBackupFailure(FAILURE_UNKNOWN)
             return Result.failure()
         }
+
         Log.i(
             WORK_NAME_AUTO_BACKUP,
             "Automatic backup created. T=${
                 LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)
             }"
         )
-        return if (backupSuccessfull) Result.success() else Result.failure()
+        return if (backupSuccessful) Result.success() else Result.failure()
     }
 
     companion object {
@@ -155,3 +165,11 @@ class BackupWorker @AssistedInject constructor(
 }
 
 private const val WORK_NAME_AUTO_BACKUP = "AutomaticBackupWorker"
+
+// Backup failure reasons (used as keys for string resources)
+const val FAILURE_NO_DIRECTORY = "no_directory"
+const val FAILURE_PERMISSION_LOST = "permission_lost"
+const val FAILURE_DIRECTORY_ACCESS = "directory_access"
+const val FAILURE_FILE_CREATE = "file_create"
+const val FAILURE_IO_ERROR = "io_error"
+const val FAILURE_UNKNOWN = "unknown"

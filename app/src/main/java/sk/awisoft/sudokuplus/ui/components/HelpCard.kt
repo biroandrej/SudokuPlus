@@ -170,3 +170,81 @@ fun GrantPermissionCardPreview() {
     }
 }
 
+@Composable
+fun BackupFailureCard(
+    modifier: Modifier = Modifier,
+    title: String,
+    details: String,
+    painter: Painter?,
+    onDismiss: () -> Unit,
+    onRetry: () -> Unit,
+    retryButtonText: String,
+    dismissButtonText: String
+) {
+    Box(
+        modifier = modifier
+            .clip(MaterialTheme.shapes.medium)
+            .background(MaterialTheme.colorScheme.errorContainer)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    if (painter != null) {
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(MaterialTheme.colorScheme.error.copy(alpha = 0.2f))
+                        ) {
+                            Icon(
+                                painter = painter,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onErrorContainer,
+                                modifier = Modifier.padding(6.dp)
+                            )
+                        }
+                    }
+                    Text(
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        text = title,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onErrorContainer
+                    )
+                }
+                IconButton(onClick = onDismiss) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_round_close_24),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onErrorContainer
+                    )
+                }
+            }
+            Text(
+                text = details,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onErrorContainer,
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Button(
+                    onClick = onRetry
+                ) {
+                    Text(retryButtonText)
+                }
+            }
+        }
+    }
+}
