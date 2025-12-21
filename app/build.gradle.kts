@@ -10,6 +10,10 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 // Load keystore properties for local signing
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
@@ -117,9 +121,6 @@ android {
         compose = true
         buildConfig = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -148,9 +149,6 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     testImplementation(libs.junit)
     implementation(libs.graphics.shape)
-
-    implementation(libs.accompanist.systemuicontroller)
-    implementation(libs.accompanist.pager.indicators)
 
     implementation(libs.hilt)
     implementation(libs.hilt.navigation)
