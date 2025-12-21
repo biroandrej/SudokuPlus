@@ -21,7 +21,6 @@ import sk.awisoft.sudokuplus.util.FlavorUtil
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import java.time.Duration
 import java.time.LocalDateTime
@@ -44,9 +43,9 @@ class BackupWorker @AssistedInject constructor(
         var backupSuccessfull = false
 
         try {
-            val backupUri = runBlocking {appSettingsManager.backupUri.first() }
+            val backupUri = appSettingsManager.backupUri.first()
 
-            val boards = runBlocking { boardRepository.getAll().first() }
+            val boards = boardRepository.getAll().first()
 
             if (backupUri.isEmpty()) {
                 Log.i(
@@ -70,9 +69,9 @@ class BackupWorker @AssistedInject constructor(
                 return Result.failure()
             }
 
-            val folders = runBlocking { folderRepository.getAll().first() }
-            val records = runBlocking { recordRepository.getAll().first() }
-            val savedGames = runBlocking { savedGameRepository.getAll().first() }
+            val folders = folderRepository.getAll().first()
+            val records = recordRepository.getAll().first()
+            val savedGames = savedGameRepository.getAll().first()
 
             val documentFile = DocumentFile.fromTreeUri(context, backupUri.toUri())
             if (documentFile != null) {
@@ -106,7 +105,7 @@ class BackupWorker @AssistedInject constructor(
 
                     appSettingsManager.setLastBackupDate(ZonedDateTime.now())
                 }
-                val autoBackupsNumber = runBlocking { appSettingsManager.autoBackupsNumber.first() }
+                val autoBackupsNumber = appSettingsManager.autoBackupsNumber.first()
 
                 documentFile.listFiles()
                     .filter { BackupData.regexAuto.matches(it.name ?: "") }

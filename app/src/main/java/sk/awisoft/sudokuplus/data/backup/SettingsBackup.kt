@@ -4,7 +4,6 @@ import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -59,33 +58,33 @@ data class SettingsBackup(
     }
 
     companion object {
-        fun getSettings(
+        suspend fun getSettings(
             settings: AppSettingsManager,
             themeSettings: ThemeSettingsManager
         ): SettingsBackup {
             return SettingsBackup(
-                inputMethod = runBlocking { settings.inputMethod.first() },
-                mistakesLimit = runBlocking { settings.mistakesLimit.first() },
-                hintDisabled = runBlocking { settings.hintsDisabled.first() },
-                timer = runBlocking { settings.timerEnabled.first() },
-                resetTimer = runBlocking { settings.resetTimerEnabled.first() },
-                highlightMistakes = runBlocking { settings.highlightMistakes.first() },
-                highlightIdentical = runBlocking { settings.highlightIdentical.first() },
-                remainingUses = runBlocking { settings.remainingUse.first() },
-                positionLines = runBlocking { settings.positionLines.first() },
-                autoEraseNotes = runBlocking { settings.autoEraseNotes.first() },
-                fontSize = runBlocking { settings.fontSize.first() },
-                keepScreenOn = runBlocking { settings.keepScreenOn.first() },
-                funKeyboardOverNum = runBlocking { settings.funKeyboardOverNumbers.first() },
-                dateFormat = runBlocking { settings.dateFormat.first() },
-                saveSelectedGameDifficulty = runBlocking { settings.saveSelectedGameDifficultyType.first() },
-                autoBackupInterval = runBlocking { settings.autoBackupInterval.first() },
-                maxAutoBackups = runBlocking { settings.autoBackupsNumber.first() },
-                dynamicColors = runBlocking { themeSettings.dynamicColors.first() },
-                darkTheme = runBlocking { themeSettings.darkTheme.first() },
-                monetSudokuBoard = runBlocking { themeSettings.monetSudokuBoard.first() },
-                boardCrossHighlight = runBlocking { themeSettings.boardCrossHighlight.first() },
-                advancedHint = runBlocking { settings.advancedHintEnabled.first() }
+                inputMethod = settings.inputMethod.first(),
+                mistakesLimit = settings.mistakesLimit.first(),
+                hintDisabled = settings.hintsDisabled.first(),
+                timer = settings.timerEnabled.first(),
+                resetTimer = settings.resetTimerEnabled.first(),
+                highlightMistakes = settings.highlightMistakes.first(),
+                highlightIdentical = settings.highlightIdentical.first(),
+                remainingUses = settings.remainingUse.first(),
+                positionLines = settings.positionLines.first(),
+                autoEraseNotes = settings.autoEraseNotes.first(),
+                fontSize = settings.fontSize.first(),
+                keepScreenOn = settings.keepScreenOn.first(),
+                funKeyboardOverNum = settings.funKeyboardOverNumbers.first(),
+                dateFormat = settings.dateFormat.first(),
+                saveSelectedGameDifficulty = settings.saveSelectedGameDifficultyType.first(),
+                autoBackupInterval = settings.autoBackupInterval.first(),
+                maxAutoBackups = settings.autoBackupsNumber.first(),
+                dynamicColors = themeSettings.dynamicColors.first(),
+                darkTheme = themeSettings.darkTheme.first(),
+                monetSudokuBoard = themeSettings.monetSudokuBoard.first(),
+                boardCrossHighlight = themeSettings.boardCrossHighlight.first(),
+                advancedHint = settings.advancedHintEnabled.first()
             )
         }
     }

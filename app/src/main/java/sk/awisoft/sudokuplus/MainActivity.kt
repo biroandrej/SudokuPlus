@@ -22,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
@@ -53,7 +52,6 @@ import sk.awisoft.sudokuplus.ui.components.navigation_bar.NavigationBarComponent
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
-import sk.awisoft.sudokuplus.ui.util.findActivity
 import javax.inject.Inject
 
 val LocalBoardColors = staticCompositionLocalOf { SudokuBoardColorsImpl() }
@@ -119,6 +117,22 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
                         )
+                    }
+                }
+
+                // Handle file import deep link (ACTION_VIEW intent)
+                var handledDeepLink by remember { mutableStateOf(false) }
+                LaunchedEffect(Unit) {
+                    if (!handledDeepLink && intent?.action == Intent.ACTION_VIEW) {
+                        intent?.data?.let { uri ->
+                            handledDeepLink = true
+                            navController.navigate(
+                                ImportFromFileScreenDestination(
+                                    fileUri = uri.toString(),
+                                    fromDeepLink = true
+                                ).route
+                            )
+                        }
                     }
                 }
 
@@ -207,33 +221,3 @@ class MainActivityViewModel
     )
 }
 
-// TODO: DeepLinks cause NPE in compose-destinations 2.3.0 - handle in AndroidManifest instead
-// @Destination<RootGraph>(
-//     deepLinks = [
-//         DeepLink(
-//             uriPattern = "content://",
-//             mimeType = "*/*",
-//             action = Intent.ACTION_VIEW
-//         )
-//     ]
-// )
-// @Composable
-// fun HandleImportFromFileDeepLink(
-//     navigator: DestinationsNavigator
-// ) {
-//     val context = LocalContext.current
-//     LaunchedEffect(Unit) {
-//         val activity = context.findActivity()
-//         if (activity != null) {
-//             val intentData = activity.intent.data
-//             if (intentData != null) {
-//                 navigator.navigate(
-//                     ImportFromFileScreenDestination(
-//                         fileUri = intentData.toString(),
-//                         fromDeepLink = true
-//                     )
-//                 )
-//             }
-//         }
-//     }
-// }

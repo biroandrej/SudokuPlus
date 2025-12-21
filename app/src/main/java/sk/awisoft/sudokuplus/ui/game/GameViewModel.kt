@@ -50,7 +50,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import java.time.ZonedDateTime
 import java.util.Timer
@@ -476,14 +475,16 @@ class GameViewModel @Inject constructor(
 
     var timeText by mutableStateOf("00:00")
     private var duration = Duration.ZERO
-    private lateinit var timer: Timer
+    private var timer: Timer? = null
     var gamePlaying by mutableStateOf(false)
+    private var lastSavedBoardHash: Int = 0
 
     fun startTimer() {
         if (!gamePlaying) {
             gamePlaying = true
             val updateRate = 50L
 
+            timer?.cancel()
             timer = fixedRateTimer(initialDelay = updateRate, period = updateRate) {
                 val prevTime = duration
 
@@ -491,8 +492,10 @@ class GameViewModel @Inject constructor(
                 // update text every second
                 if (prevTime.toInt(DurationUnit.SECONDS) != duration.toInt(DurationUnit.SECONDS)) {
                     timeText = duration.toFormattedString()
-                    // save game
-                    if (gameBoard.any { it.any { cell -> cell.value != 0 } }) {
+                    // save game only if board changed
+                    val currentBoardHash = gameBoard.hashCode() + notes.hashCode()
+                    if (currentBoardHash != lastSavedBoardHash && gameBoard.any { it.any { cell -> cell.value != 0 } }) {
+                        lastSavedBoardHash = currentBoardHash
                         viewModelScope.launch(Dispatchers.IO) {
                             saveGame()
                         }
@@ -504,7 +507,14 @@ class GameViewModel @Inject constructor(
 
     fun pauseTimer() {
         gamePlaying = false
-        timer.cancel()
+        timer?.cancel()
+        timer = null
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        timer?.cancel()
+        timer = null
     }
 
     fun toolbarClick(item: ToolBarItem) {
@@ -896,7 +906,7 @@ class GameViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.Default) {
             currCell = Cell(-1, -1, 0)
             _advancedHintMode.emit(true)
-            val hintSettings = runBlocking { appSettingsManager.advancedHintSettings.first() }
+            val hintSettings = appSettingsManager.advancedHintSettings.first()
             val advancedHint = AdvancedHint(
                 type = boardEntity.type,
                 board = gameBoard,
