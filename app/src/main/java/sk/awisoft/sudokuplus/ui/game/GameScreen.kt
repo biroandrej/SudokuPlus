@@ -584,6 +584,7 @@ fun GameScreen(
                                         ToolbarItem(
                                             modifier = Modifier.fillMaxSize(),
                                             painter = painterResource(R.drawable.ic_round_undo_24),
+                                            contentDescription = stringResource(R.string.action_undo),
                                             onClick = { viewModel.toolbarClick(ToolBarItem.Undo) },
                                             onLongClick = { viewModel.showUndoRedoMenu = true }
                                         )
@@ -601,6 +602,7 @@ fun GameScreen(
                                                 .weight(1f)
                                                 .height(ToolbarItemHeight),
                                             painter = painterResource(R.drawable.ic_lightbulb_stars_24),
+                                            contentDescription = stringResource(R.string.action_hint),
                                             enabled = true,
                                             visualEnabled = hintsRemaining > 0,
                                             badgeText = hintsRemaining.toString(),
@@ -624,6 +626,7 @@ fun GameScreen(
                                         ToolbarItem(
                                             modifier = Modifier.fillMaxSize(),
                                             painter = painterResource(R.drawable.ic_round_edit_24),
+                                            contentDescription = stringResource(R.string.action_notes),
                                             toggled = viewModel.notesToggled,
                                             onClick = { viewModel.toolbarClick(ToolBarItem.Note) },
                                             onLongClick = {
@@ -642,6 +645,7 @@ fun GameScreen(
                                             .weight(1f)
                                             .height(ToolbarItemHeight),
                                         painter = painterResource(R.drawable.ic_eraser_24),
+                                        contentDescription = stringResource(R.string.action_erase),
                                         toggled = viewModel.eraseButtonToggled,
                                         onClick = {
                                             viewModel.toolbarClick(ToolBarItem.Remove)
@@ -661,6 +665,7 @@ fun GameScreen(
                                                 .weight(1f)
                                                 .height(ToolbarItemHeight),
                                             painter = rememberVectorPainter(Icons.Rounded.AutoAwesome),
+                                            contentDescription = stringResource(R.string.action_advanced_hint),
                                             onClick = {
                                                 if (viewModel.gamePlaying) {
                                                     viewModel.getAdvancedHint()

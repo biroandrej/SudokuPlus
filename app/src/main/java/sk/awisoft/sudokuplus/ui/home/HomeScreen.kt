@@ -542,7 +542,7 @@ private fun HomePickerRow(
             IconButton(onClick = onPrevious) {
                 Icon(
                     painter = painterResource(R.drawable.ic_round_keyboard_arrow_left_24),
-                    contentDescription = null
+                    contentDescription = stringResource(R.string.action_previous)
                 )
             }
             AnimatedContent(
@@ -562,7 +562,7 @@ private fun HomePickerRow(
             IconButton(onClick = onNext) {
                 Icon(
                     painter = painterResource(R.drawable.ic_round_keyboard_arrow_right_24),
-                    contentDescription = null
+                    contentDescription = stringResource(R.string.action_next)
                 )
             }
         }

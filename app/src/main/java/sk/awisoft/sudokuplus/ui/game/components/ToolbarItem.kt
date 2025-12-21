@@ -41,6 +41,7 @@ val ToolbarItemHeight = 56.dp
 fun ToolbarItem(
     modifier: Modifier = Modifier,
     painter: Painter,
+    contentDescription: String? = null,
     toggled: Boolean = false,
     enabled: Boolean = true,
     visualEnabled: Boolean = enabled,
@@ -72,7 +73,7 @@ fun ToolbarItem(
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painter,
-                    contentDescription = null,
+                    contentDescription = contentDescription,
                     tint = if (toggled) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface
                 )
 

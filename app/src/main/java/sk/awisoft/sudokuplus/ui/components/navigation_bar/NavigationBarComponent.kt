@@ -59,7 +59,7 @@ fun NavigationBarComponent(
                     icon = {
                         Icon(
                             imageVector = destination.icon,
-                            contentDescription = null,
+                            contentDescription = stringResource(destination.label),
                             modifier = Modifier.scale(iconScale)
                         )
                     },
