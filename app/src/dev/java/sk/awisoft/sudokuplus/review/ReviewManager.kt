@@ -4,8 +4,5 @@ import android.app.Activity
 
 object ReviewManager {
     @Suppress("UNUSED_PARAMETER")
-    suspend fun requestReviewIfEligible(
-        activity: Activity,
-        completedGames: Int
-    ) = Unit
+    suspend fun requestReviewIfEligible(activity: Activity, completedGames: Int) = Unit
 }

@@ -28,10 +28,7 @@ object ReviewManager {
     private const val COOLDOWN_DAYS = 30
     private const val COOLDOWN_MS = COOLDOWN_DAYS * 24 * 60 * 60 * 1000L
 
-    suspend fun requestReviewIfEligible(
-        activity: Activity,
-        completedGames: Int
-    ) {
+    suspend fun requestReviewIfEligible(activity: Activity, completedGames: Int) {
         try {
             val dataStore = activity.applicationContext.reviewDataStore
             val prefs = dataStore.data.first()
