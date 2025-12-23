@@ -1,1 +1,0 @@
-Split to FOSS and nonFOSS (with in-app updater)
