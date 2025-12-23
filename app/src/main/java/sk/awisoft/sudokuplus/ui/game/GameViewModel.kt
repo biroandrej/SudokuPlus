@@ -92,6 +92,8 @@ constructor(
         data class XPEarned(val xpResult: XPResult) : UiEvent
 
         data class LevelUp(val newLevel: Int) : UiEvent
+
+        data class RequestReview(val completedGames: Int) : UiEvent
     }
 
     private val _uiEvents = MutableSharedFlow<UiEvent>(extraBufferCapacity = 1)
@@ -837,6 +839,11 @@ constructor(
             if (xpResult.leveledUp) {
                 _uiEvents.emit(UiEvent.LevelUp(xpResult.newLevel))
             }
+
+            // Request review at milestone completions
+            val completedGames = savedGameRepository.getAll().first()
+                .count { it.completed && !it.giveUp }
+            _uiEvents.emit(UiEvent.RequestReview(completedGames))
         }
         endGame = true
     }

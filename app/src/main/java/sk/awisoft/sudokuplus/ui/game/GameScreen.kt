@@ -83,6 +83,7 @@ import kotlin.collections.plus
 import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.ads.AdsManager
+import sk.awisoft.sudokuplus.review.ReviewManager
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.core.qqwing.GameType
@@ -240,6 +241,11 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
                 }
                 is GameViewModel.UiEvent.LevelUp -> {
                     showLevelUpDialog = event.newLevel
+                }
+                is GameViewModel.UiEvent.RequestReview -> {
+                    context.findActivity()?.let { activity ->
+                        ReviewManager.requestReviewIfEligible(activity, event.completedGames)
+                    }
                 }
             }
         }

@@ -198,6 +198,7 @@ dependencies {
     implementation(libs.splash.screen)
 
     add("prodImplementation", libs.play.services.ads)
+    add("prodImplementation", libs.play.review)
 
     add("prodImplementation", platform(libs.firebase.bom))
     add("prodImplementation", libs.firebase.crashlytics)

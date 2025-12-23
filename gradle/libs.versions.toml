@@ -36,6 +36,7 @@ serialization-json = "1.9.0"
 # Google
 googleMaterial = "1.13.0"
 playServicesAds = "24.9.0"
+playReview = "2.0.2"
 
 # Firebase
 firebaseBom = "33.7.0"
@@ -114,6 +115,7 @@ materialKolor = { group = "com.materialkolor", name = "material-kolor", version.
 
 # Google Services
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+play-review = { group = "com.google.android.play", name = "review-ktx", version.ref = "playReview" }
 
 # Firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
