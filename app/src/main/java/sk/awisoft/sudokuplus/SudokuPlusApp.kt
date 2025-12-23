@@ -37,8 +37,13 @@ class SudokuPlusApp : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+        initCrashlytics()
         WorkManager.initialize(this, workManagerConfiguration)
         scheduleNotificationWorkersIfEnabled()
+    }
+
+    private fun initCrashlytics() {
+        CrashlyticsInitializer.init()
     }
 
     private fun scheduleNotificationWorkersIfEnabled() {

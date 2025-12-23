@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.serialization)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.googleServices)
+    alias(libs.plugins.firebaseCrashlytics)
     id("kotlin-parcelize")
 }
 
@@ -191,4 +193,19 @@ dependencies {
     implementation(libs.splash.screen)
 
     add("prodImplementation", libs.play.services.ads)
+
+    add("prodImplementation", platform(libs.firebase.bom))
+    add("prodImplementation", libs.firebase.crashlytics)
+}
+
+// Disable Google Services and Crashlytics tasks for dev builds
+androidComponents {
+    onVariants(selector().withFlavor("version" to "dev")) {
+        // Disable Google Services processing for dev builds
+        tasks.configureEach {
+            if (name.contains("Dev") && (name.contains("GoogleServices") || name.contains("Crashlytics"))) {
+                enabled = false
+            }
+        }
+    }
 }
