@@ -17,6 +17,8 @@
     <string name="about_title">बारे में</string>
     <string name="about_contact_developer">संपर्क</string>
     <string name="about_contact_developer_summary">फीचर अनुरोध, प्रतिक्रिया या प्रश्न</string>
+    <string name="about_rate_app">ऐप को रेट करें</string>
+    <string name="about_rate_app_summary">ऐप पसंद है? समीक्षा छोड़ें!</string>
     <string name="pref_dark_theme_off">बंद</string>
     <string name="pref_dark_theme">गहरी थीम</string>
     <string name="pref_board_font_size">बोर्ड के शब्दों का आकार</string>

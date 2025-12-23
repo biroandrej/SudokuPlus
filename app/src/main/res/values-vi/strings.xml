@@ -46,6 +46,8 @@
     <string name="hints_ad_cancel">Not now</string>
     <string name="about_contact_developer">Liên hệ</string>
     <string name="about_contact_developer_summary">Yêu cầu tính năng, phản hồi hoặc câu hỏi</string>
+    <string name="about_rate_app">Đánh giá ứng dụng</string>
+    <string name="about_rate_app_summary">Bạn thích ứng dụng? Để lại đánh giá!</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Thử thách hàng ngày</string>

@@ -278,6 +278,8 @@
     <string name="about_github_source_code">Codice sorgente su Github</string>
     <string name="about_contact_developer">Contatto</string>
     <string name="about_contact_developer_summary">Richieste di funzionalità, feedback o domande</string>
+    <string name="about_rate_app">Valuta l\'app</string>
+    <string name="about_rate_app_summary">Ti piace l\'app? Lascia una recensione!</string>
     <string name="libraries_licenses">Licenze</string>
     <string name="restore_description">Ripristina backup da file</string>
     <string name="creating_backup_error">Backup fallito</string>

@@ -18,6 +18,8 @@
     <string name="about_title">Om</string>
     <string name="about_contact_developer">Kontakt</string>
     <string name="about_contact_developer_summary">Funktionsanmodninger, feedback eller spørgsmål</string>
+    <string name="about_rate_app">Bedøm appen</string>
+    <string name="about_rate_app_summary">Nyder du appen? Giv en anmeldelse!</string>
     <string name="pref_appearance">Udseende</string>
     <string name="pref_dark_theme_follow">Følg system</string>
     <string name="pref_dark_theme_off">Fra</string>

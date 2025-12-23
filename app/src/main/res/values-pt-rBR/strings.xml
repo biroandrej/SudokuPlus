@@ -310,6 +310,8 @@
     <string name="about_github_source_code">Código fonte no Github</string>
     <string name="about_contact_developer">Contato</string>
     <string name="about_contact_developer_summary">Solicitações de recursos, feedback ou perguntas</string>
+    <string name="about_rate_app">Avaliar o app</string>
+    <string name="about_rate_app_summary">Gostando do app? Deixe uma avaliação!</string>
     <string name="libraries_licenses">Licenças</string>
     <string name="color_picker_title">Escolha uma cor</string>
     <string name="parse_color_fail">Não é uma cor</string>

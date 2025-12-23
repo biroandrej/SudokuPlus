@@ -51,6 +51,8 @@
     <string name="about_github_source_code">GitHub 上的原始碼</string>
     <string name="about_contact_developer">聯絡</string>
     <string name="about_contact_developer_summary">功能請求、意見回饋或問題</string>
+    <string name="about_rate_app">評價應用程式</string>
+    <string name="about_rate_app_summary">喜歡這個應用程式嗎？留下評價！</string>
     <string name="pref_other">其他</string>
     <string name="pref_keep_screen_on">保持螢幕開啟</string>
     <string name="nav_bar_home">首頁</string>
