@@ -5,13 +5,15 @@ All notable changes to Sudoku Plus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.2-rc01] - 2025-12-21
+## [1.1.0] - 2025-12-23
 
 ### Added
 - **XP & Leveling System**: Earn experience points by completing puzzles and level up from Beginner to Grandmaster
 - **Daily Reward Calendar**: Claim daily rewards including bonus hints, XP boosts, and badges
 - **Badge Collection**: Earn badges for weekly streaks and completing reward cycles
 - **Accessibility Labels**: Added screen reader support for toolbar, navigation bar, and picker controls
+- **Firebase Crashlytics**: Crash reporting for production builds to improve app stability
+- **Code Quality**: Added ktlint for consistent Kotlin code style enforcement
 
 ### Changed
 - **Backup UX**: Improved error handling with clear failure messages and retry option
@@ -29,6 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Technical
 - Updated AboutLibraries and ComposeMarkdown dependencies
 - Removed deprecated Accompanist libraries
+- Added CI workflow with lint, build, and test checks on PRs
+- Simplified release workflow and removed fastlane
 
 ## [1.0.1-rc02] - 2025-12-19
 
