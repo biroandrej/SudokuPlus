@@ -320,4 +320,77 @@
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
     <string name="hints_ad_cancel">Not now</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Desafio Diário</string>
+    <string name="notification_channel_daily_challenge_desc">Notificações para novos desafios diários</string>
+    <string name="notification_channel_streak_reminder">Lembrete de Sequência</string>
+    <string name="notification_channel_streak_reminder_desc">Lembretes para manter sua sequência</string>
+    <string name="notification_daily_challenge_title">Desafio Diário Pronto!</string>
+    <string name="notification_daily_challenge_text">Um novo quebra-cabeça diário está esperando por você</string>
+    <string name="notification_streak_reminder_title">Não perca sua sequência!</string>
+    <string name="notification_streak_reminder_text">Você não jogou hoje. Mantenha sua sequência viva!</string>
+    <string name="notification_streak_reminder_text_with_streak">Sua sequência de %d dias está em risco! Jogue agora para mantê-la</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notificações</string>
+    <string name="notifications_permission_required">Permissão de notificação necessária</string>
+    <string name="notifications_permission_rationale">Permita notificações para receber lembretes de desafio diário e alertas de sequência</string>
+    <string name="notifications_daily_challenge">Lembrete de desafio diário</string>
+    <string name="notifications_daily_challenge_desc">Receba notificações quando um novo desafio diário estiver disponível</string>
+    <string name="notifications_daily_challenge_time">Horário do desafio diário</string>
+    <string name="notifications_streak_reminder">Lembrete de sequência</string>
+    <string name="notifications_streak_reminder_desc">Receba um lembrete se você não jogou hoje</string>
+    <string name="notifications_streak_reminder_time">Horário do lembrete de sequência</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Fique atualizado</string>
+    <string name="notification_permission_dialog_message">Permita notificações para receber lembretes de desafios diários e alertas de sequência. Você pode alterar isso mais tarde nas configurações.</string>
+    <string name="notification_permission_dialog_allow">Permitir</string>
+    <string name="notification_permission_dialog_later">Agora não</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Iniciante</string>
+    <string name="level_title_novice">Novato</string>
+    <string name="level_title_apprentice">Aprendiz</string>
+    <string name="level_title_solver">Resolvedor</string>
+    <string name="level_title_expert">Especialista</string>
+    <string name="level_title_master">Mestre</string>
+    <string name="level_title_grandmaster">Grão-Mestre</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Nível %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP para o próximo nível</string>
+    <string name="level_up_title">Subiu de Nível!</string>
+    <string name="level_up_message">Parabéns! Continue resolvendo puzzles para subir mais!</string>
+    <string name="xp_earned_title">XP Ganha</string>
+    <string name="xp_bonuses">Bônus Aplicados</string>
+    <string name="xp_base">Base: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Jogo perfeito</string>
+    <string name="xp_bonus_no_hints">Sem dicas</string>
+    <string name="xp_bonus_daily_challenge">Desafio diário</string>
+    <string name="xp_bonus_streak">Sequência de %1$d dias</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Recompensas diárias</string>
+    <string name="reward_calendar_day">Dia %1$d</string>
+    <string name="reward_calendar_claim">Resgatar</string>
+    <string name="reward_calendar_claimed">Resgatado</string>
+    <string name="reward_calendar_locked">Bloqueado</string>
+    <string name="reward_calendar_today">Hoje</string>
+    <string name="reward_calendar_streak">%1$d dias de sequência</string>
+    <string name="reward_calendar_total_claimed">Total resgatado: %1$d</string>
+    <string name="reward_claim_title">Recompensa resgatada!</string>
+    <string name="reward_claim_message">Você recebeu:</string>
+    <string name="reward_type_hints">Dicas bônus</string>
+    <string name="reward_type_xp_boost">Aumento de XP</string>
+    <string name="reward_type_theme">Tema desbloqueado</string>
+    <string name="reward_type_badge">Distintivo especial</string>
+    <string name="reward_hints_amount">+%1$d Dicas</string>
+    <string name="reward_xp_boost_amount">2x XP por %1$d jogos</string>
+    <string name="reward_bonus_hints_available">%1$d dicas bônus disponíveis</string>
+    <string name="reward_xp_boost_active">Aumento XP: %1$d jogos restantes</string>
+
 </resources>

@@ -332,9 +332,83 @@
         <item quantity="one">Siste spill</item>
         <item quantity="other">Siste %1$d spill</item>
     </plurals>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Ingen hint igjen for dette spillet</string>
+    <string name="hints_ad_title">Tom for hint</string>
+    <string name="hints_ad_message">Se en kort annonse for å avsløre et hint?</string>
+    <string name="hints_ad_watch">Se annonse</string>
+    <string name="hints_ad_cancel">Ikke nå</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Daglig utfordring</string>
+    <string name="notification_channel_daily_challenge_desc">Varsler for nye daglige utfordringer</string>
+    <string name="notification_channel_streak_reminder">Sekvens-påminnelse</string>
+    <string name="notification_channel_streak_reminder_desc">Påminnelser for å holde sekvensen din</string>
+    <string name="notification_daily_challenge_title">Daglig utfordring klar!</string>
+    <string name="notification_daily_challenge_text">En ny daglig oppgave venter på deg</string>
+    <string name="notification_streak_reminder_title">Ikke mist sekvensen din!</string>
+    <string name="notification_streak_reminder_text">Du har ikke spilt i dag. Hold sekvensen din i live!</string>
+    <string name="notification_streak_reminder_text_with_streak">Din %d dagers sekvens er i fare! Spill nå for å beholde den</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Varsler</string>
+    <string name="notifications_permission_required">Varslingstillatelse kreves</string>
+    <string name="notifications_permission_rationale">Tillat varsler for å motta påminnelser om daglige utfordringer og sekvensvarsler</string>
+    <string name="notifications_daily_challenge">Påminnelse for daglig utfordring</string>
+    <string name="notifications_daily_challenge_desc">Bli varslet når en ny daglig utfordring er tilgjengelig</string>
+    <string name="notifications_daily_challenge_time">Tid for daglig utfordring</string>
+    <string name="notifications_streak_reminder">Sekvens-påminnelse</string>
+    <string name="notifications_streak_reminder_desc">Få en påminnelse hvis du ikke har spilt i dag</string>
+    <string name="notifications_streak_reminder_time">Tid for sekvens-påminnelse</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Hold deg oppdatert</string>
+    <string name="notification_permission_dialog_message">Tillat varsler for å motta påminnelser om daglige utfordringer og sekvensadvarsler. Du kan endre dette senere i innstillinger.</string>
+    <string name="notification_permission_dialog_allow">Tillat</string>
+    <string name="notification_permission_dialog_later">Ikke nå</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Nybegynner</string>
+    <string name="level_title_novice">Novise</string>
+    <string name="level_title_apprentice">Lærling</string>
+    <string name="level_title_solver">Løser</string>
+    <string name="level_title_expert">Ekspert</string>
+    <string name="level_title_master">Mester</string>
+    <string name="level_title_grandmaster">Stormester</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Nivå %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP til neste nivå</string>
+    <string name="level_up_title">Nivå opp!</string>
+    <string name="level_up_message">Gratulerer! Fortsett å løse oppgaver for å klatre høyere!</string>
+    <string name="xp_earned_title">XP Opptjent</string>
+    <string name="xp_bonuses">Anvendte Bonuser</string>
+    <string name="xp_base">Basis: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Perfekt spill</string>
+    <string name="xp_bonus_no_hints">Ingen hint brukt</string>
+    <string name="xp_bonus_daily_challenge">Daglig utfordring</string>
+    <string name="xp_bonus_streak">%1$d dagers rekke</string>
+    <string name="xp_bonus_reward_boost">Daglig belønningsboost</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Daglige belønninger</string>
+    <string name="reward_calendar_day">Dag %1$d</string>
+    <string name="reward_calendar_claim">Hent</string>
+    <string name="reward_calendar_claimed">Hentet</string>
+    <string name="reward_calendar_locked">Låst</string>
+    <string name="reward_calendar_today">I dag</string>
+    <string name="reward_calendar_streak">%1$d dagers rekke</string>
+    <string name="reward_calendar_total_claimed">Totalt hentet: %1$d</string>
+    <string name="reward_claim_title">Belønning hentet!</string>
+    <string name="reward_claim_message">Du mottok:</string>
+    <string name="reward_type_hints">Bonustips</string>
+    <string name="reward_type_xp_boost">XP-boost</string>
+    <string name="reward_type_theme">Tema låst opp</string>
+    <string name="reward_type_badge">Spesielt merke</string>
+    <string name="reward_hints_amount">+%1$d Tips</string>
+    <string name="reward_xp_boost_amount">2x XP for %1$d spill</string>
+    <string name="reward_bonus_hints_available">%1$d bonustips tilgjengelig</string>
+    <string name="reward_xp_boost_active">XP-boost: %1$d spill igjen</string>
+
 </resources>

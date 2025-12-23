@@ -46,21 +46,25 @@ object AdsManager {
     }
 
     fun showInterstitialIfAvailable(activity: Activity) {
-        val adToShow = interstitialAd ?: run {
-            preloadInterstitial(activity)
-            return
-        }
-        adToShow.fullScreenContentCallback = object : FullScreenContentCallback() {
-            override fun onAdDismissedFullScreenContent() {
-                interstitialAd = null
+        val adToShow =
+            interstitialAd ?: run {
                 preloadInterstitial(activity)
+                return
             }
+        adToShow.fullScreenContentCallback =
+            object : FullScreenContentCallback() {
+                override fun onAdDismissedFullScreenContent() {
+                    interstitialAd = null
+                    preloadInterstitial(activity)
+                }
 
-            override fun onAdFailedToShowFullScreenContent(adError: com.google.android.gms.ads.AdError) {
-                interstitialAd = null
-                preloadInterstitial(activity)
+                override fun onAdFailedToShowFullScreenContent(
+                    adError: com.google.android.gms.ads.AdError
+                ) {
+                    interstitialAd = null
+                    preloadInterstitial(activity)
+                }
             }
-        }
         adToShow.show(activity)
         interstitialAd = null
     }
@@ -86,25 +90,26 @@ object AdsManager {
         )
     }
 
-    fun showRewardedIfAvailable(
-        activity: Activity,
-        onReward: () -> Unit
-    ): Boolean {
-        val adToShow = rewardedAd ?: run {
-            preloadRewarded(activity)
-            return false
-        }
-        adToShow.fullScreenContentCallback = object : FullScreenContentCallback() {
-            override fun onAdDismissedFullScreenContent() {
-                rewardedAd = null
+    fun showRewardedIfAvailable(activity: Activity, onReward: () -> Unit): Boolean {
+        val adToShow =
+            rewardedAd ?: run {
                 preloadRewarded(activity)
+                return false
             }
+        adToShow.fullScreenContentCallback =
+            object : FullScreenContentCallback() {
+                override fun onAdDismissedFullScreenContent() {
+                    rewardedAd = null
+                    preloadRewarded(activity)
+                }
 
-            override fun onAdFailedToShowFullScreenContent(adError: com.google.android.gms.ads.AdError) {
-                rewardedAd = null
-                preloadRewarded(activity)
+                override fun onAdFailedToShowFullScreenContent(
+                    adError: com.google.android.gms.ads.AdError
+                ) {
+                    rewardedAd = null
+                    preloadRewarded(activity)
+                }
             }
-        }
         adToShow.show(activity) {
             onReward()
         }
@@ -112,16 +117,18 @@ object AdsManager {
         return true
     }
 
+    @Suppress("ktlint:standard:function-naming")
     @Composable
     fun BannerAd(modifier: Modifier) {
         val context = LocalContext.current
-        val adView = remember {
-            AdView(context).apply {
-                setAdSize(AdSize.BANNER)
-                setAdUnitId(BuildConfig.ADMOB_BANNER_AD_UNIT_ID)
-                loadAd(AdRequest.Builder().build())
+        val adView =
+            remember {
+                AdView(context).apply {
+                    setAdSize(AdSize.BANNER)
+                    setAdUnitId(BuildConfig.ADMOB_BANNER_AD_UNIT_ID)
+                    loadAd(AdRequest.Builder().build())
+                }
             }
-        }
         AndroidView(
             modifier = modifier,
             factory = { adView },

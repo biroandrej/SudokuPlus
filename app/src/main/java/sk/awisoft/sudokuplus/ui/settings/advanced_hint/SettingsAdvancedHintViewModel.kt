@@ -2,15 +2,17 @@ package sk.awisoft.sudokuplus.ui.settings.advanced_hint
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintSettings
-import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintSettings
+import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 
 @HiltViewModel
-class SettingsAdvancedHintViewModel @Inject constructor(
+class SettingsAdvancedHintViewModel
+@Inject
+constructor(
     private val settingsManager: AppSettingsManager
 ) : ViewModel() {
     val advancedHintEnabled = settingsManager.advancedHintEnabled

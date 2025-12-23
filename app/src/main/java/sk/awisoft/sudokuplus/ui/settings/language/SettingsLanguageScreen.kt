@@ -32,6 +32,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.os.LocaleListCompat
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
@@ -41,14 +44,10 @@ import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
 import sk.awisoft.sudokuplus.ui.util.findActivity
 import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleTag
 import sk.awisoft.sudokuplus.ui.util.getLangs
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
-fun SettingsLanguageScreen(
-    navigator: DestinationsNavigator
-) {
+fun SettingsLanguageScreen(navigator: DestinationsNavigator) {
     val context = LocalContext.current
 
     val appLanguages by remember { mutableStateOf(getLangs(context)) }
@@ -59,7 +58,8 @@ fun SettingsLanguageScreen(
         navigator = navigator
     ) { paddingValues ->
         ScrollbarLazyColumn(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(paddingValues)
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -73,11 +73,12 @@ fun SettingsLanguageScreen(
                     languageEmoji = LocaleEmoji.getFlagEmoji(langCode),
                     selected = currentLanguage == langCode,
                     onClick = {
-                        val locale = if (langCode == "") {
-                            LocaleListCompat.getEmptyLocaleList()
-                        } else {
-                            LocaleListCompat.forLanguageTags(langCode)
-                        }
+                        val locale =
+                            if (langCode == "") {
+                                LocaleListCompat.getEmptyLocaleList()
+                            } else {
+                                LocaleListCompat.forLanguageTags(langCode)
+                            }
                         AppCompatDelegate.setApplicationLocales(locale)
                         currentLanguage = getCurrentLocaleTag()
 
@@ -100,29 +101,36 @@ private fun LanguageItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val titleStyle = MaterialTheme.typography.titleLarge.copy(
-        color = MaterialTheme.colorScheme.onSurface,
-        fontSize = 20.sp
-    )
+    val titleStyle =
+        MaterialTheme.typography.titleLarge.copy(
+            color = MaterialTheme.colorScheme.onSurface,
+            fontSize = 20.sp
+        )
 
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .padding(horizontal = 12.dp)
             .clip(MaterialTheme.shapes.large)
             .background(
-                color = with(MaterialTheme.colorScheme) {
-                    if (selected) surfaceContainerLowest.harmonizeWithPrimary()
-                    else Color.Transparent
+                color =
+                with(MaterialTheme.colorScheme) {
+                    if (selected) {
+                        surfaceContainerLowest.harmonizeWithPrimary()
+                    } else {
+                        Color.Transparent
+                    }
                 }
             )
             .clickable(onClick = onClick)
             .padding(vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         if (languageEmoji != null) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .padding(horizontal = 6.dp)
                     .clip(MaterialTheme.shapes.medium)
                     .background(MaterialTheme.colorScheme.surfaceContainerHighest),
@@ -142,7 +150,7 @@ private fun LanguageItem(
         Column(
             Modifier
                 .padding(start = if (languageEmoji != null) 6.dp else 12.dp)
-                .weight(1f),
+                .weight(1f)
         ) {
             Text(
                 text = languageName,

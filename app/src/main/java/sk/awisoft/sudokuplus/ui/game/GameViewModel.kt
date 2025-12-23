@@ -8,44 +8,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import sk.awisoft.sudokuplus.core.Cell
-import sk.awisoft.sudokuplus.core.Note
-import sk.awisoft.sudokuplus.core.PreferencesConstants
-import sk.awisoft.sudokuplus.core.qqwing.Cage
-import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
-import sk.awisoft.sudokuplus.core.qqwing.GameType
-import sk.awisoft.sudokuplus.core.qqwing.QQWingController
-import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHint
-import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintData
-import sk.awisoft.sudokuplus.core.utils.GameState
-import sk.awisoft.sudokuplus.core.utils.SudokuParser
-import sk.awisoft.sudokuplus.core.utils.SudokuUtils
-import sk.awisoft.sudokuplus.core.utils.UndoRedoManager
-import sk.awisoft.sudokuplus.core.utils.toFormattedString
-import sk.awisoft.sudokuplus.data.database.model.Record
-import sk.awisoft.sudokuplus.data.database.model.SavedGame
-import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
-import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
-import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
-import sk.awisoft.sudokuplus.domain.repository.RecordRepository
-import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
-import sk.awisoft.sudokuplus.domain.usecase.board.GetBoardUseCase
-import sk.awisoft.sudokuplus.domain.usecase.board.UpdateBoardUseCase
-import sk.awisoft.sudokuplus.domain.usecase.record.GetAllRecordsUseCase
-import sk.awisoft.sudokuplus.navArgs
-import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import java.time.ZonedDateTime
 import java.util.Timer
 import javax.inject.Inject
@@ -58,9 +21,53 @@ import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 import kotlin.time.toJavaDuration
 import kotlin.time.toKotlinDuration
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import sk.awisoft.sudokuplus.core.Cell
+import sk.awisoft.sudokuplus.core.Note
+import sk.awisoft.sudokuplus.core.PreferencesConstants
+import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
+import sk.awisoft.sudokuplus.core.achievement.GameCompletionData
+import sk.awisoft.sudokuplus.core.qqwing.Cage
+import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
+import sk.awisoft.sudokuplus.core.qqwing.GameType
+import sk.awisoft.sudokuplus.core.qqwing.QQWingController
+import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHint
+import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintData
+import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
+import sk.awisoft.sudokuplus.core.utils.GameState
+import sk.awisoft.sudokuplus.core.utils.SudokuParser
+import sk.awisoft.sudokuplus.core.utils.SudokuUtils
+import sk.awisoft.sudokuplus.core.utils.UndoRedoManager
+import sk.awisoft.sudokuplus.core.utils.toFormattedString
+import sk.awisoft.sudokuplus.core.xp.XPEngine
+import sk.awisoft.sudokuplus.core.xp.XPResult
+import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
+import sk.awisoft.sudokuplus.data.database.model.Record
+import sk.awisoft.sudokuplus.data.database.model.SavedGame
+import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
+import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
+import sk.awisoft.sudokuplus.domain.repository.RecordRepository
+import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.usecase.board.GetBoardUseCase
+import sk.awisoft.sudokuplus.domain.usecase.board.UpdateBoardUseCase
+import sk.awisoft.sudokuplus.domain.usecase.record.GetAllRecordsUseCase
+import sk.awisoft.sudokuplus.navArgs
+import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
 
 @HiltViewModel
-class GameViewModel @Inject constructor(
+class GameViewModel
+@Inject
+constructor(
     private val savedGameRepository: SavedGameRepository,
     private val appSettingsManager: AppSettingsManager,
     private val recordRepository: RecordRepository,
@@ -68,12 +75,23 @@ class GameViewModel @Inject constructor(
     private val getBoardUseCase: GetBoardUseCase,
     themeSettingsManager: ThemeSettingsManager,
     private val savedStateHandle: SavedStateHandle,
-    private val getAllRecordsUseCase: GetAllRecordsUseCase
+    private val getAllRecordsUseCase: GetAllRecordsUseCase,
+    private val achievementEngine: AchievementEngine,
+    private val xpEngine: XPEngine,
+    private val rewardCalendarManager: RewardCalendarManager
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
+
         data object ShowInterstitial : UiEvent
+
         data object RequestRewardedHint : UiEvent
+
+        data class AchievementsUnlocked(val achievements: List<AchievementDefinition>) : UiEvent
+
+        data class XPEarned(val xpResult: XPResult) : UiEvent
+
+        data class LevelUp(val newLevel: Int) : UiEvent
     }
 
     private val _uiEvents = MutableSharedFlow<UiEvent>(extraBufferCapacity = 1)
@@ -97,14 +115,23 @@ class GameViewModel @Inject constructor(
 
             if (!continueSaved) {
                 appSettingsManager.resetHintsRemaining(gameUid)
+                // Add bonus hints from reward calendar
+                val bonusHints = rewardCalendarManager.getBonusHints()
+                if (bonusHints > 0) {
+                    appSettingsManager.grantHints(gameUid, bonusHints)
+                    // Consume all bonus hints from the reward calendar
+                    repeat(bonusHints) {
+                        rewardCalendarManager.useHint()
+                    }
+                }
             }
 
-
             withContext(Dispatchers.Default) {
-                initialBoard = sudokuParser.parseBoard(
-                    boardEntity.initialBoard,
-                    boardEntity.type
-                ).toList()
+                initialBoard =
+                    sudokuParser.parseBoard(
+                        boardEntity.initialBoard,
+                        boardEntity.type
+                    ).toList()
                 initialBoard.forEach { cells ->
                     cells.forEach { cell ->
                         cell.locked = cell.value != 0
@@ -112,10 +139,11 @@ class GameViewModel @Inject constructor(
                 }
 
                 if (boardEntity.solvedBoard.isNotBlank() && !boardEntity.solvedBoard.contains("0")) {
-                    solvedBoard = sudokuParser.parseBoard(
-                        boardEntity.solvedBoard,
-                        boardEntity.type
-                    )
+                    solvedBoard =
+                        sudokuParser.parseBoard(
+                            boardEntity.solvedBoard,
+                            boardEntity.type
+                        )
                     boardEntity.killerCages?.let { cagesString ->
                         cages = sudokuParser.parseKillerSudokuCages(cagesString)
                     }
@@ -173,37 +201,41 @@ class GameViewModel @Inject constructor(
     val identicalHighlight = appSettingsManager.highlightIdentical
 
     // mistakes checking method
-    var mistakesMethod = appSettingsManager.highlightMistakes.stateIn(
-        viewModelScope,
-        SharingStarted.Eagerly,
-        PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_MISTAKES
-    )
+    var mistakesMethod =
+        appSettingsManager.highlightMistakes.stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_MISTAKES
+        )
 
     var positionLines = appSettingsManager.positionLines
     val crossHighlight = themeSettingsManager.boardCrossHighlight
     val darkTheme = themeSettingsManager.darkTheme
     val funKeyboardOverNum = appSettingsManager.funKeyboardOverNumbers
 
-    var mistakesLimit = appSettingsManager.mistakesLimit.stateIn(
-        viewModelScope,
-        SharingStarted.Eagerly,
-        PreferencesConstants.Companion.DEFAULT_MISTAKES_LIMIT
-    )
+    var mistakesLimit =
+        appSettingsManager.mistakesLimit.stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            PreferencesConstants.Companion.DEFAULT_MISTAKES_LIMIT
+        )
 
-    private var autoEraseNotes = appSettingsManager.autoEraseNotes.stateIn(
-        viewModelScope,
-        SharingStarted.Eagerly,
-        PreferencesConstants.Companion.DEFAULT_AUTO_ERASE_NOTES
-    )
+    private var autoEraseNotes =
+        appSettingsManager.autoEraseNotes.stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            PreferencesConstants.Companion.DEFAULT_AUTO_ERASE_NOTES
+        )
 
     var resetTimerOnRestart = appSettingsManager.resetTimerEnabled
 
     var disableHints = appSettingsManager.hintsDisabled
-    val hintsRemaining = appSettingsManager.hintsRemaining(gameUid).stateIn(
-        viewModelScope,
-        SharingStarted.Eagerly,
-        PreferencesConstants.DEFAULT_HINTS_PER_GAME
-    )
+    val hintsRemaining =
+        appSettingsManager.hintsRemaining(gameUid).stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            PreferencesConstants.DEFAULT_HINTS_PER_GAME
+        )
 
     var endGame by mutableStateOf(false)
     var giveUpDialog by mutableStateOf(false)
@@ -228,12 +260,13 @@ class GameViewModel @Inject constructor(
 
     // Selected number for digit first method
     var digitFirstNumber by mutableIntStateOf(0)
-    private val inputMethod = appSettingsManager.inputMethod
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.Eagerly,
-            initialValue = PreferencesConstants.Companion.DEFAULT_INPUT_METHOD
-        )
+    private val inputMethod =
+        appSettingsManager.inputMethod
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.Eagerly,
+                initialValue = PreferencesConstants.Companion.DEFAULT_INPUT_METHOD
+            )
 
     // temporarily use digit first method when true
     private var overrideInputMethodDF by mutableStateOf(false)
@@ -271,8 +304,8 @@ class GameViewModel @Inject constructor(
     ): List<Note> {
         return notes.minus(
             notes.filter { note ->
-                note.row == row
-                        && note.col == col
+                note.row == row &&
+                    note.col == col
             }.toSet()
         )
     }
@@ -377,8 +410,10 @@ class GameViewModel @Inject constructor(
                         if ((remainingUsesList.size >= digitFirstNumber && remainingUsesList[digitFirstNumber - 1] > 0) || !remainingUse) {
                             processNumberInput(digitFirstNumber)
                             undoRedoManager.addState(GameState(gameBoard, notes))
-                            if (notesToggled) currCell =
-                                Cell(currCell.row, currCell.col, digitFirstNumber)
+                            if (notesToggled) {
+                                currCell =
+                                    Cell(currCell.row, currCell.col, digitFirstNumber)
+                            }
                         }
                     } else if (!currCell.locked) {
                         gameBoard = setValueCell(0)
@@ -425,16 +460,16 @@ class GameViewModel @Inject constructor(
         }
     }
 
-
     fun processNumberInput(number: Int) {
         if (currCell.row >= 0 && currCell.col >= 0 && gamePlaying && !currCell.locked) {
             if (!notesToggled) {
                 // Clear all note to set a number
                 notes = clearNotesAtCell(notes, currCell.row, currCell.col)
 
-                gameBoard = setValueCell(
-                    if (gameBoard[currCell.row][currCell.col].value == number) 0 else number
-                )
+                gameBoard =
+                    setValueCell(
+                        if (gameBoard[currCell.row][currCell.col].value == number) 0 else number
+                    )
             } else {
                 gameBoard = setValueCell(0)
                 setNote(number)
@@ -445,45 +480,61 @@ class GameViewModel @Inject constructor(
 
     private fun setNote(number: Int) {
         val note = Note(currCell.row, currCell.col, number)
-        notes = if (notes.contains(note)) {
-            removeNote(note.value, note.row, note.col)
-        } else {
-            notesTaken++
-            addNote(note.value, note.row, note.col)
-        }
+        notes =
+            if (notes.contains(note)) {
+                removeNote(note.value, note.row, note.col)
+            } else {
+                notesTaken++
+                addNote(note.value, note.row, note.col)
+            }
     }
 
     var timeText by mutableStateOf("00:00")
     private var duration = Duration.ZERO
-    private lateinit var timer: Timer
+    private var timer: Timer? = null
     var gamePlaying by mutableStateOf(false)
+    private var lastSavedBoardHash: Int = 0
 
     fun startTimer() {
         if (!gamePlaying) {
             gamePlaying = true
             val updateRate = 50L
 
-            timer = fixedRateTimer(initialDelay = updateRate, period = updateRate) {
-                val prevTime = duration
+            timer?.cancel()
+            timer =
+                fixedRateTimer(initialDelay = updateRate, period = updateRate) {
+                    val prevTime = duration
 
-                duration = duration.plus((updateRate * 1e6).toDuration(DurationUnit.NANOSECONDS))
-                // update text every second
-                if (prevTime.toInt(DurationUnit.SECONDS) != duration.toInt(DurationUnit.SECONDS)) {
-                    timeText = duration.toFormattedString()
-                    // save game
-                    if (gameBoard.any { it.any { cell -> cell.value != 0 } }) {
-                        viewModelScope.launch(Dispatchers.IO) {
-                            saveGame()
+                    duration = duration.plus((updateRate * 1e6).toDuration(DurationUnit.NANOSECONDS))
+                    // update text every second
+                    if (prevTime.toInt(DurationUnit.SECONDS) != duration.toInt(DurationUnit.SECONDS)) {
+                        timeText = duration.toFormattedString()
+                        // save game only if board changed
+                        val currentBoardHash = gameBoard.hashCode() + notes.hashCode()
+                        if (currentBoardHash != lastSavedBoardHash && gameBoard.any {
+                                it.any { cell -> cell.value != 0 }
+                            }
+                        ) {
+                            lastSavedBoardHash = currentBoardHash
+                            viewModelScope.launch(Dispatchers.IO) {
+                                saveGame()
+                            }
                         }
                     }
                 }
-            }
         }
     }
 
     fun pauseTimer() {
         gamePlaying = false
-        timer.cancel()
+        timer?.cancel()
+        timer = null
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        timer?.cancel()
+        timer = null
     }
 
     fun toolbarClick(item: ToolBarItem) {
@@ -514,9 +565,10 @@ class GameViewModel @Inject constructor(
                 ToolBarItem.Hint -> {
                     if (!canApplyHint()) return
                     viewModelScope.launch {
-                        val consumed = withContext(Dispatchers.IO) {
-                            appSettingsManager.tryConsumeHint(gameUid)
-                        }
+                        val consumed =
+                            withContext(Dispatchers.IO) {
+                                appSettingsManager.tryConsumeHint(gameUid)
+                            }
                         if (consumed) {
                             applyHint()
                         } else {
@@ -695,10 +747,11 @@ class GameViewModel @Inject constructor(
 
             mistakesCount = savedGame.mistakes
             val sudokuParser = SudokuParser()
-            gameBoard = sudokuParser.parseBoard(
-                savedGame.currentBoard,
-                boardEntity.type
-            )
+            gameBoard =
+                sudokuParser.parseBoard(
+                    savedGame.currentBoard,
+                    boardEntity.type
+                )
             notes = sudokuParser.parseNotes(savedGame.notes)
 
             for (i in gameBoard.indices) {
@@ -762,6 +815,28 @@ class GameViewModel @Inject constructor(
                     time = duration.toJavaDuration()
                 )
             )
+
+            // Check for newly unlocked achievements
+            val completionData =
+                GameCompletionData(
+                    difficulty = gameDifficulty,
+                    gameType = gameType,
+                    completionTime = duration.toJavaDuration(),
+                    mistakes = mistakesMade,
+                    hintsUsed = hintsUsed,
+                    isDailyChallenge = navArgs.isDailyChallenge
+                )
+            val unlockedAchievements = achievementEngine.checkAchievements(completionData)
+            if (unlockedAchievements.isNotEmpty()) {
+                _uiEvents.emit(UiEvent.AchievementsUnlocked(unlockedAchievements))
+            }
+
+            // Award XP
+            val xpResult = xpEngine.awardXP(completionData)
+            _uiEvents.emit(UiEvent.XPEarned(xpResult))
+            if (xpResult.leveledUp) {
+                _uiEvents.emit(UiEvent.LevelUp(xpResult.newLevel))
+            }
         }
         endGame = true
     }
@@ -789,15 +864,16 @@ class GameViewModel @Inject constructor(
         val boardToSolve = boardEntity.initialBoard.map { it.digitToInt(13) }.toIntArray()
         val solved = qqWing.solve(boardToSolve, boardEntity.type)
 
-        val newSolvedBoard = List(boardEntity.type.size) { row ->
-            List(boardEntity.type.size) { col ->
-                Cell(
-                    row,
-                    col,
-                    0
-                )
+        val newSolvedBoard =
+            List(boardEntity.type.size) { row ->
+                List(boardEntity.type.size) { col ->
+                    Cell(
+                        row,
+                        col,
+                        0
+                    )
+                }
             }
-        }
         for (i in 0 until size) {
             for (j in 0 until size) {
                 newSolvedBoard[i][j].value = solved[i * size + j]
@@ -854,14 +930,15 @@ class GameViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.Default) {
             currCell = Cell(-1, -1, 0)
             _advancedHintMode.emit(true)
-            val hintSettings = runBlocking { appSettingsManager.advancedHintSettings.first() }
-            val advancedHint = AdvancedHint(
-                type = boardEntity.type,
-                board = gameBoard,
-                solvedBoard = solvedBoard,
-                notes = notes,
-                settings = hintSettings
-            )
+            val hintSettings = appSettingsManager.advancedHintSettings.first()
+            val advancedHint =
+                AdvancedHint(
+                    type = boardEntity.type,
+                    board = gameBoard,
+                    solvedBoard = solvedBoard,
+                    notes = notes,
+                    settings = hintSettings
+                )
 
             _advancedHintData.emit(advancedHint.getEasiestHint())
         }

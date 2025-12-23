@@ -154,4 +154,77 @@
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
     <string name="hints_ad_cancel">Not now</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Napi kihívás</string>
+    <string name="notification_channel_daily_challenge_desc">Értesítések az új napi kihívásokról</string>
+    <string name="notification_channel_streak_reminder">Sorozat emlékeztető</string>
+    <string name="notification_channel_streak_reminder_desc">Emlékeztetők a sorozat fenntartásához</string>
+    <string name="notification_daily_challenge_title">Napi kihívás kész!</string>
+    <string name="notification_daily_challenge_text">Egy új napi feladvány vár rád</string>
+    <string name="notification_streak_reminder_title">Ne veszítsd el a sorozatod!</string>
+    <string name="notification_streak_reminder_text">Ma még nem játszottál. Tartsd életben a sorozatod!</string>
+    <string name="notification_streak_reminder_text_with_streak">A %d napos sorozatod veszélyben van! Játssz most, hogy megtartsd</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Értesítések</string>
+    <string name="notifications_permission_required">Értesítési engedély szükséges</string>
+    <string name="notifications_permission_rationale">Engedélyezd az értesítéseket a napi kihívás emlékeztetőkhöz és sorozat figyelmeztetésekhez</string>
+    <string name="notifications_daily_challenge">Napi kihívás emlékeztető</string>
+    <string name="notifications_daily_challenge_desc">Értesítést kapsz, ha új napi kihívás érhető el</string>
+    <string name="notifications_daily_challenge_time">Napi kihívás ideje</string>
+    <string name="notifications_streak_reminder">Sorozat emlékeztető</string>
+    <string name="notifications_streak_reminder_desc">Emlékeztető, ha ma még nem játszottál</string>
+    <string name="notifications_streak_reminder_time">Sorozat emlékeztető ideje</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Maradj naprakész</string>
+    <string name="notification_permission_dialog_message">Engedélyezd az értesítéseket a napi kihívás emlékeztetők és sorozat figyelmeztetések fogadásához. Ezt később megváltoztathatod a beállításokban.</string>
+    <string name="notification_permission_dialog_allow">Engedélyezés</string>
+    <string name="notification_permission_dialog_later">Most nem</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Kezdő</string>
+    <string name="level_title_novice">Újonc</string>
+    <string name="level_title_apprentice">Tanonc</string>
+    <string name="level_title_solver">Megoldó</string>
+    <string name="level_title_expert">Szakértő</string>
+    <string name="level_title_master">Mester</string>
+    <string name="level_title_grandmaster">Nagymester</string>
+
+    <!-- XP Display -->
+    <string name="level_label">%1$d. szint</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP a következő szintig</string>
+    <string name="level_up_title">Szintlépés!</string>
+    <string name="level_up_message">Gratulálunk! Folytasd a rejtvények megoldását, hogy magasabbra juss!</string>
+    <string name="xp_earned_title">Szerzett XP</string>
+    <string name="xp_bonuses">Alkalmazott bónuszok</string>
+    <string name="xp_base">Alap: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Tökéletes játék</string>
+    <string name="xp_bonus_no_hints">Nem használt tippeket</string>
+    <string name="xp_bonus_daily_challenge">Napi kihívás</string>
+    <string name="xp_bonus_streak">%1$d napos széria</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Napi jutalmak</string>
+    <string name="reward_calendar_day">%1$d. nap</string>
+    <string name="reward_calendar_claim">Átvétel</string>
+    <string name="reward_calendar_claimed">Átvéve</string>
+    <string name="reward_calendar_locked">Zárolva</string>
+    <string name="reward_calendar_today">Ma</string>
+    <string name="reward_calendar_streak">%1$d napos sorozat</string>
+    <string name="reward_calendar_total_claimed">Összesen átvéve: %1$d</string>
+    <string name="reward_claim_title">Jutalom átvéve!</string>
+    <string name="reward_claim_message">Kaptál:</string>
+    <string name="reward_type_hints">Bónusz tippek</string>
+    <string name="reward_type_xp_boost">XP növelés</string>
+    <string name="reward_type_theme">Téma feloldva</string>
+    <string name="reward_type_badge">Különleges jelvény</string>
+    <string name="reward_hints_amount">+%1$d Tipp</string>
+    <string name="reward_xp_boost_amount">2x XP %1$d játékra</string>
+    <string name="reward_bonus_hints_available">%1$d bónusz tipp elérhető</string>
+    <string name="reward_xp_boost_active">XP növelés: %1$d játék hátra</string>
+
 </resources>

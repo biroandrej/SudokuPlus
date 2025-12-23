@@ -5,10 +5,10 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BoardDao {
@@ -29,34 +29,32 @@ interface BoardDao {
 
     @Query(
         "SELECT * FROM board " +
-                "LEFT OUTER JOIN saved_game ON board.uid = saved_game.board_uid " +
-                "ORDER BY uid DESC"
+            "LEFT OUTER JOIN saved_game ON board.uid = saved_game.board_uid " +
+            "ORDER BY uid DESC"
     )
-    fun getBoardsWithSavedGames(): Flow<Map<SudokuBoard, SavedGame?>>
+    fun getBoardsWithSavedGames(): Flow<Map<SudokuBoard, SavedGame>>
 
     @Query(
         "SELECT * FROM board " +
-                "LEFT OUTER JOIN saved_game ON board.uid = saved_game.board_uid " +
-                "WHERE difficulty == :difficulty " +
-                "ORDER BY uid DESC"
+            "LEFT OUTER JOIN saved_game ON board.uid = saved_game.board_uid " +
+            "WHERE difficulty == :difficulty " +
+            "ORDER BY uid DESC"
     )
-    fun getBoardsWithSavedGames(difficulty: GameDifficulty): Flow<Map<SudokuBoard, SavedGame?>>
-
+    fun getBoardsWithSavedGames(difficulty: GameDifficulty): Flow<Map<SudokuBoard, SavedGame>>
 
     @Query("SELECT * FROM board WHERE folder_id == :uid")
     fun getBoardsInFolderFlow(uid: Long): Flow<List<SudokuBoard>>
 
     @Query(
         "SELECT * FROM board " +
-                "LEFT OUTER JOIN saved_game ON board.uid = saved_game.board_uid " +
-                "WHERE folder_id == :folderUid " +
-                "ORDER BY uid DESC"
+            "LEFT OUTER JOIN saved_game ON board.uid = saved_game.board_uid " +
+            "WHERE folder_id == :folderUid " +
+            "ORDER BY uid DESC"
     )
-    fun getInFolderWithSaved(folderUid: Long): Flow<Map<SudokuBoard, SavedGame?>>
+    fun getInFolderWithSaved(folderUid: Long): Flow<Map<SudokuBoard, SavedGame>>
 
     @Query("SELECT * FROM board WHERE folder_id == :uid")
     fun getBoardsInFolder(uid: Long): List<SudokuBoard>
-
 
     @Query("SELECT * FROM board WHERE uid == :uid")
     fun get(uid: Long): SudokuBoard

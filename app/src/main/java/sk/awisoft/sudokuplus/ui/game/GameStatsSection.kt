@@ -41,6 +41,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import kotlin.div
+import kotlin.time.toKotlinDuration
 import kotlinx.coroutines.delay
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
@@ -49,8 +51,6 @@ import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.utils.toFormattedString
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.ui.components.ConfettiEffect
-import kotlin.div
-import kotlin.time.toKotlinDuration
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -77,7 +77,8 @@ fun AfterGameStats(
     // Title scale animation for victory
     val titleScale by animateFloatAsState(
         targetValue = if (showTitle) 1f else 0.5f,
-        animationSpec = spring(
+        animationSpec =
+        spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness = Spring.StiffnessMedium
         ),
@@ -103,7 +104,8 @@ fun AfterGameStats(
         // Confetti overlay for victory
         if (showConfetti && !giveUp) {
             ConfettiEffect(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxWidth()
                     .height(200.dp),
                 particleCount = 40,
@@ -119,7 +121,8 @@ fun AfterGameStats(
                 enter = fadeIn() + scaleIn(initialScale = 0.5f)
             ) {
                 Row(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth()
                         .padding(bottom = 12.dp),
                     horizontalArrangement = Arrangement.Center,
@@ -130,13 +133,15 @@ fun AfterGameStats(
                             imageVector = Icons.Rounded.EmojiEvents,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .padding(end = 8.dp)
                                 .scale(titleScale)
                         )
                     }
                     Text(
-                        text = if (giveUp) {
+                        text =
+                        if (giveUp) {
                             if (mistakesLimit && mistakesLimitCount >= PreferencesConstants.MISTAKES_LIMIT) {
                                 stringResource(R.string.saved_game_mistakes_limit)
                             } else {
@@ -167,7 +172,8 @@ fun AfterGameStats(
                         )
 
                         FlowRow(
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             AnimatedStatBox(
                                 visible = true,
@@ -186,9 +192,12 @@ fun AfterGameStats(
                                     visible = true,
                                     text = {
                                         Text(
-                                            text = stringResource(
+                                            text =
+                                            stringResource(
                                                 R.string.stat_time_average,
-                                                DateUtils.formatElapsedTime(records.sumOf { it.time.seconds } / records.count())
+                                                DateUtils.formatElapsedTime(
+                                                    records.sumOf { it.time.seconds } / records.count()
+                                                )
                                             )
                                         )
                                     }
@@ -197,7 +206,8 @@ fun AfterGameStats(
                                     visible = true,
                                     text = {
                                         Text(
-                                            text = stringResource(
+                                            text =
+                                            stringResource(
                                                 R.string.stat_time_best,
                                                 records.first().time
                                                     .toKotlinDuration()
@@ -224,7 +234,8 @@ fun AfterGameStats(
                         modifier = Modifier.padding(top = 12.dp, bottom = 8.dp)
                     )
                     FlowRow(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         AnimatedStatBox(
                             visible = visibleStatIndex >= 1,
@@ -291,22 +302,24 @@ private fun AnimatedStatBox(
 ) {
     AnimatedVisibility(
         visible = visible,
-        enter = fadeIn() + scaleIn(
-            initialScale = 0.8f,
-            animationSpec = spring(
-                dampingRatio = Spring.DampingRatioMediumBouncy,
-                stiffness = Spring.StiffnessMedium
+        enter =
+        fadeIn() +
+            scaleIn(
+                initialScale = 0.8f,
+                animationSpec =
+                spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessMedium
+                )
             )
-        )
     ) {
-        StatBoxWithBottomPadding(
+        StatBox(
             text = text,
             icon = icon,
             modifier = modifier
         )
     }
 }
-
 
 @Composable
 fun StatBox(
@@ -315,7 +328,8 @@ fun StatBox(
     icon: @Composable () -> Unit = { }
 ) {
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .clip(MaterialTheme.shapes.medium)
             .background(MaterialTheme.colorScheme.surfaceVariant)
     ) {
@@ -328,19 +342,4 @@ fun StatBox(
             text()
         }
     }
-}
-
-// TODO: Remove this when cross-axis arrangement support is added to FlowRow
-// https://android-review.googlesource.com/c/platform/frameworks/support/+/2478295
-@Composable
-fun StatBoxWithBottomPadding(
-    text: @Composable () -> Unit,
-    modifier: Modifier = Modifier,
-    icon: @Composable () -> Unit = { }
-) {
-    StatBox(
-        text = text,
-        icon = icon,
-        modifier = modifier.padding(bottom = 8.dp)
-    )
 }

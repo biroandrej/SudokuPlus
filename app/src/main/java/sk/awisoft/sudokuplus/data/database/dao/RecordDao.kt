@@ -5,10 +5,10 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.data.database.model.Record
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecordDao {
@@ -20,8 +20,8 @@ interface RecordDao {
 
     @Query(
         "SELECT * FROM record " +
-                "WHERE type == :type and difficulty == :difficulty " +
-                "ORDER BY time ASC"
+            "WHERE type == :type and difficulty == :difficulty " +
+            "ORDER BY time ASC"
     )
     fun getAll(difficulty: GameDifficulty, type: GameType): Flow<List<Record>>
 

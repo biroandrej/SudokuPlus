@@ -1,14 +1,14 @@
 package sk.awisoft.sudokuplus.core.parser
 
 import android.util.Log
+import java.io.IOException
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
-import java.io.IOException
-
 
 // File type from OpenSudoku app (https://gitlab.com/opensudoku/opensudoku)
 // https://gitlab.com/opensudoku/opensudoku/-/blob/develop/app/src/main/java/org/moire/opensudoku/gui/importing/OpenSudokuImportTask.java
+
 /**
  * .opensudoku - format from the OpenSudoku app. Uses XML schema
  */
@@ -78,11 +78,10 @@ class OpenSudokuParser : FileImportParser {
         return Pair(true, boards)
     }
 
-
     private fun importV2(parser: XmlPullParser): Pair<Boolean, List<String>> {
         var eventType = parser.eventType
         var lastTag = ""
-        //var folderName: String? = null
+        // var folderName: String? = null
         val boards = mutableListOf<String>()
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (eventType == XmlPullParser.START_TAG) {

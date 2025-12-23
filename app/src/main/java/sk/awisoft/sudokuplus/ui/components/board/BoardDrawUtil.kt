@@ -12,12 +12,12 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
-import sk.awisoft.sudokuplus.core.Cell
-import sk.awisoft.sudokuplus.core.Note
 import kotlin.compareTo
 import kotlin.math.floor
 import kotlin.math.sqrt
 import kotlin.times
+import sk.awisoft.sudokuplus.core.Cell
+import sk.awisoft.sudokuplus.core.Note
 
 fun DrawScope.drawRoundCell(
     row: Int,
@@ -27,17 +27,18 @@ fun DrawScope.drawRoundCell(
     color: Color,
     cornerRadius: CornerRadius = CornerRadius.Zero
 ) {
-    val path = Path().apply {
-        addRoundRect(
-            roundRectForCell(
-                row = row,
-                col = col,
-                gameSize = gameSize,
-                rect = rect,
-                cornerRadius = cornerRadius
+    val path =
+        Path().apply {
+            addRoundRect(
+                roundRectForCell(
+                    row = row,
+                    col = col,
+                    gameSize = gameSize,
+                    rect = rect,
+                    cornerRadius = cornerRadius
+                )
             )
-        )
-    }
+        }
     drawPath(
         path = path,
         color = color
@@ -53,17 +54,18 @@ fun DrawScope.drawRoundCellBorder(
     cornerRadius: CornerRadius = CornerRadius.Zero,
     strokeWidth: Float = 2f
 ) {
-    val path = Path().apply {
-        addRoundRect(
-            roundRectForCell(
-                row = row,
-                col = col,
-                gameSize = gameSize,
-                rect = rect,
-                cornerRadius = cornerRadius
+    val path =
+        Path().apply {
+            addRoundRect(
+                roundRectForCell(
+                    row = row,
+                    col = col,
+                    gameSize = gameSize,
+                    rect = rect,
+                    cornerRadius = cornerRadius
+                )
             )
-        )
-    }
+        }
     drawPath(
         path = path,
         color = color,
@@ -79,7 +81,7 @@ fun DrawScope.drawNotes(
     notesToHighlight: List<Note>,
     cellSize: Float,
     cellSizeDivWidth: Float,
-    killerSumBounds: android.graphics.Rect,
+    killerSumBounds: android.graphics.Rect
 ) {
     val noteBounds = android.graphics.Rect()
 
@@ -94,14 +96,16 @@ fun DrawScope.drawNotes(
             val noteCol = getNoteColumnNumber(note.value, size)
             val noteRow = getNoteRowNumber(note.value, size)
 
-
-
             val horizontalPadding =
-                if (noteRow == 0) noteTextMeasure / 3f
-                else if (noteRow == 1) 0f
-                else if (noteRow == 2 && note.value > 9) 0f
-                else -(noteTextMeasure / 3f)
-
+                if (noteRow == 0) {
+                    noteTextMeasure / 3f
+                } else if (noteRow == 1) {
+                    0f
+                } else if (noteRow == 2 && note.value > 9) {
+                    0f
+                } else {
+                    -(noteTextMeasure / 3f)
+                }
 
             if (notesToHighlight.contains(note)) {
                 canvas.nativeCanvas.drawCircle(
@@ -136,11 +140,12 @@ fun DrawScope.drawNumbers(
         for (i in 0 until size) {
             for (j in 0 until size) {
                 if (board[i][j].value != 0) {
-                    val paint = when {
-                        board[i][j].error && highlightErrors -> errorTextPaint
-                        board[i][j].locked -> lockedTextPaint
-                        else -> textPaint
-                    }
+                    val paint =
+                        when {
+                            board[i][j].error && highlightErrors -> errorTextPaint
+                            board[i][j].locked -> lockedTextPaint
+                            else -> textPaint
+                        }
 
                     val textToDraw =
                         if (questions) "?" else board[i][j].value.toString(16).uppercase()
@@ -209,7 +214,8 @@ fun DrawScope.drawCrossSelection(
             if ((i % 2 == 0 && j % 2 != 0) || (i % 2 != 0 && j % 2 == 0)) {
                 drawRect(
                     color = color,
-                    topLeft = Offset(
+                    topLeft =
+                    Offset(
                         x = i * sectionWidth * cellSize,
                         y = j * sectionHeight * cellSize
                     ),
@@ -241,7 +247,8 @@ fun DrawScope.drawCellBackgrounds(
                     row = row,
                     col = col,
                     gameSize = gameSize,
-                    rect = Rect(
+                    rect =
+                    Rect(
                         offset = Offset(col * cellSize, row * cellSize),
                         size = Size(cellSize, cellSize)
                     ),

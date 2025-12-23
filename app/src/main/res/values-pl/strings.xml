@@ -321,5 +321,198 @@
     <string name="hints_ad_title">Out of hints</string>
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_ad_cancel">Nie teraz</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Codzienne wyzwanie</string>
+    <string name="daily_challenge_subtitle">Nowa łamigłówka każdego dnia</string>
+    <string name="daily_streak">Seria %d dni</string>
+    <string name="daily_completed">Ukończono!</string>
+    <string name="daily_play">Graj</string>
+    <string name="daily_continue">Kontynuuj</string>
+    <string name="view_calendar">Kalendarz</string>
+    <string name="daily_challenge_calendar">Kalendarz wyzwań</string>
+    <string name="total_completed">Łącznie ukończonych</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Osiągnięcia</string>
+    <string name="achievements_unlocked">Odblokowane</string>
+    <string name="achievement_unlocked">Osiągnięcie odblokowane!</string>
+    <string name="achievements_unlocked_multiple">%d osiągnięć odblokowanych!</string>
+    <string name="action_awesome">Świetnie!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">Wszystkie</string>
+    <string name="achievement_category_completion">Ukończenie</string>
+    <string name="achievement_category_speed">Szybkość</string>
+    <string name="achievement_category_accuracy">Dokładność</string>
+    <string name="achievement_category_streak">Seria</string>
+    <string name="achievement_category_variety">Różnorodność</string>
+    <string name="achievement_category_mastery">Mistrzostwo</string>
+    <string name="achievement_category_daily">Codzienne</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">Brązowy</string>
+    <string name="achievement_tier_silver">Srebrny</string>
+    <string name="achievement_tier_gold">Złoty</string>
+    <string name="achievement_tier_platinum">Platynowy</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">Pierwsze kroki</string>
+    <string name="achievement_first_win_desc">Ukończ swoją pierwszą łamigłówkę</string>
+    <string name="achievement_ten_games">Początek</string>
+    <string name="achievement_ten_games_desc">Ukończ 10 łamigłówek</string>
+    <string name="achievement_fifty_games">Entuzjasta łamigłówek</string>
+    <string name="achievement_fifty_games_desc">Ukończ 50 łamigłówek</string>
+    <string name="achievement_centurion">Centurion</string>
+    <string name="achievement_centurion_desc">Ukończ 100 łamigłówek</string>
+    <string name="achievement_dedicated_player">Oddany gracz</string>
+    <string name="achievement_dedicated_player_desc">Ukończ 500 łamigłówek</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">Szybki myśliciel</string>
+    <string name="achievement_speed_easy_5_desc">Ukończ łatwą łamigłówkę w mniej niż 5 minut</string>
+    <string name="achievement_speed_easy_3">Demon prędkości</string>
+    <string name="achievement_speed_easy_3_desc">Ukończ łatwą łamigłówkę w mniej niż 3 minuty</string>
+    <string name="achievement_speed_moderate_10">Szybki rozwiązywacz</string>
+    <string name="achievement_speed_moderate_10_desc">Ukończ średnią łamigłówkę w mniej niż 10 minut</string>
+    <string name="achievement_speed_hard_15">Błyskawiczny</string>
+    <string name="achievement_speed_hard_15_desc">Ukończ trudną łamigłówkę w mniej niż 15 minut</string>
+    <string name="achievement_speed_challenge_20">Mistrz czasu</string>
+    <string name="achievement_speed_challenge_20_desc">Ukończ wyzwanie w mniej niż 20 minut</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">Perfekcjonista</string>
+    <string name="achievement_perfectionist_1_desc">Ukończ łamigłówkę bez błędów</string>
+    <string name="achievement_perfectionist_10">Bezbłędna dziesiątka</string>
+    <string name="achievement_perfectionist_10_desc">Ukończ 10 łamigłówek bez błędów</string>
+    <string name="achievement_perfectionist_50">Mistrz precyzji</string>
+    <string name="achievement_perfectionist_50_desc">Ukończ 50 łamigłówek bez błędów</string>
+    <string name="achievement_no_hints_1">Samowystarczalny</string>
+    <string name="achievement_no_hints_1_desc">Ukończ łamigłówkę bez podpowiedzi</string>
+    <string name="achievement_no_hints_25">Niezależny rozwiązywacz</string>
+    <string name="achievement_no_hints_25_desc">Ukończ 25 łamigłówek bez podpowiedzi</string>
+    <string name="achievement_no_hints_100">Ekspert bez podpowiedzi</string>
+    <string name="achievement_no_hints_100_desc">Ukończ 100 łamigłówek bez podpowiedzi</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">Potrójna seria</string>
+    <string name="achievement_streak_3_desc">Graj przez 3 dni z rzędu</string>
+    <string name="achievement_streak_7">Tygodniowy wojownik</string>
+    <string name="achievement_streak_7_desc">Graj przez 7 dni z rzędu</string>
+    <string name="achievement_streak_30">Miesięczny mistrz</string>
+    <string name="achievement_streak_30_desc">Graj przez 30 dni z rzędu</string>
+    <string name="achievement_streak_100">Stuletnia seria</string>
+    <string name="achievement_streak_100_desc">Graj przez 100 dni z rzędu</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">Mini Sudoku</string>
+    <string name="achievement_try_6x6_desc">Ukończ łamigłówkę 6x6</string>
+    <string name="achievement_try_12x12">Pogromca gigantów</string>
+    <string name="achievement_try_12x12_desc">Ukończ łamigłówkę 12x12</string>
+    <string name="achievement_try_killer">Instynkt Killera</string>
+    <string name="achievement_try_killer_desc">Ukończ łamigłówkę Killer Sudoku</string>
+    <string name="achievement_killer_10">Entuzjasta Killera</string>
+    <string name="achievement_killer_10_desc">Ukończ 10 łamigłówek Killer Sudoku</string>
+    <string name="achievement_killer_50">Ekspert Killera</string>
+    <string name="achievement_killer_50_desc">Ukończ 50 łamigłówek Killer Sudoku</string>
+    <string name="achievement_giant_10">Rozmiar nie ma znaczenia</string>
+    <string name="achievement_giant_10_desc">Ukończ 10 łamigłówek 12x12</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">Mistrz łatwych</string>
+    <string name="achievement_easy_master_desc">Ukończ 25 łatwych łamigłówek</string>
+    <string name="achievement_moderate_master">Mistrz średnich</string>
+    <string name="achievement_moderate_master_desc">Ukończ 25 średnich łamigłówek</string>
+    <string name="achievement_hard_master">Mistrz trudnych</string>
+    <string name="achievement_hard_master_desc">Ukończ 25 trudnych łamigłówek</string>
+    <string name="achievement_challenge_master">Mistrz wyzwań</string>
+    <string name="achievement_challenge_master_desc">Ukończ 25 wyzwań</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">Codzienny debiut</string>
+    <string name="achievement_daily_first_desc">Ukończ swoje pierwsze codzienne wyzwanie</string>
+    <string name="achievement_daily_week">Tygodniowy wyzywacz</string>
+    <string name="achievement_daily_week_desc">Ukończ 7 codziennych wyzwań</string>
+    <string name="achievement_daily_month">Miesięczny mistrz</string>
+    <string name="achievement_daily_month_desc">Ukończ 30 codziennych wyzwań</string>
+    <string name="achievement_daily_streak_7">Codzienna dedykacja</string>
+    <string name="achievement_daily_streak_7_desc">7-dniowa seria codziennych wyzwań</string>
+    <string name="achievement_daily_streak_30">Codzienny wyznawca</string>
+    <string name="achievement_daily_streak_30_desc">30-dniowa seria codziennych wyzwań</string>
+    <string name="achievement_daily_streak_100">Codzienna legenda</string>
+    <string name="achievement_daily_streak_100_desc">100-dniowa seria codziennych wyzwań</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Codzienne wyzwanie</string>
+    <string name="notification_channel_daily_challenge_desc">Powiadomienia o nowych codziennych wyzwaniach</string>
+    <string name="notification_channel_streak_reminder">Przypomnienie o serii</string>
+    <string name="notification_channel_streak_reminder_desc">Przypomnienia o utrzymaniu serii</string>
+    <string name="notification_daily_challenge_title">Codzienne wyzwanie gotowe!</string>
+    <string name="notification_daily_challenge_text">Nowa codzienna łamigłówka na Ciebie czeka</string>
+    <string name="notification_streak_reminder_title">Nie trać swojej serii!</string>
+    <string name="notification_streak_reminder_text">Nie grałeś dzisiaj. Utrzymaj swoją serię!</string>
+    <string name="notification_streak_reminder_text_with_streak">Twoja %d-dniowa seria jest zagrożona! Zagraj teraz, aby ją utrzymać</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Powiadomienia</string>
+    <string name="notifications_permission_required">Wymagane uprawnienie do powiadomień</string>
+    <string name="notifications_permission_rationale">Zezwól na powiadomienia, aby otrzymywać przypomnienia o codziennych wyzwaniach i alerty o serii</string>
+    <string name="notifications_daily_challenge">Przypomnienie o codziennym wyzwaniu</string>
+    <string name="notifications_daily_challenge_desc">Otrzymuj powiadomienia, gdy nowe codzienne wyzwanie jest dostępne</string>
+    <string name="notifications_daily_challenge_time">Godzina codziennego wyzwania</string>
+    <string name="notifications_streak_reminder">Przypomnienie o serii</string>
+    <string name="notifications_streak_reminder_desc">Otrzymuj przypomnienie, jeśli dzisiaj nie grałeś</string>
+    <string name="notifications_streak_reminder_time">Godzina przypomnienia o serii</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Bądź na bieżąco</string>
+    <string name="notification_permission_dialog_message">Zezwól na powiadomienia, aby otrzymywać przypomnienia o codziennych wyzwaniach i alerty o seriach. Możesz to zmienić później w ustawieniach.</string>
+    <string name="notification_permission_dialog_allow">Zezwól</string>
+    <string name="notification_permission_dialog_later">Nie teraz</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Początkujący</string>
+    <string name="level_title_novice">Nowicjusz</string>
+    <string name="level_title_apprentice">Uczeń</string>
+    <string name="level_title_solver">Rozwiązujący</string>
+    <string name="level_title_expert">Ekspert</string>
+    <string name="level_title_master">Mistrz</string>
+    <string name="level_title_grandmaster">Arcymistrz</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Poziom %1$d</string>
+    <string name="total_xp_label">%1$d PD</string>
+    <string name="xp_progress_label">%1$d / %2$d PD</string>
+    <string name="xp_to_next_level">%1$d PD do następnego poziomu</string>
+    <string name="level_up_title">Awans!</string>
+    <string name="level_up_message">Gratulacje! Kontynuuj rozwiązywanie łamigłówek, aby wspinać się wyżej!</string>
+    <string name="xp_earned_title">Zdobyte PD</string>
+    <string name="xp_bonuses">Zastosowane bonusy</string>
+    <string name="xp_base">Podstawa: %1$d PD</string>
+    <string name="xp_bonus_no_mistakes">Perfekcyjna gra</string>
+    <string name="xp_bonus_no_hints">Bez podpowiedzi</string>
+    <string name="xp_bonus_daily_challenge">Dzienne wyzwanie</string>
+    <string name="xp_bonus_streak">Seria %1$d dni</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Codzienne nagrody</string>
+    <string name="reward_calendar_day">Dzień %1$d</string>
+    <string name="reward_calendar_claim">Odbierz</string>
+    <string name="reward_calendar_claimed">Odebrano</string>
+    <string name="reward_calendar_locked">Zablokowane</string>
+    <string name="reward_calendar_today">Dzisiaj</string>
+    <string name="reward_calendar_streak">%1$d dni z rzędu</string>
+    <string name="reward_calendar_total_claimed">Łącznie odebrano: %1$d</string>
+    <string name="reward_claim_title">Nagroda odebrana!</string>
+    <string name="reward_claim_message">Otrzymano:</string>
+    <string name="reward_type_hints">Dodatkowe podpowiedzi</string>
+    <string name="reward_type_xp_boost">Bonus XP</string>
+    <string name="reward_type_theme">Motyw odblokowany</string>
+    <string name="reward_type_badge">Specjalna odznaka</string>
+    <string name="reward_hints_amount">+%1$d Podpowiedzi</string>
+    <string name="reward_xp_boost_amount">2x XP za %1$d gier</string>
+    <string name="reward_bonus_hints_available">%1$d dodatkowych podpowiedzi dostępnych</string>
+    <string name="reward_xp_boost_active">Bonus XP: pozostało %1$d gier</string>
+
 </resources>

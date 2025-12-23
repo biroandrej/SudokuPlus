@@ -32,8 +32,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.PreferencesConstants
@@ -48,31 +51,38 @@ import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.CollapsingTitle
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.CollapsingTopAppBar
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.rememberTopAppBarScrollBehavior
 import sk.awisoft.sudokuplus.ui.settings.SelectionDialog
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun SettingsBoardTheme(
     viewModel: SettingsBoardThemeViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
     val scrollBehavior = rememberTopAppBarScrollBehavior()
-    val positionLines by viewModel.positionLines.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_POSITION_LINES)
-    val highlightMistakes by viewModel.highlightMistakes.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_MISTAKES)
-    val boardCrossHighlight by viewModel.crossHighlight.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_BOARD_CROSS_HIGHLIGHT)
-    val fontSizeFactor by viewModel.fontSize.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_FONT_SIZE_FACTOR)
+    val positionLines by viewModel.positionLines.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_POSITION_LINES
+    )
+    val highlightMistakes by viewModel.highlightMistakes.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_MISTAKES
+    )
+    val boardCrossHighlight by viewModel.crossHighlight.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_BOARD_CROSS_HIGHLIGHT
+    )
+    val fontSizeFactor by viewModel.fontSize.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_FONT_SIZE_FACTOR
+    )
 
     var fontSizeDialog by rememberSaveable {
         mutableStateOf(false)
     }
 
-    val gameTypes = listOf(
-        GameType.Default6x6,
-        GameType.Default9x9,
-        GameType.Default12x12,
-    )
+    val gameTypes =
+        listOf(
+            GameType.Default6x6,
+            GameType.Default9x9,
+            GameType.Default12x12
+        )
     var selectedBoardType by remember {
         mutableStateOf(GameType.Default9x9)
     }
@@ -82,12 +92,14 @@ fun SettingsBoardTheme(
             SudokuUtils().getFontSize(selectedBoardType, fontSizeFactor)
         )
     }
-    
+
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CollapsingTopAppBar(
-                collapsingTitle = CollapsingTitle.Companion.medium(titleText = stringResource(R.string.board_theme_title)),
+                collapsingTitle = CollapsingTitle.Companion.medium(
+                    titleText = stringResource(R.string.board_theme_title)
+                ),
                 navigationIcon = {
                     IconButton(onClick = { navigator.popBackStack() }) {
                         Icon(
@@ -101,13 +113,15 @@ fun SettingsBoardTheme(
         }
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(paddingValues)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
             SingleChoiceSegmentedButtonRow(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(top = 8.dp)
             ) {
@@ -117,7 +131,8 @@ fun SettingsBoardTheme(
                         onClick = {
                             selectedBoardType = item
                         },
-                        shape = SegmentedButtonDefaults.itemShape(
+                        shape =
+                        SegmentedButtonDefaults.itemShape(
                             index = index,
                             count = gameTypes.size
                         )
@@ -165,7 +180,8 @@ fun SettingsBoardTheme(
             )
             PreferenceRow(
                 title = stringResource(R.string.pref_board_font_size),
-                subtitle = when (fontSizeFactor) {
+                subtitle =
+                when (fontSizeFactor) {
                     0 -> stringResource(R.string.font_size_automatic)
                     1 -> stringResource(R.string.pref_board_font_size_small)
                     2 -> stringResource(R.string.pref_board_font_size_medium)
@@ -180,7 +196,8 @@ fun SettingsBoardTheme(
         if (fontSizeDialog) {
             SelectionDialog(
                 title = stringResource(R.string.pref_board_font_size),
-                selections = listOf(
+                selections =
+                listOf(
                     stringResource(R.string.font_size_automatic),
                     stringResource(R.string.pref_board_font_size_small),
                     stringResource(R.string.pref_board_font_size_medium),
@@ -206,21 +223,23 @@ private fun BoardPreviewTheme(
     modifier: Modifier = Modifier,
     autoFontSize: Boolean = false
 ) {
-    val previewBoard = SudokuParser().parseBoard(
-        board = when (gameType) {
-            GameType.Default6x6 -> {
-                "200005003600320041140063002300600002"
-            }
-            GameType.Default9x9 -> {
-                "025000860360208017700010003600000002040000090030000070006000100000507000490030058"
-            }
-            GameType.Default12x12 -> {
-                "09030000010a00501a0067b910700000050000920000000006407000000250000160300b0000205000000017000003088300b000a006003804090b659000ab007004002400000000"
-            }
-            else -> ""
-        },
-        gameType = gameType
-    )
+    val previewBoard =
+        SudokuParser().parseBoard(
+            board =
+            when (gameType) {
+                GameType.Default6x6 -> {
+                    "200005003600320041140063002300600002"
+                }
+                GameType.Default9x9 -> {
+                    "025000860360208017700010003600000002040000090030000070006000100000507000490030058"
+                }
+                GameType.Default12x12 -> {
+                    "09030000010a00501a0067b910700000050000920000000006407000000250000160300b0000205000000017000003088300b000a006003804090b659000ab007004002400000000"
+                }
+                else -> ""
+            },
+            gameType = gameType
+        )
     var selectedCell by remember(gameType) { mutableStateOf(Cell(-1, -1, 0)) }
     Board(
         modifier = modifier,

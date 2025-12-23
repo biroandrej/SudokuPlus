@@ -45,9 +45,11 @@ class UndoRedoManager(private val initialState: GameState) {
     }
 
     fun canRedo() = currentState < states.size - 1
+
     fun canUndo() = currentState > 0 && states.isNotEmpty()
 
     fun count() = states.count()
+
     fun clear() = states.clear()
 }
 

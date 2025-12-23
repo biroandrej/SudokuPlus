@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowDownward
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
@@ -32,7 +33,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
@@ -55,8 +55,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.materialkolor.ktx.harmonize
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import kotlin.math.sqrt
+import kotlin.time.toKotlinDuration
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
@@ -71,16 +80,8 @@ import sk.awisoft.sudokuplus.ui.components.EmptyScreen
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
 import sk.awisoft.sudokuplus.ui.util.disableSplitMotionEvents
-import com.materialkolor.ktx.harmonize
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.launch
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
-import kotlin.math.sqrt
-import kotlin.time.toKotlinDuration
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GamesHistoryScreen(
@@ -92,7 +93,8 @@ fun GamesHistoryScreen(
     var filterBottomSheet by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
-        modifier = Modifier
+        modifier =
+        Modifier
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CenterAlignedTopAppBar(
@@ -119,7 +121,7 @@ fun GamesHistoryScreen(
                 },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { innerPadding ->
         val games by viewModel.games.collectAsState(initial = emptyMap())
         val dateFormat by viewModel.dateFormat.collectAsStateWithLifecycle("")
@@ -146,7 +148,8 @@ fun GamesHistoryScreen(
                 }
 
                 ScrollbarLazyColumn(
-                    modifier = Modifier.Companion
+                    modifier =
+                    Modifier.Companion
                         .disableSplitMotionEvents(),
                     state = lazyListState
                 ) {
@@ -160,14 +163,17 @@ fun GamesHistoryScreen(
                             difficulty = stringResource(game.second.difficulty.resName),
                             type = stringResource(game.second.type.resName),
                             onClick = {
-                                navigator.navigate(SavedGameScreenDestination(gameUid = game.first.uid))
+                                navigator.navigate(
+                                    SavedGameScreenDestination(gameUid = game.first.uid)
+                                )
                             },
                             dateTimeFormatter = AppSettingsManager.Companion.dateFormat(dateFormat),
                             date = game.first.startedAt
                         )
                         if (index < filteredAndSortedBoards.size - 1) {
                             HorizontalDivider(
-                                modifier = Modifier
+                                modifier =
+                                Modifier
                                     .fillMaxWidth()
                                     .clip(CircleShape)
                                     .padding(horizontal = 12.dp, vertical = 1.dp)
@@ -199,7 +205,8 @@ fun GamesHistoryScreen(
                                 0f
                             } else {
                                 180f
-                            }, label = ""
+                            },
+                            label = ""
                         )
                         IconButton(onClick = {
                             viewModel.sortType = if (viewModel.sortType == SortType.Ascending) SortType.Descending else SortType.Ascending
@@ -236,7 +243,7 @@ fun GamesHistoryScreen(
                             GameDifficulty.Moderate,
                             GameDifficulty.Hard,
                             GameDifficulty.Challenge,
-                            GameDifficulty.Custom,
+                            GameDifficulty.Custom
                         )
                     ) {
                         AnimatedIconFilterChip(
@@ -279,7 +286,7 @@ fun GamesHistoryScreen(
                         listOf(
                             GameStateFilter.All,
                             GameStateFilter.Completed,
-                            GameStateFilter.InProgress,
+                            GameStateFilter.InProgress
                         )
                     ) {
                         FilterChip(
@@ -309,17 +316,20 @@ fun SudokuHistoryItem(
     date: ZonedDateTime?
 ) {
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .clip(MaterialTheme.shapes.medium)
             .clickable(onClick = onClick)
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .clip(RoundedCornerShape(4.dp))
                     .size(130.dp)
                     .align(Alignment.CenterVertically)
@@ -330,13 +340,15 @@ fun SudokuHistoryItem(
                 )
             }
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .padding(horizontal = 12.dp)
             ) {
                 Column {
                     Text("$difficulty $type")
                     Text(
-                        text = stringResource(
+                        text =
+                        stringResource(
                             R.string.history_item_time,
                             savedGame.timer
                                 .toKotlinDuration()
@@ -345,7 +357,6 @@ fun SudokuHistoryItem(
                     )
                     Text(stringResource(R.string.history_item_id, savedGame.uid))
                 }
-
 
                 if (date != null) {
                     val startedAtDate by remember(savedGame) {
@@ -375,7 +386,6 @@ fun SudokuHistoryItem(
     }
 }
 
-
 @Composable
 fun ColorfulBadge(
     text: String,
@@ -386,7 +396,8 @@ fun ColorfulBadge(
     shape: Shape = MaterialTheme.shapes.medium
 ) {
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .background(
                 color = background,
                 shape = shape

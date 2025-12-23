@@ -253,9 +253,202 @@
     <string name="sudoku_rules_mistakes_explanation">Ensimmäinen virhe on kaksi kakkosta kuudennessa osaneliössä. Muistatko säännön, että yhdessä osaneliössä ei voi olla sama numero kahteen kertaan? Toinen virhe on numero kuusi toisessa rivissä, kahdeksannessa sarakkeessa (R2C8), koska samassa sarakkeessa on jo numero kuusi sijainnissa R5C8</string>
     <string name="learn_basic_2">Katsotaan seuraavaksi numeroa kahdeksan. Numero kahdeksan rivillä neljä, sarakkeessa 3 (R4C3) aiheuttaa sen, että numero kahdeksan ei voi sijaita samassa sarakkeessa osaneliön sisällä</string>
     <string name="learn_basic_5">Sama logiikka pätee rivissä ja sarakkeissa. Katso ensimmäistä riviä. Numero neljä ruudussa R7C3 estää saman numeron sijaitsevan kolmannessa sarakkeessa. Numero neljä ruudussa R3C5 estää kaksi saraketta kerralla (neljäs ja kuudes), koska samassa osaneliössä ei voi olla muita nelosia. R6C7 estää sarakkeen seitsemän</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Ei enää vihjeitä tähän peliin</string>
+    <string name="hints_ad_title">Vihjeet loppuivat</string>
+    <string name="hints_ad_message">Katsotko lyhyen mainoksen saadaksesi vihjeen?</string>
+    <string name="hints_ad_watch">Katso mainos</string>
+    <string name="hints_ad_cancel">Ei nyt</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Päivittäinen Haaste</string>
+    <string name="daily_challenge_subtitle">Uusi pulmapeli joka päivä</string>
+    <string name="daily_streak">%d päivän putki</string>
+    <string name="daily_completed">Valmis!</string>
+    <string name="daily_play">Pelaa</string>
+    <string name="daily_continue">Jatka</string>
+    <string name="view_calendar">Kalenteri</string>
+    <string name="daily_challenge_calendar">Haaste Kalenteri</string>
+    <string name="total_completed">Yhteensä Valmistunut</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Saavutukset</string>
+    <string name="achievements_unlocked">Avattu</string>
+    <string name="achievement_unlocked">Saavutus Avattu!</string>
+    <string name="achievements_unlocked_multiple">%d Saavutusta Avattu!</string>
+    <string name="action_awesome">Mahtavaa!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">Kaikki</string>
+    <string name="achievement_category_completion">Valmistuminen</string>
+    <string name="achievement_category_speed">Nopeus</string>
+    <string name="achievement_category_accuracy">Tarkkuus</string>
+    <string name="achievement_category_streak">Putki</string>
+    <string name="achievement_category_variety">Vaihtelu</string>
+    <string name="achievement_category_mastery">Taitavuus</string>
+    <string name="achievement_category_daily">Päivittäinen</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">Pronssi</string>
+    <string name="achievement_tier_silver">Hopea</string>
+    <string name="achievement_tier_gold">Kulta</string>
+    <string name="achievement_tier_platinum">Platina</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">Ensimmäiset Askeleet</string>
+    <string name="achievement_first_win_desc">Suorita ensimmäinen pulmapelisi</string>
+    <string name="achievement_ten_games">Alkuun Pääseminen</string>
+    <string name="achievement_ten_games_desc">Suorita 10 pulmapeliä</string>
+    <string name="achievement_fifty_games">Pulmapelifani</string>
+    <string name="achievement_fifty_games_desc">Suorita 50 pulmapeliä</string>
+    <string name="achievement_centurion">Satapäinen</string>
+    <string name="achievement_centurion_desc">Suorita 100 pulmapeliä</string>
+    <string name="achievement_dedicated_player">Omistautunut Pelaaja</string>
+    <string name="achievement_dedicated_player_desc">Suorita 500 pulmapeliä</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">Nopea Ajattelija</string>
+    <string name="achievement_speed_easy_5_desc">Suorita helppo pulmapeli alle 5 minuutissa</string>
+    <string name="achievement_speed_easy_3">Nopeusdemonit</string>
+    <string name="achievement_speed_easy_3_desc">Suorita helppo pulmapeli alle 3 minuutissa</string>
+    <string name="achievement_speed_moderate_10">Nopea Ratkaisija</string>
+    <string name="achievement_speed_moderate_10_desc">Suorita keskitason pulmapeli alle 10 minuutissa</string>
+    <string name="achievement_speed_hard_15">Salamannopea</string>
+    <string name="achievement_speed_hard_15_desc">Suorita vaikea pulmapeli alle 15 minuutissa</string>
+    <string name="achievement_speed_challenge_20">Ajan Mestari</string>
+    <string name="achievement_speed_challenge_20_desc">Suorita haaste alle 20 minuutissa</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">Perfektionisti</string>
+    <string name="achievement_perfectionist_1_desc">Suorita pulmapeli ilman virheitä</string>
+    <string name="achievement_perfectionist_10">Virheetön Kymmenen</string>
+    <string name="achievement_perfectionist_10_desc">Suorita 10 pulmapeliä ilman virheitä</string>
+    <string name="achievement_perfectionist_50">Tarkkuuden Mestari</string>
+    <string name="achievement_perfectionist_50_desc">Suorita 50 pulmapeliä ilman virheitä</string>
+    <string name="achievement_no_hints_1">Omavaraan</string>
+    <string name="achievement_no_hints_1_desc">Suorita pulmapeli käyttämättä vihjeitä</string>
+    <string name="achievement_no_hints_25">Itsenäinen Ratkaisija</string>
+    <string name="achievement_no_hints_25_desc">Suorita 25 pulmapeliä käyttämättä vihjeitä</string>
+    <string name="achievement_no_hints_100">Vihjevapaaa Asiantuntija</string>
+    <string name="achievement_no_hints_100_desc">Suorita 100 pulmapeliä käyttämättä vihjeitä</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">Kolmen Putki</string>
+    <string name="achievement_streak_3_desc">Pelaa 3 päivää peräkkäin</string>
+    <string name="achievement_streak_7">Viikon Soturi</string>
+    <string name="achievement_streak_7_desc">Pelaa 7 päivää peräkkäin</string>
+    <string name="achievement_streak_30">Kuukauden Mestari</string>
+    <string name="achievement_streak_30_desc">Pelaa 30 päivää peräkkäin</string>
+    <string name="achievement_streak_100">Sadan Putki</string>
+    <string name="achievement_streak_100_desc">Pelaa 100 päivää peräkkäin</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">Mini Sudoku</string>
+    <string name="achievement_try_6x6_desc">Suorita 6x6 pulmapeli</string>
+    <string name="achievement_try_12x12">Jättiläistappaja</string>
+    <string name="achievement_try_12x12_desc">Suorita 12x12 pulmapeli</string>
+    <string name="achievement_try_killer">Killer Vaisto</string>
+    <string name="achievement_try_killer_desc">Suorita Killer Sudoku pulmapeli</string>
+    <string name="achievement_killer_10">Killer Harrastaja</string>
+    <string name="achievement_killer_10_desc">Suorita 10 Killer Sudoku pulmapeliä</string>
+    <string name="achievement_killer_50">Killer Asiantuntija</string>
+    <string name="achievement_killer_50_desc">Suorita 50 Killer Sudoku pulmapeliä</string>
+    <string name="achievement_giant_10">Koko Ei Merkitse</string>
+    <string name="achievement_giant_10_desc">Suorita 10 12x12 pulmapeliä</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">Helpon Mestari</string>
+    <string name="achievement_easy_master_desc">Suorita 25 helppoa pulmapeliä</string>
+    <string name="achievement_moderate_master">Keskitason Mestari</string>
+    <string name="achievement_moderate_master_desc">Suorita 25 keskitason pulmapeliä</string>
+    <string name="achievement_hard_master">Vaikean Mestari</string>
+    <string name="achievement_hard_master_desc">Suorita 25 vaikeaa pulmapeliä</string>
+    <string name="achievement_challenge_master">Haasteen Mestari</string>
+    <string name="achievement_challenge_master_desc">Suorita 25 haastetta</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">Päivittäinen Debyytti</string>
+    <string name="achievement_daily_first_desc">Suorita ensimmäinen päivittäinen haasteesi</string>
+    <string name="achievement_daily_week">Viikoittainen Haastaja</string>
+    <string name="achievement_daily_week_desc">Suorita 7 päivittäistä haastetta</string>
+    <string name="achievement_daily_month">Kuukausittainen Mestari</string>
+    <string name="achievement_daily_month_desc">Suorita 30 päivittäistä haastetta</string>
+    <string name="achievement_daily_streak_7">Päivittäinen Omistautuminen</string>
+    <string name="achievement_daily_streak_7_desc">7 päivän päivittäinen haaste putki</string>
+    <string name="achievement_daily_streak_30">Päivittäinen Uskollinen</string>
+    <string name="achievement_daily_streak_30_desc">30 päivän päivittäinen haaste putki</string>
+    <string name="achievement_daily_streak_100">Päivittäinen Legenda</string>
+    <string name="achievement_daily_streak_100_desc">100 päivän päivittäinen haaste putki</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Päivittäinen Haaste</string>
+    <string name="notification_channel_daily_challenge_desc">Ilmoitukset uusista päivittäisistä haasteista</string>
+    <string name="notification_channel_streak_reminder">Putkimuistutus</string>
+    <string name="notification_channel_streak_reminder_desc">Muistutukset putkesi ylläpitämiseksi</string>
+    <string name="notification_daily_challenge_title">Päivittäinen Haaste Valmiina!</string>
+    <string name="notification_daily_challenge_text">Uusi päivittäinen pulmapeli odottaa sinua</string>
+    <string name="notification_streak_reminder_title">Älä menetä putkiasi!</string>
+    <string name="notification_streak_reminder_text">Et ole pelannut tänään. Pidä putkesi elossa!</string>
+    <string name="notification_streak_reminder_text_with_streak">%d päivän putkesi on vaarassa! Pelaa nyt säilyttääksesi sen</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Ilmoitukset</string>
+    <string name="notifications_permission_required">Ilmoituslupa vaaditaan</string>
+    <string name="notifications_permission_rationale">Salli ilmoitukset saadaksesi päivittäisiä haaste muistutuksia ja putkihälytyksiä</string>
+    <string name="notifications_daily_challenge">Päivittäinen haaste muistutus</string>
+    <string name="notifications_daily_challenge_desc">Saa ilmoitus kun uusi päivittäinen haaste on saatavilla</string>
+    <string name="notifications_daily_challenge_time">Päivittäisen haasteen aika</string>
+    <string name="notifications_streak_reminder">Putkimuistutus</string>
+    <string name="notifications_streak_reminder_desc">Saa muistutus jos et ole pelannut tänään</string>
+    <string name="notifications_streak_reminder_time">Putkimuistutuksen aika</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Pysy ajan tasalla</string>
+    <string name="notification_permission_dialog_message">Salli ilmoitukset saadaksesi päivittäisen haasteen muistutuksia ja putkihälytyksiä. Voit muuttaa tätä myöhemmin asetuksissa.</string>
+    <string name="notification_permission_dialog_allow">Salli</string>
+    <string name="notification_permission_dialog_later">Ei nyt</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Aloittelija</string>
+    <string name="level_title_novice">Noviisi</string>
+    <string name="level_title_apprentice">Oppipoika</string>
+    <string name="level_title_solver">Ratkaisija</string>
+    <string name="level_title_expert">Asiantuntija</string>
+    <string name="level_title_master">Mestari</string>
+    <string name="level_title_grandmaster">Suurmestari</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Taso %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP seuraavalle tasolle</string>
+    <string name="level_up_title">Tasonousu!</string>
+    <string name="level_up_message">Onnittelut! Jatka pulmien ratkaisemista noustaksesi korkeammalle!</string>
+    <string name="xp_earned_title">Ansaittu XP</string>
+    <string name="xp_bonuses">Käytetyt bonukset</string>
+    <string name="xp_base">Perus: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Täydellinen peli</string>
+    <string name="xp_bonus_no_hints">Ei vihjeitä käytetty</string>
+    <string name="xp_bonus_daily_challenge">Päivittäinen haaste</string>
+    <string name="xp_bonus_streak">%1$d päivän putkeen</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Päivittäiset palkinnot</string>
+    <string name="reward_calendar_day">Päivä %1$d</string>
+    <string name="reward_calendar_claim">Lunasta</string>
+    <string name="reward_calendar_claimed">Lunastettu</string>
+    <string name="reward_calendar_locked">Lukittu</string>
+    <string name="reward_calendar_today">Tänään</string>
+    <string name="reward_calendar_streak">%1$d päivän putki</string>
+    <string name="reward_calendar_total_claimed">Yhteensä lunastettu: %1$d</string>
+    <string name="reward_claim_title">Palkinto lunastettu!</string>
+    <string name="reward_claim_message">Sait:</string>
+    <string name="reward_type_hints">Bonusvihjeet</string>
+    <string name="reward_type_xp_boost">XP-tehostus</string>
+    <string name="reward_type_theme">Teema avattu</string>
+    <string name="reward_type_badge">Erikoismerkki</string>
+    <string name="reward_hints_amount">+%1$d Vihjettä</string>
+    <string name="reward_xp_boost_amount">2x XP %1$d peliin</string>
+    <string name="reward_bonus_hints_available">%1$d bonusvihjettä käytettävissä</string>
+    <string name="reward_xp_boost_active">XP-tehostus: %1$d peliä jäljellä</string>
+
 </resources>

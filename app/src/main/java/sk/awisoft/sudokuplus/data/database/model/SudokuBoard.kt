@@ -3,14 +3,16 @@ package sk.awisoft.sudokuplus.data.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
-import kotlinx.serialization.Serializable
 
 @Serializable
 @Entity(
     tableName = "board",
+    indices = [Index(value = ["folder_id"])],
     foreignKeys = [
         ForeignKey(
             onDelete = ForeignKey.CASCADE,

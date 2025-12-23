@@ -107,9 +107,202 @@
     <string name="board_theme_title">تم جدول</string>
     <string name="action_move_selected">جابه‌جایی انتخاب شده</string>
     <string name="edit_sudoku">ویرایش سودوکو</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">راهنمایی برای این بازی باقی نمانده است</string>
+    <string name="hints_ad_title">راهنمایی تمام شد</string>
+    <string name="hints_ad_message">تبلیغ کوتاهی را برای نمایش راهنمایی تماشا کنید؟</string>
+    <string name="hints_ad_watch">تماشای تبلیغ</string>
+    <string name="hints_ad_cancel">الان نه</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">چالش روزانه</string>
+    <string name="daily_challenge_subtitle">پازل جدید هر روز</string>
+    <string name="daily_streak">%d روز پیوسته</string>
+    <string name="daily_completed">تمام شد!</string>
+    <string name="daily_play">بازی</string>
+    <string name="daily_continue">ادامه</string>
+    <string name="view_calendar">تقویم</string>
+    <string name="daily_challenge_calendar">تقویم چالش</string>
+    <string name="total_completed">مجموع تکمیل شده</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">دستاوردها</string>
+    <string name="achievements_unlocked">باز شده</string>
+    <string name="achievement_unlocked">دستاورد باز شد!</string>
+    <string name="achievements_unlocked_multiple">%d دستاورد باز شد!</string>
+    <string name="action_awesome">عالی!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">همه</string>
+    <string name="achievement_category_completion">تکمیل</string>
+    <string name="achievement_category_speed">سرعت</string>
+    <string name="achievement_category_accuracy">دقت</string>
+    <string name="achievement_category_streak">پیوستگی</string>
+    <string name="achievement_category_variety">تنوع</string>
+    <string name="achievement_category_mastery">تسلط</string>
+    <string name="achievement_category_daily">روزانه</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">برنز</string>
+    <string name="achievement_tier_silver">نقره</string>
+    <string name="achievement_tier_gold">طلا</string>
+    <string name="achievement_tier_platinum">پلاتینیوم</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">اولین قدم‌ها</string>
+    <string name="achievement_first_win_desc">اولین پازل خود را تکمیل کنید</string>
+    <string name="achievement_ten_games">شروع کار</string>
+    <string name="achievement_ten_games_desc">10 پازل را تکمیل کنید</string>
+    <string name="achievement_fifty_games">علاقه‌مند به پازل</string>
+    <string name="achievement_fifty_games_desc">50 پازل را تکمیل کنید</string>
+    <string name="achievement_centurion">صدمین</string>
+    <string name="achievement_centurion_desc">100 پازل را تکمیل کنید</string>
+    <string name="achievement_dedicated_player">بازیکن متعهد</string>
+    <string name="achievement_dedicated_player_desc">500 پازل را تکمیل کنید</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">متفکر سریع</string>
+    <string name="achievement_speed_easy_5_desc">پازل آسان را در کمتر از 5 دقیقه تکمیل کنید</string>
+    <string name="achievement_speed_easy_3">شیطان سرعت</string>
+    <string name="achievement_speed_easy_3_desc">پازل آسان را در کمتر از 3 دقیقه تکمیل کنید</string>
+    <string name="achievement_speed_moderate_10">حل‌کننده سریع</string>
+    <string name="achievement_speed_moderate_10_desc">پازل متوسط را در کمتر از 10 دقیقه تکمیل کنید</string>
+    <string name="achievement_speed_hard_15">برق‌آسا</string>
+    <string name="achievement_speed_hard_15_desc">پازل سخت را در کمتر از 15 دقیقه تکمیل کنید</string>
+    <string name="achievement_speed_challenge_20">استاد زمان</string>
+    <string name="achievement_speed_challenge_20_desc">چالش را در کمتر از 20 دقیقه تکمیل کنید</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">کمال‌گرا</string>
+    <string name="achievement_perfectionist_1_desc">پازل را بدون اشتباه تکمیل کنید</string>
+    <string name="achievement_perfectionist_10">ده بی‌نقص</string>
+    <string name="achievement_perfectionist_10_desc">10 پازل را بدون اشتباه تکمیل کنید</string>
+    <string name="achievement_perfectionist_50">استاد دقت</string>
+    <string name="achievement_perfectionist_50_desc">50 پازل را بدون اشتباه تکمیل کنید</string>
+    <string name="achievement_no_hints_1">خودکفا</string>
+    <string name="achievement_no_hints_1_desc">پازل را بدون استفاده از راهنمایی تکمیل کنید</string>
+    <string name="achievement_no_hints_25">حل‌کننده مستقل</string>
+    <string name="achievement_no_hints_25_desc">25 پازل را بدون استفاده از راهنمایی تکمیل کنید</string>
+    <string name="achievement_no_hints_100">متخصص بدون راهنمایی</string>
+    <string name="achievement_no_hints_100_desc">100 پازل را بدون استفاده از راهنمایی تکمیل کنید</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">سه روز پیوسته</string>
+    <string name="achievement_streak_3_desc">3 روز پشت سر هم بازی کنید</string>
+    <string name="achievement_streak_7">جنگجوی هفته</string>
+    <string name="achievement_streak_7_desc">7 روز پشت سر هم بازی کنید</string>
+    <string name="achievement_streak_30">استاد ماهانه</string>
+    <string name="achievement_streak_30_desc">30 روز پشت سر هم بازی کنید</string>
+    <string name="achievement_streak_100">پیوستگی صدروزه</string>
+    <string name="achievement_streak_100_desc">100 روز پشت سر هم بازی کنید</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">سودوکو کوچک</string>
+    <string name="achievement_try_6x6_desc">پازل 6x6 را تکمیل کنید</string>
+    <string name="achievement_try_12x12">غول‌کش</string>
+    <string name="achievement_try_12x12_desc">پازل 12x12 را تکمیل کنید</string>
+    <string name="achievement_try_killer">غریزه قاتل</string>
+    <string name="achievement_try_killer_desc">پازل کیلر سودوکو را تکمیل کنید</string>
+    <string name="achievement_killer_10">علاقه‌مند به کیلر</string>
+    <string name="achievement_killer_10_desc">10 پازل کیلر سودوکو را تکمیل کنید</string>
+    <string name="achievement_killer_50">متخصص کیلر</string>
+    <string name="achievement_killer_50_desc">50 پازل کیلر سودوکو را تکمیل کنید</string>
+    <string name="achievement_giant_10">اندازه مهم نیست</string>
+    <string name="achievement_giant_10_desc">10 پازل 12x12 را تکمیل کنید</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">استاد آسان</string>
+    <string name="achievement_easy_master_desc">25 پازل آسان را تکمیل کنید</string>
+    <string name="achievement_moderate_master">استاد متوسط</string>
+    <string name="achievement_moderate_master_desc">25 پازل متوسط را تکمیل کنید</string>
+    <string name="achievement_hard_master">استاد سخت</string>
+    <string name="achievement_hard_master_desc">25 پازل سخت را تکمیل کنید</string>
+    <string name="achievement_challenge_master">استاد چالش</string>
+    <string name="achievement_challenge_master_desc">25 چالش را تکمیل کنید</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">اولین چالش روزانه</string>
+    <string name="achievement_daily_first_desc">اولین چالش روزانه خود را تکمیل کنید</string>
+    <string name="achievement_daily_week">چالشگر هفتگی</string>
+    <string name="achievement_daily_week_desc">7 چالش روزانه را تکمیل کنید</string>
+    <string name="achievement_daily_month">قهرمان ماهانه</string>
+    <string name="achievement_daily_month_desc">30 چالش روزانه را تکمیل کنید</string>
+    <string name="achievement_daily_streak_7">تعهد روزانه</string>
+    <string name="achievement_daily_streak_7_desc">7 روز پیوسته چالش روزانه</string>
+    <string name="achievement_daily_streak_30">فداکار روزانه</string>
+    <string name="achievement_daily_streak_30_desc">30 روز پیوسته چالش روزانه</string>
+    <string name="achievement_daily_streak_100">افسانه روزانه</string>
+    <string name="achievement_daily_streak_100_desc">100 روز پیوسته چالش روزانه</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">چالش روزانه</string>
+    <string name="notification_channel_daily_challenge_desc">اعلان‌ها برای چالش‌های روزانه جدید</string>
+    <string name="notification_channel_streak_reminder">یادآوری پیوستگی</string>
+    <string name="notification_channel_streak_reminder_desc">یادآوری‌ها برای حفظ پیوستگی شما</string>
+    <string name="notification_daily_challenge_title">چالش روزانه آماده است!</string>
+    <string name="notification_daily_challenge_text">یک پازل روزانه جدید منتظر شماست</string>
+    <string name="notification_streak_reminder_title">پیوستگی خود را از دست ندهید!</string>
+    <string name="notification_streak_reminder_text">امروز بازی نکرده‌اید. پیوستگی خود را زنده نگه دارید!</string>
+    <string name="notification_streak_reminder_text_with_streak">پیوستگی %d روزه شما در خطر است! اکنون بازی کنید تا آن را حفظ کنید</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">اعلان‌ها</string>
+    <string name="notifications_permission_required">مجوز اعلان لازم است</string>
+    <string name="notifications_permission_rationale">برای دریافت یادآوری‌های چالش روزانه و هشدارهای پیوستگی، اعلان‌ها را مجاز کنید</string>
+    <string name="notifications_daily_challenge">یادآوری چالش روزانه</string>
+    <string name="notifications_daily_challenge_desc">هنگام در دسترس بودن چالش روزانه جدید مطلع شوید</string>
+    <string name="notifications_daily_challenge_time">زمان چالش روزانه</string>
+    <string name="notifications_streak_reminder">یادآوری پیوستگی</string>
+    <string name="notifications_streak_reminder_desc">اگر امروز بازی نکرده‌اید یادآوری دریافت کنید</string>
+    <string name="notifications_streak_reminder_time">زمان یادآوری پیوستگی</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">به‌روز بمانید</string>
+    <string name="notification_permission_dialog_message">برای دریافت یادآوری‌های چالش روزانه و هشدارهای پیوستگی، اعلان‌ها را مجاز کنید. بعداً می‌توانید این را در تنظیمات تغییر دهید.</string>
+    <string name="notification_permission_dialog_allow">مجاز</string>
+    <string name="notification_permission_dialog_later">الان نه</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">مبتدی</string>
+    <string name="level_title_novice">تازه‌کار</string>
+    <string name="level_title_apprentice">کارآموز</string>
+    <string name="level_title_solver">حل‌کننده</string>
+    <string name="level_title_expert">متخصص</string>
+    <string name="level_title_master">استاد</string>
+    <string name="level_title_grandmaster">استاد بزرگ</string>
+
+    <!-- XP Display -->
+    <string name="level_label">سطح %1$d</string>
+    <string name="total_xp_label">%1$d امتیاز تجربه</string>
+    <string name="xp_progress_label">%1$d / %2$d امتیاز تجربه</string>
+    <string name="xp_to_next_level">%1$d امتیاز تجربه تا سطح بعدی</string>
+    <string name="level_up_title">ارتقای سطح!</string>
+    <string name="level_up_message">تبریک! به حل پازل‌ها ادامه دهید تا بالاتر بروید!</string>
+    <string name="xp_earned_title">امتیاز تجربه کسب شده</string>
+    <string name="xp_bonuses">پاداش‌های اعمال شده</string>
+    <string name="xp_base">پایه: %1$d امتیاز تجربه</string>
+    <string name="xp_bonus_no_mistakes">بازی بی‌نقص</string>
+    <string name="xp_bonus_no_hints">بدون راهنمایی</string>
+    <string name="xp_bonus_daily_challenge">چالش روزانه</string>
+    <string name="xp_bonus_streak">رکورد %1$d روزه</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">پاداش‌های روزانه</string>
+    <string name="reward_calendar_day">روز %1$d</string>
+    <string name="reward_calendar_claim">دریافت</string>
+    <string name="reward_calendar_claimed">دریافت شد</string>
+    <string name="reward_calendar_locked">قفل</string>
+    <string name="reward_calendar_today">امروز</string>
+    <string name="reward_calendar_streak">%1$d روز متوالی</string>
+    <string name="reward_calendar_total_claimed">کل دریافت شده: %1$d</string>
+    <string name="reward_claim_title">پاداش دریافت شد!</string>
+    <string name="reward_claim_message">شما دریافت کردید:</string>
+    <string name="reward_type_hints">راهنمایی اضافی</string>
+    <string name="reward_type_xp_boost">تقویت XP</string>
+    <string name="reward_type_theme">تم باز شد</string>
+    <string name="reward_type_badge">نشان ویژه</string>
+    <string name="reward_hints_amount">+%1$d راهنمایی</string>
+    <string name="reward_xp_boost_amount">2x XP برای %1$d بازی</string>
+    <string name="reward_bonus_hints_available">%1$d راهنمایی اضافی موجود</string>
+    <string name="reward_xp_boost_active">تقویت XP: %1$d بازی باقیمانده</string>
+
 </resources>

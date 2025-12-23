@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -21,36 +20,35 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.ramcosta.composedestinations.DestinationsNavHost
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
+import sk.awisoft.sudokuplus.core.PreferencesConstants
+import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.destinations.HomeScreenDestination
 import sk.awisoft.sudokuplus.destinations.ImportFromFileScreenDestination
 import sk.awisoft.sudokuplus.destinations.MoreScreenDestination
 import sk.awisoft.sudokuplus.destinations.StatisticsScreenDestination
 import sk.awisoft.sudokuplus.destinations.WelcomeScreenDestination
-import com.ramcosta.composedestinations.DestinationsNavHost
-import com.ramcosta.composedestinations.annotation.DeepLink
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
-import sk.awisoft.sudokuplus.core.PreferencesConstants
-import sk.awisoft.sudokuplus.core.utils.GlobalExceptionHandler
-import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
-import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
-import sk.awisoft.sudokuplus.ui.app_crash.CrashActivity
 import sk.awisoft.sudokuplus.ui.components.navigation_bar.NavigationBarComponent
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
-import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
-import sk.awisoft.sudokuplus.ui.util.findActivity
-import javax.inject.Inject
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 
 val LocalBoardColors = staticCompositionLocalOf { SudokuBoardColorsImpl() }
 
@@ -60,33 +58,40 @@ class MainActivity : ComponentActivity() {
     lateinit var settings: AppSettingsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Install splash screen before super.onCreate()
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        if (!BuildConfig.DEBUG) {
-            GlobalExceptionHandler.initialize(applicationContext, CrashActivity::class.java)
-        }
+
+        // Track whether settings have been loaded
+        var settingsLoaded = false
+
+        // Keep splash screen visible until theme settings are loaded
+        splashScreen.setKeepOnScreenCondition { !settingsLoaded }
 
         setContent {
             val mainViewModel: MainActivityViewModel = hiltViewModel()
 
-            val dynamicColors by mainViewModel.dc.collectAsStateWithLifecycle(
-                PreferencesConstants.DEFAULT_DYNAMIC_COLORS
-            )
-            val darkTheme by mainViewModel.darkTheme.collectAsStateWithLifecycle(
-                PreferencesConstants.DEFAULT_DARK_THEME)
-            val amoledBlack by mainViewModel.amoledBlack.collectAsStateWithLifecycle(
-                PreferencesConstants.DEFAULT_AMOLED_BLACK)
+            // Collect combined theme settings - null until all settings are loaded
+            val themeSettings by mainViewModel.themeSettings.collectAsStateWithLifecycle()
             val firstLaunch by mainViewModel.firstLaunch.collectAsStateWithLifecycle(false)
 
+            // Wait for theme settings to load before rendering
+            val settings = themeSettings ?: return@setContent
+
+            // Mark settings as loaded to dismiss splash screen
+            settingsLoaded = true
+
             SudokuPlusTheme(
-                darkTheme = when (darkTheme) {
+                darkTheme =
+                when (settings.darkTheme) {
                     1 -> false
                     2 -> true
                     else -> isSystemInDarkTheme()
                 },
-                dynamicColor = dynamicColors,
-                amoled = amoledBlack,
-                colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR),
+                dynamicColor = settings.dynamicColors,
+                amoled = settings.amoledBlack,
+                colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR)
             ) {
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -94,16 +99,18 @@ class MainActivity : ComponentActivity() {
                 var bottomBarState by rememberSaveable { mutableStateOf(false) }
 
                 LaunchedEffect(navBackStackEntry) {
-                    bottomBarState = when (navBackStackEntry?.destination?.route) {
-                        StatisticsScreenDestination.route, HomeScreenDestination.route, MoreScreenDestination.route -> true
-                        else -> false
-                    }
+                    bottomBarState =
+                        when (navBackStackEntry?.destination?.route) {
+                            StatisticsScreenDestination.route, HomeScreenDestination.route, MoreScreenDestination.route -> true
+                            else -> false
+                        }
                 }
                 LaunchedEffect(firstLaunch) {
                     if (firstLaunch) {
                         navController.navigate(
                             route = WelcomeScreenDestination.route,
-                            navOptions = navOptions {
+                            navOptions =
+                            navOptions {
                                 popUpTo(HomeScreenDestination.route) {
                                     inclusive = true
                                 }
@@ -112,16 +119,30 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                val monetSudokuBoard by mainViewModel.monetSudokuBoard.collectAsStateWithLifecycle(
-                    initialValue = PreferencesConstants.DEFAULT_MONET_SUDOKU_BOARD
-                )
-                val resolvedDarkTheme = when (darkTheme) {
-                    1 -> false
-                    2 -> true
-                    else -> isSystemInDarkTheme()
+                // Handle file import deep link (ACTION_VIEW intent)
+                var handledDeepLink by remember { mutableStateOf(false) }
+                LaunchedEffect(Unit) {
+                    if (!handledDeepLink && intent?.action == Intent.ACTION_VIEW) {
+                        intent?.data?.let { uri ->
+                            handledDeepLink = true
+                            navController.navigate(
+                                ImportFromFileScreenDestination(
+                                    fileUri = uri.toString(),
+                                    fromDeepLink = true
+                                ).route
+                            )
+                        }
+                    }
                 }
+
+                val resolvedDarkTheme =
+                    when (settings.darkTheme) {
+                        1 -> false
+                        2 -> true
+                        else -> isSystemInDarkTheme()
+                    }
                 val boardColors =
-                    if (monetSudokuBoard) {
+                    if (settings.monetSudokuBoard) {
                         SudokuBoardColorsImpl(
                             foregroundColor = BoardColors.foregroundColor(resolvedDarkTheme),
                             notesColor = BoardColors.notesColor(resolvedDarkTheme),
@@ -135,7 +156,9 @@ class MainActivity : ComponentActivity() {
                         SudokuBoardColorsImpl(
                             foregroundColor = MaterialTheme.colorScheme.onSurface,
                             notesColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f),
-                            altForegroundColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                            altForegroundColor = MaterialTheme.colorScheme.onSurface.copy(
+                                alpha = 0.7f
+                            ),
                             errorColor = BoardColors.errorColor(),
                             highlightColor = MaterialTheme.colorScheme.outline,
                             thickLineColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.55f),
@@ -155,7 +178,6 @@ class MainActivity : ComponentActivity() {
                         DestinationsNavHost(
                             navGraph = NavGraphs.root,
                             navController = navController,
-                            startRoute = NavGraphs.root.startRoute,
                             modifier = Modifier.padding(paddingValues)
                         )
                     }
@@ -165,45 +187,40 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+data class ThemeSettings(
+    val dynamicColors: Boolean,
+    val darkTheme: Int,
+    val amoledBlack: Boolean,
+    val monetSudokuBoard: Boolean
+)
+
 @HiltViewModel
 class MainActivityViewModel
-@Inject constructor(
+@Inject
+constructor(
     themeSettingsManager: ThemeSettingsManager,
     appSettingsManager: AppSettingsManager
 ) : ViewModel() {
-    val dc = themeSettingsManager.dynamicColors
-    val darkTheme = themeSettingsManager.darkTheme
-    val amoledBlack = themeSettingsManager.amoledBlack
     val firstLaunch = appSettingsManager.firstLaunch
-    val monetSudokuBoard = themeSettingsManager.monetSudokuBoard
-}
 
-@Destination(
-    deepLinks = [
-        DeepLink(
-            uriPattern = "content://",
-            mimeType = "*/*",
-            action = Intent.ACTION_VIEW
+    // Combine all theme settings into a single flow
+    // This ensures we only render once ALL settings are loaded
+    val themeSettings: StateFlow<ThemeSettings?> =
+        combine(
+            themeSettingsManager.dynamicColors,
+            themeSettingsManager.darkTheme,
+            themeSettingsManager.amoledBlack,
+            themeSettingsManager.monetSudokuBoard
+        ) { dynamicColors, darkTheme, amoledBlack, monetSudokuBoard ->
+            ThemeSettings(
+                dynamicColors = dynamicColors,
+                darkTheme = darkTheme,
+                amoledBlack = amoledBlack,
+                monetSudokuBoard = monetSudokuBoard
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = null
         )
-    ]
-)
-@Composable
-fun HandleImportFromFileDeepLink(
-    navigator: DestinationsNavigator
-) {
-    val context = LocalContext.current
-    LaunchedEffect(Unit) {
-        val activity = context.findActivity()
-        if (activity != null) {
-            val intentData = activity.intent.data
-            if (intentData != null) {
-                navigator.navigate(
-                    ImportFromFileScreenDestination(
-                        fileUri = intentData.toString(),
-                        fromDeepLink = true
-                    )
-                )
-            }
-        }
-    }
 }

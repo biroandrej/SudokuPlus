@@ -11,13 +11,14 @@ class PreferencesConstants {
         const val DEFAULT_SHOW_TIMER = true
         const val DEFAULT_GAME_RESET_TIMER = true
         const val DEFAULT_HIGHLIGHT_MISTAKES = 2
+
         const val DEFAULT_HIGHLIGHT_IDENTICAL = true
         const val DEFAULT_REMAINING_USES = true
         const val DEFAULT_POSITION_LINES = true
         const val DEFAULT_AUTO_ERASE_NOTES = true
         const val DEFAULT_FONT_SIZE_FACTOR = 0
         const val DEFAULT_KEEP_SCREEN_ON = true
-        const val DEFAULT_INPUT_METHOD = 1
+        const val DEFAULT_INPUT_METHOD = 0
         const val DEFAULT_FUN_KEYBOARD_OVER_NUM = false
         const val DEFAULT_SAVE_LAST_SELECTED_DIFF_TYPE = true
         const val DEFAULT_AUTOBACKUP_INTERVAL = 24L
@@ -30,6 +31,6 @@ class PreferencesConstants {
         const val DEFAULT_AMOLED_BLACK = false
         const val DEFAULT_MONET_SUDOKU_BOARD = true
         const val DEFAULT_BOARD_CROSS_HIGHLIGHT = false
-        const val DEFAULT_THEME_SEED_COLOR = -19043 /* 0xFFFFB59D (Peach) */
+        const val DEFAULT_THEME_SEED_COLOR = -19043 // 0xFFFFB59D (Peach)
     }
 }

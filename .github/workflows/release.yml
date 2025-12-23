@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build Release APKs and AABs
+    name: Build Release AAB
     runs-on: ubuntu-latest
     outputs:
       version_name: ${{ steps.version.outputs.version_name }}
@@ -26,6 +26,15 @@ jobs:
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "Extracted version: $VERSION_NAME (code: $VERSION_CODE)"
 
+      - name: Validate tag matches version
+        run: |
+          TAG_VERSION="${GITHUB_REF#refs/tags/}"
+          TAG_VERSION="${TAG_VERSION#v}"
+          if [ "$TAG_VERSION" != "${{ steps.version.outputs.version_name }}" ]; then
+            echo "Tag version ($TAG_VERSION) does not match versionName (${{ steps.version.outputs.version_name }})"
+            exit 1
+          fi
+
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v2
 
@@ -38,8 +47,15 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
 
-      - name: Build Release APKs and AABs
-        run: ./gradlew assembleRelease bundleRelease
+      - name: Decode google-services.json
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          mkdir -p app/src/prod
+          echo "$GOOGLE_SERVICES_JSON" | base64 --decode > app/src/prod/google-services.json
+
+      - name: Build Release AAB
+        run: ./gradlew bundleProdRelease
 
       - name: Get Build Tools Version
         id: build_tools
@@ -48,28 +64,6 @@ jobs:
           BUILD_TOOLS=$(ls $ANDROID_HOME/build-tools/ | sort -V | tail -1)
           echo "version=$BUILD_TOOLS" >> $GITHUB_OUTPUT
           echo "Using Build Tools: $BUILD_TOOLS"
-
-      - name: Sign prod APK
-        uses: ilharp/sign-android-release@v1
-        id: sign_prod
-        with:
-          releaseDir: app/build/outputs/apk/prod/release/
-          signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
-          keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          buildToolsVersion: ${{ steps.build_tools.outputs.version }}
-
-      - name: Sign dev APK
-        uses: ilharp/sign-android-release@v1
-        id: sign_dev
-        with:
-          releaseDir: app/build/outputs/apk/dev/release/
-          signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
-          keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          buildToolsVersion: ${{ steps.build_tools.outputs.version }}
 
       - name: Sign prod AAB
         uses: ilharp/sign-android-release@v1
@@ -82,33 +76,16 @@ jobs:
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
           buildToolsVersion: ${{ steps.build_tools.outputs.version }}
 
-      - name: Sign dev AAB
-        uses: ilharp/sign-android-release@v1
-        id: sign_dev_aab
-        with:
-          releaseDir: app/build/outputs/bundle/devRelease/
-          signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
-          keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          buildToolsVersion: ${{ steps.build_tools.outputs.version }}
-
-      - name: Rename APKs and AABs
+      - name: Rename AAB
         run: |
-          mv "${{ steps.sign_prod.outputs.signedFile }}" "app/build/outputs/apk/SudokuPlus-${{ steps.version.outputs.version_name }}-prod.apk"
-          mv "${{ steps.sign_dev.outputs.signedFile }}" "app/build/outputs/apk/SudokuPlus-${{ steps.version.outputs.version_name }}-dev.apk"
           mv "${{ steps.sign_prod_aab.outputs.signedFile }}" "app/build/outputs/bundle/SudokuPlus-${{ steps.version.outputs.version_name }}-prod.aab"
-          mv "${{ steps.sign_dev_aab.outputs.signedFile }}" "app/build/outputs/bundle/SudokuPlus-${{ steps.version.outputs.version_name }}-dev.aab"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: release-artifacts
           path: |
-            app/build/outputs/apk/SudokuPlus-${{ steps.version.outputs.version_name }}-prod.apk
-            app/build/outputs/apk/SudokuPlus-${{ steps.version.outputs.version_name }}-dev.apk
             app/build/outputs/bundle/SudokuPlus-${{ steps.version.outputs.version_name }}-prod.aab
-            app/build/outputs/bundle/SudokuPlus-${{ steps.version.outputs.version_name }}-dev.aab
 
   release:
     name: Create GitHub Release
@@ -130,15 +107,24 @@ jobs:
       - name: Get changelog for version
         id: changelog
         run: |
-          VERSION_CODE="${{ needs.build.outputs.version_code }}"
-          CHANGELOG_FILE="fastlane/metadata/android/en-US/changelogs/${VERSION_CODE}.txt"
+          VERSION_NAME="${{ needs.build.outputs.version_name }}"
+          CHANGELOG_FILE="CHANGELOG.md"
           if [ -f "$CHANGELOG_FILE" ]; then
-            # Use delimiter to handle multiline and special characters
-            echo "changelog<<CHANGELOG_EOF" >> $GITHUB_OUTPUT
-            cat "$CHANGELOG_FILE" >> $GITHUB_OUTPUT
-            echo "CHANGELOG_EOF" >> $GITHUB_OUTPUT
+            CHANGELOG=$(awk -v ver="$VERSION_NAME" '
+              $0 ~ "^## \\[" ver "\\]" {found=1; next}
+              $0 ~ "^## \\[" && found {exit}
+              found {print}
+            ' "$CHANGELOG_FILE")
+            if [ -n "$CHANGELOG" ]; then
+              # Use delimiter to handle multiline and special characters
+              echo "changelog<<CHANGELOG_EOF" >> $GITHUB_OUTPUT
+              echo "$CHANGELOG" >> $GITHUB_OUTPUT
+              echo "CHANGELOG_EOF" >> $GITHUB_OUTPUT
+            else
+              echo "changelog=Release $VERSION_NAME" >> $GITHUB_OUTPUT
+            fi
           else
-            echo "changelog=Release ${{ needs.build.outputs.version_name }}" >> $GITHUB_OUTPUT
+            echo "changelog=Release $VERSION_NAME" >> $GITHUB_OUTPUT
           fi
 
       - name: Create GitHub Release
@@ -151,18 +137,10 @@ jobs:
 
             ## Downloads
 
-            ### APK (for direct install)
-            - **SudokuPlus-${{ needs.build.outputs.version_name }}-prod.apk** - Production version with ads
-            - **SudokuPlus-${{ needs.build.outputs.version_name }}-dev.apk** - Development version (no ads)
-
             ### AAB (for Play Store)
             - **SudokuPlus-${{ needs.build.outputs.version_name }}-prod.aab** - Production bundle for Play Store
-            - **SudokuPlus-${{ needs.build.outputs.version_name }}-dev.aab** - Development bundle
           files: |
-            ./artifacts/SudokuPlus-${{ needs.build.outputs.version_name }}-prod.apk
-            ./artifacts/SudokuPlus-${{ needs.build.outputs.version_name }}-dev.apk
             ./artifacts/SudokuPlus-${{ needs.build.outputs.version_name }}-prod.aab
-            ./artifacts/SudokuPlus-${{ needs.build.outputs.version_name }}-dev.aab
           draft: false
           prerelease: ${{ contains(github.ref, 'beta') || contains(github.ref, 'alpha') || contains(github.ref, 'rc') }}
         env:

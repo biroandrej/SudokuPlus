@@ -34,17 +34,19 @@ fun AppThemePreviewItem(
     onClick: () -> Unit
 ) {
     Column(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .aspectRatio(1f / 1.7f)
             .border(
                 width = 4.dp,
-                color = if (selected) {
+                color =
+                if (selected) {
                     colorScheme.primary
                 } else {
                     colorScheme.onSurface.copy(alpha = 0.75f)
                 },
-                shape = RoundedCornerShape(15.dp),
+                shape = RoundedCornerShape(15.dp)
             )
             .padding(4.dp)
             .clip(RoundedCornerShape(12.dp))
@@ -53,11 +55,12 @@ fun AppThemePreviewItem(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .height(32.dp)
                 .padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             AnimatedVisibility(
                 visible = selected,
@@ -72,97 +75,106 @@ fun AppThemePreviewItem(
             }
         }
 
-
         Box(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(start = 8.dp, end = 8.dp)
                 .background(
                     color = colorScheme.surfaceVariant,
-                    shape = shapes.small,
+                    shape = shapes.small
                 )
-                .fillMaxWidth(1f),
+                .fillMaxWidth(1f)
         ) {
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .padding(4.dp)
                     .height(32.dp)
                     .fillMaxWidth()
             ) {
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth(0.6f)
                         .weight(1f)
                         .background(
                             color = colorScheme.tertiary,
                             shape = RoundedCornerShape(5.dp)
-                        ),
+                        )
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth(0.4f)
                         .weight(1f)
                         .background(
                             color = colorScheme.secondary,
                             shape = RoundedCornerShape(5.dp)
-                        ),
+                        )
                 )
             }
         }
 
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp)
                 .height(16.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxHeight()
                     .fillMaxWidth(0.5f)
                     .background(
                         color = colorScheme.primary,
-                        shape = shapes.small,
+                        shape = shapes.small
                     )
             )
         }
 
         // Bottom bar
         Box(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth(),
-            contentAlignment = Alignment.BottomCenter,
+            contentAlignment = Alignment.BottomCenter
         ) {
             Surface(
-                tonalElevation = 3.dp,
+                tonalElevation = 3.dp
             ) {
                 Row(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .height(32.dp)
                         .fillMaxWidth()
                         .background(colorScheme.surface)
                         .padding(horizontal = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .alpha(0.6f)
                             .height(17.dp)
                             .weight(1f)
                             .background(
                                 color = colorScheme.surfaceTint,
-                                shape = shapes.small,
-                            ),
+                                shape = shapes.small
+                            )
                     )
                     Box(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .padding(start = 8.dp)
                             .size(17.dp)
                             .background(
                                 color = colorScheme.primaryContainer,
-                                shape = CircleShape,
-                            ),
+                                shape = CircleShape
+                            )
                     )
                 }
             }

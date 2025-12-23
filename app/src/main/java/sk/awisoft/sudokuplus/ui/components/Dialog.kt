@@ -36,14 +36,23 @@ fun <T> SelectionDialog(
             Box {
                 val lazyListState = rememberLazyListState()
 
-                if (!lazyListState.isScrolledToStart()) HorizontalDivider(Modifier.align(Alignment.TopCenter))
-                if (!lazyListState.isScrolledToEnd()) HorizontalDivider(Modifier.align(Alignment.BottomCenter))
+                if (!lazyListState.isScrolledToStart()) {
+                    HorizontalDivider(
+                        Modifier.align(Alignment.TopCenter)
+                    )
+                }
+                if (!lazyListState.isScrolledToEnd()) {
+                    HorizontalDivider(
+                        Modifier.align(Alignment.BottomCenter)
+                    )
+                }
 
                 ScrollbarLazyColumn(state = lazyListState) {
                     entries.forEach { item ->
                         item {
                             Row(
-                                modifier = Modifier
+                                modifier =
+                                Modifier
                                     .fillMaxWidth()
                                     .clip(MaterialTheme.shapes.small)
                                     .clickable { onSelect(item.key) },

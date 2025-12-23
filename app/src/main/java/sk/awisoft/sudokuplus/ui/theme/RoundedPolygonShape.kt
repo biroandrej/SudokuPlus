@@ -20,6 +20,7 @@ class RoundedPolygonShape(
     private var matrix: Matrix = Matrix()
 ) : Shape {
     private var path = Path()
+
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,

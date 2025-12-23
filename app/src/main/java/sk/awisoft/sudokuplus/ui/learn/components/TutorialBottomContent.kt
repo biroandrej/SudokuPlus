@@ -23,7 +23,8 @@ fun TutorialBottomContent(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier =
+        modifier
             .padding(top = 8.dp)
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
@@ -35,7 +36,8 @@ fun TutorialBottomContent(
             }
         }
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(bottom = 24.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)

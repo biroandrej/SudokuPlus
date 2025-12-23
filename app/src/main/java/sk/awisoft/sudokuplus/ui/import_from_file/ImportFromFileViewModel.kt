@@ -9,6 +9,16 @@ import androidx.core.net.toUri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.time.ZonedDateTime
+import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import sk.awisoft.sudokuplus.core.parser.GsudokuParser
 import sk.awisoft.sudokuplus.core.parser.OpenSudokuParser
 import sk.awisoft.sudokuplus.core.parser.SdmParser
@@ -19,27 +29,17 @@ import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.usecase.folder.InsertFolderUseCase
 import sk.awisoft.sudokuplus.navArgs
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.time.ZonedDateTime
-import javax.inject.Inject
 
 @HiltViewModel
-class ImportFromFileViewModel @Inject constructor(
+class ImportFromFileViewModel
+@Inject
+constructor(
     private val insertFolderUseCase: InsertFolderUseCase,
     private val boardRepository: BoardRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
     private val _navArgs: ImportFromFileScreenNavArgs = savedStateHandle.navArgs()
     var fileUri: Uri? by mutableStateOf(_navArgs.fileUri?.toUri())
-
 
     // uid of the folder where to add the imported sudoku.
     // If uid = -1, a new folder will be created (ask the user for the folder name)
@@ -64,13 +64,14 @@ class ImportFromFileViewModel @Inject constructor(
                 BufferedReader(inputStream).use { bufferRead ->
                     val contentText = bufferRead.readText()
 
-                    val parser = when {
-                        contentText.contains("<opensudoku") -> OpenSudokuParser()
+                    val parser =
+                        when {
+                            contentText.contains("<opensudoku") -> OpenSudokuParser()
 
-                        contentText.contains("<onegravitysudoku") -> GsudokuParser()
+                            contentText.contains("<onegravitysudoku") -> GsudokuParser()
 
-                        else -> SdmParser()
-                    }
+                            else -> SdmParser()
+                        }
                     val result = parser.toBoards(contentText)
                     toImport = result.second
                     _importingError.emit(!result.first)
@@ -96,13 +97,14 @@ class ImportFromFileViewModel @Inject constructor(
             var folderUidToImport = folderUid
 
             if (folderUidToImport == -1L) {
-                folderUidToImport = insertFolderUseCase(
-                    Folder(
-                        uid = 0,
-                        name = folderName ?: sudokuListToImport.value.size.toString(),
-                        createdAt = ZonedDateTime.now()
+                folderUidToImport =
+                    insertFolderUseCase(
+                        Folder(
+                            uid = 0,
+                            name = folderName ?: sudokuListToImport.value.size.toString(),
+                            createdAt = ZonedDateTime.now()
+                        )
                     )
-                )
             }
 
             val sudokuBoardsToImport = mutableListOf<SudokuBoard>()

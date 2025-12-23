@@ -23,8 +23,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintSettings
@@ -36,10 +39,8 @@ import sk.awisoft.sudokuplus.ui.settings.SettingsCategory
 import sk.awisoft.sudokuplus.ui.settings.SettingsScaffoldLazyColumn
 import sk.awisoft.sudokuplus.ui.theme.ColorUtils.blend
 import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun SettingsAdvancedHintScreen(
     viewModel: SettingsAdvancedHintViewModel = hiltViewModel(),
@@ -56,7 +57,8 @@ fun SettingsAdvancedHintScreen(
         titleText = stringResource(R.string.advanced_hint_title)
     ) { paddingValues ->
         ScrollbarLazyColumn(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(paddingValues)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -68,7 +70,11 @@ fun SettingsAdvancedHintScreen(
                     onClick = { viewModel.setAdvancedHintEnabled(!advancedHintEnabled) }
                 )
             }
-            item { SettingsCategory(title = stringResource(R.string.settings_advanced_hint_category_techniques)) }
+            item {
+                SettingsCategory(
+                    title = stringResource(R.string.settings_advanced_hint_category_techniques)
+                )
+            }
             item {
                 TechniqueItem(
                     title = stringResource(R.string.hint_wrong_value_title),
@@ -123,7 +129,8 @@ fun SettingsAdvancedHintScreen(
             }
             item {
                 Column(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .padding(horizontal = 16.dp, vertical = 8.dp)
                         .clip(MaterialTheme.shapes.large)
                         .background(
@@ -162,7 +169,8 @@ private fun BigCardSwitch(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .padding(horizontal = 12.dp)
             .clip(MaterialTheme.shapes.extraLarge)
@@ -170,7 +178,8 @@ private fun BigCardSwitch(
             .clickable(onClick = { onClick(!checked) })
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,

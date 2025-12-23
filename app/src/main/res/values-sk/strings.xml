@@ -81,9 +81,202 @@
     <string name="intro_what_is_sudoku">Klasické sudoku vyzerá takto</string>
     <string name="pref_delete_stats_summ">Táto akcia vymaže všetky vaše štatistiky, uložené hry a záznamy. Nie je možné ju vrátiť späť</string>
     <string name="pref_board_font_size">Veľkosť písma na doske</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Pre túto hru nezostali žiadne nápovedy</string>
+    <string name="hints_ad_title">Už žiadne nápovedy</string>
+    <string name="hints_ad_message">Pozrieť si krátku reklamu pre nápovedu?</string>
+    <string name="hints_ad_watch">Pozrieť reklamu</string>
+    <string name="hints_ad_cancel">Teraz nie</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Denná výzva</string>
+    <string name="daily_challenge_subtitle">Nová hádanka každý deň</string>
+    <string name="daily_streak">%d dňová séria</string>
+    <string name="daily_completed">Dokončené!</string>
+    <string name="daily_play">Hrať</string>
+    <string name="daily_continue">Pokračovať</string>
+    <string name="view_calendar">Kalendár</string>
+    <string name="daily_challenge_calendar">Kalendár výziev</string>
+    <string name="total_completed">Celkom dokončených</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Úspechy</string>
+    <string name="achievements_unlocked">Odomknuté</string>
+    <string name="achievement_unlocked">Úspech odomknutý!</string>
+    <string name="achievements_unlocked_multiple">%d úspechov odomknutých!</string>
+    <string name="action_awesome">Super!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">Všetky</string>
+    <string name="achievement_category_completion">Dokončenie</string>
+    <string name="achievement_category_speed">Rýchlosť</string>
+    <string name="achievement_category_accuracy">Presnosť</string>
+    <string name="achievement_category_streak">Séria</string>
+    <string name="achievement_category_variety">Rozmanitosť</string>
+    <string name="achievement_category_mastery">Majstrovstvo</string>
+    <string name="achievement_category_daily">Denné</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">Bronzový</string>
+    <string name="achievement_tier_silver">Strieborný</string>
+    <string name="achievement_tier_gold">Zlatý</string>
+    <string name="achievement_tier_platinum">Platinový</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">Prvé kroky</string>
+    <string name="achievement_first_win_desc">Dokončite svoju prvú hádanku</string>
+    <string name="achievement_ten_games">Začíname</string>
+    <string name="achievement_ten_games_desc">Dokončite 10 hádaniek</string>
+    <string name="achievement_fifty_games">Fanúšik hádaniek</string>
+    <string name="achievement_fifty_games_desc">Dokončite 50 hádaniek</string>
+    <string name="achievement_centurion">Centurión</string>
+    <string name="achievement_centurion_desc">Dokončite 100 hádaniek</string>
+    <string name="achievement_dedicated_player">Oddaný hráč</string>
+    <string name="achievement_dedicated_player_desc">Dokončite 500 hádaniek</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">Rýchly mysliteľ</string>
+    <string name="achievement_speed_easy_5_desc">Dokončite ľahkú hádanku za menej ako 5 minút</string>
+    <string name="achievement_speed_easy_3">Rýchlosťou blesku</string>
+    <string name="achievement_speed_easy_3_desc">Dokončite ľahkú hádanku za menej ako 3 minúty</string>
+    <string name="achievement_speed_moderate_10">Hbitý riešiteľ</string>
+    <string name="achievement_speed_moderate_10_desc">Dokončite priemernú hádanku za menej ako 10 minút</string>
+    <string name="achievement_speed_hard_15">Bleskurýchly</string>
+    <string name="achievement_speed_hard_15_desc">Dokončite ťažkú hádanku za menej ako 15 minút</string>
+    <string name="achievement_speed_challenge_20">Majster času</string>
+    <string name="achievement_speed_challenge_20_desc">Dokončite výzvu za menej ako 20 minút</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">Perfekcionista</string>
+    <string name="achievement_perfectionist_1_desc">Dokončite hádanku bez chýb</string>
+    <string name="achievement_perfectionist_10">Bezchybná desiatka</string>
+    <string name="achievement_perfectionist_10_desc">Dokončite 10 hádaniek bez chýb</string>
+    <string name="achievement_perfectionist_50">Majster presnosti</string>
+    <string name="achievement_perfectionist_50_desc">Dokončite 50 hádaniek bez chýb</string>
+    <string name="achievement_no_hints_1">Sebestačný</string>
+    <string name="achievement_no_hints_1_desc">Dokončite hádanku bez použitia nápovedy</string>
+    <string name="achievement_no_hints_25">Nezávislý riešiteľ</string>
+    <string name="achievement_no_hints_25_desc">Dokončite 25 hádaniek bez použitia nápovedy</string>
+    <string name="achievement_no_hints_100">Expert bez nápovedy</string>
+    <string name="achievement_no_hints_100_desc">Dokončite 100 hádaniek bez použitia nápovedy</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">Trojitá séria</string>
+    <string name="achievement_streak_3_desc">Hrajte 3 dni po sebe</string>
+    <string name="achievement_streak_7">Týždenný bojovník</string>
+    <string name="achievement_streak_7_desc">Hrajte 7 dní po sebe</string>
+    <string name="achievement_streak_30">Mesačný majster</string>
+    <string name="achievement_streak_30_desc">Hrajte 30 dní po sebe</string>
+    <string name="achievement_streak_100">Stodenná séria</string>
+    <string name="achievement_streak_100_desc">Hrajte 100 dní po sebe</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">Mini Sudoku</string>
+    <string name="achievement_try_6x6_desc">Dokončite hádanku 6x6</string>
+    <string name="achievement_try_12x12">Zabijak obrov</string>
+    <string name="achievement_try_12x12_desc">Dokončite hádanku 12x12</string>
+    <string name="achievement_try_killer">Killer inštinkt</string>
+    <string name="achievement_try_killer_desc">Dokončite Killer Sudoku hádanku</string>
+    <string name="achievement_killer_10">Killer nadšenec</string>
+    <string name="achievement_killer_10_desc">Dokončite 10 Killer Sudoku hádaniek</string>
+    <string name="achievement_killer_50">Killer expert</string>
+    <string name="achievement_killer_50_desc">Dokončite 50 Killer Sudoku hádaniek</string>
+    <string name="achievement_giant_10">Na veľkosti nezáleží</string>
+    <string name="achievement_giant_10_desc">Dokončite 10 hádaniek 12x12</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">Majster ľahkých</string>
+    <string name="achievement_easy_master_desc">Dokončite 25 ľahkých hádaniek</string>
+    <string name="achievement_moderate_master">Majster priemerných</string>
+    <string name="achievement_moderate_master_desc">Dokončite 25 priemerných hádaniek</string>
+    <string name="achievement_hard_master">Majster ťažkých</string>
+    <string name="achievement_hard_master_desc">Dokončite 25 ťažkých hádaniek</string>
+    <string name="achievement_challenge_master">Majster výziev</string>
+    <string name="achievement_challenge_master_desc">Dokončite 25 výziev</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">Denný debut</string>
+    <string name="achievement_daily_first_desc">Dokončite svoju prvú dennú výzvu</string>
+    <string name="achievement_daily_week">Týždenný vyzývateľ</string>
+    <string name="achievement_daily_week_desc">Dokončite 7 denných výziev</string>
+    <string name="achievement_daily_month">Mesačný šampión</string>
+    <string name="achievement_daily_month_desc">Dokončite 30 denných výziev</string>
+    <string name="achievement_daily_streak_7">Denná oddanosť</string>
+    <string name="achievement_daily_streak_7_desc">7-dňová séria denných výziev</string>
+    <string name="achievement_daily_streak_30">Denný oddanec</string>
+    <string name="achievement_daily_streak_30_desc">30-dňová séria denných výziev</string>
+    <string name="achievement_daily_streak_100">Denná legenda</string>
+    <string name="achievement_daily_streak_100_desc">100-dňová séria denných výziev</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Denná výzva</string>
+    <string name="notification_channel_daily_challenge_desc">Upozornenia na nové denné výzvy</string>
+    <string name="notification_channel_streak_reminder">Pripomienka série</string>
+    <string name="notification_channel_streak_reminder_desc">Pripomienky na udržanie vašej série</string>
+    <string name="notification_daily_challenge_title">Denná výzva je pripravená!</string>
+    <string name="notification_daily_challenge_text">Nová denná hádanka na vás čaká</string>
+    <string name="notification_streak_reminder_title">Nestraťte svoju sériu!</string>
+    <string name="notification_streak_reminder_text">Dnes ste ešte nehrali. Udržte svoju sériu!</string>
+    <string name="notification_streak_reminder_text_with_streak">Vaša %d-dňová séria je v ohrození! Hrajte teraz a udržte ju</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Upozornenia</string>
+    <string name="notifications_permission_required">Vyžaduje sa povolenie upozornení</string>
+    <string name="notifications_permission_rationale">Povoľte upozornenia pre pripomienky denných výziev a upozornenia na sériu</string>
+    <string name="notifications_daily_challenge">Pripomienka dennej výzvy</string>
+    <string name="notifications_daily_challenge_desc">Buďte upozornení, keď je dostupná nová denná výzva</string>
+    <string name="notifications_daily_challenge_time">Čas dennej výzvy</string>
+    <string name="notifications_streak_reminder">Pripomienka série</string>
+    <string name="notifications_streak_reminder_desc">Buďte upozornení, ak ste dnes ešte nehrali</string>
+    <string name="notifications_streak_reminder_time">Čas pripomienky série</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Zostaňte informovaní</string>
+    <string name="notification_permission_dialog_message">Povoľte notifikácie pre pripomienky denných výziev a upozornenia na série. Toto môžete neskôr zmeniť v nastaveniach.</string>
+    <string name="notification_permission_dialog_allow">Povoliť</string>
+    <string name="notification_permission_dialog_later">Teraz nie</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Začiatočník</string>
+    <string name="level_title_novice">Nováčik</string>
+    <string name="level_title_apprentice">Učeň</string>
+    <string name="level_title_solver">Riešiteľ</string>
+    <string name="level_title_expert">Expert</string>
+    <string name="level_title_master">Majster</string>
+    <string name="level_title_grandmaster">Veľmajster</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Úroveň %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP do ďalšej úrovne</string>
+    <string name="level_up_title">Nová úroveň!</string>
+    <string name="level_up_message">Gratulujeme! Pokračujte v riešení hlavolamov a stúpajte vyššie!</string>
+    <string name="xp_earned_title">Získané XP</string>
+    <string name="xp_bonuses">Použité bonusy</string>
+    <string name="xp_base">Základ: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Bezchybná hra</string>
+    <string name="xp_bonus_no_hints">Bez nápovedy</string>
+    <string name="xp_bonus_daily_challenge">Denná výzva</string>
+    <string name="xp_bonus_streak">%1$d dňová séria</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Denné odmeny</string>
+    <string name="reward_calendar_day">Deň %1$d</string>
+    <string name="reward_calendar_claim">Vyzdvihnúť</string>
+    <string name="reward_calendar_claimed">Vyzdvihnuté</string>
+    <string name="reward_calendar_locked">Zamknuté</string>
+    <string name="reward_calendar_today">Dnes</string>
+    <string name="reward_calendar_streak">%1$d dní v rade</string>
+    <string name="reward_calendar_total_claimed">Celkom vyzdvihnuté: %1$d</string>
+    <string name="reward_claim_title">Odmena vyzdvihnutá!</string>
+    <string name="reward_claim_message">Získali ste:</string>
+    <string name="reward_type_hints">Bonusové nápovedy</string>
+    <string name="reward_type_xp_boost">XP boost</string>
+    <string name="reward_type_theme">Téma odomknutá</string>
+    <string name="reward_type_badge">Špeciálny odznak</string>
+    <string name="reward_hints_amount">+%1$d Nápoved</string>
+    <string name="reward_xp_boost_amount">2x XP za %1$d hier</string>
+    <string name="reward_bonus_hints_available">%1$d bonusových nápoved k dispozícii</string>
+    <string name="reward_xp_boost_active">XP boost: zostáva %1$d hier</string>
+
 </resources>

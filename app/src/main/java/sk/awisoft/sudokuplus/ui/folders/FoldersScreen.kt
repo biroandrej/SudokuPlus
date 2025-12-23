@@ -24,6 +24,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.Help
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material.icons.rounded.AddCircleOutline
@@ -35,6 +36,7 @@ import androidx.compose.material.icons.rounded.Help
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
@@ -51,7 +53,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -74,8 +75,16 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import kotlin.math.sqrt
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.destinations.ExploreFolderScreenDestination
 import sk.awisoft.sudokuplus.destinations.ImportFromFileScreenDestination
@@ -83,46 +92,38 @@ import sk.awisoft.sudokuplus.destinations.SavedGameScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import kotlin.math.sqrt
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FoldersScreen(
-    viewModel: FoldersViewModel = hiltViewModel(),
-    navigator: DestinationsNavigator
-) {
+fun FoldersScreen(viewModel: FoldersViewModel = hiltViewModel(), navigator: DestinationsNavigator) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
 
     var contentUri by remember { mutableStateOf<Uri?>(null) }
-    val openDocumentLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.OpenDocument(),
-        onResult = {
-            Log.d("FoldersScreen;openDocumentLauncher", "result uri: ${it.toString()}")
-            contentUri = it
-        }
-    )
+    val openDocumentLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.OpenDocument(),
+            onResult = {
+                Log.d("FoldersScreen;openDocumentLauncher", "result uri: $it")
+                contentUri = it
+            }
+        )
 
-    val createDocumentLauncher = rememberLauncherForActivityResult(
-        contract = CreateDocument("application/sdm"),
-        onResult = { uri ->
-            if (uri != null && viewModel.selectedFolder != null) {
-                coroutineScope.launch(Dispatchers.IO) {
-                    context.contentResolver.openOutputStream(uri)?.use { outputStream ->
-                        outputStream.write(viewModel.generateFolderExportData())
-                        outputStream.close()
+    val createDocumentLauncher =
+        rememberLauncherForActivityResult(
+            contract = CreateDocument("application/sdm"),
+            onResult = { uri ->
+                if (uri != null && viewModel.selectedFolder != null) {
+                    coroutineScope.launch(Dispatchers.IO) {
+                        context.contentResolver.openOutputStream(uri)?.use { outputStream ->
+                            outputStream.write(viewModel.generateFolderExportData())
+                            outputStream.close()
+                        }
                     }
                 }
             }
-        }
-    )
+        )
 
     var createFolderDialog by rememberSaveable { mutableStateOf(false) }
     var renameFolderDialog by rememberSaveable { mutableStateOf(false) }
@@ -150,7 +151,7 @@ fun FoldersScreen(
                     },
                     actions = {
                         IconButton(onClick = { helpDialog = true }) {
-                            Icon(Icons.Rounded.Help, contentDescription = null)
+                            Icon(Icons.AutoMirrored.Rounded.Help, contentDescription = null)
                         }
                         var showMenu by remember { mutableStateOf(false) }
                         Box {
@@ -160,7 +161,11 @@ fun FoldersScreen(
                                     contentDescription = null
                                 )
                             }
-                            MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {
+                            MaterialTheme(
+                                shapes = MaterialTheme.shapes.copy(
+                                    extraSmall = MaterialTheme.shapes.large
+                                )
+                            ) {
                                 DropdownMenu(
                                     expanded = showMenu,
                                     onDismissRequest = { showMenu = false }
@@ -204,7 +209,8 @@ fun FoldersScreen(
                 CenterAlignedTopAppBar(
                     title = {
                         Text(
-                            text = pluralStringResource(
+                            text =
+                            pluralStringResource(
                                 R.plurals.number_puzzles_to_import,
                                 gamesToImport.size
                             ),
@@ -223,15 +229,18 @@ fun FoldersScreen(
                 )
             }
         },
-        snackbarHost = { SnackbarHost(snackbarHostState) },
+        snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(paddingValues)
                 .fillMaxWidth()
         ) {
             val folders by viewModel.folders.collectAsStateWithLifecycle(initialValue = emptyList())
-            val lastGames by viewModel.lastSavedGames.collectAsStateWithLifecycle(initialValue = emptyList())
+            val lastGames by viewModel.lastSavedGames.collectAsStateWithLifecycle(
+                initialValue = emptyList()
+            )
 
             if (folders.isNotEmpty() && gamesToImport.isEmpty()) {
                 LaunchedEffect(folders) {
@@ -252,7 +261,8 @@ fun FoldersScreen(
                                 ) {
                                     items(lastGames) {
                                         ElevatedCard(
-                                            modifier = Modifier
+                                            modifier =
+                                            Modifier
                                                 .clip(CardDefaults.elevatedShape)
                                                 .clickable {
                                                     navigator.navigate(
@@ -260,16 +270,19 @@ fun FoldersScreen(
                                                             gameUid = it.uid
                                                         )
                                                     )
-                                                },
+                                                }
                                         ) {
                                             Box(
-                                                modifier = Modifier
+                                                modifier =
+                                                Modifier
                                                     .padding(6.dp)
                                                     .clip(RoundedCornerShape(4.dp))
                                                     .size(130.dp)
                                             ) {
                                                 BoardPreview(
-                                                    size = sqrt(it.currentBoard.length.toFloat()).toInt(),
+                                                    size = sqrt(
+                                                        it.currentBoard.length.toFloat()
+                                                    ).toInt(),
                                                     boardString = it.currentBoard
                                                 )
                                             }
@@ -290,7 +303,9 @@ fun FoldersScreen(
                             name = item.name,
                             puzzlesCount = puzzlesCount,
                             onClick = {
-                                navigator.navigate(ExploreFolderScreenDestination(folderUid = item.uid))
+                                navigator.navigate(
+                                    ExploreFolderScreenDestination(folderUid = item.uid)
+                                )
                             },
                             onLongClick = {
                                 viewModel.selectedFolder = item
@@ -428,11 +443,12 @@ fun FoldersScreen(
 
     if (folderActionBottomSheet) {
         ModalBottomSheet(onDismissRequest = { folderActionBottomSheet = false }) {
-            val actions = listOf(
-                Pair(Icons.Rounded.Edit, stringResource(R.string.edit_name)),
-                Pair(Icons.Rounded.Share, stringResource(R.string.export)),
-                Pair(Icons.Rounded.Delete, stringResource(R.string.action_delete)),
-            )
+            val actions =
+                listOf(
+                    Pair(Icons.Rounded.Edit, stringResource(R.string.edit_name)),
+                    Pair(Icons.Rounded.Share, stringResource(R.string.export)),
+                    Pair(Icons.Rounded.Delete, stringResource(R.string.action_delete))
+                )
             viewModel.selectedFolder?.let {
                 Row(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -454,7 +470,8 @@ fun FoldersScreen(
             ) {
                 actions.forEachIndexed { index, action ->
                     Row(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .clip(MaterialTheme.shapes.small)
                             .fillMaxWidth()
                             .clickable {
@@ -501,10 +518,11 @@ fun FolderItem(
     puzzlesCount: Int,
     onClick: () -> Unit,
     onLongClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = Modifier
+        modifier =
+        Modifier
             .fillMaxWidth()
             .then(modifier)
             .combinedClickable(
@@ -513,7 +531,8 @@ fun FolderItem(
             )
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -527,7 +546,8 @@ fun FolderItem(
                     style = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = pluralStringResource(
+                    text =
+                    pluralStringResource(
                         R.plurals.puzzles_in_folder,
                         puzzlesCount,
                         puzzlesCount
@@ -549,7 +569,7 @@ fun NameActionDialog(
     onValueChange: (TextFieldValue) -> Unit,
     isError: Boolean,
     onConfirm: () -> Unit,
-    onDismiss: () -> Unit,
+    onDismiss: () -> Unit
 ) {
     val focusRequester = remember { FocusRequester() }
 

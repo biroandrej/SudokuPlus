@@ -325,9 +325,202 @@
     <string name="type_killer_6x6">Killer 6x6</string>
     <string name="app_version">Version %1$s (%2$s)</string>
     <string name="type_killer_12x12">Killer 12x12</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">Ingen hints tilbage til dette spil</string>
+    <string name="hints_ad_title">Løbet tør for hints</string>
+    <string name="hints_ad_message">Se en kort annonce for at afsløre et hint?</string>
+    <string name="hints_ad_watch">Se annonce</string>
+    <string name="hints_ad_cancel">Ikke nu</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Daglig Udfordring</string>
+    <string name="daily_challenge_subtitle">Nyt puslespil hver dag</string>
+    <string name="daily_streak">%d dages streak</string>
+    <string name="daily_completed">Færdig!</string>
+    <string name="daily_play">Spil</string>
+    <string name="daily_continue">Fortsæt</string>
+    <string name="view_calendar">Kalender</string>
+    <string name="daily_challenge_calendar">Udfordringskalender</string>
+    <string name="total_completed">Totalt Færdiggjort</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Præstationer</string>
+    <string name="achievements_unlocked">Låst op</string>
+    <string name="achievement_unlocked">Præstation Låst Op!</string>
+    <string name="achievements_unlocked_multiple">%d Præstationer Låst Op!</string>
+    <string name="action_awesome">Fantastisk!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">Alle</string>
+    <string name="achievement_category_completion">Fuldførelse</string>
+    <string name="achievement_category_speed">Hastighed</string>
+    <string name="achievement_category_accuracy">Nøjagtighed</string>
+    <string name="achievement_category_streak">Streak</string>
+    <string name="achievement_category_variety">Variation</string>
+    <string name="achievement_category_mastery">Mesterskab</string>
+    <string name="achievement_category_daily">Daglig</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">Bronze</string>
+    <string name="achievement_tier_silver">Sølv</string>
+    <string name="achievement_tier_gold">Guld</string>
+    <string name="achievement_tier_platinum">Platin</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">Første Skridt</string>
+    <string name="achievement_first_win_desc">Fuldfør dit første puslespil</string>
+    <string name="achievement_ten_games">Kom I Gang</string>
+    <string name="achievement_ten_games_desc">Fuldfør 10 puslespil</string>
+    <string name="achievement_fifty_games">Puslespilsentusiast</string>
+    <string name="achievement_fifty_games_desc">Fuldfør 50 puslespil</string>
+    <string name="achievement_centurion">Centurion</string>
+    <string name="achievement_centurion_desc">Fuldfør 100 puslespil</string>
+    <string name="achievement_dedicated_player">Dedikeret Spiller</string>
+    <string name="achievement_dedicated_player_desc">Fuldfør 500 puslespil</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">Hurtig Tænker</string>
+    <string name="achievement_speed_easy_5_desc">Fuldfør et let puslespil på under 5 minutter</string>
+    <string name="achievement_speed_easy_3">Hastighedsdæmon</string>
+    <string name="achievement_speed_easy_3_desc">Fuldfør et let puslespil på under 3 minutter</string>
+    <string name="achievement_speed_moderate_10">Hurtig Løser</string>
+    <string name="achievement_speed_moderate_10_desc">Fuldfør et moderat puslespil på under 10 minutter</string>
+    <string name="achievement_speed_hard_15">Lynhurtig</string>
+    <string name="achievement_speed_hard_15_desc">Fuldfør et svært puslespil på under 15 minutter</string>
+    <string name="achievement_speed_challenge_20">Tidsmester</string>
+    <string name="achievement_speed_challenge_20_desc">Fuldfør en udfordring på under 20 minutter</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">Perfektionist</string>
+    <string name="achievement_perfectionist_1_desc">Fuldfør et puslespil uden fejl</string>
+    <string name="achievement_perfectionist_10">Fejlfri Ti</string>
+    <string name="achievement_perfectionist_10_desc">Fuldfør 10 puslespil uden fejl</string>
+    <string name="achievement_perfectionist_50">Præcisionsmester</string>
+    <string name="achievement_perfectionist_50_desc">Fuldfør 50 puslespil uden fejl</string>
+    <string name="achievement_no_hints_1">Selvhjulpen</string>
+    <string name="achievement_no_hints_1_desc">Fuldfør et puslespil uden at bruge hints</string>
+    <string name="achievement_no_hints_25">Uafhængig Løser</string>
+    <string name="achievement_no_hints_25_desc">Fuldfør 25 puslespil uden at bruge hints</string>
+    <string name="achievement_no_hints_100">Hint-Fri Ekspert</string>
+    <string name="achievement_no_hints_100_desc">Fuldfør 100 puslespil uden at bruge hints</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">Tre-Streak</string>
+    <string name="achievement_streak_3_desc">Spil i 3 dage i træk</string>
+    <string name="achievement_streak_7">Uge Kriger</string>
+    <string name="achievement_streak_7_desc">Spil i 7 dage i træk</string>
+    <string name="achievement_streak_30">Månedlig Mester</string>
+    <string name="achievement_streak_30_desc">Spil i 30 dage i træk</string>
+    <string name="achievement_streak_100">Århundrede Streak</string>
+    <string name="achievement_streak_100_desc">Spil i 100 dage i træk</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">Mini Sudoku</string>
+    <string name="achievement_try_6x6_desc">Fuldfør et 6x6 puslespil</string>
+    <string name="achievement_try_12x12">Kæmpedræber</string>
+    <string name="achievement_try_12x12_desc">Fuldfør et 12x12 puslespil</string>
+    <string name="achievement_try_killer">Killer Instinkt</string>
+    <string name="achievement_try_killer_desc">Fuldfør et Killer Sudoku puslespil</string>
+    <string name="achievement_killer_10">Killer Entusiast</string>
+    <string name="achievement_killer_10_desc">Fuldfør 10 Killer Sudoku puslespil</string>
+    <string name="achievement_killer_50">Killer Ekspert</string>
+    <string name="achievement_killer_50_desc">Fuldfør 50 Killer Sudoku puslespil</string>
+    <string name="achievement_giant_10">Størrelse Er Ligegyldig</string>
+    <string name="achievement_giant_10_desc">Fuldfør 10 12x12 puslespil</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">Let Mester</string>
+    <string name="achievement_easy_master_desc">Fuldfør 25 lette puslespil</string>
+    <string name="achievement_moderate_master">Moderat Mester</string>
+    <string name="achievement_moderate_master_desc">Fuldfør 25 moderate puslespil</string>
+    <string name="achievement_hard_master">Svær Mester</string>
+    <string name="achievement_hard_master_desc">Fuldfør 25 svære puslespil</string>
+    <string name="achievement_challenge_master">Udfordringsmester</string>
+    <string name="achievement_challenge_master_desc">Fuldfør 25 udfordringer</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">Daglig Debut</string>
+    <string name="achievement_daily_first_desc">Fuldfør din første daglige udfordring</string>
+    <string name="achievement_daily_week">Ugentlig Udfordrer</string>
+    <string name="achievement_daily_week_desc">Fuldfør 7 daglige udfordringer</string>
+    <string name="achievement_daily_month">Månedlig Mester</string>
+    <string name="achievement_daily_month_desc">Fuldfør 30 daglige udfordringer</string>
+    <string name="achievement_daily_streak_7">Daglig Dedikation</string>
+    <string name="achievement_daily_streak_7_desc">7-dages daglig udfordrings streak</string>
+    <string name="achievement_daily_streak_30">Daglig Tilhænger</string>
+    <string name="achievement_daily_streak_30_desc">30-dages daglig udfordrings streak</string>
+    <string name="achievement_daily_streak_100">Daglig Legende</string>
+    <string name="achievement_daily_streak_100_desc">100-dages daglig udfordrings streak</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Daglig Udfordring</string>
+    <string name="notification_channel_daily_challenge_desc">Notifikationer for nye daglige udfordringer</string>
+    <string name="notification_channel_streak_reminder">Streak Påmindelse</string>
+    <string name="notification_channel_streak_reminder_desc">Påmindelser for at bevare din streak</string>
+    <string name="notification_daily_challenge_title">Daglig Udfordring Klar!</string>
+    <string name="notification_daily_challenge_text">Et nyt dagligt puslespil venter på dig</string>
+    <string name="notification_streak_reminder_title">Mist ikke din streak!</string>
+    <string name="notification_streak_reminder_text">Du har ikke spillet i dag. Hold din streak i live!</string>
+    <string name="notification_streak_reminder_text_with_streak">Din %d-dages streak er i fare! Spil nu for at beholde den</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Notifikationer</string>
+    <string name="notifications_permission_required">Notifikationstilladelse påkrævet</string>
+    <string name="notifications_permission_rationale">Tillad notifikationer for at modtage daglige udfordrings påmindelser og streak-advarsler</string>
+    <string name="notifications_daily_challenge">Daglig udfordrings påmindelse</string>
+    <string name="notifications_daily_challenge_desc">Bliv underrettet når en ny daglig udfordring er tilgængelig</string>
+    <string name="notifications_daily_challenge_time">Daglig udfordrings tid</string>
+    <string name="notifications_streak_reminder">Streak påmindelse</string>
+    <string name="notifications_streak_reminder_desc">Bliv mindet om hvis du ikke har spillet i dag</string>
+    <string name="notifications_streak_reminder_time">Streak påmindelses tid</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Hold dig opdateret</string>
+    <string name="notification_permission_dialog_message">Tillad notifikationer for at modtage daglige udfordrings påmindelser og streak advarsler. Du kan ændre dette senere i indstillinger.</string>
+    <string name="notification_permission_dialog_allow">Tillad</string>
+    <string name="notification_permission_dialog_later">Ikke nu</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Begynder</string>
+    <string name="level_title_novice">Novice</string>
+    <string name="level_title_apprentice">Lærling</string>
+    <string name="level_title_solver">Løser</string>
+    <string name="level_title_expert">Ekspert</string>
+    <string name="level_title_master">Mester</string>
+    <string name="level_title_grandmaster">Stormester</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Niveau %1$d</string>
+    <string name="total_xp_label">%1$d XP</string>
+    <string name="xp_progress_label">%1$d / %2$d XP</string>
+    <string name="xp_to_next_level">%1$d XP til næste niveau</string>
+    <string name="level_up_title">Niveau op!</string>
+    <string name="level_up_message">Tillykke! Fortsæt med at løse puslespil for at klatre højere!</string>
+    <string name="xp_earned_title">XP Optjent</string>
+    <string name="xp_bonuses">Anvendte Bonusser</string>
+    <string name="xp_base">Base: %1$d XP</string>
+    <string name="xp_bonus_no_mistakes">Perfekt spil</string>
+    <string name="xp_bonus_no_hints">Ingen hints brugt</string>
+    <string name="xp_bonus_daily_challenge">Daglig udfordring</string>
+    <string name="xp_bonus_streak">%1$d dages stime</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Daglige belønninger</string>
+    <string name="reward_calendar_day">Dag %1$d</string>
+    <string name="reward_calendar_claim">Hent</string>
+    <string name="reward_calendar_claimed">Hentet</string>
+    <string name="reward_calendar_locked">Låst</string>
+    <string name="reward_calendar_today">I dag</string>
+    <string name="reward_calendar_streak">%1$d dages stime</string>
+    <string name="reward_calendar_total_claimed">Samlet hentet: %1$d</string>
+    <string name="reward_claim_title">Belønning hentet!</string>
+    <string name="reward_claim_message">Du modtog:</string>
+    <string name="reward_type_hints">Bonus tip</string>
+    <string name="reward_type_xp_boost">XP-boost</string>
+    <string name="reward_type_theme">Tema låst op</string>
+    <string name="reward_type_badge">Særlig badge</string>
+    <string name="reward_hints_amount">+%1$d Tips</string>
+    <string name="reward_xp_boost_amount">2x XP i %1$d spil</string>
+    <string name="reward_bonus_hints_available">%1$d bonus tips tilgængelige</string>
+    <string name="reward_xp_boost_active">XP-boost: %1$d spil tilbage</string>
+
 </resources>

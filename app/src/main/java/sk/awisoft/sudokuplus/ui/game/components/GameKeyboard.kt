@@ -26,7 +26,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -51,7 +50,8 @@ fun KeyboardItem(
 
     // Numpad button background: Muted Teal (both modes), lighter when selected
     val backgroundColor by animateColorAsState(
-        targetValue = when {
+        targetValue =
+        when {
             selected -> SudokuPlusColors.MutedTeal.copy(alpha = 0.85f)
             else -> SudokuPlusColors.MutedTeal.copy(alpha = 0.2f)
         },
@@ -59,20 +59,23 @@ fun KeyboardItem(
     )
 
     // Numpad text: Soft Cream in light mode, Deepest Slate in dark mode
-    val textColor = if (isDarkTheme) {
-        if (selected) SudokuPlusColors.SoftCream else SudokuPlusColors.MutedTeal
-    } else {
-        if (selected) SudokuPlusColors.SoftCream else SudokuPlusColors.DeepSlateBlue
-    }
+    val textColor =
+        if (isDarkTheme) {
+            if (selected) SudokuPlusColors.SoftCream else SudokuPlusColors.MutedTeal
+        } else {
+            if (selected) SudokuPlusColors.SoftCream else SudokuPlusColors.DeepSlateBlue
+        }
 
     val localView = LocalView.current
-    val keyboardFontSize = if (remainingUses != null) {
-        25.sp
-    } else {
-        36.sp
-    }
+    val keyboardFontSize =
+        if (remainingUses != null) {
+            25.sp
+        } else {
+            36.sp
+        }
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .clip(CircleShape)
             .background(backgroundColor)
             .combinedClickable(
@@ -84,7 +87,8 @@ fun KeyboardItem(
                     localView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     onLongClick(number)
                 },
-                indication = ripple(
+                indication =
+                ripple(
                     bounded = true,
                     color = SudokuPlusColors.MutedTeal
                 )
@@ -122,7 +126,7 @@ fun DefaultGameKeyboard(
     onClick: (Int) -> Unit,
     onLongClick: (Int) -> Unit,
     size: Int,
-    selected: Int = 0,
+    selected: Int = 0
 ) {
     val numbers by remember(size) { mutableStateOf((1..size).toList()) }
 
@@ -136,15 +140,16 @@ fun DefaultGameKeyboard(
                 chunkedNumbers.forEachIndexed { index, chunked ->
                     AnimatedVisibility(
                         visible =
-                            (remainingUses != null && remainingUses.chunked(6)[index].any { it > 0 }) ||
-                                    remainingUses == null
+                        (remainingUses != null && remainingUses.chunked(6)[index].any { it > 0 }) ||
+                            remainingUses == null
                     ) {
                         KeyboardRow {
                             chunked.forEach { number ->
                                 val hide =
                                     remainingUses != null && (remainingUses.size > number && remainingUses[number - 1] <= 0)
                                 KeyboardItem(
-                                    modifier = itemModifier
+                                    modifier =
+                                    itemModifier
                                         .weight(1f)
                                         .alpha(if (hide) 0f else 1f),
                                     number = number,
@@ -158,7 +163,8 @@ fun DefaultGameKeyboard(
                                             onLongClick(number)
                                         }
                                     },
-                                    remainingUses = if (remainingUses != null && remainingUses.size >= number) {
+                                    remainingUses =
+                                    if (remainingUses != null && remainingUses.size >= number) {
                                         remainingUses[number - 1]
                                     } else {
                                         null
@@ -177,7 +183,8 @@ fun DefaultGameKeyboard(
                     val hide =
                         remainingUses != null && (remainingUses.size > number && remainingUses[number - 1] <= 0)
                     KeyboardItem(
-                        modifier = itemModifier
+                        modifier =
+                        itemModifier
                             .weight(1f)
                             .alpha(if (hide) 0f else 1f),
                         number = number,
@@ -191,7 +198,8 @@ fun DefaultGameKeyboard(
                                 onLongClick(number)
                             }
                         },
-                        remainingUses = if (remainingUses != null && remainingUses.size >= number) {
+                        remainingUses =
+                        if (remainingUses != null && remainingUses.size >= number) {
                             remainingUses[number - 1]
                         } else {
                             null
@@ -206,12 +214,10 @@ fun DefaultGameKeyboard(
 }
 
 @Composable
-private fun KeyboardRow(
-    modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
-) {
+private fun KeyboardRow(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     Row(
-        modifier = Modifier
+        modifier =
+        Modifier
             .fillMaxWidth()
             .then(modifier),
         horizontalArrangement = Arrangement.spacedBy(2.dp),
@@ -220,7 +226,6 @@ private fun KeyboardRow(
         content()
     }
 }
-
 
 @LightDarkPreview
 @Composable
@@ -254,7 +259,6 @@ private fun KeyboardItemPreview() {
         }
     }
 }
-
 
 @LightDarkPreview
 @Composable

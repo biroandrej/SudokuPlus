@@ -1,5 +1,6 @@
 package sk.awisoft.sudokuplus.ui.game
 
+import android.content.ClipData
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.view.HapticFeedbackConstants
@@ -14,6 +15,7 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,14 +27,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.PlayCircle
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -40,8 +43,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -50,8 +51,8 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,31 +61,38 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.ClipEntry
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlin.collections.filter
+import kotlin.collections.plus
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
+import sk.awisoft.sudokuplus.ads.AdsManager
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintData
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
+import sk.awisoft.sudokuplus.core.xp.XPResult
+import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.destinations.SettingsAdvancedHintScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsCategoriesScreenDestination
-import sk.awisoft.sudokuplus.ads.AdsManager
+import sk.awisoft.sudokuplus.ui.achievements.AchievementUnlockDialog
 import sk.awisoft.sudokuplus.ui.components.AdvancedHintContainer
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.board.Board
@@ -96,47 +104,50 @@ import sk.awisoft.sudokuplus.ui.game.components.ToolbarItem
 import sk.awisoft.sudokuplus.ui.game.components.ToolbarItemHeight
 import sk.awisoft.sudokuplus.ui.game.components.UndoRedoMenu
 import sk.awisoft.sudokuplus.ui.onboarding.FirstGameDialog
-import sk.awisoft.sudokuplus.ui.util.findActivity
 import sk.awisoft.sudokuplus.ui.util.ReverseArrangement
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.launch
-import kotlin.collections.filter
-import kotlin.collections.plus
+import sk.awisoft.sudokuplus.ui.util.findActivity
+import sk.awisoft.sudokuplus.ui.xp.LevelUpDialog
+import sk.awisoft.sudokuplus.ui.xp.XPEarnedDisplay
 
-@Destination(
+@Destination<RootGraph>(
     style = AnimatedNavigation::class,
-    navArgsDelegate = GameScreenNavArgs::class
+    navArgs = GameScreenNavArgs::class
 )
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GameScreen(
-    viewModel: GameViewModel = hiltViewModel(),
-    navigator: DestinationsNavigator
-) {
+fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: DestinationsNavigator) {
     val localView = LocalView.current // vibration
-    val clipboardManager = LocalClipboardManager.current
+    val clipboardManager = LocalClipboard.current
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
     val snackbarScope = rememberCoroutineScope()
     val darkThemeSetting by viewModel.darkTheme.collectAsStateWithLifecycle(
         initialValue = PreferencesConstants.DEFAULT_DARK_THEME
     )
-    val resolvedDarkTheme = when (darkThemeSetting) {
-        1 -> false
-        2 -> true
-        else -> isSystemInDarkTheme()
-    }
+    val resolvedDarkTheme =
+        when (darkThemeSetting) {
+            1 -> false
+            2 -> true
+            else -> isSystemInDarkTheme()
+        }
     val darkTheme = resolvedDarkTheme
 
     val firstGame by viewModel.firstGame.collectAsStateWithLifecycle(initialValue = false)
-    val resetTimer by viewModel.resetTimerOnRestart.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_GAME_RESET_TIMER)
+    val resetTimer by viewModel.resetTimerOnRestart.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_GAME_RESET_TIMER
+    )
     val mistakesLimit by viewModel.mistakesLimit.collectAsStateWithLifecycle(
         initialValue = PreferencesConstants.Companion.DEFAULT_MISTAKES_LIMIT
     )
-    val errorHighlight by viewModel.mistakesMethod.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_MISTAKES)
-    val keepScreenOn by viewModel.keepScreenOn.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_KEEP_SCREEN_ON)
-    val remainingUse by viewModel.remainingUse.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_REMAINING_USES)
+    val errorHighlight by viewModel.mistakesMethod.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_MISTAKES
+    )
+    val keepScreenOn by viewModel.keepScreenOn.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_KEEP_SCREEN_ON
+    )
+    val remainingUse by viewModel.remainingUse.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_REMAINING_USES
+    )
     val highlightIdentical by viewModel.identicalHighlight.collectAsStateWithLifecycle(
         initialValue = PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_IDENTICAL
     )
@@ -150,7 +161,9 @@ fun GameScreen(
         initialValue = PreferencesConstants.Companion.DEFAULT_FUN_KEYBOARD_OVER_NUM
     )
 
-    val fontSizeFactor by viewModel.fontSize.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_FONT_SIZE_FACTOR)
+    val fontSizeFactor by viewModel.fontSize.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_FONT_SIZE_FACTOR
+    )
     val fontSizeValue by remember(fontSizeFactor, viewModel.gameType) {
         mutableStateOf(
             viewModel.getFontSize(factor = fontSizeFactor)
@@ -166,6 +179,13 @@ fun GameScreen(
     }
 
     var showRewardedHintDialog by rememberSaveable { mutableStateOf(false) }
+    var unlockedAchievements by remember {
+        mutableStateOf<List<AchievementDefinition>>(
+            emptyList()
+        )
+    }
+    var xpResult by remember { mutableStateOf<XPResult?>(null) }
+    var showLevelUpDialog by remember { mutableStateOf<Int?>(null) }
 
     LaunchedEffect(Unit) {
         AdsManager.preloadInterstitial(context)
@@ -185,7 +205,8 @@ fun GameScreen(
     var restartButtonAngleState by remember { mutableFloatStateOf(0f) }
     val restartButtonAnimation: Float by animateFloatAsState(
         targetValue = restartButtonAngleState,
-        animationSpec = tween(durationMillis = 250), label = "restartButtonAnimation"
+        animationSpec = tween(durationMillis = 250),
+        label = "restartButtonAnimation"
     )
 
     val boardBlur by animateDpAsState(
@@ -211,6 +232,15 @@ fun GameScreen(
                 GameViewModel.UiEvent.RequestRewardedHint -> {
                     showRewardedHintDialog = true
                 }
+                is GameViewModel.UiEvent.AchievementsUnlocked -> {
+                    unlockedAchievements = event.achievements
+                }
+                is GameViewModel.UiEvent.XPEarned -> {
+                    xpResult = event.xpResult
+                }
+                is GameViewModel.UiEvent.LevelUp -> {
+                    showLevelUpDialog = event.newLevel
+                }
             }
         }
     }
@@ -232,9 +262,10 @@ fun GameScreen(
                             }
                             return@TextButton
                         }
-                        val shown = AdsManager.showRewardedIfAvailable(activity) {
-                            viewModel.applyRewardedHint()
-                        }
+                        val shown =
+                            AdsManager.showRewardedIfAvailable(activity) {
+                                viewModel.applyRewardedHint()
+                            }
                         if (!shown) {
                             snackbarScope.launch {
                                 snackbarHostState.showSnackbar(
@@ -263,7 +294,8 @@ fun GameScreen(
                 modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars)
             ) {
                 AdsManager.BannerAd(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth()
                         .height(50.dp)
                 )
@@ -281,7 +313,9 @@ fun GameScreen(
                     }
                 },
                 actions = {
-                    AnimatedVisibility(visible = viewModel.endGame && (viewModel.mistakesCount >= PreferencesConstants.Companion.MISTAKES_LIMIT || viewModel.giveUp)) {
+                    AnimatedVisibility(
+                        visible = viewModel.endGame && (viewModel.mistakesCount >= PreferencesConstants.Companion.MISTAKES_LIMIT || viewModel.giveUp)
+                    ) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -289,8 +323,11 @@ fun GameScreen(
                                 onClick = { viewModel.showSolution = !viewModel.showSolution }
                             ) {
                                 AnimatedContent(
-                                    if (viewModel.showSolution) stringResource(R.string.action_show_mine_sudoku)
-                                    else stringResource(R.string.action_show_solution),
+                                    if (viewModel.showSolution) {
+                                        stringResource(R.string.action_show_mine_sudoku)
+                                    } else {
+                                        stringResource(R.string.action_show_solution)
+                                    },
                                     label = "Show solution/mine button"
                                 ) {
                                     Text(it)
@@ -310,7 +347,8 @@ fun GameScreen(
                         }) {
                             Icon(
                                 modifier = Modifier.rotate(rotationAngle),
-                                painter = painterResource(
+                                painter =
+                                painterResource(
                                     if (viewModel.gamePlaying) {
                                         R.drawable.ic_round_pause_24
                                     } else {
@@ -355,15 +393,21 @@ fun GameScreen(
                                     viewModel.showMenu = false
                                 },
                                 onExportClick = {
-                                    val stringBoard = SudokuParser().boardToString(
-                                        viewModel.gameBoard,
-                                        emptySeparator = '.'
-                                    )
-                                    clipboardManager.setText(
-                                        AnnotatedString(
-                                            stringBoard.uppercase()
+                                    val stringBoard =
+                                        SudokuParser().boardToString(
+                                            viewModel.gameBoard,
+                                            emptySeparator = '.'
                                         )
-                                    )
+                                    snackbarScope.launch {
+                                        clipboardManager.setClipEntry(
+                                            ClipEntry(
+                                                ClipData.newPlainText(
+                                                    "sudoku",
+                                                    stringBoard.uppercase()
+                                                )
+                                            )
+                                        )
+                                    }
 
                                     if (SDK_INT < 33) {
                                         Toast.makeText(
@@ -381,14 +425,16 @@ fun GameScreen(
         }
     ) { scaffoldPaddings ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(scaffoldPaddings)
                 .padding(horizontal = 12.dp),
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
             AnimatedVisibility(visible = !viewModel.endGame) {
                 Row(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth()
                         .padding(top = 24.dp),
                     verticalAlignment = Alignment.CenterVertically,
@@ -418,7 +464,8 @@ fun GameScreen(
             var renderNotes by remember { mutableStateOf(true) }
 
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxWidth()
                     .padding(vertical = 12.dp)
             ) {
@@ -433,14 +480,16 @@ fun GameScreen(
                         Icon(
                             imageVector = Icons.Rounded.PlayCircle,
                             contentDescription = null,
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .size(48.dp)
                                 .shadow(12.dp)
                         )
                     }
                 }
                 Board(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .blur(boardBlur)
                         .scale(boardScale, boardScale),
                     board = if (!viewModel.showSolution) viewModel.gameBoard else viewModel.solvedBoard,
@@ -452,7 +501,7 @@ fun GameScreen(
                     onClick = { cell ->
                         viewModel.processInput(
                             cell = cell,
-                            remainingUse = remainingUse,
+                            remainingUse = remainingUse
                         )
                         if (!viewModel.gamePlaying) {
                             localView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
@@ -467,7 +516,8 @@ fun GameScreen(
                     identicalNumbersHighlight = highlightIdentical,
                     errorsHighlight = errorHighlight != 0,
                     positionLines = positionLines,
-                    notesToHighlight = if (viewModel.digitFirstNumber > 0) {
+                    notesToHighlight =
+                    if (viewModel.digitFirstNumber > 0) {
                         viewModel.notes.filter { it.value == viewModel.digitFirstNumber }
                     } else {
                         emptyList()
@@ -502,9 +552,11 @@ fun GameScreen(
                     }
                     if (advancedHintData == null) {
                         AdvancedHintContainer(
-                            advancedHintData = AdvancedHintData(
+                            advancedHintData =
+                            AdvancedHintData(
                                 titleRes = R.string.advanced_hint_no_hint_title,
-                                textResWithArg = Pair(
+                                textResWithArg =
+                                Pair(
                                     R.string.advanced_hint_no_hint,
                                     emptyList()
                                 ),
@@ -548,22 +600,29 @@ fun GameScreen(
                                     modifier = Modifier.padding(vertical = 8.dp)
                                 ) {
                                     Box(
-                                        modifier = Modifier
+                                        modifier =
+                                        Modifier
                                             .weight(1f)
                                             .height(ToolbarItemHeight)
                                     ) {
                                         UndoRedoMenu(
                                             expanded = viewModel.showUndoRedoMenu,
                                             onDismiss = { viewModel.showUndoRedoMenu = false },
-                                            onRedoClick = { viewModel.toolbarClick(ToolBarItem.Redo) }
+                                            onRedoClick = {
+                                                viewModel.toolbarClick(
+                                                    ToolBarItem.Redo
+                                                )
+                                            }
                                         )
                                         ToolbarItem(
                                             modifier = Modifier.fillMaxSize(),
                                             painter = painterResource(R.drawable.ic_round_undo_24),
+                                            contentDescription = stringResource(
+                                                R.string.action_undo
+                                            ),
                                             onClick = { viewModel.toolbarClick(ToolBarItem.Undo) },
                                             onLongClick = { viewModel.showUndoRedoMenu = true }
                                         )
-
                                     }
                                     val hintsDisabled by viewModel.disableHints.collectAsStateWithLifecycle(
                                         initialValue = PreferencesConstants.Companion.DEFAULT_HINTS_DISABLED
@@ -573,10 +632,16 @@ fun GameScreen(
                                     )
                                     if (!hintsDisabled) {
                                         ToolbarItem(
-                                            modifier = Modifier
+                                            modifier =
+                                            Modifier
                                                 .weight(1f)
                                                 .height(ToolbarItemHeight),
-                                            painter = painterResource(R.drawable.ic_lightbulb_stars_24),
+                                            painter = painterResource(
+                                                R.drawable.ic_lightbulb_stars_24
+                                            ),
+                                            contentDescription = stringResource(
+                                                R.string.action_hint
+                                            ),
                                             enabled = true,
                                             visualEnabled = hintsRemaining > 0,
                                             badgeText = hintsRemaining.toString(),
@@ -585,7 +650,8 @@ fun GameScreen(
                                     }
 
                                     Box(
-                                        modifier = Modifier
+                                        modifier =
+                                        Modifier
                                             .weight(1f)
                                             .height(ToolbarItemHeight)
                                     ) {
@@ -600,6 +666,9 @@ fun GameScreen(
                                         ToolbarItem(
                                             modifier = Modifier.fillMaxSize(),
                                             painter = painterResource(R.drawable.ic_round_edit_24),
+                                            contentDescription = stringResource(
+                                                R.string.action_notes
+                                            ),
                                             toggled = viewModel.notesToggled,
                                             onClick = { viewModel.toolbarClick(ToolBarItem.Note) },
                                             onLongClick = {
@@ -611,13 +680,14 @@ fun GameScreen(
                                                 }
                                             }
                                         )
-
                                     }
                                     ToolbarItem(
-                                        modifier = Modifier
+                                        modifier =
+                                        Modifier
                                             .weight(1f)
                                             .height(ToolbarItemHeight),
                                         painter = painterResource(R.drawable.ic_eraser_24),
+                                        contentDescription = stringResource(R.string.action_erase),
                                         toggled = viewModel.eraseButtonToggled,
                                         onClick = {
                                             viewModel.toolbarClick(ToolBarItem.Remove)
@@ -633,10 +703,16 @@ fun GameScreen(
                                     )
                                     if (advancedHintEnabled) {
                                         ToolbarItem(
-                                            modifier = Modifier
+                                            modifier =
+                                            Modifier
                                                 .weight(1f)
                                                 .height(ToolbarItemHeight),
-                                            painter = rememberVectorPainter(Icons.Rounded.AutoAwesome),
+                                            painter = rememberVectorPainter(
+                                                Icons.Rounded.AutoAwesome
+                                            ),
+                                            contentDescription = stringResource(
+                                                R.string.action_advanced_hint
+                                            ),
                                             onClick = {
                                                 if (viewModel.gamePlaying) {
                                                     viewModel.getAdvancedHint()
@@ -651,19 +727,34 @@ fun GameScreen(
                             val allRecords by viewModel.allRecords.collectAsStateWithLifecycle(
                                 initialValue = emptyList()
                             )
-                            AfterGameStats(
+                            Column(
                                 modifier = Modifier.fillMaxWidth(),
-                                difficulty = viewModel.gameDifficulty,
-                                type = viewModel.gameType,
-                                hintsUsed = viewModel.hintsUsed,
-                                mistakesMade = viewModel.mistakesMade,
-                                mistakesLimit = mistakesLimit,
-                                mistakesLimitCount = viewModel.mistakesCount,
-                                giveUp = viewModel.giveUp,
-                                notesTaken = viewModel.notesTaken,
-                                records = allRecords,
-                                timeText = viewModel.timeText
-                            )
+                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                // Show XP earned if game was completed successfully
+                                if (!viewModel.giveUp && viewModel.mistakesCount < PreferencesConstants.MISTAKES_LIMIT) {
+                                    xpResult?.let { result ->
+                                        XPEarnedDisplay(
+                                            xpResult = result,
+                                            modifier = Modifier.padding(horizontal = 4.dp)
+                                        )
+                                    }
+                                }
+
+                                AfterGameStats(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    difficulty = viewModel.gameDifficulty,
+                                    type = viewModel.gameType,
+                                    hintsUsed = viewModel.hintsUsed,
+                                    mistakesMade = viewModel.mistakesMade,
+                                    mistakesLimit = mistakesLimit,
+                                    mistakesLimitCount = viewModel.mistakesCount,
+                                    giveUp = viewModel.giveUp,
+                                    notesTaken = viewModel.notesTaken,
+                                    records = allRecords,
+                                    timeText = viewModel.timeText
+                                )
+                            }
                         }
                     }
                 }
@@ -725,7 +816,23 @@ fun GameScreen(
             onDismissRequest = {
                 viewModel.giveUpDialog = false
                 viewModel.startTimer()
-            },
+            }
+        )
+    }
+
+    // Achievement unlock dialog
+    if (unlockedAchievements.isNotEmpty()) {
+        AchievementUnlockDialog(
+            achievements = unlockedAchievements,
+            onDismiss = { unlockedAchievements = emptyList() }
+        )
+    }
+
+    // Level up dialog
+    showLevelUpDialog?.let { newLevel ->
+        LevelUpDialog(
+            newLevel = newLevel,
+            onDismiss = { showLevelUpDialog = null }
         )
     }
 
@@ -744,7 +851,6 @@ fun GameScreen(
             viewModel.onGameComplete()
         }
     }
-
 
     // so that the timer doesn't run in the background
     // https://stackoverflow.com/questions/66546962/jetpack-compose-how-do-i-refresh-a-screen-when-app-returns-to-foreground/66807899#66807899
@@ -765,12 +871,8 @@ fun GameScreen(
     }
 }
 
-
 @Composable
-fun TopBoardSection(
-    text: String,
-    modifier: Modifier = Modifier
-) {
+fun TopBoardSection(text: String, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -789,9 +891,10 @@ fun OnLifecycleEvent(onEvent: (owner: LifecycleOwner, event: Lifecycle.Event) ->
 
     DisposableEffect(lifecycleOwner.value) {
         val lifecycle = lifecycleOwner.value.lifecycle
-        val observer = LifecycleEventObserver { owner, event ->
-            eventHandler.value(owner, event)
-        }
+        val observer =
+            LifecycleEventObserver { owner, event ->
+                eventHandler.value(owner, event)
+            }
 
         lifecycle.addObserver(observer)
         onDispose {

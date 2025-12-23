@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.SudokuPlus" parent="Theme.Material3.DayNight.NoActionBar" />
+    <style name="Theme.SudokuPlus" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Light theme background colors -->
+        <item name="android:colorBackground">@color/splash_background_light</item>
+        <item name="android:windowBackground">@color/splash_background_light</item>
+    </style>
+
+    <!-- Splash screen theme -->
+    <style name="Theme.SudokuPlus.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background_light</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_animated</item>
+        <item name="windowSplashScreenAnimationDuration">500</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.SudokuPlus</item>
+    </style>
 
 </resources>

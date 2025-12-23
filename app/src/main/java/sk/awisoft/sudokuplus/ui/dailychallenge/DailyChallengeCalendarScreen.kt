@@ -48,14 +48,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.core.utils.toFormattedString
-import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
-import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -64,9 +61,13 @@ import java.time.format.FormatStyle
 import java.time.format.TextStyle
 import java.util.Locale
 import kotlin.time.toKotlinDuration
+import sk.awisoft.sudokuplus.R
+import sk.awisoft.sudokuplus.core.utils.toFormattedString
+import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
+import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun DailyChallengeCalendarScreen(
     navigator: DestinationsNavigator,
@@ -93,7 +94,8 @@ fun DailyChallengeCalendarScreen(
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
+                colors =
+                TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             )
@@ -101,7 +103,8 @@ fun DailyChallengeCalendarScreen(
         contentWindowInsets = WindowInsets(0)
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp)
@@ -179,19 +182,17 @@ private fun StatsRow(
 }
 
 @Composable
-private fun StatCard(
-    label: String,
-    value: String,
-    modifier: Modifier = Modifier
-) {
+private fun StatCard(label: String, value: String, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier,
-        colors = CardDefaults.cardColors(
+        colors =
+        CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
         )
     ) {
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -286,14 +287,17 @@ private fun CalendarGrid(
     val daysInMonth = currentMonth.lengthOfMonth()
 
     val completedDates = challenges.filter { it.completedAt != null }.map { it.date }.toSet()
-    val inProgressDates = challenges.filter { it.currentBoard != null && it.completedAt == null }.map { it.date }.toSet()
+    val inProgressDates = challenges.filter {
+        it.currentBoard != null && it.completedAt == null
+    }.map { it.date }.toSet()
 
-    val days = buildList {
-        repeat(firstDayOfWeek - 1) { add(null) }
-        for (day in 1..daysInMonth) {
-            add(currentMonth.atDay(day))
+    val days =
+        buildList {
+            repeat(firstDayOfWeek - 1) { add(null) }
+            for (day in 1..daysInMonth) {
+                add(currentMonth.atDay(day))
+            }
         }
-    }
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(7),
@@ -334,21 +338,24 @@ private fun CalendarDay(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val backgroundColor = when {
-        isCompleted -> MaterialTheme.colorScheme.primaryContainer
-        isToday -> MaterialTheme.colorScheme.secondaryContainer
-        else -> MaterialTheme.colorScheme.surface
-    }
+    val backgroundColor =
+        when {
+            isCompleted -> MaterialTheme.colorScheme.primaryContainer
+            isToday -> MaterialTheme.colorScheme.secondaryContainer
+            else -> MaterialTheme.colorScheme.surface
+        }
 
-    val contentColor = when {
-        isCompleted -> MaterialTheme.colorScheme.onPrimaryContainer
-        isToday -> MaterialTheme.colorScheme.onSecondaryContainer
-        isFuture -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
-        else -> MaterialTheme.colorScheme.onSurface
-    }
+    val contentColor =
+        when {
+            isCompleted -> MaterialTheme.colorScheme.onPrimaryContainer
+            isToday -> MaterialTheme.colorScheme.onSecondaryContainer
+            isFuture -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+            else -> MaterialTheme.colorScheme.onSurface
+        }
 
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .aspectRatio(1f)
             .clip(CircleShape)
             .background(backgroundColor)
@@ -373,7 +380,8 @@ private fun CalendarDay(
 
         if (isInProgress && !isCompleted) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 4.dp)
                     .size(4.dp)
@@ -385,14 +393,12 @@ private fun CalendarDay(
 }
 
 @Composable
-private fun ChallengeDetails(
-    challenge: DailyChallenge,
-    modifier: Modifier = Modifier
-) {
+private fun ChallengeDetails(challenge: DailyChallenge, modifier: Modifier = Modifier) {
     val dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
 
     Column(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .padding(bottom = 32.dp),
@@ -436,12 +442,14 @@ private fun ChallengeDetails(
 
         if (challenge.completedAt != null) {
             Card(
-                colors = CardDefaults.cardColors(
+                colors =
+                CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
                 )
             ) {
                 Column(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -467,11 +475,7 @@ private fun ChallengeDetails(
 }
 
 @Composable
-private fun DetailRow(
-    label: String,
-    value: String,
-    modifier: Modifier = Modifier
-) {
+private fun DetailRow(label: String, value: String, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,

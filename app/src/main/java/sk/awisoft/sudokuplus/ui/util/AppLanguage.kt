@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
-import sk.awisoft.sudokuplus.R
-import org.xmlpull.v1.XmlPullParser
 import java.util.Locale
+import org.xmlpull.v1.XmlPullParser
+import sk.awisoft.sudokuplus.R
 
 fun getCurrentLocaleString(context: Context): String {
     val langs = getLangs(context)
@@ -58,10 +58,10 @@ private fun getDisplayName(lang: String?): String {
         return ""
     }
 
-    val locale = when (lang) {
-        "" -> LocaleListCompat.getAdjustedDefault()[0]
-        else -> Locale.forLanguageTag(lang)
-    }
+    val locale =
+        when (lang) {
+            "" -> LocaleListCompat.getAdjustedDefault()[0]
+            else -> Locale.forLanguageTag(lang)
+        }
     return locale!!.getDisplayName(locale).replaceFirstChar { it.uppercase(locale) }
 }
-

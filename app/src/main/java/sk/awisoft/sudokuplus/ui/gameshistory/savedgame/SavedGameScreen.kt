@@ -1,5 +1,6 @@
 package sk.awisoft.sudokuplus.ui.gameshistory.savedgame
 
+import android.content.ClipData
 import android.os.Build.VERSION.SDK_INT
 import android.widget.Toast
 import androidx.compose.animation.AnimatedContent
@@ -26,6 +27,7 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -40,7 +42,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -54,15 +55,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.ClipEntry
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import java.time.format.DateTimeFormatter
+import kotlin.time.toKotlinDuration
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.PreferencesConstants
@@ -74,18 +81,14 @@ import sk.awisoft.sudokuplus.destinations.GameScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.EmptyScreen
 import sk.awisoft.sudokuplus.ui.components.board.Board
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.launch
-import java.time.format.DateTimeFormatter
-import kotlin.time.toKotlinDuration
 
-@Destination(
+@Destination<RootGraph>(
     style = AnimatedNavigation::class,
-    navArgsDelegate = SavedGameScreenNavArgs::class
+    navArgs = SavedGameScreenNavArgs::class
 )
 @OptIn(
-    ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,
+    ExperimentalMaterial3Api::class,
+    ExperimentalFoundationApi::class,
     ExperimentalLayoutApi::class
 )
 @Composable
@@ -94,7 +97,8 @@ fun SavedGameScreen(
     navigator: DestinationsNavigator
 ) {
     val context = LocalContext.current
-    val clipboardManager = LocalClipboardManager.current
+    val clipboardManager = LocalClipboard.current
+    val clipboardScope = rememberCoroutineScope()
 
     val dateFormat by viewModel.dateFormat.collectAsStateWithLifecycle(
         initialValue = ""
@@ -125,7 +129,11 @@ fun SavedGameScreen(
                                 contentDescription = null
                             )
                         }
-                        MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {
+                        MaterialTheme(
+                            shapes = MaterialTheme.shapes.copy(
+                                extraSmall = MaterialTheme.shapes.large
+                            )
+                        ) {
                             DropdownMenu(
                                 expanded = showMenu,
                                 onDismissRequest = { showMenu = false }
@@ -144,7 +152,7 @@ fun SavedGameScreen(
                     }
                 }
             )
-        },
+        }
     ) { innerPadding ->
         LaunchedEffect(Unit) { viewModel.updateGameDetails() }
 
@@ -152,14 +160,17 @@ fun SavedGameScreen(
             viewModel.parsedCurrentBoard.isNotEmpty() && viewModel.parsedInitialBoard.isNotEmpty()
         ) {
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .padding(innerPadding)
                     .fillMaxWidth()
             ) {
                 val crossHighlight by viewModel.crossHighlight.collectAsStateWithLifecycle(
                     initialValue = PreferencesConstants.Companion.DEFAULT_BOARD_CROSS_HIGHLIGHT
                 )
-                val fontSizeFactor by viewModel.fontSize.collectAsState(initial = PreferencesConstants.Companion.DEFAULT_FONT_SIZE_FACTOR)
+                val fontSizeFactor by viewModel.fontSize.collectAsState(
+                    initial = PreferencesConstants.Companion.DEFAULT_FONT_SIZE_FACTOR
+                )
                 val fontSizeValue by remember(fontSizeFactor) {
                     mutableStateOf(
                         viewModel.getFontSize(factor = fontSizeFactor)
@@ -167,13 +178,14 @@ fun SavedGameScreen(
                 }
 
                 val pagerState = rememberPagerState(pageCount = { 2 })
-                val pages = listOf(
-                    stringResource(R.string.saved_game_current),
-                    stringResource(R.string.saved_game_initial)
-                )
+                val pages =
+                    listOf(
+                        stringResource(R.string.saved_game_current),
+                        stringResource(R.string.saved_game_initial)
+                    )
                 SecondaryTabRow(
                     selectedTabIndex = pagerState.currentPage,
-                    divider = { },
+                    divider = { }
                 ) {
                     pages.forEachIndexed { index, title ->
                         val coroutineScope = rememberCoroutineScope()
@@ -198,52 +210,57 @@ fun SavedGameScreen(
                 LaunchedEffect(Unit) {
                     boardScale.animateTo(
                         targetValue = 1f,
-                        animationSpec = tween(
+                        animationSpec =
+                        tween(
                             durationMillis = 300,
                             easing = LinearOutSlowInEasing
                         )
                     )
                 }
-                val boardModifier = Modifier
-                    .padding(10.dp)
-                    .scale(boardScale.value)
+                val boardModifier =
+                    Modifier
+                        .padding(10.dp)
+                        .scale(boardScale.value)
                 Column {
                     HorizontalPager(
                         state = pagerState,
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .wrapContentHeight()
                             .padding(top = 8.dp)
                     ) { page ->
                         when (page) {
-                            0 -> Board(
-                                board = viewModel.parsedCurrentBoard,
-                                notes = viewModel.notes,
-                                modifier = boardModifier,
-                                mainTextSize = fontSizeValue,
-                                autoFontSize = fontSizeFactor == 0,
-                                selectedCell = Cell(-1, -1),
-                                onClick = { },
-                                crossHighlight = crossHighlight,
-                                cages = viewModel.killerCages
-                            )
+                            0 ->
+                                Board(
+                                    board = viewModel.parsedCurrentBoard,
+                                    notes = viewModel.notes,
+                                    modifier = boardModifier,
+                                    mainTextSize = fontSizeValue,
+                                    autoFontSize = fontSizeFactor == 0,
+                                    selectedCell = Cell(-1, -1),
+                                    onClick = { },
+                                    crossHighlight = crossHighlight,
+                                    cages = viewModel.killerCages
+                                )
 
-                            1 -> Board(
-                                board = viewModel.parsedInitialBoard,
-                                modifier = boardModifier,
-                                mainTextSize = fontSizeValue,
-                                autoFontSize = fontSizeFactor == 0,
-                                selectedCell = Cell(-1, -1),
-                                onClick = { },
-                                crossHighlight = crossHighlight,
-                                cages = viewModel.killerCages
-                            )
+                            1 ->
+                                Board(
+                                    board = viewModel.parsedInitialBoard,
+                                    modifier = boardModifier,
+                                    mainTextSize = fontSizeValue,
+                                    autoFontSize = fontSizeFactor == 0,
+                                    selectedCell = Cell(-1, -1),
+                                    onClick = { },
+                                    crossHighlight = crossHighlight,
+                                    cages = viewModel.killerCages
+                                )
                         }
                     }
                 }
 
-
                 Column(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .padding(horizontal = 12.dp)
                         .fillMaxWidth()
                 ) {
@@ -256,7 +273,11 @@ fun SavedGameScreen(
                                     contentDescription = null
                                 )
                             },
-                            onClick = { navigator.navigate(ExploreFolderScreenDestination(folderUid = it.uid)) },
+                            onClick = {
+                                navigator.navigate(
+                                    ExploreFolderScreenDestination(folderUid = it.uid)
+                                )
+                            },
                             label = { Text(it.name) }
                         )
                     }
@@ -267,13 +288,13 @@ fun SavedGameScreen(
                     LaunchedEffect(viewModel.parsedCurrentBoard) { viewModel.countProgressFilled() }
 
                     Text(
-                        text = stringResource(
+                        text =
+                        stringResource(
                             R.string.saved_game_progress_percentage,
                             progressPercentage
                         ),
                         style = textStyle
                     )
-
 
                     viewModel.savedGame?.let { savedGame ->
                         if (savedGame.startedAt != null) {
@@ -285,7 +306,9 @@ fun SavedGameScreen(
                                 }
                                 val startedAtTime by remember(savedGame) {
                                     mutableStateOf(
-                                        savedGame.startedAt.format(DateTimeFormatter.ofPattern("HH:mm"))
+                                        savedGame.startedAt.format(
+                                            DateTimeFormatter.ofPattern("HH:mm")
+                                        )
                                     )
                                 }
                                 Text(startedAtDate)
@@ -295,11 +318,13 @@ fun SavedGameScreen(
                     }
 
                     Text(
-                        text = viewModel.savedGame?.let {
+                        text =
+                        viewModel.savedGame?.let {
                             when {
-                                it.mistakes >= PreferencesConstants.Companion.MISTAKES_LIMIT -> stringResource(
-                                    R.string.saved_game_mistakes_limit
-                                )
+                                it.mistakes >= PreferencesConstants.Companion.MISTAKES_LIMIT ->
+                                    stringResource(
+                                        R.string.saved_game_mistakes_limit
+                                    )
 
                                 it.giveUp -> stringResource(R.string.saved_game_give_up)
                                 it.completed && !it.canContinue -> stringResource(R.string.saved_game_completed)
@@ -309,21 +334,24 @@ fun SavedGameScreen(
                     )
 
                     Text(
-                        text = stringResource(
+                        text =
+                        stringResource(
                             R.string.saved_game_difficulty,
                             stringResource(viewModel.boardEntity!!.difficulty.resName)
                         ),
                         style = textStyle
                     )
                     Text(
-                        text = stringResource(
+                        text =
+                        stringResource(
                             R.string.saved_game_type,
                             stringResource(viewModel.boardEntity!!.type.resName)
                         ),
                         style = textStyle
                     )
                     Text(
-                        text = stringResource(
+                        text =
+                        stringResource(
                             R.string.saved_game_time,
                             viewModel.savedGame!!.timer
                                 .toKotlinDuration()
@@ -337,7 +365,8 @@ fun SavedGameScreen(
                             onClick = {
                                 navigator.navigate(
                                     GameScreenDestination(
-                                        gameUid = viewModel.savedGame!!.uid, playedBefore = true
+                                        gameUid = viewModel.savedGame!!.uid,
+                                        playedBefore = true
                                     )
                                 )
                             }
@@ -358,7 +387,9 @@ fun SavedGameScreen(
             ) {
                 viewModel.boardEntity?.let {
                     var copyInitial by rememberSaveable { mutableStateOf(true) }
-                    var selectedEmptyCell by rememberSaveable { mutableStateOf(SudokuParser.Companion.EMPTY_SEPARATORS.first()) }
+                    var selectedEmptyCell by rememberSaveable {
+                        mutableStateOf(SudokuParser.Companion.EMPTY_SEPARATORS.first())
+                    }
                     Column(
                         modifier = Modifier.padding(horizontal = 12.dp)
                     ) {
@@ -398,7 +429,8 @@ fun SavedGameScreen(
                                         .uppercase()
                                 ) { board ->
                                     OutlinedTextField(
-                                        modifier = Modifier
+                                        modifier =
+                                        Modifier
                                             .padding(top = 8.dp),
                                         value = board,
                                         onValueChange = { },
@@ -431,14 +463,24 @@ fun SavedGameScreen(
                         Button(
                             onClick = {
                                 val exported =
-                                    (if (copyInitial) it.initialBoard else viewModel.savedGame?.currentBoard
-                                        ?: "")
+                                    (
+                                        if (copyInitial) {
+                                            it.initialBoard
+                                        } else {
+                                            viewModel.savedGame?.currentBoard
+                                                ?: ""
+                                        }
+                                        )
                                         .replace('0', selectedEmptyCell)
                                         .uppercase()
 
-                                clipboardManager.setText(
-                                    AnnotatedString(exported)
-                                )
+                                clipboardScope.launch {
+                                    clipboardManager.setClipEntry(
+                                        ClipEntry(
+                                            ClipData.newPlainText("sudoku_board", exported)
+                                        )
+                                    )
+                                }
                                 // Android 13 and higher have its own notification when copying
                                 if (SDK_INT < 33) {
                                     Toast.makeText(
@@ -448,7 +490,8 @@ fun SavedGameScreen(
                                     ).show()
                                 }
                             },
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .padding(vertical = 12.dp)
                                 .align(Alignment.End)
                         ) {

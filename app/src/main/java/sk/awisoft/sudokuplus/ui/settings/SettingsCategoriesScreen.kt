@@ -1,6 +1,5 @@
 package sk.awisoft.sudokuplus.ui.settings
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,10 +8,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Extension
 import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.MoreHoriz
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.TipsAndUpdates
 import androidx.compose.material.icons.rounded.AutoAwesome
-import androidx.compose.material.icons.rounded.SystemUpdate
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -24,7 +23,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -32,12 +30,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.destinations.SettingsAdvancedHintScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsAppearanceScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsAssistanceScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsGameplayScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsLanguageScreenDestination
+import sk.awisoft.sudokuplus.destinations.SettingsNotificationsScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsOtherScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.PreferenceRow
@@ -46,15 +48,10 @@ import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.CollapsingTitle
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.CollapsingTopAppBar
 import sk.awisoft.sudokuplus.ui.components.collapsing_topappbar.rememberTopAppBarScrollBehavior
 import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleString
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
-fun SettingsCategoriesScreen(
-    navigator: DestinationsNavigator,
-    launchedFromGame: Boolean = false
-) {
+fun SettingsCategoriesScreen(navigator: DestinationsNavigator, launchedFromGame: Boolean = false) {
     val context = LocalContext.current
     val currentLanguage by remember { mutableStateOf(getCurrentLocaleString(context)) }
     SettingsScaffoldLazyColumn(
@@ -62,7 +59,8 @@ fun SettingsCategoriesScreen(
         navigator = navigator
     ) { paddingValues ->
         ScrollbarLazyColumn(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(paddingValues)
                 .fillMaxWidth()
         ) {
@@ -120,10 +118,22 @@ fun SettingsCategoriesScreen(
             }
             item {
                 PreferenceRow(
+                    title = stringResource(R.string.notifications_title),
+                    subtitle = stringResource(R.string.notifications_daily_challenge_desc),
+                    onClick = {
+                        navigator.navigate(SettingsNotificationsScreenDestination)
+                    },
+                    painter = rememberVectorPainter(Icons.Outlined.Notifications)
+                )
+            }
+            item {
+                PreferenceRow(
                     title = stringResource(R.string.pref_other),
                     subtitle = stringResource(R.string.perf_other_summary),
                     onClick = {
-                        navigator.navigate(SettingsOtherScreenDestination(launchedFromGame = launchedFromGame))
+                        navigator.navigate(
+                            SettingsOtherScreenDestination(launchedFromGame = launchedFromGame)
+                        )
                     },
                     painter = rememberVectorPainter(Icons.Outlined.MoreHoriz)
                 )
@@ -133,19 +143,17 @@ fun SettingsCategoriesScreen(
 }
 
 @Composable
-fun SettingsCategory(
-    modifier: Modifier = Modifier,
-    title: String
-) {
+fun SettingsCategory(modifier: Modifier = Modifier, title: String) {
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .padding(start = 16.dp, bottom = 16.dp, top = 16.dp)
     ) {
         Text(
             text = title,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.primary
         )
     }
 }
@@ -160,7 +168,8 @@ fun SettingsScaffoldLazyColumn(
     val scrollBehavior = rememberTopAppBarScrollBehavior()
 
     Scaffold(
-        modifier = Modifier
+        modifier =
+        Modifier
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         snackbarHost = {
             snackbarHostState?.let {

@@ -11,11 +11,7 @@ import androidx.compose.runtime.Composable
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AnimatedIconFilterChip(
-    selected: Boolean,
-    label: String,
-    onClick: () -> Unit
-) {
+fun AnimatedIconFilterChip(selected: Boolean, label: String, onClick: () -> Unit) {
     FilterChip(
         selected = selected,
         onClick = onClick,

@@ -1,4 +1,5 @@
 import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -8,6 +9,10 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.serialization)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.googleServices)
+    alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.ktlint)
+    id("kotlin-parcelize")
 }
 
 // Load keystore properties for local signing
@@ -23,16 +28,16 @@ android {
 
     defaultConfig {
         applicationId = "sk.awisoft.sudokuplus"
-        minSdk = 26
+        minSdk = 28
         targetSdk = 36
-        versionCode = 6
-        versionName = "1.0.1-rc01"
+        versionCode = 10
+        versionName = "1.1.0"
 
         vectorDrawables {
             useSupportLibrary = true
         }
     }
-    
+
     dependenciesInfo {
         includeInApk = false
         includeInBundle = false
@@ -69,11 +74,18 @@ android {
         }
         release {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = if (keystorePropertiesFile.exists()) {
-                signingConfigs.getByName("release")
-            } else {
-                null // CI will sign separately
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig =
+                if (keystorePropertiesFile.exists()) {
+                    signingConfigs.getByName("release")
+                } else {
+                    null // CI will sign separately
+                }
+            ndk {
+                debugSymbolLevel = "FULL"
             }
             buildConfigField(
                 "String",
@@ -107,15 +119,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
     buildFeatures {
         compose = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -126,7 +137,18 @@ android {
 
 aboutLibraries {
     // Remove the "generated" timestamp to allow for reproducible builds
-    excludeFields = arrayOf("generated")
+    export {
+        excludeFields.set(listOf("generated"))
+    }
+    library {
+        duplicationMode.set(com.mikepenz.aboutlibraries.plugin.DuplicateMode.LINK)
+    }
+}
+
+ksp {
+    arg("compose-destinations.codeGenPackageName", "sk.awisoft.sudokuplus")
+    arg("compose-destinations.logProcessing", "true")
+    arg("room.schemaLocation", "$projectDir/schemas")
 }
 
 dependencies {
@@ -145,14 +167,10 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     testImplementation(libs.junit)
     implementation(libs.graphics.shape)
-
-    implementation(libs.accompanist.systemuicontroller)
-    implementation(libs.accompanist.pager.indicators)
-
     implementation(libs.hilt)
     implementation(libs.hilt.navigation)
+    implementation(libs.hilt.viewmodel.compose)
     ksp(libs.hilt.compiler)
-
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
@@ -169,6 +187,7 @@ dependencies {
     implementation(libs.serialization.json)
     implementation(libs.documentFile)
     implementation(libs.workRuntimeKtx)
+    implementation(libs.startupRuntime)
     implementation(libs.hilt.work)
     implementation(libs.hilt.common)
     ksp(libs.hilt.common.compiler)
@@ -176,6 +195,22 @@ dependencies {
     implementation(libs.materialKolor)
 
     implementation(libs.composeMarkdown)
+    implementation(libs.splash.screen)
 
     add("prodImplementation", libs.play.services.ads)
+
+    add("prodImplementation", platform(libs.firebase.bom))
+    add("prodImplementation", libs.firebase.crashlytics)
+}
+
+// Disable Google Services and Crashlytics tasks for dev builds
+androidComponents {
+    onVariants(selector().withFlavor("version" to "dev")) {
+        // Disable Google Services processing for dev builds
+        tasks.configureEach {
+            if (name.contains("Dev") && (name.contains("GoogleServices") || name.contains("Crashlytics"))) {
+                enabled = false
+            }
+        }
+    }
 }

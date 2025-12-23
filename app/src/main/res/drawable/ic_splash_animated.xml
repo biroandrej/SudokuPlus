@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+
+    <aapt:attr name="android:drawable">
+        <vector
+            android:width="108dp"
+            android:height="108dp"
+            android:viewportWidth="512"
+            android:viewportHeight="512">
+            <!-- Top-left: Coral -->
+            <group android:name="cell1"
+                android:pivotX="126"
+                android:pivotY="126"
+                android:scaleX="0"
+                android:scaleY="0">
+                <path
+                    android:name="path1"
+                    android:pathData="M92,76L160,76A16,16 0,0 1,176 92L176,160A16,16 0,0 1,160 176L92,176A16,16 0,0 1,76 160L76,92A16,16 0,0 1,92 76z"
+                    android:fillColor="#E88F7A"/>
+            </group>
+            <!-- Top-center: Teal -->
+            <group android:name="cell2"
+                android:pivotX="256"
+                android:pivotY="126"
+                android:scaleX="0"
+                android:scaleY="0">
+                <path
+                    android:name="path2"
+                    android:pathData="M222,76L290,76A16,16 0,0 1,306 92L306,160A16,16 0,0 1,290 176L222,176A16,16 0,0 1,206 160L206,92A16,16 0,0 1,222 76z"
+                    android:fillColor="#5B9EA6"/>
+            </group>
+            <!-- Middle-left: Teal -->
+            <group android:name="cell3"
+                android:pivotX="126"
+                android:pivotY="256"
+                android:scaleX="0"
+                android:scaleY="0">
+                <path
+                    android:name="path3"
+                    android:pathData="M92,206L160,206A16,16 0,0 1,176 222L176,290A16,16 0,0 1,160 306L92,306A16,16 0,0 1,76 290L76,222A16,16 0,0 1,92 206z"
+                    android:fillColor="#5B9EA6"/>
+            </group>
+            <!-- Center: Dark Blue -->
+            <group android:name="cell4"
+                android:pivotX="256"
+                android:pivotY="256"
+                android:scaleX="0"
+                android:scaleY="0">
+                <path
+                    android:name="path4"
+                    android:pathData="M222,206L290,206A16,16 0,0 1,306 222L306,290A16,16 0,0 1,290 306L222,306A16,16 0,0 1,206 290L206,222A16,16 0,0 1,222 206z"
+                    android:fillColor="#3C4A63"/>
+            </group>
+            <!-- Middle-right: Teal -->
+            <group android:name="cell5"
+                android:pivotX="386"
+                android:pivotY="256"
+                android:scaleX="0"
+                android:scaleY="0">
+                <path
+                    android:name="path5"
+                    android:pathData="M352,206L420,206A16,16 0,0 1,436 222L436,290A16,16 0,0 1,420 306L352,306A16,16 0,0 1,336 290L336,222A16,16 0,0 1,352 206z"
+                    android:fillColor="#5B9EA6"/>
+            </group>
+            <!-- Bottom-left: Coral -->
+            <group android:name="cell6"
+                android:pivotX="126"
+                android:pivotY="386"
+                android:scaleX="0"
+                android:scaleY="0">
+                <path
+                    android:name="path6"
+                    android:pathData="M92,336L160,336A16,16 0,0 1,176 352L176,420A16,16 0,0 1,160 436L92,436A16,16 0,0 1,76 420L76,352A16,16 0,0 1,92 336z"
+                    android:fillColor="#E88F7A"/>
+            </group>
+            <!-- Bottom-center: Teal -->
+            <group android:name="cell7"
+                android:pivotX="256"
+                android:pivotY="386"
+                android:scaleX="0"
+                android:scaleY="0">
+                <path
+                    android:name="path7"
+                    android:pathData="M222,336L290,336A16,16 0,0 1,306 352L306,420A16,16 0,0 1,290 436L222,436A16,16 0,0 1,206 420L206,352A16,16 0,0 1,222 336z"
+                    android:fillColor="#5B9EA6"/>
+            </group>
+            <!-- Bottom-right: Coral -->
+            <group android:name="cell8"
+                android:pivotX="386"
+                android:pivotY="386"
+                android:scaleX="0"
+                android:scaleY="0">
+                <path
+                    android:name="path8"
+                    android:pathData="M352,336L420,336A16,16 0,0 1,436 352L436,420A16,16 0,0 1,420 436L352,436A16,16 0,0 1,336 420L336,352A16,16 0,0 1,352 336z"
+                    android:fillColor="#E88F7A"/>
+            </group>
+        </vector>
+    </aapt:attr>
+
+    <!-- Cell 1 animation (top-left) -->
+    <target android:name="cell1">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="150"
+                android:startOffset="0"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+    <target android:name="cell1">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="150"
+                android:startOffset="0"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+
+    <!-- Cell 2 animation (top-center) -->
+    <target android:name="cell2">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="150"
+                android:startOffset="50"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+    <target android:name="cell2">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="150"
+                android:startOffset="50"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+
+    <!-- Cell 3 animation (middle-left) -->
+    <target android:name="cell3">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="150"
+                android:startOffset="100"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+    <target android:name="cell3">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="150"
+                android:startOffset="100"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+
+    <!-- Cell 4 animation (center) -->
+    <target android:name="cell4">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="150"
+                android:startOffset="150"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+    <target android:name="cell4">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="150"
+                android:startOffset="150"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+
+    <!-- Cell 5 animation (middle-right) -->
+    <target android:name="cell5">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="150"
+                android:startOffset="200"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+    <target android:name="cell5">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="150"
+                android:startOffset="200"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+
+    <!-- Cell 6 animation (bottom-left) -->
+    <target android:name="cell6">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="150"
+                android:startOffset="250"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+    <target android:name="cell6">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="150"
+                android:startOffset="250"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+
+    <!-- Cell 7 animation (bottom-center) -->
+    <target android:name="cell7">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="150"
+                android:startOffset="300"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+    <target android:name="cell7">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="150"
+                android:startOffset="300"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+
+    <!-- Cell 8 animation (bottom-right) -->
+    <target android:name="cell8">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="150"
+                android:startOffset="350"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+    <target android:name="cell8">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="150"
+                android:startOffset="350"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:interpolator="@android:interpolator/overshoot"/>
+        </aapt:attr>
+    </target>
+
+</animated-vector>

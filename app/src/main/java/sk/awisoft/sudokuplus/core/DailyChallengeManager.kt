@@ -1,5 +1,8 @@
 package sk.awisoft.sudokuplus.core
 
+import java.time.LocalDate
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
@@ -9,20 +12,20 @@ import sk.awisoft.sudokuplus.core.qqwing.QQWingController
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
-import java.time.LocalDate
-import javax.inject.Inject
-import javax.inject.Singleton
 
 @Singleton
-class DailyChallengeManager @Inject constructor(
+class DailyChallengeManager
+@Inject
+constructor(
     private val repository: DailyChallengeRepository
 ) {
-    private val difficulties = listOf(
-        GameDifficulty.Easy,
-        GameDifficulty.Moderate,
-        GameDifficulty.Hard,
-        GameDifficulty.Challenge
-    )
+    private val difficulties =
+        listOf(
+            GameDifficulty.Easy,
+            GameDifficulty.Moderate,
+            GameDifficulty.Hard,
+            GameDifficulty.Challenge
+        )
 
     fun getDifficultyForDate(date: LocalDate): GameDifficulty {
         val dayIndex = date.toEpochDay().toInt()
@@ -57,14 +60,15 @@ class DailyChallengeManager @Inject constructor(
             val difficulty = qqWing.getDifficulty()
 
             val parser = SudokuParser()
-            val challenge = DailyChallenge(
-                date = date,
-                difficulty = difficulty,
-                gameType = gameType,
-                seed = seed,
-                initialBoard = parser.boardToString(puzzle),
-                solvedBoard = parser.boardToString(solved)
-            )
+            val challenge =
+                DailyChallenge(
+                    date = date,
+                    difficulty = difficulty,
+                    gameType = gameType,
+                    seed = seed,
+                    initialBoard = parser.boardToString(puzzle),
+                    solvedBoard = parser.boardToString(solved)
+                )
 
             repository.save(challenge)
             challenge

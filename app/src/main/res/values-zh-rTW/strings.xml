@@ -299,4 +299,77 @@
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
     <string name="hints_ad_cancel">Not now</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">每日挑戰</string>
+    <string name="notification_channel_daily_challenge_desc">新每日挑戰通知</string>
+    <string name="notification_channel_streak_reminder">連續記錄提醒</string>
+    <string name="notification_channel_streak_reminder_desc">保持連續記錄的提醒</string>
+    <string name="notification_daily_challenge_title">每日挑戰已準備好！</string>
+    <string name="notification_daily_challenge_text">新的每日謎題正等著您</string>
+    <string name="notification_streak_reminder_title">不要失去您的連續記錄！</string>
+    <string name="notification_streak_reminder_text">您今天還沒有玩過。保持您的連續記錄！</string>
+    <string name="notification_streak_reminder_text_with_streak">您的 %d 天連續記錄有風險！立即遊戲以保持它</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">通知</string>
+    <string name="notifications_permission_required">需要通知權限</string>
+    <string name="notifications_permission_rationale">允許通知以接收每日挑戰提醒和連續記錄警報</string>
+    <string name="notifications_daily_challenge">每日挑戰提醒</string>
+    <string name="notifications_daily_challenge_desc">當新的每日挑戰可用時獲得通知</string>
+    <string name="notifications_daily_challenge_time">每日挑戰時間</string>
+    <string name="notifications_streak_reminder">連續記錄提醒</string>
+    <string name="notifications_streak_reminder_desc">如果您今天還沒玩過，會收到提醒</string>
+    <string name="notifications_streak_reminder_time">連續記錄提醒時間</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">保持更新</string>
+    <string name="notification_permission_dialog_message">允許通知以接收每日挑戰提醒和連續記錄警報。您可以稍後在設定中更改此選項。</string>
+    <string name="notification_permission_dialog_allow">允許</string>
+    <string name="notification_permission_dialog_later">稍後再說</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">初學者</string>
+    <string name="level_title_novice">新手</string>
+    <string name="level_title_apprentice">學徒</string>
+    <string name="level_title_solver">解題者</string>
+    <string name="level_title_expert">專家</string>
+    <string name="level_title_master">大師</string>
+    <string name="level_title_grandmaster">特級大師</string>
+
+    <!-- XP Display -->
+    <string name="level_label">等級 %1$d</string>
+    <string name="total_xp_label">%1$d 經驗</string>
+    <string name="xp_progress_label">%1$d / %2$d 經驗</string>
+    <string name="xp_to_next_level">距下一級還需 %1$d 經驗</string>
+    <string name="level_up_title">升級了！</string>
+    <string name="level_up_message">恭喜！繼續解謎來攀登更高的等級！</string>
+    <string name="xp_earned_title">獲得經驗</string>
+    <string name="xp_bonuses">套用的加成</string>
+    <string name="xp_base">基礎：%1$d 經驗</string>
+    <string name="xp_bonus_no_mistakes">完美遊戲</string>
+    <string name="xp_bonus_no_hints">未使用提示</string>
+    <string name="xp_bonus_daily_challenge">每日挑戰</string>
+    <string name="xp_bonus_streak">%1$d天連勝</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">每日獎勵</string>
+    <string name="reward_calendar_day">第%1$d天</string>
+    <string name="reward_calendar_claim">領取</string>
+    <string name="reward_calendar_claimed">已領取</string>
+    <string name="reward_calendar_locked">鎖定</string>
+    <string name="reward_calendar_today">今天</string>
+    <string name="reward_calendar_streak">連續%1$d天</string>
+    <string name="reward_calendar_total_claimed">共領取: %1$d</string>
+    <string name="reward_claim_title">獎勵已領取!</string>
+    <string name="reward_claim_message">您獲得了:</string>
+    <string name="reward_type_hints">獎勵提示</string>
+    <string name="reward_type_xp_boost">經驗加成</string>
+    <string name="reward_type_theme">主題解鎖</string>
+    <string name="reward_type_badge">特殊徽章</string>
+    <string name="reward_hints_amount">+%1$d 提示</string>
+    <string name="reward_xp_boost_amount">%1$d局遊戲2倍經驗</string>
+    <string name="reward_bonus_hints_available">%1$d獎勵提示可用</string>
+    <string name="reward_xp_boost_active">經驗加成: 剩餘%1$d局</string>
+
 </resources>

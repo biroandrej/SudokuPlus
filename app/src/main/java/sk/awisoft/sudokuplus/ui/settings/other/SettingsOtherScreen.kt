@@ -24,8 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
@@ -33,11 +37,8 @@ import sk.awisoft.sudokuplus.ui.components.PreferenceRow
 import sk.awisoft.sudokuplus.ui.components.PreferenceRowSwitch
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.settings.SettingsScaffoldLazyColumn
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.launch
 
-@Destination(style = AnimatedNavigation::class)
+@Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 fun SettingsOtherScreen(
     viewModel: SettingsOtherViewModel = hiltViewModel(),
@@ -51,8 +52,12 @@ fun SettingsOtherScreen(
     var resetGameDataDialog by rememberSaveable { mutableStateOf(false) }
 
     val saveLastSelectedDifficultyType by viewModel.saveLastSelectedDifficultyType
-        .collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_SAVE_LAST_SELECTED_DIFF_TYPE)
-    val keepScreenOn by viewModel.keepScreenOn.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_KEEP_SCREEN_ON)
+        .collectAsStateWithLifecycle(
+            initialValue = PreferencesConstants.Companion.DEFAULT_SAVE_LAST_SELECTED_DIFF_TYPE
+        )
+    val keepScreenOn by viewModel.keepScreenOn.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_KEEP_SCREEN_ON
+    )
 
     SettingsScaffoldLazyColumn(
         titleText = stringResource(R.string.pref_other),
@@ -60,7 +65,8 @@ fun SettingsOtherScreen(
         snackbarHostState = snackbarHostState
     ) { paddingValues ->
         ScrollbarLazyColumn(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(paddingValues)
                 .fillMaxWidth()
         ) {
@@ -70,7 +76,9 @@ fun SettingsOtherScreen(
                     subtitle = stringResource(R.string.pref_save_last_diff_and_type_subtitle),
                     checked = saveLastSelectedDifficultyType,
                     onClick = {
-                        viewModel.updateSaveLastSelectedDifficultyType(!saveLastSelectedDifficultyType)
+                        viewModel.updateSaveLastSelectedDifficultyType(
+                            !saveLastSelectedDifficultyType
+                        )
                     },
                     painter = rememberVectorPainter(Icons.Outlined.Bookmark)
                 )

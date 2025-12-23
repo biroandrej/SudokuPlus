@@ -22,7 +22,7 @@ fun GameMenu(
     onGiveUpClick: () -> Unit,
     onSettingsClick: () -> Unit,
     onExportClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {
         DropdownMenu(
@@ -60,7 +60,7 @@ fun UndoRedoMenu(
     expanded: Boolean,
     onDismiss: () -> Unit,
     onRedoClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {
         DropdownMenu(
@@ -93,7 +93,7 @@ fun NotesMenu(
     onClearNotesClick: () -> Unit,
     renderNotes: Boolean,
     onRenderNotesClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {
         DropdownMenu(

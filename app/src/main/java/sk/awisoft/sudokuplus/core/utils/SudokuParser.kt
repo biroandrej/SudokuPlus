@@ -1,13 +1,14 @@
 package sk.awisoft.sudokuplus.core.utils
 
+import kotlinx.serialization.json.Json
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.Note
 import sk.awisoft.sudokuplus.core.qqwing.Cage
 import sk.awisoft.sudokuplus.core.qqwing.GameType
-import kotlinx.serialization.json.Json
 
 class SudokuParser {
     private val radix = 13
+
     fun parseBoard(
         board: String,
         gameType: GameType,
@@ -19,18 +20,20 @@ class SudokuParser {
         }
 
         val size = gameType.size
-        val listBoard = MutableList(size) { row ->
-            MutableList(size) { col ->
-                Cell(row, col, 0)
+        val listBoard =
+            MutableList(size) { row ->
+                MutableList(size) { col ->
+                    Cell(row, col, 0)
+                }
             }
-        }
 
         for (i in board.indices) {
-            val value = if (emptySeparator != null) {
-                if (board[i] == emptySeparator) 0 else boardDigitToInt(board[i])
-            } else {
-                if (board[i] in SudokuParser.EMPTY_SEPARATORS) 0 else boardDigitToInt(board[i])
-            }
+            val value =
+                if (emptySeparator != null) {
+                    if (board[i] == emptySeparator) 0 else boardDigitToInt(board[i])
+                } else {
+                    if (board[i] in SudokuParser.EMPTY_SEPARATORS) 0 else boardDigitToInt(board[i])
+                }
 
             listBoard[i / size][i % size].value = value
             listBoard[i / size][i % size].locked = locked
@@ -48,15 +51,16 @@ class SudokuParser {
         var boardString = ""
         boardList.forEach { cells ->
             cells.forEach { cell ->
-                boardString += if (cell.value <= 9) {
-                    if (cell.value != 0) {
-                        cell.value.toString()
+                boardString +=
+                    if (cell.value <= 9) {
+                        if (cell.value != 0) {
+                            cell.value.toString()
+                        } else {
+                            emptySeparator
+                        }
                     } else {
-                        emptySeparator
+                        cell.value.toString(radix)
                     }
-                } else {
-                    cell.value.toString(radix)
-                }
             }
         }
         return boardString
@@ -65,7 +69,7 @@ class SudokuParser {
     fun boardToString(board: IntArray, emptySeparator: Char = '0'): String {
         var boardString = ""
         board.forEach {
-            boardString += if(it != 0) it.toString(radix) else emptySeparator
+            boardString += if (it != 0) it.toString(radix) else emptySeparator
         }
         return boardString
     }
@@ -102,9 +106,10 @@ class SudokuParser {
     }
 
     fun killerSudokuCagesToString(cages: List<Cage>): String {
-        val json = Json {
-            encodeDefaults = true
-        }
+        val json =
+            Json {
+                encodeDefaults = true
+            }
         return json.encodeToString(cages)
     }
 

@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.rounded.Redo
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.rounded.ArrowDropDown
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -26,7 +27,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -43,8 +43,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
@@ -56,12 +59,10 @@ import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
 import sk.awisoft.sudokuplus.ui.game.components.ToolbarItem
 import sk.awisoft.sudokuplus.ui.game.components.ToolbarItemHeight
 import sk.awisoft.sudokuplus.ui.util.ReverseArrangement
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination(
+@Destination<RootGraph>(
     style = AnimatedNavigation::class,
-    navArgsDelegate = CreateSudokuScreenNavArgs::class
+    navArgs = CreateSudokuScreenNavArgs::class
 )
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,10 +76,12 @@ fun CreateSudokuScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = if (viewModel.gameUid == -1L)
+                        text =
+                        if (viewModel.gameUid == -1L) {
                             stringResource(R.string.create_sudoku_title)
-                        else
+                        } else {
                             stringResource(R.string.edit_sudoku)
+                        }
                     )
                 },
                 navigationIcon = {
@@ -98,7 +101,11 @@ fun CreateSudokuScreen(
                                 contentDescription = null
                             )
                         }
-                        MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {
+                        MaterialTheme(
+                            shapes = MaterialTheme.shapes.copy(
+                                extraSmall = MaterialTheme.shapes.large
+                            )
+                        ) {
                             DropdownMenu(
                                 expanded = showMenu,
                                 onDismissRequest = { showMenu = false }
@@ -120,12 +127,15 @@ fun CreateSudokuScreen(
         }
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(paddingValues)
                 .padding(horizontal = 12.dp)
         ) {
-            val highlightIdentical by viewModel.highlightIdentical.collectAsState(initial = PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_IDENTICAL)
+            val highlightIdentical by viewModel.highlightIdentical.collectAsState(
+                initial = PreferencesConstants.Companion.DEFAULT_HIGHLIGHT_IDENTICAL
+            )
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -133,7 +143,9 @@ fun CreateSudokuScreen(
                 Row {
                     Box {
                         var difficultyMenu by remember { mutableStateOf(false) }
-                        val dropDownIconRotation by animateFloatAsState(if (difficultyMenu) 180f else 0f)
+                        val dropDownIconRotation by animateFloatAsState(
+                            if (difficultyMenu) 180f else 0f
+                        )
                         TextButton(onClick = { difficultyMenu = !difficultyMenu }) {
                             Text(stringResource(viewModel.gameDifficulty.resName))
                             Icon(
@@ -154,7 +166,9 @@ fun CreateSudokuScreen(
                     if (viewModel.gameUid == -1L) {
                         Box {
                             var gameTypeMenuExpanded by remember { mutableStateOf(false) }
-                            val dropDownIconRotation by animateFloatAsState(if (gameTypeMenuExpanded) 180f else 0f)
+                            val dropDownIconRotation by animateFloatAsState(
+                                if (gameTypeMenuExpanded) 180f else 0f
+                            )
                             TextButton(onClick = { gameTypeMenuExpanded = !gameTypeMenuExpanded }) {
                                 Text(stringResource(viewModel.gameType.resName))
                                 Icon(
@@ -179,20 +193,27 @@ fun CreateSudokuScreen(
                         if (viewModel.saveGame()) {
                             navigator.popBackStack()
                         }
-                    }) {
+                    }
+                ) {
                     Text(stringResource(R.string.action_save))
                 }
             }
 
-            val fontSizeFactor by viewModel.fontSize.collectAsState(initial = PreferencesConstants.Companion.DEFAULT_FONT_SIZE_FACTOR)
+            val fontSizeFactor by viewModel.fontSize.collectAsState(
+                initial = PreferencesConstants.Companion.DEFAULT_FONT_SIZE_FACTOR
+            )
             val fontSizeValue by remember(fontSizeFactor, viewModel.gameType) {
                 mutableStateOf(
                     viewModel.getFontSize(factor = fontSizeFactor)
                 )
             }
 
-            val positionLines by viewModel.positionLines.collectAsState(initial = PreferencesConstants.Companion.DEFAULT_POSITION_LINES)
-            val crossHighlight by viewModel.crossHighlight.collectAsState(initial = PreferencesConstants.Companion.DEFAULT_BOARD_CROSS_HIGHLIGHT)
+            val positionLines by viewModel.positionLines.collectAsState(
+                initial = PreferencesConstants.Companion.DEFAULT_POSITION_LINES
+            )
+            val crossHighlight by viewModel.crossHighlight.collectAsState(
+                initial = PreferencesConstants.Companion.DEFAULT_BOARD_CROSS_HIGHLIGHT
+            )
             Board(
                 modifier = Modifier.padding(vertical = 12.dp),
                 size = viewModel.gameType.size,
@@ -234,7 +255,8 @@ fun CreateSudokuScreen(
                     modifier = Modifier.padding(vertical = 8.dp)
                 ) {
                     ToolbarItem(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .weight(0.5f)
                             .height(ToolbarItemHeight),
                         painter = painterResource(R.drawable.ic_round_undo_24),
@@ -242,7 +264,8 @@ fun CreateSudokuScreen(
                     )
 
                     ToolbarItem(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .weight(0.5f)
                             .height(ToolbarItemHeight),
                         painter = rememberVectorPainter(Icons.AutoMirrored.Rounded.Redo),
@@ -250,7 +273,8 @@ fun CreateSudokuScreen(
                     )
 
                     ToolbarItem(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .weight(1f)
                             .height(ToolbarItemHeight),
                         painter = painterResource(R.drawable.ic_eraser_24),
@@ -319,11 +343,12 @@ fun CreateSudokuScreen(
 fun GameTypeMenu(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
-    types: List<GameType> = listOf(
-        GameType.Default9x9,
-        GameType.Default6x6,
-        GameType.Default12x12,
-    ),
+    types: List<GameType> =
+        listOf(
+            GameType.Default9x9,
+            GameType.Default6x6,
+            GameType.Default12x12
+        ),
     onClick: (GameType) -> Unit
 ) {
     MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {
@@ -366,14 +391,17 @@ private fun ImportStringSudokuDialog(
             ) {
                 Text(stringResource(R.string.create_from_string_text))
                 OutlinedTextField(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .padding(top = 6.dp)
                         .focusRequester(focusRequester),
                     value = textValue,
-                    keyboardOptions = KeyboardOptions(
+                    keyboardOptions =
+                    KeyboardOptions(
                         imeAction = ImeAction.Done
                     ),
-                    keyboardActions = KeyboardActions(
+                    keyboardActions =
+                    KeyboardActions(
                         onDone = { onConfirm() }
                     ),
                     isError = isError,
@@ -400,13 +428,14 @@ private fun ImportStringSudokuDialog(
 fun DifficultyMenu(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
-    difficulties: List<GameDifficulty> = listOf(
-        GameDifficulty.Easy,
-        GameDifficulty.Moderate,
-        GameDifficulty.Hard,
-        GameDifficulty.Challenge,
-        GameDifficulty.Custom,
-    ),
+    difficulties: List<GameDifficulty> =
+        listOf(
+            GameDifficulty.Easy,
+            GameDifficulty.Moderate,
+            GameDifficulty.Hard,
+            GameDifficulty.Challenge,
+            GameDifficulty.Custom
+        ),
     onClick: (GameDifficulty) -> Unit
 ) {
     MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {

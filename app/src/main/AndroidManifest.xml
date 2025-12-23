@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:name=".SudokuPlusApp"
         android:allowBackup="true"
@@ -25,7 +27,7 @@
             android:configChanges="locale|layoutDirection"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SudokuPlus">
+            android:theme="@style/Theme.SudokuPlus.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,11 +62,17 @@
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
-            tools:node="remove">
+            android:exported="false"
+            tools:node="merge">
+            <!-- Disable WorkManager auto-init (using HiltWorkerFactory) -->
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"
                 android:value="androidx.startup"
                 tools:node="remove" />
+            <!-- App initializers -->
+            <meta-data
+                android:name="sk.awisoft.sudokuplus.core.startup.NotificationStartupInitializer"
+                android:value="androidx.startup" />
         </provider>
 
     </application>

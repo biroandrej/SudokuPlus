@@ -3,7 +3,6 @@ package sk.awisoft.sudokuplus.ui.util
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.ui.tooling.preview.Preview
 
-
 @Preview(
     name = "Light",
     showBackground = true

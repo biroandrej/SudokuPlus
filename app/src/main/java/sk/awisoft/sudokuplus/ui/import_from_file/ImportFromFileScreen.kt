@@ -26,6 +26,7 @@ import androidx.compose.material.icons.rounded.ArrowDropDown
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.KeyboardArrowUp
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -41,7 +42,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -62,8 +62,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import java.io.InputStreamReader
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
@@ -72,13 +77,9 @@ import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
 import sk.awisoft.sudokuplus.ui.util.findActivity
 import sk.awisoft.sudokuplus.ui.util.isScrolledToStart
 import sk.awisoft.sudokuplus.ui.util.isScrollingUp
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.launch
-import java.io.InputStreamReader
 
-@Destination(
-    navArgsDelegate = ImportFromFileScreenNavArgs::class,
+@Destination<RootGraph>(
+    navArgs = ImportFromFileScreenNavArgs::class,
     style = AnimatedNavigation::class
 )
 @OptIn(ExperimentalMaterial3Api::class)
@@ -153,7 +154,8 @@ fun ImportFromFileScreen(
     ) { paddingValues ->
         Column(Modifier.padding(paddingValues)) {
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .padding(horizontal = 12.dp)
             ) {
                 Text(
@@ -164,7 +166,8 @@ fun ImportFromFileScreen(
                     )
                 )
                 Row(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -201,7 +204,8 @@ fun ImportFromFileScreen(
                             } else {
                                 viewModel.saveImported()
                             }
-                        }) {
+                        }
+                    ) {
                         Text(stringResource(R.string.action_save))
                     }
                 }
@@ -368,7 +372,7 @@ private fun ImportDifficultyMenu(
                 GameDifficulty.Moderate,
                 GameDifficulty.Hard,
                 GameDifficulty.Challenge,
-                GameDifficulty.Custom,
+                GameDifficulty.Custom
             ).forEach {
                 DropdownMenuItem(
                     text = {

@@ -1,10 +1,11 @@
 package sk.awisoft.sudokuplus.data.database.repository
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import sk.awisoft.sudokuplus.data.database.dao.FolderDao
 import sk.awisoft.sudokuplus.data.database.model.Folder
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.domain.repository.FolderRepository
-import kotlinx.coroutines.flow.Flow
 
 class FolderRepositoryImpl(
     private val folderDao: FolderDao
@@ -15,7 +16,8 @@ class FolderRepositoryImpl(
 
     override fun countPuzzlesFolder(uid: Long): Long = folderDao.countPuzzlesFolder(uid)
 
-    override fun getLastSavedGamesAnyFolder(gamesCount: Int): Flow<List<SavedGame>> = folderDao.getLastSavedGamesAnyFolder(gamesCount)
+    override fun getLastSavedGamesAnyFolder(gamesCount: Int): Flow<List<SavedGame>> =
+        flowOf() // folderDao.getLastSavedGamesAnyFolder(gamesCount)
 
     override suspend fun insert(folder: Folder): Long = folderDao.insert(folder)
 

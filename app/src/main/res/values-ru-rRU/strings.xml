@@ -358,5 +358,198 @@
     <string name="hints_ad_title">Out of hints</string>
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_ad_cancel">Не сейчас</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Ежедневный вызов</string>
+    <string name="daily_challenge_subtitle">Новая головоломка каждый день</string>
+    <string name="daily_streak">Серия %d дней</string>
+    <string name="daily_completed">Завершено!</string>
+    <string name="daily_play">Играть</string>
+    <string name="daily_continue">Продолжить</string>
+    <string name="view_calendar">Календарь</string>
+    <string name="daily_challenge_calendar">Календарь вызовов</string>
+    <string name="total_completed">Всего завершено</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Достижения</string>
+    <string name="achievements_unlocked">Разблокировано</string>
+    <string name="achievement_unlocked">Достижение разблокировано!</string>
+    <string name="achievements_unlocked_multiple">%d достижений разблокировано!</string>
+    <string name="action_awesome">Отлично!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">Все</string>
+    <string name="achievement_category_completion">Завершение</string>
+    <string name="achievement_category_speed">Скорость</string>
+    <string name="achievement_category_accuracy">Точность</string>
+    <string name="achievement_category_streak">Серия</string>
+    <string name="achievement_category_variety">Разнообразие</string>
+    <string name="achievement_category_mastery">Мастерство</string>
+    <string name="achievement_category_daily">Ежедневные</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">Бронзовый</string>
+    <string name="achievement_tier_silver">Серебряный</string>
+    <string name="achievement_tier_gold">Золотой</string>
+    <string name="achievement_tier_platinum">Платиновый</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">Первые шаги</string>
+    <string name="achievement_first_win_desc">Завершите свою первую головоломку</string>
+    <string name="achievement_ten_games">Начало положено</string>
+    <string name="achievement_ten_games_desc">Завершите 10 головоломок</string>
+    <string name="achievement_fifty_games">Энтузиаст головоломок</string>
+    <string name="achievement_fifty_games_desc">Завершите 50 головоломок</string>
+    <string name="achievement_centurion">Центурион</string>
+    <string name="achievement_centurion_desc">Завершите 100 головоломок</string>
+    <string name="achievement_dedicated_player">Преданный игрок</string>
+    <string name="achievement_dedicated_player_desc">Завершите 500 головоломок</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">Быстрый ум</string>
+    <string name="achievement_speed_easy_5_desc">Завершите лёгкую головоломку менее чем за 5 минут</string>
+    <string name="achievement_speed_easy_3">Демон скорости</string>
+    <string name="achievement_speed_easy_3_desc">Завершите лёгкую головоломку менее чем за 3 минуты</string>
+    <string name="achievement_speed_moderate_10">Быстрый решатель</string>
+    <string name="achievement_speed_moderate_10_desc">Завершите среднюю головоломку менее чем за 10 минут</string>
+    <string name="achievement_speed_hard_15">Молниеносный</string>
+    <string name="achievement_speed_hard_15_desc">Завершите сложную головоломку менее чем за 15 минут</string>
+    <string name="achievement_speed_challenge_20">Мастер времени</string>
+    <string name="achievement_speed_challenge_20_desc">Завершите вызов менее чем за 20 минут</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">Перфекционист</string>
+    <string name="achievement_perfectionist_1_desc">Завершите головоломку без ошибок</string>
+    <string name="achievement_perfectionist_10">Безупречная десятка</string>
+    <string name="achievement_perfectionist_10_desc">Завершите 10 головоломок без ошибок</string>
+    <string name="achievement_perfectionist_50">Мастер точности</string>
+    <string name="achievement_perfectionist_50_desc">Завершите 50 головоломок без ошибок</string>
+    <string name="achievement_no_hints_1">Самостоятельный</string>
+    <string name="achievement_no_hints_1_desc">Завершите головоломку без подсказок</string>
+    <string name="achievement_no_hints_25">Независимый решатель</string>
+    <string name="achievement_no_hints_25_desc">Завершите 25 головоломок без подсказок</string>
+    <string name="achievement_no_hints_100">Эксперт без подсказок</string>
+    <string name="achievement_no_hints_100_desc">Завершите 100 головоломок без подсказок</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">Тройная серия</string>
+    <string name="achievement_streak_3_desc">Играйте 3 дня подряд</string>
+    <string name="achievement_streak_7">Недельный воин</string>
+    <string name="achievement_streak_7_desc">Играйте 7 дней подряд</string>
+    <string name="achievement_streak_30">Месячный мастер</string>
+    <string name="achievement_streak_30_desc">Играйте 30 дней подряд</string>
+    <string name="achievement_streak_100">Столетняя серия</string>
+    <string name="achievement_streak_100_desc">Играйте 100 дней подряд</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">Мини судоку</string>
+    <string name="achievement_try_6x6_desc">Завершите головоломку 6x6</string>
+    <string name="achievement_try_12x12">Победитель гигантов</string>
+    <string name="achievement_try_12x12_desc">Завершите головоломку 12x12</string>
+    <string name="achievement_try_killer">Инстинкт Киллера</string>
+    <string name="achievement_try_killer_desc">Завершите головоломку Killer Sudoku</string>
+    <string name="achievement_killer_10">Энтузиаст Киллера</string>
+    <string name="achievement_killer_10_desc">Завершите 10 головоломок Killer Sudoku</string>
+    <string name="achievement_killer_50">Эксперт Киллера</string>
+    <string name="achievement_killer_50_desc">Завершите 50 головоломок Killer Sudoku</string>
+    <string name="achievement_giant_10">Размер не важен</string>
+    <string name="achievement_giant_10_desc">Завершите 10 головоломок 12x12</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">Мастер лёгких</string>
+    <string name="achievement_easy_master_desc">Завершите 25 лёгких головоломок</string>
+    <string name="achievement_moderate_master">Мастер средних</string>
+    <string name="achievement_moderate_master_desc">Завершите 25 средних головоломок</string>
+    <string name="achievement_hard_master">Мастер сложных</string>
+    <string name="achievement_hard_master_desc">Завершите 25 сложных головоломок</string>
+    <string name="achievement_challenge_master">Мастер вызовов</string>
+    <string name="achievement_challenge_master_desc">Завершите 25 вызовов</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">Ежедневный дебют</string>
+    <string name="achievement_daily_first_desc">Завершите свой первый ежедневный вызов</string>
+    <string name="achievement_daily_week">Недельный претендент</string>
+    <string name="achievement_daily_week_desc">Завершите 7 ежедневных вызовов</string>
+    <string name="achievement_daily_month">Месячный чемпион</string>
+    <string name="achievement_daily_month_desc">Завершите 30 ежедневных вызовов</string>
+    <string name="achievement_daily_streak_7">Ежедневная преданность</string>
+    <string name="achievement_daily_streak_7_desc">7-дневная серия ежедневных вызовов</string>
+    <string name="achievement_daily_streak_30">Ежедневный приверженец</string>
+    <string name="achievement_daily_streak_30_desc">30-дневная серия ежедневных вызовов</string>
+    <string name="achievement_daily_streak_100">Ежедневная легенда</string>
+    <string name="achievement_daily_streak_100_desc">100-дневная серия ежедневных вызовов</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_daily_challenge">Ежедневный вызов</string>
+    <string name="notification_channel_daily_challenge_desc">Уведомления о новых ежедневных вызовах</string>
+    <string name="notification_channel_streak_reminder">Напоминание о серии</string>
+    <string name="notification_channel_streak_reminder_desc">Напоминания для поддержания вашей серии</string>
+    <string name="notification_daily_challenge_title">Ежедневный вызов готов!</string>
+    <string name="notification_daily_challenge_text">Новая ежедневная головоломка ждёт вас</string>
+    <string name="notification_streak_reminder_title">Не потеряйте свою серию!</string>
+    <string name="notification_streak_reminder_text">Вы сегодня ещё не играли. Поддержите свою серию!</string>
+    <string name="notification_streak_reminder_text_with_streak">Ваша серия в %d дней под угрозой! Сыграйте сейчас, чтобы её сохранить</string>
+
+    <!-- Notification Settings -->
+    <string name="notifications_title">Уведомления</string>
+    <string name="notifications_permission_required">Требуется разрешение на уведомления</string>
+    <string name="notifications_permission_rationale">Разрешите уведомления, чтобы получать напоминания о ежедневных вызовах и оповещения о серии</string>
+    <string name="notifications_daily_challenge">Напоминание о ежедневном вызове</string>
+    <string name="notifications_daily_challenge_desc">Получать уведомления о новых ежедневных вызовах</string>
+    <string name="notifications_daily_challenge_time">Время уведомления о вызове</string>
+    <string name="notifications_streak_reminder">Напоминание о серии</string>
+    <string name="notifications_streak_reminder_desc">Получать напоминание, если вы сегодня не играли</string>
+    <string name="notifications_streak_reminder_time">Время напоминания о серии</string>
+
+    <!-- Notification Permission Dialog -->
+    <string name="notification_permission_dialog_title">Будьте в курсе</string>
+    <string name="notification_permission_dialog_message">Разрешите уведомления для получения напоминаний о ежедневных вызовах и предупреждений о сериях. Вы можете изменить это позже в настройках.</string>
+    <string name="notification_permission_dialog_allow">Разрешить</string>
+    <string name="notification_permission_dialog_later">Не сейчас</string>
+
+    <!-- Level Titles -->
+    <string name="level_title_beginner">Новичок</string>
+    <string name="level_title_novice">Начинающий</string>
+    <string name="level_title_apprentice">Ученик</string>
+    <string name="level_title_solver">Решатель</string>
+    <string name="level_title_expert">Эксперт</string>
+    <string name="level_title_master">Мастер</string>
+    <string name="level_title_grandmaster">Гроссмейстер</string>
+
+    <!-- XP Display -->
+    <string name="level_label">Уровень %1$d</string>
+    <string name="total_xp_label">%1$d ОО</string>
+    <string name="xp_progress_label">%1$d / %2$d ОО</string>
+    <string name="xp_to_next_level">%1$d ОО до следующего уровня</string>
+    <string name="level_up_title">Новый уровень!</string>
+    <string name="level_up_message">Поздравляем! Продолжайте решать головоломки, чтобы подняться выше!</string>
+    <string name="xp_earned_title">Получено ОО</string>
+    <string name="xp_bonuses">Применённые бонусы</string>
+    <string name="xp_base">База: %1$d ОО</string>
+    <string name="xp_bonus_no_mistakes">Идеальная игра</string>
+    <string name="xp_bonus_no_hints">Без подсказок</string>
+    <string name="xp_bonus_daily_challenge">Ежедневный вызов</string>
+    <string name="xp_bonus_streak">Серия %1$d дней</string>
+
+    <!-- Reward Calendar -->
+    <string name="reward_calendar_title">Ежедневные награды</string>
+    <string name="reward_calendar_day">День %1$d</string>
+    <string name="reward_calendar_claim">Получить</string>
+    <string name="reward_calendar_claimed">Получено</string>
+    <string name="reward_calendar_locked">Заблокировано</string>
+    <string name="reward_calendar_today">Сегодня</string>
+    <string name="reward_calendar_streak">%1$d дней подряд</string>
+    <string name="reward_calendar_total_claimed">Всего получено: %1$d</string>
+    <string name="reward_claim_title">Награда получена!</string>
+    <string name="reward_claim_message">Вы получили:</string>
+    <string name="reward_type_hints">Бонусные подсказки</string>
+    <string name="reward_type_xp_boost">Буст опыта</string>
+    <string name="reward_type_theme">Тема разблокирована</string>
+    <string name="reward_type_badge">Особый значок</string>
+    <string name="reward_hints_amount">+%1$d Подсказок</string>
+    <string name="reward_xp_boost_amount">2x опыт за %1$d игр</string>
+    <string name="reward_bonus_hints_available">%1$d бонусных подсказок доступно</string>
+    <string name="reward_xp_boost_active">Буст опыта: осталось %1$d игр</string>
+
 </resources>
