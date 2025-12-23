@@ -64,6 +64,8 @@
     <string name="about_version">Version</string>
     <string name="about_contact_developer">Kontakt</string>
     <string name="about_contact_developer_summary">Funktionsanfragen, Feedback oder Fragen</string>
+    <string name="about_rate_app">App bewerten</string>
+    <string name="about_rate_app_summary">Gefällt dir die App? Hinterlasse eine Bewertung!</string>
     <string name="action_give_up">Aufgeben</string>
     <string name="action_reset_game">Spiel zurücksetzen</string>
     <string name="dialog_yes">Ja</string>

@@ -285,6 +285,8 @@
     <string name="about_title">Σχετικά</string>
     <string name="about_contact_developer">Επικοινωνία</string>
     <string name="about_contact_developer_summary">Αιτήματα χαρακτηριστικών, σχόλια ή ερωτήσεις</string>
+    <string name="about_rate_app">Βαθμολογήστε την εφαρμογή</string>
+    <string name="about_rate_app_summary">Σας αρέσει η εφαρμογή; Αφήστε μια κριτική!</string>
     <string name="pref_dark_theme_follow">Ομοιο με το σύστημα</string>
     <string name="saved_game_initial">Αρχικό</string>
     <string name="pref_board_theme_title">Θέμα πίνακα sudoku</string>

@@ -4,6 +4,8 @@
     <string name="about_title">درباره</string>
     <string name="about_contact_developer">تماس</string>
     <string name="about_contact_developer_summary">درخواست ویژگی، بازخورد یا سوالات</string>
+    <string name="about_rate_app">امتیاز دادن به برنامه</string>
+    <string name="about_rate_app_summary">از برنامه لذت می‌برید؟ نظر بدهید!</string>
     <string name="pref_dark_theme_follow">مطابقت با سیستم</string>
     <string name="pref_input_cell_first">ابتدا سلول</string>
     <string name="action_deleted">حذف شده</string>

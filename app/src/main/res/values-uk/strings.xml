@@ -27,6 +27,8 @@
     <string name="about_title">Про додаток</string>
     <string name="about_contact_developer">Контакти</string>
     <string name="about_contact_developer_summary">Запити на функції, відгуки або питання</string>
+    <string name="about_rate_app">Оцінити додаток</string>
+    <string name="about_rate_app_summary">Подобається додаток? Залиште відгук!</string>
     <string name="pref_dark_theme_follow">Як у системі</string>
     <string name="pref_dark_theme_off">Вимкнено</string>
     <string name="pref_dark_theme_on">Увімкнено</string>

@@ -312,6 +312,8 @@
     <string name="about_github_source_code">GitHub 上的源码</string>
     <string name="about_contact_developer">联系</string>
     <string name="about_contact_developer_summary">功能请求、反馈或问题</string>
+    <string name="about_rate_app">评价应用</string>
+    <string name="about_rate_app_summary">喜欢这个应用吗？留下评价！</string>
     <string name="action_generate">生成</string>
     <string name="generating_number_of">生成 %1$s/%2$s</string>
     <string name="type_killer_9x9">杀手 9x9</string>

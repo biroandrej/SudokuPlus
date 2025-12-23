@@ -198,6 +198,8 @@
     <string name="about_title">Tentang</string>
     <string name="about_contact_developer">Kontak</string>
     <string name="about_contact_developer_summary">Permintaan fitur, masukan, atau pertanyaan</string>
+    <string name="about_rate_app">Nilai Aplikasi</string>
+    <string name="about_rate_app_summary">Menikmati aplikasinya? Berikan ulasan!</string>
     <string name="pref_dark_theme_follow">Ikuti sistem</string>
     <string name="saved_game_initial">Awal mula</string>
     <string name="statistics_difficulty_filter_all">Semua</string>

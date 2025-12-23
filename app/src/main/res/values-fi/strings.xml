@@ -207,6 +207,8 @@
     <string name="about_github_source_code">Lähdekoodi GitHubissa</string>
     <string name="about_contact_developer">Yhteystiedot</string>
     <string name="about_contact_developer_summary">Ominaisuuspyynnöt, palaute tai kysymykset</string>
+    <string name="about_rate_app">Arvioi sovellus</string>
+    <string name="about_rate_app_summary">Pidätkö sovelluksesta? Jätä arvostelu!</string>
     <string name="intro_rules">Pelin tavoitteena on täyttää kaikki ruudut numeroilla 1-9 siten, että numerot eivät toistu missään sarakkeessa, rivissä tai pienemmässä laatikossa (3x3)</string>
     <string name="onboard_recommendation_prefs">Suosittelemme että vilkaiset asetusvälilehteä, jotta voit mukauttaa sovelluksen tarpeisiisi sopivaksi</string>
     <string name="statistics">Tilastot</string>

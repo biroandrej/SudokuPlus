@@ -310,6 +310,8 @@
     <string name="about_github_source_code">Kaynak kodu GitHub\'da</string>
     <string name="about_contact_developer">İletişim</string>
     <string name="about_contact_developer_summary">Özellik istekleri, geri bildirim veya sorular</string>
+    <string name="about_rate_app">Uygulamayı değerlendir</string>
+    <string name="about_rate_app_summary">Uygulamayı beğendiniz mi? Yorum bırakın!</string>
     <string name="libraries_licenses">Lisanslar</string>
     <string name="type_killer_9x9">Kazık 9x9</string>
     <string name="type_killer_6x6">Kazık 6x6</string>

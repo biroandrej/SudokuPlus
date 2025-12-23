@@ -298,6 +298,8 @@
     <string name="about_github_source_code">Code source sur GitHub</string>
     <string name="about_contact_developer">Contact</string>
     <string name="about_contact_developer_summary">Demandes de fonctionnalités, commentaires ou questions</string>
+    <string name="about_rate_app">Noter l\'application</string>
+    <string name="about_rate_app_summary">Vous aimez l\'application ? Laissez un avis !</string>
     <string name="hints_no_remaining">Plus d\'indices pour ce jeu</string>
     <string name="hints_ad_title">Plus d\'indices</string>
     <string name="hints_ad_message">Regarder une courte publicité pour révéler un indice ?</string>

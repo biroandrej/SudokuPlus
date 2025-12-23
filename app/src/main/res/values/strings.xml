@@ -78,6 +78,8 @@
     <string name="about_github_source_code">Source code on GitHub</string>
     <string name="about_contact_developer">Contact</string>
     <string name="about_contact_developer_summary">Feature requests, feedback or questions</string>
+    <string name="about_rate_app">Rate App</string>
+    <string name="about_rate_app_summary">Enjoying the app? Leave a review!</string>
     <string name="action_give_up">Give up</string>
     <string name="action_reset_game">Reset the game</string>
     <string name="dialog_yes">Yes</string>
