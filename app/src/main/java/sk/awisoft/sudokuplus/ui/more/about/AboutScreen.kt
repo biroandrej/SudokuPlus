@@ -21,6 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -46,6 +47,7 @@ import sk.awisoft.sudokuplus.BuildConfig
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.DEVELOPER_EMAIL
 import sk.awisoft.sudokuplus.core.GITHUB_REPOSITORY
+import sk.awisoft.sudokuplus.core.PLAY_STORE_URL
 import sk.awisoft.sudokuplus.destinations.AboutLibrariesScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
@@ -149,6 +151,12 @@ fun AboutScreen(navigator: DestinationsNavigator) {
                     subtitle = stringResource(R.string.about_contact_developer_summary),
                     icon = Icons.Outlined.Email,
                     onClick = { uriHandler.openUri("mailto:$DEVELOPER_EMAIL") }
+                )
+                AboutSectionBox(
+                    title = stringResource(R.string.about_rate_app),
+                    subtitle = stringResource(R.string.about_rate_app_summary),
+                    icon = Icons.Outlined.Star,
+                    onClick = { uriHandler.openUri(PLAY_STORE_URL) }
                 )
             }
         }
