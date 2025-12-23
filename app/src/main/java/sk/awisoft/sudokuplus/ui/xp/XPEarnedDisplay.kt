@@ -1,7 +1,6 @@
 package sk.awisoft.sudokuplus.ui.xp
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -46,10 +45,7 @@ import sk.awisoft.sudokuplus.core.xp.XPBonusType
 import sk.awisoft.sudokuplus.core.xp.XPResult
 
 @Composable
-fun XPEarnedDisplay(
-    xpResult: XPResult,
-    modifier: Modifier = Modifier
-) {
+fun XPEarnedDisplay(xpResult: XPResult, modifier: Modifier = Modifier) {
     var visible by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -58,24 +54,28 @@ fun XPEarnedDisplay(
 
     AnimatedVisibility(
         visible = visible,
-        enter = fadeIn(animationSpec = tween(300)) +
-                slideInVertically(
-                    initialOffsetY = { it / 2 },
-                    animationSpec = spring(
-                        dampingRatio = Spring.DampingRatioMediumBouncy,
-                        stiffness = Spring.StiffnessMedium
-                    )
+        enter =
+        fadeIn(animationSpec = tween(300)) +
+            slideInVertically(
+                initialOffsetY = { it / 2 },
+                animationSpec =
+                spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessMedium
                 )
+            )
     ) {
         Card(
             modifier = modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
+            colors =
+            CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
             ),
             shape = RoundedCornerShape(16.dp)
         ) {
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -142,28 +142,28 @@ fun XPEarnedDisplay(
 }
 
 @Composable
-private fun BonusRow(
-    bonus: XPBonus,
-    modifier: Modifier = Modifier
-) {
-    val bonusColor = when (bonus.type) {
-        XPBonusType.NO_MISTAKES -> Color(0xFF4CAF50) // Green
-        XPBonusType.NO_HINTS -> Color(0xFF2196F3) // Blue
-        XPBonusType.DAILY_CHALLENGE -> Color(0xFFFF9800) // Orange
-        XPBonusType.STREAK -> Color(0xFFE91E63) // Pink
-        XPBonusType.REWARD_BOOST -> Color(0xFF9C27B0) // Purple
-    }
+private fun BonusRow(bonus: XPBonus, modifier: Modifier = Modifier) {
+    val bonusColor =
+        when (bonus.type) {
+            XPBonusType.NO_MISTAKES -> Color(0xFF4CAF50) // Green
+            XPBonusType.NO_HINTS -> Color(0xFF2196F3) // Blue
+            XPBonusType.DAILY_CHALLENGE -> Color(0xFFFF9800) // Orange
+            XPBonusType.STREAK -> Color(0xFFE91E63) // Pink
+            XPBonusType.REWARD_BOOST -> Color(0xFF9C27B0) // Purple
+        }
 
-    val bonusDescription = when (bonus.type) {
-        XPBonusType.NO_MISTAKES -> stringResource(R.string.xp_bonus_no_mistakes)
-        XPBonusType.NO_HINTS -> stringResource(R.string.xp_bonus_no_hints)
-        XPBonusType.DAILY_CHALLENGE -> stringResource(R.string.xp_bonus_daily_challenge)
-        XPBonusType.STREAK -> stringResource(R.string.xp_bonus_streak, bonus.streakDays)
-        XPBonusType.REWARD_BOOST -> stringResource(R.string.xp_bonus_reward_boost)
-    }
+    val bonusDescription =
+        when (bonus.type) {
+            XPBonusType.NO_MISTAKES -> stringResource(R.string.xp_bonus_no_mistakes)
+            XPBonusType.NO_HINTS -> stringResource(R.string.xp_bonus_no_hints)
+            XPBonusType.DAILY_CHALLENGE -> stringResource(R.string.xp_bonus_daily_challenge)
+            XPBonusType.STREAK -> stringResource(R.string.xp_bonus_streak, bonus.streakDays)
+            XPBonusType.REWARD_BOOST -> stringResource(R.string.xp_bonus_reward_boost)
+        }
 
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -174,7 +174,8 @@ private fun BonusRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .size(8.dp)
                     .clip(CircleShape)
                     .background(bonusColor)

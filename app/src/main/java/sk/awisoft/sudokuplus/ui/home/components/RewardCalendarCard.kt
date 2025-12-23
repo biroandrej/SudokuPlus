@@ -2,13 +2,11 @@ package sk.awisoft.sudokuplus.ui.home.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -42,16 +40,19 @@ fun RewardCalendarCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .clickable { onViewCalendar() },
-        colors = CardDefaults.cardColors(
+        colors =
+        CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer
         ),
         shape = RoundedCornerShape(16.dp)
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -59,7 +60,8 @@ fun RewardCalendarCard(
             // Gift icon with badge
             Box {
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .size(48.dp)
                         .clip(CircleShape)
                         .background(MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f)),
@@ -76,7 +78,8 @@ fun RewardCalendarCard(
                 // Show notification dot if can claim
                 if (state?.canClaimToday == true) {
                     Box(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .align(Alignment.TopEnd)
                             .size(12.dp)
                             .clip(CircleShape)
@@ -107,7 +110,8 @@ fun RewardCalendarCard(
             if (state?.canClaimToday == true) {
                 Button(
                     onClick = onClaim,
-                    colors = ButtonDefaults.buttonColors(
+                    colors =
+                    ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
                     ),
                     shape = RoundedCornerShape(12.dp)

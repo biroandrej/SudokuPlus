@@ -42,7 +42,7 @@ private fun DrawScope.drawPositionLineVertical(
     cellSize: Float,
     lineLength: Float,
     color: Color,
-    cornerRadius: CornerRadius,
+    cornerRadius: CornerRadius
 ) {
     val topLeft = if (col == 0) cornerRadius else CornerRadius.Zero
     val topRight = if (col == gameSize - 1) cornerRadius else CornerRadius.Zero
@@ -50,11 +50,15 @@ private fun DrawScope.drawPositionLineVertical(
     val bottomRight = if (col == gameSize - 1) cornerRadius else CornerRadius.Zero
 
     drawPath(
-        path = Path().apply {
+        path =
+        Path().apply {
             addRoundRect(
-                roundRect = RoundRect(
-                    rect = Rect(
-                        offset = Offset(
+                roundRect =
+                RoundRect(
+                    rect =
+                    Rect(
+                        offset =
+                        Offset(
                             x = col * cellSize,
                             y = 0f
                         ),
@@ -63,7 +67,7 @@ private fun DrawScope.drawPositionLineVertical(
                     topLeft = topLeft,
                     topRight = topRight,
                     bottomLeft = bottomLeft,
-                    bottomRight = bottomRight,
+                    bottomRight = bottomRight
                 )
             )
         },
@@ -77,7 +81,7 @@ private fun DrawScope.drawPositionLineHorizontal(
     cellSize: Float,
     lineLength: Float,
     color: Color,
-    cornerRadius: CornerRadius,
+    cornerRadius: CornerRadius
 ) {
     val topLeft = if (row == 0) cornerRadius else CornerRadius.Zero
     val topRight = if (row == 0) cornerRadius else CornerRadius.Zero
@@ -85,11 +89,15 @@ private fun DrawScope.drawPositionLineHorizontal(
     val bottomRight = if (row == gameSize - 1) cornerRadius else CornerRadius.Zero
 
     drawPath(
-        path = Path().apply {
+        path =
+        Path().apply {
             addRoundRect(
-                roundRect = RoundRect(
-                    rect = Rect(
-                        offset = Offset(
+                roundRect =
+                RoundRect(
+                    rect =
+                    Rect(
+                        offset =
+                        Offset(
                             x = 0f,
                             y = row * cellSize
                         ),
@@ -98,7 +106,7 @@ private fun DrawScope.drawPositionLineHorizontal(
                     topLeft = topLeft,
                     topRight = topRight,
                     bottomLeft = bottomLeft,
-                    bottomRight = bottomRight,
+                    bottomRight = bottomRight
                 )
             )
         },

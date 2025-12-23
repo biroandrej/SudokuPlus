@@ -1,16 +1,15 @@
 package sk.awisoft.sudokuplus.data.database.repository
 
+import java.time.ZonedDateTime
 import kotlinx.coroutines.flow.Flow
 import sk.awisoft.sudokuplus.core.xp.XPConfig
 import sk.awisoft.sudokuplus.data.database.dao.UserProgressDao
 import sk.awisoft.sudokuplus.data.database.model.UserProgress
 import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
-import java.time.ZonedDateTime
 
 class UserProgressRepositoryImpl(
     private val dao: UserProgressDao
 ) : UserProgressRepository {
-
     override fun get(): Flow<UserProgress?> = dao.get()
 
     override suspend fun getSync(): UserProgress? = dao.getSync()
@@ -33,14 +32,15 @@ class UserProgressRepositoryImpl(
             xpNeeded = XPConfig.xpForLevel(level)
         }
 
-        val updated = current.copy(
-            totalXP = newTotalXP,
-            level = level,
-            currentLevelXP = xpForCurrentLevel,
-            xpToNextLevel = xpNeeded,
-            gamesForXP = current.gamesForXP + 1,
-            lastXPEarnedAt = ZonedDateTime.now()
-        )
+        val updated =
+            current.copy(
+                totalXP = newTotalXP,
+                level = level,
+                currentLevelXP = xpForCurrentLevel,
+                xpToNextLevel = xpNeeded,
+                gamesForXP = current.gamesForXP + 1,
+                lastXPEarnedAt = ZonedDateTime.now()
+            )
 
         dao.insert(updated)
         return updated

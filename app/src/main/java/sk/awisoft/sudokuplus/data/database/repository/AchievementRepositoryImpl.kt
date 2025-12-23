@@ -1,15 +1,14 @@
 package sk.awisoft.sudokuplus.data.database.repository
 
+import java.time.ZonedDateTime
 import kotlinx.coroutines.flow.Flow
 import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
 import sk.awisoft.sudokuplus.data.database.model.UserAchievement
 import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
-import java.time.ZonedDateTime
 
 class AchievementRepositoryImpl(
     private val dao: UserAchievementDao
 ) : AchievementRepository {
-
     override fun getAll(): Flow<List<UserAchievement>> = dao.getAll()
 
     override suspend fun get(achievementId: String): UserAchievement? = dao.get(achievementId)

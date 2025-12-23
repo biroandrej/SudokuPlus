@@ -2,14 +2,16 @@ package sk.awisoft.sudokuplus.core.notification
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.first
-import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.first
+import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 
 @Singleton
-class NotificationInitializer @Inject constructor(
-    @param: ApplicationContext private val context: Context,
+class NotificationInitializer
+@Inject
+constructor(
+    @param:ApplicationContext private val context: Context,
     private val notificationHelper: NotificationHelper,
     private val notificationSettings: NotificationSettingsManager
 ) {

@@ -5,6 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.data.database.model.Record
@@ -14,15 +19,11 @@ import sk.awisoft.sudokuplus.data.datastore.TipCardsDataStore
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class StatisticsViewModel
-@Inject constructor(
+@Inject
+constructor(
     private val recordRepository: RecordRepository,
     private val tipCardsDataStore: TipCardsDataStore,
     savedGameRepository: SavedGameRepository,
@@ -57,7 +58,9 @@ class StatisticsViewModel
             selectedType = GameType.Unspecified
         }
 
-        loadRecords(selectedType == GameType.Unspecified && selectedDifficulty == GameDifficulty.Unspecified)
+        loadRecords(
+            selectedType == GameType.Unspecified && selectedDifficulty == GameDifficulty.Unspecified
+        )
     }
 
     fun setType(type: GameType) {
@@ -69,15 +72,18 @@ class StatisticsViewModel
             selectedDifficulty = GameDifficulty.Easy
         }
 
-        loadRecords(selectedType == GameType.Unspecified && selectedDifficulty == GameDifficulty.Unspecified)
+        loadRecords(
+            selectedType == GameType.Unspecified && selectedDifficulty == GameDifficulty.Unspecified
+        )
     }
 
     private fun loadRecords(all: Boolean) {
-        recordList = if (all) {
-            recordRepository.getAllSortByTime()
-        } else {
-            recordRepository.getAll(selectedDifficulty, selectedType)
-        }
+        recordList =
+            if (all) {
+                recordRepository.getAllSortByTime()
+            } else {
+                recordRepository.getAll(selectedDifficulty, selectedType)
+            }
     }
 
     fun setRecordTipCard(enabled: Boolean) {
@@ -118,8 +124,8 @@ class StatisticsViewModel
 
     fun getWinRate(savedGames: List<SavedGame>): Float {
         return savedGames
-            .count { it.completed && !it.giveUp && !it.canContinue } * 100f / savedGames.count()
-            .toFloat()
+            .count { it.completed && !it.giveUp && !it.canContinue } * 100f /
+            savedGames.count()
+                .toFloat()
     }
-
 }

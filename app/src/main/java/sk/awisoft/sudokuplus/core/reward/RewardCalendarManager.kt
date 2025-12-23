@@ -1,17 +1,16 @@
 package sk.awisoft.sudokuplus.core.reward
 
+import java.time.LocalDate
+import java.time.ZonedDateTime
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import sk.awisoft.sudokuplus.data.database.dao.RewardBadgeDao
 import sk.awisoft.sudokuplus.data.database.model.ClaimedReward
 import sk.awisoft.sudokuplus.data.database.model.LoginRewardStatus
 import sk.awisoft.sudokuplus.data.database.model.RewardBadge
 import sk.awisoft.sudokuplus.domain.repository.LoginRewardRepository
-import java.time.LocalDate
-import java.time.ZonedDateTime
-import javax.inject.Inject
-import javax.inject.Singleton
 
 sealed class ClaimResult {
     data class Success(
@@ -21,6 +20,7 @@ sealed class ClaimResult {
     ) : ClaimResult()
 
     data object AlreadyClaimedToday : ClaimResult()
+
     data object Error : ClaimResult()
 }
 
@@ -35,11 +35,12 @@ data class RewardCalendarState(
 )
 
 @Singleton
-class RewardCalendarManager @Inject constructor(
+class RewardCalendarManager
+@Inject
+constructor(
     private val repository: LoginRewardRepository,
     private val badgeDao: RewardBadgeDao
 ) {
-
     fun getCalendarState(): Flow<RewardCalendarState> = repository.getStatus().map { status ->
         val currentStatus = status ?: LoginRewardStatus()
         val today = LocalDate.now()
@@ -68,25 +69,29 @@ class RewardCalendarManager @Inject constructor(
         val reward = RewardDefinitions.getRewardForDay(currentStatus.currentDay)
 
         // Calculate new status based on reward type
-        val newStatus = when (reward.rewardType) {
-            RewardType.HINTS -> currentStatus.copy(
-                currentDay = getNextDay(currentStatus.currentDay),
-                lastClaimDate = today,
-                totalDaysClaimed = currentStatus.totalDaysClaimed + 1,
-                bonusHints = currentStatus.bonusHints + reward.amount
-            )
-            RewardType.XP_BOOST -> currentStatus.copy(
-                currentDay = getNextDay(currentStatus.currentDay),
-                lastClaimDate = today,
-                totalDaysClaimed = currentStatus.totalDaysClaimed + 1,
-                xpBoostGamesRemaining = currentStatus.xpBoostGamesRemaining + reward.amount
-            )
-            RewardType.BADGE -> currentStatus.copy(
-                currentDay = getNextDay(currentStatus.currentDay),
-                lastClaimDate = today,
-                totalDaysClaimed = currentStatus.totalDaysClaimed + 1
-            )
-        }
+        val newStatus =
+            when (reward.rewardType) {
+                RewardType.HINTS ->
+                    currentStatus.copy(
+                        currentDay = getNextDay(currentStatus.currentDay),
+                        lastClaimDate = today,
+                        totalDaysClaimed = currentStatus.totalDaysClaimed + 1,
+                        bonusHints = currentStatus.bonusHints + reward.amount
+                    )
+                RewardType.XP_BOOST ->
+                    currentStatus.copy(
+                        currentDay = getNextDay(currentStatus.currentDay),
+                        lastClaimDate = today,
+                        totalDaysClaimed = currentStatus.totalDaysClaimed + 1,
+                        xpBoostGamesRemaining = currentStatus.xpBoostGamesRemaining + reward.amount
+                    )
+                RewardType.BADGE ->
+                    currentStatus.copy(
+                        currentDay = getNextDay(currentStatus.currentDay),
+                        lastClaimDate = today,
+                        totalDaysClaimed = currentStatus.totalDaysClaimed + 1
+                    )
+            }
 
         repository.updateStatus(newStatus)
 

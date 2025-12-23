@@ -7,13 +7,19 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.map
 
 @Singleton
-class TipCardsDataStore @Inject constructor(@ApplicationContext context: Context) {
-    private val Context.createDataStore: DataStore<Preferences> by preferencesDataStore(name = "tip_card")
+class TipCardsDataStore
+@Inject
+constructor(
+    @ApplicationContext context: Context
+) {
+    private val Context.createDataStore: DataStore<Preferences> by preferencesDataStore(
+        name = "tip_card"
+    )
     private val dataStore = context.createDataStore
 
     private val recordCardKey = booleanPreferencesKey("record")
@@ -25,9 +31,10 @@ class TipCardsDataStore @Inject constructor(@ApplicationContext context: Context
         }
     }
 
-    val recordCard = dataStore.data.map { preferences ->
-        preferences[recordCardKey] ?: true
-    }
+    val recordCard =
+        dataStore.data.map { preferences ->
+            preferences[recordCardKey] ?: true
+        }
 
     suspend fun setStreakCard(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -35,7 +42,8 @@ class TipCardsDataStore @Inject constructor(@ApplicationContext context: Context
         }
     }
 
-    val streakCard = dataStore.data.map { preferences ->
-        preferences[streakCardKey] ?: true
-    }
+    val streakCard =
+        dataStore.data.map { preferences ->
+            preferences[streakCardKey] ?: true
+        }
 }

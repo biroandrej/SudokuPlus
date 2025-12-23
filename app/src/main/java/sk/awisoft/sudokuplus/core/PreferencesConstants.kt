@@ -31,6 +31,6 @@ class PreferencesConstants {
         const val DEFAULT_AMOLED_BLACK = false
         const val DEFAULT_MONET_SUDOKU_BOARD = true
         const val DEFAULT_BOARD_CROSS_HIGHLIGHT = false
-        const val DEFAULT_THEME_SEED_COLOR = -19043 /* 0xFFFFB59D (Peach) */
+        const val DEFAULT_THEME_SEED_COLOR = -19043 // 0xFFFFB59D (Peach)
     }
 }

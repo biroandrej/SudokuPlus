@@ -1,5 +1,7 @@
 package sk.awisoft.sudokuplus.core.xp
 
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.flow.first
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.core.achievement.GameCompletionData
@@ -7,8 +9,6 @@ import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
 import sk.awisoft.sudokuplus.data.database.model.UserProgress
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
-import javax.inject.Inject
-import javax.inject.Singleton
 
 data class XPResult(
     val baseXP: Int,
@@ -35,7 +35,9 @@ enum class XPBonusType {
 }
 
 @Singleton
-class XPEngine @Inject constructor(
+class XPEngine
+@Inject
+constructor(
     private val userProgressRepository: UserProgressRepository,
     private val dailyChallengeRepository: DailyChallengeRepository,
     private val dailyChallengeManager: DailyChallengeManager,
@@ -92,10 +94,12 @@ class XPEngine @Inject constructor(
         // Streak bonus
         val currentStreak = getCurrentStreak()
         if (currentStreak > 0) {
-            val streakMultiplier = 1f + minOf(
-                currentStreak * XPConfig.STREAK_BONUS_PER_DAY,
-                XPConfig.MAX_STREAK_BONUS
-            )
+            val streakMultiplier =
+                1f +
+                    minOf(
+                        currentStreak * XPConfig.STREAK_BONUS_PER_DAY,
+                        XPConfig.MAX_STREAK_BONUS
+                    )
             bonuses.add(
                 XPBonus(
                     type = XPBonusType.STREAK,

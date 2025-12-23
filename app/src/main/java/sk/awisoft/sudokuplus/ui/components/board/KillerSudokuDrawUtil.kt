@@ -33,11 +33,21 @@ fun DrawScope.drawKillerCage(
         if (!hasNeighborLeft) {
             drawLine(
                 color = color,
-                start = Offset(
+                start =
+                Offset(
                     x = xCell + padding,
-                    y = yCell + if (hasPaddingForText) (cornerTextPadding.y + padding) else if (hasNeighborTop) -halfPadding else padding
+                    y =
+                    yCell +
+                        if (hasPaddingForText) {
+                            (cornerTextPadding.y + padding)
+                        } else if (hasNeighborTop) {
+                            -halfPadding
+                        } else {
+                            padding
+                        }
                 ),
-                end = Offset(
+                end =
+                Offset(
                     x = xCell + padding,
                     y = yCell + cellSize + if (hasNeighborBottom) halfPadding else -padding
                 ),
@@ -49,11 +59,13 @@ fun DrawScope.drawKillerCage(
         if (!hasNeighborRight) {
             drawLine(
                 color = color,
-                start = Offset(
+                start =
+                Offset(
                     x = xCell + cellSize - padding,
                     y = yCell + if (hasNeighborTop) -halfPadding else padding
                 ),
-                end = Offset(
+                end =
+                Offset(
                     x = xCell + cellSize - padding,
                     y = yCell + cellSize + if (hasNeighborBottom) halfPadding else -padding
                 ),
@@ -64,11 +76,21 @@ fun DrawScope.drawKillerCage(
         if (!hasNeighborTop) {
             drawLine(
                 color = color,
-                start = Offset(
-                    x = xCell + if (hasPaddingForText) (cornerTextPadding.x + padding) else if (hasNeighborLeft) -halfPadding else padding,
+                start =
+                Offset(
+                    x =
+                    xCell +
+                        if (hasPaddingForText) {
+                            (cornerTextPadding.x + padding)
+                        } else if (hasNeighborLeft) {
+                            -halfPadding
+                        } else {
+                            padding
+                        },
                     y = yCell + padding
                 ),
-                end = Offset(
+                end =
+                Offset(
                     x = xCell + cellSize + if (hasNeighborRight) halfPadding else -padding,
                     y = yCell + padding
                 ),
@@ -80,11 +102,13 @@ fun DrawScope.drawKillerCage(
         if (!hasNeighborBottom) {
             drawLine(
                 color = color,
-                start = Offset(
+                start =
+                Offset(
                     x = xCell + if (hasNeighborLeft) -halfPadding else padding,
                     y = yCell + cellSize - padding
                 ),
-                end = Offset(
+                end =
+                Offset(
                     x = xCell + cellSize + if (hasNeighborRight) halfPadding else -padding,
                     y = yCell + cellSize - padding
                 ),

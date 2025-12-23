@@ -35,18 +35,15 @@ import sk.awisoft.sudokuplus.core.xp.LevelTitle
 import sk.awisoft.sudokuplus.ui.components.ConfettiEffect
 
 @Composable
-fun LevelUpDialog(
-    newLevel: Int,
-    onDismiss: () -> Unit,
-    modifier: Modifier = Modifier
-) {
+fun LevelUpDialog(newLevel: Int, onDismiss: () -> Unit, modifier: Modifier = Modifier) {
     val scale = remember { Animatable(0f) }
     val levelTitle = LevelTitle.fromLevel(newLevel)
 
     LaunchedEffect(newLevel) {
         scale.animateTo(
             targetValue = 1f,
-            animationSpec = spring(
+            animationSpec =
+            spring(
                 dampingRatio = Spring.DampingRatioMediumBouncy,
                 stiffness = Spring.StiffnessLow
             )
@@ -67,12 +64,14 @@ fun LevelUpDialog(
 
             Card(
                 modifier = modifier.scale(scale.value),
-                colors = CardDefaults.cardColors(
+                colors =
+                CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             ) {
                 Column(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth()
                         .padding(24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -80,7 +79,8 @@ fun LevelUpDialog(
                 ) {
                     // Level badge
                     Box(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .size(80.dp)
                             .background(
                                 color = MaterialTheme.colorScheme.primary,

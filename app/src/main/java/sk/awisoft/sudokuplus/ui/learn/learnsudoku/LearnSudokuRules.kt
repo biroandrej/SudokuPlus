@@ -20,26 +20,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.board.Board
 import sk.awisoft.sudokuplus.ui.learn.components.TutorialBase
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
-fun LearnSudokuRules(
-    navigator: DestinationsNavigator
-) {
+fun LearnSudokuRules(navigator: DestinationsNavigator) {
     TutorialBase(
         title = stringResource(R.string.learn_sudoku_rules),
         navigator = navigator
     ) {
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp, vertical = 8.dp)
                 .verticalScroll(rememberScrollState()),
@@ -149,7 +148,7 @@ fun LearnSudokuRules(
                             Cell(8, 6, 0),
                             Cell(8, 7, 0),
                             Cell(8, 8, 0)
-                        ),
+                        )
                     )
                 )
             }
@@ -171,7 +170,8 @@ fun LearnSudokuRules(
             ) {
                 Checkbox(
                     checked = highlightError,
-                    onCheckedChange = { highlightError = !highlightError })
+                    onCheckedChange = { highlightError = !highlightError }
+                )
                 Text(stringResource(R.string.sudoku_rules_mistakes_highlight))
             }
 
@@ -179,7 +179,8 @@ fun LearnSudokuRules(
                 mutableStateOf(previewBoard.map { cells -> cells.map { cell -> cell.copy() } })
             }
             Board(
-                board = errorBoard.also {
+                board =
+                errorBoard.also {
                     it[1][7].apply {
                         value = 6
                         error = true

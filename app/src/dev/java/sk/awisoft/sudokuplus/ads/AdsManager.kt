@@ -12,11 +12,9 @@ object AdsManager {
 
     fun preloadRewarded(context: Context) = Unit
 
-    fun showRewardedIfAvailable(
-        activity: Activity,
-        onReward: () -> Unit
-    ): Boolean = false
+    fun showRewardedIfAvailable(activity: Activity, onReward: () -> Unit): Boolean = false
 
+    @Suppress("ktlint:standard:function-naming")
     @Composable
     fun BannerAd(modifier: Modifier = Modifier) = Unit
 }

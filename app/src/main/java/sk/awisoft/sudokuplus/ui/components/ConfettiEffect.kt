@@ -36,36 +36,38 @@ fun ConfettiEffect(
     durationMillis: Int = 3000,
     onComplete: () -> Unit = {}
 ) {
-    val colors = listOf(
-        MaterialTheme.colorScheme.primary,
-        MaterialTheme.colorScheme.secondary,
-        MaterialTheme.colorScheme.tertiary,
-        MaterialTheme.colorScheme.primaryContainer,
-        MaterialTheme.colorScheme.secondaryContainer,
-        Color(0xFFFFD700), // Gold
-        Color(0xFFFF6B6B), // Coral
-        Color(0xFF4ECDC4), // Teal
-        Color(0xFFFFE66D), // Yellow
-    )
+    val colors =
+        listOf(
+            MaterialTheme.colorScheme.primary,
+            MaterialTheme.colorScheme.secondary,
+            MaterialTheme.colorScheme.tertiary,
+            MaterialTheme.colorScheme.primaryContainer,
+            MaterialTheme.colorScheme.secondaryContainer,
+            Color(0xFFFFD700), // Gold
+            Color(0xFFFF6B6B), // Coral
+            Color(0xFF4ECDC4), // Teal
+            Color(0xFFFFE66D) // Yellow
+        )
 
     val progress = remember { Animatable(0f) }
 
-    val particles = remember {
-        List(particleCount) {
-            val angle = Random.nextFloat() * 2 * Math.PI.toFloat()
-            val speed = Random.nextFloat() * 8f + 4f
-            ConfettiParticle(
-                x = 0.5f, // Start from center-top
-                y = 0f,
-                velocityX = cos(angle) * speed * 0.5f,
-                velocityY = sin(angle) * speed * 0.3f + 2f,
-                rotation = Random.nextFloat() * 360f,
-                rotationSpeed = Random.nextFloat() * 10f - 5f,
-                color = colors.random(),
-                size = Random.nextFloat() * 12f + 6f
-            )
+    val particles =
+        remember {
+            List(particleCount) {
+                val angle = Random.nextFloat() * 2 * Math.PI.toFloat()
+                val speed = Random.nextFloat() * 8f + 4f
+                ConfettiParticle(
+                    x = 0.5f, // Start from center-top
+                    y = 0f,
+                    velocityX = cos(angle) * speed * 0.5f,
+                    velocityY = sin(angle) * speed * 0.3f + 2f,
+                    rotation = Random.nextFloat() * 360f,
+                    rotationSpeed = Random.nextFloat() * 10f - 5f,
+                    color = colors.random(),
+                    size = Random.nextFloat() * 12f + 6f
+                )
+            }
         }
-    }
 
     LaunchedEffect(Unit) {
         progress.animateTo(
@@ -116,16 +118,17 @@ fun CelebrationStars(
     val progress = remember { Animatable(0f) }
     val starColor = MaterialTheme.colorScheme.primary
 
-    val stars = remember {
-        List(starCount) {
-            val angle = (it.toFloat() / starCount) * 2 * Math.PI.toFloat()
-            Triple(
-                cos(angle),
-                sin(angle),
-                Random.nextFloat() * 0.3f + 0.7f // Size variation
-            )
+    val stars =
+        remember {
+            List(starCount) {
+                val angle = (it.toFloat() / starCount) * 2 * Math.PI.toFloat()
+                Triple(
+                    cos(angle),
+                    sin(angle),
+                    Random.nextFloat() * 0.3f + 0.7f // Size variation
+                )
+            }
         }
-    }
 
     LaunchedEffect(Unit) {
         progress.animateTo(

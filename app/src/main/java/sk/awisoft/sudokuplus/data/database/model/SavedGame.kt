@@ -5,21 +5,23 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.PrimaryKey
-import sk.awisoft.sudokuplus.data.backup.serializer.DurationLongSerializer
-import sk.awisoft.sudokuplus.data.backup.serializer.ZonedDateTimeLongSerializer
-import kotlinx.serialization.Serializable
 import java.time.Duration
 import java.time.ZonedDateTime
+import kotlinx.serialization.Serializable
+import sk.awisoft.sudokuplus.data.backup.serializer.DurationLongSerializer
+import sk.awisoft.sudokuplus.data.backup.serializer.ZonedDateTimeLongSerializer
 
 @Serializable
 @Entity(
     tableName = "saved_game",
-    foreignKeys = [ForeignKey(
-        onDelete = CASCADE,
-        entity = SudokuBoard::class,
-        parentColumns = arrayOf("uid"),
-        childColumns = arrayOf("board_uid")
-    )]
+    foreignKeys = [
+        ForeignKey(
+            onDelete = CASCADE,
+            entity = SudokuBoard::class,
+            parentColumns = arrayOf("uid"),
+            childColumns = arrayOf("board_uid")
+        )
+    ]
 )
 data class SavedGame(
     @PrimaryKey
@@ -37,5 +39,5 @@ data class SavedGame(
     @Serializable(with = ZonedDateTimeLongSerializer::class)
     @ColumnInfo(name = "started_at") val startedAt: ZonedDateTime? = null,
     @Serializable(with = ZonedDateTimeLongSerializer::class)
-    @ColumnInfo(name = "finished_at") val finishedAt: ZonedDateTime? = null,
+    @ColumnInfo(name = "finished_at") val finishedAt: ZonedDateTime? = null
 )

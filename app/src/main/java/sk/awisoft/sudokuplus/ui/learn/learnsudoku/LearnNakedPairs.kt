@@ -12,6 +12,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.Note
@@ -21,15 +24,10 @@ import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.board.Board
 import sk.awisoft.sudokuplus.ui.learn.components.TutorialBase
 import sk.awisoft.sudokuplus.ui.learn.components.TutorialBottomContent
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
-fun LearnNakedPairs(
-    navigator: DestinationsNavigator
-) {
+fun LearnNakedPairs(navigator: DestinationsNavigator) {
     TutorialBase(
         title = stringResource(R.string.naked_pairs_title),
         navigator = navigator
@@ -66,63 +64,67 @@ fun LearnNakedPairs(
                     Note(4, 5, 3),
                     Note(5, 5, 2),
                     Note(5, 5, 3),
-                    Note(5, 5, 5),
+                    Note(5, 5, 5)
                 )
             )
         }
-        val steps = listOf(
-            stringResource(R.string.naked_pairs_explanation),
-            stringResource(R.string.naked_pairs_end),
-        )
-        val stepsCell = listOf(
-            listOf(Cell(4, 4), Cell(4, 5))
-        )
+        val steps =
+            listOf(
+                stringResource(R.string.naked_pairs_explanation),
+                stringResource(R.string.naked_pairs_end)
+            )
+        val stepsCell =
+            listOf(
+                listOf(Cell(4, 4), Cell(4, 5))
+            )
         var step by remember { mutableIntStateOf(0) }
         LaunchedEffect(key1 = step) {
             when (step) {
                 0 -> {
-                    notes = listOf(
-                        Note(3, 3, 1),
-                        Note(3, 3, 2),
-                        Note(3, 3, 4),
-                        Note(3, 3, 5),
-                        Note(3, 4, 1),
-                        Note(3, 4, 2),
-                        Note(3, 4, 4),
-                        Note(3, 4, 5),
-                        Note(3, 4, 7),
-                        Note(3, 5, 2),
-                        Note(3, 5, 4),
-                        Note(3, 5, 5),
-                        Note(3, 5, 7),
-                        Note(4, 4, 2),
-                        Note(4, 4, 3),
-                        Note(4, 5, 2),
-                        Note(4, 5, 3),
-                        Note(5, 5, 2),
-                        Note(5, 5, 3),
-                        Note(5, 5, 5)
-                    )
+                    notes =
+                        listOf(
+                            Note(3, 3, 1),
+                            Note(3, 3, 2),
+                            Note(3, 3, 4),
+                            Note(3, 3, 5),
+                            Note(3, 4, 1),
+                            Note(3, 4, 2),
+                            Note(3, 4, 4),
+                            Note(3, 4, 5),
+                            Note(3, 4, 7),
+                            Note(3, 5, 2),
+                            Note(3, 5, 4),
+                            Note(3, 5, 5),
+                            Note(3, 5, 7),
+                            Note(4, 4, 2),
+                            Note(4, 4, 3),
+                            Note(4, 5, 2),
+                            Note(4, 5, 3),
+                            Note(5, 5, 2),
+                            Note(5, 5, 3),
+                            Note(5, 5, 5)
+                        )
                 }
 
                 1 -> {
-                    notes = listOf(
-                        Note(3, 3, 1),
-                        Note(3, 3, 4),
-                        Note(3, 3, 5),
-                        Note(3, 4, 1),
-                        Note(3, 4, 4),
-                        Note(3, 4, 5),
-                        Note(3, 4, 7),
-                        Note(3, 5, 4),
-                        Note(3, 5, 5),
-                        Note(3, 5, 7),
-                        Note(4, 4, 2),
-                        Note(4, 4, 3),
-                        Note(4, 5, 2),
-                        Note(4, 5, 3),
-                        Note(5, 5, 5)
-                    )
+                    notes =
+                        listOf(
+                            Note(3, 3, 1),
+                            Note(3, 3, 4),
+                            Note(3, 3, 5),
+                            Note(3, 4, 1),
+                            Note(3, 4, 4),
+                            Note(3, 4, 5),
+                            Note(3, 4, 7),
+                            Note(3, 5, 4),
+                            Note(3, 5, 5),
+                            Note(3, 5, 7),
+                            Note(4, 4, 2),
+                            Note(4, 4, 3),
+                            Note(4, 5, 2),
+                            Note(4, 5, 3),
+                            Note(5, 5, 5)
+                        )
                 }
             }
         }
@@ -146,4 +148,3 @@ fun LearnNakedPairs(
         }
     }
 }
-

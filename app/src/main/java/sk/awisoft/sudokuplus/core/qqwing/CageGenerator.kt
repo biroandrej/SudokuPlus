@@ -1,7 +1,7 @@
 package sk.awisoft.sudokuplus.core.qqwing
 
-import sk.awisoft.sudokuplus.core.Cell
 import kotlin.random.Random
+import sk.awisoft.sudokuplus.core.Cell
 
 class CageGenerator(
     private val board: List<List<Cell>>,
@@ -15,12 +15,13 @@ class CageGenerator(
         }
         unusedCells.remove(startCell)
 
-        var cage = Cage(
-            id = id,
-            cells = listOf(startCell)
-        )
+        var cage =
+            Cage(
+                id = id,
+                cells = listOf(startCell)
+            )
 
-        if(getUnusedNeighbors(startCell).isEmpty()) {
+        if (getUnusedNeighbors(startCell).isEmpty()) {
             return cage
         }
 
@@ -44,7 +45,7 @@ class CageGenerator(
             }
 
             var cell: Cell? = null
-            for(i in neighbors) {
+            for (i in neighbors) {
                 // select a random neighbor to add in a cage
                 val tempCell = neighbors.random()
                 if (cage.cells.all { it.value != tempCell.value } && unusedCells.contains(tempCell)) {
@@ -53,9 +54,10 @@ class CageGenerator(
             }
             if (cell != null) {
                 unusedCells.remove(cell)
-                cage = cage.copy(
-                    cells = cage.cells + cell
-                )
+                cage =
+                    cage.copy(
+                        cells = cage.cells + cell
+                    )
             } else {
                 break
             }
@@ -64,17 +66,17 @@ class CageGenerator(
         return cage
     }
 
-
     fun generate(minSize: Int = 2, maxSize: Int = 6): List<Cage> {
         val cages = mutableListOf<Cage>()
 
         var id = 0
         while (unusedCells.isNotEmpty()) {
-            val cage = generateCage(
-                startCell = unusedCells.random(),
-                requiredSize = Random.nextInt(minSize, maxSize + 1),
-                id = id
-            )
+            val cage =
+                generateCage(
+                    startCell = unusedCells.random(),
+                    requiredSize = Random.nextInt(minSize, maxSize + 1),
+                    id = id
+                )
             if (cage != null) {
                 // calculating total sum
                 // sorting cells by min row and min col

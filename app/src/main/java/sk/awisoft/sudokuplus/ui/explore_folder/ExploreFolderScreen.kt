@@ -60,6 +60,7 @@ import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
@@ -75,7 +76,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -98,6 +98,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlin.math.sqrt
+import kotlin.time.toKotlinDuration
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
@@ -118,24 +124,20 @@ import sk.awisoft.sudokuplus.ui.gameshistory.ColorfulBadge
 import sk.awisoft.sudokuplus.ui.util.isScrolledToEnd
 import sk.awisoft.sudokuplus.ui.util.isScrolledToStart
 import sk.awisoft.sudokuplus.ui.util.isScrollingUp
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.launch
-import kotlin.math.sqrt
-import kotlin.time.toKotlinDuration
 
 @Destination<RootGraph>(
     style = AnimatedNavigation::class,
     navArgs = ExploreFolderScreenNavArgs::class
 )
 @OptIn(
-    ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class, ExperimentalLayoutApi::class
+    ExperimentalMaterial3Api::class,
+    ExperimentalFoundationApi::class,
+    ExperimentalLayoutApi::class
 )
 @Composable
 fun ExploreFolderScreen(
     viewModel: ExploreFolderViewModel = hiltViewModel(),
-    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator
 ) {
     val coroutineScope = rememberCoroutineScope()
     val lazyListState = rememberLazyListState()
@@ -152,12 +154,13 @@ fun ExploreFolderScreen(
     val games by viewModel.games.collectAsStateWithLifecycle(emptyMap())
 
     var contentUri by remember { mutableStateOf<Uri?>(null) }
-    val openDocumentLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.OpenDocument(),
-        onResult = {
-            contentUri = it
-        }
-    )
+    val openDocumentLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.OpenDocument(),
+            onResult = {
+                contentUri = it
+            }
+        )
 
     LaunchedEffect(contentUri) {
         contentUri?.let { uri ->
@@ -243,7 +246,8 @@ fun ExploreFolderScreen(
                         Modifier
                             .padding(horizontal = 12.dp)
                         GameInFolderWidget(
-                            modifier = Modifier.Companion.animateItem(
+                            modifier =
+                            Modifier.Companion.animateItem(
                                 fadeInSpec = null,
                                 fadeOutSpec = null
                             ),
@@ -326,7 +330,8 @@ fun ExploreFolderScreen(
             title = { Text(stringResource(R.string.dialog_delete_selected)) },
             text = {
                 Text(
-                    text = pluralStringResource(
+                    text =
+                    pluralStringResource(
                         id = R.plurals.delete_selected_in_folder,
                         count = if (deleteBoardDialogBoard != null) 1 else viewModel.selectedBoardsList.size,
                         if (deleteBoardDialogBoard != null) 1 else viewModel.selectedBoardsList.size
@@ -379,7 +384,8 @@ fun ExploreFolderScreen(
                     onClick = {
                         isGenerating = true
                         viewModel.generateSudoku(selectedType, selectedDifficulty, numberToGenerate)
-                    }) {
+                    }
+                ) {
                     Text(stringResource(R.string.dialog_ok))
                 }
             },
@@ -398,7 +404,9 @@ fun ExploreFolderScreen(
                             FlowRow {
                                 Box {
                                     var difficultyMenu by remember { mutableStateOf(false) }
-                                    val dropDownIconRotation by animateFloatAsState(if (difficultyMenu) 180f else 0f)
+                                    val dropDownIconRotation by animateFloatAsState(
+                                        if (difficultyMenu) 180f else 0f
+                                    )
                                     TextButton(
                                         onClick = { difficultyMenu = !difficultyMenu },
                                         modifier = Modifier.animateContentSize()
@@ -413,7 +421,8 @@ fun ExploreFolderScreen(
                                     DifficultyMenu(
                                         expanded = difficultyMenu,
                                         onDismissRequest = { difficultyMenu = false },
-                                        difficulties = listOf(
+                                        difficulties =
+                                        listOf(
                                             GameDifficulty.Easy,
                                             GameDifficulty.Moderate,
                                             GameDifficulty.Hard,
@@ -424,7 +433,9 @@ fun ExploreFolderScreen(
                                 }
                                 Box {
                                     var gameTypeMenuExpanded by remember { mutableStateOf(false) }
-                                    val dropDownIconRotation by animateFloatAsState(if (gameTypeMenuExpanded) 180f else 0f)
+                                    val dropDownIconRotation by animateFloatAsState(
+                                        if (gameTypeMenuExpanded) 180f else 0f
+                                    )
                                     TextButton(
                                         onClick = { gameTypeMenuExpanded = !gameTypeMenuExpanded },
                                         modifier = Modifier.animateContentSize()
@@ -459,7 +470,8 @@ fun ExploreFolderScreen(
                                     R.string.generating_number_of,
                                     generatedNumber,
                                     numberToGenerate
-                                ))
+                                )
+                            )
                             LinearProgressIndicator(
                                 progress = {
                                     generatedNumber.toFloat() / numberToGenerate.toFloat()
@@ -478,13 +490,13 @@ fun ExploreFolderScreen(
         )
     }
 
-
     if (addSudokuBottomSheet) {
         ModalBottomSheet(onDismissRequest = { addSudokuBottomSheet = false }) {
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                    .padding(horizontal = 12.dp, vertical = 8.dp)
             ) {
                 Text(
                     text = stringResource(R.string.add_to_folder),
@@ -508,7 +520,8 @@ fun ExploreFolderScreen(
                         )
                     ).forEachIndexed { index, item ->
                         Row(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .fillMaxWidth()
                                 .clip(MaterialTheme.shapes.small)
                                 .clickable {
@@ -554,7 +567,6 @@ fun ExploreFolderScreen(
     }
 }
 
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun GameInFolderWidget(
@@ -570,15 +582,17 @@ fun GameInFolderWidget(
     onEditClick: () -> Unit,
     onDeleteClick: () -> Unit,
     modifier: Modifier = Modifier,
-    onLongClick: () -> Unit = { },
+    onLongClick: () -> Unit = { }
 ) {
     ElevatedCard(
-        modifier = modifier
+        modifier =
+        modifier
             .clip(CardDefaults.elevatedShape)
-            .combinedClickable(onClick = onClick, onLongClick = onLongClick),
+            .combinedClickable(onClick = onClick, onLongClick = onLongClick)
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
@@ -598,17 +612,19 @@ fun GameInFolderWidget(
             Column {
                 Row {
                     Box(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .clip(RoundedCornerShape(4.dp))
                             .size(130.dp)
                     ) {
                         BoardPreview(
                             size = sqrt(board.length.toFloat()).toInt(),
-                            boardString = board,
+                            boardString = board
                         )
                     }
                     Column(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .padding(horizontal = 12.dp)
                     ) {
                         Text("$difficulty $type")
@@ -644,15 +660,16 @@ fun GameInFolderWidget(
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceAround,
+                        horizontalArrangement = Arrangement.SpaceAround
                     ) {
                         IconWithText(
                             imageVector = Icons.Rounded.PlayArrow,
                             text =
-                            if (savedGame == null || !savedGame.canContinue)
+                            if (savedGame == null || !savedGame.canContinue) {
                                 stringResource(R.string.action_play)
-                            else
-                                stringResource(R.string.action_continue),
+                            } else {
+                                stringResource(R.string.action_continue)
+                            },
                             onClick = onPlayClick,
                             enabled = savedGame?.canContinue ?: true
                         )
@@ -723,7 +740,9 @@ private fun DefaultTopAppBar(
                         contentDescription = null
                     )
                 }
-                MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {
+                MaterialTheme(
+                    shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)
+                ) {
                     DropdownMenu(
                         expanded = showMenu,
                         onDismissRequest = { showMenu = false }
@@ -786,7 +805,8 @@ private fun SelectionTopAppbar(
                 )
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors(
+        colors =
+        TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
         )
     )
@@ -818,17 +838,24 @@ private fun MoveSudokuToFolderDialog(
                 Box {
                     val lazyListState = rememberLazyListState()
 
-                    if (!lazyListState.isScrolledToStart()) HorizontalDivider(
-                        Modifier.align(
-                            Alignment.TopCenter
+                    if (!lazyListState.isScrolledToStart()) {
+                        HorizontalDivider(
+                            Modifier.align(
+                                Alignment.TopCenter
+                            )
                         )
-                    )
-                    if (!lazyListState.isScrolledToEnd()) HorizontalDivider(Modifier.align(Alignment.BottomCenter))
+                    }
+                    if (!lazyListState.isScrolledToEnd()) {
+                        HorizontalDivider(
+                            Modifier.align(Alignment.BottomCenter)
+                        )
+                    }
 
                     ScrollbarLazyColumn(state = lazyListState) {
                         items(availableFolders) { folder ->
                             Row(
-                                modifier = Modifier
+                                modifier =
+                                Modifier
                                     .fillMaxWidth()
                                     .heightIn(min = 48.dp)
                                     .clip(MaterialTheme.shapes.small)

@@ -6,30 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import sk.awisoft.sudokuplus.core.Cell
-import sk.awisoft.sudokuplus.core.DailyChallengeManager
-import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
-import sk.awisoft.sudokuplus.core.reward.ClaimResult
-import sk.awisoft.sudokuplus.core.reward.DailyReward
-import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
-import sk.awisoft.sudokuplus.core.reward.RewardCalendarState
-import sk.awisoft.sudokuplus.core.notification.NotificationHelper
-import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
-import sk.awisoft.sudokuplus.core.qqwing.Cage
-import sk.awisoft.sudokuplus.core.qqwing.CageGenerator
-import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
-import sk.awisoft.sudokuplus.core.qqwing.GameType
-import sk.awisoft.sudokuplus.core.qqwing.QQWingController
-import sk.awisoft.sudokuplus.core.utils.SudokuParser
-import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
-import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
-import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
-import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
-import sk.awisoft.sudokuplus.domain.repository.BoardRepository
-import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
-import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -40,12 +19,33 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
-
+import sk.awisoft.sudokuplus.core.Cell
+import sk.awisoft.sudokuplus.core.DailyChallengeManager
+import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
+import sk.awisoft.sudokuplus.core.notification.NotificationHelper
+import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
+import sk.awisoft.sudokuplus.core.qqwing.Cage
+import sk.awisoft.sudokuplus.core.qqwing.CageGenerator
+import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
+import sk.awisoft.sudokuplus.core.qqwing.GameType
+import sk.awisoft.sudokuplus.core.qqwing.QQWingController
+import sk.awisoft.sudokuplus.core.reward.ClaimResult
+import sk.awisoft.sudokuplus.core.reward.DailyReward
+import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
+import sk.awisoft.sudokuplus.core.reward.RewardCalendarState
+import sk.awisoft.sudokuplus.core.utils.SudokuParser
+import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
+import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
+import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.domain.repository.BoardRepository
+import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
+import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 
 @HiltViewModel
 class HomeViewModel
-@Inject constructor(
+@Inject
+constructor(
     dailyChallengeRepository: DailyChallengeRepository,
     private val appSettingsManager: AppSettingsManager,
     private val boardRepository: BoardRepository,
@@ -54,11 +54,11 @@ class HomeViewModel
     private val notificationSettingsManager: NotificationSettingsManager,
     private val notificationHelper: NotificationHelper,
     private val rewardCalendarManager: RewardCalendarManager,
-    @param: ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ) : ViewModel() {
-
-    val lastSavedGame = savedGameRepository.getLast()
-        .stateIn(viewModelScope, SharingStarted.Eagerly, null)
+    val lastSavedGame =
+        savedGameRepository.getLast()
+            .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     // Daily Challenge StateO
     private val _dailyChallenge = MutableStateFlow<DailyChallenge?>(null)
@@ -67,11 +67,12 @@ class HomeViewModel
     private val _isDailyLoading = MutableStateFlow(false)
     val isDailyLoading: StateFlow<Boolean> = _isDailyLoading.asStateFlow()
 
-    val dailyCurrentStreak: StateFlow<Int> = dailyChallengeRepository.getCompleted()
-        .map { challenges ->
-            dailyChallengeManager.calculateCurrentStreak(challenges.map { it.date })
-        }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+    val dailyCurrentStreak: StateFlow<Int> =
+        dailyChallengeRepository.getCompleted()
+            .map { challenges ->
+                dailyChallengeManager.calculateCurrentStreak(challenges.map { it.date })
+            }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
     var dailyChallengeGameUid = -1L
     var dailyChallengeReadyToPlay by mutableStateOf(false)
@@ -81,8 +82,9 @@ class HomeViewModel
     val shouldShowNotificationPermission: StateFlow<Boolean> = _shouldShowNotificationPermission.asStateFlow()
 
     // Reward Calendar State
-    val rewardCalendarState: StateFlow<RewardCalendarState?> = rewardCalendarManager.getCalendarState()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+    val rewardCalendarState: StateFlow<RewardCalendarState?> =
+        rewardCalendarManager.getCalendarState()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     private val _claimedReward = MutableStateFlow<DailyReward?>(null)
     val claimedReward: StateFlow<DailyReward?> = _claimedReward.asStateFlow()
@@ -155,13 +157,14 @@ class HomeViewModel
 
         viewModelScope.launch(Dispatchers.IO) {
             // Create a SudokuBoard from the DailyChallenge
-            val board = SudokuBoard(
-                uid = 0,
-                initialBoard = challenge.initialBoard,
-                solvedBoard = challenge.solvedBoard,
-                difficulty = challenge.difficulty,
-                type = challenge.gameType
-            )
+            val board =
+                SudokuBoard(
+                    uid = 0,
+                    initialBoard = challenge.initialBoard,
+                    solvedBoard = challenge.solvedBoard,
+                    difficulty = challenge.difficulty,
+                    type = challenge.gameType
+                )
             dailyChallengeGameUid = boardRepository.insert(board)
             withContext(Dispatchers.Main) {
                 dailyChallengeReadyToPlay = true
@@ -170,26 +173,29 @@ class HomeViewModel
     }
 
     private val lastGamesLimit = 5
-    val lastGames = savedGameRepository.getLastPlayable(limit = lastGamesLimit)
-        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
+    val lastGames =
+        savedGameRepository.getLastPlayable(limit = lastGamesLimit)
+            .stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
 
     var insertedBoardUid = -1L
 
-    private val difficulties = listOf(
-        GameDifficulty.Easy,
-        GameDifficulty.Moderate,
-        GameDifficulty.Hard,
-        GameDifficulty.Challenge,
-    )
+    private val difficulties =
+        listOf(
+            GameDifficulty.Easy,
+            GameDifficulty.Moderate,
+            GameDifficulty.Hard,
+            GameDifficulty.Challenge
+        )
 
-    private val types = listOf(
-        GameType.Default9x9,
-        GameType.Default6x6,
-        GameType.Default12x12,
-        GameType.Killer9x9,
-        GameType.Killer12x12,
-        GameType.Killer6x6
-    )
+    private val types =
+        listOf(
+            GameType.Default9x9,
+            GameType.Default6x6,
+            GameType.Default12x12,
+            GameType.Killer9x9,
+            GameType.Killer12x12,
+            GameType.Killer6x6
+        )
 
     val lastSelectedGameDifficultyType = appSettingsManager.lastSelectedGameDifficultyType
     val saveSelectedGameDifficultyType = appSettingsManager.saveSelectedGameDifficultyType
@@ -205,7 +211,6 @@ class HomeViewModel
         List(selectedType.size) { row -> List(selectedType.size) { col -> Cell(row, col, 0) } }
     private var solvedPuzzle =
         List(selectedType.size) { row -> List(selectedType.size) { col -> Cell(row, col, 0) } }
-
 
     fun startGame() {
         isSolving = false
@@ -231,13 +236,15 @@ class HomeViewModel
 
             // generating
             isGenerating = true
-            val generated = qqWingController.generate(gameTypeToGenerate, gameDifficultyToGenerate)
+            val generated = qqWingController.generate(
+                gameTypeToGenerate,
+                gameDifficultyToGenerate
+            )
             isGenerating = false
 
             isSolving = true
             val solved = qqWingController.solve(generated, gameTypeToGenerate)
             isSolving = false
-
 
             if (!qqWingController.isImpossible && qqWingController.solutionCount == 1) {
                 for (i in 0 until size) {
@@ -248,7 +255,8 @@ class HomeViewModel
                 }
 
                 var cages: List<Cage>? = null
-                if (gameTypeToGenerate in setOf(
+                if (gameTypeToGenerate in
+                    setOf(
                         GameType.Killer9x9,
                         GameType.Killer12x12,
                         GameType.Killer6x6
@@ -259,18 +267,24 @@ class HomeViewModel
                 }
                 withContext(Dispatchers.IO) {
                     val sudokuParser = SudokuParser()
-                    insertedBoardUid = boardRepository.insert(
-                        SudokuBoard(
-                            uid = 0,
-                            initialBoard = sudokuParser.boardToString(puzzle),
-                            solvedBoard = sudokuParser.boardToString(solvedPuzzle),
-                            difficulty = selectedDifficulty,
-                            type = selectedType,
-                            killerCages = if (cages != null) sudokuParser.killerSudokuCagesToString(
-                                cages
-                            ) else null
+                    insertedBoardUid =
+                        boardRepository.insert(
+                            SudokuBoard(
+                                uid = 0,
+                                initialBoard = sudokuParser.boardToString(puzzle),
+                                solvedBoard = sudokuParser.boardToString(solvedPuzzle),
+                                difficulty = selectedDifficulty,
+                                type = selectedType,
+                                killerCages =
+                                if (cages != null) {
+                                    sudokuParser.killerSudokuCagesToString(
+                                        cages
+                                    )
+                                } else {
+                                    null
+                                }
+                            )
                         )
-                    )
                 }
 
                 readyToPlay = true
@@ -314,7 +328,8 @@ class HomeViewModel
                     _claimedReward.value = result.reward
                 }
                 is ClaimResult.AlreadyClaimedToday,
-                is ClaimResult.Error -> {
+                is ClaimResult.Error
+                -> {
                     // Handle silently
                 }
             }

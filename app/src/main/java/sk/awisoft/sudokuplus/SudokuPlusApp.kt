@@ -5,6 +5,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.WorkManager
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -14,11 +15,9 @@ import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
 import sk.awisoft.sudokuplus.core.notification.NotificationHelper
 import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
 import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
-import javax.inject.Inject
 
 @HiltAndroidApp
 class SudokuPlusApp : Application(), Configuration.Provider {
-
     @Inject
     lateinit var hiltWorkerFactory: HiltWorkerFactory
 
@@ -31,9 +30,10 @@ class SudokuPlusApp : Application(), Configuration.Provider {
     private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     override val workManagerConfiguration: Configuration
-        get() = Configuration.Builder()
-            .setWorkerFactory(hiltWorkerFactory)
-            .build()
+        get() =
+            Configuration.Builder()
+                .setWorkerFactory(hiltWorkerFactory)
+                .build()
 
     override fun onCreate() {
         super.onCreate()

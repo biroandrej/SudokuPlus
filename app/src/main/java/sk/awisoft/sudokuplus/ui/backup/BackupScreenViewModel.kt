@@ -5,6 +5,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import java.io.OutputStream
+import java.time.ZonedDateTime
+import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 import sk.awisoft.sudokuplus.BuildConfig
 import sk.awisoft.sudokuplus.data.backup.BackupData
 import sk.awisoft.sudokuplus.data.backup.SettingsBackup
@@ -17,20 +27,11 @@ import sk.awisoft.sudokuplus.domain.repository.FolderRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import sk.awisoft.sudokuplus.util.FlavorUtil
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
-import java.io.OutputStream
-import java.time.ZonedDateTime
-import javax.inject.Inject
-
 
 @HiltViewModel
-class BackupScreenViewModel @Inject constructor(
+class BackupScreenViewModel
+@Inject
+constructor(
     private val appSettingsManager: AppSettingsManager,
     private val themeSettingsManager: ThemeSettingsManager,
     private val boardRepository: BoardRepository,
@@ -40,11 +41,12 @@ class BackupScreenViewModel @Inject constructor(
     private val dailyChallengeRepository: DailyChallengeRepository,
     private val databaseRepository: DatabaseRepository
 ) : ViewModel() {
-    val backupUri = appSettingsManager.backupUri.stateIn(
-        viewModelScope,
-        SharingStarted.Eagerly,
-        initialValue = ""
-    )
+    val backupUri =
+        appSettingsManager.backupUri.stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            initialValue = ""
+        )
 
     var backupData by mutableStateOf<BackupData?>(null)
     private var backupJson: String? = null
@@ -57,10 +59,7 @@ class BackupScreenViewModel @Inject constructor(
     val lastBackupFailure = appSettingsManager.lastBackupFailure
     val dateFormat = appSettingsManager.dateFormat
 
-    fun createBackup(
-        backupSettings: Boolean,
-        onCreated: (Boolean) -> Unit
-    ) {
+    fun createBackup(backupSettings: Boolean, onCreated: (Boolean) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val boards = boardRepository.getAll().first()
@@ -69,25 +68,32 @@ class BackupScreenViewModel @Inject constructor(
                 val savedGames = savedGameRepository.getAll().first()
                 val dailyChallenges = dailyChallengeRepository.getAll().first()
 
-                backupData = BackupData(
-                    appVersionName = BuildConfig.VERSION_NAME + if (FlavorUtil.isFoss()) "-FOSS" else "",
-                    appVersionCode = BuildConfig.VERSION_CODE,
-                    createdAt = ZonedDateTime.now(),
-                    boards = boards,
-                    folders = folders,
-                    records = records,
-                    savedGames = savedGames,
-                    dailyChallenges = dailyChallenges,
-                    settings = if (backupSettings) SettingsBackup.getSettings(
-                        appSettingsManager,
-                        themeSettingsManager
-                    ) else null
-                )
+                backupData =
+                    BackupData(
+                        appVersionName = BuildConfig.VERSION_NAME + if (FlavorUtil.isFoss()) "-FOSS" else "",
+                        appVersionCode = BuildConfig.VERSION_CODE,
+                        createdAt = ZonedDateTime.now(),
+                        boards = boards,
+                        folders = folders,
+                        records = records,
+                        savedGames = savedGames,
+                        dailyChallenges = dailyChallenges,
+                        settings =
+                        if (backupSettings) {
+                            SettingsBackup.getSettings(
+                                appSettingsManager,
+                                themeSettingsManager
+                            )
+                        } else {
+                            null
+                        }
+                    )
 
-                val json = Json {
-                    encodeDefaults = true
-                    ignoreUnknownKeys = true
-                }
+                val json =
+                    Json {
+                        encodeDefaults = true
+                        ignoreUnknownKeys = true
+                    }
                 backupJson = json.encodeToString(backupData)
                 onCreated(true)
             } catch (e: Exception) {
@@ -102,10 +108,7 @@ class BackupScreenViewModel @Inject constructor(
         }
     }
 
-    fun prepareBackupToRestore(
-        backupString: String,
-        onComplete: () -> Unit
-    ) {
+    fun prepareBackupToRestore(backupString: String, onComplete: () -> Unit) {
         try {
             val json = Json { ignoreUnknownKeys = true }
             backupData = json.decodeFromString<BackupData?>(backupString)
@@ -116,10 +119,7 @@ class BackupScreenViewModel @Inject constructor(
         }
     }
 
-    fun saveBackupTo(
-        outputStream: OutputStream?,
-        onComplete: (Throwable?) -> Unit
-    ) {
+    fun saveBackupTo(outputStream: OutputStream?, onComplete: (Throwable?) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             backupJson?.let { backup ->
                 try {
@@ -138,9 +138,7 @@ class BackupScreenViewModel @Inject constructor(
         }
     }
 
-    fun restoreBackup(
-        onComplete: () -> Unit
-    ) {
+    fun restoreBackup(onComplete: () -> Unit) {
         backupData?.let { backup ->
             viewModelScope.launch(Dispatchers.IO) {
                 try {

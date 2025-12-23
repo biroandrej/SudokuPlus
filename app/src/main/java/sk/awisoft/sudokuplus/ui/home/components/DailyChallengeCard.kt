@@ -1,6 +1,5 @@
 package sk.awisoft.sudokuplus.ui.home.components
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,11 +30,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import sk.awisoft.sudokuplus.R
+import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 
 @Composable
 fun DailyChallengeCard(
@@ -53,11 +52,14 @@ fun DailyChallengeCard(
 
     ElevatedCard(
         modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = if (isCompleted)
+        colors =
+        CardDefaults.elevatedCardColors(
+            containerColor =
+            if (isCompleted) {
                 MaterialTheme.colorScheme.primaryContainer
-            else
+            } else {
                 MaterialTheme.colorScheme.surfaceContainerHigh
+            }
         )
     ) {
         Column(
@@ -76,28 +78,34 @@ fun DailyChallengeCard(
                     Icon(
                         imageVector = Icons.Rounded.Today,
                         contentDescription = null,
-                        tint = if (isCompleted)
+                        tint =
+                        if (isCompleted) {
                             MaterialTheme.colorScheme.onPrimaryContainer
-                        else
+                        } else {
                             MaterialTheme.colorScheme.primary
+                        }
                     )
                     Column {
                         Text(
                             text = stringResource(R.string.daily_challenge),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.SemiBold,
-                            color = if (isCompleted)
+                            color =
+                            if (isCompleted) {
                                 MaterialTheme.colorScheme.onPrimaryContainer
-                            else
+                            } else {
                                 MaterialTheme.colorScheme.onSurface
+                            }
                         )
                         Text(
                             text = today.format(dateFormatter),
                             style = MaterialTheme.typography.bodySmall,
-                            color = if (isCompleted)
+                            color =
+                            if (isCompleted) {
                                 MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
-                            else
+                            } else {
                                 MaterialTheme.colorScheme.onSurfaceVariant
+                            }
                         )
                     }
                 }
@@ -109,7 +117,8 @@ fun DailyChallengeCard(
 
             if (isLoading) {
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth()
                         .padding(vertical = 8.dp),
                     contentAlignment = Alignment.Center
@@ -147,8 +156,11 @@ fun DailyChallengeCard(
                                 onClick = { },
                                 enabled = false,
                                 modifier = Modifier.weight(1f),
-                                colors = ButtonDefaults.filledTonalButtonColors(
-                                    disabledContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
+                                colors =
+                                ButtonDefaults.filledTonalButtonColors(
+                                    disabledContainerColor = MaterialTheme.colorScheme.primary.copy(
+                                        alpha = 0.12f
+                                    ),
                                     disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                                 )
                             ) {
@@ -202,10 +214,7 @@ fun DailyChallengeCard(
 }
 
 @Composable
-private fun StreakBadge(
-    streak: Int,
-    modifier: Modifier = Modifier
-) {
+private fun StreakBadge(streak: Int, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier,
         color = MaterialTheme.colorScheme.tertiaryContainer,

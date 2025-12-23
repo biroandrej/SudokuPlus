@@ -2,8 +2,14 @@ package sk.awisoft.sudokuplus.di
 
 import android.app.Application
 import android.content.Context
-import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
+import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
 import sk.awisoft.sudokuplus.core.xp.XPEngine
 import sk.awisoft.sudokuplus.data.database.AppDatabase
@@ -41,26 +47,19 @@ import sk.awisoft.sudokuplus.domain.repository.LoginRewardRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
+    @Provides
+    @Singleton
+    fun provideDatabaseRepository(appDatabase: AppDatabase): DatabaseRepository =
+        DatabaseRepositoryImpl(appDatabase)
 
     @Provides
     @Singleton
-    fun provideDatabaseRepository(appDatabase: AppDatabase): DatabaseRepository
-        = DatabaseRepositoryImpl(appDatabase)
-
-    @Provides
-    @Singleton
-    fun provideFolderRepository(folderDao: FolderDao): FolderRepository
-        = FolderRepositoryImpl(folderDao)
+    fun provideFolderRepository(folderDao: FolderDao): FolderRepository =
+        FolderRepositoryImpl(folderDao)
 
     @Provides
     @Singleton
@@ -83,7 +82,6 @@ class AppModule {
     @Provides
     fun provideBoardDao(appDatabase: AppDatabase): BoardDao = appDatabase.boardDao()
 
-
     @Singleton
     @Provides
     fun provideSavedGameRepository(savedGameDao: SavedGameDao): SavedGameRepository =
@@ -93,11 +91,9 @@ class AppModule {
     @Provides
     fun provideSavedGameDao(appDatabase: AppDatabase): SavedGameDao = appDatabase.savedGameDao()
 
-
     @Provides
     @Singleton
-    fun provideSettingsDataStore(@ApplicationContext context: Context) =
-        SettingsDataStore(context)
+    fun provideSettingsDataStore(@ApplicationContext context: Context) = SettingsDataStore(context)
 
     @Provides
     @Singleton
@@ -136,7 +132,8 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideAppDatabase(app: Application): AppDatabase = AppDatabase.Companion.getInstance(context = app)
+    fun provideAppDatabase(app: Application): AppDatabase =
+        AppDatabase.Companion.getInstance(context = app)
 
     @Singleton
     @Provides
@@ -223,6 +220,5 @@ class AppModule {
     fun provideRewardCalendarManager(
         repository: LoginRewardRepository,
         badgeDao: RewardBadgeDao
-    ): RewardCalendarManager =
-        RewardCalendarManager(repository, badgeDao)
+    ): RewardCalendarManager = RewardCalendarManager(repository, badgeDao)
 }

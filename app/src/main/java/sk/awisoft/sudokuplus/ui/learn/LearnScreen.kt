@@ -1,17 +1,20 @@
 package sk.awisoft.sudokuplus.ui.learn
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,28 +26,23 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.SecondaryTabRow
-import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
-import sk.awisoft.sudokuplus.ui.learn.learnapp.LearnAppScreen
-import sk.awisoft.sudokuplus.ui.learn.learnsudoku.LearnSudokuScreen
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
+import sk.awisoft.sudokuplus.R
+import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
+import sk.awisoft.sudokuplus.ui.learn.learnapp.LearnAppScreen
+import sk.awisoft.sudokuplus.ui.learn.learnsudoku.LearnSudokuScreen
 
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
-fun LearnScreen(
-    navigator: DestinationsNavigator
-) {
+fun LearnScreen(navigator: DestinationsNavigator) {
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(title = { Text(stringResource(R.string.learn_screen_title)) },
+            CenterAlignedTopAppBar(
+                title = { Text(stringResource(R.string.learn_screen_title)) },
                 navigationIcon = {
                     IconButton(onClick = { navigator.popBackStack() }) {
                         Icon(
@@ -57,7 +55,8 @@ fun LearnScreen(
         }
     ) { innerPadding ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
@@ -92,7 +91,8 @@ fun LearnScreen(
                 }
             }
             HorizontalPager(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxHeight(),
                 state = pagerState,
                 verticalAlignment = Alignment.Top

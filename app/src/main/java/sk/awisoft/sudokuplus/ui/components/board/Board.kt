@@ -38,6 +38,12 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.compareTo
+import kotlin.math.ceil
+import kotlin.math.floor
+import kotlin.math.sqrt
+import kotlin.times
+import kotlin.toString
 import sk.awisoft.sudokuplus.LocalBoardColors
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.Note
@@ -45,16 +51,10 @@ import sk.awisoft.sudokuplus.core.qqwing.Cage
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
-import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
-import kotlin.compareTo
-import kotlin.math.ceil
-import kotlin.math.floor
-import kotlin.math.sqrt
-import kotlin.times
-import kotlin.toString
 
 /**
  * Sudoku board
@@ -87,19 +87,21 @@ fun Board(
     board: List<List<Cell>>,
     size: Int = board.size,
     notes: List<Note>? = null,
-    mainTextSize: TextUnit = when (size) {
-        6 -> 32.sp
-        9 -> 26.sp
-        12 -> 24.sp
-        else -> 14.sp
-    },
+    mainTextSize: TextUnit =
+        when (size) {
+            6 -> 32.sp
+            9 -> 26.sp
+            12 -> 24.sp
+            else -> 14.sp
+        },
     autoFontSize: Boolean = false,
-    noteTextSize: TextUnit = when (size) {
-        6 -> 18.sp
-        9 -> 12.sp
-        12 -> 7.sp
-        else -> 14.sp
-    },
+    noteTextSize: TextUnit =
+        when (size) {
+            6 -> 18.sp
+            9 -> 12.sp
+            12 -> 7.sp
+            else -> 14.sp
+        },
     selectedCell: Cell,
     onClick: (Cell) -> Unit,
     onLongClick: (Cell) -> Unit = { },
@@ -117,7 +119,8 @@ fun Board(
     cages: List<Cage> = emptyList()
 ) {
     BoxWithConstraints(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .aspectRatio(1f)
             .padding(4.dp)
@@ -127,7 +130,9 @@ fun Board(
         // single cell size
         val cellSize by remember(size) { mutableFloatStateOf(maxWidth / size.toFloat()) }
         // div for notes in one row in cell
-        val cellSizeDivWidth by remember(size) { mutableFloatStateOf(cellSize / ceil(sqrt(size.toFloat()))) }
+        val cellSizeDivWidth by remember(size) {
+            mutableFloatStateOf(cellSize / ceil(sqrt(size.toFloat())))
+        }
 
         val errorColor = boardColors.errorColor
         val foregroundColor = boardColors.foregroundColor
@@ -146,11 +151,12 @@ fun Board(
         var fontSizePx by remember { mutableFloatStateOf(1f) }
         with(LocalDensity.current) {
             LaunchedEffect(autoFontSize, size, mainTextSize) {
-                fontSizePx = if (autoFontSize) {
-                    (cellSize * 0.9f).toSp().toPx()
-                } else {
-                    mainTextSize.toPx()
-                }
+                fontSizePx =
+                    if (autoFontSize) {
+                        (cellSize * 0.9f).toSp().toPx()
+                    } else {
+                        mainTextSize.toPx()
+                    }
             }
         }
         val noteSizePx = with(LocalDensity.current) { (cellSizeDivWidth * 0.8f).toSp().toPx() }
@@ -226,31 +232,36 @@ fun Board(
 
         val context = LocalContext.current
         LaunchedEffect(mainTextSize, noteTextSize, boardColors) {
-            textPaint = Paint().apply {
-                color = foregroundColor.toArgb()
-                isAntiAlias = true
-                textSize = fontSizePx
-            }
-            notePaint = Paint().apply {
-                color = notesColor.toArgb()
-                isAntiAlias = true
-                textSize = noteSizePx
-            }
-            errorTextPaint = Paint().apply {
-                color = Color(230, 67, 83).toArgb()
-                isAntiAlias = true
-                textSize = fontSizePx
-            }
-            lockedTextPaint = Paint().apply {
-                color = altForegroundColor.toArgb()
-                isAntiAlias = true
-                textSize = fontSizePx
-            }
-            killerSumPaint = Paint().apply {
-                color = notesColor.toArgb()
-                isAntiAlias = true
-                textSize = killerSumSizePx
-            }
+            textPaint =
+                Paint().apply {
+                    color = foregroundColor.toArgb()
+                    isAntiAlias = true
+                    textSize = fontSizePx
+                }
+            notePaint =
+                Paint().apply {
+                    color = notesColor.toArgb()
+                    isAntiAlias = true
+                    textSize = noteSizePx
+                }
+            errorTextPaint =
+                Paint().apply {
+                    color = Color(230, 67, 83).toArgb()
+                    isAntiAlias = true
+                    textSize = fontSizePx
+                }
+            lockedTextPaint =
+                Paint().apply {
+                    color = altForegroundColor.toArgb()
+                    isAntiAlias = true
+                    textSize = fontSizePx
+                }
+            killerSumPaint =
+                Paint().apply {
+                    color = notesColor.toArgb()
+                    isAntiAlias = true
+                    textSize = killerSumSizePx
+                }
         }
 
         var zoom by remember(enabled) { mutableFloatStateOf(1f) }
@@ -259,7 +270,8 @@ fun Board(
         // Selection animation state
         val selectionScale by animateFloatAsState(
             targetValue = if (selectedCell.row >= 0 && selectedCell.col >= 0) 1.0f else 0f,
-            animationSpec = spring(
+            animationSpec =
+            spring(
                 dampingRatio = Spring.DampingRatioMediumBouncy,
                 stiffness = Spring.StiffnessMedium
             ),
@@ -269,73 +281,76 @@ fun Board(
         // Glow animation for selected cell
         val glowAlpha by animateFloatAsState(
             targetValue = if (selectedCell.row >= 0 && selectedCell.col >= 0) 0.35f else 0f,
-            animationSpec = spring(
+            animationSpec =
+            spring(
                 dampingRatio = Spring.DampingRatioNoBouncy,
                 stiffness = Spring.StiffnessLow
             ),
             label = "glow alpha"
         )
 
-        val boardModifier = Modifier
-            .fillMaxSize()
-            .pointerInput(key1 = enabled, key2 = board) {
-                detectTapGestures(
-                    onTap = {
-                        val totalOffset = it / zoom + offset
-                        val row =
-                            floor((totalOffset.y) / cellSize)
-                                .toInt()
-                                .coerceIn(board.indices)
-                        val column =
-                            floor((totalOffset.x) / cellSize)
-                                .toInt()
-                                .coerceIn(board.indices)
-                        onClick(board[row][column])
-                    },
-                    onLongPress = {
-                        if (enabled) {
+        val boardModifier =
+            Modifier
+                .fillMaxSize()
+                .pointerInput(key1 = enabled, key2 = board) {
+                    detectTapGestures(
+                        onTap = {
                             val totalOffset = it / zoom + offset
-                            val row = floor((totalOffset.y) / cellSize).toInt()
-                            val column = floor((totalOffset.x) / cellSize).toInt()
-                            onLongClick(board[row][column])
+                            val row =
+                                floor((totalOffset.y) / cellSize)
+                                    .toInt()
+                                    .coerceIn(board.indices)
+                            val column =
+                                floor((totalOffset.x) / cellSize)
+                                    .toInt()
+                                    .coerceIn(board.indices)
+                            onClick(board[row][column])
+                        },
+                        onLongPress = {
+                            if (enabled) {
+                                val totalOffset = it / zoom + offset
+                                val row = floor((totalOffset.y) / cellSize).toInt()
+                                val column = floor((totalOffset.x) / cellSize).toInt()
+                                onLongClick(board[row][column])
+                            }
                         }
-                    }
-                )
-            }
+                    )
+                }
 
-        val zoomModifier = Modifier
-            .pointerInput(enabled) {
-                detectTransformGestures(
-                    onGesture = { gestureCentroid, gesturePan, gestureZoom, _ ->
-                        if (enabled) {
-                            val oldScale = zoom
-                            val newScale = (zoom * gestureZoom).coerceIn(1f..3f)
+        val zoomModifier =
+            Modifier
+                .pointerInput(enabled) {
+                    detectTransformGestures(
+                        onGesture = { gestureCentroid, gesturePan, gestureZoom, _ ->
+                            if (enabled) {
+                                val oldScale = zoom
+                                val newScale = (zoom * gestureZoom).coerceIn(1f..3f)
 
-                            offset = (offset + gestureCentroid / oldScale) -
+                                offset = (offset + gestureCentroid / oldScale) -
                                     (gestureCentroid / newScale + gesturePan / oldScale)
 
-                            zoom = newScale
-                            if (offset.x < 0) {
-                                offset = Offset(0f, offset.y)
-                            } else if (maxWidth - offset.x < maxWidth / zoom) {
-                                offset = offset.copy(x = maxWidth - maxWidth / zoom)
-                            }
-                            if (offset.y < 0) {
-                                offset = Offset(offset.x, 0f)
-                            } else if (maxWidth - offset.y < maxWidth / zoom) {
-                                offset = offset.copy(y = maxWidth - maxWidth / zoom)
+                                zoom = newScale
+                                if (offset.x < 0) {
+                                    offset = Offset(0f, offset.y)
+                                } else if (maxWidth - offset.x < maxWidth / zoom) {
+                                    offset = offset.copy(x = maxWidth - maxWidth / zoom)
+                                }
+                                if (offset.y < 0) {
+                                    offset = Offset(offset.x, 0f)
+                                } else if (maxWidth - offset.y < maxWidth / zoom) {
+                                    offset = offset.copy(y = maxWidth - maxWidth / zoom)
+                                }
                             }
                         }
-                    }
-                )
-            }
-            .graphicsLayer {
-                translationX = -offset.x * zoom
-                translationY = -offset.y * zoom
-                scaleX = zoom
-                scaleY = zoom
-                TransformOrigin(0f, 0f).also { transformOrigin = it }
-            }
+                    )
+                }
+                .graphicsLayer {
+                    translationX = -offset.x * zoom
+                    translationY = -offset.y * zoom
+                    scaleX = zoom
+                    scaleY = zoom
+                    TransformOrigin(0f, 0f).also { transformOrigin = it }
+                }
         Canvas(
             modifier = if (zoomable) boardModifier.then(zoomModifier) else boardModifier
         ) {
@@ -358,8 +373,10 @@ fun Board(
                         row = selectedCell.row,
                         col = selectedCell.col,
                         gameSize = size,
-                        rect = Rect(
-                            offset = Offset(
+                        rect =
+                        Rect(
+                            offset =
+                            Offset(
                                 x = selectedCell.col * cellSize - glowOffset,
                                 y = selectedCell.row * cellSize - glowOffset
                             ),
@@ -375,8 +392,10 @@ fun Board(
                     row = selectedCell.row,
                     col = selectedCell.col,
                     gameSize = size,
-                    rect = Rect(
-                        offset = Offset(
+                    rect =
+                    Rect(
+                        offset =
+                        Offset(
                             x = selectedCell.col * cellSize,
                             y = selectedCell.row * cellSize
                         ),
@@ -391,8 +410,10 @@ fun Board(
                     row = selectedCell.row,
                     col = selectedCell.col,
                     gameSize = size,
-                    rect = Rect(
-                        offset = Offset(
+                    rect =
+                    Rect(
+                        offset =
+                        Offset(
                             x = selectedCell.col * cellSize,
                             y = selectedCell.row * cellSize
                         ),
@@ -423,8 +444,10 @@ fun Board(
                                 row = board[i][j].row,
                                 col = board[i][j].col,
                                 gameSize = size,
-                                rect = Rect(
-                                    offset = Offset(
+                                rect =
+                                Rect(
+                                    offset =
+                                    Offset(
                                         x = board[i][j].col * cellSize,
                                         y = board[i][j].row * cellSize
                                     ),
@@ -443,7 +466,8 @@ fun Board(
                     col = it.col,
                     gameSize = size,
                     color = highlightColor.copy(alpha = 0.3f),
-                    rect = Rect(
+                    rect =
+                    Rect(
                         Offset(
                             x = it.col * cellSize,
                             y = it.row * cellSize
@@ -529,7 +553,8 @@ fun Board(
                         cellSize = cellSize,
                         strokeWidth = thickLineWidth,
                         color = thinLineColor,
-                        cornerTextPadding = Offset(
+                        cornerTextPadding =
+                        Offset(
                             killerSumBounds.width().toFloat(),
                             killerSumBounds.height().toFloat()
                         )
@@ -539,7 +564,6 @@ fun Board(
         }
     }
 }
-
 
 @LightDarkPreview
 @Composable
@@ -562,7 +586,8 @@ private fun BoardPreviewLight() {
                 notes = notes,
                 selectedCell = Cell(-1, -1),
                 onClick = { },
-                boardColors = SudokuBoardColorsImpl(
+                boardColors =
+                SudokuBoardColorsImpl(
                     foregroundColor = BoardColors.foregroundColor(),
                     notesColor = BoardColors.notesColor(),
                     altForegroundColor = BoardColors.altForegroundColor(),

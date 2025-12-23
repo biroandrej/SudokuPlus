@@ -9,14 +9,15 @@ import sk.awisoft.sudokuplus.domain.repository.LoginRewardRepository
 class LoginRewardRepositoryImpl(
     private val dao: LoginRewardDao
 ) : LoginRewardRepository {
-
     override fun getStatus(): Flow<LoginRewardStatus?> = dao.getStatus()
 
     override suspend fun getStatusSync(): LoginRewardStatus? = dao.getStatusSync()
 
     override suspend fun updateStatus(status: LoginRewardStatus) = dao.updateStatus(status)
 
-    override suspend fun recordClaimedReward(reward: ClaimedReward) = dao.insertClaimedReward(reward)
+    override suspend fun recordClaimedReward(reward: ClaimedReward) = dao.insertClaimedReward(
+        reward
+    )
 
     override fun getClaimedRewards(): Flow<List<ClaimedReward>> = dao.getClaimedRewards()
 

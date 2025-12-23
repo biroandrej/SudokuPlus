@@ -7,6 +7,13 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
@@ -24,16 +31,11 @@ import sk.awisoft.sudokuplus.domain.usecase.board.InsertBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.board.UpdateBoardUseCase
 import sk.awisoft.sudokuplus.navArgs
 import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 @HiltViewModel
-class CreateSudokuViewModel @Inject constructor(
+class CreateSudokuViewModel
+@Inject
+constructor(
     appSettingsManager: AppSettingsManager,
     themeSettingsManager: ThemeSettingsManager,
     private val getBoardUseCase: GetBoardUseCase,
@@ -51,10 +53,11 @@ class CreateSudokuViewModel @Inject constructor(
                 val board = getBoardUseCase(gameUid)
                 withContext(Dispatchers.Default) {
                     val sudokuParser = SudokuParser()
-                    val parsedBoard = sudokuParser.parseBoard(
-                        board = board.initialBoard,
-                        gameType = board.type
-                    )
+                    val parsedBoard =
+                        sudokuParser.parseBoard(
+                            board = board.initialBoard,
+                            gameType = board.type
+                        )
                     withContext(Dispatchers.Main) {
                         gameBoard = parsedBoard
                         gameDifficulty = board.difficulty
@@ -66,12 +69,13 @@ class CreateSudokuViewModel @Inject constructor(
     }
 
     val highlightIdentical = appSettingsManager.highlightIdentical
-    private val inputMethod = appSettingsManager.inputMethod
-        .stateIn(
-            viewModelScope,
-            started = SharingStarted.Eagerly,
-            initialValue = PreferencesConstants.Companion.DEFAULT_INPUT_METHOD
-        )
+    private val inputMethod =
+        appSettingsManager.inputMethod
+            .stateIn(
+                viewModelScope,
+                started = SharingStarted.Eagerly,
+                initialValue = PreferencesConstants.Companion.DEFAULT_INPUT_METHOD
+            )
 
     val positionLines = appSettingsManager.positionLines
     val crossHighlight = themeSettingsManager.boardCrossHighlight
@@ -82,18 +86,19 @@ class CreateSudokuViewModel @Inject constructor(
     var multipleSolutionsDialog by mutableStateOf(false)
     var noSolutionsDialog by mutableStateOf(false)
 
-
     var gameType by mutableStateOf(GameType.Default9x9)
     var gameDifficulty by mutableStateOf(GameDifficulty.Easy)
-    var gameBoard by mutableStateOf(List(gameType.size) { row ->
-        List(gameType.size) { col ->
-            Cell(
-                row,
-                col,
-                0
-            )
+    var gameBoard by mutableStateOf(
+        List(gameType.size) { row ->
+            List(gameType.size) { col ->
+                Cell(
+                    row,
+                    col,
+                    0
+                )
+            }
         }
-    })
+    )
     var currCell by mutableStateOf(Cell(-1, -1, 0))
 
     var importStringValue by mutableStateOf("")
@@ -150,12 +155,12 @@ class CreateSudokuViewModel @Inject constructor(
         }
     }
 
-
     private fun processNumberInput(number: Int) {
         if (currCell.row >= 0 && currCell.col >= 0) {
-            gameBoard = setValueCell(
-                if (gameBoard[currCell.row][currCell.col].value == number) 0 else number
-            )
+            gameBoard =
+                setValueCell(
+                    if (gameBoard[currCell.row][currCell.col].value == number) 0 else number
+                )
         }
     }
 
@@ -250,16 +255,18 @@ class CreateSudokuViewModel @Inject constructor(
                 }
             }
         ) {
-            gameType = when (puzzle.length) {
-                36 -> GameType.Default6x6
-                81 -> GameType.Default9x9
-                144 -> GameType.Default12x12
-                else -> GameType.Default9x9
-            }
-            gameBoard = sudokuParser.parseBoard(
-                board = puzzle,
-                gameType = gameType
-            )
+            gameType =
+                when (puzzle.length) {
+                    36 -> GameType.Default6x6
+                    81 -> GameType.Default9x9
+                    144 -> GameType.Default12x12
+                    else -> GameType.Default9x9
+                }
+            gameBoard =
+                sudokuParser.parseBoard(
+                    board = puzzle,
+                    gameType = gameType
+                )
             return true
         } else {
             return false
@@ -284,7 +291,9 @@ class CreateSudokuViewModel @Inject constructor(
                 val sudokuParser = SudokuParser()
                 initialBoard = sudokuParser.boardToString(gameBoard)
                 val solvedBoardList =
-                    List(gameType.size) { row -> List(gameType.size) { col -> Cell(row, col, 0) } }
+                    List(
+                        gameType.size
+                    ) { row -> List(gameType.size) { col -> Cell(row, col, 0) } }
                 for (i in 0 until gameType.size) {
                     for (j in 0 until gameType.size) {
                         solvedBoardList[i][j].value = board[j + gameType.size * i]
@@ -319,10 +328,11 @@ class CreateSudokuViewModel @Inject constructor(
 
     private fun checkGame(): Pair<IntArray, Int> {
         val qqWingController = QQWingController()
-        val solution = qqWingController.solve(
-            gameBoard.flatten().map { cell -> cell.value }.toIntArray(),
-            gameType
-        )
+        val solution =
+            qqWingController.solve(
+                gameBoard.flatten().map { cell -> cell.value }.toIntArray(),
+                gameType
+            )
         return Pair(solution, qqWingController.solutionCount)
     }
 
@@ -335,11 +345,12 @@ class CreateSudokuViewModel @Inject constructor(
         for (i in new.indices) {
             for (j in new.indices) {
                 if (new[i][j].value != 0) {
-                    new[i][j].error = !sudokuUtils.isValidCellDynamic(
-                        board = new,
-                        cell = new[i][j],
-                        type = gameType
-                    )
+                    new[i][j].error =
+                        !sudokuUtils.isValidCellDynamic(
+                            board = new,
+                            cell = new[i][j],
+                            type = gameType
+                        )
                 }
             }
         }

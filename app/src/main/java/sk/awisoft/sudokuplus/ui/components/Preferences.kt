@@ -44,16 +44,19 @@ fun PreferenceRow(
 ) {
     val height = if (subtitle != null) 85.dp else 65.dp
 
-    val titleStyle = MaterialTheme.typography.titleLarge.copy(
-        color = MaterialTheme.colorScheme.onSurface,
-        fontSize = 20.sp
-    )
-    val subtitleTextStyle = MaterialTheme.typography.bodyMedium.copy(
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
-    )
+    val titleStyle =
+        MaterialTheme.typography.titleLarge.copy(
+            color = MaterialTheme.colorScheme.onSurface,
+            fontSize = 20.sp
+        )
+    val subtitleTextStyle =
+        MaterialTheme.typography.bodyMedium.copy(
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
+        )
 
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .heightIn(min = height)
             .clip(shape)
@@ -63,21 +66,22 @@ fun PreferenceRow(
                 enabled = enabled
             )
             .padding(vertical = 12.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         if (painter != null) {
             Icon(
                 painter = painter,
-                modifier = Modifier
+                modifier =
+                Modifier
                     .padding(horizontal = 16.dp)
                     .size(24.dp),
-                contentDescription = null,
+                contentDescription = null
             )
         }
         Column(
             Modifier
                 .padding(horizontal = if (painter != null) 0.dp else 16.dp)
-                .weight(1f),
+                .weight(1f)
         ) {
             Text(
                 text = title,
@@ -89,7 +93,7 @@ fun PreferenceRow(
                     modifier = Modifier.padding(top = 4.dp),
                     text = subtitle,
                     style = subtitleTextStyle,
-                    color = subtitleTextStyle.color.copy(alpha = 0.75f),
+                    color = subtitleTextStyle.color.copy(alpha = 0.75f)
                 )
             }
         }
@@ -97,7 +101,7 @@ fun PreferenceRow(
             Box(
                 Modifier
                     .widthIn(min = 56.dp)
-                    .padding(horizontal = 12.dp),
+                    .padding(horizontal = 12.dp)
             ) {
                 action()
             }
@@ -115,7 +119,6 @@ fun PreferenceRowSwitch(
     subtitle: String? = null,
     enabled: Boolean = true
 ) {
-
     PreferenceRow(
         modifier = modifier,
         title = title,
@@ -132,7 +135,6 @@ fun PreferenceRowSwitch(
         enabled = enabled
     )
 }
-
 
 @LightDarkPreview
 @Composable

@@ -4,6 +4,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
@@ -11,16 +13,14 @@ import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
 @HiltViewModel
 class HistoryViewModel
-@Inject constructor(
+@Inject
+constructor(
     savedGameRepository: SavedGameRepository,
     appSettingsManager: AppSettingsManager
-) : ViewModel(
-) {
+) : ViewModel() {
     val games = savedGameRepository.getWithBoards()
 
     var sortType by mutableStateOf(SortType.Descending)
@@ -32,19 +32,21 @@ class HistoryViewModel
     val dateFormat = appSettingsManager.dateFormat
 
     fun selectFilter(filter: GameDifficulty) {
-        filterDifficulties = if (!filterDifficulties.contains(filter)) {
-            filterDifficulties + filter
-        } else {
-            filterDifficulties - filter
-        }
+        filterDifficulties =
+            if (!filterDifficulties.contains(filter)) {
+                filterDifficulties + filter
+            } else {
+                filterDifficulties - filter
+            }
     }
 
     fun selectFilter(filter: GameType) {
-        filterGameTypes = if (!filterGameTypes.contains(filter)) {
-            filterGameTypes + filter
-        } else {
-            filterGameTypes - filter
-        }
+        filterGameTypes =
+            if (!filterGameTypes.contains(filter)) {
+                filterGameTypes + filter
+            } else {
+                filterGameTypes - filter
+            }
     }
 
     fun selectFilter(filter: GameStateFilter) {
@@ -52,18 +54,21 @@ class HistoryViewModel
     }
 
     fun switchSortType() {
-        sortType = if (sortType == SortType.Ascending) {
-            SortType.Descending
-        } else {
-            SortType.Ascending
-        }
+        sortType =
+            if (sortType == SortType.Ascending) {
+                SortType.Descending
+            } else {
+                SortType.Ascending
+            }
     }
 
     fun selectSortEntry(sortEntry: SortEntry) {
         this.sortEntry = sortEntry
     }
 
-    fun applySortAndFilter(games: List<Pair<SavedGame, SudokuBoard>>): List<Pair<SavedGame, SudokuBoard>> {
+    fun applySortAndFilter(
+        games: List<Pair<SavedGame, SudokuBoard>>
+    ): List<Pair<SavedGame, SudokuBoard>> {
         var result = applyFilterDifficulties(games)
         result = applyFilterTypes(result)
         result = applyFilterByGameState(result)
@@ -71,7 +76,9 @@ class HistoryViewModel
         return result
     }
 
-    private fun applyFilterDifficulties(games: List<Pair<SavedGame, SudokuBoard>>): List<Pair<SavedGame, SudokuBoard>> {
+    private fun applyFilterDifficulties(
+        games: List<Pair<SavedGame, SudokuBoard>>
+    ): List<Pair<SavedGame, SudokuBoard>> {
         return if (filterDifficulties.isNotEmpty()) {
             games.filter {
                 filterDifficulties.contains(it.second.difficulty)
@@ -81,7 +88,9 @@ class HistoryViewModel
         }
     }
 
-    private fun applyFilterTypes(games: List<Pair<SavedGame, SudokuBoard>>): List<Pair<SavedGame, SudokuBoard>> {
+    private fun applyFilterTypes(
+        games: List<Pair<SavedGame, SudokuBoard>>
+    ): List<Pair<SavedGame, SudokuBoard>> {
         return if (filterGameTypes.isNotEmpty()) {
             games.filter {
                 filterGameTypes.contains(it.second.type)
@@ -91,7 +100,9 @@ class HistoryViewModel
         }
     }
 
-    private fun applyFilterByGameState(games: List<Pair<SavedGame, SudokuBoard>>): List<Pair<SavedGame, SudokuBoard>> {
+    private fun applyFilterByGameState(
+        games: List<Pair<SavedGame, SudokuBoard>>
+    ): List<Pair<SavedGame, SudokuBoard>> {
         return if (filterByGameState != GameStateFilter.All) {
             games.filter {
                 when (filterByGameState) {
@@ -105,17 +116,33 @@ class HistoryViewModel
         }
     }
 
-    private fun applySort(games: List<Pair<SavedGame, SudokuBoard>>, descending: Boolean): List<Pair<SavedGame, SudokuBoard>> {
+    private fun applySort(
+        games: List<Pair<SavedGame, SudokuBoard>>,
+        descending: Boolean
+    ): List<Pair<SavedGame, SudokuBoard>> {
         return when (sortEntry) {
             SortEntry.GameID -> games.sortedBy(descending = descending) { it.first.uid }
             SortEntry.Timer -> games.sortedBy(descending = descending) { it.first.timer }
-            SortEntry.DateStarted -> games.sortedBy(descending = descending) { it.first.startedAt }
-            SortEntry.DatePlayed -> games.sortedBy(descending = descending) { it.first.lastPlayed }
+            SortEntry.DateStarted -> games.sortedBy(
+                descending = descending
+            ) { it.first.startedAt }
+            SortEntry.DatePlayed -> games.sortedBy(
+                descending = descending
+            ) { it.first.lastPlayed }
         }
     }
 
-    private inline fun <T, R : Comparable<R>> Iterable<T>.sortedBy(descending: Boolean = false, crossinline selector: (T) -> R?): List<T> {
-        return if (descending) sortedWith(compareByDescending(selector)) else sortedWith(compareBy(selector))
+    private inline fun <T, R : Comparable<R>> Iterable<T>.sortedBy(
+        descending: Boolean = false,
+        crossinline selector: (T) -> R?
+    ): List<T> {
+        return if (descending) {
+            sortedWith(
+                compareByDescending(selector)
+            )
+        } else {
+            sortedWith(compareBy(selector))
+        }
     }
 }
 
@@ -129,5 +156,4 @@ enum class SortEntry(val resName: Int) {
     DatePlayed(R.string.date_last_played),
     Timer(R.string.sort_by_timer),
     GameID(R.string.sort_by_game_id)
-
 }

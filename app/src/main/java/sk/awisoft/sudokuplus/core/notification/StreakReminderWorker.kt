@@ -9,18 +9,20 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import sk.awisoft.sudokuplus.core.DailyChallengeManager
-import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
-import kotlinx.coroutines.flow.first
-import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.flow.first
+import sk.awisoft.sudokuplus.core.DailyChallengeManager
+import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 
 @HiltWorker
-class StreakReminderWorker @AssistedInject constructor(
+class StreakReminderWorker
+@AssistedInject
+constructor(
     @Assisted context: Context,
     @Assisted workerParams: WorkerParameters,
     private val notificationHelper: NotificationHelper,
@@ -28,7 +30,6 @@ class StreakReminderWorker @AssistedInject constructor(
     private val dailyChallengeRepository: DailyChallengeRepository,
     private val dailyChallengeManager: DailyChallengeManager
 ) : CoroutineWorker(context, workerParams) {
-
     override suspend fun doWork(): Result {
         val isEnabled = notificationSettingsManager.streakReminderEnabled.first()
 
@@ -43,9 +44,10 @@ class StreakReminderWorker @AssistedInject constructor(
         if (!hasPlayedToday) {
             // Get current streak to show in notification
             val completedChallenges = dailyChallengeRepository.getCompleted().first()
-            val currentStreak = dailyChallengeManager.calculateCurrentStreak(
-                completedChallenges.map { it.date }
-            )
+            val currentStreak =
+                dailyChallengeManager.calculateCurrentStreak(
+                    completedChallenges.map { it.date }
+                )
 
             notificationHelper.showStreakReminderNotification(currentStreak)
         }
@@ -67,11 +69,13 @@ class StreakReminderWorker @AssistedInject constructor(
 
             val initialDelay = Duration.between(now, scheduledTime).toMillis()
 
-            val workRequest = PeriodicWorkRequestBuilder<StreakReminderWorker>(
-                24, TimeUnit.HOURS
-            )
-                .setInitialDelay(initialDelay, TimeUnit.MILLISECONDS)
-                .build()
+            val workRequest =
+                PeriodicWorkRequestBuilder<StreakReminderWorker>(
+                    24,
+                    TimeUnit.HOURS
+                )
+                    .setInitialDelay(initialDelay, TimeUnit.MILLISECONDS)
+                    .build()
 
             WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 WORK_NAME,

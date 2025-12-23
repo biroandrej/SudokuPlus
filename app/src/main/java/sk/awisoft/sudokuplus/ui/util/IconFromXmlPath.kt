@@ -7,14 +7,13 @@ import androidx.compose.ui.graphics.vector.addPathNodes
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-
 fun iconFromXmlPath(
     pathStr: String,
     viewportWidth: Float = 24f,
     viewportHeight: Float = 24f,
     defaultWidth: Dp = 24.dp,
     defaultHeight: Dp = 24.dp,
-    fillColor: Color = Color.White,
+    fillColor: Color = Color.White
 ): ImageVector {
     val fillBrush = SolidColor(fillColor)
     val strokeBrush = SolidColor(fillColor)
@@ -23,13 +22,13 @@ fun iconFromXmlPath(
         defaultWidth = defaultWidth,
         defaultHeight = defaultHeight,
         viewportWidth = viewportWidth,
-        viewportHeight = viewportHeight,
+        viewportHeight = viewportHeight
     ).run {
         addPath(
             pathData = addPathNodes(pathStr),
             name = "",
             fill = fillBrush,
-            stroke = strokeBrush,
+            stroke = strokeBrush
         )
         build()
     }

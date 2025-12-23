@@ -44,30 +44,37 @@ fun CollapsingTopAppBar(
     elevatedColor: Color = MaterialTheme.colorScheme.surfaceContainer,
     surfaceColor: Color = MaterialTheme.colorScheme.surface
 ) {
-    val collapsedFraction = when {
-        scrollBehavior != null && centralContent == null -> scrollBehavior.state.collapsedFraction
-        scrollBehavior != null && centralContent != null -> 0f
-        else -> 1f
-    }
+    val collapsedFraction =
+        when {
+            scrollBehavior != null && centralContent == null -> scrollBehavior.state.collapsedFraction
+            scrollBehavior != null && centralContent != null -> 0f
+            else -> 1f
+        }
 
-    val fullyCollapsedTitleScale = when {
-        collapsingTitle != null -> CollapsedTitleLineHeight.value / collapsingTitle.expandedTextStyle.lineHeight.value
-        else -> 1f
-    }
+    val fullyCollapsedTitleScale =
+        when {
+            collapsingTitle != null -> CollapsedTitleLineHeight.value / collapsingTitle.expandedTextStyle.lineHeight.value
+            else -> 1f
+        }
 
     val collapsingTitleScale = lerp(1f, fullyCollapsedTitleScale, collapsedFraction)
 
-    val showElevation = when {
-        scrollBehavior == null -> false
-        scrollBehavior.state.contentOffset <= 0 && collapsedFraction == 1f -> true
-        scrollBehavior.state.contentOffset < -1f && centralContent != null -> true
-        else -> false
-    }
+    val showElevation =
+        when {
+            scrollBehavior == null -> false
+            scrollBehavior.state.contentOffset <= 0 && collapsedFraction == 1f -> true
+            scrollBehavior.state.contentOffset < -1f && centralContent != null -> true
+            else -> false
+        }
 
-    val containerColor = animateColorAsState(
-        if (showElevation) elevatedColor
-        else surfaceColor
-    )
+    val containerColor =
+        animateColorAsState(
+            if (showElevation) {
+                elevatedColor
+            } else {
+                surfaceColor
+            }
+        )
 
     Surface(
         modifier = modifier,
@@ -77,7 +84,8 @@ fun CollapsingTopAppBar(
             content = {
                 if (collapsingTitle != null) {
                     Text(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .layoutId(ExpandedTitleId)
                             .wrapContentHeight(align = Alignment.Top)
                             .graphicsLayer(
@@ -90,7 +98,8 @@ fun CollapsingTopAppBar(
                         color = collapsingTitle.color
                     )
                     Text(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .layoutId(CollapsedTitleId)
                             .wrapContentHeight(align = Alignment.Top)
                             .graphicsLayer(
@@ -108,7 +117,8 @@ fun CollapsingTopAppBar(
 
                 if (navigationIcon != null) {
                     Box(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .wrapContentSize()
                             .layoutId(NavigationIconId)
                     ) {
@@ -118,7 +128,8 @@ fun CollapsingTopAppBar(
 
                 if (actions != null) {
                     Row(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .wrapContentSize()
                             .layoutId(ActionsId)
                     ) {
@@ -128,7 +139,8 @@ fun CollapsingTopAppBar(
 
                 if (centralContent != null) {
                     Box(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .wrapContentSize()
                             .layoutId(CentralContentId)
                     ) {
@@ -138,7 +150,8 @@ fun CollapsingTopAppBar(
 
                 if (additionalContent != null) {
                     Box(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .fillMaxWidth()
                             .layoutId(AdditionalContentId)
                     ) {
@@ -146,7 +159,8 @@ fun CollapsingTopAppBar(
                     }
                 }
             },
-            modifier = modifier
+            modifier =
+            modifier
                 .windowInsetsPadding(windowInsets)
                 .then(Modifier.heightIn(min = MinCollapsedHeight))
         ) { measurables, constraints ->
@@ -155,38 +169,41 @@ fun CollapsingTopAppBar(
             val expandedTitleBottomPaddingPx = ExpandedTitleBottomPadding.toPx()
             val expandedTitleTopPadding = ExpandedTitleTopPadding.toPx()
 
-
             // Measuring widgets inside TopAppBar:
 
             val navigationIconPlaceable =
                 measurables.firstOrNull { it.layoutId == NavigationIconId }
                     ?.measure(constraints.copy(minWidth = 0))
 
-            val actionsPlaceable = measurables.firstOrNull { it.layoutId == ActionsId }
-                ?.measure(constraints.copy(minWidth = 0))
+            val actionsPlaceable =
+                measurables.firstOrNull { it.layoutId == ActionsId }
+                    ?.measure(constraints.copy(minWidth = 0))
 
-            val expandedTitlePlaceable = measurables.firstOrNull { it.layoutId == ExpandedTitleId }
-                ?.measure(
-                    constraints.copy(
-                        maxWidth = (constraints.maxWidth - 2 * horizontalPaddingPx).roundToInt(),
-                        minWidth = 0,
-                        minHeight = 0
+            val expandedTitlePlaceable =
+                measurables.firstOrNull { it.layoutId == ExpandedTitleId }
+                    ?.measure(
+                        constraints.copy(
+                            maxWidth = (constraints.maxWidth - 2 * horizontalPaddingPx).roundToInt(),
+                            minWidth = 0,
+                            minHeight = 0
+                        )
                     )
-                )
 
             val additionalContentPlaceable =
                 measurables.firstOrNull { it.layoutId == AdditionalContentId }
                     ?.measure(constraints)
 
-            val navigationIconOffset = when (navigationIconPlaceable) {
-                null -> horizontalPaddingPx
-                else -> navigationIconPlaceable.width + horizontalPaddingPx * 2
-            }
+            val navigationIconOffset =
+                when (navigationIconPlaceable) {
+                    null -> horizontalPaddingPx
+                    else -> navigationIconPlaceable.width + horizontalPaddingPx * 2
+                }
 
-            val actionsOffset = when (actionsPlaceable) {
-                null -> horizontalPaddingPx
-                else -> actionsPlaceable.width + horizontalPaddingPx * 2
-            }
+            val actionsOffset =
+                when (actionsPlaceable) {
+                    null -> horizontalPaddingPx
+                    else -> actionsPlaceable.width + horizontalPaddingPx * 2
+                }
 
             val collapsedTitleMaxWidthPx =
                 (constraints.maxWidth - navigationIconOffset - actionsOffset) / fullyCollapsedTitleScale
@@ -210,15 +227,15 @@ fun CollapsingTopAppBar(
                         )
                     )
 
-            val collapsedHeightPx = when {
-                centralContentPlaceable != null ->
-                    max(MinCollapsedHeight.toPx(), centralContentPlaceable.height.toFloat())
+            val collapsedHeightPx =
+                when {
+                    centralContentPlaceable != null ->
+                        max(MinCollapsedHeight.toPx(), centralContentPlaceable.height.toFloat())
 
-                else -> MinCollapsedHeight.toPx()
-            }
+                    else -> MinCollapsedHeight.toPx()
+                }
 
             var layoutHeightPx = collapsedHeightPx
-
 
             // Calculating coordinates of widgets inside TopAppBar:
 
@@ -228,8 +245,13 @@ fun CollapsingTopAppBar(
                 ((collapsedHeightPx - (navigationIconPlaceable?.height ?: 0)) / 2).roundToInt()
 
             // Current coordinates of actions
-            val actionsX = (constraints.maxWidth - (actionsPlaceable?.width
-                ?: 0) - horizontalPaddingPx).roundToInt()
+            val actionsX =
+                (
+                    constraints.maxWidth - (
+                        actionsPlaceable?.width
+                            ?: 0
+                        ) - horizontalPaddingPx
+                    ).roundToInt()
             val actionsY = ((collapsedHeightPx - (actionsPlaceable?.height ?: 0)) / 2).roundToInt()
 
             // Current coordinates of title
@@ -240,10 +262,11 @@ fun CollapsingTopAppBar(
                 // Measuring TopAppBar collapsing distance
                 val heightOffsetLimitPx =
                     expandedTitleTopPadding + expandedTitlePlaceable.height + expandedTitleBottomPaddingPx
-                scrollBehavior?.state?.heightOffsetLimit = when (centralContent) {
-                    null -> -heightOffsetLimitPx
-                    else -> -1f
-                }
+                scrollBehavior?.state?.heightOffsetLimit =
+                    when (centralContent) {
+                        null -> -heightOffsetLimitPx
+                        else -> -1f
+                    }
 
                 // TopAppBar height at fully expanded state
                 val fullyExpandedHeightPx = MinCollapsedHeight.toPx() + heightOffsetLimitPx
@@ -273,7 +296,6 @@ fun CollapsingTopAppBar(
             val topAppBarHeightPx =
                 layoutHeightPx.roundToInt() + (additionalContentPlaceable?.height ?: 0)
 
-
             // Placing TopAppBar widgets:
 
             layout(constraints.maxWidth, topAppBarHeightPx) {
@@ -292,7 +314,7 @@ fun CollapsingTopAppBar(
                 if (expandedTitlePlaceable?.width == collapsedTitlePlaceable?.width) {
                     expandedTitlePlaceable?.placeRelative(
                         x = collapsingTitleX,
-                        y = collapsingTitleY,
+                        y = collapsingTitleY
                     )
                 } else {
                     expandedTitlePlaceable?.placeRelativeWithLayer(
@@ -312,10 +334,8 @@ fun CollapsingTopAppBar(
                 )
             }
         }
-
     }
 }
-
 
 private fun lerp(a: Float, b: Float, fraction: Float): Float {
     return a + fraction * (b - a)
@@ -326,25 +346,21 @@ data class CollapsingTitle(
     val expandedTextStyle: TextStyle,
     val color: Color
 ) {
-
     companion object {
         @Composable
-        fun large(titleText: String) =
-            CollapsingTitle(
-                titleText,
-                MaterialTheme.typography.headlineLarge,
-                MaterialTheme.colorScheme.onSurface
-            )
+        fun large(titleText: String) = CollapsingTitle(
+            titleText,
+            MaterialTheme.typography.headlineLarge,
+            MaterialTheme.colorScheme.onSurface
+        )
 
         @Composable
-        fun medium(titleText: String) =
-            CollapsingTitle(
-                titleText,
-                MaterialTheme.typography.headlineMedium,
-                MaterialTheme.colorScheme.onSurface
-            )
+        fun medium(titleText: String) = CollapsingTitle(
+            titleText,
+            MaterialTheme.typography.headlineMedium,
+            MaterialTheme.colorScheme.onSurface
+        )
     }
-
 }
 
 private val MinCollapsedHeight = 64.dp

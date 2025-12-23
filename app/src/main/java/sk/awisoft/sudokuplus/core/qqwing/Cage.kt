@@ -1,7 +1,7 @@
 package sk.awisoft.sudokuplus.core.qqwing
 
-import sk.awisoft.sudokuplus.core.Cell
 import kotlinx.serialization.Serializable
+import sk.awisoft.sudokuplus.core.Cell
 
 @Serializable
 data class Cage(

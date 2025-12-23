@@ -21,5 +21,8 @@ package sk.awisoft.sudokuplus.core.qqwing
  */
 // @formatter:on
 enum class PrintStyle {
-    ONE_LINE, COMPACT, READABLE, CSV
+    ONE_LINE,
+    COMPACT,
+    READABLE,
+    CSV
 }

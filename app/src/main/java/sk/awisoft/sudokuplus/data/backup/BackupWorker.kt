@@ -10,6 +10,14 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+import java.time.Duration
+import java.time.LocalDateTime
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import kotlinx.coroutines.flow.first
+import kotlinx.serialization.json.Json
 import sk.awisoft.sudokuplus.BuildConfig
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
@@ -18,17 +26,11 @@ import sk.awisoft.sudokuplus.domain.repository.FolderRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import sk.awisoft.sudokuplus.util.FlavorUtil
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
-import kotlinx.coroutines.flow.first
-import kotlinx.serialization.json.Json
-import java.time.Duration
-import java.time.LocalDateTime
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 
 @HiltWorker
-class BackupWorker @AssistedInject constructor(
+class BackupWorker
+@AssistedInject
+constructor(
     @Assisted private val context: Context,
     @Assisted workerParameters: WorkerParameters,
     private val appSettingsManager: AppSettingsManager,
@@ -38,7 +40,6 @@ class BackupWorker @AssistedInject constructor(
     private val savedGameRepository: SavedGameRepository,
     private val themeSettingsManager: ThemeSettingsManager
 ) : CoroutineWorker(context, workerParameters) {
-
     override suspend fun doWork(): Result {
         var backupSuccessful = false
 
@@ -73,26 +74,32 @@ class BackupWorker @AssistedInject constructor(
                 return Result.failure()
             }
 
-            val backupData = BackupData(
-                appVersionName = BuildConfig.VERSION_NAME + if (FlavorUtil.isFoss()) "-FOSS" else "",
-                appVersionCode = BuildConfig.VERSION_CODE,
-                createdAt = ZonedDateTime.now(),
-                boards = boards,
-                folders = folders,
-                records = records,
-                savedGames = savedGames,
-                settings = SettingsBackup.getSettings(appSettingsManager, themeSettingsManager)
-            )
+            val backupData =
+                BackupData(
+                    appVersionName = BuildConfig.VERSION_NAME + if (FlavorUtil.isFoss()) "-FOSS" else "",
+                    appVersionCode = BuildConfig.VERSION_CODE,
+                    createdAt = ZonedDateTime.now(),
+                    boards = boards,
+                    folders = folders,
+                    records = records,
+                    savedGames = savedGames,
+                    settings = SettingsBackup.getSettings(
+                        appSettingsManager,
+                        themeSettingsManager
+                    )
+                )
 
-            val json = Json {
-                encodeDefaults = true
-            }
+            val json =
+                Json {
+                    encodeDefaults = true
+                }
             val backupJson = json.encodeToString(backupData)
 
-            val file = documentFile.createFile(
-                "application/json",
-                BackupData.nameAuto
-            )
+            val file =
+                documentFile.createFile(
+                    "application/json",
+                    BackupData.nameAuto
+                )
 
             if (file != null) {
                 context.contentResolver.openOutputStream(file.uri).use { outputStream ->
@@ -116,7 +123,6 @@ class BackupWorker @AssistedInject constructor(
                 .sortedByDescending { it.name }
                 .drop(autoBackupsNumber)
                 .forEach { it.delete() }
-
         } catch (e: java.io.IOException) {
             // I/O errors are transient, retry
             Log.e(WORK_NAME_AUTO_BACKUP, "I/O error during backup: ${e.message}")
@@ -144,10 +150,11 @@ class BackupWorker @AssistedInject constructor(
                 return
             }
 
-            val periodicWorkRequest = PeriodicWorkRequest.Builder(
-                BackupWorker::class.java,
-                Duration.ofHours(intervalHours)
-            ).build()
+            val periodicWorkRequest =
+                PeriodicWorkRequest.Builder(
+                    BackupWorker::class.java,
+                    Duration.ofHours(intervalHours)
+                ).build()
 
             val workManager = WorkManager.getInstance(context)
             workManager.enqueueUniquePeriodicWork(

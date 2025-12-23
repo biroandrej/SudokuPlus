@@ -7,9 +7,7 @@ object LocaleEmoji {
      * Get a country flag from language code
      * @return country flag (emoji)
      */
-    fun getFlagEmoji(
-        languageCode: String
-    ): String? {
+    fun getFlagEmoji(languageCode: String): String? {
         val countryCode = countryFromLanguage(languageCode)
         if (countryCode.isNullOrBlank()) return null
 

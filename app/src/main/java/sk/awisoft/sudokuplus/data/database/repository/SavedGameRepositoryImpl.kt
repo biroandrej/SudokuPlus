@@ -1,10 +1,10 @@
 package sk.awisoft.sudokuplus.data.database.repository
 
+import kotlinx.coroutines.flow.Flow
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
-import kotlinx.coroutines.flow.Flow
 
 class SavedGameRepositoryImpl(
     private val savedGameDao: SavedGameDao
@@ -13,11 +13,15 @@ class SavedGameRepositoryImpl(
 
     override suspend fun get(uid: Long): SavedGame? = savedGameDao.get(uid)
 
-    override fun getWithBoards(): Flow<Map<SavedGame, SudokuBoard>> = savedGameDao.getSavedWithBoards()
+    override fun getWithBoards(): Flow<Map<SavedGame, SudokuBoard>> =
+        savedGameDao.getSavedWithBoards()
 
     override fun getLast(): Flow<SavedGame?> = savedGameDao.getLast()
 
-    override fun getLastPlayable(limit: Int): Flow<Map<SavedGame, SudokuBoard>> = savedGameDao.getLastPlayable(limit)
+    override fun getLastPlayable(limit: Int): Flow<Map<SavedGame, SudokuBoard>> =
+        savedGameDao.getLastPlayable(
+            limit
+        )
 
     override suspend fun insert(savedGame: SavedGame): Long = savedGameDao.insert(savedGame)
 

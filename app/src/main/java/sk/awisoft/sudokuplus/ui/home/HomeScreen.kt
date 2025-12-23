@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -28,27 +27,26 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.PlayArrow
-import androidx.compose.material.icons.rounded.Tune
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -59,8 +57,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -68,6 +66,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import java.time.ZonedDateTime
+import kotlin.math.sqrt
+import kotlin.time.toKotlinDuration
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
@@ -82,20 +86,11 @@ import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
 import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
 import sk.awisoft.sudokuplus.ui.home.components.RewardCalendarCard
 import sk.awisoft.sudokuplus.ui.reward.RewardClaimDialog
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import java.time.ZonedDateTime
-import kotlin.math.sqrt
-import kotlin.time.toKotlinDuration
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination<RootGraph>(start = true, style = AnimatedNavigation::class)
 @Composable
-fun HomeScreen(
-    viewModel: HomeViewModel = hiltViewModel(),
-    navigator: DestinationsNavigator
-) {
+fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: DestinationsNavigator) {
     var continueGameDialog by rememberSaveable { mutableStateOf(false) }
     var lastGamesBottomSheet by rememberSaveable {
         mutableStateOf(false)
@@ -108,7 +103,8 @@ fun HomeScreen(
     )
     val lastSelectedGameDifficultyType by viewModel.lastSelectedGameDifficultyType.collectAsStateWithLifecycle(
         Pair(
-            GameDifficulty.Easy, GameType.Default9x9
+            GameDifficulty.Easy,
+            GameType.Default9x9
         )
     )
 
@@ -147,7 +143,8 @@ fun HomeScreen(
                     )
                 },
                 scrollBehavior = scrollBehavior,
-                colors = TopAppBarDefaults.topAppBarColors(
+                colors =
+                TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             )
@@ -196,7 +193,8 @@ fun HomeScreen(
         }
 
         ScrollbarLazyColumn(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxSize()
                 .padding(paddingValues),
             contentPadding = PaddingValues(all = 16.dp),
@@ -208,7 +206,11 @@ fun HomeScreen(
                     currentStreak = dailyCurrentStreak,
                     isLoading = isDailyLoading,
                     onPlay = { viewModel.playDailyChallenge() },
-                    onViewCalendar = { navigator.navigate(DailyChallengeCalendarScreenDestination) }
+                    onViewCalendar = {
+                        navigator.navigate(
+                            DailyChallengeCalendarScreenDestination
+                        )
+                    }
                 )
             }
 
@@ -253,7 +255,8 @@ fun HomeScreen(
             if (lastGames.isNotEmpty()) {
                 item {
                     HomeSectionHeader(
-                        title = pluralStringResource(
+                        title =
+                        pluralStringResource(
                             id = R.plurals.last_x_games,
                             count = lastGames.size,
                             lastGames.size
@@ -281,11 +284,11 @@ fun HomeScreen(
             }
         }
 
-
         if (viewModel.isGenerating || viewModel.isSolving) {
             GeneratingDialog(
                 onDismiss = { },
-                text = when {
+                text =
+                when {
                     viewModel.isGenerating -> stringResource(R.string.dialog_generating)
                     viewModel.isSolving -> stringResource(R.string.dialog_solving)
                     else -> ""
@@ -320,7 +323,8 @@ fun HomeScreen(
         if (lastGamesBottomSheet) {
             ModalBottomSheet(onDismissRequest = { lastGamesBottomSheet = false }) {
                 Text(
-                    text = pluralStringResource(
+                    text =
+                    pluralStringResource(
                         id = R.plurals.last_x_games,
                         count = lastGames.size,
                         lastGames.size
@@ -332,7 +336,7 @@ fun HomeScreen(
                 ScrollbarLazyColumn(
                     contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.clip(MaterialTheme.shapes.large),
+                    modifier = Modifier.clip(MaterialTheme.shapes.large)
                 ) {
                     items(lastGames.toList()) { item ->
                         SavedSudokuPreview(
@@ -370,11 +374,12 @@ private fun Notifications(viewModel: HomeViewModel) {
     // Notification permission
     val shouldShowNotificationPermission by viewModel.shouldShowNotificationPermission.collectAsStateWithLifecycle()
 
-    val permissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        viewModel.onNotificationPermissionResult(isGranted)
-    }
+    val permissionLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            viewModel.onNotificationPermissionResult(isGranted)
+        }
 
     // Show notification permission dialog on Android 13+
     if (shouldShowNotificationPermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -402,10 +407,7 @@ private fun Notifications(viewModel: HomeViewModel) {
 }
 
 @Composable
-fun GeneratingDialog(
-    onDismiss: () -> Unit,
-    text: String
-) {
+fun GeneratingDialog(onDismiss: () -> Unit, text: String) {
     Dialog(onDismissRequest = onDismiss) {
         Surface(
             shape = MaterialTheme.shapes.extraLarge,
@@ -446,11 +448,12 @@ private fun HomeHeroCard(
     canContinue: Boolean,
     onContinue: () -> Unit,
     onPlay: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     ElevatedCard(
         modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.elevatedCardColors(
+        colors =
+        CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
         )
     ) {
@@ -513,8 +516,12 @@ private fun HomeHeroCard(
                         )
                         Spacer(modifier = Modifier.size(8.dp))
                         Text(
-                            text = if (canContinue) stringResource(R.string.action_continue)
-                            else stringResource(R.string.action_play)
+                            text =
+                            if (canContinue) {
+                                stringResource(R.string.action_continue)
+                            } else {
+                                stringResource(R.string.action_play)
+                            }
                         )
                     }
                 }
@@ -528,7 +535,7 @@ private fun HomePickerRow(
     value: String,
     onPrevious: () -> Unit,
     onNext: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -577,7 +584,8 @@ private fun HomeSectionHeader(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .padding(top = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -604,34 +612,38 @@ fun SavedSudokuPreview(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { }
 ) {
-    val lastPlayedRelative: String? = if (savedGame.lastPlayed != null) {
-        remember(savedGame) {
-            DateUtils.getRelativeTimeSpanString(
-                savedGame.lastPlayed.toEpochSecond() * 1000L,
-                ZonedDateTime.now().toEpochSecond() * 1000L,
-                DateUtils.MINUTE_IN_MILLIS
-            ).toString()
+    val lastPlayedRelative: String? =
+        if (savedGame.lastPlayed != null) {
+            remember(savedGame) {
+                DateUtils.getRelativeTimeSpanString(
+                    savedGame.lastPlayed.toEpochSecond() * 1000L,
+                    ZonedDateTime.now().toEpochSecond() * 1000L,
+                    DateUtils.MINUTE_IN_MILLIS
+                ).toString()
+            }
+        } else {
+            null
         }
-    } else {
-        null
-    }
 
     Card(
         modifier = modifier.fillMaxWidth(),
         onClick = onClick,
-        colors = CardDefaults.cardColors(
+        colors =
+        CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer
         )
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .clip(MaterialTheme.shapes.small)
                     .size(72.dp)
             ) {
@@ -648,7 +660,8 @@ fun SavedSudokuPreview(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = stringResource(
+                    text =
+                    stringResource(
                         R.string.history_item_time,
                         savedGame.timer.toKotlinDuration().toFormattedString()
                     ),

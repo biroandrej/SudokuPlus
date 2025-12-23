@@ -24,6 +24,7 @@ import java.util.*
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 // @formatter:on
+
 /**
  * The board containing all the memory structures and methods for solving or
  * generating sudoku puzzles.
@@ -172,14 +173,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                 val value = puzzle[position]
                 if (possibilities[valPos] != 0) return false
                 mark(position, round, value)
-                if (logHistory || recordHistory) addHistoryItem(
-                    LogItem(
-                        round,
-                        LogType.GIVEN,
-                        value,
-                        position
+                if (logHistory || recordHistory) {
+                    addHistoryItem(
+                        LogItem(
+                            round,
+                            LogType.GIVEN,
+                            value,
+                            position
+                        )
                     )
-                )
+                }
             }
         }
         return true
@@ -242,10 +245,11 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
      */
     fun getHiddenSingleCount(): Int {
         return getLogCount(solveInstructions, LogType.HIDDEN_SINGLE_ROW) +
-                getLogCount(solveInstructions, LogType.HIDDEN_SINGLE_COLUMN) + getLogCount(
-            solveInstructions,
-            LogType.HIDDEN_SINGLE_SECTION
-        )
+            getLogCount(solveInstructions, LogType.HIDDEN_SINGLE_COLUMN) +
+            getLogCount(
+                solveInstructions,
+                LogType.HIDDEN_SINGLE_SECTION
+            )
     }
 
     /**
@@ -254,10 +258,11 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
      */
     fun getNakedPairCount(): Int {
         return getLogCount(solveInstructions, LogType.NAKED_PAIR_ROW) +
-                getLogCount(solveInstructions, LogType.NAKED_PAIR_COLUMN) + getLogCount(
-            solveInstructions,
-            LogType.NAKED_PAIR_SECTION
-        )
+            getLogCount(solveInstructions, LogType.NAKED_PAIR_COLUMN) +
+            getLogCount(
+                solveInstructions,
+                LogType.NAKED_PAIR_SECTION
+            )
     }
 
     /**
@@ -266,10 +271,11 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
      */
     fun getHiddenPairCount(): Int {
         return getLogCount(solveInstructions, LogType.HIDDEN_PAIR_ROW) +
-                getLogCount(solveInstructions, LogType.HIDDEN_PAIR_COLUMN) + getLogCount(
-            solveInstructions,
-            LogType.HIDDEN_PAIR_SECTION
-        )
+            getLogCount(solveInstructions, LogType.HIDDEN_PAIR_COLUMN) +
+            getLogCount(
+                solveInstructions,
+                LogType.HIDDEN_PAIR_SECTION
+            )
     }
 
     /**
@@ -277,10 +283,11 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
      * solving this puzzle.
      */
     fun getPointingPairTripleCount(): Int {
-        return getLogCount(solveInstructions, LogType.POINTING_PAIR_TRIPLE_ROW) + getLogCount(
-            solveInstructions,
-            LogType.POINTING_PAIR_TRIPLE_COLUMN
-        )
+        return getLogCount(solveInstructions, LogType.POINTING_PAIR_TRIPLE_ROW) +
+            getLogCount(
+                solveInstructions,
+                LogType.POINTING_PAIR_TRIPLE_COLUMN
+            )
     }
 
     /**
@@ -288,10 +295,11 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
      * puzzle.
      */
     fun getBoxLineReductionCount(): Int {
-        return getLogCount(solveInstructions, LogType.ROW_BOX) + getLogCount(
-            solveInstructions,
-            LogType.COLUMN_BOX
-        )
+        return getLogCount(solveInstructions, LogType.ROW_BOX) +
+            getLogCount(
+                solveInstructions,
+                LogType.COLUMN_BOX
+            )
     }
 
     /**
@@ -377,34 +385,43 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                 var positionsym3 = -1
                 when (symmetry) {
                     Symmetry.ROTATE90 -> {
-                        positionsym2 = rowColumnToCell(
-                            ROW_COL_SEC_SIZE - 1 - cellToColumn(position),
-                            cellToRow(position)
-                        )
-                        positionsym3 = rowColumnToCell(
-                            cellToColumn(position),
-                            ROW_COL_SEC_SIZE - 1 - cellToRow(position)
-                        )
-                        positionsym1 = rowColumnToCell(
-                            ROW_COL_SEC_SIZE - 1 - cellToRow(position),
-                            ROW_COL_SEC_SIZE - 1 - cellToColumn(position)
-                        )
+                        positionsym2 =
+                            rowColumnToCell(
+                                ROW_COL_SEC_SIZE - 1 - cellToColumn(position),
+                                cellToRow(position)
+                            )
+                        positionsym3 =
+                            rowColumnToCell(
+                                cellToColumn(position),
+                                ROW_COL_SEC_SIZE - 1 - cellToRow(position)
+                            )
+                        positionsym1 =
+                            rowColumnToCell(
+                                ROW_COL_SEC_SIZE - 1 - cellToRow(position),
+                                ROW_COL_SEC_SIZE - 1 - cellToColumn(position)
+                            )
                     }
 
-                    Symmetry.ROTATE180 -> positionsym1 = rowColumnToCell(
-                        ROW_COL_SEC_SIZE - 1 - cellToRow(position),
-                        ROW_COL_SEC_SIZE - 1 - cellToColumn(position)
-                    )
+                    Symmetry.ROTATE180 ->
+                        positionsym1 =
+                            rowColumnToCell(
+                                ROW_COL_SEC_SIZE - 1 - cellToRow(position),
+                                ROW_COL_SEC_SIZE - 1 - cellToColumn(position)
+                            )
 
-                    Symmetry.MIRROR -> positionsym1 = rowColumnToCell(
-                        cellToRow(position),
-                        ROW_COL_SEC_SIZE - 1 - cellToColumn(position)
-                    )
+                    Symmetry.MIRROR ->
+                        positionsym1 =
+                            rowColumnToCell(
+                                cellToRow(position),
+                                ROW_COL_SEC_SIZE - 1 - cellToColumn(position)
+                            )
 
-                    Symmetry.FLIP -> positionsym1 = rowColumnToCell(
-                        ROW_COL_SEC_SIZE - 1 - cellToRow(position),
-                        cellToColumn(position)
-                    )
+                    Symmetry.FLIP ->
+                        positionsym1 =
+                            rowColumnToCell(
+                                ROW_COL_SEC_SIZE - 1 - cellToRow(position),
+                                cellToColumn(position)
+                            )
 
                     else -> {}
                 }
@@ -715,14 +732,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
             if (possibilities[valPos] == 0) {
                 if (localGuessCount == guessNumber) {
                     val value = valIndex + 1
-                    if (logHistory || recordHistory) addHistoryItem(
-                        LogItem(
-                            round,
-                            LogType.GUESS,
-                            value,
-                            position
+                    if (logHistory || recordHistory) {
+                        addHistoryItem(
+                            LogItem(
+                                round,
+                                LogType.GUESS,
+                                value,
+                                position
+                            )
                         )
-                    )
+                    }
                     mark(position, round, value)
                     return true
                 }
@@ -786,14 +805,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                         }
                     }
                     if (doneSomething) {
-                        if (logHistory || recordHistory) addHistoryItem(
-                            LogItem(
-                                round,
-                                LogType.COLUMN_BOX,
-                                valIndex + 1,
-                                colStart
+                        if (logHistory || recordHistory) {
+                            addHistoryItem(
+                                LogItem(
+                                    round,
+                                    LogType.COLUMN_BOX,
+                                    valIndex + 1,
+                                    colStart
+                                )
                             )
-                        )
+                        }
                         return true
                     }
                 }
@@ -841,14 +862,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                         }
                     }
                     if (doneSomething) {
-                        if (logHistory || recordHistory) addHistoryItem(
-                            LogItem(
-                                round,
-                                LogType.ROW_BOX,
-                                valIndex + 1,
-                                rowStart
+                        if (logHistory || recordHistory) {
+                            addHistoryItem(
+                                LogItem(
+                                    round,
+                                    LogType.ROW_BOX,
+                                    valIndex + 1,
+                                    rowStart
+                                )
                             )
-                        )
+                        }
                         return true
                     }
                 }
@@ -891,14 +914,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                         }
                     }
                     if (doneSomething) {
-                        if (logHistory || recordHistory) addHistoryItem(
-                            LogItem(
-                                round,
-                                LogType.POINTING_PAIR_TRIPLE_ROW,
-                                valIndex + 1,
-                                rowStart
+                        if (logHistory || recordHistory) {
+                            addHistoryItem(
+                                LogItem(
+                                    round,
+                                    LogType.POINTING_PAIR_TRIPLE_ROW,
+                                    valIndex + 1,
+                                    rowStart
+                                )
                             )
-                        )
+                        }
                         return true
                     }
                 }
@@ -941,14 +966,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                         }
                     }
                     if (doneSomething) {
-                        if (logHistory || recordHistory) addHistoryItem(
-                            LogItem(
-                                round,
-                                LogType.POINTING_PAIR_TRIPLE_COLUMN,
-                                valIndex + 1,
-                                colStart
+                        if (logHistory || recordHistory) {
+                            addHistoryItem(
+                                LogItem(
+                                    round,
+                                    LogType.POINTING_PAIR_TRIPLE_COLUMN,
+                                    valIndex + 1,
+                                    colStart
+                                )
                             )
-                        )
+                        }
                         return true
                     }
                 }
@@ -1052,14 +1079,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                                 }
                             }
                             if (doneSomething) {
-                                if (logHistory || recordHistory) addHistoryItem(
-                                    LogItem(
-                                        round,
-                                        LogType.HIDDEN_PAIR_COLUMN,
-                                        valIndex + 1,
-                                        rowColumnToCell(r1, column)
+                                if (logHistory || recordHistory) {
+                                    addHistoryItem(
+                                        LogItem(
+                                            round,
+                                            LogType.HIDDEN_PAIR_COLUMN,
+                                            valIndex + 1,
+                                            rowColumnToCell(r1, column)
+                                        )
                                     )
-                                )
+                                }
                                 return true
                             }
                         }
@@ -1125,14 +1154,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                                 }
                             }
                             if (doneSomething) {
-                                if (logHistory || recordHistory) addHistoryItem(
-                                    LogItem(
-                                        round,
-                                        LogType.HIDDEN_PAIR_SECTION,
-                                        valIndex + 1,
-                                        sectionToCell(section, si1)
+                                if (logHistory || recordHistory) {
+                                    addHistoryItem(
+                                        LogItem(
+                                            round,
+                                            LogType.HIDDEN_PAIR_SECTION,
+                                            valIndex + 1,
+                                            sectionToCell(section, si1)
+                                        )
                                     )
-                                )
+                                }
                                 return true
                             }
                         }
@@ -1198,14 +1229,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                                 }
                             }
                             if (doneSomething) {
-                                if (logHistory || recordHistory) addHistoryItem(
-                                    LogItem(
-                                        round,
-                                        LogType.HIDDEN_PAIR_ROW,
-                                        valIndex + 1,
-                                        rowColumnToCell(row, c1)
+                                if (logHistory || recordHistory) {
+                                    addHistoryItem(
+                                        LogItem(
+                                            round,
+                                            LogType.HIDDEN_PAIR_ROW,
+                                            valIndex + 1,
+                                            rowColumnToCell(row, c1)
+                                        )
                                     )
-                                )
+                                }
                                 return true
                             }
                         }
@@ -1232,7 +1265,8 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                                 var doneSomething = false
                                 for (column2 in 0 until ROW_COL_SEC_SIZE) {
                                     val position3 = rowColumnToCell(row, column2)
-                                    if (position3 != position && position3 != position2 && removePossibilitiesInOneFromTwo(
+                                    if (position3 != position && position3 != position2 &&
+                                        removePossibilitiesInOneFromTwo(
                                             position,
                                             position3,
                                             round
@@ -1242,14 +1276,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                                     }
                                 }
                                 if (doneSomething) {
-                                    if (logHistory || recordHistory) addHistoryItem(
-                                        LogItem(
-                                            round,
-                                            LogType.NAKED_PAIR_ROW,
-                                            0,
-                                            position
+                                    if (logHistory || recordHistory) {
+                                        addHistoryItem(
+                                            LogItem(
+                                                round,
+                                                LogType.NAKED_PAIR_ROW,
+                                                0,
+                                                position
+                                            )
                                         )
-                                    )
+                                    }
                                     return true
                                 }
                             }
@@ -1257,7 +1293,8 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                                 var doneSomething = false
                                 for (row2 in 0 until ROW_COL_SEC_SIZE) {
                                     val position3 = rowColumnToCell(row2, column)
-                                    if (position3 != position && position3 != position2 && removePossibilitiesInOneFromTwo(
+                                    if (position3 != position && position3 != position2 &&
+                                        removePossibilitiesInOneFromTwo(
                                             position,
                                             position3,
                                             round
@@ -1267,14 +1304,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                                     }
                                 }
                                 if (doneSomething) {
-                                    if (logHistory || recordHistory) addHistoryItem(
-                                        LogItem(
-                                            round,
-                                            LogType.NAKED_PAIR_COLUMN,
-                                            0,
-                                            position
+                                    if (logHistory || recordHistory) {
+                                        addHistoryItem(
+                                            LogItem(
+                                                round,
+                                                LogType.NAKED_PAIR_COLUMN,
+                                                0,
+                                                position
+                                            )
                                         )
-                                    )
+                                    }
                                     return true
                                 }
                             }
@@ -1284,7 +1323,8 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                                 for (i in 0 until GRID_SIZE_COL) {
                                     for (j in 0 until GRID_SIZE_ROW) {
                                         val position3 = secStart + i + ROW_COL_SEC_SIZE * j
-                                        if (position3 != position && position3 != position2 && removePossibilitiesInOneFromTwo(
+                                        if (position3 != position && position3 != position2 &&
+                                            removePossibilitiesInOneFromTwo(
                                                 position,
                                                 position3,
                                                 round
@@ -1295,14 +1335,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                                     }
                                 }
                                 if (doneSomething) {
-                                    if (logHistory || recordHistory) addHistoryItem(
-                                        LogItem(
-                                            round,
-                                            LogType.NAKED_PAIR_SECTION,
-                                            0,
-                                            position
+                                    if (logHistory || recordHistory) {
+                                        addHistoryItem(
+                                            LogItem(
+                                                round,
+                                                LogType.NAKED_PAIR_SECTION,
+                                                0,
+                                                position
+                                            )
                                         )
-                                    )
+                                    }
                                     return true
                                 }
                             }
@@ -1336,14 +1378,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                 }
                 if (count == 1) {
                     val value = valIndex + 1
-                    if (logHistory || recordHistory) addHistoryItem(
-                        LogItem(
-                            round,
-                            LogType.HIDDEN_SINGLE_ROW,
-                            value,
-                            lastPosition
+                    if (logHistory || recordHistory) {
+                        addHistoryItem(
+                            LogItem(
+                                round,
+                                LogType.HIDDEN_SINGLE_ROW,
+                                value,
+                                lastPosition
+                            )
                         )
-                    )
+                    }
                     mark(lastPosition, round, value)
                     return true
                 }
@@ -1374,14 +1418,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                 }
                 if (count == 1) {
                     val value = valIndex + 1
-                    if (logHistory || recordHistory) addHistoryItem(
-                        LogItem(
-                            round,
-                            LogType.HIDDEN_SINGLE_COLUMN,
-                            value,
-                            lastPosition
+                    if (logHistory || recordHistory) {
+                        addHistoryItem(
+                            LogItem(
+                                round,
+                                LogType.HIDDEN_SINGLE_COLUMN,
+                                value,
+                                lastPosition
+                            )
                         )
-                    )
+                    }
                     mark(lastPosition, round, value)
                     return true
                 }
@@ -1415,14 +1461,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                 }
                 if (count == 1) {
                     val value = valIndex + 1
-                    if (logHistory || recordHistory) addHistoryItem(
-                        LogItem(
-                            round,
-                            LogType.HIDDEN_SINGLE_SECTION,
-                            value,
-                            lastPosition
+                    if (logHistory || recordHistory) {
+                        addHistoryItem(
+                            LogItem(
+                                round,
+                                LogType.HIDDEN_SINGLE_SECTION,
+                                value,
+                                lastPosition
+                            )
                         )
-                    )
+                    }
                     mark(lastPosition, round, value)
                     return true
                 }
@@ -1451,14 +1499,16 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
                 }
                 if (count == 1) {
                     mark(position, round, lastValue)
-                    if (logHistory || recordHistory) addHistoryItem(
-                        LogItem(
-                            round,
-                            LogType.SINGLE,
-                            lastValue,
-                            position
+                    if (logHistory || recordHistory) {
+                        addHistoryItem(
+                            LogItem(
+                                round,
+                                LogType.SINGLE,
+                                lastValue,
+                                position
+                            )
                         )
-                    )
+                    }
                     return true
                 }
             }
@@ -1624,7 +1674,7 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
         const val QQWING_VERSION = "1.3.4"
         private val NL = System.getProperties().getProperty("line.separator")
 
-        //public static final int GRID_SIZE = 3;
+        // public static final int GRID_SIZE = 3;
         var GRID_SIZE_ROW = 3
         var GRID_SIZE_COL = 3
         var ROW_COL_SEC_SIZE = GRID_SIZE_ROW * GRID_SIZE_COL
@@ -1632,6 +1682,7 @@ class QQWing(type: GameType, difficulty: GameDifficulty) {
         var BOARD_SIZE = ROW_COL_SEC_SIZE * ROW_COL_SEC_SIZE
         var POSSIBILITY_SIZE = BOARD_SIZE * ROW_COL_SEC_SIZE
         private var random = Random()
+
         private fun fillIncrementing(arr: IntArray): IntArray {
             for (i in arr.indices) {
                 arr[i] = i

@@ -9,21 +9,22 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.flow.first
-import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 import java.time.Duration
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.flow.first
+import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 
 @HiltWorker
-class DailyChallengeNotificationWorker @AssistedInject constructor(
+class DailyChallengeNotificationWorker
+@AssistedInject
+constructor(
     @Assisted context: Context,
     @Assisted workerParams: WorkerParameters,
     private val notificationHelper: NotificationHelper,
     private val notificationSettingsManager: NotificationSettingsManager
 ) : CoroutineWorker(context, workerParams) {
-
     override suspend fun doWork(): Result {
         val isEnabled = notificationSettingsManager.dailyChallengeNotificationEnabled.first()
 
@@ -48,11 +49,13 @@ class DailyChallengeNotificationWorker @AssistedInject constructor(
 
             val initialDelay = Duration.between(now, scheduledTime).toMillis()
 
-            val workRequest = PeriodicWorkRequestBuilder<DailyChallengeNotificationWorker>(
-                24, TimeUnit.HOURS
-            )
-                .setInitialDelay(initialDelay, TimeUnit.MILLISECONDS)
-                .build()
+            val workRequest =
+                PeriodicWorkRequestBuilder<DailyChallengeNotificationWorker>(
+                    24,
+                    TimeUnit.HOURS
+                )
+                    .setInitialDelay(initialDelay, TimeUnit.MILLISECONDS)
+                    .build()
 
             WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 WORK_NAME,

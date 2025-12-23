@@ -2,14 +2,13 @@ package sk.awisoft.sudokuplus.core.utils
 
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
+import kotlin.collections.minus
+import kotlin.collections.plus
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.Note
 import sk.awisoft.sudokuplus.core.qqwing.GameType
-import kotlin.collections.minus
-import kotlin.collections.plus
 
 class SudokuUtils {
-
     // returns range of row indexes in region of give cell
     fun getBoxRowRange(cell: Cell, sectionHeight: Int): IntRange {
         return cell.row - cell.row % sectionHeight until (cell.row - cell.row % sectionHeight) + sectionHeight
@@ -20,13 +19,8 @@ class SudokuUtils {
         return cell.col - cell.col % sectionWidth until (cell.col - cell.col % sectionWidth) + sectionWidth
     }
 
-
     // returns candidates for given cell
-    fun getCandidates(
-        board: List<List<Cell>>,
-        cell: Cell,
-        type: GameType
-    ): List<Int> {
+    fun getCandidates(board: List<List<Cell>>, cell: Cell, type: GameType): List<Int> {
         var candidates = List(type.size) { index -> index + 1 }
 
         for (i in getBoxRowRange(cell, type.sectionHeight)) {
@@ -50,11 +44,7 @@ class SudokuUtils {
     }
 
     // returns if given cell not violating sudoku rules
-    fun isValidCellDynamic(
-        board: List<List<Cell>>,
-        cell: Cell,
-        type: GameType
-    ): Boolean {
+    fun isValidCellDynamic(board: List<List<Cell>>, cell: Cell, type: GameType): Boolean {
         val sudokuUtils = SudokuUtils()
         for (i in sudokuUtils.getBoxRowRange(cell, type.sectionHeight)) {
             for (j in sudokuUtils.getBoxColRange(cell, type.sectionWidth)) {

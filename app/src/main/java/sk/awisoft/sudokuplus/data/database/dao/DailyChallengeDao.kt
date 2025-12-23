@@ -5,9 +5,9 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
-import java.time.LocalDate
 
 @Dao
 interface DailyChallengeDao {

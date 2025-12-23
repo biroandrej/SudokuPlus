@@ -1,5 +1,6 @@
 package sk.awisoft.sudokuplus.ui.app_crash
 
+import android.content.ClipData
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -28,23 +29,22 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.ClipEntry
-import android.content.ClipData
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.runtime.rememberCoroutineScope
-import kotlinx.coroutines.launch
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.MainActivity
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.GITHUB_NEW_ISSUE
@@ -66,20 +66,23 @@ class CrashActivity : ComponentActivity() {
             val dynamicColors by viewModel.dc.collectAsStateWithLifecycle(
                 PreferencesConstants.DEFAULT_DYNAMIC_COLORS
             )
-            val darkTheme by viewModel.darkTheme.collectAsStateWithLifecycle(PreferencesConstants.DEFAULT_DARK_THEME)
+            val darkTheme by viewModel.darkTheme.collectAsStateWithLifecycle(
+                PreferencesConstants.DEFAULT_DARK_THEME
+            )
             val amoledBlack by viewModel.amoledBlack.collectAsStateWithLifecycle(
                 PreferencesConstants.DEFAULT_AMOLED_BLACK
             )
 
             SudokuPlusTheme(
-                darkTheme = when (darkTheme) {
+                darkTheme =
+                when (darkTheme) {
                     1 -> false
                     2 -> true
                     else -> isSystemInDarkTheme()
                 },
                 dynamicColor = dynamicColors,
                 amoled = amoledBlack,
-                colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR),
+                colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR)
             ) {
                 val clipboardManager = LocalClipboard.current
                 val uriHandler = LocalUriHandler.current
@@ -87,7 +90,8 @@ class CrashActivity : ComponentActivity() {
 
                 Scaffold { innerPadding ->
                     Column(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .fillMaxSize()
                             .padding(innerPadding),
                         horizontalAlignment = Alignment.CenterHorizontally
@@ -107,7 +111,8 @@ class CrashActivity : ComponentActivity() {
                         Spacer(Modifier.height(16.dp))
 
                         Box(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .padding(horizontal = 12.dp)
                                 .clip(MaterialTheme.shapes.large)
                                 .clickable {
@@ -134,7 +139,8 @@ class CrashActivity : ComponentActivity() {
                             }
                         }
                         Column(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
@@ -161,7 +167,7 @@ class CrashActivity : ComponentActivity() {
                                 startActivity(
                                     Intent(
                                         this@CrashActivity,
-                                        MainActivity::class.java,
+                                        MainActivity::class.java
                                     ).apply {
                                         flags =
                                             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

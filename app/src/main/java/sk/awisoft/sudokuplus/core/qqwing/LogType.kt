@@ -32,7 +32,9 @@ enum class LogType(val description: String) {
     NAKED_PAIR_COLUMN("Remove possibilities for naked pair in column"),
     NAKED_PAIR_SECTION("Remove possibilities for naked pair in section"),
     POINTING_PAIR_TRIPLE_ROW("Remove possibilities for row because all values are in one section"),
-    POINTING_PAIR_TRIPLE_COLUMN("Remove possibilities for column because all values are in one section"),
+    POINTING_PAIR_TRIPLE_COLUMN(
+        "Remove possibilities for column because all values are in one section"
+    ),
     ROW_BOX("Remove possibilities for section because all values are in one row"),
     COLUMN_BOX("Remove possibilities for section because all values are in one column"),
     HIDDEN_PAIR_ROW("Remove possibilities from hidden pair in row"),

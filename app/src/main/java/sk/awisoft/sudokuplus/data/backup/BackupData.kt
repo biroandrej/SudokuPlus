@@ -1,14 +1,14 @@
 package sk.awisoft.sudokuplus.data.backup
 
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import kotlinx.serialization.Serializable
 import sk.awisoft.sudokuplus.data.backup.serializer.ZonedDateTimeLongSerializer
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.Folder
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
-import kotlinx.serialization.Serializable
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 
 const val BACKUP_SCHEME_VERSION = 2
 
@@ -47,8 +47,8 @@ data class BackupData(
          */
         val nameAuto: String
             get() = "SudokuPlus-AutoBackup-${
-            ZonedDateTime.now()
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd--HH-mm-ss"))
-        }"
+                ZonedDateTime.now()
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd--HH-mm-ss"))
+            }"
     }
 }

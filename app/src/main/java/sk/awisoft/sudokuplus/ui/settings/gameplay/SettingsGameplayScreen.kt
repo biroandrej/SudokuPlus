@@ -19,6 +19,9 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
@@ -27,9 +30,6 @@ import sk.awisoft.sudokuplus.ui.components.PreferenceRowSwitch
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.settings.SelectionDialog
 import sk.awisoft.sudokuplus.ui.settings.SettingsScaffoldLazyColumn
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
@@ -39,11 +39,21 @@ fun SettingsGameplayScreen(
 ) {
     var inputMethodDialog by rememberSaveable { mutableStateOf(false) }
 
-    val inputMethod by viewModel.inputMethod.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_INPUT_METHOD)
-    val mistakesLimit by viewModel.mistakesLimit.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_MISTAKES_LIMIT)
-    val hintDisabled by viewModel.disableHints.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_HINTS_DISABLED)
-    val timerEnabled by viewModel.timer.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_SHOW_TIMER)
-    val resetTimer by viewModel.canResetTimer.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_GAME_RESET_TIMER)
+    val inputMethod by viewModel.inputMethod.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_INPUT_METHOD
+    )
+    val mistakesLimit by viewModel.mistakesLimit.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_MISTAKES_LIMIT
+    )
+    val hintDisabled by viewModel.disableHints.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_HINTS_DISABLED
+    )
+    val timerEnabled by viewModel.timer.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_SHOW_TIMER
+    )
+    val resetTimer by viewModel.canResetTimer.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_GAME_RESET_TIMER
+    )
     val funKeyboardOverNum by viewModel.funKeyboardOverNum.collectAsStateWithLifecycle(
         initialValue = PreferencesConstants.Companion.DEFAULT_FUN_KEYBOARD_OVER_NUM
     )
@@ -53,14 +63,16 @@ fun SettingsGameplayScreen(
         navigator = navigator
     ) { paddingValues ->
         ScrollbarLazyColumn(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(paddingValues)
                 .fillMaxWidth()
         ) {
             item {
                 PreferenceRow(
                     title = stringResource(R.string.pref_input),
-                    subtitle = when (inputMethod) {
+                    subtitle =
+                    when (inputMethod) {
                         0 -> stringResource(R.string.pref_input_cell_first)
                         1 -> stringResource(R.string.pref_input_digit_first)
                         else -> ""
@@ -124,7 +136,8 @@ fun SettingsGameplayScreen(
         if (inputMethodDialog) {
             SelectionDialog(
                 title = stringResource(R.string.pref_input),
-                selections = listOf(
+                selections =
+                listOf(
                     stringResource(R.string.pref_input_cell_first),
                     stringResource(R.string.pref_input_digit_first)
                 ),

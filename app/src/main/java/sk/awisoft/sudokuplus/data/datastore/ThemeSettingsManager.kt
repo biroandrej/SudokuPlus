@@ -9,15 +9,21 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import sk.awisoft.sudokuplus.core.PreferencesConstants
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.map
+import sk.awisoft.sudokuplus.core.PreferencesConstants
 
 @Singleton
-class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Context) {
-    private val Context.createDataStore: DataStore<Preferences> by preferencesDataStore(name = "app_theme")
+class ThemeSettingsManager
+@Inject
+constructor(
+    @ApplicationContext context: Context
+) {
+    private val Context.createDataStore: DataStore<Preferences> by preferencesDataStore(
+        name = "app_theme"
+    )
     private val dataStore = context.createDataStore
 
     // material you colors
@@ -40,12 +46,14 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
         }
     }
 
-    val dynamicColors = dataStore.data.map { preferences ->
-        // return dynamic theme true only if an android version >= 12
-        val enabled = preferences[dynamicColorsKey]
-            ?: PreferencesConstants.DEFAULT_DYNAMIC_COLORS
-        enabled && (SDK_INT >= VERSION_CODES.S)
-    }
+    val dynamicColors =
+        dataStore.data.map { preferences ->
+            // return dynamic theme true only if an android version >= 12
+            val enabled =
+                preferences[dynamicColorsKey]
+                    ?: PreferencesConstants.DEFAULT_DYNAMIC_COLORS
+            enabled && (SDK_INT >= VERSION_CODES.S)
+        }
 
     suspend fun setDarkTheme(value: Int) {
         dataStore.edit { settings ->
@@ -53,9 +61,10 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
         }
     }
 
-    val darkTheme = dataStore.data.map { preferences ->
-        preferences[darkThemeKey] ?: PreferencesConstants.DEFAULT_DARK_THEME
-    }
+    val darkTheme =
+        dataStore.data.map { preferences ->
+            preferences[darkThemeKey] ?: PreferencesConstants.DEFAULT_DARK_THEME
+        }
 
     suspend fun setAmoledBlack(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -63,9 +72,10 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
         }
     }
 
-    val amoledBlack = dataStore.data.map { preferences ->
-        preferences[amoledBlackKey] ?: false
-    }
+    val amoledBlack =
+        dataStore.data.map { preferences ->
+            preferences[amoledBlackKey] ?: false
+        }
 
     suspend fun setMonetSudokuBoard(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -73,9 +83,10 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
         }
     }
 
-    val monetSudokuBoard = dataStore.data.map { preferences ->
-        preferences[monetSudokuBoardKey] ?: true
-    }
+    val monetSudokuBoard =
+        dataStore.data.map { preferences ->
+            preferences[monetSudokuBoardKey] ?: true
+        }
 
     suspend fun setBoardCrossHighlight(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -83,7 +94,8 @@ class ThemeSettingsManager @Inject constructor(@ApplicationContext context: Cont
         }
     }
 
-    val boardCrossHighlight = dataStore.data.map { preferences ->
-        preferences[boardCrossHighlightKey] ?: PreferencesConstants.Companion.DEFAULT_BOARD_CROSS_HIGHLIGHT
-    }
+    val boardCrossHighlight =
+        dataStore.data.map { preferences ->
+            preferences[boardCrossHighlightKey] ?: PreferencesConstants.Companion.DEFAULT_BOARD_CROSS_HIGHLIGHT
+        }
 }

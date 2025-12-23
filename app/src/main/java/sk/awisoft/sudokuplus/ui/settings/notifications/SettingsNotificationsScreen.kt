@@ -1,9 +1,7 @@
 package sk.awisoft.sudokuplus.ui.settings.notifications
 
 import android.Manifest
-import android.content.Intent
 import android.os.Build
-import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,9 +26,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
@@ -53,28 +51,38 @@ fun SettingsNotificationsScreen(
 ) {
     val context = LocalContext.current
 
-    val dailyChallengeEnabled by viewModel.dailyChallengeEnabled.collectAsStateWithLifecycle(initialValue = false)
-    val dailyChallengeTime by viewModel.dailyChallengeTime.collectAsStateWithLifecycle(initialValue = Pair(8, 0))
+    val dailyChallengeEnabled by viewModel.dailyChallengeEnabled.collectAsStateWithLifecycle(
+        initialValue = false
+    )
+    val dailyChallengeTime by viewModel.dailyChallengeTime.collectAsStateWithLifecycle(
+        initialValue = Pair(8, 0)
+    )
 
-    val streakReminderEnabled by viewModel.streakReminderEnabled.collectAsStateWithLifecycle(initialValue = false)
-    val streakReminderTime by viewModel.streakReminderTime.collectAsStateWithLifecycle(initialValue = Pair(20, 0))
+    val streakReminderEnabled by viewModel.streakReminderEnabled.collectAsStateWithLifecycle(
+        initialValue = false
+    )
+    val streakReminderTime by viewModel.streakReminderTime.collectAsStateWithLifecycle(
+        initialValue = Pair(20, 0)
+    )
 
     var hasPermission by remember { mutableStateOf(viewModel.hasNotificationPermission()) }
     var showDailyChallengeTimePicker by rememberSaveable { mutableStateOf(false) }
     var showStreakReminderTimePicker by rememberSaveable { mutableStateOf(false) }
 
-    val permissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        hasPermission = isGranted
-    }
+    val permissionLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            hasPermission = isGranted
+        }
 
     SettingsScaffoldLazyColumn(
         titleText = stringResource(R.string.notifications_title),
         navigator = navigator
     ) { paddingValues ->
         ScrollbarLazyColumn(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(paddingValues)
                 .fillMaxWidth()
         ) {
@@ -89,7 +97,9 @@ fun SettingsNotificationsScreen(
                             Button(
                                 onClick = {
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                                        permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                        permissionLauncher.launch(
+                                            Manifest.permission.POST_NOTIFICATIONS
+                                        )
                                     }
                                 },
                                 modifier = Modifier.align(Alignment.End)
@@ -97,7 +107,12 @@ fun SettingsNotificationsScreen(
                                 Text(stringResource(R.string.action_grant))
                             }
                         },
-                        modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 12.dp, top = 8.dp)
+                        modifier = Modifier.padding(
+                            start = 12.dp,
+                            end = 12.dp,
+                            bottom = 12.dp,
+                            top = 8.dp
+                        )
                     )
                 }
             }
@@ -186,11 +201,12 @@ private fun TimePickerDialog(
     onConfirm: (hour: Int, minute: Int) -> Unit,
     onDismiss: () -> Unit
 ) {
-    val timePickerState = rememberTimePickerState(
-        initialHour = initialHour,
-        initialMinute = initialMinute,
-        is24Hour = true
-    )
+    val timePickerState =
+        rememberTimePickerState(
+            initialHour = initialHour,
+            initialMinute = initialMinute,
+            is24Hour = true
+        )
 
     AlertDialog(
         onDismissRequest = onDismiss,

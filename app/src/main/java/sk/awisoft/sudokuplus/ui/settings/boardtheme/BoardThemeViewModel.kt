@@ -2,16 +2,17 @@ package sk.awisoft.sudokuplus.ui.settings.boardtheme
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
-import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
-
+import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 
 @HiltViewModel
-class SettingsBoardThemeViewModel @Inject constructor(
+class SettingsBoardThemeViewModel
+@Inject
+constructor(
     private val themeSettingsManager: ThemeSettingsManager,
     private val appSettingsManager: AppSettingsManager
 ) : ViewModel() {
@@ -39,6 +40,7 @@ class SettingsBoardThemeViewModel @Inject constructor(
     }
 
     val fontSize = appSettingsManager.fontSize
+
     fun updateFontSize(value: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             appSettingsManager.setFontSize(value)
