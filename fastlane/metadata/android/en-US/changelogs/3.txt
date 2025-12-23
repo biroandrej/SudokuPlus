@@ -1,1 +1,0 @@
-first release candidate of the sudoku plus app
