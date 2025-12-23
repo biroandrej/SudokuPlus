@@ -92,6 +92,7 @@ import sk.awisoft.sudokuplus.core.xp.XPResult
 import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.destinations.SettingsAdvancedHintScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsCategoriesScreenDestination
+import sk.awisoft.sudokuplus.review.ReviewManager
 import sk.awisoft.sudokuplus.ui.achievements.AchievementUnlockDialog
 import sk.awisoft.sudokuplus.ui.components.AdvancedHintContainer
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
@@ -240,6 +241,11 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
                 }
                 is GameViewModel.UiEvent.LevelUp -> {
                     showLevelUpDialog = event.newLevel
+                }
+                is GameViewModel.UiEvent.RequestReview -> {
+                    context.findActivity()?.let { activity ->
+                        ReviewManager.requestReviewIfEligible(activity, event.completedGames)
+                    }
                 }
             }
         }
