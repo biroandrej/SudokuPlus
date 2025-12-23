@@ -6,19 +6,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.destinations.ToolbarTutorialScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.learn.components.LearnRowItem
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
-fun LearnAppScreen(
-    navigator: DestinationsNavigator
-) {
+fun LearnAppScreen(navigator: DestinationsNavigator) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {

@@ -31,7 +31,8 @@ fun ScrollbarLazyVerticalGrid(
 ) {
     LazyVerticalGrid(
         columns = columns,
-        modifier = modifier.drawVerticalScrollbar(
+        modifier =
+        modifier.drawVerticalScrollbar(
             state = state,
             spanCount = spanCount
         ),

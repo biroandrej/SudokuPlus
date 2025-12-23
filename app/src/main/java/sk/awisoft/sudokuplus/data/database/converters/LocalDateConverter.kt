@@ -8,10 +8,8 @@ import java.time.LocalDate
  */
 class LocalDateConverter {
     @TypeConverter
-    fun toLocalDate(value: Long?): LocalDate? =
-        value?.let { LocalDate.ofEpochDay(it) }
+    fun toLocalDate(value: Long?): LocalDate? = value?.let { LocalDate.ofEpochDay(it) }
 
     @TypeConverter
-    fun fromLocalDate(date: LocalDate?): Long? =
-        date?.toEpochDay()
+    fun fromLocalDate(date: LocalDate?): Long? = date?.toEpochDay()
 }

@@ -27,16 +27,16 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import sk.awisoft.sudokuplus.LocalBoardColors
-import sk.awisoft.sudokuplus.core.Cell
-import sk.awisoft.sudokuplus.ui.theme.BoardColors
-import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
-import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColors
-import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
-import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.sqrt
+import sk.awisoft.sudokuplus.LocalBoardColors
+import sk.awisoft.sudokuplus.core.Cell
+import sk.awisoft.sudokuplus.ui.theme.BoardColors
+import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColors
+import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
+import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
 
 @Composable
 fun BoardPreview(
@@ -44,16 +44,18 @@ fun BoardPreview(
     size: Int = 9,
     boardString: String? = null,
     board: List<List<Cell>>? = null,
-    mainTextSize: TextUnit = when (size) {
-        6 -> 16.sp
-        9 -> 11.sp
-        12 -> 9.sp
-        else -> 22.sp
-    },
+    mainTextSize: TextUnit =
+        when (size) {
+            6 -> 16.sp
+            9 -> 11.sp
+            12 -> 9.sp
+            else -> 22.sp
+        },
     boardColors: SudokuBoardColors = LocalBoardColors.current
 ) {
     BoxWithConstraints(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .aspectRatio(1f)
             .padding(4.dp)
@@ -84,7 +86,8 @@ fun BoardPreview(
         val thinLineWidth = with(LocalDensity.current) { 0.6.dp.toPx() }
         val thickLineWidth = with(LocalDensity.current) { 1.1.dp.toPx() }
         Canvas(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxSize()
         ) {
             drawRoundRect(
@@ -157,7 +160,8 @@ private fun BoardPreviewPreview() {
         Surface {
             BoardPreview(
                 boardString = "0000100000040000000000000700000000000900000000680000000000000005000000000000000",
-                boardColors = SudokuBoardColorsImpl(
+                boardColors =
+                SudokuBoardColorsImpl(
                     foregroundColor = BoardColors.foregroundColor(),
                     notesColor = BoardColors.notesColor(),
                     altForegroundColor = BoardColors.altForegroundColor(),

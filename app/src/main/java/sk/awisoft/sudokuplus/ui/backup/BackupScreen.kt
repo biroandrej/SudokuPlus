@@ -1,5 +1,6 @@
 package sk.awisoft.sudokuplus.ui.backup
 
+import android.content.ClipData
 import android.content.Intent
 import android.net.Uri
 import android.os.Environment
@@ -22,9 +23,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material.icons.rounded.ContentCopy
+import androidx.compose.material.icons.rounded.ErrorOutline
 import androidx.compose.material.icons.rounded.FileDownload
 import androidx.compose.material.icons.rounded.FileUpload
-import androidx.compose.material.icons.rounded.ErrorOutline
 import androidx.compose.material.icons.rounded.History
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -54,9 +55,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.ClipEntry
-import android.content.ClipData
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -67,15 +67,19 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.data.backup.BackupData
 import sk.awisoft.sudokuplus.data.backup.BackupWorker
-import sk.awisoft.sudokuplus.data.backup.FAILURE_NO_DIRECTORY
-import sk.awisoft.sudokuplus.data.backup.FAILURE_PERMISSION_LOST
 import sk.awisoft.sudokuplus.data.backup.FAILURE_DIRECTORY_ACCESS
 import sk.awisoft.sudokuplus.data.backup.FAILURE_FILE_CREATE
 import sk.awisoft.sudokuplus.data.backup.FAILURE_IO_ERROR
+import sk.awisoft.sudokuplus.data.backup.FAILURE_NO_DIRECTORY
+import sk.awisoft.sudokuplus.data.backup.FAILURE_PERMISSION_LOST
 import sk.awisoft.sudokuplus.data.backup.FAILURE_UNKNOWN
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
@@ -91,18 +95,15 @@ import sk.awisoft.sudokuplus.ui.settings.SettingsCategory
 import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
 import sk.awisoft.sudokuplus.ui.util.isScrolledToEnd
 import sk.awisoft.sudokuplus.ui.util.isScrolledToStart
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.launch
 
-private val autoBackupIntervalEntries = mapOf(
-    0L to R.string.autobackup_never,
-    24L to R.string.daily,
-    48L to R.string.every_2_days,
-    120L to R.string.every_5_days,
-    168L to R.string.weekly,
-)
+private val autoBackupIntervalEntries =
+    mapOf(
+        0L to R.string.autobackup_never,
+        24L to R.string.daily,
+        48L to R.string.every_2_days,
+        120L to R.string.every_5_days,
+        168L to R.string.weekly
+    )
 
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
@@ -124,80 +125,96 @@ fun BackupScreen(
 
     var autoBackupAvailable by remember { mutableStateOf(false) }
 
-    val autoBackupsNumber by viewModel.autoBackupsNumber.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_AUTO_BACKUPS_NUMBER)
-    val autoBackupInterval by viewModel.autoBackupInterval.collectAsStateWithLifecycle(initialValue = PreferencesConstants.Companion.DEFAULT_AUTOBACKUP_INTERVAL)
+    val autoBackupsNumber by viewModel.autoBackupsNumber.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_AUTO_BACKUPS_NUMBER
+    )
+    val autoBackupInterval by viewModel.autoBackupInterval.collectAsStateWithLifecycle(
+        initialValue = PreferencesConstants.Companion.DEFAULT_AUTOBACKUP_INTERVAL
+    )
     val lastBackupDate by viewModel.lastBackupDate.collectAsStateWithLifecycle(initialValue = null)
-    val lastBackupFailure by viewModel.lastBackupFailure.collectAsStateWithLifecycle(initialValue = null)
+    val lastBackupFailure by viewModel.lastBackupFailure.collectAsStateWithLifecycle(
+        initialValue = null
+    )
     val dateFormat by viewModel.dateFormat.collectAsStateWithLifecycle(initialValue = "")
 
     LaunchedEffect(Unit) {
-        autoBackupAvailable = context.contentResolver
-            .persistedUriPermissions.any { it.uri == backupUri.toUri() }
+        autoBackupAvailable =
+            context.contentResolver
+                .persistedUriPermissions.any { it.uri == backupUri.toUri() }
     }
 
-    val requestDirectoryAccess = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.OpenDocumentTree(),
-        onResult = { uri ->
-            if (uri != null) {
-                context.contentResolver.takePersistableUriPermission(
-                    uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                )
+    val requestDirectoryAccess =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.OpenDocumentTree(),
+            onResult = { uri ->
+                if (uri != null) {
+                    context.contentResolver.takePersistableUriPermission(
+                        uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    )
 
-                viewModel.setBackupDirectory(uri.toString())
+                    viewModel.setBackupDirectory(uri.toString())
 
-                autoBackupAvailable =
-                    context.contentResolver.persistedUriPermissions.any { it.uri == uri }
+                    autoBackupAvailable =
+                        context.contentResolver.persistedUriPermissions.any { it.uri == uri }
+                }
             }
-        }
-    )
+        )
 
-    val saveBackupFile = rememberLauncherForActivityResult(
-        contract = CreateDocument("application/json"),
-        onResult = { uri ->
-            if (uri != null) {
-                viewModel.saveBackupTo(
-                    outputStream = context.contentResolver.openOutputStream(uri),
-                    onComplete = { exception ->
-                        if (exception != null) {
-                            scope.launch {
-                                snackbarHostState.showSnackbar(context.getString(R.string.save_backup_error))
-                            }
-                        } else {
-                            scope.launch {
-                                snackbarHostState.showSnackbar(context.getString(R.string.save_backup_success))
+    val saveBackupFile =
+        rememberLauncherForActivityResult(
+            contract = CreateDocument("application/json"),
+            onResult = { uri ->
+                if (uri != null) {
+                    viewModel.saveBackupTo(
+                        outputStream = context.contentResolver.openOutputStream(uri),
+                        onComplete = { exception ->
+                            if (exception != null) {
+                                scope.launch {
+                                    snackbarHostState.showSnackbar(
+                                        context.getString(R.string.save_backup_error)
+                                    )
+                                }
+                            } else {
+                                scope.launch {
+                                    snackbarHostState.showSnackbar(
+                                        context.getString(R.string.save_backup_success)
+                                    )
+                                }
                             }
                         }
-                    }
-                )
+                    )
+                }
             }
-        }
-    )
+        )
 
-    val selectFileToRestore = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.OpenDocument(),
-        onResult = { uri ->
-            if (uri != null) {
-                context.contentResolver.openInputStream(uri)?.use { inputStream ->
-                    inputStream.bufferedReader().use {
-                        viewModel.prepareBackupToRestore(
-                            it.readText(),
-                            onComplete = {
-                                restoreDialog = true
-                            }
-                        )
+    val selectFileToRestore =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.OpenDocument(),
+            onResult = { uri ->
+                if (uri != null) {
+                    context.contentResolver.openInputStream(uri)?.use { inputStream ->
+                        inputStream.bufferedReader().use {
+                            viewModel.prepareBackupToRestore(
+                                it.readText(),
+                                onComplete = {
+                                    restoreDialog = true
+                                }
+                            )
+                        }
                     }
                 }
             }
-        }
-    )
+        )
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             CollapsingTopAppBar(
-                collapsingTitle = CollapsingTitle.Companion.medium(titleText = stringResource(R.string.backup_restore_title)),
+                collapsingTitle = CollapsingTitle.Companion.medium(
+                    titleText = stringResource(R.string.backup_restore_title)
+                ),
                 navigationIcon = {
                     IconButton(onClick = { navigator.popBackStack() }) {
                         Icon(
@@ -217,7 +234,8 @@ fun BackupScreen(
             lastBackupDate?.let { date ->
                 item {
                     CardRow(
-                        text = stringResource(
+                        text =
+                        stringResource(
                             R.string.last_backup_date,
                             date.format(AppSettingsManager.Companion.dateFormat(dateFormat))
                         ),
@@ -228,15 +246,24 @@ fun BackupScreen(
             }
             lastBackupFailure?.let { failure ->
                 item {
-                    val failureMessage = when (failure.reason) {
-                        FAILURE_NO_DIRECTORY -> stringResource(R.string.backup_failure_no_directory)
-                        FAILURE_PERMISSION_LOST -> stringResource(R.string.backup_failure_permission_lost)
-                        FAILURE_DIRECTORY_ACCESS -> stringResource(R.string.backup_failure_directory_access)
-                        FAILURE_FILE_CREATE -> stringResource(R.string.backup_failure_file_create)
-                        FAILURE_IO_ERROR -> stringResource(R.string.backup_failure_io_error)
-                        FAILURE_UNKNOWN -> stringResource(R.string.backup_failure_unknown)
-                        else -> stringResource(R.string.backup_failure_unknown)
-                    }
+                    val failureMessage =
+                        when (failure.reason) {
+                            FAILURE_NO_DIRECTORY -> stringResource(
+                                R.string.backup_failure_no_directory
+                            )
+                            FAILURE_PERMISSION_LOST -> stringResource(
+                                R.string.backup_failure_permission_lost
+                            )
+                            FAILURE_DIRECTORY_ACCESS -> stringResource(
+                                R.string.backup_failure_directory_access
+                            )
+                            FAILURE_FILE_CREATE -> stringResource(
+                                R.string.backup_failure_file_create
+                            )
+                            FAILURE_IO_ERROR -> stringResource(R.string.backup_failure_io_error)
+                            FAILURE_UNKNOWN -> stringResource(R.string.backup_failure_unknown)
+                            else -> stringResource(R.string.backup_failure_unknown)
+                        }
                     BackupFailureCard(
                         title = stringResource(R.string.backup_failed_title),
                         details = failureMessage,
@@ -250,7 +277,8 @@ fun BackupScreen(
                                 requestDirectoryAccess.launch(null)
                             }
                         },
-                        retryButtonText = if (autoBackupAvailable) {
+                        retryButtonText =
+                        if (autoBackupAvailable) {
                             stringResource(R.string.action_retry)
                         } else {
                             stringResource(R.string.action_grant)
@@ -300,14 +328,16 @@ fun BackupScreen(
             item {
                 PreferenceRow(
                     title = stringResource(R.string.auto_backups_frequency),
-                    subtitle = if (autoBackupIntervalEntries[autoBackupInterval] != null)
+                    subtitle =
+                    if (autoBackupIntervalEntries[autoBackupInterval] != null) {
                         stringResource(autoBackupIntervalEntries[autoBackupInterval]!!)
-                    else
+                    } else {
                         pluralStringResource(
                             R.plurals.every_x_hours,
                             autoBackupInterval.toInt(),
                             autoBackupInterval.toInt()
-                        ),
+                        )
+                    },
                     enabled = autoBackupAvailable,
                     onClick = { autoBackupIntervalDialog = true }
                 )
@@ -336,10 +366,11 @@ fun BackupScreen(
     }
 
     if (backupOptionsDialog) {
-        val options = listOf(
-            R.string.backup_option_games,
-            R.string.backup_option_settings,
-        )
+        val options =
+            listOf(
+                R.string.backup_option_games,
+                R.string.backup_option_settings
+            )
         var selectedOptions by rememberSaveable {
             mutableStateOf(listOf(0))
         }
@@ -357,26 +388,29 @@ fun BackupScreen(
                 Column {
                     options.forEachIndexed { index, text ->
                         Row(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .fillMaxWidth()
                                 .clip(MaterialTheme.shapes.small)
                                 .clickable(enabled = index != 0) {
-                                    selectedOptions = if (selectedOptions.contains(index)) {
-                                        selectedOptions - index
-                                    } else {
-                                        selectedOptions + index
-                                    }
+                                    selectedOptions =
+                                        if (selectedOptions.contains(index)) {
+                                            selectedOptions - index
+                                        } else {
+                                            selectedOptions + index
+                                        }
                                 },
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Checkbox(
                                 checked = selectedOptions.contains(index),
                                 onCheckedChange = {
-                                    selectedOptions = if (selectedOptions.contains(index)) {
-                                        selectedOptions - index
-                                    } else {
-                                        selectedOptions + index
-                                    }
+                                    selectedOptions =
+                                        if (selectedOptions.contains(index)) {
+                                            selectedOptions - index
+                                        } else {
+                                            selectedOptions + index
+                                        }
                                 },
                                 enabled = index != 0
                             )
@@ -422,7 +456,8 @@ fun BackupScreen(
             selectedValue = autoBackupInterval,
             title = stringResource(R.string.auto_backups_frequency),
             onDismiss = { autoBackupIntervalDialog = false },
-            entries = autoBackupIntervalEntries.mapNotNull { (key, value) ->
+            entries =
+            autoBackupIntervalEntries.mapNotNull { (key, value) ->
                 key to stringResource(value)
             }.toMap(),
             onSelect = { value ->
@@ -458,7 +493,8 @@ fun BackupScreen(
                         if (backupData.settings != null) {
                             Spacer(modifier = Modifier.height(8.dp))
                             Row(
-                                modifier = Modifier
+                                modifier =
+                                Modifier
                                     .clip(MaterialTheme.shapes.small)
                                     .fillMaxWidth()
                                     .clickable { restoreSettings = !restoreSettings },
@@ -466,7 +502,8 @@ fun BackupScreen(
                             ) {
                                 Checkbox(
                                     checked = restoreSettings,
-                                    onCheckedChange = { restoreSettings = !restoreSettings })
+                                    onCheckedChange = { restoreSettings = !restoreSettings }
+                                )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
                                     text = stringResource(R.string.backup_restore_settings)
@@ -512,21 +549,26 @@ fun BackupScreen(
                     Box {
                         val lazyListState = rememberLazyListState()
 
-                        if (!lazyListState.isScrolledToStart()) HorizontalDivider(
-                            Modifier.align(
-                                Alignment.TopCenter
+                        if (!lazyListState.isScrolledToStart()) {
+                            HorizontalDivider(
+                                Modifier.align(
+                                    Alignment.TopCenter
+                                )
                             )
-                        )
-                        if (!lazyListState.isScrolledToEnd()) HorizontalDivider(
-                            Modifier.align(
-                                Alignment.BottomCenter
+                        }
+                        if (!lazyListState.isScrolledToEnd()) {
+                            HorizontalDivider(
+                                Modifier.align(
+                                    Alignment.BottomCenter
+                                )
                             )
-                        )
+                        }
 
                         ScrollbarLazyColumn(state = lazyListState) {
                             item {
                                 Card(
-                                    colors = CardDefaults.cardColors(
+                                    colors =
+                                    CardDefaults.cardColors(
                                         containerColor = MaterialTheme.colorScheme.errorContainer,
                                         contentColor = MaterialTheme.colorScheme.onErrorContainer
                                     )
@@ -548,7 +590,10 @@ fun BackupScreen(
                             scope.launch {
                                 clipboardManager.setClipEntry(
                                     ClipEntry(
-                                        ClipData.newPlainText("error", viewModel.restoreExceptionString)
+                                        ClipData.newPlainText(
+                                            "error",
+                                            viewModel.restoreExceptionString
+                                        )
                                     )
                                 )
                             }
@@ -572,13 +617,10 @@ fun BackupScreen(
 }
 
 @Composable
-fun CardRow(
-    text: String,
-    icon: ImageVector,
-    modifier: Modifier = Modifier
-) {
+fun CardRow(text: String, icon: ImageVector, modifier: Modifier = Modifier) {
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .padding(horizontal = 12.dp)
             .clip(MaterialTheme.shapes.medium)
             .background(MaterialTheme.colorScheme.surfaceContainerHigh)
@@ -587,7 +629,8 @@ fun CardRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .clip(RoundedCornerShape(10.dp))
                 .background(MaterialTheme.colorScheme.surfaceVariant.harmonizeWithPrimary())
         ) {

@@ -1,6 +1,7 @@
 package sk.awisoft.sudokuplus.ui.onboarding
 
 import android.Manifest
+import android.content.Context
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -25,17 +26,15 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.FlowRowScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -43,10 +42,9 @@ import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.Language
 import androidx.compose.material.icons.rounded.Restore
 import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.Button
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -66,7 +64,6 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
@@ -81,6 +78,18 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+import kotlin.math.sin
+import kotlin.random.Random
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
@@ -95,26 +104,10 @@ import sk.awisoft.sudokuplus.destinations.SettingsCategoriesScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsLanguageScreenDestination
 import sk.awisoft.sudokuplus.ui.components.board.Board
 import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleString
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
-import android.content.Context
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import javax.inject.Inject
-import kotlin.math.sin
-import kotlin.random.Random
 
 @Destination<RootGraph>
 @Composable
-fun WelcomeScreen(
-    viewModel: WelcomeViewModel = hiltViewModel(),
-    navigator: DestinationsNavigator
-) {
+fun WelcomeScreen(viewModel: WelcomeViewModel = hiltViewModel(), navigator: DestinationsNavigator) {
     val context = LocalContext.current
     val currentLanguage by remember {
         mutableStateOf(
@@ -130,18 +123,19 @@ fun WelcomeScreen(
     var visibleItemIndex by remember { mutableIntStateOf(0) }
 
     // Permission launcher for notifications
-    val permissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        // Schedule notifications if permission was granted
-        if (isGranted) {
-            viewModel.scheduleNotifications()
+    val permissionLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            // Schedule notifications if permission was granted
+            if (isGranted) {
+                viewModel.scheduleNotifications()
+            }
+            // Navigate to home regardless of permission result
+            viewModel.setFirstLaunch()
+            navigator.popBackStack()
+            navigator.navigate(HomeScreenDestination())
         }
-        // Navigate to home regardless of permission result
-        viewModel.setFirstLaunch()
-        navigator.popBackStack()
-        navigator.navigate(HomeScreenDestination())
-    }
 
     // Function to handle start button click
     fun onStartClick() {
@@ -177,23 +171,27 @@ fun WelcomeScreen(
         bottomBar = {
             AnimatedVisibility(
                 visible = showButton,
-                enter = slideInVertically(
+                enter =
+                slideInVertically(
                     initialOffsetY = { it / 2 },
-                    animationSpec = spring(
+                    animationSpec =
+                    spring(
                         dampingRatio = Spring.DampingRatioMediumBouncy,
                         stiffness = Spring.StiffnessMedium
                     )
                 ) + fadeIn()
             ) {
                 Surface(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth()
                         .windowInsetsPadding(WindowInsets.navigationBars),
                     tonalElevation = 3.dp,
                     color = MaterialTheme.colorScheme.surface
                 ) {
                     Row(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .fillMaxWidth()
                             .padding(16.dp),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -216,7 +214,8 @@ fun WelcomeScreen(
             )
 
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .padding(paddingValues)
@@ -235,7 +234,8 @@ fun WelcomeScreen(
                 ) {
                     ElevatedCard(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.elevatedCardColors(
+                        colors =
+                        CardDefaults.elevatedCardColors(
                             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
                         )
                     ) {
@@ -263,7 +263,11 @@ fun WelcomeScreen(
                     currentLanguage = currentLanguage,
                     onLanguageClick = { navigator.navigate(SettingsLanguageScreenDestination()) },
                     onRestoreBackupClick = { navigator.navigate(BackupScreenDestination) },
-                    onSettingsClick = { navigator.navigate(SettingsCategoriesScreenDestination(false)) },
+                    onSettingsClick = {
+                        navigator.navigate(
+                            SettingsCategoriesScreenDestination(false)
+                        )
+                    },
                     modifier = Modifier.fillMaxWidth()
                 )
             }
@@ -272,29 +276,29 @@ fun WelcomeScreen(
 }
 
 @Composable
-private fun WelcomeHeroCard(
-    showLogo: Boolean,
-    showTitle: Boolean,
-    modifier: Modifier = Modifier
-) {
+private fun WelcomeHeroCard(showLogo: Boolean, showTitle: Boolean, modifier: Modifier = Modifier) {
     val colorScheme = MaterialTheme.colorScheme
-    val gradient = remember(colorScheme.primaryContainer, colorScheme.secondaryContainer) {
-        Brush.linearGradient(
-            colors = listOf(
-                colorScheme.primaryContainer,
-                colorScheme.secondaryContainer
+    val gradient =
+        remember(colorScheme.primaryContainer, colorScheme.secondaryContainer) {
+            Brush.linearGradient(
+                colors =
+                listOf(
+                    colorScheme.primaryContainer,
+                    colorScheme.secondaryContainer
+                )
             )
-        )
-    }
+        }
 
     ElevatedCard(
         modifier = modifier,
-        colors = CardDefaults.elevatedCardColors(
+        colors =
+        CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
         )
     ) {
         Box(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .background(gradient)
                 .padding(16.dp)
         ) {
@@ -305,8 +309,10 @@ private fun WelcomeHeroCard(
             ) {
                 AnimatedVisibility(
                     visible = showLogo,
-                    enter = scaleIn(
-                        animationSpec = spring(
+                    enter =
+                    scaleIn(
+                        animationSpec =
+                        spring(
                             dampingRatio = Spring.DampingRatioMediumBouncy,
                             stiffness = Spring.StiffnessLow
                         )
@@ -326,9 +332,11 @@ private fun WelcomeHeroCard(
 
                 AnimatedVisibility(
                     visible = showTitle,
-                    enter = slideInVertically(
+                    enter =
+                    slideInVertically(
                         initialOffsetY = { -it / 2 },
-                        animationSpec = spring(
+                        animationSpec =
+                        spring(
                             dampingRatio = Spring.DampingRatioMediumBouncy,
                             stiffness = Spring.StiffnessMedium
                         )
@@ -357,7 +365,7 @@ private fun WelcomeQuickActions(
     onLanguageClick: () -> Unit,
     onRestoreBackupClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier,
@@ -419,19 +427,22 @@ private fun FlowRowScope.WelcomeActionTile(
     ElevatedCard(
         modifier = modifier.weight(1f),
         onClick = onClick,
-        colors = CardDefaults.elevatedCardColors(
+        colors =
+        CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer
         )
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .size(44.dp)
                     .background(
                         color = MaterialTheme.colorScheme.secondaryContainer,
@@ -471,27 +482,27 @@ private fun FlowRowScope.WelcomeActionTile(
 }
 
 @Composable
-private fun FloatingNumbersBackground(
-    modifier: Modifier = Modifier
-) {
-    val numbers = remember {
-        List(15) {
-            FloatingNumber(
-                value = Random.nextInt(1, 10),
-                x = Random.nextFloat(),
-                y = Random.nextFloat(),
-                size = Random.nextFloat() * 20f + 16f,
-                speed = Random.nextFloat() * 0.3f + 0.1f,
-                alpha = Random.nextFloat() * 0.08f + 0.02f
-            )
+private fun FloatingNumbersBackground(modifier: Modifier = Modifier) {
+    val numbers =
+        remember {
+            List(15) {
+                FloatingNumber(
+                    value = Random.nextInt(1, 10),
+                    x = Random.nextFloat(),
+                    y = Random.nextFloat(),
+                    size = Random.nextFloat() * 20f + 16f,
+                    speed = Random.nextFloat() * 0.3f + 0.1f,
+                    alpha = Random.nextFloat() * 0.08f + 0.02f
+                )
+            }
         }
-    }
 
     val infiniteTransition = rememberInfiniteTransition(label = "floating numbers")
     val animatedOffset by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
-        animationSpec = infiniteRepeatable(
+        animationSpec =
+        infiniteRepeatable(
             animation = tween(20000, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
         ),
@@ -506,12 +517,13 @@ private fun FloatingNumbersBackground(
             val xWave = sin(yOffset * 6f + number.x * 10f) * 0.02f
 
             drawContext.canvas.nativeCanvas.apply {
-                val paint = android.graphics.Paint().apply {
-                    color = numberColor.copy(alpha = number.alpha).toArgb()
-                    textSize = number.size * density
-                    isAntiAlias = true
-                    typeface = android.graphics.Typeface.DEFAULT_BOLD
-                }
+                val paint =
+                    android.graphics.Paint().apply {
+                        color = numberColor.copy(alpha = number.alpha).toArgb()
+                        textSize = number.size * density
+                        isAntiAlias = true
+                        typeface = android.graphics.Typeface.DEFAULT_BOLD
+                    }
                 drawText(
                     number.value.toString(),
                     (number.x + xWave) * size.width,
@@ -533,9 +545,7 @@ private data class FloatingNumber(
 )
 
 @Composable
-private fun AnimatedSudokuLogo(
-    modifier: Modifier = Modifier
-) {
+private fun AnimatedSudokuLogo(modifier: Modifier = Modifier) {
     val gridColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
     val primaryColor = MaterialTheme.colorScheme.primary
     val accentColor = MaterialTheme.colorScheme.primaryContainer
@@ -555,7 +565,8 @@ private fun AnimatedSudokuLogo(
     val pulseScale by infiniteTransition.animateFloat(
         initialValue = 1f,
         targetValue = 1.02f,
-        animationSpec = infiniteRepeatable(
+        animationSpec =
+        infiniteRepeatable(
             animation = tween(1500, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         ),
@@ -579,17 +590,19 @@ private fun AnimatedSudokuLogo(
         )
 
         // Draw cells that are revealed
-        val cellOrder = listOf(
-            Pair(1, 1), // Center first
-            Pair(0, 0), Pair(0, 2), Pair(2, 0), Pair(2, 2), // Corners
-            Pair(0, 1), Pair(1, 0), Pair(1, 2), Pair(2, 1)  // Edges
-        )
+        val cellOrder =
+            listOf(
+                Pair(1, 1), // Center first
+                Pair(0, 0), Pair(0, 2), Pair(2, 0), Pair(2, 2), // Corners
+                Pair(0, 1), Pair(1, 0), Pair(1, 2), Pair(2, 1) // Edges
+            )
 
         cellOrder.take(cellsRevealed).forEachIndexed { index, (row, col) ->
             val cellAlpha = if (index == cellsRevealed - 1) 0.7f else 0.4f
             drawRoundRect(
                 color = primaryColor.copy(alpha = cellAlpha),
-                topLeft = Offset(
+                topLeft =
+                Offset(
                     col * cellSize + padding,
                     row * cellSize + padding
                 ),
@@ -630,7 +643,9 @@ private fun AnimatedSudokuLogo(
 }
 
 @HiltViewModel
-class WelcomeViewModel @Inject constructor(
+class WelcomeViewModel
+@Inject
+constructor(
     private val settingsDataManager: AppSettingsManager,
     private val notificationSettingsManager: NotificationSettingsManager,
     @param:ApplicationContext private val context: Context
@@ -638,20 +653,22 @@ class WelcomeViewModel @Inject constructor(
     var selectedCell by mutableStateOf(Cell(-1, -1, 0))
 
     // all heart shaped ❤
-    val previewBoard = SudokuParser().parseBoard(
-        board = listOf(
-            "072000350340502018100030009800000003030000070050000020008000600000103000760050041",
-            "017000230920608054400010009200000001060000020040000090002000800000503000390020047",
-            "052000180480906023600020007500000008020000060030000090005000300000708000370060014",
-            "025000860360208017700010003600000002040000090030000070006000100000507000490030058",
-            "049000380280309056600050007300000002010000030070000090003000800000604000420080013",
-            "071000420490802073300060009200000007060000090010000080007000900000703000130090068",
-            "023000190150402086800050004700000008090000030080000010008000700000306000530070029",
-            "097000280280706013300080007600000002040000060030000090001000400000105000860040051",
-            "049000180160904023700010004200000008090000060080000050005000600000706000470020031"
-        ).random(),
-        gameType = GameType.Default9x9
-    )
+    val previewBoard =
+        SudokuParser().parseBoard(
+            board =
+            listOf(
+                "072000350340502018100030009800000003030000070050000020008000600000103000760050041",
+                "017000230920608054400010009200000001060000020040000090002000800000503000390020047",
+                "052000180480906023600020007500000008020000060030000090005000300000708000370060014",
+                "025000860360208017700010003600000002040000090030000070006000100000507000490030058",
+                "049000380280309056600050007300000002010000030070000090003000800000604000420080013",
+                "071000420490802073300060009200000007060000090010000080007000900000703000130090068",
+                "023000190150402086800050004700000008090000030080000010008000700000306000530070029",
+                "097000280280706013300080007600000002040000060030000090001000400000105000860040051",
+                "049000180160904023700010004200000008090000060080000050005000600000706000470020031"
+            ).random(),
+            gameType = GameType.Default9x9
+        )
 
     fun setFirstLaunch(value: Boolean = false) {
         viewModelScope.launch(Dispatchers.IO) {

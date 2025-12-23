@@ -22,10 +22,11 @@ fun ScrollbarLazyColumn(
         if (!reverseLayout) Arrangement.Top else Arrangement.Bottom,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     userScrollEnabled: Boolean = true,
-    content: LazyListScope.() -> Unit,
+    content: LazyListScope.() -> Unit
 ) {
     LazyColumn(
-        modifier = modifier
+        modifier =
+        modifier
             .drawVerticalScrollbar(
                 state = state,
                 reverseScrolling = reverseLayout
@@ -36,7 +37,6 @@ fun ScrollbarLazyColumn(
         verticalArrangement = verticalArrangement,
         horizontalAlignment = horizontalAlignment,
         userScrollEnabled = userScrollEnabled,
-        content = content,
+        content = content
     )
 }
-

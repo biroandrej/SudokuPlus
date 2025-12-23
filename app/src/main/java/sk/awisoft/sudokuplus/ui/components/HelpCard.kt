@@ -42,7 +42,8 @@ fun HelpCard(
         modifier = modifier
     ) {
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(start = 12.dp, end = 12.dp, top = 8.dp, bottom = 14.dp)
         ) {
@@ -103,12 +104,14 @@ fun GrantPermissionCard(
     confirmButton: @Composable ColumnScope.() -> Unit
 ) {
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .clip(MaterialTheme.shapes.medium)
             .background(MaterialTheme.colorScheme.surfaceContainerHigh)
     ) {
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
@@ -122,9 +125,12 @@ fun GrantPermissionCard(
                 ) {
                     if (painter != null) {
                         Box(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .clip(RoundedCornerShape(10.dp))
-                                .background(MaterialTheme.colorScheme.surfaceVariant.harmonizeWithPrimary())
+                                .background(
+                                    MaterialTheme.colorScheme.surfaceVariant.harmonizeWithPrimary()
+                                )
                         ) {
                             Icon(
                                 painter = painter,
@@ -182,12 +188,14 @@ fun BackupFailureCard(
     dismissButtonText: String
 ) {
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .clip(MaterialTheme.shapes.medium)
             .background(MaterialTheme.colorScheme.errorContainer)
     ) {
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
@@ -202,7 +210,8 @@ fun BackupFailureCard(
                 ) {
                     if (painter != null) {
                         Box(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .clip(RoundedCornerShape(10.dp))
                                 .background(MaterialTheme.colorScheme.error.copy(alpha = 0.2f))
                         ) {

@@ -3,6 +3,9 @@ package sk.awisoft.sudokuplus.ui.dailychallenge
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.time.LocalDate
+import java.time.YearMonth
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,36 +17,37 @@ import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
-import java.time.LocalDate
-import java.time.YearMonth
-import javax.inject.Inject
 
 @HiltViewModel
-class DailyChallengeViewModel @Inject constructor(
+class DailyChallengeViewModel
+@Inject
+constructor(
     private val manager: DailyChallengeManager,
     private val repository: DailyChallengeRepository
 ) : ViewModel() {
-
     private val _todayChallenge = MutableStateFlow<DailyChallenge?>(null)
     val todayChallenge: StateFlow<DailyChallenge?> = _todayChallenge.asStateFlow()
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
-    val completedCount: StateFlow<Int> = repository.getCompletedCount()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+    val completedCount: StateFlow<Int> =
+        repository.getCompletedCount()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
-    val currentStreak: StateFlow<Int> = repository.getCompleted()
-        .map { challenges ->
-            manager.calculateCurrentStreak(challenges.map { it.date })
-        }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+    val currentStreak: StateFlow<Int> =
+        repository.getCompleted()
+            .map { challenges ->
+                manager.calculateCurrentStreak(challenges.map { it.date })
+            }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
-    val bestStreak: StateFlow<Int> = repository.getCompleted()
-        .map { challenges ->
-            manager.calculateBestStreak(challenges.map { it.date })
-        }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+    val bestStreak: StateFlow<Int> =
+        repository.getCompleted()
+            .map { challenges ->
+                manager.calculateBestStreak(challenges.map { it.date })
+            }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
     init {
         loadTodayChallenge()
@@ -68,11 +72,12 @@ class DailyChallengeViewModel @Inject constructor(
 }
 
 @HiltViewModel
-class DailyChallengeCalendarViewModel @Inject constructor(
+class DailyChallengeCalendarViewModel
+@Inject
+constructor(
     private val manager: DailyChallengeManager,
     private val repository: DailyChallengeRepository
 ) : ViewModel() {
-
     private val _currentMonth = MutableStateFlow(YearMonth.now())
     val currentMonth: StateFlow<YearMonth> = _currentMonth.asStateFlow()
 
@@ -82,20 +87,23 @@ class DailyChallengeCalendarViewModel @Inject constructor(
     private val _selectedChallenge = MutableStateFlow<DailyChallenge?>(null)
     val selectedChallenge: StateFlow<DailyChallenge?> = _selectedChallenge.asStateFlow()
 
-    val completedCount: StateFlow<Int> = repository.getCompletedCount()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+    val completedCount: StateFlow<Int> =
+        repository.getCompletedCount()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
-    val currentStreak: StateFlow<Int> = repository.getCompleted()
-        .map { challenges ->
-            manager.calculateCurrentStreak(challenges.map { it.date })
-        }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+    val currentStreak: StateFlow<Int> =
+        repository.getCompleted()
+            .map { challenges ->
+                manager.calculateCurrentStreak(challenges.map { it.date })
+            }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
-    val bestStreak: StateFlow<Int> = repository.getCompleted()
-        .map { challenges ->
-            manager.calculateBestStreak(challenges.map { it.date })
-        }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+    val bestStreak: StateFlow<Int> =
+        repository.getCompleted()
+            .map { challenges ->
+                manager.calculateBestStreak(challenges.map { it.date })
+            }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
     init {
         loadChallengesForMonth()

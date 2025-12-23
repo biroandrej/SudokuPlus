@@ -50,10 +50,13 @@ fun ToolbarItem(
     onLongClick: () -> Unit = { }
 ) {
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .clip(MaterialTheme.shapes.large)
             .alpha(if (visualEnabled) 1f else 0.55f)
-            .background(if (toggled) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainerLow)
+            .background(
+                if (toggled) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainerLow
+            )
             .combinedClickable(
                 onClick = if (enabled) onClick else ({ }),
                 onLongClick = if (enabled) onLongClick else ({ })
@@ -61,7 +64,8 @@ fun ToolbarItem(
         contentAlignment = Alignment.Center
     ) {
         Box(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp, horizontal = 16.dp),
             contentAlignment = Alignment.Center

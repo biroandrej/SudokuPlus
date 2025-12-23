@@ -1,7 +1,7 @@
-package com.kaajjo.sudokuplus.app_update
+package com.kaajjo.sudokuplus.appupdate
 
-import sk.awisoft.sudokuplus.core.update.Version
 import org.junit.Test
+import sk.awisoft.sudokuplus.core.update.Version
 
 class VersionTests {
     @Test

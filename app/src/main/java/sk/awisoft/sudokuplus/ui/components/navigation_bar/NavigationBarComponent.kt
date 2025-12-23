@@ -4,10 +4,10 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -17,24 +17,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import sk.awisoft.sudokuplus.NavGraphs
-import sk.awisoft.sudokuplus.destinations.HomeScreenDestination
 import com.ramcosta.composedestinations.utils.currentDestinationAsState
 import com.ramcosta.composedestinations.utils.toDestinationsNavigator
+import sk.awisoft.sudokuplus.destinations.HomeScreenDestination
 
 @Composable
-fun NavigationBarComponent(
-    navController: NavController,
-    isVisible: Boolean,
-) {
-    val directions = listOf(
-        NavigationBarDestination.Home,
-        NavigationBarDestination.Statistics,
-        NavigationBarDestination.More
-    )
+fun NavigationBarComponent(navController: NavController, isVisible: Boolean) {
+    val directions =
+        listOf(
+            NavigationBarDestination.Home,
+            NavigationBarDestination.Statistics,
+            NavigationBarDestination.More
+        )
 
-    val currentDestination = navController.currentDestinationAsState().value
-        ?: HomeScreenDestination
+    val currentDestination =
+        navController.currentDestinationAsState().value
+            ?: HomeScreenDestination
 
     if (isVisible) {
         NavigationBar(
@@ -47,7 +45,8 @@ fun NavigationBarComponent(
                 // Animated icon scale with spring bounce
                 val iconScale by animateFloatAsState(
                     targetValue = if (isSelected) 1.1f else 1f,
-                    animationSpec = spring(
+                    animationSpec =
+                    spring(
                         dampingRatio = Spring.DampingRatioMediumBouncy,
                         stiffness = Spring.StiffnessMedium
                     ),
@@ -71,7 +70,8 @@ fun NavigationBarComponent(
                             style = MaterialTheme.typography.labelSmall
                         )
                     },
-                    colors = NavigationBarItemDefaults.colors(
+                    colors =
+                    NavigationBarItemDefaults.colors(
                         selectedIconColor = MaterialTheme.colorScheme.onSecondaryContainer,
                         selectedTextColor = MaterialTheme.colorScheme.onSecondaryContainer,
                         indicatorColor = MaterialTheme.colorScheme.secondaryContainer,

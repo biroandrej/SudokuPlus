@@ -1,10 +1,10 @@
 package sk.awisoft.sudokuplus.data.backup
 
+import kotlinx.coroutines.flow.first
+import kotlinx.serialization.Serializable
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
-import kotlinx.coroutines.flow.first
-import kotlinx.serialization.Serializable
 
 @Serializable
 data class SettingsBackup(

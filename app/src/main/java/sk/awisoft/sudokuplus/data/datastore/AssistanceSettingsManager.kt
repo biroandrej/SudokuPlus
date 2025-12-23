@@ -3,14 +3,16 @@ package sk.awisoft.sudokuplus.data.datastore
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
-import sk.awisoft.sudokuplus.core.PreferencesConstants
-import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintSettings
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.map
+import sk.awisoft.sudokuplus.core.PreferencesConstants
+import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintSettings
 
 @Singleton
-class AssistanceSettingsManager @Inject constructor(
+class AssistanceSettingsManager
+@Inject
+constructor(
     settingsDataStore: SettingsDataStore
 ) {
     private val dataStore = settingsDataStore.dataStore
@@ -27,9 +29,10 @@ class AssistanceSettingsManager @Inject constructor(
     private val ahCheckWrongValue = booleanPreferencesKey("ah_check_wrong_value")
 
     // Highlight mistakes
-    val highlightMistakes = dataStore.data.map { preferences ->
-        preferences[highlightMistakesKey] ?: PreferencesConstants.DEFAULT_HIGHLIGHT_MISTAKES
-    }
+    val highlightMistakes =
+        dataStore.data.map { preferences ->
+            preferences[highlightMistakesKey] ?: PreferencesConstants.DEFAULT_HIGHLIGHT_MISTAKES
+        }
 
     suspend fun setHighlightMistakes(value: Int) {
         dataStore.edit { settings ->
@@ -38,9 +41,10 @@ class AssistanceSettingsManager @Inject constructor(
     }
 
     // Highlight identical values
-    val highlightIdentical = dataStore.data.map { preferences ->
-        preferences[highlightIdenticalKey] ?: PreferencesConstants.DEFAULT_HIGHLIGHT_IDENTICAL
-    }
+    val highlightIdentical =
+        dataStore.data.map { preferences ->
+            preferences[highlightIdenticalKey] ?: PreferencesConstants.DEFAULT_HIGHLIGHT_IDENTICAL
+        }
 
     suspend fun setSameValuesHighlight(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -49,9 +53,10 @@ class AssistanceSettingsManager @Inject constructor(
     }
 
     // Remaining uses
-    val remainingUse = dataStore.data.map { preferences ->
-        preferences[remainingUseKey] ?: PreferencesConstants.DEFAULT_REMAINING_USES
-    }
+    val remainingUse =
+        dataStore.data.map { preferences ->
+            preferences[remainingUseKey] ?: PreferencesConstants.DEFAULT_REMAINING_USES
+        }
 
     suspend fun setRemainingUse(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -60,9 +65,10 @@ class AssistanceSettingsManager @Inject constructor(
     }
 
     // Position lines
-    val positionLines = dataStore.data.map { preferences ->
-        preferences[positionLinesKey] ?: PreferencesConstants.DEFAULT_POSITION_LINES
-    }
+    val positionLines =
+        dataStore.data.map { preferences ->
+            preferences[positionLinesKey] ?: PreferencesConstants.DEFAULT_POSITION_LINES
+        }
 
     suspend fun setPositionLines(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -71,9 +77,10 @@ class AssistanceSettingsManager @Inject constructor(
     }
 
     // Auto erase notes
-    val autoEraseNotes = dataStore.data.map { preferences ->
-        preferences[autoEraseNotesKey] ?: PreferencesConstants.DEFAULT_AUTO_ERASE_NOTES
-    }
+    val autoEraseNotes =
+        dataStore.data.map { preferences ->
+            preferences[autoEraseNotesKey] ?: PreferencesConstants.DEFAULT_AUTO_ERASE_NOTES
+        }
 
     suspend fun setAutoEraseNotes(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -82,9 +89,10 @@ class AssistanceSettingsManager @Inject constructor(
     }
 
     // Advanced hint
-    val advancedHintEnabled = dataStore.data.map { settings ->
-        settings[advancedHintKey] ?: PreferencesConstants.DEFAULT_ADVANCED_HINT
-    }
+    val advancedHintEnabled =
+        dataStore.data.map { settings ->
+            settings[advancedHintKey] ?: PreferencesConstants.DEFAULT_ADVANCED_HINT
+        }
 
     suspend fun setAdvancedHint(enabled: Boolean) {
         dataStore.edit { settings ->
@@ -92,14 +100,15 @@ class AssistanceSettingsManager @Inject constructor(
         }
     }
 
-    val advancedHintSettings = dataStore.data.map { settings ->
-        AdvancedHintSettings(
-            fullHouse = settings[ahFullHouseKey] ?: true,
-            nakedSingle = settings[ahNakedSingle] ?: true,
-            hiddenSingle = settings[ahHiddenSingle] ?: true,
-            checkWrongValue = settings[ahCheckWrongValue] ?: true
-        )
-    }
+    val advancedHintSettings =
+        dataStore.data.map { settings ->
+            AdvancedHintSettings(
+                fullHouse = settings[ahFullHouseKey] ?: true,
+                nakedSingle = settings[ahNakedSingle] ?: true,
+                hiddenSingle = settings[ahHiddenSingle] ?: true,
+                checkWrongValue = settings[ahCheckWrongValue] ?: true
+            )
+        }
 
     suspend fun updateAdvancedHintSettings(ahSettings: AdvancedHintSettings) {
         dataStore.edit { settings ->

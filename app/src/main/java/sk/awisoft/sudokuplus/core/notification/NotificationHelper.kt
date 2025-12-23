@@ -12,14 +12,16 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
-import sk.awisoft.sudokuplus.MainActivity
-import sk.awisoft.sudokuplus.R
 import javax.inject.Inject
 import javax.inject.Singleton
+import sk.awisoft.sudokuplus.MainActivity
+import sk.awisoft.sudokuplus.R
 
 @Singleton
-class NotificationHelper @Inject constructor(
-    @param: ApplicationContext private val context: Context
+class NotificationHelper
+@Inject
+constructor(
+    @param:ApplicationContext private val context: Context
 ) {
     companion object {
         const val CHANNEL_DAILY_CHALLENGE = "daily_challenge"
@@ -30,21 +32,23 @@ class NotificationHelper @Inject constructor(
     }
 
     fun createNotificationChannels() {
-        val dailyChallengeChannel = NotificationChannel(
-            CHANNEL_DAILY_CHALLENGE,
-            context.getString(R.string.notification_channel_daily_challenge),
-            NotificationManager.IMPORTANCE_DEFAULT
-        ).apply {
-            description = context.getString(R.string.notification_channel_daily_challenge_desc)
-        }
+        val dailyChallengeChannel =
+            NotificationChannel(
+                CHANNEL_DAILY_CHALLENGE,
+                context.getString(R.string.notification_channel_daily_challenge),
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = context.getString(R.string.notification_channel_daily_challenge_desc)
+            }
 
-        val streakReminderChannel = NotificationChannel(
-            CHANNEL_STREAK_REMINDER,
-            context.getString(R.string.notification_channel_streak_reminder),
-            NotificationManager.IMPORTANCE_DEFAULT
-        ).apply {
-            description = context.getString(R.string.notification_channel_streak_reminder_desc)
-        }
+        val streakReminderChannel =
+            NotificationChannel(
+                CHANNEL_STREAK_REMINDER,
+                context.getString(R.string.notification_channel_streak_reminder),
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = context.getString(R.string.notification_channel_streak_reminder_desc)
+            }
 
         val notificationManager = context.getSystemService(NotificationManager::class.java)
         notificationManager.createNotificationChannel(dailyChallengeChannel)
@@ -65,60 +69,74 @@ class NotificationHelper @Inject constructor(
     fun showDailyChallengeNotification() {
         if (!hasNotificationPermission()) return
 
-        val intent = Intent(context, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            putExtra("destination", "daily_challenge")
-        }
+        val intent =
+            Intent(context, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                putExtra("destination", "daily_challenge")
+            }
 
-        val pendingIntent = PendingIntent.getActivity(
-            context,
-            NOTIFICATION_ID_DAILY_CHALLENGE,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
+        val pendingIntent =
+            PendingIntent.getActivity(
+                context,
+                NOTIFICATION_ID_DAILY_CHALLENGE,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
 
-        val notification = NotificationCompat.Builder(context, CHANNEL_DAILY_CHALLENGE)
-            .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle(context.getString(R.string.notification_daily_challenge_title))
-            .setContentText(context.getString(R.string.notification_daily_challenge_text))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .build()
+        val notification =
+            NotificationCompat.Builder(context, CHANNEL_DAILY_CHALLENGE)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle(context.getString(R.string.notification_daily_challenge_title))
+                .setContentText(context.getString(R.string.notification_daily_challenge_text))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .build()
 
-        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID_DAILY_CHALLENGE, notification)
+        NotificationManagerCompat.from(
+            context
+        ).notify(NOTIFICATION_ID_DAILY_CHALLENGE, notification)
     }
 
     fun showStreakReminderNotification(currentStreak: Int) {
         if (!hasNotificationPermission()) return
 
-        val intent = Intent(context, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
+        val intent =
+            Intent(context, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
 
-        val pendingIntent = PendingIntent.getActivity(
-            context,
-            NOTIFICATION_ID_STREAK_REMINDER,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
+        val pendingIntent =
+            PendingIntent.getActivity(
+                context,
+                NOTIFICATION_ID_STREAK_REMINDER,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
 
-        val text = if (currentStreak > 0) {
-            context.getString(R.string.notification_streak_reminder_text_with_streak, currentStreak)
-        } else {
-            context.getString(R.string.notification_streak_reminder_text)
-        }
+        val text =
+            if (currentStreak > 0) {
+                context.getString(
+                    R.string.notification_streak_reminder_text_with_streak,
+                    currentStreak
+                )
+            } else {
+                context.getString(R.string.notification_streak_reminder_text)
+            }
 
-        val notification = NotificationCompat.Builder(context, CHANNEL_STREAK_REMINDER)
-            .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle(context.getString(R.string.notification_streak_reminder_title))
-            .setContentText(text)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .build()
+        val notification =
+            NotificationCompat.Builder(context, CHANNEL_STREAK_REMINDER)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle(context.getString(R.string.notification_streak_reminder_title))
+                .setContentText(text)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .build()
 
-        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID_STREAK_REMINDER, notification)
+        NotificationManagerCompat.from(
+            context
+        ).notify(NOTIFICATION_ID_STREAK_REMINDER, notification)
     }
 
     fun cancelNotification(notificationId: Int) {

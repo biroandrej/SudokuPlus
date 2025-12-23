@@ -37,13 +37,11 @@ import sk.awisoft.sudokuplus.ui.game.components.ToolbarItemHeight
 import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 
 @Composable
-fun FirstGameDialog(
-    onFinished: () -> Unit,
-    onDismiss: () -> Unit = { }
-) {
+fun FirstGameDialog(onFinished: () -> Unit, onDismiss: () -> Unit = { }) {
     Dialog(onDismissRequest = onDismiss) {
         Surface(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth(),
             shape = MaterialTheme.shapes.extraLarge,
             color = MaterialTheme.colorScheme.surfaceContainerHigh
@@ -72,7 +70,8 @@ fun FirstGameDialog(
 @Composable
 fun FirstGameScreen() {
     Column(
-        modifier = Modifier
+        modifier =
+        Modifier
             .verticalScroll(rememberScrollState())
             .padding(vertical = 12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -80,7 +79,8 @@ fun FirstGameScreen() {
         val toolbarWeight by remember { mutableFloatStateOf(0.35f) }
         ToolRow {
             ToolbarItem(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .weight(toolbarWeight)
                     .height(ToolbarItemHeight),
                 painter = painterResource(R.drawable.ic_round_undo_24),
@@ -94,7 +94,8 @@ fun FirstGameScreen() {
         }
         ToolRow {
             ToolbarItem(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .weight(toolbarWeight)
                     .height(ToolbarItemHeight),
                 painter = painterResource(R.drawable.ic_lightbulb_stars_24),
@@ -111,7 +112,8 @@ fun FirstGameScreen() {
             var noteToggled by remember { mutableStateOf(false) }
             var renderNotes by remember { mutableStateOf(true) }
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .weight(toolbarWeight)
                     .height(ToolbarItemHeight)
             ) {
@@ -121,7 +123,8 @@ fun FirstGameScreen() {
                     onComputeNotesClick = { },
                     onClearNotesClick = { },
                     renderNotes = renderNotes,
-                    onRenderNotesClick = { renderNotes = !renderNotes })
+                    onRenderNotesClick = { renderNotes = !renderNotes }
+                )
                 ToolbarItem(
                     modifier = Modifier.fillMaxSize(),
                     toggled = noteToggled,
@@ -140,7 +143,8 @@ fun FirstGameScreen() {
         }
         ToolRow {
             ToolbarItem(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .weight(toolbarWeight)
                     .height(ToolbarItemHeight),
                 painter = painterResource(R.drawable.ic_eraser_24),
@@ -157,12 +161,10 @@ fun FirstGameScreen() {
 }
 
 @Composable
-private fun ToolRow(
-    modifier: Modifier = Modifier,
-    content: @Composable RowScope.() -> Unit,
-) {
+private fun ToolRow(modifier: Modifier = Modifier, content: @Composable RowScope.() -> Unit) {
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,

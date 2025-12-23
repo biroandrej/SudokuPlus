@@ -13,9 +13,11 @@ object BoardColors {
 
     // Notes color - slightly muted version of foreground
     @Composable
-    fun notesColor(isDark: Boolean = isSystemInDarkTheme()): Color =
-        if (isDark) SudokuPlusColors.SoftCreamDark.copy(alpha = 0.75f)
-        else SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.7f)
+    fun notesColor(isDark: Boolean = isSystemInDarkTheme()): Color = if (isDark) {
+        SudokuPlusColors.SoftCreamDark.copy(alpha = 0.75f)
+    } else {
+        SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.7f)
+    }
 
     // User-entered numbers - Muted Teal (both modes)
     @Composable
@@ -27,21 +29,27 @@ object BoardColors {
 
     // Selected cell highlight - Warm Coral (both modes)
     @Composable
-    fun highlightColor(isDark: Boolean = isSystemInDarkTheme()): Color =
-        if (isDark) SudokuPlusColors.SurfaceContainerLight.copy(alpha = 0.4f)
-        else SudokuPlusColors.MutedTeal.copy(alpha = 0.35f)
+    fun highlightColor(isDark: Boolean = isSystemInDarkTheme()): Color = if (isDark) {
+        SudokuPlusColors.SurfaceContainerLight.copy(alpha = 0.4f)
+    } else {
+        SudokuPlusColors.MutedTeal.copy(alpha = 0.35f)
+    }
 
     // Thick grid lines (3x3 box separators) - Deep Slate Blue (light) / Soft Cream (dark)
     @Composable
-    fun thickLineColor(isDark: Boolean = isSystemInDarkTheme()): Color =
-        if (isDark) SudokuPlusColors.SoftCream.copy(alpha = 0.6f)
-        else SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.7f)
+    fun thickLineColor(isDark: Boolean = isSystemInDarkTheme()): Color = if (isDark) {
+        SudokuPlusColors.SoftCream.copy(alpha = 0.6f)
+    } else {
+        SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.7f)
+    }
 
     // Thin grid lines (cell separators)
     @Composable
-    fun thinLineColor(isDark: Boolean = isSystemInDarkTheme()): Color =
-        if (isDark) SudokuPlusColors.SoftCream.copy(alpha = 0.25f)
-        else SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.3f)
+    fun thinLineColor(isDark: Boolean = isSystemInDarkTheme()): Color = if (isDark) {
+        SudokuPlusColors.SoftCream.copy(alpha = 0.25f)
+    } else {
+        SudokuPlusColors.DeepSlateBlue.copy(alpha = 0.3f)
+    }
 }
 
 interface SudokuBoardColors {
@@ -61,5 +69,5 @@ class SudokuBoardColorsImpl(
     override val errorColor: Color = Color.White,
     override val highlightColor: Color = Color.White,
     override val thickLineColor: Color = Color.White,
-    override val thinLineColor: Color = Color.White,
+    override val thinLineColor: Color = Color.White
 ) : SudokuBoardColors

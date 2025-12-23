@@ -1,5 +1,9 @@
 package sk.awisoft.sudokuplus.core.achievement
 
+import java.time.Duration
+import java.time.LocalDate
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.flow.first
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
@@ -10,10 +14,6 @@ import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
-import java.time.Duration
-import java.time.LocalDate
-import javax.inject.Inject
-import javax.inject.Singleton
 
 data class GameCompletionData(
     val difficulty: GameDifficulty,
@@ -25,7 +25,9 @@ data class GameCompletionData(
 )
 
 @Singleton
-class AchievementEngine @Inject constructor(
+class AchievementEngine
+@Inject
+constructor(
     private val achievementRepository: AchievementRepository,
     private val savedGameRepository: SavedGameRepository,
     private val recordRepository: RecordRepository,
@@ -116,7 +118,8 @@ class AchievementEngine @Inject constructor(
             }
 
             is AchievementRequirement.GamesCompletedUnderTime -> {
-                val isCompleted = completionData.difficulty == requirement.difficulty &&
+                val isCompleted =
+                    completionData.difficulty == requirement.difficulty &&
                         completionData.completionTime.seconds <= requirement.seconds
                 val progress = if (isCompleted) 1 else 0
                 progress to isCompleted
@@ -252,22 +255,24 @@ class AchievementEngine @Inject constructor(
 
     private suspend fun getPlayStreak(): Int {
         val savedGames = savedGameRepository.getAll().first()
-        val playDates = savedGames
-            .filter { it.completed && !it.giveUp && it.finishedAt != null }
-            .mapNotNull { it.finishedAt?.toLocalDate() }
-            .distinct()
-            .sorted()
+        val playDates =
+            savedGames
+                .filter { it.completed && !it.giveUp && it.finishedAt != null }
+                .mapNotNull { it.finishedAt?.toLocalDate() }
+                .distinct()
+                .sorted()
 
         return calculateStreak(playDates)
     }
 
     private suspend fun getBestPlayStreak(): Int {
         val savedGames = savedGameRepository.getAll().first()
-        val playDates = savedGames
-            .filter { it.completed && !it.giveUp && it.finishedAt != null }
-            .mapNotNull { it.finishedAt?.toLocalDate() }
-            .distinct()
-            .sorted()
+        val playDates =
+            savedGames
+                .filter { it.completed && !it.giveUp && it.finishedAt != null }
+                .mapNotNull { it.finishedAt?.toLocalDate() }
+                .distinct()
+                .sorted()
 
         return calculateBestStreak(playDates)
     }

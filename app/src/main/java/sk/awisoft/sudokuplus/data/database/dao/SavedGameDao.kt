@@ -6,9 +6,9 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SavedGameDao {
@@ -20,25 +20,25 @@ interface SavedGameDao {
 
     @Query(
         "SELECT * FROM saved_game " +
-                "JOIN board ON saved_game.board_uid == board.uid " +
-                "ORDER BY uid DESC"
+            "JOIN board ON saved_game.board_uid == board.uid " +
+            "ORDER BY uid DESC"
     )
     fun getSavedWithBoards(): Flow<Map<SavedGame, SudokuBoard>>
 
     @Query(
         "SELECT * " +
-                "FROM saved_game " +
-                "ORDER BY board_uid DESC " +
-                "LIMIT 1"
+            "FROM saved_game " +
+            "ORDER BY board_uid DESC " +
+            "LIMIT 1"
     )
     fun getLast(): Flow<SavedGame?>
 
     @Query(
         "SELECT * FROM saved_game " +
-                "JOIN board on saved_game.board_uid == board.uid " +
-                "WHERE saved_game.can_continue == 1 " +
-                "ORDER BY last_played DESC " +
-                "LIMIT :limit "
+            "JOIN board on saved_game.board_uid == board.uid " +
+            "WHERE saved_game.can_continue == 1 " +
+            "ORDER BY last_played DESC " +
+            "LIMIT :limit "
     )
     fun getLastPlayable(limit: Int): Flow<Map<SavedGame, SudokuBoard>>
 

@@ -5,13 +5,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,36 +21,34 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navOptions
+import com.ramcosta.composedestinations.DestinationsNavHost
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navOptions
+import sk.awisoft.sudokuplus.core.PreferencesConstants
+import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.destinations.HomeScreenDestination
 import sk.awisoft.sudokuplus.destinations.ImportFromFileScreenDestination
 import sk.awisoft.sudokuplus.destinations.MoreScreenDestination
 import sk.awisoft.sudokuplus.destinations.StatisticsScreenDestination
 import sk.awisoft.sudokuplus.destinations.WelcomeScreenDestination
-import com.ramcosta.composedestinations.DestinationsNavHost
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
-import sk.awisoft.sudokuplus.core.PreferencesConstants
-import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
-import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.ui.components.navigation_bar.NavigationBarComponent
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
-import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
-import javax.inject.Inject
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 
 val LocalBoardColors = staticCompositionLocalOf { SudokuBoardColorsImpl() }
 
@@ -87,14 +83,15 @@ class MainActivity : ComponentActivity() {
             settingsLoaded = true
 
             SudokuPlusTheme(
-                darkTheme = when (settings.darkTheme) {
+                darkTheme =
+                when (settings.darkTheme) {
                     1 -> false
                     2 -> true
                     else -> isSystemInDarkTheme()
                 },
                 dynamicColor = settings.dynamicColors,
                 amoled = settings.amoledBlack,
-                colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR),
+                colorSeed = Color(PreferencesConstants.DEFAULT_THEME_SEED_COLOR)
             ) {
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -102,16 +99,18 @@ class MainActivity : ComponentActivity() {
                 var bottomBarState by rememberSaveable { mutableStateOf(false) }
 
                 LaunchedEffect(navBackStackEntry) {
-                    bottomBarState = when (navBackStackEntry?.destination?.route) {
-                        StatisticsScreenDestination.route, HomeScreenDestination.route, MoreScreenDestination.route -> true
-                        else -> false
-                    }
+                    bottomBarState =
+                        when (navBackStackEntry?.destination?.route) {
+                            StatisticsScreenDestination.route, HomeScreenDestination.route, MoreScreenDestination.route -> true
+                            else -> false
+                        }
                 }
                 LaunchedEffect(firstLaunch) {
                     if (firstLaunch) {
                         navController.navigate(
                             route = WelcomeScreenDestination.route,
-                            navOptions = navOptions {
+                            navOptions =
+                            navOptions {
                                 popUpTo(HomeScreenDestination.route) {
                                     inclusive = true
                                 }
@@ -136,11 +135,12 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                val resolvedDarkTheme = when (settings.darkTheme) {
-                    1 -> false
-                    2 -> true
-                    else -> isSystemInDarkTheme()
-                }
+                val resolvedDarkTheme =
+                    when (settings.darkTheme) {
+                        1 -> false
+                        2 -> true
+                        else -> isSystemInDarkTheme()
+                    }
                 val boardColors =
                     if (settings.monetSudokuBoard) {
                         SudokuBoardColorsImpl(
@@ -156,7 +156,9 @@ class MainActivity : ComponentActivity() {
                         SudokuBoardColorsImpl(
                             foregroundColor = MaterialTheme.colorScheme.onSurface,
                             notesColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f),
-                            altForegroundColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                            altForegroundColor = MaterialTheme.colorScheme.onSurface.copy(
+                                alpha = 0.7f
+                            ),
                             errorColor = BoardColors.errorColor(),
                             highlightColor = MaterialTheme.colorScheme.outline,
                             thickLineColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.55f),
@@ -194,7 +196,8 @@ data class ThemeSettings(
 
 @HiltViewModel
 class MainActivityViewModel
-@Inject constructor(
+@Inject
+constructor(
     themeSettingsManager: ThemeSettingsManager,
     appSettingsManager: AppSettingsManager
 ) : ViewModel() {
@@ -202,22 +205,22 @@ class MainActivityViewModel
 
     // Combine all theme settings into a single flow
     // This ensures we only render once ALL settings are loaded
-    val themeSettings: StateFlow<ThemeSettings?> = combine(
-        themeSettingsManager.dynamicColors,
-        themeSettingsManager.darkTheme,
-        themeSettingsManager.amoledBlack,
-        themeSettingsManager.monetSudokuBoard
-    ) { dynamicColors, darkTheme, amoledBlack, monetSudokuBoard ->
-        ThemeSettings(
-            dynamicColors = dynamicColors,
-            darkTheme = darkTheme,
-            amoledBlack = amoledBlack,
-            monetSudokuBoard = monetSudokuBoard
+    val themeSettings: StateFlow<ThemeSettings?> =
+        combine(
+            themeSettingsManager.dynamicColors,
+            themeSettingsManager.darkTheme,
+            themeSettingsManager.amoledBlack,
+            themeSettingsManager.monetSudokuBoard
+        ) { dynamicColors, darkTheme, amoledBlack, monetSudokuBoard ->
+            ThemeSettings(
+                dynamicColors = dynamicColors,
+                darkTheme = darkTheme,
+                amoledBlack = amoledBlack,
+                monetSudokuBoard = monetSudokuBoard
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = null
         )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = null
-    )
 }
-

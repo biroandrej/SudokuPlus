@@ -8,6 +8,15 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import kotlin.math.pow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.Note
 import sk.awisoft.sudokuplus.core.qqwing.Cage
@@ -22,19 +31,11 @@ import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import sk.awisoft.sudokuplus.domain.usecase.folder.GetFolderUseCase
 import sk.awisoft.sudokuplus.navArgs
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
-import kotlin.math.pow
 
 @HiltViewModel
 class SavedGameViewModel
-@Inject constructor(
+@Inject
+constructor(
     private val boardRepository: BoardRepository,
     private val savedGameRepository: SavedGameRepository,
     private val getFolderUseCase: GetFolderUseCase,
@@ -113,14 +114,17 @@ class SavedGameViewModel
             var totalCells = 1
             var count = 0
             boardEntity?.let { board ->
-                totalCells = (board.type.sectionWidth * board.type.sectionHeight)
-                    .toDouble()
-                    .pow(2.0)
-                    .toInt()
+                totalCells =
+                    (board.type.sectionWidth * board.type.sectionHeight)
+                        .toDouble()
+                        .pow(2.0)
+                        .toInt()
                 count =
                     totalCells - parsedCurrentBoard.sumOf { cells -> cells.count { cell -> cell.value == 0 } }
             }
-            _gameProgressPercentage.emit((count.toFloat() / totalCells.toFloat() * 100f).toInt())
+            _gameProgressPercentage.emit(
+                (count.toFloat() / totalCells.toFloat() * 100f).toInt()
+            )
         }
     }
 

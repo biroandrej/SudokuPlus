@@ -17,18 +17,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +39,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.BuildConfig
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.DEVELOPER_EMAIL
@@ -48,16 +50,11 @@ import sk.awisoft.sudokuplus.destinations.AboutLibrariesScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.theme.ColorUtils.harmonizeWithPrimary
 import sk.awisoft.sudokuplus.util.FlavorUtil
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-fun AboutScreen(
-    navigator: DestinationsNavigator
-) {
+fun AboutScreen(navigator: DestinationsNavigator) {
     val uriHandler = LocalUriHandler.current
 
     Scaffold(
@@ -76,14 +73,15 @@ fun AboutScreen(
         }
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(paddingValues)
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-
             Icon(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .padding(12.dp)
                     .align(Alignment.CenterHorizontally)
                     .size(48.dp),
@@ -94,7 +92,8 @@ fun AboutScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
             Row(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
@@ -106,7 +105,8 @@ fun AboutScreen(
             }
             Spacer(modifier = Modifier.height(4.dp))
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .clip(MaterialTheme.shapes.large)
                     .background(MaterialTheme.colorScheme.surfaceContainerHighest)
                     .align(Alignment.CenterHorizontally)
@@ -123,7 +123,8 @@ fun AboutScreen(
             }
 
             FlowRow(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .padding(horizontal = 12.dp, vertical = 8.dp)
                     .align(Alignment.CenterHorizontally)
                     .fillMaxWidth(),
@@ -154,7 +155,6 @@ fun AboutScreen(
     }
 }
 
-
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun FlowRowScope.AboutSectionBox(
@@ -166,7 +166,8 @@ fun FlowRowScope.AboutSectionBox(
     additionalContent: @Composable (ColumnScope.() -> Unit)? = null
 ) {
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .clip(MaterialTheme.shapes.large)
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .fillMaxRowHeight()

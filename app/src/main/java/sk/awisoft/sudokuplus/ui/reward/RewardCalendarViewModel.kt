@@ -3,6 +3,7 @@ package sk.awisoft.sudokuplus.ui.reward
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,28 +20,34 @@ import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarState
 import sk.awisoft.sudokuplus.core.reward.RewardDefinitions
 import sk.awisoft.sudokuplus.data.database.model.RewardBadge
-import javax.inject.Inject
 
 @HiltViewModel
-class RewardCalendarViewModel @Inject constructor(
+class RewardCalendarViewModel
+@Inject
+constructor(
     private val rewardCalendarManager: RewardCalendarManager
 ) : ViewModel() {
-
     sealed interface UiEvent {
-        data class RewardClaimed(val reward: DailyReward, val earnedBadge: BadgeDefinition? = null) : UiEvent
+        data class RewardClaimed(
+            val reward: DailyReward,
+            val earnedBadge: BadgeDefinition? = null
+        ) : UiEvent
+
         data object AlreadyClaimed : UiEvent
     }
 
     private val _uiEvents = MutableSharedFlow<UiEvent>(extraBufferCapacity = 1)
     val uiEvents = _uiEvents.asSharedFlow()
 
-    val calendarState: StateFlow<RewardCalendarState?> = rewardCalendarManager.getCalendarState()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+    val calendarState: StateFlow<RewardCalendarState?> =
+        rewardCalendarManager.getCalendarState()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     val rewardCycle: List<DailyReward> = RewardDefinitions.rewardCycle
 
-    val earnedBadges: StateFlow<List<RewardBadge>> = rewardCalendarManager.getEarnedBadges()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+    val earnedBadges: StateFlow<List<RewardBadge>> =
+        rewardCalendarManager.getEarnedBadges()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     val badgeDefinitions: List<BadgeDefinition> = BadgeDefinitions.all
 

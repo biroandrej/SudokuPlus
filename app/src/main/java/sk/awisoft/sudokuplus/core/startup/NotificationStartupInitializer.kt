@@ -15,7 +15,6 @@ import sk.awisoft.sudokuplus.core.notification.NotificationInitializer
  * which happens after App Startup initializers run.
  */
 class NotificationStartupInitializer : Initializer<Unit> {
-
     @EntryPoint
     @InstallIn(SingletonComponent::class)
     interface NotificationInitializerEntryPoint {
@@ -23,10 +22,11 @@ class NotificationStartupInitializer : Initializer<Unit> {
     }
 
     override fun create(context: Context) {
-        val entryPoint = EntryPointAccessors.fromApplication(
-            context.applicationContext,
-            NotificationInitializerEntryPoint::class.java
-        )
+        val entryPoint =
+            EntryPointAccessors.fromApplication(
+                context.applicationContext,
+                NotificationInitializerEntryPoint::class.java
+            )
         val notificationInitializer = entryPoint.notificationInitializer()
 
         // Only create channels here - worker scheduling is done in Application.onCreate()

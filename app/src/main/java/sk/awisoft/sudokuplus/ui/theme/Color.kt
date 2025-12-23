@@ -41,20 +41,16 @@ object SudokuPlusColors {
     val ErrorContainerLight = Color(0xFFFFDAD6)
     val ErrorContainerDark = Color(0xFF93000A)
 }
+
 object ColorUtils {
+    fun Color.blend(color: Color, @FloatRange(from = 0.0, to = 1.0) fraction: Float = 0.2f): Color =
+        ColorUtils.blendARGB(this.toArgb(), color.toArgb(), fraction).toColor()
 
-    fun Color.blend(
-        color: Color,
-        @FloatRange(from = 0.0, to = 1.0) fraction: Float = 0.2f
-    ): Color = ColorUtils.blendARGB(this.toArgb(), color.toArgb(), fraction).toColor()
+    fun Color.darken(@FloatRange(from = 0.0, to = 1.0) fraction: Float = 0.2f): Color =
+        blend(color = Color.Black, fraction = fraction)
 
-    fun Color.darken(
-        @FloatRange(from = 0.0, to = 1.0) fraction: Float = 0.2f
-    ): Color = blend(color = Color.Black, fraction = fraction)
-
-    fun Color.lighten(
-        @FloatRange(from = 0.0, to = 1.0) fraction: Float = 0.2f
-    ): Color = blend(color = Color.White, fraction = fraction)
+    fun Color.lighten(@FloatRange(from = 0.0, to = 1.0) fraction: Float = 0.2f): Color =
+        blend(color = Color.White, fraction = fraction)
 
     fun Int.toColor(): Color = Color(color = this)
 
@@ -65,5 +61,4 @@ object ColorUtils {
             to = 1.0
         ) fraction: Float = 0.2f
     ): Color = blend(MaterialTheme.colorScheme.primary, fraction)
-
 }

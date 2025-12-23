@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.googleServices)
     alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.ktlint)
     id("kotlin-parcelize")
 }
 
@@ -36,7 +37,7 @@ android {
             useSupportLibrary = true
         }
     }
-    
+
     dependenciesInfo {
         includeInApk = false
         includeInBundle = false
@@ -73,12 +74,16 @@ android {
         }
         release {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = if (keystorePropertiesFile.exists()) {
-                signingConfigs.getByName("release")
-            } else {
-                null // CI will sign separately
-            }
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig =
+                if (keystorePropertiesFile.exists()) {
+                    signingConfigs.getByName("release")
+                } else {
+                    null // CI will sign separately
+                }
             ndk {
                 debugSymbolLevel = "FULL"
             }

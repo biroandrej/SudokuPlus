@@ -26,13 +26,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Bolt
 import androidx.compose.material.icons.rounded.CardGiftcard
 import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.Lock
-import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material.icons.rounded.TipsAndUpdates
-import androidx.compose.material.icons.rounded.Bolt
 import androidx.compose.material.icons.rounded.EmojiEvents
+import androidx.compose.material.icons.rounded.Lock
+import androidx.compose.material.icons.rounded.TipsAndUpdates
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -67,19 +66,19 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import java.time.ZonedDateTime
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.reward.BadgeDefinition
 import sk.awisoft.sudokuplus.core.reward.BadgeDefinitions
 import sk.awisoft.sudokuplus.core.reward.BadgeRarity
 import sk.awisoft.sudokuplus.core.reward.DailyReward
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarState
-import sk.awisoft.sudokuplus.core.reward.RewardType
 import sk.awisoft.sudokuplus.core.reward.RewardDefinitions
+import sk.awisoft.sudokuplus.core.reward.RewardType
 import sk.awisoft.sudokuplus.data.database.model.RewardBadge
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.util.LightDarkPreview
-import java.time.ZonedDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination<RootGraph>(style = AnimatedNavigation::class)
@@ -122,7 +121,8 @@ fun RewardCalendarScreen(
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
+                colors =
+                TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             )
@@ -131,7 +131,8 @@ fun RewardCalendarScreen(
     ) { paddingValues ->
         calendarState?.let { state ->
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
                     .padding(16.dp)
@@ -193,18 +194,17 @@ fun RewardCalendarScreen(
 }
 
 @Composable
-private fun ProgressSection(
-    state: RewardCalendarState,
-    modifier: Modifier = Modifier
-) {
+private fun ProgressSection(state: RewardCalendarState, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(
+        colors =
+        CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         )
     ) {
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
@@ -220,7 +220,10 @@ private fun ProgressSection(
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
                 Text(
-                    text = stringResource(R.string.reward_calendar_total_claimed, state.totalDaysClaimed),
+                    text = stringResource(
+                        R.string.reward_calendar_total_claimed,
+                        state.totalDaysClaimed
+                    ),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                 )
@@ -230,7 +233,8 @@ private fun ProgressSection(
 
             LinearProgressIndicator(
                 progress = { state.cycleProgress },
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxWidth()
                     .height(8.dp)
                     .clip(RoundedCornerShape(4.dp)),
@@ -253,11 +257,7 @@ private fun ProgressSection(
 }
 
 @Composable
-private fun BonusesSection(
-    bonusHints: Int,
-    xpBoostGames: Int,
-    modifier: Modifier = Modifier
-) {
+private fun BonusesSection(bonusHints: Int, xpBoostGames: Int, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -290,12 +290,14 @@ private fun BonusCard(
 ) {
     Card(
         modifier = modifier,
-        colors = CardDefaults.cardColors(
+        colors =
+        CardDefaults.cardColors(
             containerColor = color.copy(alpha = 0.15f)
         )
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -332,7 +334,8 @@ private fun ClaimButton(
     Button(
         onClick = onClick,
         enabled = !isLoading,
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .scale(scale),
         shape = RoundedCornerShape(16.dp)
@@ -397,7 +400,8 @@ private fun RewardDayCard(
     modifier: Modifier = Modifier
 ) {
     val backgroundColor by animateColorAsState(
-        targetValue = when {
+        targetValue =
+        when {
             isClaimed -> MaterialTheme.colorScheme.primaryContainer
             isToday && canClaim -> MaterialTheme.colorScheme.tertiaryContainer
             isToday -> MaterialTheme.colorScheme.secondaryContainer
@@ -406,14 +410,16 @@ private fun RewardDayCard(
         label = "bg_color"
     )
 
-    val borderColor = if (isToday) {
-        MaterialTheme.colorScheme.primary
-    } else {
-        Color.Transparent
-    }
+    val borderColor =
+        if (isToday) {
+            MaterialTheme.colorScheme.primary
+        } else {
+            Color.Transparent
+        }
 
     Card(
-        modifier = modifier
+        modifier =
+        modifier
             .aspectRatio(1f)
             .then(
                 if (isToday) {
@@ -454,7 +460,8 @@ private fun RewardDayCard(
                         Icon(
                             imageVector = getRewardIcon(reward.rewardType),
                             contentDescription = null,
-                            tint = if (reward.isSpecial) {
+                            tint =
+                            if (reward.isSpecial) {
                                 Color(0xFFFFD700)
                             } else {
                                 MaterialTheme.colorScheme.onSecondaryContainer
@@ -470,9 +477,12 @@ private fun RewardDayCard(
                     text = reward.day.toString(),
                     style = MaterialTheme.typography.labelSmall,
                     fontWeight = if (isToday) FontWeight.Bold else FontWeight.Normal,
-                    color = when {
+                    color =
+                    when {
                         isClaimed -> MaterialTheme.colorScheme.onPrimaryContainer
-                        isLocked -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+                        isLocked -> MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                            alpha = 0.5f
+                        )
                         else -> MaterialTheme.colorScheme.onSecondaryContainer
                     }
                 )
@@ -481,7 +491,8 @@ private fun RewardDayCard(
             // Special day indicator
             if (reward.isSpecial && !isClaimed) {
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .align(Alignment.TopEnd)
                         .padding(4.dp)
                         .size(8.dp)
@@ -535,20 +546,19 @@ private fun EarnedBadgesSection(
 }
 
 @Composable
-private fun BadgeItem(
-    badge: BadgeDefinition,
-    modifier: Modifier = Modifier
-) {
-    val badgeColor = when (badge.rarity) {
-        BadgeRarity.COMMON -> Color(0xFF78909C)
-        BadgeRarity.RARE -> Color(0xFF42A5F5)
-        BadgeRarity.EPIC -> Color(0xFFAB47BC)
-        BadgeRarity.LEGENDARY -> Color(0xFFFFD700)
-    }
+private fun BadgeItem(badge: BadgeDefinition, modifier: Modifier = Modifier) {
+    val badgeColor =
+        when (badge.rarity) {
+            BadgeRarity.COMMON -> Color(0xFF78909C)
+            BadgeRarity.RARE -> Color(0xFF42A5F5)
+            BadgeRarity.EPIC -> Color(0xFFAB47BC)
+            BadgeRarity.LEGENDARY -> Color(0xFFFFD700)
+        }
 
     Card(
         modifier = modifier.aspectRatio(1f),
-        colors = CardDefaults.cardColors(
+        colors =
+        CardDefaults.cardColors(
             containerColor = badgeColor.copy(alpha = 0.15f)
         ),
         shape = RoundedCornerShape(12.dp)
@@ -583,26 +593,29 @@ private fun BadgeItem(
 @LightDarkPreview
 @Composable
 private fun RewardCalendarScreenPreview() {
-    val sampleState = RewardCalendarState(
-        currentDay = 12,
-        canClaimToday = true,
-        todayReward = RewardDefinitions.getRewardForDay(12),
-        bonusHints = 2,
-        xpBoostGamesRemaining = 1,
-        totalDaysClaimed = 11,
-        cycleProgress = 12f / RewardDefinitions.CYCLE_LENGTH
-    )
-    val earnedBadges = listOf(
-        RewardBadge(
-            badgeId = BadgeDefinitions.all.first().id,
-            earnedAt = ZonedDateTime.now(),
-            cycleNumber = 1
+    val sampleState =
+        RewardCalendarState(
+            currentDay = 12,
+            canClaimToday = true,
+            todayReward = RewardDefinitions.getRewardForDay(12),
+            bonusHints = 2,
+            xpBoostGamesRemaining = 1,
+            totalDaysClaimed = 11,
+            cycleProgress = 12f / RewardDefinitions.CYCLE_LENGTH
         )
-    )
+    val earnedBadges =
+        listOf(
+            RewardBadge(
+                badgeId = BadgeDefinitions.all.first().id,
+                earnedAt = ZonedDateTime.now(),
+                cycleNumber = 1
+            )
+        )
     SudokuPlusTheme {
         Surface {
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxSize()
                     .padding(16.dp)
             ) {

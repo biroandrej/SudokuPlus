@@ -56,7 +56,8 @@ fun RewardClaimDialog(
     LaunchedEffect(Unit) {
         scale.animateTo(
             targetValue = 1f,
-            animationSpec = spring(
+            animationSpec =
+            spring(
                 dampingRatio = Spring.DampingRatioMediumBouncy,
                 stiffness = Spring.StiffnessMedium
             )
@@ -65,23 +66,27 @@ fun RewardClaimDialog(
 
     Dialog(
         onDismissRequest = onDismiss,
-        properties = DialogProperties(
+        properties =
+        DialogProperties(
             dismissOnBackPress = true,
             dismissOnClickOutside = true
         )
     ) {
         Card(
-            modifier = modifier
+            modifier =
+            modifier
                 .fillMaxWidth()
                 .scale(scale.value),
             shape = RoundedCornerShape(24.dp),
-            colors = CardDefaults.cardColors(
+            colors =
+            CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surface
             ),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
         ) {
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxWidth()
                     .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -89,7 +94,8 @@ fun RewardClaimDialog(
             ) {
                 // Icon with animated background
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .size(80.dp)
                         .background(
                             color = getRewardColor(reward.rewardType).copy(alpha = 0.15f),
@@ -126,13 +132,15 @@ fun RewardClaimDialog(
 
                 // Reward details
                 Card(
-                    colors = CardDefaults.cardColors(
+                    colors =
+                    CardDefaults.cardColors(
                         containerColor = getRewardColor(reward.rewardType).copy(alpha = 0.1f)
                     ),
                     shape = RoundedCornerShape(16.dp)
                 ) {
                     Column(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .fillMaxWidth()
                             .padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
@@ -179,26 +187,26 @@ fun RewardClaimDialog(
 }
 
 @Composable
-private fun BadgeEarnedSection(
-    badge: BadgeDefinition,
-    modifier: Modifier = Modifier
-) {
-    val badgeColor = when (badge.rarity) {
-        BadgeRarity.COMMON -> Color(0xFF78909C)
-        BadgeRarity.RARE -> Color(0xFF42A5F5)
-        BadgeRarity.EPIC -> Color(0xFFAB47BC)
-        BadgeRarity.LEGENDARY -> Color(0xFFFFD700)
-    }
+private fun BadgeEarnedSection(badge: BadgeDefinition, modifier: Modifier = Modifier) {
+    val badgeColor =
+        when (badge.rarity) {
+            BadgeRarity.COMMON -> Color(0xFF78909C)
+            BadgeRarity.RARE -> Color(0xFF42A5F5)
+            BadgeRarity.EPIC -> Color(0xFFAB47BC)
+            BadgeRarity.LEGENDARY -> Color(0xFFFFD700)
+        }
 
     Card(
         modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(
+        colors =
+        CardDefaults.cardColors(
             containerColor = badgeColor.copy(alpha = 0.1f)
         ),
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally

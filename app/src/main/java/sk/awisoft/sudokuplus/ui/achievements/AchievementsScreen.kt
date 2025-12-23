@@ -54,6 +54,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import java.time.ZonedDateTime
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.achievement.AchievementDefinitions
 import sk.awisoft.sudokuplus.data.database.model.AchievementCategory
@@ -61,7 +62,6 @@ import sk.awisoft.sudokuplus.data.database.model.AchievementTier
 import sk.awisoft.sudokuplus.data.database.model.UserAchievement
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
-import java.time.ZonedDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination<RootGraph>(style = AnimatedNavigation::class)
@@ -108,14 +108,16 @@ private fun AchievementsScreenContent(
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
+                colors =
+                TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             )
         }
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
@@ -162,12 +164,14 @@ private fun AchievementsSummary(
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(
+        colors =
+        CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         )
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -229,7 +233,8 @@ private fun CategoryFilterRow(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .horizontalScroll(rememberScrollState())
             .padding(horizontal = 16.dp),
@@ -239,7 +244,8 @@ private fun CategoryFilterRow(
             selected = selectedCategory == null,
             onClick = { onCategorySelected(null) },
             label = { Text(stringResource(R.string.achievement_category_all)) },
-            colors = FilterChipDefaults.filterChipColors(
+            colors =
+            FilterChipDefaults.filterChipColors(
                 selectedContainerColor = MaterialTheme.colorScheme.primaryContainer
             )
         )
@@ -249,7 +255,8 @@ private fun CategoryFilterRow(
                 selected = selectedCategory == category,
                 onClick = { onCategorySelected(category) },
                 label = { Text(stringResource(category.displayName)) },
-                colors = FilterChipDefaults.filterChipColors(
+                colors =
+                FilterChipDefaults.filterChipColors(
                     selectedContainerColor = MaterialTheme.colorScheme.primaryContainer
                 )
             )
@@ -258,24 +265,25 @@ private fun CategoryFilterRow(
 }
 
 @Composable
-private fun AchievementCard(
-    achievement: AchievementWithProgress,
-    modifier: Modifier = Modifier
-) {
+private fun AchievementCard(achievement: AchievementWithProgress, modifier: Modifier = Modifier) {
     val isUnlocked = achievement.isUnlocked
     val tierColor = getTierColor(achievement.definition.tier)
 
     Card(
         modifier = modifier.alpha(if (isUnlocked) 1f else 0.7f),
-        colors = CardDefaults.cardColors(
-            containerColor = if (isUnlocked)
+        colors =
+        CardDefaults.cardColors(
+            containerColor =
+            if (isUnlocked) {
                 MaterialTheme.colorScheme.surfaceContainerHigh
-            else
+            } else {
                 MaterialTheme.colorScheme.surfaceContainerLow
+            }
         )
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -283,12 +291,16 @@ private fun AchievementCard(
         ) {
             // Achievement icon
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .size(56.dp)
                     .clip(CircleShape)
                     .background(
-                        if (isUnlocked) tierColor.copy(alpha = 0.2f)
-                        else MaterialTheme.colorScheme.surfaceVariant
+                        if (isUnlocked) {
+                            tierColor.copy(alpha = 0.2f)
+                        } else {
+                            MaterialTheme.colorScheme.surfaceVariant
+                        }
                     ),
                 contentAlignment = Alignment.Center
             ) {
@@ -357,7 +369,8 @@ private fun AchievementCard(
                     ) {
                         LinearProgressIndicator(
                             progress = { achievement.progressPercent },
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .weight(1f)
                                 .height(6.dp)
                                 .clip(MaterialTheme.shapes.small),
@@ -376,7 +389,8 @@ private fun AchievementCard(
             // Unlocked checkmark
             if (isUnlocked) {
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .size(32.dp)
                         .clip(CircleShape)
                         .background(MaterialTheme.colorScheme.primary),
@@ -407,28 +421,40 @@ private fun getTierColor(tier: AchievementTier): Color {
 @Preview(showBackground = true)
 @Composable
 private fun AchievementsScreenPreview() {
-    val sampleAchievements = AchievementDefinitions.all.take(6).mapIndexed { index, definition ->
-        val isUnlocked = index < 2
-        val progress = when {
-            isUnlocked -> AchievementDefinitions.getRequirementValue(definition.requirement)
-            index == 2 -> (AchievementDefinitions.getRequirementValue(definition.requirement) * 0.7).toInt()
-            index == 3 -> (AchievementDefinitions.getRequirementValue(definition.requirement) * 0.3).toInt()
-            else -> 0
-        }
-        val required = AchievementDefinitions.getRequirementValue(definition.requirement)
+    val sampleAchievements =
+        AchievementDefinitions.all.take(6).mapIndexed { index, definition ->
+            val isUnlocked = index < 2
+            val progress =
+                when {
+                    isUnlocked -> AchievementDefinitions.getRequirementValue(definition.requirement)
+                    index == 2 -> (AchievementDefinitions.getRequirementValue(definition.requirement) * 0.7).toInt()
+                    index == 3 -> (AchievementDefinitions.getRequirementValue(definition.requirement) * 0.3).toInt()
+                    else -> 0
+                }
+            val required = AchievementDefinitions.getRequirementValue(definition.requirement)
 
-        AchievementWithProgress(
-            definition = definition,
-            userAchievement = if (isUnlocked || progress > 0) {
-                UserAchievement(
-                    achievementId = definition.id,
-                    progress = progress,
-                    unlockedAt = if (isUnlocked) ZonedDateTime.now() else null
-                )
-            } else null,
-            progressPercent = if (isUnlocked) 1f else (progress.toFloat() / required).coerceIn(0f, 1f)
-        )
-    }
+            AchievementWithProgress(
+                definition = definition,
+                userAchievement =
+                if (isUnlocked || progress > 0) {
+                    UserAchievement(
+                        achievementId = definition.id,
+                        progress = progress,
+                        unlockedAt = if (isUnlocked) ZonedDateTime.now() else null
+                    )
+                } else {
+                    null
+                },
+                progressPercent = if (isUnlocked) {
+                    1f
+                } else {
+                    (progress.toFloat() / required).coerceIn(
+                        0f,
+                        1f
+                    )
+                }
+            )
+        }
 
     SudokuPlusTheme {
         AchievementsScreenContent(

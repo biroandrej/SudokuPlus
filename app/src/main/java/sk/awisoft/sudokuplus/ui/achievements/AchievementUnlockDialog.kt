@@ -50,22 +50,29 @@ fun AchievementUnlockDialog(
     Dialog(onDismissRequest = onDismiss) {
         Card(
             modifier = modifier,
-            colors = CardDefaults.cardColors(
+            colors =
+            CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surface
             )
         ) {
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxWidth()
                     .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    text = if (achievements.size == 1)
+                    text =
+                    if (achievements.size == 1) {
                         stringResource(R.string.achievement_unlocked)
-                    else
-                        stringResource(R.string.achievements_unlocked_multiple, achievements.size),
+                    } else {
+                        stringResource(
+                            R.string.achievements_unlocked_multiple,
+                            achievements.size
+                        )
+                    },
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
@@ -102,7 +109,8 @@ private fun AchievementUnlockItem(
     LaunchedEffect(achievement.id) {
         scale.animateTo(
             targetValue = 1f,
-            animationSpec = spring(
+            animationSpec =
+            spring(
                 dampingRatio = Spring.DampingRatioMediumBouncy,
                 stiffness = Spring.StiffnessLow
             )
@@ -111,19 +119,22 @@ private fun AchievementUnlockItem(
 
     Card(
         modifier = modifier.scale(scale.value),
-        colors = CardDefaults.cardColors(
+        colors =
+        CardDefaults.cardColors(
             containerColor = tierColor.copy(alpha = 0.1f)
         )
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .size(56.dp)
                     .clip(CircleShape)
                     .background(tierColor.copy(alpha = 0.2f)),

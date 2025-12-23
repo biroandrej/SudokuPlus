@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -50,7 +49,8 @@ fun SelectionDialog(
             Column {
                 selections.forEachIndexed { index, text ->
                     Row(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .fillMaxWidth()
                             .clip(MaterialTheme.shapes.small)
                             .clickable {
@@ -104,7 +104,7 @@ fun SelectionDialog(
             Box {
                 val lazyListState = rememberLazyListState()
 
-                if (!lazyListState.isScrolledToStart()){
+                if (!lazyListState.isScrolledToStart()) {
                     HorizontalDivider(Modifier.align(Alignment.TopCenter))
                 }
 
@@ -115,7 +115,8 @@ fun SelectionDialog(
                 ScrollbarLazyColumn(state = lazyListState) {
                     items(entries.toList()) { item ->
                         Row(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .fillMaxWidth()
                                 .clip(MaterialTheme.shapes.small)
                                 .clickable {
@@ -179,7 +180,8 @@ fun DateFormatDialog(
                 ScrollbarLazyColumn(state = lazyListState) {
                     items(entries.toList()) { item ->
                         Row(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .fillMaxWidth()
                                 .clip(MaterialTheme.shapes.small)
                                 .clickable {
@@ -201,7 +203,8 @@ fun DateFormatDialog(
                     }
                     item {
                         Row(
-                            modifier = Modifier
+                            modifier =
+                            Modifier
                                 .fillMaxWidth()
                                 .clip(MaterialTheme.shapes.small)
                                 .clickable {
@@ -269,7 +272,8 @@ fun SetDateFormatPatternDialog(
                     label = {
                         Text(stringResource(R.string.pref_date_format_custom_textfield_label))
                     },
-                    keyboardActions = KeyboardActions(
+                    keyboardActions =
+                    KeyboardActions(
                         onDone = { onConfirm() }
                     )
                 )

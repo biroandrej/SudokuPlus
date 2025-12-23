@@ -4,16 +4,18 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
-import sk.awisoft.sudokuplus.core.PreferencesConstants
-import kotlinx.coroutines.flow.map
 import java.time.Instant
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.map
+import sk.awisoft.sudokuplus.core.PreferencesConstants
 
 @Singleton
-class BackupSettingsManager @Inject constructor(
+class BackupSettingsManager
+@Inject
+constructor(
     settingsDataStore: SettingsDataStore
 ) {
     private val dataStore = settingsDataStore.dataStore
@@ -35,9 +37,10 @@ class BackupSettingsManager @Inject constructor(
     }
 
     // Auto backup interval
-    val autoBackupInterval = dataStore.data.map { prefs ->
-        prefs[autoBackupIntervalKey] ?: PreferencesConstants.DEFAULT_AUTOBACKUP_INTERVAL
-    }
+    val autoBackupInterval =
+        dataStore.data.map { prefs ->
+            prefs[autoBackupIntervalKey] ?: PreferencesConstants.DEFAULT_AUTOBACKUP_INTERVAL
+        }
 
     suspend fun setAutoBackupInterval(hours: Long) {
         dataStore.edit { settings ->
@@ -46,9 +49,10 @@ class BackupSettingsManager @Inject constructor(
     }
 
     // Max auto backups
-    val autoBackupsNumber = dataStore.data.map { prefs ->
-        prefs[autoBackupsNumberKey] ?: PreferencesConstants.DEFAULT_AUTO_BACKUPS_NUMBER
-    }
+    val autoBackupsNumber =
+        dataStore.data.map { prefs ->
+            prefs[autoBackupsNumberKey] ?: PreferencesConstants.DEFAULT_AUTO_BACKUPS_NUMBER
+        }
 
     suspend fun setAutoBackupsNumber(value: Int) {
         dataStore.edit { settings ->
@@ -57,14 +61,15 @@ class BackupSettingsManager @Inject constructor(
     }
 
     // Last backup date
-    val lastBackupDate = dataStore.data.map { prefs ->
-        val date = prefs[lastBackupDateKey]
-        if (date != null) {
-            ZonedDateTime.ofInstant(Instant.ofEpochSecond(date), ZoneId.systemDefault())
-        } else {
-            null
+    val lastBackupDate =
+        dataStore.data.map { prefs ->
+            val date = prefs[lastBackupDateKey]
+            if (date != null) {
+                ZonedDateTime.ofInstant(Instant.ofEpochSecond(date), ZoneId.systemDefault())
+            } else {
+                null
+            }
         }
-    }
 
     suspend fun setLastBackupDate(date: ZonedDateTime) {
         dataStore.edit { settings ->
@@ -73,18 +78,22 @@ class BackupSettingsManager @Inject constructor(
     }
 
     // Last backup failure
-    val lastBackupFailure = dataStore.data.map { prefs ->
-        val reason = prefs[lastBackupFailureKey]
-        val date = prefs[lastBackupFailureDateKey]
-        if (reason != null && date != null) {
-            BackupFailure(
-                reason = reason,
-                date = ZonedDateTime.ofInstant(Instant.ofEpochSecond(date), ZoneId.systemDefault())
-            )
-        } else {
-            null
+    val lastBackupFailure =
+        dataStore.data.map { prefs ->
+            val reason = prefs[lastBackupFailureKey]
+            val date = prefs[lastBackupFailureDateKey]
+            if (reason != null && date != null) {
+                BackupFailure(
+                    reason = reason,
+                    date = ZonedDateTime.ofInstant(
+                        Instant.ofEpochSecond(date),
+                        ZoneId.systemDefault()
+                    )
+                )
+            } else {
+                null
+            }
         }
-    }
 
     suspend fun setLastBackupFailure(reason: String) {
         dataStore.edit { settings ->

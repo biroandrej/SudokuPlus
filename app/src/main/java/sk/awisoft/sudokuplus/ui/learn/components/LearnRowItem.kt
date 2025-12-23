@@ -27,42 +27,45 @@ fun LearnRowItem(
     val height = if (subtitle != null) 72.dp else 56.dp
 
     val titleStyle = MaterialTheme.typography.bodyLarge
-    val subtitleTextStyle = MaterialTheme.typography.bodyMedium.copy(
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
-    )
+    val subtitleTextStyle =
+        MaterialTheme.typography.bodyMedium.copy(
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
+        )
 
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .heightIn(min = height)
             .combinedClickable(
                 onLongClick = onLongClick,
                 onClick = onClick
             ),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             painter = painter,
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(start = 12.dp, end = 14.dp)
                 .size(24.dp),
             tint = MaterialTheme.colorScheme.secondary,
-            contentDescription = null,
+            contentDescription = null
         )
         Column(
             Modifier
                 .padding(horizontal = 16.dp)
-                .weight(1f),
+                .weight(1f)
         ) {
             Text(
                 text = title,
-                style = titleStyle,
+                style = titleStyle
             )
             if (subtitle != null) {
                 Text(
                     modifier = Modifier.padding(top = 4.dp),
                     text = subtitle,
-                    style = subtitleTextStyle,
+                    style = subtitleTextStyle
                 )
             }
         }

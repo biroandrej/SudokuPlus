@@ -31,8 +31,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.EmojiEvents
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ElevatedFilterChip
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -44,7 +44,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
@@ -69,17 +68,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
-import sk.awisoft.sudokuplus.core.qqwing.GameType
-import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
-import sk.awisoft.sudokuplus.destinations.AchievementsScreenDestination
-import sk.awisoft.sudokuplus.destinations.GamesHistoryScreenDestination
-import sk.awisoft.sudokuplus.destinations.SavedGameScreenDestination
-import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
-import sk.awisoft.sudokuplus.ui.components.EmptyScreen
-import sk.awisoft.sudokuplus.ui.components.HelpCard
-import sk.awisoft.sudokuplus.ui.xp.XPProgressSection
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -91,6 +79,17 @@ import kotlin.collections.sumOf
 import kotlin.div
 import kotlin.math.roundToInt
 import kotlin.toString
+import sk.awisoft.sudokuplus.R
+import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
+import sk.awisoft.sudokuplus.core.qqwing.GameType
+import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.destinations.AchievementsScreenDestination
+import sk.awisoft.sudokuplus.destinations.GamesHistoryScreenDestination
+import sk.awisoft.sudokuplus.destinations.SavedGameScreenDestination
+import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
+import sk.awisoft.sudokuplus.ui.components.EmptyScreen
+import sk.awisoft.sudokuplus.ui.components.HelpCard
+import sk.awisoft.sudokuplus.ui.xp.XPProgressSection
 
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -102,7 +101,8 @@ fun StatisticsScreen(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val dateFormat by viewModel.dateFormat.collectAsStateWithLifecycle(initialValue = "")
     Scaffold(
-        modifier = Modifier
+        modifier =
+        Modifier
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CenterAlignedTopAppBar(
@@ -131,7 +131,8 @@ fun StatisticsScreen(
         val userProgress by viewModel.userProgress.collectAsStateWithLifecycle(initialValue = null)
 
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxSize()
                 .padding(scaffoldPadding)
                 .verticalScroll(rememberScrollState()),
@@ -141,7 +142,8 @@ fun StatisticsScreen(
             XPProgressSection(userProgress = userProgress)
 
             ChipRowDifficulty(
-                items = listOf(
+                items =
+                listOf(
                     GameDifficulty.Unspecified,
                     GameDifficulty.Easy,
                     GameDifficulty.Moderate,
@@ -153,7 +155,8 @@ fun StatisticsScreen(
                 onSelected = { viewModel.setDifficulty(it) }
             )
             ChipRowType(
-                types = listOf(
+                types =
+                listOf(
                     Pair(GameType.Default9x9, stringResource(R.string.type_default_9x9)),
                     Pair(GameType.Default6x6, stringResource(R.string.type_default_6x6)),
                     Pair(GameType.Default12x12, stringResource(R.string.type_default_12x12)),
@@ -168,7 +171,11 @@ fun StatisticsScreen(
             if (recordListState.value.isNotEmpty()) {
                 var averageTime by remember {
                     mutableStateOf(
-                        DateUtils.formatElapsedTime(recordListState.value.sumOf { it.time.seconds } / recordListState.value.count())
+                        DateUtils.formatElapsedTime(
+                            recordListState.value.sumOf {
+                                it.time.seconds
+                            } / recordListState.value.count()
+                        )
                     )
                 }
                 var bestTime by remember {
@@ -177,21 +184,23 @@ fun StatisticsScreen(
                     )
                 }
                 LaunchedEffect(recordListState.value) {
-                    averageTime = DateUtils.formatElapsedTime(
-                        recordListState.value
-                            .sumOf { it.time.seconds } / recordListState.value.count()
-                    )
-                    bestTime = DateUtils.formatElapsedTime(
-                        recordListState.value.first().time.seconds
-                    )
-
+                    averageTime =
+                        DateUtils.formatElapsedTime(
+                            recordListState.value
+                                .sumOf { it.time.seconds } / recordListState.value.count()
+                        )
+                    bestTime =
+                        DateUtils.formatElapsedTime(
+                            recordListState.value.first().time.seconds
+                        )
                 }
                 StatisticsSection(
                     title = stringResource(R.string.time),
                     painter = painterResource(R.drawable.ic_round_hourglass_empty_24),
-                    statRows = listOf(
+                    statRows =
+                    listOf(
                         listOf(stringResource(R.string.best_time), bestTime),
-                        listOf(stringResource(R.string.average_time), averageTime),
+                        listOf(stringResource(R.string.average_time), averageTime)
                     )
                 )
                 if (viewModel.selectedDifficulty == GameDifficulty.Unspecified) {
@@ -219,7 +228,8 @@ fun StatisticsScreen(
                         )
                     }
                     OverallStatistics(
-                        statsRow = listOf(
+                        statsRow =
+                        listOf(
                             listOf(stringResource(R.string.games_started), gamesStarted),
                             listOf(stringResource(R.string.games_completed), gamesCompleted),
                             listOf(stringResource(R.string.win_rate), winRate)
@@ -240,7 +250,8 @@ fun StatisticsScreen(
                     StatisticsSection(
                         title = stringResource(R.string.win_streak),
                         painter = painterResource(R.drawable.ic_outline_verified_24),
-                        statRows = listOf(
+                        statRows =
+                        listOf(
                             listOf(stringResource(R.string.current_streak), currentStreak),
                             listOf(stringResource(R.string.best_streak), maxStreak)
                         )
@@ -258,18 +269,20 @@ fun StatisticsScreen(
                 }
                 StatsSectionName(
                     modifier = Modifier.padding(start = 12.dp, top = 12.dp),
-                    title = stringResource(R.string.number_best_games, 5) +
-                            if (viewModel.selectedType != GameType.Unspecified && viewModel.selectedDifficulty != GameDifficulty.Unspecified
-                            ) {
-                                " ${stringResource(viewModel.selectedType.resName).lowercase()} " +
-                                        stringResource(viewModel.selectedDifficulty.resName).lowercase()
-                            } else {
-                                ""
-                            },
+                    title =
+                    stringResource(R.string.number_best_games, 5) +
+                        if (viewModel.selectedType != GameType.Unspecified && viewModel.selectedDifficulty != GameDifficulty.Unspecified
+                        ) {
+                            " ${stringResource(viewModel.selectedType.resName).lowercase()} " +
+                                stringResource(viewModel.selectedDifficulty.resName).lowercase()
+                        } else {
+                            ""
+                        },
                     painter = painterResource(R.drawable.ic_outline_star_24)
                 )
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .fillMaxWidth()
                         .padding(start = 12.dp, end = 12.dp, bottom = 12.dp)
                         .clip(MaterialTheme.shapes.large)
@@ -285,7 +298,9 @@ fun StatisticsScreen(
                                 type = stringResource(record.type.resName),
                                 dateFormat = dateFormat,
                                 onClick = {
-                                    navigator.navigate(SavedGameScreenDestination(gameUid = record.board_uid))
+                                    navigator.navigate(
+                                        SavedGameScreenDestination(gameUid = record.board_uid)
+                                    )
                                 },
                                 onLongClick = {
                                     selectedIndex = index
@@ -326,7 +341,6 @@ fun StatisticsScreen(
     }
 }
 
-
 @Composable
 fun ShowDeleteDialog(
     modifier: Modifier = Modifier,
@@ -362,10 +376,7 @@ fun ShowDeleteDialog(
 }
 
 @Composable
-fun OverallStatistics(
-    modifier: Modifier = Modifier,
-    statsRow: List<List<String>>
-) {
+fun OverallStatistics(modifier: Modifier = Modifier, statsRow: List<List<String>>) {
     StatisticsSection(
         modifier = modifier,
         title = stringResource(R.string.games),
@@ -390,7 +401,8 @@ fun StatisticsSection(
 
     val scale by animateFloatAsState(
         targetValue = if (visible) 1f else 0.9f,
-        animationSpec = spring(
+        animationSpec =
+        spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness = Spring.StiffnessMedium
         ),
@@ -399,17 +411,20 @@ fun StatisticsSection(
 
     AnimatedVisibility(
         visible = visible,
-        enter = fadeIn(animationSpec = tween(300)) +
-                slideInVertically(
-                    initialOffsetY = { it / 4 },
-                    animationSpec = spring(
-                        dampingRatio = Spring.DampingRatioMediumBouncy,
-                        stiffness = Spring.StiffnessMedium
-                    )
+        enter =
+        fadeIn(animationSpec = tween(300)) +
+            slideInVertically(
+                initialOffsetY = { it / 4 },
+                animationSpec =
+                spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessMedium
                 )
+            )
     ) {
         Column(
-            modifier = modifier
+            modifier =
+            modifier
                 .fillMaxWidth()
                 .padding(12.dp)
                 .scale(scale)
@@ -421,7 +436,8 @@ fun StatisticsSection(
             ElevatedCard(
                 modifier = Modifier.fillMaxWidth(),
                 elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp),
-                colors = CardDefaults.elevatedCardColors(
+                colors =
+                CardDefaults.elevatedCardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainerLow
                 )
             ) {
@@ -448,15 +464,11 @@ fun StatisticsSection(
     }
 }
 
-
 @Composable
-fun StatsSectionName(
-    modifier: Modifier = Modifier,
-    title: String,
-    painter: Painter
-) {
+fun StatsSectionName(modifier: Modifier = Modifier, title: String, painter: Painter) {
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .padding(bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -464,7 +476,7 @@ fun StatsSectionName(
         Icon(
             painter = painter,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.secondary,
+            tint = MaterialTheme.colorScheme.secondary
         )
         Text(
             text = title,
@@ -496,7 +508,8 @@ fun AnimatedStatRow(
 
     val scale by animateFloatAsState(
         targetValue = if (visible) 1f else 0.8f,
-        animationSpec = spring(
+        animationSpec =
+        spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness = Spring.StiffnessMedium
         ),
@@ -504,7 +517,8 @@ fun AnimatedStatRow(
     )
 
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .scale(scale)
             .alpha(alpha),
@@ -554,7 +568,8 @@ fun ChipRowType(
                 onClick = { onSelected(type.first) },
                 label = { Text(type.second) },
                 shape = MaterialTheme.shapes.large,
-                colors = FilterChipDefaults.filterChipColors(
+                colors =
+                FilterChipDefaults.filterChipColors(
                     selectedContainerColor = selectedColor,
                     containerColor = MaterialTheme.colorScheme.surface
                 ),
@@ -594,7 +609,8 @@ fun ChipRowDifficulty(
                     )
                 },
                 shape = MaterialTheme.shapes.large,
-                colors = FilterChipDefaults.filterChipColors(
+                colors =
+                FilterChipDefaults.filterChipColors(
                     selectedContainerColor = selectedColor,
                     containerColor = MaterialTheme.colorScheme.surface
                 ),
@@ -617,7 +633,8 @@ fun RecordItem(
     onLongClick: () -> Unit = { }
 ) {
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .clip(MaterialTheme.shapes.large)
             .combinedClickable(
@@ -626,7 +643,8 @@ fun RecordItem(
             )
     ) {
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp, vertical = 10.dp)
         ) {

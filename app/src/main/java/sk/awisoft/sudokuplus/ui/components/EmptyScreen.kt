@@ -51,7 +51,8 @@ fun EmptyScreen(
 
     val scale by animateFloatAsState(
         targetValue = if (visible) 1f else 0.8f,
-        animationSpec = spring(
+        animationSpec =
+        spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness = Spring.StiffnessLow
         ),
@@ -65,7 +66,8 @@ fun EmptyScreen(
     )
 
     Column(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxSize()
             .scale(scale)
             .alpha(alpha),
@@ -95,9 +97,7 @@ fun EmptyScreen(
 }
 
 @Composable
-private fun SudokuGridIllustration(
-    modifier: Modifier = Modifier
-) {
+private fun SudokuGridIllustration(modifier: Modifier = Modifier) {
     val gridColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
     val thickLineColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
     val accentColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
@@ -116,11 +116,12 @@ private fun SudokuGridIllustration(
         )
 
         // Draw some "filled" cells to make it look like a puzzle
-        val filledCells = listOf(
-            Pair(0, 2), Pair(1, 5), Pair(2, 8),
-            Pair(3, 1), Pair(4, 4), Pair(5, 7),
-            Pair(6, 0), Pair(7, 3), Pair(8, 6)
-        )
+        val filledCells =
+            listOf(
+                Pair(0, 2), Pair(1, 5), Pair(2, 8),
+                Pair(3, 1), Pair(4, 4), Pair(5, 7),
+                Pair(6, 0), Pair(7, 3), Pair(8, 6)
+            )
 
         filledCells.forEach { (row, col) ->
             drawRoundRect(

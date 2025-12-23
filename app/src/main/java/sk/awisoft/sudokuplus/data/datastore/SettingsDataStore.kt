@@ -7,9 +7,13 @@ import androidx.datastore.preferences.preferencesDataStore
 import javax.inject.Inject
 import javax.inject.Singleton
 
-private val Context.settingsDataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+private val Context.settingsDataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "settings"
+)
 
 @Singleton
-class SettingsDataStore @Inject constructor(context: Context) {
+class SettingsDataStore
+@Inject
+constructor(context: Context) {
     val dataStore: DataStore<Preferences> = context.settingsDataStore
 }

@@ -5,9 +5,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import sk.awisoft.sudokuplus.data.database.model.Folder
-import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import kotlinx.coroutines.flow.Flow
+import sk.awisoft.sudokuplus.data.database.model.Folder
 
 @Dao
 interface FolderDao {
@@ -27,7 +26,6 @@ interface FolderDao {
                 " LIMIT :gamesCount"
     )
     fun getLastSavedGamesAnyFolder(gamesCount: Int): Flow<List<SavedGame>>*/
-
 
     @Insert
     suspend fun insert(folder: Folder): Long

@@ -1,17 +1,16 @@
 package sk.awisoft.sudokuplus.data.database.repository
 
+import java.time.Duration
+import java.time.LocalDate
+import java.time.ZonedDateTime
 import kotlinx.coroutines.flow.Flow
 import sk.awisoft.sudokuplus.data.database.dao.DailyChallengeDao
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
-import java.time.Duration
-import java.time.LocalDate
-import java.time.ZonedDateTime
 
 class DailyChallengeRepositoryImpl(
     private val dao: DailyChallengeDao
 ) : DailyChallengeRepository {
-
     override suspend fun getToday(): DailyChallenge? = dao.get(LocalDate.now())
 
     override fun getTodayFlow(): Flow<DailyChallenge?> = dao.getFlow(LocalDate.now())

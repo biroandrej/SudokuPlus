@@ -6,7 +6,6 @@ import sk.awisoft.sudokuplus.core.Note
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.utils.SudokuUtils
 
-
 /**
  * Implemented:
  * Naked single
@@ -62,7 +61,8 @@ class AdvancedHint(
                 if (board[i][j].value != 0 && board[i][j].value != solvedBoard[i][j].value) {
                     return AdvancedHintData(
                         titleRes = R.string.hint_wrong_value_title,
-                        textResWithArg = Pair(
+                        textResWithArg =
+                        Pair(
                             R.string.hint_wron_value_detail,
                             listOf(
                                 board[i][j].value.toString(),
@@ -80,17 +80,19 @@ class AdvancedHint(
 
     private fun checkForNakedSingle(): AdvancedHintData? {
         if (notes.isEmpty()) return null
-        val singles = notes.groupBy { Pair(it.row, it.col) }
-            .filter { it.value.size == 1 }
-            .map { it.value }
-            .randomOrNull()
+        val singles =
+            notes.groupBy { Pair(it.row, it.col) }
+                .filter { it.value.size == 1 }
+                .map { it.value }
+                .randomOrNull()
 
         return if (!singles.isNullOrEmpty()) {
             val nakedSingle = singles.first()
             val cell = solvedBoard[nakedSingle.row][nakedSingle.col]
             return AdvancedHintData(
                 titleRes = R.string.hint_naked_single_title,
-                textResWithArg = Pair(
+                textResWithArg =
+                Pair(
                     R.string.hint_naked_single_detail,
                     listOf(
                         cellStringFormat(cell),
@@ -104,7 +106,7 @@ class AdvancedHint(
             null
         }
     }
-    
+
     private fun checkForFullHouse(): AdvancedHintData? {
         val entities = listOf(boxes, rows, columns)
 
@@ -126,7 +128,8 @@ class AdvancedHint(
                     val solvedCell = solvedBoard[emptyCell.row][emptyCell.col]
                     return AdvancedHintData(
                         titleRes = R.string.hint_full_house_group_title,
-                        textResWithArg = Pair(
+                        textResWithArg =
+                        Pair(
                             R.string.hint_full_house_group_detail,
                             listOf(
                                 cellStringFormat(emptyCell),
@@ -145,14 +148,16 @@ class AdvancedHint(
     // TODO: Add boxes
     private fun checkForHiddenSingle(): AdvancedHintData? {
         if (notes.isEmpty()) return null
-        val singlesInRow = notes.groupBy { Pair(it.row, it.value) }
-            .filter { it.value.size == 1 }
-            .map { it.value }
-            .randomOrNull()
-        val singlesInColumn = notes.groupBy { Pair(it.row, it.value) }
-            .filter { it.value.size == 1 }
-            .map { it.value }
-            .randomOrNull()
+        val singlesInRow =
+            notes.groupBy { Pair(it.row, it.value) }
+                .filter { it.value.size == 1 }
+                .map { it.value }
+                .randomOrNull()
+        val singlesInColumn =
+            notes.groupBy { Pair(it.row, it.value) }
+                .filter { it.value.size == 1 }
+                .map { it.value }
+                .randomOrNull()
 
         val pickedSingle = setOf(singlesInRow, singlesInColumn).randomOrNull() ?: return null
         return if (pickedSingle.isNotEmpty()) {
@@ -160,7 +165,8 @@ class AdvancedHint(
             val cell = solvedBoard[hiddenSingle.row][hiddenSingle.col]
             return AdvancedHintData(
                 titleRes = R.string.hint_hidden_single_title,
-                textResWithArg = Pair(
+                textResWithArg =
+                Pair(
                     R.string.hint_hidden_single_detail,
                     listOf(
                         cellStringFormat(cell),

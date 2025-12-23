@@ -5,6 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import java.time.ZonedDateTime
+import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.core.parser.SdmParser
 import sk.awisoft.sudokuplus.data.database.model.Folder
 import sk.awisoft.sudokuplus.domain.usecase.board.GetGamesInFolderUseCase
@@ -14,16 +21,11 @@ import sk.awisoft.sudokuplus.domain.usecase.folder.GetFoldersUseCase
 import sk.awisoft.sudokuplus.domain.usecase.folder.GetLastSavedGamesAnyFolderUseCase
 import sk.awisoft.sudokuplus.domain.usecase.folder.InsertFolderUseCase
 import sk.awisoft.sudokuplus.domain.usecase.folder.UpdateFolderUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import java.time.ZonedDateTime
-import javax.inject.Inject
 
 @HiltViewModel
-class FoldersViewModel @Inject constructor(
+class FoldersViewModel
+@Inject
+constructor(
     getFoldersUseCase: GetFoldersUseCase,
     private val insertFolderUseCase: InsertFolderUseCase,
     private val updateFolderUseCase: UpdateFolderUseCase,

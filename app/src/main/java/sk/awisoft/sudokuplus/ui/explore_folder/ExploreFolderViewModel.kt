@@ -6,6 +6,14 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.qqwing.QQWingController
@@ -20,17 +28,11 @@ import sk.awisoft.sudokuplus.domain.usecase.board.UpdateBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.folder.GetFolderUseCase
 import sk.awisoft.sudokuplus.domain.usecase.folder.GetFoldersUseCase
 import sk.awisoft.sudokuplus.navArgs
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 @HiltViewModel
-class ExploreFolderViewModel @Inject constructor(
+class ExploreFolderViewModel
+@Inject
+constructor(
     getFolderUseCase: GetFolderUseCase,
     getBoardsInFolderWithSavedUseCase: GetBoardsInFolderWithSavedUseCase,
     private val updateBoardUseCase: UpdateBoardUseCase,
@@ -85,11 +87,12 @@ class ExploreFolderViewModel @Inject constructor(
 
     fun addToSelection(board: SudokuBoard) {
         var currentSelected = selectedBoardsList
-        currentSelected = if (!currentSelected.contains(board)) {
-            currentSelected + board
-        } else {
-            currentSelected - board
-        }
+        currentSelected =
+            if (!currentSelected.contains(board)) {
+                currentSelected + board
+            } else {
+                currentSelected - board
+            }
         selectedBoardsList = currentSelected
     }
 
@@ -121,33 +124,35 @@ class ExploreFolderViewModel @Inject constructor(
     }
 
     fun generateSudoku(type: GameType, difficulty: GameDifficulty, numberToGenerate: Int) {
-        generatingJob = viewModelScope.launch(Dispatchers.Default) {
-            withContext(Dispatchers.Main) {
-                _generatedSudokuCount.emit(0)
-            }
-
-            val sudokuParser = SudokuParser()
-
-            for (i in 1..numberToGenerate) {
-                val qqWingController = QQWingController()
-                val generatedBoard = qqWingController.generate(type, difficulty)
-
-                val board = SudokuBoard(
-                    uid = 0L,
-                    type = type,
-                    difficulty = difficulty,
-                    initialBoard = sudokuParser.boardToString(generatedBoard),
-                    solvedBoard = "",
-                    folderId = folderUid
-                )
-                withContext(Dispatchers.IO) {
-                    insertBoardUseCase(board)
-                }
+        generatingJob =
+            viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.Main) {
-                    _generatedSudokuCount.emit(i)
+                    _generatedSudokuCount.emit(0)
+                }
+
+                val sudokuParser = SudokuParser()
+
+                for (i in 1..numberToGenerate) {
+                    val qqWingController = QQWingController()
+                    val generatedBoard = qqWingController.generate(type, difficulty)
+
+                    val board =
+                        SudokuBoard(
+                            uid = 0L,
+                            type = type,
+                            difficulty = difficulty,
+                            initialBoard = sudokuParser.boardToString(generatedBoard),
+                            solvedBoard = "",
+                            folderId = folderUid
+                        )
+                    withContext(Dispatchers.IO) {
+                        insertBoardUseCase(board)
+                    }
+                    withContext(Dispatchers.Main) {
+                        _generatedSudokuCount.emit(i)
+                    }
                 }
             }
-        }
     }
 
     fun canelGeneratingIfRunning() {

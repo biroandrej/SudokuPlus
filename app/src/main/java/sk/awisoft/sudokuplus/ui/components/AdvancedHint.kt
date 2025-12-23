@@ -22,10 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintData
 import com.materialkolor.ktx.blend
 import com.materialkolor.ktx.harmonize
+import sk.awisoft.sudokuplus.R
+import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintData
 
 @Composable
 fun AdvancedHintContainer(
@@ -36,7 +36,8 @@ fun AdvancedHintContainer(
 ) {
     Column {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .clip(MaterialTheme.shapes.large)
                 .background(MaterialTheme.colorScheme.secondaryContainer)
@@ -49,7 +50,8 @@ fun AdvancedHintContainer(
                         onBackClick()
                     }
                     Row(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
                             .fillMaxWidth()
                             .clip(MaterialTheme.shapes.large)
                             .background(
@@ -67,7 +69,8 @@ fun AdvancedHintContainer(
                                 imageVector = Icons.Rounded.AutoAwesome,
                                 contentDescription = null,
                                 modifier = Modifier.padding(horizontal = 12.dp),
-                                tint = with(MaterialTheme.colorScheme) {
+                                tint =
+                                with(MaterialTheme.colorScheme) {
                                     onSecondaryContainer.harmonize(primary)
                                 }
                             )
@@ -75,7 +78,8 @@ fun AdvancedHintContainer(
                                 text = stringResource(it.titleRes),
                                 style = MaterialTheme.typography.titleLarge,
                                 modifier = Modifier.padding(vertical = 12.dp),
-                                color = with(MaterialTheme.colorScheme) {
+                                color =
+                                with(MaterialTheme.colorScheme) {
                                     onSecondaryContainer.harmonize(primary)
                                 }
                             )
@@ -91,7 +95,8 @@ fun AdvancedHintContainer(
                         }
                     }
                     Text(
-                        text = stringResource(
+                        text =
+                        stringResource(
                             it.textResWithArg.first,
                             *it.textResWithArg.second.toTypedArray()
                         ),
@@ -101,13 +106,14 @@ fun AdvancedHintContainer(
             }
         }
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             TextButton(
-                onClick = onBackClick,
+                onClick = onBackClick
             ) {
                 Text(stringResource(R.string.nav_back))
             }

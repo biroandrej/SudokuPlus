@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
@@ -13,15 +14,15 @@ import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
 import sk.awisoft.sudokuplus.core.notification.NotificationHelper
 import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
 import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
-import javax.inject.Inject
 
 @HiltViewModel
-class SettingsNotificationsViewModel @Inject constructor(
+class SettingsNotificationsViewModel
+@Inject
+constructor(
     private val settings: NotificationSettingsManager,
     private val notificationHelper: NotificationHelper,
-    @param: ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ) : ViewModel() {
-
     val dailyChallengeEnabled = settings.dailyChallengeNotificationEnabled
     val dailyChallengeHour = settings.dailyChallengeNotificationHour
     val dailyChallengeMinute = settings.dailyChallengeNotificationMinute
@@ -30,13 +31,15 @@ class SettingsNotificationsViewModel @Inject constructor(
     val streakReminderHour = settings.streakReminderHour
     val streakReminderMinute = settings.streakReminderMinute
 
-    val dailyChallengeTime = combine(dailyChallengeHour, dailyChallengeMinute) { hour, minute ->
-        Pair(hour, minute)
-    }
+    val dailyChallengeTime =
+        combine(dailyChallengeHour, dailyChallengeMinute) { hour, minute ->
+            Pair(hour, minute)
+        }
 
-    val streakReminderTime = combine(streakReminderHour, streakReminderMinute) { hour, minute ->
-        Pair(hour, minute)
-    }
+    val streakReminderTime =
+        combine(streakReminderHour, streakReminderMinute) { hour, minute ->
+            Pair(hour, minute)
+        }
 
     fun hasNotificationPermission(): Boolean {
         return notificationHelper.hasNotificationPermission()
