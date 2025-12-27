@@ -6,9 +6,12 @@ import android.text.format.DateUtils
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -79,11 +82,13 @@ import sk.awisoft.sudokuplus.core.utils.toFormattedString
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.destinations.DailyChallengeCalendarScreenDestination
 import sk.awisoft.sudokuplus.destinations.GameScreenDestination
+import sk.awisoft.sudokuplus.destinations.PlayGamesScreenDestination
 import sk.awisoft.sudokuplus.destinations.RewardCalendarScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
 import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
+import sk.awisoft.sudokuplus.ui.home.components.PlayGamesPromptCard
 import sk.awisoft.sudokuplus.ui.home.components.RewardCalendarCard
 import sk.awisoft.sudokuplus.ui.reward.RewardClaimDialog
 
@@ -116,6 +121,10 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     // Reward Calendar
     val rewardCalendarState by viewModel.rewardCalendarState.collectAsStateWithLifecycle()
     val claimedReward by viewModel.claimedReward.collectAsStateWithLifecycle()
+
+    // Play Games
+    val showPlayGamesPrompt by viewModel.showPlayGamesPrompt.collectAsStateWithLifecycle()
+    val isPlayGamesPromptDismissed by viewModel.isPlayGamesPromptDismissed.collectAsStateWithLifecycle()
 
     Notifications(viewModel = viewModel)
 
@@ -200,6 +209,19 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
             contentPadding = PaddingValues(all = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
+            item {
+                AnimatedVisibility(
+                    visible = showPlayGamesPrompt && !isPlayGamesPromptDismissed,
+                    enter = expandVertically() + fadeIn(),
+                    exit = shrinkVertically() + fadeOut()
+                ) {
+                    PlayGamesPromptCard(
+                        onConnect = { navigator.navigate(PlayGamesScreenDestination) },
+                        onDismiss = { viewModel.dismissPlayGamesPrompt() }
+                    )
+                }
+            }
+
             item {
                 DailyChallengeCard(
                     challenge = dailyChallenge,

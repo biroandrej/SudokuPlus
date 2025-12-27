@@ -118,6 +118,8 @@
     <string name="page_next">Weiter</string>
     <string name="libraries_licenses_title">Open Source Lizenzen</string>
     <string name="can_continue_label">Kann fortgeführt werden</string>
+    <string name="game_completed_label">Abgeschlossen</string>
+    <string name="game_gave_up_label">Aufgegeben</string>
     <string name="custom_sudoku_title">Benutzerdefiniertes Sudoku</string>
     <string name="create_sudoku_title">Erstelle ein Sudoku</string>
     <string name="create_set_from_string">Aus Zeichenkette laden</string>
@@ -500,4 +502,27 @@
     <string name="reward_xp_boost_amount">2x EP für %1$d Spiele</string>
     <string name="reward_bonus_hints_available">%1$d Bonus-Hinweise verfügbar</string>
     <string name="reward_xp_boost_active">EP-Boost: %1$d Spiele übrig</string>
+
+    <!-- Play Games -->
+    <string name="play_games_title">Google Play Spiele</string>
+    <string name="play_games_summary">Erfolge, Bestenlisten und Cloud-Synchronisierung</string>
+    <string name="play_games_enable">Play Spiele aktivieren</string>
+    <string name="play_games_enable_summary">Mit Google Play Spiele für Erfolge und Bestenlisten verbinden</string>
+    <string name="play_games_sign_in">Anmelden</string>
+    <string name="play_games_sign_in_summary">Melden Sie sich bei Ihrem Google Play Spiele-Konto an</string>
+    <string name="play_games_sign_out">Abmelden</string>
+    <string name="play_games_signed_in_as">Angemeldet als %1\$s</string>
+    <string name="play_games_not_signed_in">Nicht angemeldet</string>
+    <string name="play_games_achievements">Erfolge</string>
+    <string name="play_games_achievements_summary">Ihre Erfolge anzeigen</string>
+    <string name="play_games_leaderboards">Bestenlisten</string>
+    <string name="play_games_leaderboards_summary">Vergleichen Sie Ihre Punkte mit anderen Spielern</string>
+    <string name="play_games_sync">Fortschritt synchronisieren</string>
+    <string name="play_games_sync_summary">Synchronisieren Sie Ihren Spielfortschritt mit der Cloud</string>
+    <string name="play_games_sign_in_failed">Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.</string>
+    <string name="play_games_sign_in_required">Bitte melden Sie sich zuerst bei Play Spiele an</string>
+    <string name="play_games_home_prompt_title">Mit Play Spiele verbinden</string>
+    <string name="play_games_home_prompt_message">Melden Sie sich an, um Erfolge freizuschalten, in Bestenlisten zu konkurrieren und Ihren Fortschritt zu synchronisieren.</string>
+    <string name="play_games_home_prompt_action">Verbinden</string>
+    <string name="play_games_home_prompt_dismiss">Nicht jetzt</string>
 </resources>

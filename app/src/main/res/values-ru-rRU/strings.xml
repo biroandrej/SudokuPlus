@@ -172,6 +172,8 @@
     <string name="libraries_licenses">Лицензии</string>
     <string name="libraries_licenses_title">Лицензии открытого ПО</string>
     <string name="can_continue_label">Можно продолжить</string>
+    <string name="game_completed_label">Завершено</string>
+    <string name="game_gave_up_label">Сдался</string>
     <string name="action_show_mine_sudoku">Показать свое</string>
     <string name="custom_sudoku_title">Кастомное судоку</string>
     <string name="create_sudoku_title">Создать судоку</string>
@@ -554,4 +556,27 @@
     <string name="reward_bonus_hints_available">%1$d бонусных подсказок доступно</string>
     <string name="reward_xp_boost_active">Буст опыта: осталось %1$d игр</string>
 
+
+    <!-- Play Games -->
+    <string name="play_games_title">Google Play Игры</string>
+    <string name="play_games_summary">Достижения, таблицы лидеров и облачная синхронизация</string>
+    <string name="play_games_enable">Включить Play Игры</string>
+    <string name="play_games_enable_summary">Подключитесь к Google Play Игры для достижений и таблиц лидеров</string>
+    <string name="play_games_sign_in">Войти</string>
+    <string name="play_games_sign_in_summary">Войдите в свой аккаунт Google Play Игры</string>
+    <string name="play_games_sign_out">Выйти</string>
+    <string name="play_games_signed_in_as">Вы вошли как %1\$s</string>
+    <string name="play_games_not_signed_in">Не выполнен вход</string>
+    <string name="play_games_achievements">Достижения</string>
+    <string name="play_games_achievements_summary">Просмотр ваших достижений</string>
+    <string name="play_games_leaderboards">Таблицы лидеров</string>
+    <string name="play_games_leaderboards_summary">Сравните свои результаты с другими игроками</string>
+    <string name="play_games_sync">Синхронизировать</string>
+    <string name="play_games_sync_summary">Синхронизируйте прогресс с облаком</string>
+    <string name="play_games_sign_in_failed">Ошибка входа. Попробуйте снова.</string>
+    <string name="play_games_sign_in_required">Сначала войдите в Play Игры</string>
+    <string name="play_games_home_prompt_title">Подключиться к Play Игры</string>
+    <string name="play_games_home_prompt_message">Войдите, чтобы разблокировать достижения, соревноваться в таблицах лидеров и синхронизировать прогресс.</string>
+    <string name="play_games_home_prompt_action">Подключить</string>
+    <string name="play_games_home_prompt_dismiss">Не сейчас</string>
 </resources>

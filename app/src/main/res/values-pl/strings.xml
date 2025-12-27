@@ -124,6 +124,8 @@
     <string name="page_next">Następna</string>
     <string name="libraries_licenses_title">Licencje Open Source</string>
     <string name="can_continue_label">Mogę kontynuować</string>
+    <string name="game_completed_label">Ukończone</string>
+    <string name="game_gave_up_label">Poddano się</string>
     <string name="create_sudoku_title">Utwórz Sudoku</string>
     <string name="custom_sudoku_title">Niestandardowe Sudoku</string>
     <string name="dialog_ok">OK</string>
@@ -517,4 +519,27 @@
     <string name="reward_bonus_hints_available">%1$d dodatkowych podpowiedzi dostępnych</string>
     <string name="reward_xp_boost_active">Bonus XP: pozostało %1$d gier</string>
 
+
+    <!-- Play Games -->
+    <string name="play_games_title">Google Play Gry</string>
+    <string name="play_games_summary">Osiągnięcia, rankingi i synchronizacja w chmurze</string>
+    <string name="play_games_enable">Włącz Play Gry</string>
+    <string name="play_games_enable_summary">Połącz z Google Play Gry dla osiągnięć i rankingów</string>
+    <string name="play_games_sign_in">Zaloguj się</string>
+    <string name="play_games_sign_in_summary">Zaloguj się do konta Google Play Gry</string>
+    <string name="play_games_sign_out">Wyloguj się</string>
+    <string name="play_games_signed_in_as">Zalogowany jako %1\$s</string>
+    <string name="play_games_not_signed_in">Nie zalogowany</string>
+    <string name="play_games_achievements">Osiągnięcia</string>
+    <string name="play_games_achievements_summary">Zobacz swoje osiągnięcia</string>
+    <string name="play_games_leaderboards">Rankingi</string>
+    <string name="play_games_leaderboards_summary">Porównaj swoje wyniki z innymi graczami</string>
+    <string name="play_games_sync">Synchronizuj</string>
+    <string name="play_games_sync_summary">Synchronizuj postęp z chmurą</string>
+    <string name="play_games_sign_in_failed">Logowanie nie powiodło się. Spróbuj ponownie.</string>
+    <string name="play_games_sign_in_required">Najpierw zaloguj się do Play Gry</string>
+    <string name="play_games_home_prompt_title">Połącz z Play Gry</string>
+    <string name="play_games_home_prompt_message">Zaloguj się, aby odblokować osiągnięcia, rywalizować w rankingach i synchronizować postęp.</string>
+    <string name="play_games_home_prompt_action">Połącz</string>
+    <string name="play_games_home_prompt_dismiss">Nie teraz</string>
 </resources>

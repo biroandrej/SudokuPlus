@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -36,15 +38,19 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.destinations.HomeScreenDestination
 import sk.awisoft.sudokuplus.destinations.ImportFromFileScreenDestination
 import sk.awisoft.sudokuplus.destinations.MoreScreenDestination
 import sk.awisoft.sudokuplus.destinations.StatisticsScreenDestination
 import sk.awisoft.sudokuplus.destinations.WelcomeScreenDestination
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 import sk.awisoft.sudokuplus.ui.components.navigation_bar.NavigationBarComponent
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
@@ -135,12 +141,28 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
+                // Silent sign-in to Play Games at startup
+                LaunchedEffect(Unit) {
+                    mainViewModel.trySilentSignIn(this@MainActivity)
+                }
+
                 val resolvedDarkTheme =
                     when (settings.darkTheme) {
                         1 -> false
                         2 -> true
                         else -> isSystemInDarkTheme()
                     }
+
+                // Update status bar icons based on theme
+                SideEffect {
+                    val insetsController = WindowCompat.getInsetsController(
+                        window,
+                        window.decorView
+                    )
+                    insetsController.isAppearanceLightStatusBars = !resolvedDarkTheme
+                    insetsController.isAppearanceLightNavigationBars = !resolvedDarkTheme
+                }
+
                 val boardColors =
                     if (settings.monetSudokuBoard) {
                         SudokuBoardColorsImpl(
@@ -199,7 +221,9 @@ class MainActivityViewModel
 @Inject
 constructor(
     themeSettingsManager: ThemeSettingsManager,
-    appSettingsManager: AppSettingsManager
+    appSettingsManager: AppSettingsManager,
+    private val playGamesSettingsManager: PlayGamesSettingsManager,
+    private val playGamesManager: PlayGamesManager
 ) : ViewModel() {
     val firstLaunch = appSettingsManager.firstLaunch
 
@@ -223,4 +247,13 @@ constructor(
             started = SharingStarted.Eagerly,
             initialValue = null
         )
+
+    fun trySilentSignIn(activity: android.app.Activity) {
+        viewModelScope.launch {
+            val playGamesEnabled = playGamesSettingsManager.playGamesEnabled.first()
+            if (playGamesEnabled && !playGamesManager.isSignedIn.value) {
+                playGamesManager.silentSignIn(activity)
+            }
+        }
+    }
 }

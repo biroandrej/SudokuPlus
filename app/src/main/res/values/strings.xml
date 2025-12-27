@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Sudoku Plus</string>
+    <string name="play_games_app_id" translatable="false">290305450686</string>
     <string name="nav_bar_statistics">Statistics</string>
     <string name="nav_bar_home">Home</string>
     <string name="nav_bar_more">More</string>
@@ -187,6 +188,8 @@
     <string name="libraries_licenses">Licenses</string>
     <string name="libraries_licenses_title">Open Source Licenses</string>
     <string name="can_continue_label">Can continue</string>
+    <string name="game_completed_label">Completed</string>
+    <string name="game_gave_up_label">Gave up</string>
     <string name="custom_sudoku_title">Custom sudoku</string>
     <string name="create_sudoku_title">Create a sudoku</string>
     <string name="create_set_from_string">Set from a string</string>
@@ -596,4 +599,28 @@
     <string name="badges_earned_count">%1$d badges earned</string>
     <string name="badge_earned">Badge Earned!</string>
     <string name="badge_no_badges">No badges earned yet</string>
+
+    <!-- Play Games -->
+    <string name="play_games_title">Google Play Games</string>
+    <string name="play_games_summary">Achievements, leaderboards and cloud sync</string>
+    <string name="play_games_enable">Enable Play Games</string>
+    <string name="play_games_enable_summary">Connect to Google Play Games for achievements and leaderboards</string>
+    <string name="play_games_sign_in">Sign in</string>
+    <string name="play_games_sign_in_summary">Sign in to your Google Play Games account</string>
+    <string name="play_games_sign_out">Sign out</string>
+    <string name="play_games_signed_in_as">Signed in as %1$s</string>
+    <string name="play_games_not_signed_in">Not signed in</string>
+    <string name="play_games_achievements">Achievements</string>
+    <string name="play_games_achievements_summary">View your achievements</string>
+    <string name="play_games_leaderboards">Leaderboards</string>
+    <string name="play_games_leaderboards_summary">Compare your scores with other players</string>
+    <string name="play_games_sync">Sync progress</string>
+    <string name="play_games_sync_summary">Sync your game progress with the cloud</string>
+    <string name="play_games_sync_coming_soon">Cloud sync coming soon!</string>
+    <string name="play_games_sign_in_failed">Sign in failed. Please try again.</string>
+    <string name="play_games_sign_in_required">Please sign in to Play Games first</string>
+    <string name="play_games_home_prompt_title">Connect to Play Games</string>
+    <string name="play_games_home_prompt_message">Sign in to unlock achievements, compete on leaderboards, and sync your progress across devices.</string>
+    <string name="play_games_home_prompt_action">Connect</string>
+    <string name="play_games_home_prompt_dismiss">Not now</string>
 </resources>

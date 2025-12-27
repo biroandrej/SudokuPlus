@@ -38,9 +38,11 @@ import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 
 @HiltViewModel
 class HomeViewModel
@@ -54,15 +56,18 @@ constructor(
     private val notificationSettingsManager: NotificationSettingsManager,
     private val notificationHelper: NotificationHelper,
     private val rewardCalendarManager: RewardCalendarManager,
+    private val playGamesSettingsManager: PlayGamesSettingsManager,
+    private val playGamesManager: PlayGamesManager,
     @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     val lastSavedGame =
         savedGameRepository.getLast()
             .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
-    // Daily Challenge StateO
-    private val _dailyChallenge = MutableStateFlow<DailyChallenge?>(null)
-    val dailyChallenge: StateFlow<DailyChallenge?> = _dailyChallenge.asStateFlow()
+    // Daily Challenge State - uses Flow to automatically update when challenge is completed
+    val dailyChallenge: StateFlow<DailyChallenge?> =
+        dailyChallengeRepository.getTodayFlow()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     private val _isDailyLoading = MutableStateFlow(false)
     val isDailyLoading: StateFlow<Boolean> = _isDailyLoading.asStateFlow()
@@ -89,9 +94,25 @@ constructor(
     private val _claimedReward = MutableStateFlow<DailyReward?>(null)
     val claimedReward: StateFlow<DailyReward?> = _claimedReward.asStateFlow()
 
+    // Play Games Prompt State
+    val showPlayGamesPrompt: StateFlow<Boolean> =
+        playGamesSettingsManager.playGamesEnabled
+            .map { enabled -> !enabled }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
+    val isPlayGamesPromptDismissed: StateFlow<Boolean> =
+        playGamesSettingsManager.homePromptDismissed
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
     init {
         loadDailyChallenge()
         checkNotificationPermission()
+    }
+
+    fun dismissPlayGamesPrompt() {
+        viewModelScope.launch(Dispatchers.IO) {
+            playGamesSettingsManager.setHomePromptDismissed(true)
+        }
     }
 
     private fun checkNotificationPermission() {
@@ -147,13 +168,14 @@ constructor(
     private fun loadDailyChallenge() {
         viewModelScope.launch(Dispatchers.IO) {
             _isDailyLoading.value = true
-            _dailyChallenge.value = dailyChallengeManager.getOrCreateTodayChallenge()
+            // Ensure today's challenge exists (creates if needed)
+            dailyChallengeManager.getOrCreateTodayChallenge()
             _isDailyLoading.value = false
         }
     }
 
     fun playDailyChallenge() {
-        val challenge = _dailyChallenge.value ?: return
+        val challenge = dailyChallenge.value ?: return
 
         viewModelScope.launch(Dispatchers.IO) {
             // Create a SudokuBoard from the DailyChallenge

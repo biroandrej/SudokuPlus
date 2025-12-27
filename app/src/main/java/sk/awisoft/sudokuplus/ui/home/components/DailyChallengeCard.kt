@@ -169,7 +169,15 @@ fun DailyChallengeCard(
                                     contentDescription = null
                                 )
                                 Spacer(modifier = Modifier.size(8.dp))
-                                Text(stringResource(R.string.daily_completed))
+                                Column {
+                                    Text(stringResource(R.string.daily_completed))
+                                    challenge?.completionTime?.let { duration ->
+                                        Text(
+                                            text = formatDuration(duration),
+                                            style = MaterialTheme.typography.labelSmall
+                                        )
+                                    }
+                                }
                             }
                         }
                         isInProgress -> {
@@ -210,6 +218,17 @@ fun DailyChallengeCard(
                 }
             }
         }
+    }
+}
+
+private fun formatDuration(duration: java.time.Duration): String {
+    val hours = duration.toHours()
+    val minutes = duration.toMinutesPart()
+    val seconds = duration.toSecondsPart()
+    return if (hours > 0) {
+        String.format("%02d:%02d:%02d", hours, minutes, seconds)
+    } else {
+        String.format("%02d:%02d", minutes, seconds)
     }
 }
 

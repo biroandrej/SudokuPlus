@@ -144,6 +144,8 @@
     <string name="export_string_copy">Copiar</string>
     <string name="game_not_started">Sin iniciar</string>
     <string name="can_continue_label">Puedes continuarlo</string>
+    <string name="game_completed_label">Completado</string>
+    <string name="game_gave_up_label">Abandonado</string>
     <string name="create_sudoku_title">Crear un sudoku</string>
     <string name="custom_sudoku_title">Sudoku personalizado</string>
     <string name="custom_sudoku_delete_dialog_title">Borrar seleccionados</string>
@@ -549,4 +551,27 @@
     <string name="reward_bonus_hints_available">%1$d pistas adicionales disponibles</string>
     <string name="reward_xp_boost_active">Aumento XP: %1$d partidas restantes</string>
 
+
+    <!-- Play Games -->
+    <string name="play_games_title">Google Play Juegos</string>
+    <string name="play_games_summary">Logros, clasificaciones y sincronización en la nube</string>
+    <string name="play_games_enable">Activar Play Juegos</string>
+    <string name="play_games_enable_summary">Conectar a Google Play Juegos para logros y clasificaciones</string>
+    <string name="play_games_sign_in">Iniciar sesión</string>
+    <string name="play_games_sign_in_summary">Inicia sesión en tu cuenta de Google Play Juegos</string>
+    <string name="play_games_sign_out">Cerrar sesión</string>
+    <string name="play_games_signed_in_as">Conectado como %1\$s</string>
+    <string name="play_games_not_signed_in">No conectado</string>
+    <string name="play_games_achievements">Logros</string>
+    <string name="play_games_achievements_summary">Ver tus logros</string>
+    <string name="play_games_leaderboards">Clasificaciones</string>
+    <string name="play_games_leaderboards_summary">Compara tus puntuaciones con otros jugadores</string>
+    <string name="play_games_sync">Sincronizar progreso</string>
+    <string name="play_games_sync_summary">Sincroniza tu progreso con la nube</string>
+    <string name="play_games_sign_in_failed">Error al iniciar sesión. Inténtalo de nuevo.</string>
+    <string name="play_games_sign_in_required">Primero inicia sesión en Play Juegos</string>
+    <string name="play_games_home_prompt_title">Conectar a Play Juegos</string>
+    <string name="play_games_home_prompt_message">Inicia sesión para desbloquear logros, competir en clasificaciones y sincronizar tu progreso.</string>
+    <string name="play_games_home_prompt_action">Conectar</string>
+    <string name="play_games_home_prompt_dismiss">Ahora no</string>
 </resources>
