@@ -19,11 +19,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.core.view.WindowCompat
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -146,7 +146,10 @@ class MainActivity : ComponentActivity() {
 
                 // Update status bar icons based on theme
                 SideEffect {
-                    val insetsController = WindowCompat.getInsetsController(window, window.decorView)
+                    val insetsController = WindowCompat.getInsetsController(
+                        window,
+                        window.decorView
+                    )
                     insetsController.isAppearanceLightStatusBars = !resolvedDarkTheme
                     insetsController.isAppearanceLightNavigationBars = !resolvedDarkTheme
                 }

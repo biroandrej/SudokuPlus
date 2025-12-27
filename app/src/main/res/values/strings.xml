@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Sudoku Plus</string>
+    <string name="play_games_app_id" translatable="false">290305450686</string>
     <string name="nav_bar_statistics">Statistics</string>
     <string name="nav_bar_home">Home</string>
     <string name="nav_bar_more">More</string>

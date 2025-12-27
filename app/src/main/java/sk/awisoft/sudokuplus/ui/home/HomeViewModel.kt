@@ -40,9 +40,9 @@ import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
-import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 
 @HiltViewModel
 class HomeViewModel

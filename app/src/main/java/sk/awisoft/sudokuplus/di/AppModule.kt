@@ -39,8 +39,6 @@ import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.SettingsDataStore
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
-import sk.awisoft.sudokuplus.playgames.PlayGamesManager
-import sk.awisoft.sudokuplus.playgames.PlayGamesManagerImpl
 import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
@@ -50,6 +48,8 @@ import sk.awisoft.sudokuplus.domain.repository.LoginRewardRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
+import sk.awisoft.sudokuplus.playgames.PlayGamesManagerImpl
 
 @Module
 @InstallIn(SingletonComponent::class)

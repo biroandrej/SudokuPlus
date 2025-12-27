@@ -1,37 +1,34 @@
 package sk.awisoft.sudokuplus.playgames
 
 object PlayGamesAchievementIds {
-    // These IDs will be replaced with actual IDs from Google Play Console
-    // For now, using placeholder format that matches Play Console ID format
-
     // Completion achievements
-    const val FIRST_WIN = "CgkI_PLACEHOLDER_FIRST_WIN"
-    const val GAMES_10 = "CgkI_PLACEHOLDER_GAMES_10"
-    const val GAMES_100 = "CgkI_PLACEHOLDER_GAMES_100"
-    const val GAMES_500 = "CgkI_PLACEHOLDER_GAMES_500"
+    const val FIRST_WIN = "CgkIvsW2vLkIEAIQHg"
+    const val GAMES_10 = "CgkIvsW2vLkIEAIQEQ"
+    const val GAMES_100 = "CgkIvsW2vLkIEAIQEw"
+    const val GAMES_500 = "CgkIvsW2vLkIEAIQGg"
 
     // Speed achievements
-    const val SPEED_EASY_5MIN = "CgkI_PLACEHOLDER_SPEED_EASY_5MIN"
-    const val SPEED_HARD_15MIN = "CgkI_PLACEHOLDER_SPEED_HARD_15MIN"
+    const val SPEED_EASY_5MIN = "CgkIvsW2vLkIEAIQEA"
+    const val SPEED_HARD_15MIN = "CgkIvsW2vLkIEAIQFA"
 
     // Accuracy achievements
-    const val PERFECTIONIST_1 = "CgkI_PLACEHOLDER_PERFECTIONIST_1"
-    const val PERFECTIONIST_50 = "CgkI_PLACEHOLDER_PERFECTIONIST_50"
-    const val NO_HINTS_25 = "CgkI_PLACEHOLDER_NO_HINTS_25"
+    const val PERFECTIONIST_1 = "CgkIvsW2vLkIEAIQDw"
+    const val PERFECTIONIST_50 = "CgkIvsW2vLkIEAIQFw"
+    const val NO_HINTS_25 = "CgkIvsW2vLkIEAIQGw"
 
     // Streak achievements
-    const val STREAK_7 = "CgkI_PLACEHOLDER_STREAK_7"
-    const val STREAK_30 = "CgkI_PLACEHOLDER_STREAK_30"
+    const val STREAK_7 = "CgkIvsW2vLkIEAIQFQ"
+    const val STREAK_30 = "CgkIvsW2vLkIEAIQHA"
 
     // Daily challenge achievements
-    const val DAILY_FIRST = "CgkI_PLACEHOLDER_DAILY_FIRST"
-    const val DAILY_30 = "CgkI_PLACEHOLDER_DAILY_30"
-    const val DAILY_STREAK_7 = "CgkI_PLACEHOLDER_DAILY_STREAK_7"
+    const val DAILY_FIRST = "CgkIvsW2vLkIEAIQHQ"
+    const val DAILY_30 = "CgkIvsW2vLkIEAIQGA"
+    const val DAILY_STREAK_7 = "CgkIvsW2vLkIEAIQEg"
 
     // Game type achievements
-    const val TRY_KILLER = "CgkI_PLACEHOLDER_TRY_KILLER"
-    const val KILLER_50 = "CgkI_PLACEHOLDER_KILLER_50"
+    const val TRY_KILLER = "CgkIvsW2vLkIEAIQDg"
+    const val KILLER_50 = "CgkIvsW2vLkIEAIQFg"
 
     // Level achievement
-    const val LEVEL_10 = "CgkI_PLACEHOLDER_LEVEL_10"
+    const val LEVEL_10 = "CgkIvsW2vLkIEAIQGQ"
 }

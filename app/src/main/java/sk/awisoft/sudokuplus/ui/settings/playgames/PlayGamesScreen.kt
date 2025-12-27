@@ -45,7 +45,9 @@ fun PlayGamesScreen(
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val playGamesEnabled by viewModel.playGamesEnabled.collectAsStateWithLifecycle(initialValue = false)
+    val playGamesEnabled by viewModel.playGamesEnabled.collectAsStateWithLifecycle(
+        initialValue = false
+    )
     val isSignedIn by viewModel.isSignedIn.collectAsStateWithLifecycle()
     val playerInfo by viewModel.playerInfo.collectAsStateWithLifecycle()
 
@@ -102,7 +104,9 @@ fun PlayGamesScreen(
                                     if (!success) {
                                         scope.launch {
                                             snackbarHostState.showSnackbar(
-                                                context.getString(R.string.play_games_sign_in_failed)
+                                                context.getString(
+                                                    R.string.play_games_sign_in_failed
+                                                )
                                             )
                                         }
                                     }

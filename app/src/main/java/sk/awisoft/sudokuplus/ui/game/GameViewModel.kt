@@ -850,7 +850,11 @@ constructor(
             _uiEvents.emit(UiEvent.RequestReview(completedGames))
 
             // Submit Play Games achievements and leaderboard scores
-            submitPlayGamesProgress(completionData, completedGames, xpResult.updatedProgress.totalXP)
+            submitPlayGamesProgress(
+                completionData,
+                completedGames,
+                xpResult.updatedProgress.totalXP
+            )
         }
         endGame = true
     }
