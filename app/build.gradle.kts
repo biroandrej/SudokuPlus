@@ -196,10 +196,11 @@ dependencies {
 
     implementation(libs.composeMarkdown)
     implementation(libs.splash.screen)
+    implementation(libs.play.games.services)
+    implementation(libs.kotlinx.coroutines.play.services)
 
     add("prodImplementation", libs.play.services.ads)
     add("prodImplementation", libs.play.review)
-    add("prodImplementation", libs.play.games.services)
 
     add("prodImplementation", platform(libs.firebase.bom))
     add("prodImplementation", libs.firebase.crashlytics)

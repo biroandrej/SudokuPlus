@@ -19,23 +19,27 @@ object PlayGamesManagerImpl : PlayGamesManager {
     private val _playerInfo = MutableStateFlow<PlayerInfo?>(null)
     override val playerInfo: StateFlow<PlayerInfo?> = _playerInfo.asStateFlow()
 
+    private var isInitialized = false
     private var gamesSignInClient: GamesSignInClient? = null
     private var achievementsClient: AchievementsClient? = null
     private var leaderboardsClient: LeaderboardsClient? = null
 
     fun initialize(context: Context) {
-        PlayGamesSdk.initialize(context)
+        if (!isInitialized) {
+            PlayGamesSdk.initialize(context)
+            isInitialized = true
+        }
     }
 
-    override suspend fun silentSignIn(context: Context): Boolean {
+    override suspend fun silentSignIn(activity: Activity): Boolean {
         return try {
-            gamesSignInClient = PlayGames.getGamesSignInClient(context as Activity)
+            gamesSignInClient = PlayGames.getGamesSignInClient(activity)
             val isAuthenticated = gamesSignInClient?.isAuthenticated?.await()
             if (isAuthenticated?.isAuthenticated == true) {
                 _isSignedIn.value = true
-                achievementsClient = PlayGames.getAchievementsClient(context)
-                leaderboardsClient = PlayGames.getLeaderboardsClient(context)
-                loadPlayerInfo(context)
+                achievementsClient = PlayGames.getAchievementsClient(activity)
+                leaderboardsClient = PlayGames.getLeaderboardsClient(activity)
+                loadPlayerInfo(activity)
                 true
             } else {
                 _isSignedIn.value = false
@@ -83,6 +87,9 @@ object PlayGamesManagerImpl : PlayGamesManager {
     }
 
     override suspend fun signOut() {
+        // Play Games v2 SDK doesn't have explicit sign-out API
+        // Users sign out via the Play Games app
+        // We just clear local state
         _isSignedIn.value = false
         _playerInfo.value = null
         gamesSignInClient = null

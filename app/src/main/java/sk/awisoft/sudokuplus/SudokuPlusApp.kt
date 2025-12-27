@@ -15,6 +15,7 @@ import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
 import sk.awisoft.sudokuplus.core.notification.NotificationHelper
 import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
 import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.playgames.PlayGamesManagerImpl
 
 @HiltAndroidApp
 class SudokuPlusApp : Application(), Configuration.Provider {
@@ -38,8 +39,13 @@ class SudokuPlusApp : Application(), Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
         initCrashlytics()
+        initPlayGames()
         WorkManager.initialize(this, workManagerConfiguration)
         scheduleNotificationWorkersIfEnabled()
+    }
+
+    private fun initPlayGames() {
+        PlayGamesManagerImpl.initialize(this)
     }
 
     private fun initCrashlytics() {

@@ -53,7 +53,7 @@ fun PlayGamesScreen(
 
     LaunchedEffect(playGamesEnabled) {
         if (playGamesEnabled && !isSignedIn) {
-            viewModel.silentSignIn(context)
+            viewModel.silentSignIn(activity)
         }
     }
 
@@ -141,10 +141,15 @@ fun PlayGamesScreen(
                     }
 
                     item {
+                        val syncComingSoon = stringResource(R.string.play_games_sync_coming_soon)
                         PreferenceRow(
                             title = stringResource(R.string.play_games_sync),
                             subtitle = stringResource(R.string.play_games_sync_summary),
-                            onClick = { viewModel.syncProgress() },
+                            onClick = {
+                                scope.launch {
+                                    snackbarHostState.showSnackbar(syncComingSoon)
+                                }
+                            },
                             painter = rememberVectorPainter(Icons.Outlined.CloudSync)
                         )
                     }

@@ -614,6 +614,7 @@
     <string name="play_games_leaderboards_summary">Compare your scores with other players</string>
     <string name="play_games_sync">Sync progress</string>
     <string name="play_games_sync_summary">Sync your game progress with the cloud</string>
+    <string name="play_games_sync_coming_soon">Cloud sync coming soon!</string>
     <string name="play_games_sign_in_failed">Sign in failed. Please try again.</string>
     <string name="play_games_sign_in_required">Please sign in to Play Games first</string>
     <string name="play_games_home_prompt_title">Connect to Play Games</string>

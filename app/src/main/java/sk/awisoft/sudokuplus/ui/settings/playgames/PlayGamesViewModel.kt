@@ -1,7 +1,6 @@
 package sk.awisoft.sudokuplus.ui.settings.playgames
 
 import android.app.Activity
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -56,9 +55,9 @@ constructor(
         }
     }
 
-    fun silentSignIn(context: Context) {
+    fun silentSignIn(activity: Activity) {
         viewModelScope.launch {
-            playGamesManager.silentSignIn(context)
+            playGamesManager.silentSignIn(activity)
         }
     }
 

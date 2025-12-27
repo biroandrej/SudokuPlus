@@ -118,6 +118,7 @@ materialKolor = { group = "com.materialkolor", name = "material-kolor", version.
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
 play-review = { group = "com.google.android.play", name = "review-ktx", version.ref = "playReview" }
 play-games-services = { group = "com.google.android.gms", name = "play-services-games-v2", version.ref = "playGamesServices" }
+kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version = "1.8.1" }
 
 # Firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }

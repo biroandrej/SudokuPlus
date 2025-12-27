@@ -1,7 +1,6 @@
 package sk.awisoft.sudokuplus.playgames
 
 import android.app.Activity
-import android.content.Context
 import kotlinx.coroutines.flow.StateFlow
 
 data class PlayerInfo(
@@ -14,7 +13,7 @@ interface PlayGamesManager {
     val isSignedIn: StateFlow<Boolean>
     val playerInfo: StateFlow<PlayerInfo?>
 
-    suspend fun silentSignIn(context: Context): Boolean
+    suspend fun silentSignIn(activity: Activity): Boolean
     suspend fun interactiveSignIn(activity: Activity): Boolean
     suspend fun signOut()
 
