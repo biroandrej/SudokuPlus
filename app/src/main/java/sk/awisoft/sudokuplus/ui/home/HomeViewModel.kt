@@ -38,7 +38,9 @@ import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 
@@ -54,6 +56,8 @@ constructor(
     private val notificationSettingsManager: NotificationSettingsManager,
     private val notificationHelper: NotificationHelper,
     private val rewardCalendarManager: RewardCalendarManager,
+    private val playGamesSettingsManager: PlayGamesSettingsManager,
+    private val playGamesManager: PlayGamesManager,
     @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     val lastSavedGame =
@@ -89,9 +93,32 @@ constructor(
     private val _claimedReward = MutableStateFlow<DailyReward?>(null)
     val claimedReward: StateFlow<DailyReward?> = _claimedReward.asStateFlow()
 
+    // Play Games Prompt State
+    val showPlayGamesPrompt: StateFlow<Boolean> =
+        playGamesSettingsManager.playGamesEnabled
+            .map { enabled -> !enabled }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
+    val isPlayGamesPromptDismissed: StateFlow<Boolean> =
+        playGamesSettingsManager.homePromptDismissed
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
     init {
         loadDailyChallenge()
         checkNotificationPermission()
+    }
+
+    fun dismissPlayGamesPrompt() {
+        viewModelScope.launch(Dispatchers.IO) {
+            playGamesSettingsManager.setHomePromptDismissed(true)
+        }
+    }
+
+    fun enablePlayGames() {
+        viewModelScope.launch(Dispatchers.IO) {
+            playGamesSettingsManager.setPlayGamesEnabled(true)
+            playGamesSettingsManager.setHomePromptDismissed(true)
+        }
     }
 
     private fun checkNotificationPermission() {

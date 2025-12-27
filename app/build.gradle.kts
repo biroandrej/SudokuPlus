@@ -199,6 +199,7 @@ dependencies {
 
     add("prodImplementation", libs.play.services.ads)
     add("prodImplementation", libs.play.review)
+    add("prodImplementation", libs.play.games.services)
 
     add("prodImplementation", platform(libs.firebase.bom))
     add("prodImplementation", libs.firebase.crashlytics)

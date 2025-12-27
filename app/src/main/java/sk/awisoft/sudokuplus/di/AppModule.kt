@@ -36,8 +36,11 @@ import sk.awisoft.sudokuplus.data.datastore.AssistanceSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.BackupSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.GameplaySettingsManager
 import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.SettingsDataStore
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
+import sk.awisoft.sudokuplus.playgames.PlayGamesManagerImpl
 import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
@@ -221,4 +224,13 @@ class AppModule {
         repository: LoginRewardRepository,
         badgeDao: RewardBadgeDao
     ): RewardCalendarManager = RewardCalendarManager(repository, badgeDao)
+
+    @Provides
+    @Singleton
+    fun providePlayGamesSettingsManager(settingsDataStore: SettingsDataStore) =
+        PlayGamesSettingsManager(settingsDataStore)
+
+    @Provides
+    @Singleton
+    fun providePlayGamesManager(): PlayGamesManager = PlayGamesManagerImpl
 }

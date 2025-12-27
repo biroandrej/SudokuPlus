@@ -84,6 +84,7 @@ import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
 import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
+import sk.awisoft.sudokuplus.ui.home.components.PlayGamesPromptCard
 import sk.awisoft.sudokuplus.ui.home.components.RewardCalendarCard
 import sk.awisoft.sudokuplus.ui.reward.RewardClaimDialog
 
@@ -116,6 +117,10 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     // Reward Calendar
     val rewardCalendarState by viewModel.rewardCalendarState.collectAsStateWithLifecycle()
     val claimedReward by viewModel.claimedReward.collectAsStateWithLifecycle()
+
+    // Play Games
+    val showPlayGamesPrompt by viewModel.showPlayGamesPrompt.collectAsStateWithLifecycle()
+    val isPlayGamesPromptDismissed by viewModel.isPlayGamesPromptDismissed.collectAsStateWithLifecycle()
 
     Notifications(viewModel = viewModel)
 
@@ -220,6 +225,15 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                     onClaim = { viewModel.claimReward() },
                     onViewCalendar = { navigator.navigate(RewardCalendarScreenDestination) }
                 )
+            }
+
+            if (showPlayGamesPrompt && !isPlayGamesPromptDismissed) {
+                item {
+                    PlayGamesPromptCard(
+                        onConnect = { viewModel.enablePlayGames() },
+                        onDismiss = { viewModel.dismissPlayGamesPrompt() }
+                    )
+                }
             }
 
             item {

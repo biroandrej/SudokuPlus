@@ -10,6 +10,7 @@ import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.MoreHoriz
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.SportsEsports
 import androidx.compose.material.icons.outlined.TipsAndUpdates
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material3.Icon
@@ -34,6 +35,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
+import sk.awisoft.sudokuplus.destinations.PlayGamesScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsAdvancedHintScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsAppearanceScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsAssistanceScreenDestination
@@ -124,6 +126,16 @@ fun SettingsCategoriesScreen(navigator: DestinationsNavigator, launchedFromGame:
                         navigator.navigate(SettingsNotificationsScreenDestination)
                     },
                     painter = rememberVectorPainter(Icons.Outlined.Notifications)
+                )
+            }
+            item {
+                PreferenceRow(
+                    title = stringResource(R.string.play_games_title),
+                    subtitle = stringResource(R.string.play_games_summary),
+                    onClick = {
+                        navigator.navigate(PlayGamesScreenDestination)
+                    },
+                    painter = rememberVectorPainter(Icons.Outlined.SportsEsports)
                 )
             }
             item {

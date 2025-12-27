@@ -62,6 +62,9 @@ import sk.awisoft.sudokuplus.domain.usecase.board.GetBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.board.UpdateBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.record.GetAllRecordsUseCase
 import sk.awisoft.sudokuplus.navArgs
+import sk.awisoft.sudokuplus.playgames.PlayGamesAchievementIds
+import sk.awisoft.sudokuplus.playgames.PlayGamesLeaderboardIds
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
 
 @HiltViewModel
@@ -78,7 +81,8 @@ constructor(
     private val getAllRecordsUseCase: GetAllRecordsUseCase,
     private val achievementEngine: AchievementEngine,
     private val xpEngine: XPEngine,
-    private val rewardCalendarManager: RewardCalendarManager
+    private val rewardCalendarManager: RewardCalendarManager,
+    private val playGamesManager: PlayGamesManager
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
@@ -844,8 +848,89 @@ constructor(
             val completedGames = savedGameRepository.getAll().first()
                 .count { it.completed && !it.giveUp }
             _uiEvents.emit(UiEvent.RequestReview(completedGames))
+
+            // Submit Play Games achievements and leaderboard scores
+            submitPlayGamesProgress(completionData, completedGames, xpResult.updatedProgress.totalXP)
         }
         endGame = true
+    }
+
+    private suspend fun submitPlayGamesProgress(
+        completionData: GameCompletionData,
+        totalGamesCompleted: Int,
+        totalXP: Long
+    ) {
+        if (!playGamesManager.isSignedIn.value) return
+
+        // Submit leaderboard score (time in milliseconds)
+        val leaderboardId = when (completionData.difficulty) {
+            GameDifficulty.Simple -> PlayGamesLeaderboardIds.BEST_TIME_SIMPLE
+            GameDifficulty.Easy -> PlayGamesLeaderboardIds.BEST_TIME_EASY
+            GameDifficulty.Moderate -> PlayGamesLeaderboardIds.BEST_TIME_MODERATE
+            GameDifficulty.Hard -> PlayGamesLeaderboardIds.BEST_TIME_HARD
+            GameDifficulty.Challenge -> PlayGamesLeaderboardIds.BEST_TIME_CHALLENGE
+            else -> null
+        }
+        leaderboardId?.let {
+            playGamesManager.submitScore(it, completionData.completionTime.toMillis())
+        }
+
+        // Submit total XP to leaderboard
+        playGamesManager.submitScore(PlayGamesLeaderboardIds.TOTAL_XP, totalXP)
+
+        // Unlock/increment achievements
+
+        // First win
+        if (totalGamesCompleted == 1) {
+            playGamesManager.unlockAchievement(PlayGamesAchievementIds.FIRST_WIN)
+        }
+
+        // Incremental games completed
+        playGamesManager.incrementAchievement(PlayGamesAchievementIds.GAMES_10, 1)
+        playGamesManager.incrementAchievement(PlayGamesAchievementIds.GAMES_100, 1)
+        playGamesManager.incrementAchievement(PlayGamesAchievementIds.GAMES_500, 1)
+
+        // Speed achievements
+        val completionSeconds = completionData.completionTime.seconds
+        when (completionData.difficulty) {
+            GameDifficulty.Easy -> {
+                if (completionSeconds <= 300) { // 5 minutes
+                    playGamesManager.unlockAchievement(PlayGamesAchievementIds.SPEED_EASY_5MIN)
+                }
+            }
+            GameDifficulty.Hard -> {
+                if (completionSeconds <= 900) { // 15 minutes
+                    playGamesManager.unlockAchievement(PlayGamesAchievementIds.SPEED_HARD_15MIN)
+                }
+            }
+            else -> { }
+        }
+
+        // Perfectionist (no mistakes)
+        if (completionData.mistakes == 0) {
+            playGamesManager.unlockAchievement(PlayGamesAchievementIds.PERFECTIONIST_1)
+            playGamesManager.incrementAchievement(PlayGamesAchievementIds.PERFECTIONIST_50, 1)
+        }
+
+        // No hints used
+        if (completionData.hintsUsed == 0) {
+            playGamesManager.incrementAchievement(PlayGamesAchievementIds.NO_HINTS_25, 1)
+        }
+
+        // Daily challenge achievements
+        if (completionData.isDailyChallenge) {
+            playGamesManager.unlockAchievement(PlayGamesAchievementIds.DAILY_FIRST)
+            playGamesManager.incrementAchievement(PlayGamesAchievementIds.DAILY_30, 1)
+        }
+
+        // Game type achievements
+        when (completionData.gameType) {
+            GameType.Killer9x9, GameType.Killer6x6, GameType.Killer12x12 -> {
+                playGamesManager.unlockAchievement(PlayGamesAchievementIds.TRY_KILLER)
+                playGamesManager.incrementAchievement(PlayGamesAchievementIds.KILLER_50, 1)
+            }
+            else -> { }
+        }
     }
 
     fun getFontSize(type: GameType = gameType, factor: Int): TextUnit {
