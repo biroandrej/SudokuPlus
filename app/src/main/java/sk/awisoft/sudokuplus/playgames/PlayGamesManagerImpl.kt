@@ -19,14 +19,16 @@ object PlayGamesManagerImpl : PlayGamesManager {
     private val _playerInfo = MutableStateFlow<PlayerInfo?>(null)
     override val playerInfo: StateFlow<PlayerInfo?> = _playerInfo.asStateFlow()
 
+    @Volatile
     private var isInitialized = false
     private var gamesSignInClient: GamesSignInClient? = null
     private var achievementsClient: AchievementsClient? = null
     private var leaderboardsClient: LeaderboardsClient? = null
 
-    fun initialize(context: Context) {
+    @Synchronized
+    private fun initialize(context: Context) {
         if (!isInitialized) {
-            PlayGamesSdk.initialize(context)
+            PlayGamesSdk.initialize(context.applicationContext)
             isInitialized = true
         }
     }
