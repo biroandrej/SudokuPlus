@@ -82,6 +82,7 @@ import sk.awisoft.sudokuplus.core.utils.toFormattedString
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.destinations.DailyChallengeCalendarScreenDestination
 import sk.awisoft.sudokuplus.destinations.GameScreenDestination
+import sk.awisoft.sudokuplus.destinations.PlayGamesScreenDestination
 import sk.awisoft.sudokuplus.destinations.RewardCalendarScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
@@ -215,7 +216,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                     exit = shrinkVertically() + fadeOut()
                 ) {
                     PlayGamesPromptCard(
-                        onConnect = { viewModel.enablePlayGames() },
+                        onConnect = { navigator.navigate(PlayGamesScreenDestination) },
                         onDismiss = { viewModel.dismissPlayGamesPrompt() }
                     )
                 }

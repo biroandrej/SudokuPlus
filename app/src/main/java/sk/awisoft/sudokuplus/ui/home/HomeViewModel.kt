@@ -114,13 +114,6 @@ constructor(
         }
     }
 
-    fun enablePlayGames() {
-        viewModelScope.launch(Dispatchers.IO) {
-            playGamesSettingsManager.setPlayGamesEnabled(true)
-            playGamesSettingsManager.setHomePromptDismissed(true)
-        }
-    }
-
     private fun checkNotificationPermission() {
         viewModelScope.launch(Dispatchers.IO) {
             val alreadyRequested = notificationSettingsManager.notificationPermissionRequested.first()
