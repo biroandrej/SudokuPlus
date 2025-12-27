@@ -118,6 +118,8 @@
     <string name="page_next">Weiter</string>
     <string name="libraries_licenses_title">Open Source Lizenzen</string>
     <string name="can_continue_label">Kann fortgeführt werden</string>
+    <string name="game_completed_label">Abgeschlossen</string>
+    <string name="game_gave_up_label">Aufgegeben</string>
     <string name="custom_sudoku_title">Benutzerdefiniertes Sudoku</string>
     <string name="create_sudoku_title">Erstelle ein Sudoku</string>
     <string name="create_set_from_string">Aus Zeichenkette laden</string>

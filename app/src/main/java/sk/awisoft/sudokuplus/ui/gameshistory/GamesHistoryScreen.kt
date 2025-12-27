@@ -376,10 +376,28 @@ fun SudokuHistoryItem(
                 }
 
                 Spacer(modifier = Modifier.height(12.dp))
-                if (savedGame.canContinue) {
-                    ColorfulBadge(
-                        text = stringResource(R.string.can_continue_label)
-                    )
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    when {
+                        savedGame.completed && !savedGame.giveUp -> {
+                            ColorfulBadge(
+                                text = stringResource(R.string.game_completed_label),
+                                background = MaterialTheme.colorScheme.primaryContainer,
+                                foreground = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        }
+                        savedGame.giveUp -> {
+                            ColorfulBadge(
+                                text = stringResource(R.string.game_gave_up_label),
+                                background = MaterialTheme.colorScheme.errorContainer,
+                                foreground = MaterialTheme.colorScheme.onErrorContainer
+                            )
+                        }
+                        savedGame.canContinue -> {
+                            ColorfulBadge(
+                                text = stringResource(R.string.can_continue_label)
+                            )
+                        }
+                    }
                 }
             }
         }

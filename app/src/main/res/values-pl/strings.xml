@@ -124,6 +124,8 @@
     <string name="page_next">Następna</string>
     <string name="libraries_licenses_title">Licencje Open Source</string>
     <string name="can_continue_label">Mogę kontynuować</string>
+    <string name="game_completed_label">Ukończone</string>
+    <string name="game_gave_up_label">Poddano się</string>
     <string name="create_sudoku_title">Utwórz Sudoku</string>
     <string name="custom_sudoku_title">Niestandardowe Sudoku</string>
     <string name="dialog_ok">OK</string>

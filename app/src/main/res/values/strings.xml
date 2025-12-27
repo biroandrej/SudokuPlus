@@ -188,6 +188,8 @@
     <string name="libraries_licenses">Licenses</string>
     <string name="libraries_licenses_title">Open Source Licenses</string>
     <string name="can_continue_label">Can continue</string>
+    <string name="game_completed_label">Completed</string>
+    <string name="game_gave_up_label">Gave up</string>
     <string name="custom_sudoku_title">Custom sudoku</string>
     <string name="create_sudoku_title">Create a sudoku</string>
     <string name="create_set_from_string">Set from a string</string>

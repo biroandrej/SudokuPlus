@@ -196,6 +196,8 @@
     <string name="learn_app_toolbar_desc">Panel pod klávesnicí</string>
     <string name="sudoku_rules_mistakes_highlight">Zvýraznit chyby</string>
     <string name="can_continue_label">Lze pokračovat</string>
+    <string name="game_completed_label">Dokončeno</string>
+    <string name="game_gave_up_label">Vzdáno</string>
     <string name="create_from_string_hint">Hádanka</string>
     <string name="game_not_started">Nebylo zahájeno</string>
     <string name="title_folders">Složky</string>

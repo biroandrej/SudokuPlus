@@ -64,6 +64,8 @@
     <string name="action_save">Salva</string>
     <string name="page_next">Successivo</string>
     <string name="can_continue_label">Puoi continuare</string>
+    <string name="game_completed_label">Completato</string>
+    <string name="game_gave_up_label">Abbandonato</string>
     <string name="custom_sudoku_title">Sudoku personalizzato</string>
     <string name="create_from_string_text">Inserisci un puzzle in forma di stringa. Le celle vuote sono indicate da un . o da uno 0</string>
     <string name="create_incorrect_puzzle">Puzzle non corretto</string>

@@ -172,6 +172,8 @@
     <string name="libraries_licenses">Лицензии</string>
     <string name="libraries_licenses_title">Лицензии открытого ПО</string>
     <string name="can_continue_label">Можно продолжить</string>
+    <string name="game_completed_label">Завершено</string>
+    <string name="game_gave_up_label">Сдался</string>
     <string name="action_show_mine_sudoku">Показать свое</string>
     <string name="custom_sudoku_title">Кастомное судоку</string>
     <string name="create_sudoku_title">Создать судоку</string>

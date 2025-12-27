@@ -165,6 +165,8 @@
     <string name="no_value_default" translatable="false">--</string>
     <string name="libraries_licenses_title">Licences open source</string>
     <string name="can_continue_label">Peut être continuer</string>
+    <string name="game_completed_label">Terminé</string>
+    <string name="game_gave_up_label">Abandonné</string>
     <string name="custom_sudoku_title">Sudoku personnalisé</string>
     <string name="create_sudoku_title">Créer un sudoku</string>
     <string name="create_set_from_string">Définir à partir d\'une chaîne</string>

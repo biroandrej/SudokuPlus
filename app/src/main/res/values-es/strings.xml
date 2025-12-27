@@ -144,6 +144,8 @@
     <string name="export_string_copy">Copiar</string>
     <string name="game_not_started">Sin iniciar</string>
     <string name="can_continue_label">Puedes continuarlo</string>
+    <string name="game_completed_label">Completado</string>
+    <string name="game_gave_up_label">Abandonado</string>
     <string name="create_sudoku_title">Crear un sudoku</string>
     <string name="custom_sudoku_title">Sudoku personalizado</string>
     <string name="custom_sudoku_delete_dialog_title">Borrar seleccionados</string>

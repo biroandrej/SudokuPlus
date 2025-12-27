@@ -172,6 +172,8 @@
     <string name="page_next">Próximo</string>
     <string name="libraries_licenses_title">Licenças de Código Aberto</string>
     <string name="can_continue_label">Pode continuar</string>
+    <string name="game_completed_label">Concluído</string>
+    <string name="game_gave_up_label">Desistiu</string>
     <string name="custom_sudoku_title">Customizar sudoku</string>
     <string name="create_sudoku_title">Criar um sudoku</string>
     <string name="create_set_from_string">Adicionar de uma cadeia (string)</string>
