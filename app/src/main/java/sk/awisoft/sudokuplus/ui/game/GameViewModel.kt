@@ -56,6 +56,7 @@ import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
+import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
 import sk.awisoft.sudokuplus.domain.usecase.board.GetBoardUseCase
@@ -82,7 +83,8 @@ constructor(
     private val achievementEngine: AchievementEngine,
     private val xpEngine: XPEngine,
     private val rewardCalendarManager: RewardCalendarManager,
-    private val playGamesManager: PlayGamesManager
+    private val playGamesManager: PlayGamesManager,
+    private val dailyChallengeRepository: DailyChallengeRepository
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
@@ -843,6 +845,16 @@ constructor(
                     time = duration.toJavaDuration()
                 )
             )
+
+            // Mark daily challenge as completed
+            if (navArgs.isDailyChallenge) {
+                dailyChallengeRepository.complete(
+                    date = java.time.LocalDate.now(),
+                    completionTime = duration.toJavaDuration(),
+                    mistakes = mistakesMade,
+                    hintsUsed = hintsUsed
+                )
+            }
 
             // Check for newly unlocked achievements
             val completionData =
