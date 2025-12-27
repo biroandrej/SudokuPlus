@@ -197,7 +197,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
         ) {
             item {
                 AnimatedVisibility(
-                    visible = !isPlayGamesPromptDismissed || (playGamesEnabled && isPlayGamesSignedIn),
+                    visible = !isPlayGamesPromptDismissed,
                     enter = expandVertically() + fadeIn(),
                     exit = shrinkVertically() + fadeOut()
                 ) {
