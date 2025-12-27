@@ -1,5 +1,6 @@
 package sk.awisoft.sudokuplus.ui.home
 
+import android.app.Activity
 import android.Manifest
 import android.os.Build
 import android.text.format.DateUtils
@@ -87,7 +88,7 @@ import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
 import sk.awisoft.sudokuplus.ui.gameshistory.ColorfulBadge
 import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
-import sk.awisoft.sudokuplus.ui.home.components.PlayGamesPromptCard
+import sk.awisoft.sudokuplus.ui.home.components.PlayGamesCard
 import sk.awisoft.sudokuplus.ui.home.components.RewardCalendarCard
 import sk.awisoft.sudokuplus.ui.reward.RewardClaimDialog
 
@@ -120,7 +121,9 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     val claimedReward by viewModel.claimedReward.collectAsStateWithLifecycle()
 
     // Play Games
-    val showPlayGamesPrompt by viewModel.showPlayGamesPrompt.collectAsStateWithLifecycle()
+    val isPlayGamesSignedIn by viewModel.isPlayGamesSignedIn.collectAsStateWithLifecycle()
+    val playerInfo by viewModel.playerInfo.collectAsStateWithLifecycle()
+    val playGamesEnabled by viewModel.playGamesEnabled.collectAsStateWithLifecycle()
     val isPlayGamesPromptDismissed by viewModel.isPlayGamesPromptDismissed.collectAsStateWithLifecycle()
 
     Notifications(viewModel = viewModel)
@@ -182,6 +185,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
             }
         }
 
+        val activity = androidx.compose.ui.platform.LocalContext.current as Activity
+
         ScrollbarLazyColumn(
             modifier =
             Modifier
@@ -192,13 +197,18 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
         ) {
             item {
                 AnimatedVisibility(
-                    visible = showPlayGamesPrompt && !isPlayGamesPromptDismissed,
+                    visible = !isPlayGamesPromptDismissed || (playGamesEnabled && isPlayGamesSignedIn),
                     enter = expandVertically() + fadeIn(),
                     exit = shrinkVertically() + fadeOut()
                 ) {
-                    PlayGamesPromptCard(
-                        onConnect = { navigator.navigate(PlayGamesScreenDestination) },
-                        onDismiss = { viewModel.dismissPlayGamesPrompt() }
+                    PlayGamesCard(
+                        isSignedIn = isPlayGamesSignedIn,
+                        isEnabled = playGamesEnabled,
+                        playerInfo = playerInfo,
+                        onSignIn = { navigator.navigate(PlayGamesScreenDestination) },
+                        onDismiss = { viewModel.dismissPlayGamesPrompt() },
+                        onAchievements = { viewModel.showAchievements(activity) },
+                        onLeaderboards = { viewModel.showLeaderboards(activity) }
                     )
                 }
             }

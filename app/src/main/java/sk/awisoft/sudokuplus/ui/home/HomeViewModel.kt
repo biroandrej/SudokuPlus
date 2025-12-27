@@ -94,10 +94,12 @@ constructor(
     private val _claimedReward = MutableStateFlow<DailyReward?>(null)
     val claimedReward: StateFlow<DailyReward?> = _claimedReward.asStateFlow()
 
-    // Play Games Prompt State
-    val showPlayGamesPrompt: StateFlow<Boolean> =
+    // Play Games State
+    val isPlayGamesSignedIn = playGamesManager.isSignedIn
+    val playerInfo = playGamesManager.playerInfo
+
+    val playGamesEnabled: StateFlow<Boolean> =
         playGamesSettingsManager.playGamesEnabled
-            .map { enabled -> !enabled }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
     val isPlayGamesPromptDismissed: StateFlow<Boolean> =
@@ -113,6 +115,14 @@ constructor(
         viewModelScope.launch(Dispatchers.IO) {
             playGamesSettingsManager.setHomePromptDismissed(true)
         }
+    }
+
+    fun showAchievements(activity: android.app.Activity) {
+        playGamesManager.showAchievementsUI(activity)
+    }
+
+    fun showLeaderboards(activity: android.app.Activity) {
+        playGamesManager.showAllLeaderboardsUI(activity)
     }
 
     private fun checkNotificationPermission() {
