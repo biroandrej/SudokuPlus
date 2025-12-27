@@ -6,9 +6,12 @@ import android.text.format.DateUtils
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -206,6 +209,19 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             item {
+                AnimatedVisibility(
+                    visible = showPlayGamesPrompt && !isPlayGamesPromptDismissed,
+                    enter = expandVertically() + fadeIn(),
+                    exit = shrinkVertically() + fadeOut()
+                ) {
+                    PlayGamesPromptCard(
+                        onConnect = { viewModel.enablePlayGames() },
+                        onDismiss = { viewModel.dismissPlayGamesPrompt() }
+                    )
+                }
+            }
+
+            item {
                 DailyChallengeCard(
                     challenge = dailyChallenge,
                     currentStreak = dailyCurrentStreak,
@@ -225,15 +241,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                     onClaim = { viewModel.claimReward() },
                     onViewCalendar = { navigator.navigate(RewardCalendarScreenDestination) }
                 )
-            }
-
-            if (showPlayGamesPrompt && !isPlayGamesPromptDismissed) {
-                item {
-                    PlayGamesPromptCard(
-                        onConnect = { viewModel.enablePlayGames() },
-                        onDismiss = { viewModel.dismissPlayGamesPrompt() }
-                    )
-                }
             }
 
             item {
