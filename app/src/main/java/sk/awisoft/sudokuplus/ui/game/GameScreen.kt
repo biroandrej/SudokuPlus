@@ -24,6 +24,8 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -431,11 +433,15 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
             )
         }
     ) { scaffoldPaddings ->
+        val scrollState = rememberScrollState()
         Column(
             modifier =
             Modifier
                 .padding(scaffoldPaddings)
-                .padding(horizontal = 12.dp),
+                .padding(horizontal = 12.dp)
+                .then(
+                    if (viewModel.endGame) Modifier.verticalScroll(scrollState) else Modifier
+                ),
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
             AnimatedVisibility(visible = !viewModel.endGame) {
