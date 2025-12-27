@@ -208,7 +208,16 @@ fun DailyChallengeCard(
                         }
                     }
 
-                    TextButton(onClick = onViewCalendar) {
+                    TextButton(
+                        onClick = onViewCalendar,
+                        colors = if (isCompleted) {
+                            ButtonDefaults.textButtonColors(
+                                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        } else {
+                            ButtonDefaults.textButtonColors()
+                        }
+                    ) {
                         Text(stringResource(R.string.view_calendar))
                         Icon(
                             imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,

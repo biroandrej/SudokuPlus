@@ -688,22 +688,7 @@ constructor(
                 }
             }
         }
-        viewModelScope.launch(Dispatchers.IO) {
-            val savedGame = savedGameRepository.get(boardEntity.uid)
-            if (savedGame != null) {
-                savedGameRepository.update(
-                    savedGame.copy(
-                        completed = true,
-                        giveUp = false,
-                        canContinue = false,
-                        finishedAt = ZonedDateTime.now()
-                    )
-                )
-            }
-            if (appSettingsManager.shouldShowInterstitialAfterGameComplete()) {
-                _uiEvents.emit(UiEvent.ShowInterstitial)
-            }
-        }
+        // Note: Database update is now handled in onGameComplete() to avoid race conditions
         return true
     }
 
@@ -835,7 +820,29 @@ constructor(
         pauseTimer()
         currCell = Cell(-1, -1, 0)
         viewModelScope.launch(Dispatchers.IO) {
-            saveGame()
+            // Save game with completion status
+            val savedGame = savedGameRepository.get(boardEntity.uid)
+            val sudokuParser = SudokuParser()
+            if (savedGame != null) {
+                savedGameRepository.update(
+                    savedGame.copy(
+                        timer = java.time.Duration.ofSeconds(duration.inWholeSeconds),
+                        currentBoard = sudokuParser.boardToString(gameBoard),
+                        notes = sudokuParser.notesToString(notes),
+                        mistakes = mistakesCount,
+                        lastPlayed = ZonedDateTime.now(),
+                        completed = true,
+                        giveUp = false,
+                        canContinue = false,
+                        finishedAt = ZonedDateTime.now()
+                    )
+                )
+            }
+
+            if (appSettingsManager.shouldShowInterstitialAfterGameComplete()) {
+                _uiEvents.emit(UiEvent.ShowInterstitial)
+            }
+
             recordRepository.insert(
                 Record(
                     board_uid = boardEntity.uid,

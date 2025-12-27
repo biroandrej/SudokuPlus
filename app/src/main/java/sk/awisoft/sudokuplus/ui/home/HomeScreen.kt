@@ -87,6 +87,7 @@ import sk.awisoft.sudokuplus.destinations.RewardCalendarScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
+import sk.awisoft.sudokuplus.ui.gameshistory.ColorfulBadge
 import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
 import sk.awisoft.sudokuplus.ui.home.components.PlayGamesPromptCard
 import sk.awisoft.sudokuplus.ui.home.components.RewardCalendarCard
@@ -690,6 +691,28 @@ fun SavedSudokuPreview(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+                Spacer(modifier = Modifier.height(4.dp))
+                when {
+                    savedGame.completed && !savedGame.giveUp -> {
+                        ColorfulBadge(
+                            text = stringResource(R.string.game_completed_label),
+                            background = MaterialTheme.colorScheme.primaryContainer,
+                            foreground = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
+                    savedGame.giveUp -> {
+                        ColorfulBadge(
+                            text = stringResource(R.string.game_gave_up_label),
+                            background = MaterialTheme.colorScheme.errorContainer,
+                            foreground = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                    }
+                    savedGame.canContinue -> {
+                        ColorfulBadge(
+                            text = stringResource(R.string.can_continue_label)
+                        )
+                    }
+                }
             }
 
             Row(
