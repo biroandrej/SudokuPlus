@@ -64,9 +64,10 @@ constructor(
         savedGameRepository.getLast()
             .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
-    // Daily Challenge StateO
-    private val _dailyChallenge = MutableStateFlow<DailyChallenge?>(null)
-    val dailyChallenge: StateFlow<DailyChallenge?> = _dailyChallenge.asStateFlow()
+    // Daily Challenge State - uses Flow to automatically update when challenge is completed
+    val dailyChallenge: StateFlow<DailyChallenge?> =
+        dailyChallengeRepository.getTodayFlow()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     private val _isDailyLoading = MutableStateFlow(false)
     val isDailyLoading: StateFlow<Boolean> = _isDailyLoading.asStateFlow()
@@ -167,13 +168,14 @@ constructor(
     private fun loadDailyChallenge() {
         viewModelScope.launch(Dispatchers.IO) {
             _isDailyLoading.value = true
-            _dailyChallenge.value = dailyChallengeManager.getOrCreateTodayChallenge()
+            // Ensure today's challenge exists (creates if needed)
+            dailyChallengeManager.getOrCreateTodayChallenge()
             _isDailyLoading.value = false
         }
     }
 
     fun playDailyChallenge() {
-        val challenge = _dailyChallenge.value ?: return
+        val challenge = dailyChallenge.value ?: return
 
         viewModelScope.launch(Dispatchers.IO) {
             // Create a SudokuBoard from the DailyChallenge
