@@ -141,7 +141,6 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-
                 val resolvedDarkTheme =
                     when (settings.darkTheme) {
                         1 -> false
