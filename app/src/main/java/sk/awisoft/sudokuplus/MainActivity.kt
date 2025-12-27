@@ -141,11 +141,6 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                // Silent sign-in to Play Games at startup
-                LaunchedEffect(Unit) {
-                    mainViewModel.trySilentSignIn(this@MainActivity)
-                }
-
                 val resolvedDarkTheme =
                     when (settings.darkTheme) {
                         1 -> false
