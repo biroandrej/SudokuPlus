@@ -118,11 +118,15 @@ constructor(
     }
 
     fun showAchievements(activity: android.app.Activity) {
-        playGamesManager.showAchievementsUI(activity)
+        if (playGamesEnabled.value) {
+            playGamesManager.showAchievementsUI(activity)
+        }
     }
 
     fun showLeaderboards(activity: android.app.Activity) {
-        playGamesManager.showAllLeaderboardsUI(activity)
+        if (playGamesEnabled.value) {
+            playGamesManager.showAllLeaderboardsUI(activity)
+        }
     }
 
     private fun checkNotificationPermission() {
