@@ -205,27 +205,16 @@ fun StatisticsScreen(
                 )
                 if (viewModel.selectedDifficulty == GameDifficulty.Unspecified) {
                     val context = LocalContext.current
-                    val gamesStarted by remember {
-                        mutableStateOf(savedGameList.value.count().toString())
-                    }
-                    val gamesCompleted by remember {
-                        mutableStateOf(
-                            savedGameList.value
-                                .count { it.completed && !it.giveUp && !it.canContinue }
-                                .toString()
+                    val games = savedGameList.value
+                    val gamesStarted = games.count().toString()
+                    val gamesCompleted = games.count { it.completed && !it.giveUp && !it.canContinue }.toString()
+                    val winRate = if (games.isNotEmpty()) {
+                        context.getString(
+                            R.string.win_rate_percentage,
+                            viewModel.getWinRate(games).roundToInt()
                         )
-                    }
-                    val winRate by remember {
-                        mutableStateOf(
-                            if (savedGameList.value.isNotEmpty()) {
-                                context.getString(
-                                    R.string.win_rate_percentage,
-                                    viewModel.getWinRate(savedGameList.value).roundToInt()
-                                )
-                            } else {
-                                context.getString(R.string.no_value_default)
-                            }
-                        )
+                    } else {
+                        context.getString(R.string.no_value_default)
                     }
                     OverallStatistics(
                         statsRow =
@@ -236,16 +225,8 @@ fun StatisticsScreen(
                         )
                     )
 
-                    val currentStreak by remember {
-                        mutableStateOf(
-                            viewModel.getCurrentStreak(savedGameList.value).toString()
-                        )
-                    }
-                    val maxStreak by remember {
-                        mutableStateOf(
-                            viewModel.getMaxStreak(savedGameList.value).toString()
-                        )
-                    }
+                    val currentStreak = viewModel.getCurrentStreak(games).toString()
+                    val maxStreak = viewModel.getMaxStreak(games).toString()
 
                     StatisticsSection(
                         title = stringResource(R.string.win_streak),
