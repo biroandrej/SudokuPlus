@@ -422,7 +422,8 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     }
-                                }
+                                },
+                                onSolveClick = { viewModel.solvePuzzle() }
                             )
                         }
                     }

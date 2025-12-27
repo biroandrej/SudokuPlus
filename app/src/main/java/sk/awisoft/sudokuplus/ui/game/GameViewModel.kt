@@ -805,6 +805,28 @@ constructor(
         }
     }
 
+    /**
+     * Debug-only function to instantly solve the puzzle.
+     * Fills in all empty cells with the correct values from the solution.
+     */
+    fun solvePuzzle() {
+        if (solvedBoard.isEmpty()) solveBoard()
+        if (solvedBoard.isEmpty()) return
+
+        val newBoard = getBoardNoRef()
+        for (i in solvedBoard.indices) {
+            for (j in solvedBoard[i].indices) {
+                if (!newBoard[i][j].locked) {
+                    newBoard[i][j].value = solvedBoard[i][j].value
+                }
+            }
+        }
+        gameBoard = newBoard
+        remainingUsesList = countRemainingUses(newBoard)
+        notes = emptyList()
+        gameCompleted = true
+    }
+
     fun onGameComplete() {
         if (endGame) return
 
