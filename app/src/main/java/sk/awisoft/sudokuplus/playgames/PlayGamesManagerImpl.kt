@@ -33,6 +33,7 @@ object PlayGamesManagerImpl : PlayGamesManager {
 
     override suspend fun silentSignIn(activity: Activity): Boolean {
         return try {
+            initialize(activity)
             gamesSignInClient = PlayGames.getGamesSignInClient(activity)
             val isAuthenticated = gamesSignInClient?.isAuthenticated?.await()
             if (isAuthenticated?.isAuthenticated == true) {
@@ -53,6 +54,7 @@ object PlayGamesManagerImpl : PlayGamesManager {
 
     override suspend fun interactiveSignIn(activity: Activity): Boolean {
         return try {
+            initialize(activity)
             gamesSignInClient = PlayGames.getGamesSignInClient(activity)
             gamesSignInClient?.signIn()?.await()
 
