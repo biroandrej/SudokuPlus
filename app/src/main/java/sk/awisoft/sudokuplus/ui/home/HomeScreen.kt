@@ -1,7 +1,6 @@
 package sk.awisoft.sudokuplus.ui.home
 
 import android.Manifest
-import android.app.Activity
 import android.os.Build
 import android.text.format.DateUtils
 import androidx.activity.compose.LocalActivity
@@ -61,7 +60,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -212,7 +210,11 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                         onDismiss = { viewModel.dismissPlayGamesPrompt() },
                         onAchievements = { viewModel.showAchievements(activity) },
                         onLeaderboards = { viewModel.showLeaderboards(activity) },
-                        onOpenSettings = { navigator.navigate(SettingsOtherScreenDestination(launchedFromGame = false)) }
+                        onOpenSettings = {
+                            navigator.navigate(
+                                SettingsOtherScreenDestination(launchedFromGame = false)
+                            )
+                        }
                     )
                 }
             }
