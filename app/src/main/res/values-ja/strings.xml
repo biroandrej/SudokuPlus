@@ -276,4 +276,6 @@
     <string name="reward_bonus_hints_available">%1$dボーナスヒント利用可能</string>
     <string name="reward_xp_boost_active">XPブースト: 残り%1$dゲーム</string>
 
+    <string name="play_games_promo_message">Google Play Gamesを有効にして、実績のロック解除、リーダーボードでの競争、進捗の同期を行いましょう。</string>
+    <string name="play_games_promo_action">設定を開く</string>
 </resources>

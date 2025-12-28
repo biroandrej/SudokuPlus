@@ -121,4 +121,6 @@
     <string name="reward_bonus_hints_available">%1$d gợi ý thưởng có sẵn</string>
     <string name="reward_xp_boost_active">Tăng XP: còn %1$d ván</string>
 
+    <string name="play_games_promo_message">Bật Google Play Trò chơi để mở khóa thành tích, cạnh tranh trên bảng xếp hạng và đồng bộ tiến trình của bạn.</string>
+    <string name="play_games_promo_action">Mở cài đặt</string>
 </resources>

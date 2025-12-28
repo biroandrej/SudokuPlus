@@ -229,4 +229,6 @@
     <string name="reward_bonus_hints_available">%1$d bónusz tipp elérhető</string>
     <string name="reward_xp_boost_active">XP növelés: %1$d játék hátra</string>
 
+    <string name="play_games_promo_message">Engedélyezze a Google Play Játékokat az eredmények feloldásához, a ranglistákon való versengéshez és a haladás szinkronizálásához.</string>
+    <string name="play_games_promo_action">Beállítások megnyitása</string>
 </resources>

@@ -501,4 +501,6 @@
     <string name="reward_bonus_hints_available">%1$d μπόνους υποδείξεις διαθέσιμες</string>
     <string name="reward_xp_boost_active">Ενίσχυση XP: %1$d παιχνίδια απομένουν</string>
 
+    <string name="play_games_promo_message">Ενεργοποιήστε το Google Play Παιχνίδια για να ξεκλειδώσετε επιτεύγματα, να ανταγωνιστείτε στους πίνακες κατάταξης και να συγχρονίσετε την πρόοδό σας.</string>
+    <string name="play_games_promo_action">Άνοιγμα ρυθμίσεων</string>
 </resources>

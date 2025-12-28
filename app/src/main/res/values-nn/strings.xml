@@ -149,4 +149,6 @@
     <string name="reward_bonus_hints_available">%1$d bonustips tilgjengelege</string>
     <string name="reward_xp_boost_active">XP-auke: %1$d spel att</string>
 
+    <string name="play_games_promo_message">Aktiver Google Play Spel for å låse opp prestasjonar, konkurrera på resultatlister og synkronisera framgangen din.</string>
+    <string name="play_games_promo_action">Opna innstillingar</string>
 </resources>

@@ -304,4 +304,6 @@
     <string name="play_games_home_prompt_message">Prihláste sa pre odomknutie úspechov, súťaženie v rebríčkoch a synchronizáciu postupu.</string>
     <string name="play_games_home_prompt_action">Pripojiť</string>
     <string name="play_games_home_prompt_dismiss">Teraz nie</string>
+    <string name="play_games_promo_message">Povoľte Google Play Games pre odomknutie úspechov, súťaženie v rebríčkoch a synchronizáciu postupu.</string>
+    <string name="play_games_promo_action">Otvoriť nastavenia</string>
 </resources>

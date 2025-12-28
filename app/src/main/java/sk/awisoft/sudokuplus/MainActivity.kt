@@ -38,19 +38,15 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
-import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.destinations.HomeScreenDestination
 import sk.awisoft.sudokuplus.destinations.ImportFromFileScreenDestination
 import sk.awisoft.sudokuplus.destinations.MoreScreenDestination
 import sk.awisoft.sudokuplus.destinations.StatisticsScreenDestination
 import sk.awisoft.sudokuplus.destinations.WelcomeScreenDestination
-import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 import sk.awisoft.sudokuplus.ui.components.navigation_bar.NavigationBarComponent
 import sk.awisoft.sudokuplus.ui.theme.BoardColors
 import sk.awisoft.sudokuplus.ui.theme.SudokuBoardColorsImpl
@@ -216,9 +212,7 @@ class MainActivityViewModel
 @Inject
 constructor(
     themeSettingsManager: ThemeSettingsManager,
-    appSettingsManager: AppSettingsManager,
-    private val playGamesSettingsManager: PlayGamesSettingsManager,
-    private val playGamesManager: PlayGamesManager
+    appSettingsManager: AppSettingsManager
 ) : ViewModel() {
     val firstLaunch = appSettingsManager.firstLaunch
 
@@ -242,13 +236,4 @@ constructor(
             started = SharingStarted.Eagerly,
             initialValue = null
         )
-
-    fun trySilentSignIn(activity: android.app.Activity) {
-        viewModelScope.launch {
-            val playGamesEnabled = playGamesSettingsManager.playGamesEnabled.first()
-            if (playGamesEnabled && !playGamesManager.isSignedIn.value) {
-                playGamesManager.silentSignIn(activity)
-            }
-        }
-    }
 }

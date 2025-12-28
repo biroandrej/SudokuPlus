@@ -487,4 +487,6 @@
     <string name="reward_bonus_hints_available">%1$d تلميحات إضافية متاحة</string>
     <string name="reward_xp_boost_active">تعزيز XP: %1$d ألعاب متبقية</string>
 
+    <string name="play_games_promo_message">قم بتفعيل ألعاب Google Play لفتح الإنجازات والتنافس على لوحات المتصدرين ومزامنة تقدمك.</string>
+    <string name="play_games_promo_action">فتح الإعدادات</string>
 </resources>

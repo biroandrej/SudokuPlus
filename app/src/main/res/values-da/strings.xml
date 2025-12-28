@@ -525,4 +525,6 @@
     <string name="reward_bonus_hints_available">%1$d bonus tips tilgængelige</string>
     <string name="reward_xp_boost_active">XP-boost: %1$d spil tilbage</string>
 
+    <string name="play_games_promo_message">Aktiver Google Play Spil for at låse op for præstationer, konkurrere på ranglister og synkronisere din fremgang.</string>
+    <string name="play_games_promo_action">Åbn indstillinger</string>
 </resources>
