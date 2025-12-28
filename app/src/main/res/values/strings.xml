@@ -623,4 +623,6 @@
     <string name="play_games_home_prompt_message">Sign in to unlock achievements, compete on leaderboards, and sync your progress across devices.</string>
     <string name="play_games_home_prompt_action">Connect</string>
     <string name="play_games_home_prompt_dismiss">Not now</string>
+    <string name="play_games_promo_message">Enable Google Play Games to unlock achievements, compete on leaderboards, and sync your progress across devices.</string>
+    <string name="play_games_promo_action">Open Settings</string>
 </resources>

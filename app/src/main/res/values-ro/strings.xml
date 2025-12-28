@@ -410,4 +410,6 @@
     <string name="reward_bonus_hints_available">%1$d indicii bonus disponibile</string>
     <string name="reward_xp_boost_active">Amplificare XP: %1$d jocuri rămase</string>
 
+    <string name="play_games_promo_message">Activați Google Play Jocuri pentru a debloca realizări, a concura în clasamente și a sincroniza progresul.</string>
+    <string name="play_games_promo_action">Deschide setările</string>
 </resources>

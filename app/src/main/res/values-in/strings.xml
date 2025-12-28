@@ -345,4 +345,6 @@
     <string name="reward_bonus_hints_available">%1$d petunjuk bonus tersedia</string>
     <string name="reward_xp_boost_active">Peningkatan XP: %1$d permainan tersisa</string>
 
+    <string name="play_games_promo_message">Aktifkan Google Play Game untuk membuka pencapaian, bersaing di papan peringkat, dan menyinkronkan kemajuan Anda.</string>
+    <string name="play_games_promo_action">Buka pengaturan</string>
 </resources>

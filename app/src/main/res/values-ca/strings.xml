@@ -345,4 +345,6 @@
     <string name="reward_bonus_hints_available">%1$d pistes addicionals disponibles</string>
     <string name="reward_xp_boost_active">Augment XP: %1$d partides restants</string>
 
+    <string name="play_games_promo_message">Activa Google Play Jocs per desbloquejar assoliments, competir en classificacions i sincronitzar el teu progrés.</string>
+    <string name="play_games_promo_action">Obre la configuració</string>
 </resources>

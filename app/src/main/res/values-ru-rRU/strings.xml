@@ -579,4 +579,6 @@
     <string name="play_games_home_prompt_message">Войдите, чтобы разблокировать достижения, соревноваться в таблицах лидеров и синхронизировать прогресс.</string>
     <string name="play_games_home_prompt_action">Подключить</string>
     <string name="play_games_home_prompt_dismiss">Не сейчас</string>
+    <string name="play_games_promo_message">Включите Google Play Игры, чтобы разблокировать достижения, соревноваться в таблицах лидеров и синхронизировать прогресс.</string>
+    <string name="play_games_promo_action">Открыть настройки</string>
 </resources>

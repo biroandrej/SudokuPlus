@@ -38,6 +38,7 @@ fun PlayGamesCard(
     onDismiss: () -> Unit,
     onAchievements: () -> Unit,
     onLeaderboards: () -> Unit,
+    onOpenSettings: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     ElevatedCard(
@@ -76,53 +77,79 @@ fun PlayGamesCard(
                 }
             }
 
-            if (isSignedIn && isEnabled) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    FilledTonalButton(
-                        onClick = onAchievements,
-                        modifier = Modifier.weight(1f)
+            when {
+                // State 1: Signed in and enabled - show achievements/leaderboards
+                isSignedIn && isEnabled -> {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        Icon(
-                            imageVector = Icons.Outlined.EmojiEvents,
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(stringResource(R.string.play_games_achievements))
-                    }
-                    FilledTonalButton(
-                        onClick = onLeaderboards,
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.Leaderboard,
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(stringResource(R.string.play_games_leaderboards))
+                        FilledTonalButton(
+                            onClick = onAchievements,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.EmojiEvents,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(stringResource(R.string.play_games_achievements))
+                        }
+                        FilledTonalButton(
+                            onClick = onLeaderboards,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.Leaderboard,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(stringResource(R.string.play_games_leaderboards))
+                        }
                     }
                 }
-            } else {
-                Text(
-                    text = stringResource(R.string.play_games_home_prompt_message),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+                // State 2: Enabled but not signed in - show sign-in prompt
+                isEnabled -> {
+                    Text(
+                        text = stringResource(R.string.play_games_home_prompt_message),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    TextButton(onClick = onDismiss) {
-                        Text(stringResource(R.string.play_games_home_prompt_dismiss))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        TextButton(onClick = onDismiss) {
+                            Text(stringResource(R.string.play_games_home_prompt_dismiss))
+                        }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Button(onClick = onSignIn) {
+                            Text(stringResource(R.string.play_games_home_prompt_action))
+                        }
                     }
-                    Spacer(modifier = Modifier.weight(1f))
-                    Button(onClick = onSignIn) {
-                        Text(stringResource(R.string.play_games_home_prompt_action))
+                }
+                // State 3: Not enabled - show promotional message
+                else -> {
+                    Text(
+                        text = stringResource(R.string.play_games_promo_message),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        TextButton(onClick = onDismiss) {
+                            Text(stringResource(R.string.play_games_home_prompt_dismiss))
+                        }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Button(onClick = onOpenSettings) {
+                            Text(stringResource(R.string.play_games_promo_action))
+                        }
                     }
                 }
             }

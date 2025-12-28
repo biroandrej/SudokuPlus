@@ -416,4 +416,6 @@
     <string name="reward_bonus_hints_available">%1$d bonus ipucu mevcut</string>
     <string name="reward_xp_boost_active">XP Artışı: %1$d oyun kaldı</string>
 
+    <string name="play_games_promo_message">Başarıları açmak, skor tablolarında yarışmak ve ilerlemenizi senkronize etmek için Google Play Oyunları etkinleştirin.</string>
+    <string name="play_games_promo_action">Ayarları aç</string>
 </resources>

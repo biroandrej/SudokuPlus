@@ -542,4 +542,6 @@
     <string name="play_games_home_prompt_message">Zaloguj się, aby odblokować osiągnięcia, rywalizować w rankingach i synchronizować postęp.</string>
     <string name="play_games_home_prompt_action">Połącz</string>
     <string name="play_games_home_prompt_dismiss">Nie teraz</string>
+    <string name="play_games_promo_message">Włącz Google Play Gry, aby odblokować osiągnięcia, rywalizować w rankingach i synchronizować postęp.</string>
+    <string name="play_games_promo_action">Otwórz ustawienia</string>
 </resources>

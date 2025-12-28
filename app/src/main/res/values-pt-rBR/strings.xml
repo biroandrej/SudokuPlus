@@ -418,4 +418,6 @@
     <string name="play_games_home_prompt_message">Entre para desbloquear conquistas, competir nas classificações e sincronizar seu progresso.</string>
     <string name="play_games_home_prompt_action">Conectar</string>
     <string name="play_games_home_prompt_dismiss">Agora não</string>
+    <string name="play_games_promo_message">Ative o Google Play Jogos para desbloquear conquistas, competir nas classificações e sincronizar seu progresso.</string>
+    <string name="play_games_promo_action">Abrir configurações</string>
 </resources>

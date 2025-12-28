@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.os.Build
 import android.text.format.DateUtils
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
@@ -60,6 +61,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -83,6 +85,7 @@ import sk.awisoft.sudokuplus.destinations.DailyChallengeCalendarScreenDestinatio
 import sk.awisoft.sudokuplus.destinations.GameScreenDestination
 import sk.awisoft.sudokuplus.destinations.PlayGamesScreenDestination
 import sk.awisoft.sudokuplus.destinations.RewardCalendarScreenDestination
+import sk.awisoft.sudokuplus.destinations.SettingsOtherScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
@@ -185,7 +188,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
             }
         }
 
-        val activity = androidx.compose.ui.platform.LocalContext.current as Activity
+        val activity = LocalActivity.current ?: return@Scaffold
 
         ScrollbarLazyColumn(
             modifier =
@@ -197,7 +200,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
         ) {
             item {
                 AnimatedVisibility(
-                    visible = playGamesEnabled && (isPlayGamesSignedIn || !isPlayGamesPromptDismissed),
+                    visible = (playGamesEnabled && isPlayGamesSignedIn) || !isPlayGamesPromptDismissed,
                     enter = expandVertically() + fadeIn(),
                     exit = shrinkVertically() + fadeOut()
                 ) {
@@ -208,7 +211,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                         onSignIn = { navigator.navigate(PlayGamesScreenDestination) },
                         onDismiss = { viewModel.dismissPlayGamesPrompt() },
                         onAchievements = { viewModel.showAchievements(activity) },
-                        onLeaderboards = { viewModel.showLeaderboards(activity) }
+                        onLeaderboards = { viewModel.showLeaderboards(activity) },
+                        onOpenSettings = { navigator.navigate(SettingsOtherScreenDestination(launchedFromGame = false)) }
                     )
                 }
             }

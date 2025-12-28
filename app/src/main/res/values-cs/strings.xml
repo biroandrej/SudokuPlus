@@ -529,4 +529,6 @@
     <string name="play_games_home_prompt_message">Přihlaste se pro odemknutí úspěchů, soutěžení v žebříčcích a synchronizaci postupu.</string>
     <string name="play_games_home_prompt_action">Připojit</string>
     <string name="play_games_home_prompt_dismiss">Teď ne</string>
+    <string name="play_games_promo_message">Povolte Google Play Hry pro odemknutí úspěchů, soutěžení v žebříčcích a synchronizaci pokroku.</string>
+    <string name="play_games_promo_action">Otevřít nastavení</string>
 </resources>

@@ -307,4 +307,6 @@
     <string name="reward_bonus_hints_available">%1$d راهنمایی اضافی موجود</string>
     <string name="reward_xp_boost_active">تقویت XP: %1$d بازی باقیمانده</string>
 
+    <string name="play_games_promo_message">Google Play Games را فعال کنید تا دستاوردها را باز کنید، در جدول‌های رتبه‌بندی رقابت کنید و پیشرفت خود را همگام‌سازی کنید.</string>
+    <string name="play_games_promo_action">باز کردن تنظیمات</string>
 </resources>

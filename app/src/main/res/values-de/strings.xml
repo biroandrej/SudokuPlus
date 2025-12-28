@@ -525,4 +525,6 @@
     <string name="play_games_home_prompt_message">Melden Sie sich an, um Erfolge freizuschalten, in Bestenlisten zu konkurrieren und Ihren Fortschritt zu synchronisieren.</string>
     <string name="play_games_home_prompt_action">Verbinden</string>
     <string name="play_games_home_prompt_dismiss">Nicht jetzt</string>
+    <string name="play_games_promo_message">Aktivieren Sie Google Play Spiele, um Erfolge freizuschalten, in Bestenlisten zu konkurrieren und Ihren Fortschritt zu synchronisieren.</string>
+    <string name="play_games_promo_action">Einstellungen öffnen</string>
 </resources>

@@ -216,9 +216,7 @@ class MainActivityViewModel
 @Inject
 constructor(
     themeSettingsManager: ThemeSettingsManager,
-    appSettingsManager: AppSettingsManager,
-    private val playGamesSettingsManager: PlayGamesSettingsManager,
-    private val playGamesManager: PlayGamesManager
+    appSettingsManager: AppSettingsManager
 ) : ViewModel() {
     val firstLaunch = appSettingsManager.firstLaunch
 
@@ -242,13 +240,4 @@ constructor(
             started = SharingStarted.Eagerly,
             initialValue = null
         )
-
-    fun trySilentSignIn(activity: android.app.Activity) {
-        viewModelScope.launch {
-            val playGamesEnabled = playGamesSettingsManager.playGamesEnabled.first()
-            if (playGamesEnabled && !playGamesManager.isSignedIn.value) {
-                playGamesManager.silentSignIn(activity)
-            }
-        }
-    }
 }

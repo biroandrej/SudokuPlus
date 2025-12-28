@@ -163,4 +163,6 @@
     <string name="reward_bonus_hints_available">%1$d போனஸ் குறிப்புகள் கிடைக்கின்றன</string>
     <string name="reward_xp_boost_active">XP ஊக்கம்: %1$d விளையாட்டுகள் மீதமுள்ளன</string>
 
+    <string name="play_games_promo_message">சாதனைகளைத் திறக்க, தரவரிசைப்பட்டிகளில் போட்டியிட மற்றும் உங்கள் முன்னேற்றத்தை ஒத்திசைக்க Google Play Games ஐ இயக்கவும்.</string>
+    <string name="play_games_promo_action">அமைப்புகளைத் திற</string>
 </resources>

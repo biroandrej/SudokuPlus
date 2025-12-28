@@ -350,4 +350,6 @@
     <string name="reward_bonus_hints_available">%1$d бонусних підказок доступно</string>
     <string name="reward_xp_boost_active">Буст досвіду: залишилось %1$d ігор</string>
 
+    <string name="play_games_promo_message">Увімкніть Google Play Ігри, щоб розблокувати досягнення, змагатися в таблицях лідерів та синхронізувати прогрес.</string>
+    <string name="play_games_promo_action">Відкрити налаштування</string>
 </resources>

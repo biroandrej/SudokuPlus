@@ -559,4 +559,6 @@
     <string name="play_games_home_prompt_message">Accedi per sbloccare obiettivi, competere nelle classifiche e sincronizzare i progressi.</string>
     <string name="play_games_home_prompt_action">Connetti</string>
     <string name="play_games_home_prompt_dismiss">Non ora</string>
+    <string name="play_games_promo_message">Attiva Google Play Giochi per sbloccare obiettivi, competere nelle classifiche e sincronizzare i progressi.</string>
+    <string name="play_games_promo_action">Apri impostazioni</string>
 </resources>

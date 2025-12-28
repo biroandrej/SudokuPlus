@@ -525,4 +525,6 @@
     <string name="reward_bonus_hints_available">%1$d बोनस संकेत उपलब्ध</string>
     <string name="reward_xp_boost_active">XP बूस्ट: %1$d गेम शेष</string>
 
+    <string name="play_games_promo_message">उपलब्धियों को अनलॉक करने, लीडरबोर्ड पर प्रतिस्पर्धा करने और अपनी प्रगति को सिंक करने के लिए Google Play Games सक्षम करें।</string>
+    <string name="play_games_promo_action">सेटिंग्स खोलें</string>
 </resources>

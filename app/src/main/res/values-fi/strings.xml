@@ -453,4 +453,6 @@
     <string name="reward_bonus_hints_available">%1$d bonusvihjettä käytettävissä</string>
     <string name="reward_xp_boost_active">XP-tehostus: %1$d peliä jäljellä</string>
 
+    <string name="play_games_promo_message">Ota Google Play Pelit käyttöön avataksesi saavutuksia, kilpaillaksesi tulostaulukoissa ja synkronoidaksesi edistymisesi.</string>
+    <string name="play_games_promo_action">Avaa asetukset</string>
 </resources>

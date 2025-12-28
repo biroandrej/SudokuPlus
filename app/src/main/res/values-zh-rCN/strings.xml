@@ -400,4 +400,6 @@
     <string name="reward_bonus_hints_available">%1$d奖励提示可用</string>
     <string name="reward_xp_boost_active">经验加成: 剩余%1$d局</string>
 
+    <string name="play_games_promo_message">启用 Google Play 游戏以解锁成就、在排行榜上竞争并同步您的进度。</string>
+    <string name="play_games_promo_action">打开设置</string>
 </resources>
