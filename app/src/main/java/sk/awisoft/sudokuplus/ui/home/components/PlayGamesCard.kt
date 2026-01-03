@@ -38,7 +38,6 @@ fun PlayGamesCard(
     onDismiss: () -> Unit,
     onAchievements: () -> Unit,
     onLeaderboards: () -> Unit,
-    onOpenSettings: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     ElevatedCard(
@@ -147,7 +146,7 @@ fun PlayGamesCard(
                             Text(stringResource(R.string.play_games_home_prompt_dismiss))
                         }
                         Spacer(modifier = Modifier.weight(1f))
-                        Button(onClick = onOpenSettings) {
+                        Button(onClick = onSignIn) {
                             Text(stringResource(R.string.play_games_promo_action))
                         }
                     }

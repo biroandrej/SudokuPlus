@@ -210,11 +210,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                         onDismiss = { viewModel.dismissPlayGamesPrompt() },
                         onAchievements = { viewModel.showAchievements(activity) },
                         onLeaderboards = { viewModel.showLeaderboards(activity) },
-                        onOpenSettings = {
-                            navigator.navigate(
-                                SettingsOtherScreenDestination(launchedFromGame = false)
-                            )
-                        }
                     )
                 }
             }
