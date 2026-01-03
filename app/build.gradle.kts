@@ -204,6 +204,7 @@ dependencies {
 
     add("prodImplementation", platform(libs.firebase.bom))
     add("prodImplementation", libs.firebase.crashlytics)
+    add("prodImplementation", libs.firebase.analytics)
 }
 
 // Disable Google Services and Crashlytics tasks for dev builds
