@@ -85,6 +85,7 @@ import kotlin.collections.plus
 import kotlinx.coroutines.launch
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.ads.AdsManager
+import sk.awisoft.sudokuplus.ai.AIHintResponse
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.PreferencesConstants
 import sk.awisoft.sudokuplus.core.qqwing.GameType
@@ -96,8 +97,12 @@ import sk.awisoft.sudokuplus.destinations.SettingsAdvancedHintScreenDestination
 import sk.awisoft.sudokuplus.destinations.SettingsCategoriesScreenDestination
 import sk.awisoft.sudokuplus.review.ReviewManager
 import sk.awisoft.sudokuplus.ui.achievements.AchievementUnlockDialog
+import sk.awisoft.sudokuplus.ui.components.AIHintErrorDialog
+import sk.awisoft.sudokuplus.ui.components.AIHintLoadingDialog
+import sk.awisoft.sudokuplus.ui.components.AIHintResultDialog
 import sk.awisoft.sudokuplus.ui.components.AdvancedHintContainer
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
+import sk.awisoft.sudokuplus.ui.components.PremiumUpsellDialog
 import sk.awisoft.sudokuplus.ui.components.board.Board
 import sk.awisoft.sudokuplus.ui.game.components.DefaultGameKeyboard
 import sk.awisoft.sudokuplus.ui.game.components.GameMenu
@@ -190,6 +195,14 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
     var xpResult by remember { mutableStateOf<XPResult?>(null) }
     var showLevelUpDialog by remember { mutableStateOf<Int?>(null) }
 
+    // AI Hint state
+    var showAIHintUpsellDialog by rememberSaveable { mutableStateOf(false) }
+    var aiHintResult by remember { mutableStateOf<AIHintResponse.Success?>(null) }
+    var aiHintError by remember { mutableStateOf<String?>(null) }
+    val aiHintState by viewModel.aiHintState.collectAsStateWithLifecycle()
+    val isPremium by viewModel.isPremium.collectAsStateWithLifecycle()
+    val freeAIHintsRemaining by viewModel.freeAIHintsRemaining.collectAsStateWithLifecycle()
+
     LaunchedEffect(Unit) {
         AdsManager.preloadInterstitial(context)
         AdsManager.preloadRewarded(context)
@@ -249,6 +262,15 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
                         ReviewManager.requestReviewIfEligible(activity, event.completedGames)
                     }
                 }
+                GameViewModel.UiEvent.RequestAIHintUpsell -> {
+                    showAIHintUpsellDialog = true
+                }
+                is GameViewModel.UiEvent.AIHintResult -> {
+                    aiHintResult = event.response
+                }
+                is GameViewModel.UiEvent.AIHintError -> {
+                    aiHintError = event.message
+                }
             }
         }
     }
@@ -292,6 +314,62 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
                 }
             },
             onDismissRequest = { showRewardedHintDialog = false }
+        )
+    }
+
+    // AI Hint Loading Dialog
+    if (aiHintState is AIHintResponse.Loading) {
+        AIHintLoadingDialog(
+            onDismiss = { viewModel.dismissAIHint() }
+        )
+    }
+
+    // AI Hint Result Dialog
+    aiHintResult?.let { result ->
+        AIHintResultDialog(
+            response = result,
+            onApply = {
+                viewModel.applyAIHint(result)
+                aiHintResult = null
+            },
+            onDismiss = { aiHintResult = null }
+        )
+    }
+
+    // AI Hint Error Dialog
+    aiHintError?.let { error ->
+        AIHintErrorDialog(
+            message = error,
+            onDismiss = { aiHintError = null },
+            onRetry = {
+                aiHintError = null
+                viewModel.requestAIHint()
+            }
+        )
+    }
+
+    // Premium Upsell Dialog
+    if (showAIHintUpsellDialog) {
+        PremiumUpsellDialog(
+            onWatchAd = {
+                showAIHintUpsellDialog = false
+                val activity = context.findActivity()
+                if (activity != null) {
+                    AdsManager.showRewardedIfAvailable(activity) {
+                        viewModel.grantAIHintFromAd()
+                    }
+                }
+            },
+            onUpgrade = {
+                showAIHintUpsellDialog = false
+                navigator.navigate(
+                    SettingsCategoriesScreenDestination(
+                        launchedFromGame = true
+                    )
+                )
+            },
+            onDismiss = { showAIHintUpsellDialog = false },
+            freeHintsRemaining = freeAIHintsRemaining
         )
     }
 

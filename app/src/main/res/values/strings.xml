@@ -625,4 +625,26 @@
     <string name="play_games_home_prompt_dismiss">Not now</string>
     <string name="play_games_promo_message">Enable Google Play Games to unlock achievements, compete on leaderboards, and sync your progress across devices.</string>
     <string name="play_games_promo_action">Open Settings</string>
+
+    <!-- AI Hints -->
+    <string name="ai_hint_title">AI Hint</string>
+    <string name="ai_hint_loading">AI is analyzing the puzzle…</string>
+    <string name="ai_hint_apply">Apply Hint</string>
+    <string name="ai_hint_error">Could not generate hint. Please try again.</string>
+    <string name="ai_hints_remaining">%d AI hint(s) remaining today</string>
+    <string name="ai_hints_limit_reached">AI Hints Limit Reached</string>
+    <string name="ai_hints_limit_message">You\'ve used your free AI hint for today. Watch an ad or upgrade to Premium for unlimited hints.</string>
+    <string name="ai_watch_ad_for_hint">Watch Ad for 1 Hint</string>
+
+    <!-- Premium -->
+    <string name="premium_title">Sudoku Plus Premium</string>
+    <string name="premium_upgrade">Upgrade to Premium</string>
+    <string name="premium_feature_unlimited_ai">Unlimited AI Hints</string>
+    <string name="premium_feature_ad_free">Ad-Free Experience</string>
+    <string name="premium_feature_cloud_sync">Cloud Sync</string>
+    <string name="premium_feature_themes">Exclusive Themes</string>
+    <string name="premium_restore_purchases">Restore Purchases</string>
+    <string name="premium_current_plan">Current Plan: %s</string>
+    <string name="premium_plan_free">Free</string>
+    <string name="premium_plan_premium">Premium</string>
 </resources>
