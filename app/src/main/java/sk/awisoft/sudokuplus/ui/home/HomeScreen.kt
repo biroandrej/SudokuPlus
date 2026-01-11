@@ -83,7 +83,6 @@ import sk.awisoft.sudokuplus.destinations.DailyChallengeCalendarScreenDestinatio
 import sk.awisoft.sudokuplus.destinations.GameScreenDestination
 import sk.awisoft.sudokuplus.destinations.PlayGamesScreenDestination
 import sk.awisoft.sudokuplus.destinations.RewardCalendarScreenDestination
-import sk.awisoft.sudokuplus.destinations.SettingsOtherScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
@@ -209,7 +208,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                         onSignIn = { navigator.navigate(PlayGamesScreenDestination) },
                         onDismiss = { viewModel.dismissPlayGamesPrompt() },
                         onAchievements = { viewModel.showAchievements(activity) },
-                        onLeaderboards = { viewModel.showLeaderboards(activity) },
+                        onLeaderboards = { viewModel.showLeaderboards(activity) }
                     )
                 }
             }
