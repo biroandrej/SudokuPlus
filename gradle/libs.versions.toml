@@ -43,6 +43,10 @@ playGamesServices = "20.1.2"
 firebaseBom = "33.7.0"
 googleServices = "4.4.2"
 firebaseCrashlytics = "3.0.3"
+firebaseAI = "17.7.0"
+
+# Billing
+playBilling = "7.1.1"
 
 # Third-party
 aboutLibraries = "13.2.1"
@@ -124,6 +128,11 @@ kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "ko
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-ai = { group = "com.google.firebase", name = "firebase-ai", version.ref = "firebaseAI" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+
+# Billing
+play-billing = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "playBilling" }
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }

@@ -31,6 +31,10 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import sk.awisoft.sudokuplus.ai.AIHintRequest
+import sk.awisoft.sudokuplus.ai.AIHintResponse
+import sk.awisoft.sudokuplus.ai.AIHintService
+import sk.awisoft.sudokuplus.billing.BillingManager
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.Note
 import sk.awisoft.sudokuplus.core.PreferencesConstants
@@ -54,6 +58,7 @@ import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
+import sk.awisoft.sudokuplus.data.datastore.AIUsageManager
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
@@ -67,6 +72,7 @@ import sk.awisoft.sudokuplus.playgames.PlayGamesAchievementIds
 import sk.awisoft.sudokuplus.playgames.PlayGamesLeaderboardIds
 import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
+import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleTag
 
 @HiltViewModel
 class GameViewModel
@@ -84,7 +90,10 @@ constructor(
     private val xpEngine: XPEngine,
     private val rewardCalendarManager: RewardCalendarManager,
     private val playGamesManager: PlayGamesManager,
-    private val dailyChallengeRepository: DailyChallengeRepository
+    private val dailyChallengeRepository: DailyChallengeRepository,
+    private val aiHintService: AIHintService,
+    private val aiUsageManager: AIUsageManager,
+    private val billingManager: BillingManager
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
@@ -100,6 +109,13 @@ constructor(
         data class LevelUp(val newLevel: Int) : UiEvent
 
         data class RequestReview(val completedGames: Int) : UiEvent
+
+        // AI Hint events
+        data object RequestAIHintUpsell : UiEvent
+
+        data class AIHintResult(val response: AIHintResponse.Success) : UiEvent
+
+        data class AIHintError(val message: String) : UiEvent
     }
 
     private val _uiEvents = MutableSharedFlow<UiEvent>(extraBufferCapacity = 1)
@@ -304,6 +320,18 @@ constructor(
 
     private var _advancedHintText = MutableStateFlow("")
     val advancedHintText = _advancedHintText.asStateFlow()
+
+    // AI Hint state
+    private val _aiHintState = MutableStateFlow<AIHintResponse?>(null)
+    val aiHintState = _aiHintState.asStateFlow()
+
+    val isPremium = billingManager.isPremium
+
+    val freeAIHintsRemaining = aiUsageManager.freeAIHintsRemaining.stateIn(
+        viewModelScope,
+        SharingStarted.Eagerly,
+        AIUsageManager.FREE_AI_HINTS_PER_DAY
+    )
 
     private fun clearNotesAtCell(
         notes: List<Note>,
@@ -1077,7 +1105,120 @@ constructor(
                     settings = hintSettings
                 )
 
-            _advancedHintData.emit(advancedHint.getEasiestHint())
+            val algorithmicHint = advancedHint.getEasiestHint()
+
+            if (algorithmicHint != null) {
+                // Use algorithmic hint
+                _advancedHintData.emit(algorithmicHint)
+            } else {
+                // Fallback to AI hint
+                _advancedHintMode.emit(false)
+                requestAIHint()
+            }
+        }
+    }
+
+    fun requestAIHint() {
+        viewModelScope.launch {
+            val isPremiumUser = isPremium.value
+
+            if (!isPremiumUser) {
+                val canUse = aiUsageManager.canUseFreeAIHint()
+                if (!canUse) {
+                    _uiEvents.emit(UiEvent.RequestAIHintUpsell)
+                    return@launch
+                }
+            }
+
+            // Show loading state
+            _aiHintState.emit(AIHintResponse.Loading)
+
+            // Generate AI hint
+            val request = AIHintRequest(
+                currentBoard = gameBoard,
+                solvedBoard = solvedBoard,
+                notes = notes,
+                gameType = gameType,
+                difficulty = gameDifficulty,
+                languageTag = getCurrentLocaleTag().ifEmpty { "en" }
+            )
+
+            val response = withContext(Dispatchers.IO) {
+                aiHintService.generateHint(request)
+            }
+
+            when (response) {
+                is AIHintResponse.Success -> {
+                    if (!isPremiumUser) {
+                        aiUsageManager.consumeFreeAIHint()
+                    }
+                    _aiHintState.emit(response)
+                    _uiEvents.emit(UiEvent.AIHintResult(response))
+                }
+                is AIHintResponse.Error -> {
+                    _aiHintState.emit(null)
+                    _uiEvents.emit(UiEvent.AIHintError(response.message))
+                }
+                AIHintResponse.Loading -> {
+                    // Already handled above
+                }
+            }
+        }
+    }
+
+    fun grantAIHintFromAd() {
+        viewModelScope.launch {
+            aiUsageManager.grantAIHintFromAd()
+            requestAIHint()
+        }
+    }
+
+    fun applyAIHint(response: AIHintResponse.Success) {
+        viewModelScope.launch {
+            val row = response.targetCell.row
+            val col = response.targetCell.col
+            val value = response.suggestedValue
+            val boardSize = gameType.size
+
+            // Validate bounds
+            if (row !in 0 until boardSize || col !in 0 until boardSize) {
+                _aiHintState.emit(null)
+                return@launch
+            }
+
+            // Validate value
+            if (value !in 1..boardSize) {
+                _aiHintState.emit(null)
+                return@launch
+            }
+
+            // Validate cell is not locked (original clue)
+            val targetCell = gameBoard[row][col]
+            if (targetCell.locked) {
+                _aiHintState.emit(null)
+                return@launch
+            }
+
+            currCell = targetCell
+            notes = clearNotesAtCell(notes, row, col)
+            gameBoard = setValueCell(value, row, col)
+
+            val new = getBoardNoRef()
+            new[row][col].error = false
+            gameBoard = new
+
+            duration = duration.plus(30.toDuration(DurationUnit.SECONDS))
+            timeText = duration.toFormattedString()
+            undoRedoManager.addState(GameState(gameBoard, notes))
+            hintsUsed++
+
+            _aiHintState.emit(null)
+        }
+    }
+
+    fun dismissAIHint() {
+        viewModelScope.launch {
+            _aiHintState.emit(null)
         }
     }
 
