@@ -15,6 +15,10 @@ import sk.awisoft.sudokuplus.ai.RemoteConfigProvider
  * One-time worker that fetches and activates Remote Config values.
  * This runs in the background during app startup to ensure the latest
  * AI model configuration is available without blocking the main thread.
+ *
+ * Uses REPLACE policy so config is fetched on every app launch.
+ * Firebase SDK's minimumFetchIntervalInSeconds (1 hour) throttles actual
+ * network requests, so this is efficient while ensuring fresh config.
  */
 @HiltWorker
 class RemoteConfigFetchWorker @AssistedInject constructor(
@@ -45,10 +49,12 @@ class RemoteConfigFetchWorker @AssistedInject constructor(
             val request = OneTimeWorkRequestBuilder<RemoteConfigFetchWorker>()
                 .build()
 
+            // REPLACE ensures config is fetched on every app launch
+            // Firebase SDK throttles actual network requests via minimumFetchInterval
             WorkManager.getInstance(context)
                 .enqueueUniqueWork(
                     WORK_NAME,
-                    ExistingWorkPolicy.KEEP,
+                    ExistingWorkPolicy.REPLACE,
                     request
                 )
         }
