@@ -31,6 +31,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import sk.awisoft.sudokuplus.ai.AIAnalyticsLogger
 import sk.awisoft.sudokuplus.ai.AIHintRequest
 import sk.awisoft.sudokuplus.ai.AIHintResponse
 import sk.awisoft.sudokuplus.ai.AIHintService
@@ -93,7 +94,8 @@ constructor(
     private val dailyChallengeRepository: DailyChallengeRepository,
     private val aiHintService: AIHintService,
     private val aiUsageManager: AIUsageManager,
-    private val billingManager: BillingManager
+    private val billingManager: BillingManager,
+    private val aiAnalyticsLogger: AIAnalyticsLogger
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
@@ -1155,6 +1157,16 @@ constructor(
         // Show loading state
         _aiHintState.emit(AIHintResponse.Loading)
 
+        // Log the request
+        val isPremiumUser = isPremium.value
+        val languageTag = getCurrentLocaleTag().ifEmpty { "en" }
+        aiAnalyticsLogger.logHintRequested(
+            gameType = gameType,
+            difficulty = gameDifficulty,
+            languageTag = languageTag,
+            isPremium = isPremiumUser
+        )
+
         // Generate AI hint
         val request = AIHintRequest(
             currentBoard = gameBoard,
@@ -1162,7 +1174,7 @@ constructor(
             notes = notes,
             gameType = gameType,
             difficulty = gameDifficulty,
-            languageTag = getCurrentLocaleTag().ifEmpty { "en" }
+            languageTag = languageTag
         )
 
         val response = withContext(Dispatchers.IO) {
@@ -1177,6 +1189,7 @@ constructor(
                 hintsUsed++
                 _aiHintState.emit(response)
                 _uiEvents.emit(UiEvent.AIHintResult(response))
+                aiAnalyticsLogger.logHintDialogShown()
             }
             is AIHintResponse.Error -> {
                 _aiHintState.emit(null)
@@ -1239,6 +1252,13 @@ constructor(
                 return@launch
             }
 
+            // Log hint applied
+            aiAnalyticsLogger.logHintApplied(
+                technique = response.title,
+                gameType = gameType,
+                difficulty = gameDifficulty
+            )
+
             // Select the target cell first
             currCell = gameBoard[row][col]
 
@@ -1258,6 +1278,15 @@ constructor(
 
     fun dismissAIHint() {
         viewModelScope.launch {
+            // Log hint dismissed if there was a successful hint shown
+            val currentHint = _aiHintState.value
+            if (currentHint is AIHintResponse.Success) {
+                aiAnalyticsLogger.logHintDismissed(
+                    technique = currentHint.title,
+                    gameType = gameType,
+                    difficulty = gameDifficulty
+                )
+            }
             _aiHintState.emit(null)
         }
     }

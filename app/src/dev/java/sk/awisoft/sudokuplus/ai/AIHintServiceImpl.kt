@@ -4,10 +4,13 @@ import com.google.firebase.Firebase
 import com.google.firebase.ai.ai
 import com.google.firebase.ai.type.GenerativeBackend
 import com.google.firebase.ai.type.generationConfig
+import java.io.IOException
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import sk.awisoft.sudokuplus.core.Cell
 
@@ -17,7 +20,8 @@ import sk.awisoft.sudokuplus.core.Cell
  */
 @Singleton
 class AIHintServiceImpl @Inject constructor(
-    private val remoteConfigProvider: RemoteConfigProvider
+    private val remoteConfigProvider: RemoteConfigProvider,
+    private val analyticsLogger: AIAnalyticsLogger
 ) : AIHintService {
 
     private val json = Json { ignoreUnknownKeys = true }
@@ -52,17 +56,81 @@ class AIHintServiceImpl @Inject constructor(
     }
 
     override suspend fun generateHint(request: AIHintRequest): AIHintResponse {
+        val startTime = System.currentTimeMillis()
+
         return try {
+            val config = remoteConfigProvider.getAIModelConfig()
             val model = getOrCreateModel()
             val prompt = buildPrompt(request)
             val response = model.generateContent(prompt)
-            parseResponse(response.text ?: "", request)
+            val latencyMs = System.currentTimeMillis() - startTime
+
+            // Extract token usage from response metadata if available
+            val usageMetadata = response.usageMetadata
+            val promptTokens = usageMetadata?.promptTokenCount
+            val completionTokens = usageMetadata?.candidatesTokenCount
+
+            val result = parseResponse(response.text ?: "", request)
+
+            when (result) {
+                is AIHintResponse.Success -> {
+                    analyticsLogger.logHintSuccess(
+                        gameType = request.gameType,
+                        difficulty = request.difficulty,
+                        languageTag = request.languageTag,
+                        technique = result.title,
+                        latencyMs = latencyMs,
+                        modelName = config.modelName,
+                        promptTokens = promptTokens,
+                        completionTokens = completionTokens
+                    )
+                }
+                is AIHintResponse.Error -> {
+                    analyticsLogger.logHintError(
+                        gameType = request.gameType,
+                        difficulty = request.difficulty,
+                        languageTag = request.languageTag,
+                        errorType = AIErrorType.PARSE_ERROR,
+                        errorMessage = result.message,
+                        latencyMs = latencyMs
+                    )
+                }
+                is AIHintResponse.Loading -> { /* No-op */ }
+            }
+
+            result
         } catch (e: Exception) {
+            val latencyMs = System.currentTimeMillis() - startTime
+            val errorType = classifyError(e)
+            val isRateLimited = errorType == AIErrorType.RATE_LIMITED
+
+            analyticsLogger.logHintError(
+                gameType = request.gameType,
+                difficulty = request.difficulty,
+                languageTag = request.languageTag,
+                errorType = errorType,
+                errorMessage = e.message ?: "Unknown error",
+                latencyMs = latencyMs
+            )
+
             AIHintResponse.Error(
                 message = e.message ?: "Unknown error",
-                isRateLimited = e.message?.contains("quota", ignoreCase = true) == true ||
-                    e.message?.contains("rate", ignoreCase = true) == true
+                isRateLimited = isRateLimited
             )
+        }
+    }
+
+    private fun classifyError(e: Exception): AIErrorType {
+        val message = e.message?.lowercase() ?: ""
+        return when {
+            e is SocketTimeoutException -> AIErrorType.TIMEOUT
+            e is IOException -> AIErrorType.NETWORK_ERROR
+            e is SerializationException -> AIErrorType.PARSE_ERROR
+            message.contains("quota") || message.contains("rate") -> AIErrorType.RATE_LIMITED
+            message.contains("timeout") -> AIErrorType.TIMEOUT
+            message.contains("network") || message.contains("connect") -> AIErrorType.NETWORK_ERROR
+            message.contains("model") || message.contains("generation") -> AIErrorType.MODEL_ERROR
+            else -> AIErrorType.UNKNOWN
         }
     }
 

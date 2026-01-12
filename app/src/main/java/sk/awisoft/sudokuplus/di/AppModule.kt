@@ -8,6 +8,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import sk.awisoft.sudokuplus.ai.AIAnalyticsLogger
+import sk.awisoft.sudokuplus.ai.AIAnalyticsLoggerImpl
 import sk.awisoft.sudokuplus.ai.AIHintService
 import sk.awisoft.sudokuplus.ai.AIHintServiceImpl
 import sk.awisoft.sudokuplus.ai.FirebaseTimestampProvider
@@ -249,8 +251,15 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideAIHintService(remoteConfigProvider: RemoteConfigProvider): AIHintService =
-        AIHintServiceImpl(remoteConfigProvider)
+    fun provideAIAnalyticsLogger(@ApplicationContext context: Context): AIAnalyticsLogger =
+        AIAnalyticsLoggerImpl(context)
+
+    @Provides
+    @Singleton
+    fun provideAIHintService(
+        remoteConfigProvider: RemoteConfigProvider,
+        analyticsLogger: AIAnalyticsLogger
+    ): AIHintService = AIHintServiceImpl(remoteConfigProvider, analyticsLogger)
 
     @Provides
     @Singleton
