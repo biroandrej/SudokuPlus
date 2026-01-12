@@ -131,6 +131,7 @@ firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashly
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 firebase-ai = { group = "com.google.firebase", name = "firebase-ai", version.ref = "firebaseAI" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+firebase-config = { group = "com.google.firebase", name = "firebase-config" }
 
 # Billing
 play-billing = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "playBilling" }
