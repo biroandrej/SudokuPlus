@@ -28,6 +28,9 @@ render.experimental.xml
 keystore/
 keystore.properties
 
+# Firebase configuration
+firebase.properties
+
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
@@ -37,3 +40,4 @@ google-services.json
 
 # Build outputs
 app/prod/
+.firebaserc

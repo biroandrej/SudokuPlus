@@ -8,6 +8,12 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import sk.awisoft.sudokuplus.ai.AIHintService
+import sk.awisoft.sudokuplus.ai.AIHintServiceImpl
+import sk.awisoft.sudokuplus.ai.FirebaseTimestampProvider
+import sk.awisoft.sudokuplus.ai.FirebaseTimestampProviderImpl
+import sk.awisoft.sudokuplus.billing.BillingManager
+import sk.awisoft.sudokuplus.billing.BillingManagerImpl
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
@@ -31,6 +37,7 @@ import sk.awisoft.sudokuplus.data.database.repository.LoginRewardRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.RecordRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.SavedGameRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.UserProgressRepositoryImpl
+import sk.awisoft.sudokuplus.data.datastore.AIUsageManager
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.AssistanceSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.BackupSettingsManager
@@ -233,4 +240,25 @@ class AppModule {
     @Provides
     @Singleton
     fun providePlayGamesManager(): PlayGamesManager = PlayGamesManagerImpl
+
+    @Provides
+    @Singleton
+    fun provideAIHintService(): AIHintService = AIHintServiceImpl()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseTimestampProvider(): FirebaseTimestampProvider =
+        FirebaseTimestampProviderImpl()
+
+    @Provides
+    @Singleton
+    fun provideAIUsageManager(
+        settingsDataStore: SettingsDataStore,
+        timestampProvider: FirebaseTimestampProvider
+    ): AIUsageManager = AIUsageManager(settingsDataStore, timestampProvider)
+
+    @Provides
+    @Singleton
+    fun provideBillingManager(@ApplicationContext context: Context): BillingManager =
+        BillingManagerImpl(context)
 }

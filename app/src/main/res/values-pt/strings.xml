@@ -387,6 +387,237 @@
     <string name="reward_xp_boost_active">Aumento XP: %1$d jogos restantes</string>
 
 
+    <!-- Actions -->
+    <string name="action_undo">Desfazer</string>
+    <string name="action_hint">Dica</string>
+    <string name="action_notes">Notas</string>
+    <string name="action_erase">Apagar</string>
+    <string name="action_advanced_hint">Dica avançada</string>
+    <string name="action_previous">Anterior</string>
+    <string name="action_next">Próximo</string>
+    <string name="action_back">Voltar</string>
+    <string name="action_apply">Aplicar</string>
+    <string name="action_dismiss">Dispensar</string>
+    <string name="action_retry">Tentar novamente</string>
+    <string name="action_generate">Gerar</string>
+    <string name="action_restart_app">Reiniciar a app</string>
+    <string name="action_share_crash_log">Partilhar registo de falhas</string>
+    <string name="nav_back">Voltar</string>
+
+    <!-- Advanced Hints -->
+    <string name="advanced_hint_title">Dica avançada</string>
+    <string name="advanced_hint_summary">Um sistema de dicas experimental</string>
+    <string name="advanced_hint_in_development">Mais técnicas em desenvolvimento…</string>
+    <string name="advanced_hint_no_hint">Não foi possível obter uma dica. Talvez seja muito difícil para nós neste momento</string>
+    <string name="advanced_hint_no_hint_title">Sem dica</string>
+
+    <!-- Hint Types -->
+    <string name="hint_full_house_group_title">Casa Cheia</string>
+    <string name="hint_full_house_group_detail">A célula %1$s é a última célula vazia nesta caixa, então pode preenchê-la com o %2$s</string>
+    <string name="hint_naked_single_title">Único exposto</string>
+    <string name="hint_naked_single_detail">A célula %1$s tem apenas um valor possível restante, então pode colocar o %2$s nesta célula</string>
+    <string name="hint_hidden_single_title">Único oculto</string>
+    <string name="hint_hidden_single_detail">A célula %1$s é a única célula neste grupo onde o %2$s pode estar</string>
+    <string name="hint_wrong_value_title">Valor errado</string>
+    <string name="hint_wron_value_detail">O valor %1$s na célula %2$s está errado</string>
+
+    <!-- Settings Advanced Hint -->
+    <string name="settings_advanced_hint_category_techniques">Técnicas</string>
+    <string name="label_beta">Beta</string>
+
+    <!-- Badges -->
+    <string name="badge_rarity_common">Comum</string>
+    <string name="badge_rarity_rare">Raro</string>
+    <string name="badge_rarity_epic">Épico</string>
+    <string name="badge_rarity_legendary">Lendário</string>
+    <string name="badge_week_1_name">Guerreiro Semana 1</string>
+    <string name="badge_week_1_desc">Resgatou recompensas por 7 dias consecutivos</string>
+    <string name="badge_week_2_name">Guerreiro Semana 2</string>
+    <string name="badge_week_2_desc">Resgatou recompensas por 14 dias consecutivos</string>
+    <string name="badge_week_3_name">Guerreiro Semana 3</string>
+    <string name="badge_week_3_desc">Resgatou recompensas por 21 dias consecutivos</string>
+    <string name="badge_week_4_name">Guerreiro Semana 4</string>
+    <string name="badge_week_4_desc">Resgatou recompensas por 28 dias consecutivos</string>
+    <string name="badge_monthly_name">Campeão Mensal</string>
+    <string name="badge_monthly_desc">Completou um ciclo completo de recompensas de 30 dias</string>
+    <string name="badges_title">Distintivos</string>
+    <string name="badges_earned">Distintivos Ganhos</string>
+    <string name="badges_earned_count">%1$d distintivos ganhos</string>
+    <string name="badge_earned">Distintivo Ganho!</string>
+    <string name="badge_no_badges">Nenhum distintivo ganho ainda</string>
+
+    <!-- Premium -->
+    <string name="premium_title">Sudoku Plus Premium</string>
+    <string name="premium_upgrade">Atualizar para Premium</string>
+    <string name="premium_restore_purchases">Restaurar Compras</string>
+    <string name="premium_current_plan">Plano Atual: %s</string>
+    <string name="premium_plan_free">Gratuito</string>
+    <string name="premium_plan_premium">Premium</string>
+
+    <!-- Backup Failures -->
+    <string name="backup_failed_title">Falha no backup</string>
+    <string name="backup_failure_no_directory">Nenhuma pasta de backup selecionada. Por favor, selecione uma pasta para backups automáticos.</string>
+    <string name="backup_failure_permission_lost">O acesso à pasta de backup foi perdido. Por favor, conceda acesso novamente.</string>
+    <string name="backup_failure_directory_access">Não é possível aceder à pasta de backup. Por favor, selecione uma pasta diferente.</string>
+    <string name="backup_failure_file_create">Falha ao criar ficheiro de backup. Verifique o espaço de armazenamento disponível.</string>
+    <string name="backup_failure_io_error">Ocorreu um erro temporário. O backup será tentado novamente automaticamente.</string>
+    <string name="backup_failure_unknown">Ocorreu um erro inesperado. Por favor, tente novamente.</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">Desafio Diário</string>
+    <string name="daily_challenge_subtitle">Novo puzzle todos os dias</string>
+    <string name="daily_streak">Sequência de %d dias</string>
+    <string name="daily_completed">Concluído!</string>
+    <string name="daily_play">Jogar</string>
+    <string name="daily_continue">Continuar</string>
+    <string name="view_calendar">Calendário</string>
+    <string name="daily_challenge_calendar">Calendário de Desafios</string>
+    <string name="total_completed">Total Concluído</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Conquistas</string>
+    <string name="achievements_unlocked">Desbloqueado</string>
+    <string name="achievement_unlocked">Conquista Desbloqueada!</string>
+    <string name="achievements_unlocked_multiple">%d Conquistas Desbloqueadas!</string>
+    <string name="action_awesome">Incrível!</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">Todas</string>
+    <string name="achievement_category_completion">Conclusão</string>
+    <string name="achievement_category_speed">Velocidade</string>
+    <string name="achievement_category_accuracy">Precisão</string>
+    <string name="achievement_category_streak">Sequência</string>
+    <string name="achievement_category_variety">Variedade</string>
+    <string name="achievement_category_mastery">Maestria</string>
+    <string name="achievement_category_daily">Diário</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">Bronze</string>
+    <string name="achievement_tier_silver">Prata</string>
+    <string name="achievement_tier_gold">Ouro</string>
+    <string name="achievement_tier_platinum">Platina</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">Primeiros Passos</string>
+    <string name="achievement_first_win_desc">Complete o seu primeiro puzzle</string>
+    <string name="achievement_ten_games">A Começar</string>
+    <string name="achievement_ten_games_desc">Complete 10 puzzles</string>
+    <string name="achievement_fifty_games">Fã de Puzzles</string>
+    <string name="achievement_fifty_games_desc">Complete 50 puzzles</string>
+    <string name="achievement_centurion">Centurião</string>
+    <string name="achievement_centurion_desc">Complete 100 puzzles</string>
+    <string name="achievement_dedicated_player">Jogador Dedicado</string>
+    <string name="achievement_dedicated_player_desc">Complete 500 puzzles</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">Pensador Rápido</string>
+    <string name="achievement_speed_easy_5_desc">Complete um puzzle Fácil em menos de 5 minutos</string>
+    <string name="achievement_speed_easy_3">Velocidade Demoníaca</string>
+    <string name="achievement_speed_easy_3_desc">Complete um puzzle Fácil em menos de 3 minutos</string>
+    <string name="achievement_speed_moderate_10">Resolvedor Veloz</string>
+    <string name="achievement_speed_moderate_10_desc">Complete um puzzle Médio em menos de 10 minutos</string>
+    <string name="achievement_speed_hard_15">Relâmpago</string>
+    <string name="achievement_speed_hard_15_desc">Complete um puzzle Difícil em menos de 15 minutos</string>
+    <string name="achievement_speed_challenge_20">Mestre do Tempo</string>
+    <string name="achievement_speed_challenge_20_desc">Complete um puzzle Desafiante em menos de 20 minutos</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">Perfeccionista</string>
+    <string name="achievement_perfectionist_1_desc">Complete um puzzle sem erros</string>
+    <string name="achievement_perfectionist_10">Dez Perfeitos</string>
+    <string name="achievement_perfectionist_10_desc">Complete 10 puzzles sem erros</string>
+    <string name="achievement_perfectionist_50">Mestre da Precisão</string>
+    <string name="achievement_perfectionist_50_desc">Complete 50 puzzles sem erros</string>
+    <string name="achievement_no_hints_1">Auto-suficiente</string>
+    <string name="achievement_no_hints_1_desc">Complete um puzzle sem usar dicas</string>
+    <string name="achievement_no_hints_25">Resolvedor Independente</string>
+    <string name="achievement_no_hints_25_desc">Complete 25 puzzles sem usar dicas</string>
+    <string name="achievement_no_hints_100">Especialista Sem Dicas</string>
+    <string name="achievement_no_hints_100_desc">Complete 100 puzzles sem usar dicas</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">Três Seguidos</string>
+    <string name="achievement_streak_3_desc">Jogue durante 3 dias seguidos</string>
+    <string name="achievement_streak_7">Guerreiro da Semana</string>
+    <string name="achievement_streak_7_desc">Jogue durante 7 dias seguidos</string>
+    <string name="achievement_streak_30">Mestre Mensal</string>
+    <string name="achievement_streak_30_desc">Jogue durante 30 dias seguidos</string>
+    <string name="achievement_streak_100">Sequência Centenária</string>
+    <string name="achievement_streak_100_desc">Jogue durante 100 dias seguidos</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">Mini Sudoku</string>
+    <string name="achievement_try_6x6_desc">Complete um puzzle 6x6</string>
+    <string name="achievement_try_12x12">Matador de Gigantes</string>
+    <string name="achievement_try_12x12_desc">Complete um puzzle 12x12</string>
+    <string name="achievement_try_killer">Instinto Assassino</string>
+    <string name="achievement_try_killer_desc">Complete um puzzle Killer Sudoku</string>
+    <string name="achievement_killer_10">Entusiasta do Killer</string>
+    <string name="achievement_killer_10_desc">Complete 10 puzzles Killer Sudoku</string>
+    <string name="achievement_killer_50">Especialista do Killer</string>
+    <string name="achievement_killer_50_desc">Complete 50 puzzles Killer Sudoku</string>
+    <string name="achievement_giant_10">O Tamanho Não Importa</string>
+    <string name="achievement_giant_10_desc">Complete 10 puzzles 12x12</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">Mestre do Fácil</string>
+    <string name="achievement_easy_master_desc">Complete 25 puzzles Fáceis</string>
+    <string name="achievement_moderate_master">Mestre do Médio</string>
+    <string name="achievement_moderate_master_desc">Complete 25 puzzles Médios</string>
+    <string name="achievement_hard_master">Mestre do Difícil</string>
+    <string name="achievement_hard_master_desc">Complete 25 puzzles Difíceis</string>
+    <string name="achievement_challenge_master">Mestre do Desafio</string>
+    <string name="achievement_challenge_master_desc">Complete 25 puzzles Desafiantes</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">Estreia Diária</string>
+    <string name="achievement_daily_first_desc">Complete o seu primeiro desafio diário</string>
+    <string name="achievement_daily_week">Desafiante Semanal</string>
+    <string name="achievement_daily_week_desc">Complete 7 desafios diários</string>
+    <string name="achievement_daily_month">Campeão Mensal</string>
+    <string name="achievement_daily_month_desc">Complete 30 desafios diários</string>
+    <string name="achievement_daily_streak_7">Dedicação Diária</string>
+    <string name="achievement_daily_streak_7_desc">Sequência de 7 dias de desafio diário</string>
+    <string name="achievement_daily_streak_30">Devoto Diário</string>
+    <string name="achievement_daily_streak_30_desc">Sequência de 30 dias de desafio diário</string>
+    <string name="achievement_daily_streak_100">Lenda Diária</string>
+    <string name="achievement_daily_streak_100_desc">Sequência de 100 dias de desafio diário</string>
+
+    <!-- About and Misc -->
+    <string name="about_github_source_code">Código fonte no GitHub</string>
+    <string name="app_version">Versão %1$s (%2$s)</string>
+    <string name="color_picker_title">Escolher uma cor</string>
+    <string name="crash_screen_title">Ops, algo deu errado</string>
+    <string name="export_empty_cell">Célula vazia</string>
+    <string name="font_size_automatic">Automático</string>
+    <string name="game_mistakes">Erros</string>
+    <string name="generating_number_of">A gerar %1$s/%2$s</string>
+    <string name="libraries_licenses">Licenças</string>
+
+    <!-- Onboarding -->
+    <string name="onboard_restore_backup">Restaurar backup</string>
+    <string name="onboard_restore_backup_description">Já tem um backup? Restaure-o agora</string>
+    <string name="onboard_settings_description">Ajuste a app ao seu gosto</string>
+    <string name="parse_color_fail">Não é uma cor</string>
+
+    <!-- Preference Summaries -->
+    <string name="perf_appearance_summary">Tema escuro, cores dinâmicas, tema do tabuleiro, formato de data…</string>
+    <string name="perf_assistance_summary">Verificação de erros, destacar valores idênticos, usos restantes…</string>
+    <string name="perf_gameplay_summary">Método de entrada, limite de erros, cronómetro…</string>
+    <string name="perf_other_summary">Lembrar tipo e dificuldade, manter ecrã ligado, limpar estatísticas…</string>
+    <string name="pref_board_theme_summary">Aplicar cores de destaque, linhas de posição, tamanho da fonte…</string>
+
+    <!-- Dynamic Colors -->
+    <string name="pref_dynamic_colors_title">Cores dinâmicas</string>
+    <string name="pref_dynamic_colors_summary">Usar cores do seu papel de parede (Android 12+)</string>
+    <string name="play_games_sync_coming_soon">Sincronização na nuvem em breve!</string>
+
+    <!-- Killer Sudoku Types -->
+    <string name="type_killer_9x9">Killer 9x9</string>
+    <string name="type_killer_6x6">Killer 6x6</string>
+    <string name="type_killer_12x12">Killer 12x12</string>
+    <string name="ai_watch_ad_for_hint">Ver anúncio por 1 dica</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jogos</string>
     <string name="play_games_summary">Conquistas, classificações e sincronização na nuvem</string>
@@ -411,4 +642,19 @@
     <string name="play_games_home_prompt_dismiss">Agora não</string>
     <string name="play_games_promo_message">Ative o Google Play Jogos para desbloquear conquistas, competir nas classificações e sincronizar seu progresso.</string>
     <string name="play_games_promo_action">Abrir definições</string>
+
+    <!-- AI Hints -->
+    <string name="ai_hint_title">Dica IA</string>
+    <string name="ai_hint_loading">A IA está a analisar o puzzle…</string>
+    <string name="ai_hint_apply">Aplicar dica</string>
+    <string name="ai_hint_error">Não foi possível gerar a dica. Tente novamente.</string>
+    <string name="ai_hints_remaining">%d dica(s) IA restante(s) hoje</string>
+    <string name="ai_hints_limit_reached">Limite de dicas atingido</string>
+    <string name="ai_hints_limit_message">Usou todas as suas dicas. Veja um anúncio para mais uma dica ou atualize para Premium para dicas ilimitadas.</string>
+
+    <!-- Premium Features -->
+    <string name="premium_feature_unlimited_ai">Dicas inteligentes ilimitadas</string>
+    <string name="premium_feature_ad_free">Experiência sem anúncios</string>
+    <string name="premium_feature_cloud_sync">Sincronização na nuvem</string>
+    <string name="premium_feature_themes">Temas exclusivos</string>
 </resources>

@@ -1,0 +1,9 @@
+# Firebase configuration for dev builds (manual initialization)
+# Copy this file to firebase.properties and fill in your values from google-services.json
+# This file should NOT be committed to version control
+
+firebaseProjectId=your-project-id
+firebaseApplicationId=1:123456789:android:abcdef123456
+firebaseApiKey=AIzaSy...your-api-key
+firebaseStorageBucket=your-project.appspot.com
+firebaseGcmSenderId=123456789

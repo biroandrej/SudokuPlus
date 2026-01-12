@@ -358,7 +358,7 @@
     <string name="action_apply">Применить</string>
     <string name="nav_back">Назад</string>
     <string name="font_size_automatic">Автоматически</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
+    <string name="hints_no_remaining">Подсказок для этой игры не осталось</string>
     <string name="hints_ad_title">Out of hints</string>
     <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
     <string name="hints_ad_watch">Watch ad</string>
@@ -581,4 +581,76 @@
     <string name="play_games_home_prompt_dismiss">Не сейчас</string>
     <string name="play_games_promo_message">Включите Google Play Игры, чтобы разблокировать достижения, соревноваться в таблицах лидеров и синхронизировать прогресс.</string>
     <string name="play_games_promo_action">Открыть настройки</string>
+    <string name="play_games_sync_coming_soon">Облачная синхронизация скоро!</string>
+
+    <!-- Action strings -->
+    <string name="action_undo">Отменить</string>
+    <string name="action_hint">Подсказка</string>
+    <string name="action_notes">Заметки</string>
+    <string name="action_erase">Стереть</string>
+    <string name="action_advanced_hint">Продвинутая подсказка</string>
+    <string name="action_previous">Предыдущий</string>
+    <string name="action_next">Следующий</string>
+    <string name="action_back">Назад</string>
+    <string name="action_retry">Повторить</string>
+    <string name="action_dismiss">Закрыть</string>
+    <string name="game_mistakes">Ошибки</string>
+
+    <!-- Dynamic colors -->
+    <string name="pref_dynamic_colors_title">Динамические цвета</string>
+    <string name="pref_dynamic_colors_summary">Использовать цвета из ваших обоев (Android 12+)</string>
+
+    <!-- Backup failures -->
+    <string name="backup_failed_title">Ошибка копирования</string>
+    <string name="backup_failure_no_directory">Папка для копий не выбрана. Выберите папку для автоматических копий.</string>
+    <string name="backup_failure_permission_lost">Доступ к папке копий утерян. Предоставьте доступ снова.</string>
+    <string name="backup_failure_directory_access">Не удается получить доступ к папке копий. Выберите другую папку.</string>
+    <string name="backup_failure_file_create">Не удалось создать файл копии. Проверьте доступное место.</string>
+    <string name="backup_failure_io_error">Произошла временная ошибка. Копирование будет повторено автоматически.</string>
+    <string name="backup_failure_unknown">Произошла непредвиденная ошибка. Попробуйте снова.</string>
+
+    <!-- Badges -->
+    <string name="badge_rarity_common">Обычный</string>
+    <string name="badge_rarity_rare">Редкий</string>
+    <string name="badge_rarity_epic">Эпический</string>
+    <string name="badge_rarity_legendary">Легендарный</string>
+    <string name="badge_week_1_name">Воин 1-й недели</string>
+    <string name="badge_week_1_desc">Получал награды 7 дней подряд</string>
+    <string name="badge_week_2_name">Воин 2-й недели</string>
+    <string name="badge_week_2_desc">Получал награды 14 дней подряд</string>
+    <string name="badge_week_3_name">Воин 3-й недели</string>
+    <string name="badge_week_3_desc">Получал награды 21 день подряд</string>
+    <string name="badge_week_4_name">Воин 4-й недели</string>
+    <string name="badge_week_4_desc">Получал награды 28 дней подряд</string>
+    <string name="badge_monthly_name">Чемпион месяца</string>
+    <string name="badge_monthly_desc">Завершил полный 30-дневный цикл наград</string>
+    <string name="badges_title">Значки</string>
+    <string name="badges_earned">Полученные значки</string>
+    <string name="badges_earned_count">Получено значков: %1$d</string>
+    <string name="badge_earned">Значок получен!</string>
+    <string name="badge_no_badges">Значков пока нет</string>
+
+    <!-- Premium -->
+    <string name="premium_title">Sudoku Plus Премиум</string>
+    <string name="premium_upgrade">Перейти на Премиум</string>
+    <string name="premium_restore_purchases">Восстановить покупки</string>
+    <string name="premium_current_plan">Текущий план: %s</string>
+    <string name="premium_plan_free">Бесплатный</string>
+    <string name="premium_plan_premium">Премиум</string>
+
+    <!-- AI Hints -->
+    <string name="ai_hint_title">ИИ-подсказка</string>
+    <string name="ai_hint_loading">ИИ анализирует головоломку…</string>
+    <string name="ai_hint_apply">Применить подсказку</string>
+    <string name="ai_hint_error">Не удалось сгенерировать подсказку. Попробуйте снова.</string>
+    <string name="ai_hints_remaining">Осталось %d ИИ-подсказок на сегодня</string>
+    <string name="ai_hints_limit_reached">Лимит подсказок достигнут</string>
+    <string name="ai_hints_limit_message">Вы использовали все подсказки. Посмотрите рекламу для ещё одной подсказки или перейдите на Premium для неограниченных подсказок.</string>
+    <string name="ai_watch_ad_for_hint">Посмотреть рекламу за 1 подсказку</string>
+
+    <!-- Premium Features -->
+    <string name="premium_feature_unlimited_ai">Безлимитные умные подсказки</string>
+    <string name="premium_feature_ad_free">Без рекламы</string>
+    <string name="premium_feature_cloud_sync">Облачная синхронизация</string>
+    <string name="premium_feature_themes">Эксклюзивные темы</string>
 </resources>

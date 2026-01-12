@@ -89,7 +89,7 @@
     <string name="history_title">Historia</string>
     <string name="history_no_games">Nie grałeś jeszcze</string>
     <string name="history_item_time">Czas: %1$s</string>
-    <string name="history_item_can_continue">Nie możesz kontynuować tej gry</string>
+    <string name="history_item_can_continue">Możesz kontynuować tę grę</string>
     <string name="saved_game_screen_title">Gra #%1$d</string>
     <string name="saved_game_current">Obecna</string>
     <string name="saved_game_initial">Wstępna</string>
@@ -544,4 +544,117 @@
     <string name="play_games_home_prompt_dismiss">Nie teraz</string>
     <string name="play_games_promo_message">Włącz Google Play Gry, aby odblokować osiągnięcia, rywalizować w rankingach i synchronizować postęp.</string>
     <string name="play_games_promo_action">Otwórz ustawienia</string>
+    <string name="play_games_sync_coming_soon">Synchronizacja z chmurą już wkrótce!</string>
+
+    <!-- Action strings -->
+    <string name="action_undo">Cofnij</string>
+    <string name="action_hint">Podpowiedź</string>
+    <string name="action_notes">Notatki</string>
+    <string name="action_erase">Wymaż</string>
+    <string name="action_advanced_hint">Zaawansowana podpowiedź</string>
+    <string name="action_previous">Poprzedni</string>
+    <string name="action_next">Następny</string>
+    <string name="action_apply">Zastosuj</string>
+    <string name="action_back">Wstecz</string>
+    <string name="action_retry">Ponów</string>
+    <string name="action_dismiss">Odrzuć</string>
+    <string name="action_share_crash_log">Udostępnij dziennik awarii</string>
+    <string name="action_restart_app">Uruchom aplikację ponownie</string>
+    <string name="action_generate">Generuj</string>
+
+    <!-- Advanced hint strings -->
+    <string name="advanced_hint_title">Zaawansowana podpowiedź</string>
+    <string name="advanced_hint_summary">Eksperymentalny system podpowiedzi</string>
+    <string name="advanced_hint_in_development">Więcej technik w trakcie rozwoju…</string>
+    <string name="advanced_hint_no_hint">Nie udało się uzyskać podpowiedzi. Może to zbyt trudne dla nas w tej chwili</string>
+    <string name="advanced_hint_no_hint_title">Brak podpowiedzi</string>
+    <string name="hint_full_house_group_detail">Komórka %1$s jest ostatnią pustą komórką w tym kwadracie, więc możesz ją wypełnić wartością %2$s</string>
+    <string name="hint_full_house_group_title">Pełny dom</string>
+    <string name="hint_naked_single_title">Nagi singiel</string>
+    <string name="hint_naked_single_detail">Komórka %1$s ma tylko jedną możliwą wartość, więc możesz umieścić w niej %2$s</string>
+    <string name="hint_hidden_single_title">Ukryty singiel</string>
+    <string name="hint_hidden_single_detail">Komórka %1$s jest jedyną komórką w tej grupie, gdzie może stać %2$s</string>
+    <string name="hint_wrong_value_title">Błędna wartość</string>
+    <string name="hint_wron_value_detail">Wartość %1$s w komórce %2$s jest błędna</string>
+    <string name="settings_advanced_hint_category_techniques">Techniki</string>
+
+    <!-- Badge strings -->
+    <string name="badge_rarity_common">Zwykła</string>
+    <string name="badge_rarity_rare">Rzadka</string>
+    <string name="badge_rarity_epic">Epicka</string>
+    <string name="badge_rarity_legendary">Legendarna</string>
+    <string name="badge_week_1_name">Wojownik tygodnia 1</string>
+    <string name="badge_week_1_desc">Odbierano nagrody przez 7 kolejnych dni</string>
+    <string name="badge_week_2_name">Wojownik tygodnia 2</string>
+    <string name="badge_week_2_desc">Odbierano nagrody przez 14 kolejnych dni</string>
+    <string name="badge_week_3_name">Wojownik tygodnia 3</string>
+    <string name="badge_week_3_desc">Odbierano nagrody przez 21 kolejnych dni</string>
+    <string name="badge_week_4_name">Wojownik tygodnia 4</string>
+    <string name="badge_week_4_desc">Odbierano nagrody przez 28 kolejnych dni</string>
+    <string name="badge_monthly_name">Miesięczny mistrz</string>
+    <string name="badge_monthly_desc">Ukończono pełny 30-dniowy cykl nagród</string>
+    <string name="badges_title">Odznaki</string>
+    <string name="badges_earned">Zdobyte odznaki</string>
+    <string name="badges_earned_count">Zdobyto %1$d odznak</string>
+    <string name="badge_earned">Zdobyto odznakę!</string>
+    <string name="badge_no_badges">Nie zdobyto jeszcze żadnych odznak</string>
+
+    <!-- Premium strings -->
+    <string name="premium_title">Sudoku Plus Premium</string>
+    <string name="premium_upgrade">Ulepsz do Premium</string>
+    <string name="premium_restore_purchases">Przywróć zakupy</string>
+    <string name="premium_current_plan">Aktualny plan: %s</string>
+    <string name="premium_plan_free">Darmowy</string>
+    <string name="premium_plan_premium">Premium</string>
+
+    <!-- Backup failure strings -->
+    <string name="backup_failed_title">Kopia zapasowa nie powiodła się</string>
+    <string name="backup_failure_no_directory">Nie wybrano folderu kopii zapasowej. Wybierz folder dla automatycznych kopii zapasowych.</string>
+    <string name="backup_failure_permission_lost">Utracono dostęp do folderu kopii zapasowej. Ponownie udziel dostępu.</string>
+    <string name="backup_failure_directory_access">Nie można uzyskać dostępu do folderu kopii zapasowej. Wybierz inny folder.</string>
+    <string name="backup_failure_file_create">Nie udało się utworzyć pliku kopii zapasowej. Sprawdź dostępną przestrzeń dyskową.</string>
+    <string name="backup_failure_io_error">Wystąpił tymczasowy błąd. Kopia zapasowa zostanie ponownie utworzona automatycznie.</string>
+    <string name="backup_failure_unknown">Wystąpił nieoczekiwany błąd. Spróbuj ponownie.</string>
+
+    <!-- Preference summary strings -->
+    <string name="perf_appearance_summary">Tryb ciemny, kolory dynamiczne, motyw planszy, format daty…</string>
+    <string name="perf_gameplay_summary">Metoda wprowadzania, limit błędów, licznik czasu…</string>
+    <string name="perf_assistance_summary">Sprawdzanie błędów, podświetlanie identycznych wartości, pozostałe zastosowania…</string>
+    <string name="perf_other_summary">Zapamiętaj typ i trudność, nie wyłączaj ekranu, resetuj statystyki…</string>
+    <string name="pref_board_theme_summary">Wyraziste kolory, linie pozycji, wielkość czcionki…</string>
+    <string name="pref_dynamic_colors_title">Kolory dynamiczne</string>
+    <string name="pref_dynamic_colors_summary">Użyj kolorów z tapety (Android 12+)</string>
+
+    <!-- Other UI strings -->
+    <string name="font_size_automatic">Automatyczny</string>
+    <string name="game_mistakes">Błędy</string>
+    <string name="generating_number_of">Generowanie %1$s/%2$s</string>
+    <string name="crash_screen_title">Ups, coś poszło nie tak</string>
+    <string name="export_empty_cell">Pusta komórka</string>
+    <string name="nav_back">Wstecz</string>
+    <string name="label_beta">Beta</string>
+    <string name="type_killer_9x9">Killer 9x9</string>
+    <string name="type_killer_6x6">Killer 6x6</string>
+    <string name="type_killer_12x12">Killer 12x12</string>
+    <string name="libraries_licenses">Licencje</string>
+    <string name="parse_color_fail">To nie jest kolor</string>
+    <string name="onboard_restore_backup_description">Masz już kopię zapasową? Przywróć ją teraz</string>
+    <string name="app_version">Wersja %1$s (%2$s)</string>
+    <string name="ai_watch_ad_for_hint">Obejrzyj reklamę za 1 podpowiedź</string>
+    <string name="xp_bonus_reward_boost">Bonus z codziennej nagrody</string>
+
+    <!-- AI Hints -->
+    <string name="ai_hint_title">Podpowiedź AI</string>
+    <string name="ai_hint_loading">AI analizuje łamigłówkę…</string>
+    <string name="ai_hint_apply">Zastosuj podpowiedź</string>
+    <string name="ai_hint_error">Nie udało się wygenerować podpowiedzi. Spróbuj ponownie.</string>
+    <string name="ai_hints_remaining">Pozostało %d podpowiedzi AI na dziś</string>
+    <string name="ai_hints_limit_reached">Osiągnięto limit podpowiedzi</string>
+    <string name="ai_hints_limit_message">Wykorzystałeś wszystkie podpowiedzi. Obejrzyj reklamę, aby uzyskać kolejną podpowiedź lub przejdź na Premium, aby mieć nieograniczone podpowiedzi.</string>
+
+    <!-- Premium Features -->
+    <string name="premium_feature_unlimited_ai">Nieograniczone inteligentne podpowiedzi</string>
+    <string name="premium_feature_ad_free">Brak reklam</string>
+    <string name="premium_feature_cloud_sync">Synchronizacja z chmurą</string>
+    <string name="premium_feature_themes">Ekskluzywne motywy</string>
 </resources>
