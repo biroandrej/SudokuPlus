@@ -1112,11 +1112,11 @@ constructor(
             }
 
             // Has hints available (premium or per-game) - use smart hint system
-            executeSmartHint(isPremiumUser)
+            executeSmartHint()
         }
     }
 
-    private suspend fun executeSmartHint(isPremiumUser: Boolean) {
+    private suspend fun executeSmartHint() {
         currCell = Cell(-1, -1, 0)
         _advancedHintMode.emit(true)
 
@@ -1215,11 +1215,11 @@ constructor(
     }
 
     fun applyAIHint(response: AIHintResponse.Success) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             val row = response.targetCell.row
             val col = response.targetCell.col
             val value = response.suggestedValue
-            val boardSize = gameBoard.size // Use actual board size, not gameType
+            val boardSize = gameBoard.size
 
             // Validate bounds
             if (row !in 0 until boardSize || col !in 0 until boardSize) {
@@ -1242,11 +1242,10 @@ constructor(
             // Select the target cell first
             currCell = gameBoard[row][col]
 
-            // Clear notes at target cell
-            notes = clearNotesAtCell(notes, row, col)
-
-            // Apply the value using existing processInput logic
-            processInput(Cell(row, col, value), remainingUse = false)
+            // Place the value directly
+            processNumberInput(value)
+            undoRedoManager.addState(GameState(gameBoard, notes))
+            remainingUsesList = countRemainingUses(gameBoard)
 
             // Add time penalty and track hint usage
             duration = duration.plus(30.toDuration(DurationUnit.SECONDS))
@@ -1271,14 +1270,37 @@ constructor(
     }
 
     fun applyAdvancedHint() {
-        viewModelScope.launch(Dispatchers.Default) {
-            val cell = _advancedHintData.value?.targetCell
-            if (cell != null) {
-                currCell = gameBoard[cell.row][cell.col]
-                digitFirstNumber = cell.value
-                processInput(cell, true)
+        viewModelScope.launch(Dispatchers.Main) {
+            val hintData = _advancedHintData.value ?: return@launch
+            val cell = hintData.targetCell
+            val value = cell.value
+
+            // Validate
+            if (cell.row < 0 || cell.col < 0 || value <= 0) {
                 cancelAdvancedHint()
+                return@launch
             }
+
+            // Select the target cell
+            currCell = gameBoard[cell.row][cell.col]
+
+            // Skip if cell is locked
+            if (currCell.locked) {
+                cancelAdvancedHint()
+                return@launch
+            }
+
+            // Place the value directly
+            processNumberInput(value)
+            undoRedoManager.addState(GameState(gameBoard, notes))
+            remainingUsesList = countRemainingUses(gameBoard)
+
+            // Track hint usage and add time penalty
+            hintsUsed++
+            duration = duration.plus(30.toDuration(DurationUnit.SECONDS))
+            timeText = duration.toFormattedString()
+
+            cancelAdvancedHint()
         }
     }
 }

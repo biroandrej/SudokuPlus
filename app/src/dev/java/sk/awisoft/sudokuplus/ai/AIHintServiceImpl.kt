@@ -6,7 +6,7 @@ import kotlinx.coroutines.delay
 import sk.awisoft.sudokuplus.core.Cell
 
 @Singleton
-class AIHintServiceImpl @Inject constructor() : AIHintService {
+class  AIHintServiceImpl @Inject constructor() : AIHintService {
 
     override suspend fun generateHint(request: AIHintRequest): AIHintResponse {
         // Simulate network delay
