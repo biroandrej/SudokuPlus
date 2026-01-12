@@ -322,11 +322,240 @@
     <string name="libraries_licenses">许可证</string>
     <string name="app_version">版本 %1$s (%2$s)</string>
     <string name="perf_other_summary">记住上次类型和难度，保持屏幕常亮，重置状态…</string>
-    <string name="hints_no_remaining">No hints left for this game</string>
-    <string name="hints_ad_title">Out of hints</string>
-    <string name="hints_ad_message">Watch a short ad to reveal a hint?</string>
-    <string name="hints_ad_watch">Watch ad</string>
-    <string name="hints_ad_cancel">Not now</string>
+    <string name="hints_no_remaining">本局游戏没有剩余提示</string>
+    <string name="hints_ad_title">提示用完了</string>
+    <string name="hints_ad_message">观看短视频广告来获取提示？</string>
+    <string name="hints_ad_watch">观看广告</string>
+    <string name="hints_ad_cancel">暂时不要</string>
+
+    <!-- Action strings -->
+    <string name="action_undo">撤销</string>
+    <string name="action_hint">提示</string>
+    <string name="action_notes">标记</string>
+    <string name="action_erase">擦除</string>
+    <string name="action_advanced_hint">高级提示</string>
+    <string name="action_previous">上一个</string>
+    <string name="action_next">下一个</string>
+    <string name="action_apply">应用</string>
+    <string name="action_retry">重试</string>
+    <string name="action_dismiss">关闭</string>
+    <string name="action_awesome">太棒了！</string>
+    <string name="action_back">返回</string>
+    <string name="nav_back">返回</string>
+
+    <!-- Dynamic colors -->
+    <string name="pref_dynamic_colors_title">动态颜色</string>
+    <string name="pref_dynamic_colors_summary">使用您壁纸的颜色（Android 12+）</string>
+
+    <!-- Game labels -->
+    <string name="game_completed_label">已完成</string>
+    <string name="game_gave_up_label">已放弃</string>
+    <string name="game_mistakes">错误</string>
+    <string name="export_empty_cell">空单元格</string>
+    <string name="font_size_automatic">自动</string>
+    <string name="label_beta">测试版</string>
+
+    <!-- Advanced hint strings -->
+    <string name="advanced_hint_title">高级提示</string>
+    <string name="advanced_hint_summary">实验性提示系统</string>
+    <string name="advanced_hint_in_development">更多技巧开发中…</string>
+    <string name="advanced_hint_no_hint">无法获取提示。也许目前对我们来说太难了</string>
+    <string name="advanced_hint_no_hint_title">没有提示</string>
+    <string name="settings_advanced_hint_category_techniques">技巧</string>
+
+    <!-- Hint technique strings -->
+    <string name="hint_full_house_group_title">唯余法</string>
+    <string name="hint_full_house_group_detail">单元格 %1$s 是该宫格中最后一个空单元格，因此您可以填入 %2$s</string>
+    <string name="hint_naked_single_title">唯一候选数</string>
+    <string name="hint_naked_single_detail">单元格 %1$s 只剩下一个可能的值，因此您可以在此单元格中填入 %2$s</string>
+    <string name="hint_hidden_single_title">隐藏唯一数</string>
+    <string name="hint_hidden_single_detail">单元格 %1$s 是该区域中唯一可以放置 %2$s 的单元格</string>
+    <string name="hint_wrong_value_title">错误值</string>
+    <string name="hint_wron_value_detail">单元格 %2$s 中的值 %1$s 是错误的</string>
+
+    <!-- Backup failure strings -->
+    <string name="backup_failed_title">备份失败</string>
+    <string name="backup_failure_no_directory">未选择备份文件夹。请选择一个自动备份的文件夹。</string>
+    <string name="backup_failure_permission_lost">备份文件夹访问权限丢失。请重新授予访问权限。</string>
+    <string name="backup_failure_directory_access">无法访问备份文件夹。请选择其他文件夹。</string>
+    <string name="backup_failure_file_create">无法创建备份文件。请检查可用存储空间。</string>
+    <string name="backup_failure_io_error">发生临时错误。备份将自动重试。</string>
+    <string name="backup_failure_unknown">发生意外错误。请重试。</string>
+
+    <!-- Daily Challenge -->
+    <string name="daily_challenge">每日挑战</string>
+    <string name="daily_challenge_subtitle">每天一个新谜题</string>
+    <string name="daily_streak">%d 天连胜</string>
+    <string name="daily_completed">已完成！</string>
+    <string name="daily_play">开始</string>
+    <string name="daily_continue">继续</string>
+    <string name="view_calendar">日历</string>
+    <string name="daily_challenge_calendar">挑战日历</string>
+    <string name="total_completed">总完成数</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">成就</string>
+    <string name="achievements_unlocked">已解锁</string>
+    <string name="achievement_unlocked">成就已解锁！</string>
+    <string name="achievements_unlocked_multiple">%d 个成就已解锁！</string>
+
+    <!-- Achievement Categories -->
+    <string name="achievement_category_all">全部</string>
+    <string name="achievement_category_completion">完成</string>
+    <string name="achievement_category_speed">速度</string>
+    <string name="achievement_category_accuracy">准确度</string>
+    <string name="achievement_category_streak">连胜</string>
+    <string name="achievement_category_variety">多样性</string>
+    <string name="achievement_category_mastery">精通</string>
+    <string name="achievement_category_daily">每日</string>
+
+    <!-- Achievement Tiers -->
+    <string name="achievement_tier_bronze">铜牌</string>
+    <string name="achievement_tier_silver">银牌</string>
+    <string name="achievement_tier_gold">金牌</string>
+    <string name="achievement_tier_platinum">白金</string>
+
+    <!-- Completion Achievements -->
+    <string name="achievement_first_win">初次尝试</string>
+    <string name="achievement_first_win_desc">完成您的第一个谜题</string>
+    <string name="achievement_ten_games">初露锋芒</string>
+    <string name="achievement_ten_games_desc">完成 10 个谜题</string>
+    <string name="achievement_fifty_games">谜题爱好者</string>
+    <string name="achievement_fifty_games_desc">完成 50 个谜题</string>
+    <string name="achievement_centurion">百战之师</string>
+    <string name="achievement_centurion_desc">完成 100 个谜题</string>
+    <string name="achievement_dedicated_player">资深玩家</string>
+    <string name="achievement_dedicated_player_desc">完成 500 个谜题</string>
+
+    <!-- Speed Achievements -->
+    <string name="achievement_speed_easy_5">思维敏捷</string>
+    <string name="achievement_speed_easy_5_desc">在 5 分钟内完成简单难度谜题</string>
+    <string name="achievement_speed_easy_3">闪电侠</string>
+    <string name="achievement_speed_easy_3_desc">在 3 分钟内完成简单难度谜题</string>
+    <string name="achievement_speed_moderate_10">迅捷解题者</string>
+    <string name="achievement_speed_moderate_10_desc">在 10 分钟内完成中等难度谜题</string>
+    <string name="achievement_speed_hard_15">极速闪电</string>
+    <string name="achievement_speed_hard_15_desc">在 15 分钟内完成困难难度谜题</string>
+    <string name="achievement_speed_challenge_20">时间大师</string>
+    <string name="achievement_speed_challenge_20_desc">在 20 分钟内完成挑战难度谜题</string>
+
+    <!-- Accuracy Achievements -->
+    <string name="achievement_perfectionist_1">完美主义者</string>
+    <string name="achievement_perfectionist_1_desc">无错误完成一个谜题</string>
+    <string name="achievement_perfectionist_10">完美十连</string>
+    <string name="achievement_perfectionist_10_desc">无错误完成 10 个谜题</string>
+    <string name="achievement_perfectionist_50">精准大师</string>
+    <string name="achievement_perfectionist_50_desc">无错误完成 50 个谜题</string>
+    <string name="achievement_no_hints_1">自力更生</string>
+    <string name="achievement_no_hints_1_desc">不使用提示完成一个谜题</string>
+    <string name="achievement_no_hints_25">独立解题者</string>
+    <string name="achievement_no_hints_25_desc">不使用提示完成 25 个谜题</string>
+    <string name="achievement_no_hints_100">无提示专家</string>
+    <string name="achievement_no_hints_100_desc">不使用提示完成 100 个谜题</string>
+
+    <!-- Streak Achievements -->
+    <string name="achievement_streak_3">三连胜</string>
+    <string name="achievement_streak_3_desc">连续 3 天游戏</string>
+    <string name="achievement_streak_7">一周勇士</string>
+    <string name="achievement_streak_7_desc">连续 7 天游戏</string>
+    <string name="achievement_streak_30">月度大师</string>
+    <string name="achievement_streak_30_desc">连续 30 天游戏</string>
+    <string name="achievement_streak_100">百日传奇</string>
+    <string name="achievement_streak_100_desc">连续 100 天游戏</string>
+
+    <!-- Variety Achievements -->
+    <string name="achievement_try_6x6">迷你数独</string>
+    <string name="achievement_try_6x6_desc">完成一个 6x6 谜题</string>
+    <string name="achievement_try_12x12">巨人杀手</string>
+    <string name="achievement_try_12x12_desc">完成一个 12x12 谜题</string>
+    <string name="achievement_try_killer">杀手本能</string>
+    <string name="achievement_try_killer_desc">完成一个杀手数独谜题</string>
+    <string name="achievement_killer_10">杀手数独爱好者</string>
+    <string name="achievement_killer_10_desc">完成 10 个杀手数独谜题</string>
+    <string name="achievement_killer_50">杀手数独专家</string>
+    <string name="achievement_killer_50_desc">完成 50 个杀手数独谜题</string>
+    <string name="achievement_giant_10">尺寸不是问题</string>
+    <string name="achievement_giant_10_desc">完成 10 个 12x12 谜题</string>
+
+    <!-- Mastery Achievements -->
+    <string name="achievement_easy_master">简单难度大师</string>
+    <string name="achievement_easy_master_desc">完成 25 个简单难度谜题</string>
+    <string name="achievement_moderate_master">中等难度大师</string>
+    <string name="achievement_moderate_master_desc">完成 25 个中等难度谜题</string>
+    <string name="achievement_hard_master">困难难度大师</string>
+    <string name="achievement_hard_master_desc">完成 25 个困难难度谜题</string>
+    <string name="achievement_challenge_master">挑战难度大师</string>
+    <string name="achievement_challenge_master_desc">完成 25 个挑战难度谜题</string>
+
+    <!-- Daily Challenge Achievements -->
+    <string name="achievement_daily_first">每日首秀</string>
+    <string name="achievement_daily_first_desc">完成您的第一个每日挑战</string>
+    <string name="achievement_daily_week">每周挑战者</string>
+    <string name="achievement_daily_week_desc">完成 7 个每日挑战</string>
+    <string name="achievement_daily_month">每月冠军</string>
+    <string name="achievement_daily_month_desc">完成 30 个每日挑战</string>
+    <string name="achievement_daily_streak_7">每日坚持</string>
+    <string name="achievement_daily_streak_7_desc">每日挑战 7 天连胜</string>
+    <string name="achievement_daily_streak_30">每日忠实玩家</string>
+    <string name="achievement_daily_streak_30_desc">每日挑战 30 天连胜</string>
+    <string name="achievement_daily_streak_100">每日传奇</string>
+    <string name="achievement_daily_streak_100_desc">每日挑战 100 天连胜</string>
+
+    <!-- Badge strings -->
+    <string name="badge_rarity_common">普通</string>
+    <string name="badge_rarity_rare">稀有</string>
+    <string name="badge_rarity_epic">史诗</string>
+    <string name="badge_rarity_legendary">传说</string>
+    <string name="badge_week_1_name">第一周勇士</string>
+    <string name="badge_week_1_desc">连续 7 天领取奖励</string>
+    <string name="badge_week_2_name">第二周勇士</string>
+    <string name="badge_week_2_desc">连续 14 天领取奖励</string>
+    <string name="badge_week_3_name">第三周勇士</string>
+    <string name="badge_week_3_desc">连续 21 天领取奖励</string>
+    <string name="badge_week_4_name">第四周勇士</string>
+    <string name="badge_week_4_desc">连续 28 天领取奖励</string>
+    <string name="badge_monthly_name">月度冠军</string>
+    <string name="badge_monthly_desc">完成完整的 30 天奖励周期</string>
+    <string name="badges_title">徽章</string>
+    <string name="badges_earned">已获得徽章</string>
+    <string name="badges_earned_count">已获得 %1$d 个徽章</string>
+    <string name="badge_earned">徽章已获得！</string>
+    <string name="badge_no_badges">尚未获得徽章</string>
+
+    <!-- Play Games -->
+    <string name="play_games_title">Google Play 游戏</string>
+    <string name="play_games_summary">成就、排行榜和云同步</string>
+    <string name="play_games_enable">启用 Play 游戏</string>
+    <string name="play_games_enable_summary">连接 Google Play 游戏以获取成就和排行榜</string>
+    <string name="play_games_sign_in">登录</string>
+    <string name="play_games_sign_in_summary">登录您的 Google Play 游戏账户</string>
+    <string name="play_games_sign_out">退出登录</string>
+    <string name="play_games_signed_in_as">已登录为 %1$s</string>
+    <string name="play_games_not_signed_in">未登录</string>
+    <string name="play_games_achievements">成就</string>
+    <string name="play_games_achievements_summary">查看您的成就</string>
+    <string name="play_games_leaderboards">排行榜</string>
+    <string name="play_games_leaderboards_summary">与其他玩家比较您的分数</string>
+    <string name="play_games_sync">同步进度</string>
+    <string name="play_games_sync_summary">将您的游戏进度同步到云端</string>
+    <string name="play_games_sync_coming_soon">云同步即将推出！</string>
+    <string name="play_games_sign_in_failed">登录失败。请重试。</string>
+    <string name="play_games_sign_in_required">请先登录 Play 游戏</string>
+    <string name="play_games_home_prompt_title">连接 Play 游戏</string>
+    <string name="play_games_home_prompt_message">登录以解锁成就、在排行榜上竞争，并跨设备同步您的进度。</string>
+    <string name="play_games_home_prompt_action">连接</string>
+    <string name="play_games_home_prompt_dismiss">暂时不要</string>
+
+    <!-- Premium strings -->
+    <string name="premium_title">Sudoku Plus 高级版</string>
+    <string name="premium_upgrade">升级到高级版</string>
+    <string name="premium_restore_purchases">恢复购买</string>
+    <string name="premium_current_plan">当前计划：%s</string>
+    <string name="premium_plan_free">免费版</string>
+    <string name="premium_plan_premium">高级版</string>
+    <string name="ai_watch_ad_for_hint">观看广告获取 1 个提示</string>
+
+    <string name="xp_bonus_reward_boost">每日奖励加成</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">每日挑战</string>
@@ -402,4 +631,19 @@
 
     <string name="play_games_promo_message">启用 Google Play 游戏以解锁成就、在排行榜上竞争并同步您的进度。</string>
     <string name="play_games_promo_action">打开设置</string>
+
+    <!-- AI Hints -->
+    <string name="ai_hint_title">AI提示</string>
+    <string name="ai_hint_loading">AI正在分析谜题…</string>
+    <string name="ai_hint_apply">应用提示</string>
+    <string name="ai_hint_error">无法生成提示。请重试。</string>
+    <string name="ai_hints_remaining">今日剩余%d个AI提示</string>
+    <string name="ai_hints_limit_reached">已达提示上限</string>
+    <string name="ai_hints_limit_message">您已用完所有提示。观看广告获取一个提示，或升级到高级版获取无限提示。</string>
+
+    <!-- Premium Features -->
+    <string name="premium_feature_unlimited_ai">无限智能提示</string>
+    <string name="premium_feature_ad_free">无广告体验</string>
+    <string name="premium_feature_cloud_sync">云同步</string>
+    <string name="premium_feature_themes">专属主题</string>
 </resources>

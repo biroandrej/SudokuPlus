@@ -525,4 +525,76 @@
     <string name="play_games_home_prompt_dismiss">Pas maintenant</string>
     <string name="play_games_promo_message">Activez Google Play Jeux pour débloquer des succès, rivaliser dans les classements et synchroniser votre progression.</string>
     <string name="play_games_promo_action">Ouvrir les paramètres</string>
+
+    <!-- Actions -->
+    <string name="action_undo">Annuler</string>
+    <string name="action_hint">Indice</string>
+    <string name="action_notes">Notes</string>
+    <string name="action_erase">Effacer</string>
+    <string name="action_advanced_hint">Indice avancé</string>
+    <string name="action_previous">Précédent</string>
+    <string name="action_next">Suivant</string>
+    <string name="action_back">Retour</string>
+    <string name="action_apply">Appliquer</string>
+    <string name="action_dismiss">Ignorer</string>
+    <string name="action_retry">Réessayer</string>
+    <string name="action_generate">Générer</string>
+    <string name="action_restart_app">Redémarrer l\'application</string>
+    <string name="action_share_crash_log">Partager le journal d\'erreurs</string>
+    <string name="nav_back">Retour</string>
+
+    <!-- Advanced Hints -->
+    <string name="advanced_hint_title">Indice avancé</string>
+    <string name="advanced_hint_summary">Un système d\'indices expérimental</string>
+    <string name="advanced_hint_in_development">Plus de techniques en développement…</string>
+    <string name="advanced_hint_no_hint">Impossible d\'obtenir un indice. C\'est peut-être trop difficile pour nous en ce moment</string>
+    <string name="advanced_hint_no_hint_title">Pas d\'indice</string>
+    <string name="hint_full_house_group_title">Maison pleine</string>
+    <string name="hint_full_house_group_detail">La cellule %1$s est la dernière cellule vide de ce bloc, vous pouvez donc la remplir avec le %2$s</string>
+    <string name="hint_naked_single_title">Célibataire nu</string>
+    <string name="hint_naked_single_detail">La cellule %1$s n\'a qu\'une seule valeur possible, vous pouvez donc placer le %2$s dans cette cellule</string>
+    <string name="hint_hidden_single_title">Célibataire caché</string>
+    <string name="hint_hidden_single_detail">La cellule %1$s est la seule cellule de ce groupe où %2$s peut être</string>
+    <string name="hint_wrong_value_title">Valeur incorrecte</string>
+    <string name="hint_wron_value_detail">La valeur %1$s dans la cellule %2$s est incorrecte</string>
+    <string name="settings_advanced_hint_category_techniques">Techniques</string>
+    <string name="label_beta">Bêta</string>
+
+    <!-- Badges -->
+    <string name="badge_rarity_common">Commun</string>
+    <string name="badge_rarity_rare">Rare</string>
+    <string name="badge_rarity_epic">Épique</string>
+    <string name="badge_rarity_legendary">Légendaire</string>
+    <string name="badge_week_1_name">Guerrier Semaine 1</string>
+    <string name="badge_week_1_desc">Récompenses réclamées pendant 7 jours consécutifs</string>
+    <string name="badge_week_2_name">Guerrier Semaine 2</string>
+    <string name="badge_week_2_desc">Récompenses réclamées pendant 14 jours consécutifs</string>
+    <string name="badge_week_3_name">Guerrier Semaine 3</string>
+    <string name="badge_week_3_desc">Récompenses réclamées pendant 21 jours consécutifs</string>
+    <string name="badge_week_4_name">Guerrier Semaine 4</string>
+    <string name="badge_week_4_desc">Récompenses réclamées pendant 28 jours consécutifs</string>
+    <string name="badge_monthly_name">Champion mensuel</string>
+    <string name="badge_monthly_desc">Cycle de récompenses de 30 jours complété</string>
+    <string name="badges_title">Badges</string>
+    <string name="badges_earned">Badges gagnés</string>
+    <string name="badges_earned_count">%1$d badges gagnés</string>
+    <string name="badge_earned">Badge gagné !</string>
+    <string name="badge_no_badges">Aucun badge gagné pour l\'instant</string>
+
+    <!-- Premium -->
+    <string name="premium_title">Sudoku Plus Premium</string>
+    <string name="premium_upgrade">Passer à Premium</string>
+    <string name="premium_restore_purchases">Restaurer les achats</string>
+    <string name="premium_current_plan">Plan actuel : %s</string>
+    <string name="premium_plan_free">Gratuit</string>
+    <string name="premium_plan_premium">Premium</string>
+
+    <!-- Backup Failures -->
+    <string name="backup_failed_title">Échec de la sauvegarde</string>
+    <string name="backup_failure_no_directory">Aucun dossier de sauvegarde sélectionné. Veuillez sélectionner un dossier pour les sauvegardes automatiques.</string>
+    <string name="backup_failure_permission_lost">L\'accès au dossier de sauvegarde a été perdu. Veuillez accorder l\'accès à nouveau.</string>
+    <string name="backup_failure_directory_access">Impossible d\'accéder au dossier de sauvegarde. Veuillez sélectionner un autre dossier.</string>
+    <string name="backup_failure_file_create">Échec de la création du fichier de sauvegarde. Vérifiez l\'espace de stockage disponible.</string>
+    <string name="backup_failure_io_error">Une erreur temporaire s\'est produite. La sauvegarde sera réessayée automatiquement.</string>
+    <string name="backup_failure_unknown">Une erreur inattendue s\'est produite. Veuillez réessayer.</string>
 </resources>

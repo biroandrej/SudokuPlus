@@ -22,6 +22,13 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(keystorePropertiesFile.inputStream())
 }
 
+// Load Firebase properties for dev builds (manual initialization)
+val firebasePropertiesFile = rootProject.file("firebase.properties")
+val firebaseProperties = Properties()
+if (firebasePropertiesFile.exists()) {
+    firebaseProperties.load(firebasePropertiesFile.inputStream())
+}
+
 android {
     namespace = "sk.awisoft.sudokuplus"
     compileSdk = 36
@@ -110,6 +117,32 @@ android {
         create("dev") {
             dimension = "version"
             applicationIdSuffix = ".dev"
+            // Firebase config for manual initialization (since Google Services plugin is disabled for dev)
+            buildConfigField(
+                "String",
+                "FIREBASE_PROJECT_ID",
+                "\"${firebaseProperties.getProperty("firebaseProjectId", "")}\""
+            )
+            buildConfigField(
+                "String",
+                "FIREBASE_APPLICATION_ID",
+                "\"${firebaseProperties.getProperty("firebaseApplicationId", "")}\""
+            )
+            buildConfigField(
+                "String",
+                "FIREBASE_API_KEY",
+                "\"${firebaseProperties.getProperty("firebaseApiKey", "")}\""
+            )
+            buildConfigField(
+                "String",
+                "FIREBASE_STORAGE_BUCKET",
+                "\"${firebaseProperties.getProperty("firebaseStorageBucket", "")}\""
+            )
+            buildConfigField(
+                "String",
+                "FIREBASE_GCM_SENDER_ID",
+                "\"${firebaseProperties.getProperty("firebaseGcmSenderId", "")}\""
+            )
         }
         create("prod") {
             dimension = "version"

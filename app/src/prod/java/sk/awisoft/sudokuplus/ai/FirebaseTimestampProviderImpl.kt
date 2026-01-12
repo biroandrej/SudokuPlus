@@ -16,7 +16,7 @@ class FirebaseTimestampProviderImpl @Inject constructor() : FirebaseTimestampPro
 
     override suspend fun getServerTimestamp(): Long {
         return try {
-            val docRef = firestore.collection("_timestamps").document()
+            val docRef = firestore.collection("server_time").document()
             docRef.set(mapOf("timestamp" to FieldValue.serverTimestamp())).await()
             val snapshot = docRef.get().await()
             val timestamp = snapshot.getTimestamp("timestamp")
