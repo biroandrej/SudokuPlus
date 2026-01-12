@@ -208,6 +208,11 @@ dependencies {
     add("prodImplementation", libs.firebase.ai)
     add("prodImplementation", libs.firebase.firestore)
     add("prodImplementation", libs.play.billing)
+
+    // Dev also uses real Firebase AI for testing
+    add("devImplementation", platform(libs.firebase.bom))
+    add("devImplementation", libs.firebase.ai)
+    add("devImplementation", libs.firebase.firestore)
 }
 
 // Disable Google Services and Crashlytics tasks for dev builds
