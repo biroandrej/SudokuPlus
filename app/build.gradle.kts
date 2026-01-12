@@ -213,12 +213,13 @@ dependencies {
     add("devImplementation", platform(libs.firebase.bom))
     add("devImplementation", libs.firebase.ai)
     add("devImplementation", libs.firebase.firestore)
+    add("devImplementation", libs.firebase.common)
 }
 
 // Disable Google Services and Crashlytics tasks for dev builds
+// Firebase is manually initialized in dev using FirebaseInitializer
 androidComponents {
     onVariants(selector().withFlavor("version" to "dev")) {
-        // Disable Google Services processing for dev builds
         tasks.configureEach {
             if (name.contains("Dev") && (name.contains("GoogleServices") || name.contains("Crashlytics"))) {
                 enabled = false

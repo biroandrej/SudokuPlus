@@ -93,7 +93,9 @@ Row and column numbers are 0-indexed.
             return "No notes entered by player"
         }
         return notesByCell.entries.joinToString("\n") { (pos, notes) ->
-            "Cell [${pos.first},${pos.second}]: ${notes.map { it.value }.sorted().joinToString(",")}"
+            "Cell [${pos.first},${pos.second}]: ${notes.map { it.value }.sorted().joinToString(
+                ","
+            )}"
         }
     }
 
