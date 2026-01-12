@@ -34,6 +34,6 @@ class NotificationStartupInitializer : Initializer<Unit> {
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> = listOf(
-        AdsStartupInitializer::class.java
+        CrashHandlerInitializer::class.java
     )
 }
