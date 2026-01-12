@@ -53,9 +53,9 @@ class AIHintServiceImpl @Inject constructor(
 
     override suspend fun generateHint(request: AIHintRequest): AIHintResponse {
         val startTime = System.currentTimeMillis()
-        val config = runBlocking { remoteConfigProvider.getAIModelConfig() }
 
         return try {
+            val config = remoteConfigProvider.getAIModelConfig()
             val model = getOrCreateModel()
             val prompt = buildPrompt(request)
             val response = model.generateContent(prompt)
