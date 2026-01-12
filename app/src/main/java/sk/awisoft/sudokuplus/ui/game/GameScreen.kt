@@ -67,8 +67,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
@@ -113,6 +115,7 @@ import sk.awisoft.sudokuplus.ui.game.components.ToolbarItem
 import sk.awisoft.sudokuplus.ui.game.components.ToolbarItemHeight
 import sk.awisoft.sudokuplus.ui.game.components.UndoRedoMenu
 import sk.awisoft.sudokuplus.ui.onboarding.FirstGameDialog
+import sk.awisoft.sudokuplus.ui.theme.SudokuPlusTheme
 import sk.awisoft.sudokuplus.ui.util.ReverseArrangement
 import sk.awisoft.sudokuplus.ui.util.findActivity
 import sk.awisoft.sudokuplus.ui.xp.LevelUpDialog
@@ -1109,3 +1112,201 @@ fun OnLifecycleEvent(onEvent: (owner: LifecycleOwner, event: Lifecycle.Event) ->
 
 @Composable
 fun KeepScreenOn() = AndroidView({ View(it).apply { keepScreenOn = true } })
+
+// region Previews
+
+private fun createSampleBoard(): List<List<Cell>> {
+    val puzzle = listOf(
+        listOf(5, 3, 0, 0, 7, 0, 0, 0, 0),
+        listOf(6, 0, 0, 1, 9, 5, 0, 0, 0),
+        listOf(0, 9, 8, 0, 0, 0, 0, 6, 0),
+        listOf(8, 0, 0, 0, 6, 0, 0, 0, 3),
+        listOf(4, 0, 0, 8, 0, 3, 0, 0, 1),
+        listOf(7, 0, 0, 0, 2, 0, 0, 0, 6),
+        listOf(0, 6, 0, 0, 0, 0, 2, 8, 0),
+        listOf(0, 0, 0, 4, 1, 9, 0, 0, 5),
+        listOf(0, 0, 0, 0, 8, 0, 0, 7, 9)
+    )
+    return puzzle.mapIndexed { row, cols ->
+        cols.mapIndexed { col, value ->
+            Cell(row, col, value, locked = value != 0)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun GameTopAppBarPreview() {
+    SudokuPlusTheme {
+        GameTopAppBar(
+            endGame = false,
+            showSolution = false,
+            gamePlaying = true,
+            showMenu = false,
+            mistakesCount = 1,
+            giveUp = false,
+            restartButtonAnimation = 0f,
+            onNavigateBack = {},
+            onToggleSolution = {},
+            onPlayPause = {},
+            onRestartClick = {},
+            onMenuClick = {},
+            onMenuDismiss = {},
+            onGiveUpClick = {},
+            onSettingsClick = {},
+            onExportClick = {},
+            onSolveClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun GameInfoRowPreview() {
+    SudokuPlusTheme {
+        GameInfoRow(
+            difficulty = "Easy",
+            mistakesLimit = true,
+            errorHighlight = 2,
+            mistakesCount = 1,
+            timerEnabled = true,
+            endGame = false,
+            timeText = "05:23"
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun GameBoardSectionPreview() {
+    SudokuPlusTheme {
+        GameBoardSection(
+            gamePlaying = true,
+            endGame = false,
+            showSolution = false,
+            gameBoard = createSampleBoard(),
+            solvedBoard = createSampleBoard(),
+            size = 9,
+            fontSizeValue = 26.sp,
+            fontSizeFactor = 0,
+            notes = emptyList(),
+            currCell = Cell(2, 2, 0),
+            highlightIdentical = true,
+            errorHighlight = 2,
+            positionLines = true,
+            crossHighlight = false,
+            digitFirstNumber = 0,
+            gameType = GameType.Default9x9,
+            cages = emptyList(),
+            advancedHintMode = false,
+            advancedHintData = null,
+            renderNotes = true,
+            onClick = {},
+            onLongClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun GameToolbarPreview() {
+    SudokuPlusTheme {
+        GameToolbar(
+            showUndoRedoMenu = false,
+            showNotesMenu = false,
+            notesToggled = false,
+            eraseButtonToggled = false,
+            hintsDisabled = false,
+            hintsRemaining = 3,
+            gamePlaying = true,
+            renderNotes = true,
+            onUndoClick = {},
+            onUndoLongClick = {},
+            onUndoRedoMenuDismiss = {},
+            onRedoClick = {},
+            onHintClick = {},
+            onNoteClick = {},
+            onNoteLongClick = {},
+            onNotesMenuDismiss = {},
+            onComputeNotesClick = {},
+            onClearNotesClick = {},
+            onRenderNotesClick = {},
+            onEraseClick = {},
+            onEraseLongClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun GameScreenContentPreview() {
+    SudokuPlusTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            GameInfoRow(
+                difficulty = "Medium",
+                mistakesLimit = true,
+                errorHighlight = 2,
+                mistakesCount = 0,
+                timerEnabled = true,
+                endGame = false,
+                timeText = "02:45"
+            )
+
+            GameBoardSection(
+                gamePlaying = true,
+                endGame = false,
+                showSolution = false,
+                gameBoard = createSampleBoard(),
+                solvedBoard = createSampleBoard(),
+                size = 9,
+                fontSizeValue = 26.sp,
+                fontSizeFactor = 0,
+                notes = emptyList(),
+                currCell = Cell(4, 4, 0),
+                highlightIdentical = true,
+                errorHighlight = 2,
+                positionLines = true,
+                crossHighlight = false,
+                digitFirstNumber = 0,
+                gameType = GameType.Default9x9,
+                cages = emptyList(),
+                advancedHintMode = false,
+                advancedHintData = null,
+                renderNotes = true,
+                onClick = {},
+                onLongClick = {}
+            )
+
+            GameToolbar(
+                showUndoRedoMenu = false,
+                showNotesMenu = false,
+                notesToggled = false,
+                eraseButtonToggled = false,
+                hintsDisabled = false,
+                hintsRemaining = 2,
+                gamePlaying = true,
+                renderNotes = true,
+                onUndoClick = {},
+                onUndoLongClick = {},
+                onUndoRedoMenuDismiss = {},
+                onRedoClick = {},
+                onHintClick = {},
+                onNoteClick = {},
+                onNoteLongClick = {},
+                onNotesMenuDismiss = {},
+                onComputeNotesClick = {},
+                onClearNotesClick = {},
+                onRenderNotesClick = {},
+                onEraseClick = {},
+                onEraseLongClick = {}
+            )
+        }
+    }
+}
+
+// endregion
