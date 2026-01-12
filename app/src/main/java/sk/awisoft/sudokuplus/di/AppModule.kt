@@ -12,6 +12,8 @@ import sk.awisoft.sudokuplus.ai.AIHintService
 import sk.awisoft.sudokuplus.ai.AIHintServiceImpl
 import sk.awisoft.sudokuplus.ai.FirebaseTimestampProvider
 import sk.awisoft.sudokuplus.ai.FirebaseTimestampProviderImpl
+import sk.awisoft.sudokuplus.ai.RemoteConfigProvider
+import sk.awisoft.sudokuplus.ai.RemoteConfigProviderImpl
 import sk.awisoft.sudokuplus.billing.BillingManager
 import sk.awisoft.sudokuplus.billing.BillingManagerImpl
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
@@ -243,7 +245,12 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideAIHintService(): AIHintService = AIHintServiceImpl()
+    fun provideRemoteConfigProvider(): RemoteConfigProvider = RemoteConfigProviderImpl()
+
+    @Provides
+    @Singleton
+    fun provideAIHintService(remoteConfigProvider: RemoteConfigProvider): AIHintService =
+        AIHintServiceImpl(remoteConfigProvider)
 
     @Provides
     @Singleton

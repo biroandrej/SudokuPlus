@@ -240,12 +240,14 @@ dependencies {
     add("prodImplementation", libs.firebase.analytics)
     add("prodImplementation", libs.firebase.ai)
     add("prodImplementation", libs.firebase.firestore)
+    add("prodImplementation", libs.firebase.config)
     add("prodImplementation", libs.play.billing)
 
     // Dev also uses real Firebase AI for testing
     add("devImplementation", platform(libs.firebase.bom))
     add("devImplementation", libs.firebase.ai)
     add("devImplementation", libs.firebase.firestore)
+    add("devImplementation", libs.firebase.config)
     add("devImplementation", libs.firebase.common)
 }
 

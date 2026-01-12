@@ -6,34 +6,56 @@ import com.google.firebase.ai.type.GenerativeBackend
 import com.google.firebase.ai.type.generationConfig
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import sk.awisoft.sudokuplus.core.Cell
 
 /**
  * Dev implementation using real Firebase AI (Gemini) for easier testing.
- * Same as prod implementation.
+ * Same as prod implementation but uses dev RemoteConfigProvider (defaults only).
  */
 @Singleton
-class AIHintServiceImpl @Inject constructor() : AIHintService {
+class AIHintServiceImpl @Inject constructor(
+    private val remoteConfigProvider: RemoteConfigProvider
+) : AIHintService {
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    private val generativeModel by lazy {
-        Firebase.ai(backend = GenerativeBackend.googleAI())
+    // Cache the model config and recreate model when config changes
+    @Volatile
+    private var cachedConfig: AIModelConfig? = null
+
+    @Volatile
+    private var generativeModel: com.google.firebase.ai.GenerativeModel? = null
+
+    private fun getOrCreateModel(): com.google.firebase.ai.GenerativeModel {
+        val currentConfig = runBlocking { remoteConfigProvider.getAIModelConfig() }
+
+        // If config hasn't changed, return cached model
+        if (generativeModel != null && cachedConfig == currentConfig) {
+            return generativeModel!!
+        }
+
+        // Create new model with updated config
+        cachedConfig = currentConfig
+        generativeModel = Firebase.ai(backend = GenerativeBackend.googleAI())
             .generativeModel(
-                modelName = "gemini-2.0-flash",
+                modelName = currentConfig.modelName,
                 generationConfig = generationConfig {
-                    maxOutputTokens = 500
-                    temperature = 0.3f
+                    maxOutputTokens = currentConfig.maxOutputTokens
+                    temperature = currentConfig.temperature
                 }
             )
+
+        return generativeModel!!
     }
 
     override suspend fun generateHint(request: AIHintRequest): AIHintResponse {
         return try {
+            val model = getOrCreateModel()
             val prompt = buildPrompt(request)
-            val response = generativeModel.generateContent(prompt)
+            val response = model.generateContent(prompt)
             parseResponse(response.text ?: "", request)
         } catch (e: Exception) {
             AIHintResponse.Error(
