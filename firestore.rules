@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Server timestamp collection for date validation
+    match /server_time/{document} {
+      allow create, read, delete: if true;
+    }
+  }
+}

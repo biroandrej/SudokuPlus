@@ -32,7 +32,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.PlayCircle
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -62,7 +61,6 @@ import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.ClipEntry
 import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
@@ -343,7 +341,7 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
             onDismiss = { aiHintError = null },
             onRetry = {
                 aiHintError = null
-                viewModel.requestAIHint()
+                viewModel.getSmartHint()
             }
         )
     }
@@ -356,7 +354,7 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
                 val activity = context.findActivity()
                 if (activity != null) {
                     AdsManager.showRewardedIfAvailable(activity) {
-                        viewModel.grantAIHintFromAd()
+                        viewModel.grantHintFromAd()
                     }
                 }
             },
@@ -792,25 +790,7 @@ fun GameScreen(viewModel: GameViewModel = hiltViewModel(), navigator: Destinatio
                                             }
                                         }
                                     )
-                                    if (advancedHintEnabled) {
-                                        ToolbarItem(
-                                            modifier =
-                                            Modifier
-                                                .weight(1f)
-                                                .height(ToolbarItemHeight),
-                                            painter = rememberVectorPainter(
-                                                Icons.Rounded.AutoAwesome
-                                            ),
-                                            contentDescription = stringResource(
-                                                R.string.action_advanced_hint
-                                            ),
-                                            onClick = {
-                                                if (viewModel.gamePlaying) {
-                                                    viewModel.getAdvancedHint()
-                                                }
-                                            }
-                                        )
-                                    }
+                                    // Advanced hint button removed - main hint button now uses smart hints
                                 }
                             }
                         } else {

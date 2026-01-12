@@ -16,7 +16,7 @@ class AIHintServiceImpl @Inject constructor() : AIHintService {
     private val json = Json { ignoreUnknownKeys = true }
 
     private val generativeModel by lazy {
-        Firebase.ai(backend = GenerativeBackend.vertexAI())
+        Firebase.ai(backend = GenerativeBackend.googleAI())
             .generativeModel(
                 modelName = "gemini-2.0-flash",
                 generationConfig = generationConfig {

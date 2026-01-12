@@ -599,18 +599,7 @@ constructor(
                 }
 
                 ToolBarItem.Hint -> {
-                    if (!canApplyHint()) return
-                    viewModelScope.launch {
-                        val consumed =
-                            withContext(Dispatchers.IO) {
-                                appSettingsManager.tryConsumeHint(gameUid)
-                            }
-                        if (consumed) {
-                            applyHint()
-                        } else {
-                            _uiEvents.emit(UiEvent.RequestRewardedHint)
-                        }
-                    }
+                    getSmartHint()
                 }
 
                 ToolBarItem.Note -> {
@@ -1091,33 +1080,115 @@ constructor(
         gameBoard = new
     }
 
+    /**
+     * Unified smart hint system:
+     * 1. Premium users → unlimited hints (algorithmic first, AI fallback)
+     * 2. Free users with per-game hints → consume hint, use smart hint
+     * 3. Free users with no per-game hints but AI quota → use AI only
+     * 4. All limits exhausted → show upsell
+     */
+    fun getSmartHint() {
+        viewModelScope.launch {
+            val isPremiumUser = isPremium.value
+
+            // Check limits for free users
+            if (!isPremiumUser) {
+                val hasPerGameHints = withContext(Dispatchers.IO) {
+                    appSettingsManager.tryConsumeHint(gameUid)
+                }
+
+                if (!hasPerGameHints) {
+                    // No per-game hints left, check AI daily quota
+                    val hasAIQuota = aiUsageManager.canUseFreeAIHint()
+                    if (!hasAIQuota) {
+                        // All limits exhausted - show upsell
+                        _uiEvents.emit(UiEvent.RequestAIHintUpsell)
+                        return@launch
+                    }
+                    // Has AI quota but no per-game hints - go straight to AI
+                    requestAIHintInternal(consumeQuota = true)
+                    return@launch
+                }
+            }
+
+            // Has hints available (premium or per-game) - use smart hint system
+            executeSmartHint(isPremiumUser)
+        }
+    }
+
+    private suspend fun executeSmartHint(isPremiumUser: Boolean) {
+        currCell = Cell(-1, -1, 0)
+        _advancedHintMode.emit(true)
+
+        val hintSettings = appSettingsManager.advancedHintSettings.first()
+        val advancedHint = AdvancedHint(
+            type = boardEntity.type,
+            board = gameBoard,
+            solvedBoard = solvedBoard,
+            notes = notes,
+            settings = hintSettings
+        )
+
+        val algorithmicHint = withContext(Dispatchers.Default) {
+            advancedHint.getEasiestHint()
+        }
+
+        if (algorithmicHint != null) {
+            // Use algorithmic hint - already counted as hint used
+            _advancedHintData.emit(algorithmicHint)
+            hintsUsed++
+        } else {
+            // Fallback to AI hint
+            _advancedHintMode.emit(false)
+            // For premium users, don't consume AI quota (unlimited)
+            // For free users with per-game hints, AI is bonus (don't double-consume)
+            requestAIHintInternal(consumeQuota = false)
+        }
+    }
+
+    @Deprecated("Use getSmartHint() instead", ReplaceWith("getSmartHint()"))
     fun getAdvancedHint() {
-        viewModelScope.launch(Dispatchers.Default) {
-            currCell = Cell(-1, -1, 0)
-            _advancedHintMode.emit(true)
-            val hintSettings = appSettingsManager.advancedHintSettings.first()
-            val advancedHint =
-                AdvancedHint(
-                    type = boardEntity.type,
-                    board = gameBoard,
-                    solvedBoard = solvedBoard,
-                    notes = notes,
-                    settings = hintSettings
-                )
+        getSmartHint()
+    }
 
-            val algorithmicHint = advancedHint.getEasiestHint()
+    private suspend fun requestAIHintInternal(consumeQuota: Boolean) {
+        // Show loading state
+        _aiHintState.emit(AIHintResponse.Loading)
 
-            if (algorithmicHint != null) {
-                // Use algorithmic hint
-                _advancedHintData.emit(algorithmicHint)
-            } else {
-                // Fallback to AI hint
-                _advancedHintMode.emit(false)
-                requestAIHint()
+        // Generate AI hint
+        val request = AIHintRequest(
+            currentBoard = gameBoard,
+            solvedBoard = solvedBoard,
+            notes = notes,
+            gameType = gameType,
+            difficulty = gameDifficulty,
+            languageTag = getCurrentLocaleTag().ifEmpty { "en" }
+        )
+
+        val response = withContext(Dispatchers.IO) {
+            aiHintService.generateHint(request)
+        }
+
+        when (response) {
+            is AIHintResponse.Success -> {
+                if (consumeQuota) {
+                    aiUsageManager.consumeFreeAIHint()
+                }
+                hintsUsed++
+                _aiHintState.emit(response)
+                _uiEvents.emit(UiEvent.AIHintResult(response))
+            }
+            is AIHintResponse.Error -> {
+                _aiHintState.emit(null)
+                _uiEvents.emit(UiEvent.AIHintError(response.message))
+            }
+            AIHintResponse.Loading -> {
+                // Already handled above
             }
         }
     }
 
+    @Deprecated("Use getSmartHint() instead")
     fun requestAIHint() {
         viewModelScope.launch {
             val isPremiumUser = isPremium.value
@@ -1130,46 +1201,16 @@ constructor(
                 }
             }
 
-            // Show loading state
-            _aiHintState.emit(AIHintResponse.Loading)
-
-            // Generate AI hint
-            val request = AIHintRequest(
-                currentBoard = gameBoard,
-                solvedBoard = solvedBoard,
-                notes = notes,
-                gameType = gameType,
-                difficulty = gameDifficulty,
-                languageTag = getCurrentLocaleTag().ifEmpty { "en" }
-            )
-
-            val response = withContext(Dispatchers.IO) {
-                aiHintService.generateHint(request)
-            }
-
-            when (response) {
-                is AIHintResponse.Success -> {
-                    if (!isPremiumUser) {
-                        aiUsageManager.consumeFreeAIHint()
-                    }
-                    _aiHintState.emit(response)
-                    _uiEvents.emit(UiEvent.AIHintResult(response))
-                }
-                is AIHintResponse.Error -> {
-                    _aiHintState.emit(null)
-                    _uiEvents.emit(UiEvent.AIHintError(response.message))
-                }
-                AIHintResponse.Loading -> {
-                    // Already handled above
-                }
-            }
+            requestAIHintInternal(consumeQuota = !isPremiumUser)
         }
     }
 
-    fun grantAIHintFromAd() {
+    fun grantHintFromAd() {
         viewModelScope.launch {
-            aiUsageManager.grantAIHintFromAd()
-            requestAIHint()
+            // Grant a per-game hint from watching ad
+            appSettingsManager.grantHints(gameUid, 1)
+            // Now use the smart hint system
+            getSmartHint()
         }
     }
 
@@ -1178,7 +1219,7 @@ constructor(
             val row = response.targetCell.row
             val col = response.targetCell.col
             val value = response.suggestedValue
-            val boardSize = gameType.size
+            val boardSize = gameBoard.size // Use actual board size, not gameType
 
             // Validate bounds
             if (row !in 0 until boardSize || col !in 0 until boardSize) {
@@ -1193,23 +1234,23 @@ constructor(
             }
 
             // Validate cell is not locked (original clue)
-            val targetCell = gameBoard[row][col]
-            if (targetCell.locked) {
+            if (gameBoard[row][col].locked) {
                 _aiHintState.emit(null)
                 return@launch
             }
 
-            currCell = targetCell
+            // Select the target cell first
+            currCell = gameBoard[row][col]
+
+            // Clear notes at target cell
             notes = clearNotesAtCell(notes, row, col)
-            gameBoard = setValueCell(value, row, col)
 
-            val new = getBoardNoRef()
-            new[row][col].error = false
-            gameBoard = new
+            // Apply the value using existing processInput logic
+            processInput(Cell(row, col, value), remainingUse = false)
 
+            // Add time penalty and track hint usage
             duration = duration.plus(30.toDuration(DurationUnit.SECONDS))
             timeText = duration.toFormattedString()
-            undoRedoManager.addState(GameState(gameBoard, notes))
             hintsUsed++
 
             _aiHintState.emit(null)

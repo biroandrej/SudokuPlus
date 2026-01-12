@@ -632,14 +632,14 @@
     <string name="ai_hint_apply">Apply Hint</string>
     <string name="ai_hint_error">Could not generate hint. Please try again.</string>
     <string name="ai_hints_remaining">%d AI hint(s) remaining today</string>
-    <string name="ai_hints_limit_reached">AI Hints Limit Reached</string>
-    <string name="ai_hints_limit_message">You\'ve used your free AI hint for today. Watch an ad or upgrade to Premium for unlimited hints.</string>
+    <string name="ai_hints_limit_reached">Hints Limit Reached</string>
+    <string name="ai_hints_limit_message">You\'ve used all your hints. Watch an ad for one more hint or upgrade to Premium for unlimited hints.</string>
     <string name="ai_watch_ad_for_hint">Watch Ad for 1 Hint</string>
 
     <!-- Premium -->
     <string name="premium_title">Sudoku Plus Premium</string>
     <string name="premium_upgrade">Upgrade to Premium</string>
-    <string name="premium_feature_unlimited_ai">Unlimited AI Hints</string>
+    <string name="premium_feature_unlimited_ai">Unlimited Smart Hints</string>
     <string name="premium_feature_ad_free">Ad-Free Experience</string>
     <string name="premium_feature_cloud_sync">Cloud Sync</string>
     <string name="premium_feature_themes">Exclusive Themes</string>

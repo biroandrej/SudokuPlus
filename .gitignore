@@ -37,3 +37,4 @@ google-services.json
 
 # Build outputs
 app/prod/
+.firebaserc
