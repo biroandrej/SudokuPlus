@@ -23,12 +23,15 @@ class AIAnalyticsLoggerImpl @Inject constructor(
         languageTag: String,
         isPremium: Boolean
     ) {
-        analytics.logEvent(EVENT_HINT_REQUESTED, Bundle().apply {
-            putString(PARAM_GAME_TYPE, gameType.name)
-            putString(PARAM_DIFFICULTY, difficulty.name)
-            putString(PARAM_LANGUAGE, languageTag)
-            putBoolean(PARAM_IS_PREMIUM, isPremium)
-        })
+        analytics.logEvent(
+            EVENT_HINT_REQUESTED,
+            Bundle().apply {
+                putString(PARAM_GAME_TYPE, gameType.name)
+                putString(PARAM_DIFFICULTY, difficulty.name)
+                putString(PARAM_LANGUAGE, languageTag)
+                putBoolean(PARAM_IS_PREMIUM, isPremium)
+            }
+        )
 
         // Set Crashlytics keys for context if errors occur
         crashlytics.setCustomKey(KEY_LAST_GAME_TYPE, gameType.name)
@@ -46,20 +49,23 @@ class AIAnalyticsLoggerImpl @Inject constructor(
         promptTokens: Int?,
         completionTokens: Int?
     ) {
-        analytics.logEvent(EVENT_HINT_SUCCESS, Bundle().apply {
-            putString(PARAM_GAME_TYPE, gameType.name)
-            putString(PARAM_DIFFICULTY, difficulty.name)
-            putString(PARAM_LANGUAGE, languageTag)
-            putString(PARAM_TECHNIQUE, technique)
-            putLong(PARAM_LATENCY_MS, latencyMs)
-            putString(PARAM_MODEL_NAME, modelName)
-            promptTokens?.let { putInt(PARAM_PROMPT_TOKENS, it) }
-            completionTokens?.let { putInt(PARAM_COMPLETION_TOKENS, it) }
-            val totalTokens = (promptTokens ?: 0) + (completionTokens ?: 0)
-            if (totalTokens > 0) {
-                putInt(PARAM_TOTAL_TOKENS, totalTokens)
+        analytics.logEvent(
+            EVENT_HINT_SUCCESS,
+            Bundle().apply {
+                putString(PARAM_GAME_TYPE, gameType.name)
+                putString(PARAM_DIFFICULTY, difficulty.name)
+                putString(PARAM_LANGUAGE, languageTag)
+                putString(PARAM_TECHNIQUE, technique)
+                putLong(PARAM_LATENCY_MS, latencyMs)
+                putString(PARAM_MODEL_NAME, modelName)
+                promptTokens?.let { putInt(PARAM_PROMPT_TOKENS, it) }
+                completionTokens?.let { putInt(PARAM_COMPLETION_TOKENS, it) }
+                val totalTokens = (promptTokens ?: 0) + (completionTokens ?: 0)
+                if (totalTokens > 0) {
+                    putInt(PARAM_TOTAL_TOKENS, totalTokens)
+                }
             }
-        })
+        )
 
         // Clear error state in Crashlytics
         crashlytics.setCustomKey(KEY_LAST_AI_ERROR, "none")
@@ -73,14 +79,17 @@ class AIAnalyticsLoggerImpl @Inject constructor(
         errorMessage: String,
         latencyMs: Long
     ) {
-        analytics.logEvent(EVENT_HINT_ERROR, Bundle().apply {
-            putString(PARAM_GAME_TYPE, gameType.name)
-            putString(PARAM_DIFFICULTY, difficulty.name)
-            putString(PARAM_LANGUAGE, languageTag)
-            putString(PARAM_ERROR_TYPE, errorType.name)
-            putString(PARAM_ERROR_MESSAGE, errorMessage.take(100)) // Truncate long messages
-            putLong(PARAM_LATENCY_MS, latencyMs)
-        })
+        analytics.logEvent(
+            EVENT_HINT_ERROR,
+            Bundle().apply {
+                putString(PARAM_GAME_TYPE, gameType.name)
+                putString(PARAM_DIFFICULTY, difficulty.name)
+                putString(PARAM_LANGUAGE, languageTag)
+                putString(PARAM_ERROR_TYPE, errorType.name)
+                putString(PARAM_ERROR_MESSAGE, errorMessage.take(100)) // Truncate long messages
+                putLong(PARAM_LATENCY_MS, latencyMs)
+            }
+        )
 
         // Set Crashlytics keys for debugging
         crashlytics.setCustomKey(KEY_LAST_AI_ERROR, errorType.name)
@@ -92,16 +101,15 @@ class AIAnalyticsLoggerImpl @Inject constructor(
         }
     }
 
-    override fun logHintApplied(
-        technique: String,
-        gameType: GameType,
-        difficulty: GameDifficulty
-    ) {
-        analytics.logEvent(EVENT_HINT_APPLIED, Bundle().apply {
-            putString(PARAM_TECHNIQUE, technique)
-            putString(PARAM_GAME_TYPE, gameType.name)
-            putString(PARAM_DIFFICULTY, difficulty.name)
-        })
+    override fun logHintApplied(technique: String, gameType: GameType, difficulty: GameDifficulty) {
+        analytics.logEvent(
+            EVENT_HINT_APPLIED,
+            Bundle().apply {
+                putString(PARAM_TECHNIQUE, technique)
+                putString(PARAM_GAME_TYPE, gameType.name)
+                putString(PARAM_DIFFICULTY, difficulty.name)
+            }
+        )
     }
 
     override fun logHintDismissed(
@@ -109,11 +117,14 @@ class AIAnalyticsLoggerImpl @Inject constructor(
         gameType: GameType,
         difficulty: GameDifficulty
     ) {
-        analytics.logEvent(EVENT_HINT_DISMISSED, Bundle().apply {
-            putString(PARAM_TECHNIQUE, technique)
-            putString(PARAM_GAME_TYPE, gameType.name)
-            putString(PARAM_DIFFICULTY, difficulty.name)
-        })
+        analytics.logEvent(
+            EVENT_HINT_DISMISSED,
+            Bundle().apply {
+                putString(PARAM_TECHNIQUE, technique)
+                putString(PARAM_GAME_TYPE, gameType.name)
+                putString(PARAM_DIFFICULTY, difficulty.name)
+            }
+        )
     }
 
     override fun logHintDialogShown() {

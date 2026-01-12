@@ -22,8 +22,11 @@ class AIAnalyticsLoggerImpl @Inject constructor(
         languageTag: String,
         isPremium: Boolean
     ) {
-        Log.d(TAG, "AI Hint Requested: game=$gameType, difficulty=$difficulty, " +
-            "lang=$languageTag, premium=$isPremium")
+        Log.d(
+            TAG,
+            "AI Hint Requested: game=$gameType, difficulty=$difficulty, " +
+                "lang=$languageTag, premium=$isPremium"
+        )
     }
 
     override fun logHintSuccess(
@@ -36,8 +39,11 @@ class AIAnalyticsLoggerImpl @Inject constructor(
         promptTokens: Int?,
         completionTokens: Int?
     ) {
-        Log.d(TAG, "AI Hint Success: technique=$technique, latency=${latencyMs}ms, " +
-            "model=$modelName, tokens=${promptTokens ?: 0}+${completionTokens ?: 0}")
+        Log.d(
+            TAG,
+            "AI Hint Success: technique=$technique, latency=${latencyMs}ms, " +
+                "model=$modelName, tokens=${promptTokens ?: 0}+${completionTokens ?: 0}"
+        )
     }
 
     override fun logHintError(
@@ -51,11 +57,7 @@ class AIAnalyticsLoggerImpl @Inject constructor(
         Log.e(TAG, "AI Hint Error: type=$errorType, message=$errorMessage, latency=${latencyMs}ms")
     }
 
-    override fun logHintApplied(
-        technique: String,
-        gameType: GameType,
-        difficulty: GameDifficulty
-    ) {
+    override fun logHintApplied(technique: String, gameType: GameType, difficulty: GameDifficulty) {
         Log.d(TAG, "AI Hint Applied: technique=$technique")
     }
 

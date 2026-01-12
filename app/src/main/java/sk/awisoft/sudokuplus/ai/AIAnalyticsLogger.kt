@@ -47,20 +47,12 @@ interface AIAnalyticsLogger {
     /**
      * Log when user applies the AI hint to the board.
      */
-    fun logHintApplied(
-        technique: String,
-        gameType: GameType,
-        difficulty: GameDifficulty
-    )
+    fun logHintApplied(technique: String, gameType: GameType, difficulty: GameDifficulty)
 
     /**
      * Log when user dismisses the AI hint without applying.
      */
-    fun logHintDismissed(
-        technique: String,
-        gameType: GameType,
-        difficulty: GameDifficulty
-    )
+    fun logHintDismissed(technique: String, gameType: GameType, difficulty: GameDifficulty)
 
     /**
      * Log when user views the AI hint dialog (for engagement tracking).
