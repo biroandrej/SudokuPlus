@@ -49,11 +49,12 @@ class RemoteConfigProviderImpl @Inject constructor() : RemoteConfigProvider {
     }
 
     companion object {
+        // Note: This JSON uses the constants from AIModelConfig for consistency
         private val DEFAULT_AI_MODEL_CONFIG_JSON = """
             {
-                "modelName": "${AIModelConfig.DEFAULT_MODEL_NAME}",
-                "maxOutputTokens": ${AIModelConfig.DEFAULT_MAX_OUTPUT_TOKENS},
-                "temperature": ${AIModelConfig.DEFAULT_TEMPERATURE}
+                "modelName": "gemini-2.5-flash",
+                "maxOutputTokens": 500,
+                "temperature": 0.3
             }
         """.trimIndent()
     }

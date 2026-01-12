@@ -13,7 +13,7 @@ data class AIModelConfig(
     val temperature: Float = DEFAULT_TEMPERATURE
 ) {
     companion object {
-        const val DEFAULT_MODEL_NAME = "gemini-2.0-flash"
+        const val DEFAULT_MODEL_NAME = "gemini-2.5-flash"
         const val DEFAULT_MAX_OUTPUT_TOKENS = 500
         const val DEFAULT_TEMPERATURE = 0.3f
 
