@@ -547,6 +547,13 @@
     <string name="badge_event_new_year_name">新年传奇</string>
     <string name="badge_event_new_year_desc">完成了新年季节性活动</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">已完成 25%！</string>
+    <string name="seasonal_event_milestone_50">完成一半！</string>
+    <string name="seasonal_event_milestone_75">即将完成！</string>
+    <string name="seasonal_event_milestone_100">活动完成！</string>
+    <string name="seasonal_event_streak">%1$d 天连续记录</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play 游戏</string>
     <string name="play_games_summary">成就、排行榜和云同步</string>

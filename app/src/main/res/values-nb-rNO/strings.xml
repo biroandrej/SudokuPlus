@@ -612,6 +612,13 @@
     <string name="badge_event_new_year_name">Nyttårslegende</string>
     <string name="badge_event_new_year_desc">Fullførte nyttårets sesonghendelse</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% fullført!</string>
+    <string name="seasonal_event_milestone_50">Halvveis!</string>
+    <string name="seasonal_event_milestone_75">Nesten ferdig!</string>
+    <string name="seasonal_event_milestone_100">Arrangement fullført!</string>
+    <string name="seasonal_event_streak">%1$d dagers rekke</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Spill</string>
     <string name="play_games_summary">Prestasjoner, resultatlister og sky-synkronisering</string>

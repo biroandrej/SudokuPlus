@@ -622,6 +622,13 @@
     <string name="badge_event_new_year_name">Novoroční legenda</string>
     <string name="badge_event_new_year_desc">Dokončena novoroční sezónní událost</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% hotovo!</string>
+    <string name="seasonal_event_milestone_50">V polovině!</string>
+    <string name="seasonal_event_milestone_75">Téměř hotovo!</string>
+    <string name="seasonal_event_milestone_100">Událost dokončena!</string>
+    <string name="seasonal_event_streak">Série %1$d dní</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Hry</string>
     <string name="play_games_summary">Úspěchy, žebříčky a cloudová synchronizace</string>

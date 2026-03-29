@@ -617,6 +617,13 @@
     <string name="badge_event_new_year_name">Lenda do Ano Novo</string>
     <string name="badge_event_new_year_desc">Completou o evento sazonal de Ano Novo</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% concluído!</string>
+    <string name="seasonal_event_milestone_50">Na metade!</string>
+    <string name="seasonal_event_milestone_75">Quase lá!</string>
+    <string name="seasonal_event_milestone_100">Evento concluído!</string>
+    <string name="seasonal_event_streak">Sequência de %1$d dias</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jogos</string>
     <string name="play_games_summary">Conquistas, classificacoes e sincronizacao na nuvem</string>

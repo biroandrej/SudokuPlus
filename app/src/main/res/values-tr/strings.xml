@@ -612,6 +612,13 @@
     <string name="badge_event_new_year_name">Yılbaşı Efsanesi</string>
     <string name="badge_event_new_year_desc">Yılbaşı sezonluk etkinliği tamamlandı</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">%25 Tamamlandı!</string>
+    <string name="seasonal_event_milestone_50">Yarı Yoldasın!</string>
+    <string name="seasonal_event_milestone_75">Neredeyse Bitti!</string>
+    <string name="seasonal_event_milestone_100">Etkinlik Tamamlandı!</string>
+    <string name="seasonal_event_streak">%1$d günlük seri</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Oyunlar</string>
     <string name="play_games_summary">Başarılar, skor tabloları ve bulut senkronizasyonu</string>

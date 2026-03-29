@@ -631,6 +631,13 @@
     <string name="badge_event_new_year_name">أسطورة رأس السنة</string>
     <string name="badge_event_new_year_desc">أكمل حدث رأس السنة الموسمي</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">اكتمل 25%!</string>
+    <string name="seasonal_event_milestone_50">في منتصف الطريق!</string>
+    <string name="seasonal_event_milestone_75">أوشك على الانتهاء!</string>
+    <string name="seasonal_event_milestone_100">اكتمل الحدث!</string>
+    <string name="seasonal_event_streak">سلسلة %1$d يوم</string>
+
     <!-- Play Games -->
     <string name="play_games_title">ألعاب Google Play</string>
     <string name="play_games_summary">الإنجازات ولوحات المتصدرين والمزامنة السحابية</string>

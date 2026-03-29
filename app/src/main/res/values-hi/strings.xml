@@ -616,6 +616,13 @@
     <string name="badge_event_new_year_name">नए साल की किंवदंती</string>
     <string name="badge_event_new_year_desc">नए साल का मौसमी इवेंट पूरा किया</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% पूरा!</string>
+    <string name="seasonal_event_milestone_50">आधा रास्ता!</string>
+    <string name="seasonal_event_milestone_75">लगभग पूरा!</string>
+    <string name="seasonal_event_milestone_100">इवेंट पूरा!</string>
+    <string name="seasonal_event_streak">%1$d दिन की लय</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>
     <string name="play_games_summary">उपलब्धियां, लीडरबोर्ड और क्लाउड सिंक</string>

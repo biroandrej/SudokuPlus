@@ -612,6 +612,13 @@
     <string name="badge_event_new_year_name">புத்தாண்டு புகழ்</string>
     <string name="badge_event_new_year_desc">புத்தாண்டு பருவகால நிகழ்வை நிறைவு செய்தது</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% முடிந்தது!</string>
+    <string name="seasonal_event_milestone_50">பாதி வழியில்!</string>
+    <string name="seasonal_event_milestone_75">கிட்டத்தட்ட முடிந்தது!</string>
+    <string name="seasonal_event_milestone_100">நிகழ்வு முடிந்தது!</string>
+    <string name="seasonal_event_streak">%1$d நாள் தொடர்</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>
     <string name="play_games_summary">சாதனைகள், தரவரிசைப்பட்டிகள் மற்றும் கிளவுட் ஒத்திசைவு</string>

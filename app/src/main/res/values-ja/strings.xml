@@ -652,6 +652,13 @@
     <string name="badge_event_new_year_name">新年のレジェンド</string>
     <string name="badge_event_new_year_desc">新年のシーズンイベントを完了しました</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% 完了！</string>
+    <string name="seasonal_event_milestone_50">折り返し地点！</string>
+    <string name="seasonal_event_milestone_75">もう少し！</string>
+    <string name="seasonal_event_milestone_100">イベント完了！</string>
+    <string name="seasonal_event_streak">%1$d日連続</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>
     <string name="play_games_summary">実績、リーダーボード、クラウド同期</string>

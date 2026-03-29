@@ -612,6 +612,13 @@
     <string name="badge_event_new_year_name">افسانه سال نو</string>
     <string name="badge_event_new_year_desc">رویداد فصلی سال نو تکمیل شد</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">۲۵٪ تکمیل شد!</string>
+    <string name="seasonal_event_milestone_50">نیمه راه!</string>
+    <string name="seasonal_event_milestone_75">تقریباً تمام شد!</string>
+    <string name="seasonal_event_milestone_100">رویداد تکمیل شد!</string>
+    <string name="seasonal_event_streak">رکورد %1$d روزه</string>
+
     <!-- Play Games -->
     <string name="play_games_title">گوگل پلی گیمز</string>
     <string name="play_games_summary">دستاوردها، جدول‌های رتبه‌بندی و همگام‌سازی ابری</string>

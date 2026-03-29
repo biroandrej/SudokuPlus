@@ -625,6 +625,13 @@
     <string name="badge_event_new_year_name">Θρύλος Πρωτοχρονιάς</string>
     <string name="badge_event_new_year_desc">Ολοκληρώθηκε η εποχιακή εκδήλωση της Πρωτοχρονιάς</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% ολοκληρώθηκε!</string>
+    <string name="seasonal_event_milestone_50">Στη μέση!</string>
+    <string name="seasonal_event_milestone_75">Σχεδόν έτοιμο!</string>
+    <string name="seasonal_event_milestone_100">Εκδήλωση ολοκληρώθηκε!</string>
+    <string name="seasonal_event_streak">Σερί %1$d ημερών</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Παιχνίδια</string>
     <string name="play_games_summary">Επιτεύγματα, πίνακες κατάταξης και συγχρονισμός cloud</string>

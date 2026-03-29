@@ -607,6 +607,13 @@
     <string name="badge_event_new_year_name">Legenda Tahun Baru</string>
     <string name="badge_event_new_year_desc">Menyelesaikan acara musiman Tahun Baru</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% Selesai!</string>
+    <string name="seasonal_event_milestone_50">Setengah Jalan!</string>
+    <string name="seasonal_event_milestone_75">Hampir Selesai!</string>
+    <string name="seasonal_event_milestone_100">Acara Selesai!</string>
+    <string name="seasonal_event_streak">Rekor %1$d hari</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>
     <string name="play_games_summary">Pencapaian, papan peringkat, dan sinkronisasi cloud</string>

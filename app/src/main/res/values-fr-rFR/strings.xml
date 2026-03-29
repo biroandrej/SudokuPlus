@@ -606,6 +606,13 @@
     <string name="badge_event_new_year_name">Légende du Nouvel An</string>
     <string name="badge_event_new_year_desc">L\'événement saisonnier du Nouvel An est terminé</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% terminé !</string>
+    <string name="seasonal_event_milestone_50">À mi-chemin !</string>
+    <string name="seasonal_event_milestone_75">Presque fini !</string>
+    <string name="seasonal_event_milestone_100">Événement terminé !</string>
+    <string name="seasonal_event_streak">Série de %1$d jours</string>
+
     <!-- Premium -->
     <string name="premium_title">Sudoku Plus Premium</string>
     <string name="premium_upgrade">Passer à Premium</string>

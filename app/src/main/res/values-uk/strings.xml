@@ -622,6 +622,13 @@
     <string name="badge_event_new_year_name">Новорічна легенда</string>
     <string name="badge_event_new_year_desc">Завершено новорічну сезонну подію</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% виконано!</string>
+    <string name="seasonal_event_milestone_50">На половині шляху!</string>
+    <string name="seasonal_event_milestone_75">Майже готово!</string>
+    <string name="seasonal_event_milestone_100">Подію завершено!</string>
+    <string name="seasonal_event_streak">Серія %1$d днів</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Ігри</string>
     <string name="play_games_summary">Досягнення, таблиці лідерів та хмарна синхронізація</string>

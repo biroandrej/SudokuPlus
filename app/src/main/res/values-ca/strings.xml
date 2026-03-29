@@ -613,6 +613,13 @@
     <string name="badge_event_new_year_name">Llegenda d\'Any Nou</string>
     <string name="badge_event_new_year_desc">Has completat l\'esdeveniment estacional d\'Any Nou</string>
 
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% completat!</string>
+    <string name="seasonal_event_milestone_50">A mig camí!</string>
+    <string name="seasonal_event_milestone_75">Gairebé acabat!</string>
+    <string name="seasonal_event_milestone_100">Esdeveniment completat!</string>
+    <string name="seasonal_event_streak">Ratxa de %1$d dies</string>
+
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jocs</string>
     <string name="play_games_summary">Assoliments, classificacions i sincronització al núvol</string>
