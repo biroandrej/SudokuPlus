@@ -15,7 +15,8 @@ enum class AchievementCategory(
     STREAK(R.string.achievement_category_streak),
     VARIETY(R.string.achievement_category_variety),
     MASTERY(R.string.achievement_category_mastery),
-    DAILY(R.string.achievement_category_daily)
+    DAILY(R.string.achievement_category_daily),
+    SEASONAL(R.string.achievement_category_seasonal)
 }
 
 sealed class AchievementRequirement {
@@ -38,6 +39,10 @@ sealed class AchievementRequirement {
     data class TotalPlayTime(val minutes: Int) : AchievementRequirement()
 
     data class PlayStreak(val days: Int) : AchievementRequirement()
+
+    data class EventChallengesCompleted(val count: Int) : AchievementRequirement()
+
+    data class EventsParticipated(val count: Int) : AchievementRequirement()
 }
 
 data class AchievementDefinition(

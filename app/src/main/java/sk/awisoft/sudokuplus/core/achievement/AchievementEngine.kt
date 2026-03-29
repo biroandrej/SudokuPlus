@@ -144,6 +144,16 @@ constructor(
                 val streak = getPlayStreak()
                 streak to (streak >= requirement.days)
             }
+
+            is AchievementRequirement.EventChallengesCompleted -> {
+                // Tracked via SeasonalEventRepository, wired in integration phase
+                0 to false
+            }
+
+            is AchievementRequirement.EventsParticipated -> {
+                // Tracked via SeasonalEventRepository, wired in integration phase
+                0 to false
+            }
         }
     }
 
@@ -200,6 +210,16 @@ constructor(
             is AchievementRequirement.PlayStreak -> {
                 val streak = getBestPlayStreak()
                 streak to (streak >= requirement.days)
+            }
+
+            is AchievementRequirement.EventChallengesCompleted -> {
+                // Tracked via SeasonalEventRepository, wired in integration phase
+                0 to false
+            }
+
+            is AchievementRequirement.EventsParticipated -> {
+                // Tracked via SeasonalEventRepository, wired in integration phase
+                0 to false
             }
         }
     }

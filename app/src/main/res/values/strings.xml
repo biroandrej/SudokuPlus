@@ -413,6 +413,7 @@
     <string name="achievement_category_variety">Variety</string>
     <string name="achievement_category_mastery">Mastery</string>
     <string name="achievement_category_daily">Daily</string>
+    <string name="achievement_category_seasonal">Seasonal</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronze</string>
@@ -505,6 +506,18 @@
     <string name="achievement_daily_streak_30_desc">30-day daily challenge streak</string>
     <string name="achievement_daily_streak_100">Daily Legend</string>
     <string name="achievement_daily_streak_100_desc">100-day daily challenge streak</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Event Explorer</string>
+    <string name="achievement_seasonal_first_desc">Complete your first event challenge</string>
+    <string name="achievement_seasonal_5">Event Enthusiast</string>
+    <string name="achievement_seasonal_5_desc">Complete 5 event challenges</string>
+    <string name="achievement_seasonal_25">Event Veteran</string>
+    <string name="achievement_seasonal_25_desc">Complete 25 event challenges</string>
+    <string name="achievement_seasonal_events_3">Season Chaser</string>
+    <string name="achievement_seasonal_events_3_desc">Participate in 3 seasonal events</string>
+    <string name="achievement_seasonal_events_10">Event Collector</string>
+    <string name="achievement_seasonal_events_10_desc">Participate in 10 seasonal events</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Daily Challenge</string>
@@ -599,6 +612,18 @@
     <string name="badges_earned_count">%1$d badges earned</string>
     <string name="badge_earned">Badge Earned!</string>
     <string name="badge_no_badges">No badges earned yet</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Easter Champion</string>
+    <string name="badge_event_easter_desc">Completed the Easter seasonal event</string>
+    <string name="badge_event_summer_name">Summer Star</string>
+    <string name="badge_event_summer_desc">Completed the Summer seasonal event</string>
+    <string name="badge_event_halloween_name">Spooky Solver</string>
+    <string name="badge_event_halloween_desc">Completed the Halloween seasonal event</string>
+    <string name="badge_event_christmas_name">Holiday Hero</string>
+    <string name="badge_event_christmas_desc">Completed the Christmas seasonal event</string>
+    <string name="badge_event_new_year_name">New Year Legend</string>
+    <string name="badge_event_new_year_desc">Completed the New Year seasonal event</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>
