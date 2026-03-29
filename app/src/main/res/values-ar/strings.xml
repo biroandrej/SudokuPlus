@@ -421,6 +421,23 @@
     <string name="achievement_category_daily">يومي</string>
     <string name="achievement_category_seasonal">موسمي</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">الأحداث الموسمية</string>
+    <string name="seasonal_event_active">نشط</string>
+    <string name="seasonal_event_upcoming">قادم</string>
+    <string name="seasonal_event_ended">انتهى</string>
+    <string name="seasonal_event_starts_in">يبدأ خلال %1$d أيام</string>
+    <string name="seasonal_event_ends_in">ينتهي خلال %1$d أيام</string>
+    <string name="seasonal_event_ended_ago">انتهى منذ %1$d أيام</string>
+    <string name="seasonal_event_progress">%1$d/%2$d تحديات</string>
+    <string name="seasonal_event_play">العب التحدي</string>
+    <string name="seasonal_event_completed">مكتمل!</string>
+    <string name="seasonal_event_day">اليوم %1$d</string>
+    <string name="seasonal_event_no_events">لا توجد أحداث متاحة حالياً</string>
+    <string name="seasonal_event_reward_earned">تم الحصول على المكافأة!</string>
+    <string name="seasonal_event_badge_earned">تم الحصول على شارة الحدث!</string>
+    <string name="seasonal_event_view_all">عرض جميع الأحداث</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">برونزي</string>
     <string name="achievement_tier_silver">فضي</string>

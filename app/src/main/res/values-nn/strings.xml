@@ -411,6 +411,23 @@
     <string name="achievement_category_daily">Dagleg</string>
     <string name="achievement_category_seasonal">Sesong</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Sesonghendingar</string>
+    <string name="seasonal_event_active">Aktiv</string>
+    <string name="seasonal_event_upcoming">Komande</string>
+    <string name="seasonal_event_ended">Avslutta</string>
+    <string name="seasonal_event_starts_in">Startar om %1$d dagar</string>
+    <string name="seasonal_event_ends_in">Sluttar om %1$d dagar</string>
+    <string name="seasonal_event_ended_ago">Avslutta for %1$d dagar sidan</string>
+    <string name="seasonal_event_progress">%1$d/%2$d utfordringar</string>
+    <string name="seasonal_event_play">Spel utfordring</string>
+    <string name="seasonal_event_completed">Fullført!</string>
+    <string name="seasonal_event_day">Dag %1$d</string>
+    <string name="seasonal_event_no_events">Ingen hendingar tilgjengelege akkurat no</string>
+    <string name="seasonal_event_reward_earned">Løn oppnådd!</string>
+    <string name="seasonal_event_badge_earned">Hendingsmerke oppnådd!</string>
+    <string name="seasonal_event_view_all">Sjå alle hendingar</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronse</string>
     <string name="achievement_tier_silver">Sølv</string>

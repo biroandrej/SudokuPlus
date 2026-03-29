@@ -397,6 +397,23 @@
     <string name="achievement_category_daily">Harian</string>
     <string name="achievement_category_seasonal">Musiman</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Acara Musiman</string>
+    <string name="seasonal_event_active">Aktif</string>
+    <string name="seasonal_event_upcoming">Akan datang</string>
+    <string name="seasonal_event_ended">Berakhir</string>
+    <string name="seasonal_event_starts_in">Dimulai dalam %1$d hari</string>
+    <string name="seasonal_event_ends_in">Berakhir dalam %1$d hari</string>
+    <string name="seasonal_event_ended_ago">Berakhir %1$d hari lalu</string>
+    <string name="seasonal_event_progress">%1$d/%2$d tantangan</string>
+    <string name="seasonal_event_play">Main Tantangan</string>
+    <string name="seasonal_event_completed">Selesai!</string>
+    <string name="seasonal_event_day">Hari %1$d</string>
+    <string name="seasonal_event_no_events">Tidak ada acara yang tersedia saat ini</string>
+    <string name="seasonal_event_reward_earned">Hadiah Diperoleh!</string>
+    <string name="seasonal_event_badge_earned">Lencana Acara Diperoleh!</string>
+    <string name="seasonal_event_view_all">Lihat Semua Acara</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Perunggu</string>
     <string name="achievement_tier_silver">Perak</string>

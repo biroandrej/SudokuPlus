@@ -388,6 +388,23 @@
     <string name="achievement_category_daily">Diario</string>
     <string name="achievement_category_seasonal">Estacional</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Eventos de temporada</string>
+    <string name="seasonal_event_active">Activo</string>
+    <string name="seasonal_event_upcoming">Próximo</string>
+    <string name="seasonal_event_ended">Finalizado</string>
+    <string name="seasonal_event_starts_in">Comienza en %1$d días</string>
+    <string name="seasonal_event_ends_in">Termina en %1$d días</string>
+    <string name="seasonal_event_ended_ago">Terminó hace %1$d días</string>
+    <string name="seasonal_event_progress">%1$d/%2$d desafíos</string>
+    <string name="seasonal_event_play">Jugar desafío</string>
+    <string name="seasonal_event_completed">¡Completado!</string>
+    <string name="seasonal_event_day">Día %1$d</string>
+    <string name="seasonal_event_no_events">No hay eventos disponibles en este momento</string>
+    <string name="seasonal_event_reward_earned">¡Recompensa obtenida!</string>
+    <string name="seasonal_event_badge_earned">¡Insignia de evento obtenida!</string>
+    <string name="seasonal_event_view_all">Ver todos los eventos</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronce</string>
     <string name="achievement_tier_silver">Plata</string>

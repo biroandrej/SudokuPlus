@@ -402,6 +402,23 @@
     <string name="achievement_category_daily">Günlük</string>
     <string name="achievement_category_seasonal">Sezonluk</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Sezon Etkinlikleri</string>
+    <string name="seasonal_event_active">Aktif</string>
+    <string name="seasonal_event_upcoming">Yaklaşan</string>
+    <string name="seasonal_event_ended">Sona erdi</string>
+    <string name="seasonal_event_starts_in">%1$d gün sonra başlıyor</string>
+    <string name="seasonal_event_ends_in">%1$d gün sonra bitiyor</string>
+    <string name="seasonal_event_ended_ago">%1$d gün önce sona erdi</string>
+    <string name="seasonal_event_progress">%1$d/%2$d görev</string>
+    <string name="seasonal_event_play">Görevi Oyna</string>
+    <string name="seasonal_event_completed">Tamamlandı!</string>
+    <string name="seasonal_event_day">Gün %1$d</string>
+    <string name="seasonal_event_no_events">Şu anda etkinlik bulunmuyor</string>
+    <string name="seasonal_event_reward_earned">Ödül Kazanıldı!</string>
+    <string name="seasonal_event_badge_earned">Etkinlik Rozeti Kazanıldı!</string>
+    <string name="seasonal_event_view_all">Tüm Etkinlikleri Gör</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronz</string>
     <string name="achievement_tier_silver">Gümüş</string>

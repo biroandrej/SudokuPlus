@@ -403,6 +403,23 @@
     <string name="achievement_category_daily">Diari</string>
     <string name="achievement_category_seasonal">Estacional</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Esdeveniments estacionals</string>
+    <string name="seasonal_event_active">Actiu</string>
+    <string name="seasonal_event_upcoming">Proper</string>
+    <string name="seasonal_event_ended">Finalitzat</string>
+    <string name="seasonal_event_starts_in">Comença en %1$d dies</string>
+    <string name="seasonal_event_ends_in">Acaba en %1$d dies</string>
+    <string name="seasonal_event_ended_ago">Va acabar fa %1$d dies</string>
+    <string name="seasonal_event_progress">%1$d/%2$d reptes</string>
+    <string name="seasonal_event_play">Juga el repte</string>
+    <string name="seasonal_event_completed">Completat!</string>
+    <string name="seasonal_event_day">Dia %1$d</string>
+    <string name="seasonal_event_no_events">No hi ha esdeveniments disponibles ara mateix</string>
+    <string name="seasonal_event_reward_earned">Recompensa obtinguda!</string>
+    <string name="seasonal_event_badge_earned">Insígnia d\'esdeveniment obtinguda!</string>
+    <string name="seasonal_event_view_all">Veure tots els esdeveniments</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronze</string>
     <string name="achievement_tier_silver">Plata</string>

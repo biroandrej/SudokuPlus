@@ -415,6 +415,23 @@
     <string name="achievement_category_daily">Ημερήσια</string>
     <string name="achievement_category_seasonal">Εποχιακό</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Εποχιακά Εβέντ</string>
+    <string name="seasonal_event_active">Ενεργό</string>
+    <string name="seasonal_event_upcoming">Επερχόμενο</string>
+    <string name="seasonal_event_ended">Ολοκληρώθηκε</string>
+    <string name="seasonal_event_starts_in">Ξεκινά σε %1$d ημέρες</string>
+    <string name="seasonal_event_ends_in">Τελειώνει σε %1$d ημέρες</string>
+    <string name="seasonal_event_ended_ago">Τελείωσε πριν %1$d ημέρες</string>
+    <string name="seasonal_event_progress">%1$d/%2$d προκλήσεις</string>
+    <string name="seasonal_event_play">Παίξε την πρόκληση</string>
+    <string name="seasonal_event_completed">Ολοκληρώθηκε!</string>
+    <string name="seasonal_event_day">Ημέρα %1$d</string>
+    <string name="seasonal_event_no_events">Δεν υπάρχουν διαθέσιμα εβέντ αυτή τη στιγμή</string>
+    <string name="seasonal_event_reward_earned">Κερδίσατε ανταμοιβή!</string>
+    <string name="seasonal_event_badge_earned">Κερδίσατε σήμα εβέντ!</string>
+    <string name="seasonal_event_view_all">Προβολή όλων των εβέντ</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Χάλκινο</string>
     <string name="achievement_tier_silver">Ασημένιο</string>

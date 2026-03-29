@@ -402,6 +402,23 @@
     <string name="achievement_category_daily">தினசரி</string>
     <string name="achievement_category_seasonal">பருவகால</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">பருவகால நிகழ்வுகள்</string>
+    <string name="seasonal_event_active">செயலில்</string>
+    <string name="seasonal_event_upcoming">வரவிருக்கும்</string>
+    <string name="seasonal_event_ended">முடிந்தது</string>
+    <string name="seasonal_event_starts_in">%1$d நாட்களில் தொடங்கும்</string>
+    <string name="seasonal_event_ends_in">%1$d நாட்களில் முடியும்</string>
+    <string name="seasonal_event_ended_ago">%1$d நாட்களுக்கு முன் முடிந்தது</string>
+    <string name="seasonal_event_progress">%1$d/%2$d சவால்கள்</string>
+    <string name="seasonal_event_play">சவாலை விளையாடு</string>
+    <string name="seasonal_event_completed">நிறைவு!</string>
+    <string name="seasonal_event_day">நாள் %1$d</string>
+    <string name="seasonal_event_no_events">தற்போது நிகழ்வுகள் எதுவும் இல்லை</string>
+    <string name="seasonal_event_reward_earned">வெகுமதி பெறப்பட்டது!</string>
+    <string name="seasonal_event_badge_earned">நிகழ்வு பேட்ஜ் பெறப்பட்டது!</string>
+    <string name="seasonal_event_view_all">அனைத்து நிகழ்வுகளையும் காண்க</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">வெண்கலம்</string>
     <string name="achievement_tier_silver">வெள்ளி</string>

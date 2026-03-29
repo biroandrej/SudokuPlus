@@ -406,6 +406,23 @@
     <string name="achievement_category_daily">दैनिक</string>
     <string name="achievement_category_seasonal">मौसमी</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">मौसमी कार्यक्रम</string>
+    <string name="seasonal_event_active">सक्रिय</string>
+    <string name="seasonal_event_upcoming">आगामी</string>
+    <string name="seasonal_event_ended">समाप्त</string>
+    <string name="seasonal_event_starts_in">%1$d दिनों में शुरू होगा</string>
+    <string name="seasonal_event_ends_in">%1$d दिनों में समाप्त होगा</string>
+    <string name="seasonal_event_ended_ago">%1$d दिन पहले समाप्त हुआ</string>
+    <string name="seasonal_event_progress">%1$d/%2$d चुनौतियाँ</string>
+    <string name="seasonal_event_play">चुनौती खेलें</string>
+    <string name="seasonal_event_completed">पूर्ण!</string>
+    <string name="seasonal_event_day">दिन %1$d</string>
+    <string name="seasonal_event_no_events">अभी कोई कार्यक्रम उपलब्ध नहीं है</string>
+    <string name="seasonal_event_reward_earned">पुरस्कार अर्जित!</string>
+    <string name="seasonal_event_badge_earned">कार्यक्रम बैज अर्जित!</string>
+    <string name="seasonal_event_view_all">सभी कार्यक्रम देखें</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">कांस्य</string>
     <string name="achievement_tier_silver">रजत</string>

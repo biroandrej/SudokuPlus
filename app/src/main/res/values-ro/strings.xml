@@ -407,6 +407,23 @@
     <string name="achievement_category_daily">Zilnic</string>
     <string name="achievement_category_seasonal">Sezonier</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Evenimente sezoniere</string>
+    <string name="seasonal_event_active">Activ</string>
+    <string name="seasonal_event_upcoming">În curând</string>
+    <string name="seasonal_event_ended">Încheiat</string>
+    <string name="seasonal_event_starts_in">Începe în %1$d zile</string>
+    <string name="seasonal_event_ends_in">Se termină în %1$d zile</string>
+    <string name="seasonal_event_ended_ago">S-a încheiat acum %1$d zile</string>
+    <string name="seasonal_event_progress">%1$d/%2$d provocări</string>
+    <string name="seasonal_event_play">Joacă provocarea</string>
+    <string name="seasonal_event_completed">Finalizat!</string>
+    <string name="seasonal_event_day">Ziua %1$d</string>
+    <string name="seasonal_event_no_events">Nu sunt evenimente disponibile momentan</string>
+    <string name="seasonal_event_reward_earned">Recompensă obținută!</string>
+    <string name="seasonal_event_badge_earned">Insignă de eveniment obținută!</string>
+    <string name="seasonal_event_view_all">Vezi toate evenimentele</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronz</string>
     <string name="achievement_tier_silver">Argint</string>

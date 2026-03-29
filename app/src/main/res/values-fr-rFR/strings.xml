@@ -337,6 +337,23 @@
     <string name="achievement_category_daily">Quotidien</string>
     <string name="achievement_category_seasonal">Saisonnier</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Événements saisonniers</string>
+    <string name="seasonal_event_active">Actif</string>
+    <string name="seasonal_event_upcoming">À venir</string>
+    <string name="seasonal_event_ended">Terminé</string>
+    <string name="seasonal_event_starts_in">Commence dans %1$d jours</string>
+    <string name="seasonal_event_ends_in">Se termine dans %1$d jours</string>
+    <string name="seasonal_event_ended_ago">Terminé il y a %1$d jours</string>
+    <string name="seasonal_event_progress">%1$d/%2$d défis</string>
+    <string name="seasonal_event_play">Jouer le défi</string>
+    <string name="seasonal_event_completed">Terminé !</string>
+    <string name="seasonal_event_day">Jour %1$d</string>
+    <string name="seasonal_event_no_events">Aucun événement disponible pour le moment</string>
+    <string name="seasonal_event_reward_earned">Récompense obtenue !</string>
+    <string name="seasonal_event_badge_earned">Badge d\'événement obtenu !</string>
+    <string name="seasonal_event_view_all">Voir tous les événements</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronze</string>
     <string name="achievement_tier_silver">Argent</string>

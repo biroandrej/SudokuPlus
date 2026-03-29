@@ -402,6 +402,23 @@
     <string name="achievement_category_daily">Napi</string>
     <string name="achievement_category_seasonal">Szezonális</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Szezonális események</string>
+    <string name="seasonal_event_active">Aktív</string>
+    <string name="seasonal_event_upcoming">Közelgő</string>
+    <string name="seasonal_event_ended">Véget ért</string>
+    <string name="seasonal_event_starts_in">%1$d nap múlva kezdődik</string>
+    <string name="seasonal_event_ends_in">%1$d nap múlva ér véget</string>
+    <string name="seasonal_event_ended_ago">%1$d napja ért véget</string>
+    <string name="seasonal_event_progress">%1$d/%2$d kihívás</string>
+    <string name="seasonal_event_play">Kihívás játszása</string>
+    <string name="seasonal_event_completed">Teljesítve!</string>
+    <string name="seasonal_event_day">%1$d. nap</string>
+    <string name="seasonal_event_no_events">Jelenleg nincsenek elérhető események</string>
+    <string name="seasonal_event_reward_earned">Jutalom megszerzve!</string>
+    <string name="seasonal_event_badge_earned">Eseményjelvény megszerzve!</string>
+    <string name="seasonal_event_view_all">Összes esemény megtekintése</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronz</string>
     <string name="achievement_tier_silver">Ezust</string>

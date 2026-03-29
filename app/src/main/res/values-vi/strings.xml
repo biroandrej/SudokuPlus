@@ -397,6 +397,23 @@
     <string name="achievement_category_daily">Hàng ngày</string>
     <string name="achievement_category_seasonal">Theo mùa</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Sự kiện theo mùa</string>
+    <string name="seasonal_event_active">Đang diễn ra</string>
+    <string name="seasonal_event_upcoming">Sắp tới</string>
+    <string name="seasonal_event_ended">Đã kết thúc</string>
+    <string name="seasonal_event_starts_in">Bắt đầu sau %1$d ngày</string>
+    <string name="seasonal_event_ends_in">Kết thúc sau %1$d ngày</string>
+    <string name="seasonal_event_ended_ago">Đã kết thúc %1$d ngày trước</string>
+    <string name="seasonal_event_progress">%1$d/%2$d thử thách</string>
+    <string name="seasonal_event_play">Chơi thử thách</string>
+    <string name="seasonal_event_completed">Hoàn thành!</string>
+    <string name="seasonal_event_day">Ngày %1$d</string>
+    <string name="seasonal_event_no_events">Hiện không có sự kiện nào</string>
+    <string name="seasonal_event_reward_earned">Đã nhận phần thưởng!</string>
+    <string name="seasonal_event_badge_earned">Đã nhận huy hiệu sự kiện!</string>
+    <string name="seasonal_event_view_all">Xem tất cả sự kiện</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Đồng</string>
     <string name="achievement_tier_silver">Bạc</string>

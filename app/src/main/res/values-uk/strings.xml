@@ -412,6 +412,23 @@
     <string name="achievement_category_daily">Щоденні</string>
     <string name="achievement_category_seasonal">Сезонні</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Сезонні події</string>
+    <string name="seasonal_event_active">Активна</string>
+    <string name="seasonal_event_upcoming">Незабаром</string>
+    <string name="seasonal_event_ended">Завершено</string>
+    <string name="seasonal_event_starts_in">Починається через %1$d днів</string>
+    <string name="seasonal_event_ends_in">Закінчується через %1$d днів</string>
+    <string name="seasonal_event_ended_ago">Завершилось %1$d днів тому</string>
+    <string name="seasonal_event_progress">%1$d/%2$d випробувань</string>
+    <string name="seasonal_event_play">Грати випробування</string>
+    <string name="seasonal_event_completed">Завершено!</string>
+    <string name="seasonal_event_day">День %1$d</string>
+    <string name="seasonal_event_no_events">Наразі немає доступних подій</string>
+    <string name="seasonal_event_reward_earned">Нагороду отримано!</string>
+    <string name="seasonal_event_badge_earned">Значок події отримано!</string>
+    <string name="seasonal_event_view_all">Переглянути всі події</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Бронза</string>
     <string name="achievement_tier_silver">Срібло</string>

@@ -412,6 +412,23 @@
     <string name="achievement_category_daily">Denní</string>
     <string name="achievement_category_seasonal">Sezónní</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Sezónní události</string>
+    <string name="seasonal_event_active">Aktivní</string>
+    <string name="seasonal_event_upcoming">Nadcházející</string>
+    <string name="seasonal_event_ended">Ukončeno</string>
+    <string name="seasonal_event_starts_in">Začíná za %1$d dní</string>
+    <string name="seasonal_event_ends_in">Končí za %1$d dní</string>
+    <string name="seasonal_event_ended_ago">Skončilo před %1$d dny</string>
+    <string name="seasonal_event_progress">%1$d/%2$d výzev</string>
+    <string name="seasonal_event_play">Hrát výzvu</string>
+    <string name="seasonal_event_completed">Dokončeno!</string>
+    <string name="seasonal_event_day">Den %1$d</string>
+    <string name="seasonal_event_no_events">Momentálně nejsou k dispozici žádné události</string>
+    <string name="seasonal_event_reward_earned">Odměna získána!</string>
+    <string name="seasonal_event_badge_earned">Odznak události získán!</string>
+    <string name="seasonal_event_view_all">Zobrazit všechny události</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronzový</string>
     <string name="achievement_tier_silver">Stříbrný</string>

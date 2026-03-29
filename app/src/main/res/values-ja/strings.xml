@@ -112,6 +112,23 @@
     <string name="achievement_category_daily">デイリー</string>
     <string name="achievement_category_seasonal">シーズン</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">シーズンイベント</string>
+    <string name="seasonal_event_active">開催中</string>
+    <string name="seasonal_event_upcoming">近日開催</string>
+    <string name="seasonal_event_ended">終了</string>
+    <string name="seasonal_event_starts_in">あと%1$d日で開始</string>
+    <string name="seasonal_event_ends_in">あと%1$d日で終了</string>
+    <string name="seasonal_event_ended_ago">%1$d日前に終了</string>
+    <string name="seasonal_event_progress">%1$d/%2$d チャレンジ</string>
+    <string name="seasonal_event_play">チャレンジをプレイ</string>
+    <string name="seasonal_event_completed">完了！</string>
+    <string name="seasonal_event_day">%1$d日目</string>
+    <string name="seasonal_event_no_events">現在利用可能なイベントはありません</string>
+    <string name="seasonal_event_reward_earned">報酬獲得！</string>
+    <string name="seasonal_event_badge_earned">イベントバッジ獲得！</string>
+    <string name="seasonal_event_view_all">すべてのイベントを表示</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">ブロンズ</string>
     <string name="achievement_tier_silver">シルバー</string>

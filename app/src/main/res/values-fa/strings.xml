@@ -402,6 +402,23 @@
     <string name="achievement_category_daily">روزانه</string>
     <string name="achievement_category_seasonal">فصلی</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">رویدادهای فصلی</string>
+    <string name="seasonal_event_active">فعال</string>
+    <string name="seasonal_event_upcoming">آینده</string>
+    <string name="seasonal_event_ended">پایان یافته</string>
+    <string name="seasonal_event_starts_in">شروع در %1$d روز</string>
+    <string name="seasonal_event_ends_in">پایان در %1$d روز</string>
+    <string name="seasonal_event_ended_ago">%1$d روز پیش پایان یافت</string>
+    <string name="seasonal_event_progress">%1$d/%2$d چالش</string>
+    <string name="seasonal_event_play">بازی چالش</string>
+    <string name="seasonal_event_completed">تکمیل شد!</string>
+    <string name="seasonal_event_day">روز %1$d</string>
+    <string name="seasonal_event_no_events">در حال حاضر رویدادی موجود نیست</string>
+    <string name="seasonal_event_reward_earned">پاداش کسب شد!</string>
+    <string name="seasonal_event_badge_earned">نشان رویداد کسب شد!</string>
+    <string name="seasonal_event_view_all">مشاهده همه رویدادها</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">برنز</string>
     <string name="achievement_tier_silver">نقره</string>

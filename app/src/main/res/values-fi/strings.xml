@@ -402,6 +402,23 @@
     <string name="achievement_category_daily">Päivittäinen</string>
     <string name="achievement_category_seasonal">Kausittainen</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Kausitapahtumat</string>
+    <string name="seasonal_event_active">Aktiivinen</string>
+    <string name="seasonal_event_upcoming">Tuleva</string>
+    <string name="seasonal_event_ended">Päättynyt</string>
+    <string name="seasonal_event_starts_in">Alkaa %1$d päivän kuluttua</string>
+    <string name="seasonal_event_ends_in">Päättyy %1$d päivän kuluttua</string>
+    <string name="seasonal_event_ended_ago">Päättyi %1$d päivää sitten</string>
+    <string name="seasonal_event_progress">%1$d/%2$d haastetta</string>
+    <string name="seasonal_event_play">Pelaa haaste</string>
+    <string name="seasonal_event_completed">Suoritettu!</string>
+    <string name="seasonal_event_day">Päivä %1$d</string>
+    <string name="seasonal_event_no_events">Ei tapahtumia saatavilla juuri nyt</string>
+    <string name="seasonal_event_reward_earned">Palkinto ansaittu!</string>
+    <string name="seasonal_event_badge_earned">Tapahtumamerkki ansaittu!</string>
+    <string name="seasonal_event_view_all">Näytä kaikki tapahtumat</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Pronssi</string>
     <string name="achievement_tier_silver">Hopea</string>

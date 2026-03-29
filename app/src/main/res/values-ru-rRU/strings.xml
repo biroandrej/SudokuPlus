@@ -393,6 +393,23 @@
     <string name="achievement_category_daily">Ежедневные</string>
     <string name="achievement_category_seasonal">Сезонные</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Сезонные события</string>
+    <string name="seasonal_event_active">Активно</string>
+    <string name="seasonal_event_upcoming">Скоро</string>
+    <string name="seasonal_event_ended">Завершено</string>
+    <string name="seasonal_event_starts_in">Начнётся через %1$d дней</string>
+    <string name="seasonal_event_ends_in">Закончится через %1$d дней</string>
+    <string name="seasonal_event_ended_ago">Закончилось %1$d дней назад</string>
+    <string name="seasonal_event_progress">%1$d/%2$d испытаний</string>
+    <string name="seasonal_event_play">Играть испытание</string>
+    <string name="seasonal_event_completed">Завершено!</string>
+    <string name="seasonal_event_day">День %1$d</string>
+    <string name="seasonal_event_no_events">Сейчас нет доступных событий</string>
+    <string name="seasonal_event_reward_earned">Награда получена!</string>
+    <string name="seasonal_event_badge_earned">Значок события получен!</string>
+    <string name="seasonal_event_view_all">Показать все события</string>
+
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Бронзовый</string>
     <string name="achievement_tier_silver">Серебряный</string>
