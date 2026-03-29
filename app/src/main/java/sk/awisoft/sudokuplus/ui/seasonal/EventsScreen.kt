@@ -284,24 +284,33 @@ fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Mo
 
 @Composable
 private fun EventStatusBadge(event: SeasonalEvent, modifier: Modifier = Modifier) {
-    val (text, color) =
+    val (text, textColor, bgColor) =
         when (event.status) {
             is EventStatus.Active ->
-                stringResource(R.string.seasonal_event_active) to
-                    MaterialTheme.colorScheme.primary
+                Triple(
+                    stringResource(R.string.seasonal_event_active),
+                    MaterialTheme.colorScheme.onTertiaryContainer,
+                    MaterialTheme.colorScheme.tertiaryContainer
+                )
 
             is EventStatus.Upcoming ->
-                stringResource(R.string.seasonal_event_upcoming) to
-                    MaterialTheme.colorScheme.tertiary
+                Triple(
+                    stringResource(R.string.seasonal_event_upcoming),
+                    MaterialTheme.colorScheme.onSecondaryContainer,
+                    MaterialTheme.colorScheme.secondaryContainer
+                )
 
             is EventStatus.Ended ->
-                stringResource(R.string.seasonal_event_ended) to
-                    MaterialTheme.colorScheme.outline
+                Triple(
+                    stringResource(R.string.seasonal_event_ended),
+                    MaterialTheme.colorScheme.onSurfaceVariant,
+                    MaterialTheme.colorScheme.surfaceContainerHighest
+                )
         }
 
     Surface(
         modifier = modifier,
-        color = color.copy(alpha = 0.15f),
+        color = bgColor,
         shape = MaterialTheme.shapes.small
     ) {
         Text(
@@ -309,7 +318,7 @@ private fun EventStatusBadge(event: SeasonalEvent, modifier: Modifier = Modifier
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
             style = MaterialTheme.typography.labelMedium,
             fontWeight = FontWeight.SemiBold,
-            color = color
+            color = textColor
         )
     }
 }

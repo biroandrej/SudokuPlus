@@ -80,7 +80,13 @@ fun SeasonalEventBanner(
                     }
                 }
 
-                TextButton(onClick = onViewEvent) {
+                TextButton(
+                    onClick = onViewEvent,
+                    colors =
+                    androidx.compose.material3.ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                ) {
                     Text(stringResource(R.string.seasonal_event_view_all))
                     Icon(
                         Icons.AutoMirrored.Rounded.KeyboardArrowRight,
