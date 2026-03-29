@@ -5,5 +5,11 @@ service cloud.firestore {
     match /server_time/{document} {
       allow create, read, delete: if true;
     }
+
+    // Seasonal events — read-only for clients
+    match /seasonal_events/{eventId} {
+      allow read: if true;
+      allow write: if false;
+    }
   }
 }

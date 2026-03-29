@@ -41,6 +41,9 @@ google-services.json
 # Build outputs
 app/prod/
 .firebaserc
+emulator-data/
+node_modules/
+package-lock.json
 CLAUDE.md
 conductor
 docs/product
