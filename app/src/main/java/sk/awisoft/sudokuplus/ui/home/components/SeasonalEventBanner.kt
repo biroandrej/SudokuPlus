@@ -22,8 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.seasonal.model.SeasonalEvent
 
@@ -33,12 +31,6 @@ fun SeasonalEventBanner(
     onViewEvent: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val today = LocalDate.now()
-    val daysLeft = ChronoUnit.DAYS.between(today, event.endDate).toInt()
-    val progress =
-        ChronoUnit.DAYS.between(event.startDate, today).toFloat() /
-            ChronoUnit.DAYS.between(event.startDate, event.endDate).toFloat()
-
     ElevatedCard(
         onClick = onViewEvent,
         modifier = modifier.fillMaxWidth(),
@@ -73,7 +65,7 @@ fun SeasonalEventBanner(
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                         Text(
-                            text = stringResource(R.string.seasonal_event_ends_in, daysLeft),
+                            text = stringResource(R.string.seasonal_event_ends_in, event.daysLeft),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                         )
@@ -97,7 +89,7 @@ fun SeasonalEventBanner(
             }
 
             LinearProgressIndicator(
-                progress = { progress.coerceIn(0f, 1f) },
+                progress = { event.timeProgress },
                 modifier = Modifier.fillMaxWidth(),
                 color = MaterialTheme.colorScheme.primary,
                 trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)

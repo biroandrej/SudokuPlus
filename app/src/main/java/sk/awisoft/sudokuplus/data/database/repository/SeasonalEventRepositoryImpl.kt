@@ -3,6 +3,8 @@ package sk.awisoft.sudokuplus.data.database.repository
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
@@ -13,6 +15,7 @@ import sk.awisoft.sudokuplus.core.seasonal.model.EventTheme
 import sk.awisoft.sudokuplus.core.seasonal.model.EventType
 import sk.awisoft.sudokuplus.core.seasonal.model.SeasonalEvent
 import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
+import sk.awisoft.sudokuplus.data.database.model.EventChallengeGame
 import sk.awisoft.sudokuplus.data.database.model.EventProgressEntity
 import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
 
@@ -21,19 +24,23 @@ class SeasonalEventRepositoryImpl(
     private val firestore: FirebaseFirestore
 ) : SeasonalEventRepository {
 
-    override fun getActiveEvents(): Flow<List<SeasonalEvent>> {
-        val now = LocalDate.now().toEpochDay()
-        return dao.getActiveEvents(now).map { entities ->
-            entities.map { SeasonalEventMapper.toDomain(it) }
-        }
-    }
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun getActiveEvents(): Flow<List<SeasonalEvent>> =
+        flow { emit(LocalDate.now().toEpochDay()) }
+            .flatMapLatest { now ->
+                dao.getActiveEvents(now).map { entities ->
+                    entities.map { SeasonalEventMapper.toDomain(it) }
+                }
+            }
 
-    override fun getUpcomingEvents(): Flow<List<SeasonalEvent>> {
-        val now = LocalDate.now().toEpochDay()
-        return dao.getUpcomingEvents(now).map { entities ->
-            entities.map { SeasonalEventMapper.toDomain(it) }
-        }
-    }
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    override fun getUpcomingEvents(): Flow<List<SeasonalEvent>> =
+        flow { emit(LocalDate.now().toEpochDay()) }
+            .flatMapLatest { now ->
+                dao.getUpcomingEvents(now).map { entities ->
+                    entities.map { SeasonalEventMapper.toDomain(it) }
+                }
+            }
 
     override fun getAllEvents(): Flow<List<SeasonalEvent>> = dao.getAllEvents().map { entities ->
         entities.map { SeasonalEventMapper.toDomain(it) }
@@ -69,6 +76,25 @@ class SeasonalEventRepositoryImpl(
             dao.insertProgress(progress)
         }
     }
+
+    override suspend fun getCompletedChallengesCount(): Int = dao.getCompletedChallengesCount()
+
+    override suspend fun getParticipatedEventsCount(): Int = dao.getParticipatedEventsCount()
+
+    override suspend fun getChallengeGameByBoardUid(boardUid: Long): EventChallengeGame? =
+        dao.getChallengeGameByBoardUid(boardUid)
+
+    override suspend fun markChallengeCompleted(boardUid: Long) =
+        dao.markChallengeCompleted(boardUid)
+
+    override suspend fun getChallengeGames(eventId: String): List<EventChallengeGame> =
+        dao.getChallengeGames(eventId)
+
+    override fun getChallengeGamesFlow(eventId: String): Flow<List<EventChallengeGame>> =
+        dao.getChallengeGamesFlow(eventId)
+
+    override suspend fun insertChallengeGame(game: EventChallengeGame): Long =
+        dao.insertChallengeGame(game)
 
     @Suppress("UNCHECKED_CAST")
     private fun parseFirestoreEvent(id: String, data: Map<String, Any>): SeasonalEvent {

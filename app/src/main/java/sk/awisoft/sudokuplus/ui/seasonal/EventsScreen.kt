@@ -240,27 +240,20 @@ fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Mo
             )
 
             if (isActive) {
-                val today = LocalDate.now()
-                val daysLeft = ChronoUnit.DAYS.between(today, event.endDate).toInt()
-                val progress =
-                    ChronoUnit.DAYS.between(event.startDate, today).toFloat() /
-                        ChronoUnit.DAYS.between(event.startDate, event.endDate).toFloat()
-
                 LinearProgressIndicator(
-                    progress = { progress.coerceIn(0f, 1f) },
+                    progress = { event.timeProgress },
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.primary,
                     trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
                 )
 
                 Text(
-                    text = stringResource(R.string.seasonal_event_ends_in, daysLeft),
+                    text = stringResource(R.string.seasonal_event_ends_in, event.daysLeft),
                     style = MaterialTheme.typography.labelSmall,
                     color = contentColor.copy(alpha = 0.7f)
                 )
             } else if (!isEnded) {
-                val today = LocalDate.now()
-                val daysUntil = ChronoUnit.DAYS.between(today, event.startDate).toInt()
+                val daysUntil = ChronoUnit.DAYS.between(LocalDate.now(), event.startDate).toInt()
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(4.dp)

@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -20,7 +22,6 @@ import sk.awisoft.sudokuplus.core.seasonal.SeasonalEventEngine
 import sk.awisoft.sudokuplus.core.seasonal.model.EventChallenge
 import sk.awisoft.sudokuplus.core.seasonal.model.EventType
 import sk.awisoft.sudokuplus.core.seasonal.model.SeasonalEvent
-import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
 import sk.awisoft.sudokuplus.data.database.model.EventChallengeGame
 import sk.awisoft.sudokuplus.data.database.model.EventProgressEntity
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
@@ -42,7 +43,7 @@ data class ChallengeCompleteCelebration(
 )
 
 data class BadgeEarnedCelebration(
-    val badgeName: String,
+    @androidx.annotation.StringRes val badgeNameRes: Int,
     val eventTitle: String,
     val eventType: EventType
 )
@@ -52,8 +53,7 @@ class EventsViewModel @Inject constructor(
     private val repository: SeasonalEventRepository,
     private val eventEngine: SeasonalEventEngine,
     private val challengeManager: EventChallengeManager,
-    private val boardRepository: BoardRepository,
-    private val seasonalEventDao: SeasonalEventDao
+    private val boardRepository: BoardRepository
 ) : ViewModel() {
 
     val activeEvents: StateFlow<List<SeasonalEvent>> =
@@ -73,14 +73,17 @@ class EventsViewModel @Inject constructor(
 
     private val _currentEventId = MutableStateFlow<String?>(null)
 
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
     val completedDays: StateFlow<Set<Int>> =
         _currentEventId
-            .map { eventId ->
-                if (eventId == null) return@map emptySet()
-                seasonalEventDao.getChallengeGames(eventId)
-                    .filter { it.completed }
-                    .map { it.challengeDay }
-                    .toSet()
+            .flatMapLatest { eventId ->
+                if (eventId == null) return@flatMapLatest flowOf(emptySet())
+                repository.getChallengeGamesFlow(eventId)
+                    .map { games ->
+                        games.filter { it.completed }
+                            .map { it.challengeDay }
+                            .toSet()
+                    }
             }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptySet())
 
@@ -105,7 +108,7 @@ class EventsViewModel @Inject constructor(
         val eventId = _currentEventId.value ?: return
         viewModelScope.launch {
             val event = repository.getEventById(eventId) ?: return@launch
-            val games = seasonalEventDao.getChallengeGames(eventId)
+            val games = repository.getChallengeGames(eventId)
             val newlyCompleted = games.filter { it.completed }
             val completedCount = newlyCompleted.size
             val total = event.challenges.size
@@ -132,7 +135,7 @@ class EventsViewModel @Inject constructor(
                     val badge = EventBadgeDefinitions.getByEventType(event.eventType)
                     if (badge != null) {
                         _badgeCelebration.value = BadgeEarnedCelebration(
-                            badgeName = badge.id,
+                            badgeNameRes = badge.nameRes,
                             eventTitle = event.title,
                             eventType = event.eventType
                         )
@@ -187,7 +190,7 @@ class EventsViewModel @Inject constructor(
     fun playChallenge(event: SeasonalEvent, challenge: EventChallenge) {
         viewModelScope.launch {
             // Check if already started this challenge
-            val existingGames = seasonalEventDao.getChallengeGames(event.id)
+            val existingGames = repository.getChallengeGames(event.id)
             val existing = existingGames.find { it.challengeDay == challenge.day }
             if (existing != null) {
                 // Resume existing game
@@ -216,7 +219,7 @@ class EventsViewModel @Inject constructor(
 
                 // Record the challenge game link
                 withContext(Dispatchers.IO) {
-                    seasonalEventDao.insertChallengeGame(
+                    repository.insertChallengeGame(
                         EventChallengeGame(
                             eventId = event.id,
                             challengeDay = challenge.day,

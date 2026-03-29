@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.first
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
-import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
 import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.data.database.model.AchievementRequirement
 import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
 
 data class GameCompletionData(
     val difficulty: GameDifficulty,
@@ -36,7 +36,7 @@ constructor(
     private val recordRepository: RecordRepository,
     private val dailyChallengeRepository: DailyChallengeRepository,
     private val dailyChallengeManager: DailyChallengeManager,
-    private val seasonalEventDao: SeasonalEventDao
+    private val seasonalEventRepository: SeasonalEventRepository
 ) {
     /**
      * Check and unlock achievements after a game completion
@@ -272,25 +272,11 @@ constructor(
         return dailyChallengeRepository.getCompleted().first().size
     }
 
-    private suspend fun getEventChallengesCompletedCount(): Int {
-        val allEvents = seasonalEventDao.getAllEventsSync()
-        var total = 0
-        for (event in allEvents) {
-            total += seasonalEventDao.getChallengeGames(event.id).count { it.completed }
-        }
-        return total
-    }
+    private suspend fun getEventChallengesCompletedCount(): Int =
+        seasonalEventRepository.getCompletedChallengesCount()
 
-    private suspend fun getEventsParticipatedCount(): Int {
-        val allEvents = seasonalEventDao.getAllEventsSync()
-        var count = 0
-        for (event in allEvents) {
-            if (seasonalEventDao.getChallengeGames(event.id).any { it.completed }) {
-                count++
-            }
-        }
-        return count
-    }
+    private suspend fun getEventsParticipatedCount(): Int =
+        seasonalEventRepository.getParticipatedEventsCount()
 
     private suspend fun getTotalPlayTimeMinutes(): Int {
         val savedGames = savedGameRepository.getAll().first()

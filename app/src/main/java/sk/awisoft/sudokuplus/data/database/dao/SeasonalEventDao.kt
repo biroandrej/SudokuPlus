@@ -67,4 +67,10 @@ interface SeasonalEventDao {
 
     @Query("UPDATE event_challenge_games SET completed = 1 WHERE board_uid = :boardUid")
     suspend fun markChallengeCompleted(boardUid: Long)
+
+    @Query("SELECT COUNT(*) FROM event_challenge_games WHERE completed = 1")
+    suspend fun getCompletedChallengesCount(): Int
+
+    @Query("SELECT COUNT(DISTINCT event_id) FROM event_challenge_games WHERE completed = 1")
+    suspend fun getParticipatedEventsCount(): Int
 }

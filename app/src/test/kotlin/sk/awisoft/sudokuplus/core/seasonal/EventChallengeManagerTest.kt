@@ -7,7 +7,6 @@ import org.junit.Test
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.seasonal.model.EventChallenge
-import sk.awisoft.sudokuplus.core.seasonal.model.EventType
 
 class EventChallengeManagerTest {
 
@@ -61,8 +60,7 @@ class EventChallengeManagerTest {
     @Test
     fun `getDefaultChallenges should create challenges for event duration`() {
         val challenges = manager.getDefaultChallenges(
-            durationDays = 7,
-            eventType = EventType.EASTER
+            durationDays = 7
         )
         assertEquals(7, challenges.size)
         assertEquals(1, challenges.first().day)
@@ -72,8 +70,7 @@ class EventChallengeManagerTest {
     @Test
     fun `getDefaultChallenges should cycle through difficulties`() {
         val challenges = manager.getDefaultChallenges(
-            durationDays = 4,
-            eventType = EventType.HALLOWEEN
+            durationDays = 4
         )
         assertEquals(GameDifficulty.Easy, challenges[0].difficulty)
         assertEquals(GameDifficulty.Moderate, challenges[1].difficulty)
@@ -84,8 +81,7 @@ class EventChallengeManagerTest {
     @Test
     fun `getDefaultChallenges should set event xp multiplier`() {
         val challenges = manager.getDefaultChallenges(
-            durationDays = 3,
-            eventType = EventType.CHRISTMAS
+            durationDays = 3
         )
         challenges.forEach { challenge ->
             assertEquals(EventChallengeManager.EVENT_XP_MULTIPLIER, challenge.xpMultiplier, 0.01)

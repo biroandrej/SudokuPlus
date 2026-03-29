@@ -22,8 +22,6 @@ class SeasonalEventEngine @Inject constructor() {
         }
     }
 
-    fun canParticipate(event: SeasonalEvent): Boolean = event.isActive
-
     fun getEventSeed(event: SeasonalEvent, day: Int): Long =
         event.id.hashCode().toLong() * 1_000_000L + day * 7919L
 

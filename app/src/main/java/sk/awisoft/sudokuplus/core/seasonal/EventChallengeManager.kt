@@ -7,7 +7,6 @@ import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.qqwing.QQWing
 import sk.awisoft.sudokuplus.core.qqwing.QQWingController
 import sk.awisoft.sudokuplus.core.seasonal.model.EventChallenge
-import sk.awisoft.sudokuplus.core.seasonal.model.EventType
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
 
 @Singleton
@@ -40,7 +39,7 @@ class EventChallengeManager @Inject constructor() {
         )
     }
 
-    fun getDefaultChallenges(durationDays: Int, eventType: EventType): List<EventChallenge> =
+    fun getDefaultChallenges(durationDays: Int): List<EventChallenge> =
         (1..durationDays).map { day ->
             EventChallenge(
                 day = day,

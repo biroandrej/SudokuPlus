@@ -92,7 +92,7 @@ fun EventDetailScreen(
     // Badge earned dialog (shown after challenge celebration is dismissed)
     badgeCelebration?.let { badge ->
         EventRewardDialog(
-            badgeName = badge.badgeName,
+            badgeNameRes = badge.badgeNameRes,
             eventTitle = badge.eventTitle,
             eventType = badge.eventType,
             onDismiss = { viewModel.dismissBadgeCelebration() }

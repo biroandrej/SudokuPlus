@@ -83,30 +83,30 @@ class SeasonalEventEngineTest {
     }
 
     @Test
-    fun `canParticipate should return true for active event`() {
+    fun `isActive should return true for active event`() {
         val event = createEvent(
             startDate = LocalDate.now().minusDays(1),
             endDate = LocalDate.now().plusDays(5)
         )
-        assertTrue(engine.canParticipate(event))
+        assertTrue(event.isActive)
     }
 
     @Test
-    fun `canParticipate should return false for ended event`() {
+    fun `isActive should return false for ended event`() {
         val event = createEvent(
             startDate = LocalDate.now().minusDays(10),
             endDate = LocalDate.now().minusDays(1)
         )
-        assertFalse(engine.canParticipate(event))
+        assertFalse(event.isActive)
     }
 
     @Test
-    fun `canParticipate should return false for upcoming event`() {
+    fun `isActive should return false for upcoming event`() {
         val event = createEvent(
             startDate = LocalDate.now().plusDays(1),
             endDate = LocalDate.now().plusDays(10)
         )
-        assertFalse(engine.canParticipate(event))
+        assertFalse(event.isActive)
     }
 
     @Test

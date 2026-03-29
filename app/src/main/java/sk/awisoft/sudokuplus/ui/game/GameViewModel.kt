@@ -54,7 +54,6 @@ import sk.awisoft.sudokuplus.core.utils.UndoRedoManager
 import sk.awisoft.sudokuplus.core.utils.toFormattedString
 import sk.awisoft.sudokuplus.core.xp.XPEngine
 import sk.awisoft.sudokuplus.core.xp.XPResult
-import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
 import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
@@ -65,6 +64,7 @@ import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
 import sk.awisoft.sudokuplus.domain.usecase.board.GetBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.board.UpdateBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.record.GetAllRecordsUseCase
@@ -95,7 +95,7 @@ constructor(
     private val aiHintService: AIHintService,
     private val aiUsageManager: AIUsageManager,
     private val billingManager: BillingManager,
-    private val seasonalEventDao: SeasonalEventDao
+    private val seasonalEventRepository: SeasonalEventRepository
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
@@ -884,17 +884,12 @@ constructor(
 
             // Mark event challenge as completed and get XP multiplier
             val eventChallengeGame =
-                seasonalEventDao.getChallengeGameByBoardUid(boardEntity.uid)
+                seasonalEventRepository.getChallengeGameByBoardUid(boardEntity.uid)
             var eventXpMultiplier = 1.0
             if (eventChallengeGame != null) {
-                seasonalEventDao.markChallengeCompleted(boardEntity.uid)
-                // Look up the event to get the challenge XP multiplier
-                val eventEntity =
-                    seasonalEventDao.getEventById(eventChallengeGame.eventId)
-                if (eventEntity != null) {
-                    val event =
-                        sk.awisoft.sudokuplus.data.database.repository.SeasonalEventMapper
-                            .toDomain(eventEntity)
+                seasonalEventRepository.markChallengeCompleted(boardEntity.uid)
+                val event = seasonalEventRepository.getEventById(eventChallengeGame.eventId)
+                if (event != null) {
                     eventXpMultiplier = event.challenges
                         .find { it.day == eventChallengeGame.challengeDay }
                         ?.xpMultiplier ?: 1.0

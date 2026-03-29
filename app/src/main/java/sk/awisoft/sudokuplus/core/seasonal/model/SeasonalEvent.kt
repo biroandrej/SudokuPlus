@@ -30,4 +30,15 @@ data class SeasonalEvent(
 
     val durationDays: Int
         get() = (ChronoUnit.DAYS.between(startDate, endDate) + 1).toInt()
+
+    val daysLeft: Int
+        get() = ChronoUnit.DAYS.between(LocalDate.now(), endDate).toInt()
+
+    val timeProgress: Float
+        get() {
+            val total = ChronoUnit.DAYS.between(startDate, endDate).toFloat()
+            if (total <= 0f) return 0f
+            return (ChronoUnit.DAYS.between(startDate, LocalDate.now()).toFloat() / total)
+                .coerceIn(0f, 1f)
+        }
 }

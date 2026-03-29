@@ -39,7 +39,7 @@ import sk.awisoft.sudokuplus.ui.seasonal.celebrations.ThemedCelebrationEffect
 
 @Composable
 fun EventRewardDialog(
-    badgeName: String,
+    @androidx.annotation.StringRes badgeNameRes: Int,
     eventTitle: String,
     eventType: EventType,
     onDismiss: () -> Unit,
@@ -107,7 +107,7 @@ fun EventRewardDialog(
                     )
 
                     Text(
-                        text = badgeName,
+                        text = stringResource(badgeNameRes),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.SemiBold
