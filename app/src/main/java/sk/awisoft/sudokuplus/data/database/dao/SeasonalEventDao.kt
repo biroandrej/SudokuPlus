@@ -27,6 +27,9 @@ interface SeasonalEventDao {
     @Query("SELECT * FROM seasonal_events ORDER BY start_date ASC")
     fun getAllEvents(): Flow<List<SeasonalEventEntity>>
 
+    @Query("SELECT * FROM seasonal_events")
+    suspend fun getAllEventsSync(): List<SeasonalEventEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(events: List<SeasonalEventEntity>)
 

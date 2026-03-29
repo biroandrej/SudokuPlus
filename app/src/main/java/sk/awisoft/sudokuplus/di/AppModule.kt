@@ -183,13 +183,15 @@ class AppModule {
         savedGameRepository: SavedGameRepository,
         recordRepository: RecordRepository,
         dailyChallengeRepository: DailyChallengeRepository,
-        dailyChallengeManager: DailyChallengeManager
+        dailyChallengeManager: DailyChallengeManager,
+        seasonalEventDao: SeasonalEventDao
     ): AchievementEngine = AchievementEngine(
         achievementRepository,
         savedGameRepository,
         recordRepository,
         dailyChallengeRepository,
-        dailyChallengeManager
+        dailyChallengeManager,
+        seasonalEventDao
     )
 
     @Singleton

@@ -67,6 +67,7 @@ fun EventDetailScreen(
     val gameReady by viewModel.gameReady.collectAsStateWithLifecycle()
     val completedDays by viewModel.completedDays.collectAsStateWithLifecycle()
     val celebration by viewModel.celebration.collectAsStateWithLifecycle()
+    val badgeCelebration by viewModel.badgeCelebration.collectAsStateWithLifecycle()
 
     LaunchedEffect(eventId) {
         if (selectedEvent == null || selectedEvent?.event?.id != eventId) {
@@ -86,6 +87,16 @@ fun EventDetailScreen(
                 GameScreenDestination(gameUid = boardUid, playedBefore = false)
             )
         }
+    }
+
+    // Badge earned dialog (shown after challenge celebration is dismissed)
+    badgeCelebration?.let { badge ->
+        EventRewardDialog(
+            badgeName = badge.badgeName,
+            eventTitle = badge.eventTitle,
+            eventType = badge.eventType,
+            onDismiss = { viewModel.dismissBadgeCelebration() }
+        )
     }
 
     // Celebration dialog

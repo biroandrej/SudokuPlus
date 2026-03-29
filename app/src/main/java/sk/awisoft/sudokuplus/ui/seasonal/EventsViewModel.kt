@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import sk.awisoft.sudokuplus.R
+import sk.awisoft.sudokuplus.core.seasonal.EventBadgeDefinitions
 import sk.awisoft.sudokuplus.core.seasonal.EventChallengeManager
 import sk.awisoft.sudokuplus.core.seasonal.SeasonalEventEngine
 import sk.awisoft.sudokuplus.core.seasonal.model.EventChallenge
@@ -38,6 +39,12 @@ data class ChallengeCompleteCelebration(
     val completedCount: Int,
     val totalChallenges: Int,
     @androidx.annotation.StringRes val milestoneResId: Int?
+)
+
+data class BadgeEarnedCelebration(
+    val badgeName: String,
+    val eventTitle: String,
+    val eventType: EventType
 )
 
 @HiltViewModel
@@ -83,8 +90,15 @@ class EventsViewModel @Inject constructor(
     private val _celebration = MutableStateFlow<ChallengeCompleteCelebration?>(null)
     val celebration: StateFlow<ChallengeCompleteCelebration?> = _celebration.asStateFlow()
 
+    private val _badgeCelebration = MutableStateFlow<BadgeEarnedCelebration?>(null)
+    val badgeCelebration: StateFlow<BadgeEarnedCelebration?> = _badgeCelebration.asStateFlow()
+
     fun dismissCelebration() {
         _celebration.value = null
+    }
+
+    fun dismissBadgeCelebration() {
+        _badgeCelebration.value = null
     }
 
     fun checkForNewCompletions() {
@@ -112,6 +126,18 @@ class EventsViewModel @Inject constructor(
                     totalChallenges = total,
                     milestoneResId = milestoneResId
                 )
+
+                // Trigger badge earned when all challenges completed
+                if (completedCount == total) {
+                    val badge = EventBadgeDefinitions.getByEventType(event.eventType)
+                    if (badge != null) {
+                        _badgeCelebration.value = BadgeEarnedCelebration(
+                            badgeName = badge.id,
+                            eventTitle = event.title,
+                            eventType = event.eventType
+                        )
+                    }
+                }
             }
         }
     }

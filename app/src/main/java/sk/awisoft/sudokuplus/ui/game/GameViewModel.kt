@@ -882,9 +882,23 @@ constructor(
                 )
             }
 
-            // Mark event challenge as completed
-            seasonalEventDao.getChallengeGameByBoardUid(boardEntity.uid)?.let {
+            // Mark event challenge as completed and get XP multiplier
+            val eventChallengeGame =
+                seasonalEventDao.getChallengeGameByBoardUid(boardEntity.uid)
+            var eventXpMultiplier = 1.0
+            if (eventChallengeGame != null) {
                 seasonalEventDao.markChallengeCompleted(boardEntity.uid)
+                // Look up the event to get the challenge XP multiplier
+                val eventEntity =
+                    seasonalEventDao.getEventById(eventChallengeGame.eventId)
+                if (eventEntity != null) {
+                    val event =
+                        sk.awisoft.sudokuplus.data.database.repository.SeasonalEventMapper
+                            .toDomain(eventEntity)
+                    eventXpMultiplier = event.challenges
+                        .find { it.day == eventChallengeGame.challengeDay }
+                        ?.xpMultiplier ?: 1.0
+                }
             }
 
             // Check for newly unlocked achievements
@@ -895,7 +909,9 @@ constructor(
                     completionTime = duration.toJavaDuration(),
                     mistakes = mistakesMade,
                     hintsUsed = hintsUsed,
-                    isDailyChallenge = navArgs.isDailyChallenge
+                    isDailyChallenge = navArgs.isDailyChallenge,
+                    isEventChallenge = eventChallengeGame != null,
+                    eventXpMultiplier = eventXpMultiplier
                 )
             val unlockedAchievements = achievementEngine.checkAchievements(completionData)
             if (unlockedAchievements.isNotEmpty()) {

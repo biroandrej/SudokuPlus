@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.first
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.qqwing.GameType
+import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
 import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.data.database.model.AchievementRequirement
 import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
@@ -21,7 +22,9 @@ data class GameCompletionData(
     val completionTime: Duration,
     val mistakes: Int,
     val hintsUsed: Int,
-    val isDailyChallenge: Boolean = false
+    val isDailyChallenge: Boolean = false,
+    val isEventChallenge: Boolean = false,
+    val eventXpMultiplier: Double = 1.0
 )
 
 @Singleton
@@ -32,7 +35,8 @@ constructor(
     private val savedGameRepository: SavedGameRepository,
     private val recordRepository: RecordRepository,
     private val dailyChallengeRepository: DailyChallengeRepository,
-    private val dailyChallengeManager: DailyChallengeManager
+    private val dailyChallengeManager: DailyChallengeManager,
+    private val seasonalEventDao: SeasonalEventDao
 ) {
     /**
      * Check and unlock achievements after a game completion
@@ -146,13 +150,13 @@ constructor(
             }
 
             is AchievementRequirement.EventChallengesCompleted -> {
-                // Tracked via SeasonalEventRepository, wired in integration phase
-                0 to false
+                val count = getEventChallengesCompletedCount()
+                count to (count >= requirement.count)
             }
 
             is AchievementRequirement.EventsParticipated -> {
-                // Tracked via SeasonalEventRepository, wired in integration phase
-                0 to false
+                val count = getEventsParticipatedCount()
+                count to (count >= requirement.count)
             }
         }
     }
@@ -213,13 +217,13 @@ constructor(
             }
 
             is AchievementRequirement.EventChallengesCompleted -> {
-                // Tracked via SeasonalEventRepository, wired in integration phase
-                0 to false
+                val count = getEventChallengesCompletedCount()
+                count to (count >= requirement.count)
             }
 
             is AchievementRequirement.EventsParticipated -> {
-                // Tracked via SeasonalEventRepository, wired in integration phase
-                0 to false
+                val count = getEventsParticipatedCount()
+                count to (count >= requirement.count)
             }
         }
     }
@@ -266,6 +270,26 @@ constructor(
 
     private suspend fun getDailyChallengesCompletedCount(): Int {
         return dailyChallengeRepository.getCompleted().first().size
+    }
+
+    private suspend fun getEventChallengesCompletedCount(): Int {
+        val allEvents = seasonalEventDao.getAllEventsSync()
+        var total = 0
+        for (event in allEvents) {
+            total += seasonalEventDao.getChallengeGames(event.id).count { it.completed }
+        }
+        return total
+    }
+
+    private suspend fun getEventsParticipatedCount(): Int {
+        val allEvents = seasonalEventDao.getAllEventsSync()
+        var count = 0
+        for (event in allEvents) {
+            if (seasonalEventDao.getChallengeGames(event.id).any { it.completed }) {
+                count++
+            }
+        }
+        return count
     }
 
     private suspend fun getTotalPlayTimeMinutes(): Int {

@@ -591,6 +591,7 @@
     <string name="xp_bonus_no_mistakes">Perfect Game</string>
     <string name="xp_bonus_no_hints">No Hints Used</string>
     <string name="xp_bonus_daily_challenge">Daily Challenge</string>
+    <string name="xp_bonus_event_challenge">Event Challenge</string>
     <string name="xp_bonus_streak">%1$d Day Streak</string>
     <string name="xp_bonus_reward_boost">Daily Reward Boost</string>
 

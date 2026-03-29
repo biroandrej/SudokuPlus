@@ -148,6 +148,7 @@ private fun BonusRow(bonus: XPBonus, modifier: Modifier = Modifier) {
             XPBonusType.NO_MISTAKES -> Color(0xFF4CAF50) // Green
             XPBonusType.NO_HINTS -> Color(0xFF2196F3) // Blue
             XPBonusType.DAILY_CHALLENGE -> Color(0xFFFF9800) // Orange
+            XPBonusType.EVENT_CHALLENGE -> Color(0xFFFF5722) // Deep Orange
             XPBonusType.STREAK -> Color(0xFFE91E63) // Pink
             XPBonusType.REWARD_BOOST -> Color(0xFF9C27B0) // Purple
         }
@@ -157,6 +158,7 @@ private fun BonusRow(bonus: XPBonus, modifier: Modifier = Modifier) {
             XPBonusType.NO_MISTAKES -> stringResource(R.string.xp_bonus_no_mistakes)
             XPBonusType.NO_HINTS -> stringResource(R.string.xp_bonus_no_hints)
             XPBonusType.DAILY_CHALLENGE -> stringResource(R.string.xp_bonus_daily_challenge)
+            XPBonusType.EVENT_CHALLENGE -> stringResource(R.string.xp_bonus_event_challenge)
             XPBonusType.STREAK -> stringResource(R.string.xp_bonus_streak, bonus.streakDays)
             XPBonusType.REWARD_BOOST -> stringResource(R.string.xp_bonus_reward_boost)
         }
