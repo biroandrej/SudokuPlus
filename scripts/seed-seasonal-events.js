@@ -45,16 +45,16 @@ const events = [
         accentColor: 0xff689f38,
       },
       challenges: [
-        { day: 1, difficulty: "Easy", xpMultiplier: 2.0 },
-        { day: 2, difficulty: "Moderate", xpMultiplier: 2.0 },
-        { day: 3, difficulty: "Hard", xpMultiplier: 2.0 },
-        { day: 4, difficulty: "Easy", xpMultiplier: 2.0 },
-        { day: 5, difficulty: "Moderate", xpMultiplier: 2.0 },
-        { day: 6, difficulty: "Hard", xpMultiplier: 2.0 },
-        { day: 7, difficulty: "Challenge", xpMultiplier: 2.5 },
-        { day: 8, difficulty: "Easy", xpMultiplier: 2.0 },
-        { day: 9, difficulty: "Moderate", xpMultiplier: 2.0 },
-        { day: 10, difficulty: "Challenge", xpMultiplier: 3.0 },
+        { day: 1, difficulty: "easy", xpMultiplier: 2.0 },
+        { day: 2, difficulty: "moderate", xpMultiplier: 2.0 },
+        { day: 3, difficulty: "hard", xpMultiplier: 2.0 },
+        { day: 4, difficulty: "easy", xpMultiplier: 2.0 },
+        { day: 5, difficulty: "moderate", xpMultiplier: 2.0 },
+        { day: 6, difficulty: "hard", xpMultiplier: 2.0 },
+        { day: 7, difficulty: "challenge", xpMultiplier: 2.5 },
+        { day: 8, difficulty: "easy", xpMultiplier: 2.0 },
+        { day: 9, difficulty: "moderate", xpMultiplier: 2.0 },
+        { day: 10, difficulty: "challenge", xpMultiplier: 3.0 },
       ],
       rewards: [
         { type: "hints", amount: 3 },
@@ -83,7 +83,7 @@ const events = [
       },
       challenges: Array.from({ length: 14 }, (_, i) => ({
         day: i + 1,
-        difficulty: ["Easy", "Moderate", "Hard", "Challenge"][i % 4],
+        difficulty: ["easy", "moderate", "hard", "challenge"][i % 4],
         xpMultiplier: 2.0,
       })),
       rewards: [
@@ -113,7 +113,7 @@ const events = [
       },
       challenges: Array.from({ length: 10 }, (_, i) => ({
         day: i + 1,
-        difficulty: ["Easy", "Moderate", "Hard", "Challenge"][i % 4],
+        difficulty: ["easy", "moderate", "hard", "challenge"][i % 4],
         xpMultiplier: 2.0,
       })),
       rewards: [
@@ -146,4 +146,9 @@ async function seed() {
   }
 }
 
-seed().catch(console.error);
+seed()
+  .then(() => process.exit(0))
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });

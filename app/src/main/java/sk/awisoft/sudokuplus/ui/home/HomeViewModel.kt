@@ -60,7 +60,7 @@ constructor(
     private val rewardCalendarManager: RewardCalendarManager,
     private val playGamesSettingsManager: PlayGamesSettingsManager,
     private val playGamesManager: PlayGamesManager,
-    seasonalEventRepository: SeasonalEventRepository,
+    private val seasonalEventRepository: SeasonalEventRepository,
     @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     val lastSavedGame =
@@ -118,6 +118,17 @@ constructor(
     init {
         loadDailyChallenge()
         checkNotificationPermission()
+        syncSeasonalEvents()
+    }
+
+    private fun syncSeasonalEvents() {
+        viewModelScope.launch {
+            try {
+                seasonalEventRepository.syncEvents()
+            } catch (_: Exception) {
+                // Sync failure is non-critical
+            }
+        }
     }
 
     fun dismissPlayGamesPrompt() {
