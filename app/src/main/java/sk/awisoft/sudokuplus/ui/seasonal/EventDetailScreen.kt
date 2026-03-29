@@ -96,8 +96,7 @@ fun EventDetailScreen(
             challengeDay = celebrationData.challengeDay,
             completedCount = celebrationData.completedCount,
             totalChallenges = celebrationData.totalChallenges,
-            isMilestone = celebrationData.milestoneLabel != null,
-            milestoneLabel = celebrationData.milestoneLabel,
+            milestoneResId = celebrationData.milestoneResId,
             onDismiss = { viewModel.dismissCelebration() }
         )
     }

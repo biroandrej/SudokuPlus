@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.seasonal.EventChallengeManager
 import sk.awisoft.sudokuplus.core.seasonal.SeasonalEventEngine
 import sk.awisoft.sudokuplus.core.seasonal.model.EventChallenge
@@ -36,7 +37,7 @@ data class ChallengeCompleteCelebration(
     val challengeDay: Int,
     val completedCount: Int,
     val totalChallenges: Int,
-    val milestoneLabel: String?
+    @androidx.annotation.StringRes val milestoneResId: Int?
 )
 
 @HiltViewModel
@@ -102,27 +103,28 @@ class EventsViewModel @Inject constructor(
 
             if (newDays.isNotEmpty()) {
                 val newDay = newDays.first()
-                val milestoneLabel = getMilestoneLabel(completedCount, total)
+                val milestoneResId = getMilestoneResId(completedCount, total)
                 _celebration.value = ChallengeCompleteCelebration(
                     eventType = event.eventType,
                     eventTitle = event.title,
                     challengeDay = newDay,
                     completedCount = completedCount,
                     totalChallenges = total,
-                    milestoneLabel = milestoneLabel
+                    milestoneResId = milestoneResId
                 )
             }
         }
     }
 
-    private fun getMilestoneLabel(completed: Int, total: Int): String? {
+    private fun getMilestoneResId(completed: Int, total: Int): Int? {
         if (total == 0) return null
         val percent = (completed * 100) / total
+        val prevPercent = ((completed - 1) * 100) / total
         return when {
-            completed == total -> "Event Complete!"
-            percent >= 75 && ((completed - 1) * 100) / total < 75 -> "75% Complete!"
-            percent >= 50 && ((completed - 1) * 100) / total < 50 -> "Halfway There!"
-            percent >= 25 && ((completed - 1) * 100) / total < 25 -> "25% Complete!"
+            completed == total -> R.string.seasonal_event_milestone_100
+            percent >= 75 && prevPercent < 75 -> R.string.seasonal_event_milestone_75
+            percent >= 50 && prevPercent < 50 -> R.string.seasonal_event_milestone_50
+            percent >= 25 && prevPercent < 25 -> R.string.seasonal_event_milestone_25
             else -> null
         }
     }

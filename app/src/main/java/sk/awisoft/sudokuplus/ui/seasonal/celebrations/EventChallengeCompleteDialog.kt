@@ -46,11 +46,11 @@ fun EventChallengeCompleteDialog(
     challengeDay: Int,
     completedCount: Int,
     totalChallenges: Int,
-    isMilestone: Boolean,
-    milestoneLabel: String?,
+    @androidx.annotation.StringRes milestoneResId: Int?,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val isMilestone = milestoneResId != null
     val scale = remember { Animatable(0f) }
     val progress = completedCount.toFloat() / totalChallenges.coerceAtLeast(1)
 
@@ -122,13 +122,13 @@ fun EventChallengeCompleteDialog(
                     )
 
                     // Milestone indicator
-                    if (isMilestone && milestoneLabel != null) {
+                    if (milestoneResId != null) {
                         Surface(
                             color = MaterialTheme.colorScheme.tertiaryContainer,
                             shape = MaterialTheme.shapes.small
                         ) {
                             Text(
-                                text = milestoneLabel,
+                                text = stringResource(milestoneResId),
                                 modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
                                 style = MaterialTheme.typography.labelLarge,
                                 fontWeight = FontWeight.Bold,
