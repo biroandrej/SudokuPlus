@@ -2,6 +2,7 @@ package sk.awisoft.sudokuplus.di
 
 import android.app.Application
 import android.content.Context
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,6 +29,7 @@ import sk.awisoft.sudokuplus.data.database.dao.LoginRewardDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
 import sk.awisoft.sudokuplus.data.database.dao.RewardBadgeDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
+import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
 import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
 import sk.awisoft.sudokuplus.data.database.dao.UserProgressDao
 import sk.awisoft.sudokuplus.data.database.repository.AchievementRepositoryImpl
@@ -38,6 +40,7 @@ import sk.awisoft.sudokuplus.data.database.repository.FolderRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.LoginRewardRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.RecordRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.SavedGameRepositoryImpl
+import sk.awisoft.sudokuplus.data.database.repository.SeasonalEventRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.UserProgressRepositoryImpl
 import sk.awisoft.sudokuplus.data.datastore.AIUsageManager
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
@@ -56,6 +59,7 @@ import sk.awisoft.sudokuplus.domain.repository.FolderRepository
 import sk.awisoft.sudokuplus.domain.repository.LoginRewardRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
 import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
 import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 import sk.awisoft.sudokuplus.playgames.PlayGamesManagerImpl
@@ -268,4 +272,20 @@ class AppModule {
     @Singleton
     fun provideBillingManager(@ApplicationContext context: Context): BillingManager =
         BillingManagerImpl(context)
+
+    @Singleton
+    @Provides
+    fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    @Singleton
+    @Provides
+    fun provideSeasonalEventDao(appDatabase: AppDatabase): SeasonalEventDao =
+        appDatabase.seasonalEventDao()
+
+    @Singleton
+    @Provides
+    fun provideSeasonalEventRepository(
+        dao: SeasonalEventDao,
+        firestore: FirebaseFirestore
+    ): SeasonalEventRepository = SeasonalEventRepositoryImpl(dao, firestore)
 }
