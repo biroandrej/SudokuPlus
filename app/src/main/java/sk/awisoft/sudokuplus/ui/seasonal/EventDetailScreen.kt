@@ -78,7 +78,8 @@ fun EventDetailScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        eventWithProgress?.event?.title ?: stringResource(R.string.seasonal_events_title)
+                        eventWithProgress?.event?.title
+                            ?: stringResource(R.string.seasonal_events_title)
                     )
                 },
                 navigationIcon = {
@@ -86,7 +87,8 @@ fun EventDetailScreen(
                         Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = null)
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
+                colors =
+                TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             )
@@ -95,7 +97,8 @@ fun EventDetailScreen(
     ) { paddingValues ->
         if (eventWithProgress == null) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxSize()
                     .padding(paddingValues),
                 contentAlignment = Alignment.Center
@@ -110,75 +113,74 @@ fun EventDetailScreen(
         val currentDay = viewModel.getCurrentDay(event)
         val challengesCompleted = progress?.challengesCompleted ?: 0
         val completionPercent = viewModel.getCompletionPercentage(event, challengesCompleted)
-        val seasonalColors = SeasonalColors.forEventType(event.eventType)
 
-        SeasonalEventTheme(eventType = event.eventType, eventTheme = event.theme) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                // Progress header
-                item {
-                    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-                        Column(
-                            modifier = Modifier.padding(16.dp),
-                            verticalArrangement = Arrangement.spacedBy(12.dp)
+        LazyColumn(
+            modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            // Progress header
+            item {
+                ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Text(
+                            text = event.description,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = event.description,
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                text =
+                                stringResource(
+                                    R.string.seasonal_event_progress,
+                                    challengesCompleted,
+                                    event.challenges.size
+                                ),
+                                style = MaterialTheme.typography.labelLarge,
+                                fontWeight = FontWeight.SemiBold,
+                                color = MaterialTheme.colorScheme.onSurface
                             )
-
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    text = stringResource(
-                                        R.string.seasonal_event_progress,
-                                        challengesCompleted,
-                                        event.challenges.size
-                                    ),
-                                    style = MaterialTheme.typography.labelLarge,
-                                    fontWeight = FontWeight.SemiBold
-                                )
-                                Text(
-                                    text = "$completionPercent%",
-                                    style = MaterialTheme.typography.labelLarge,
-                                    fontWeight = FontWeight.Bold,
-                                    color = seasonalColors.primary
-                                )
-                            }
-
-                            LinearProgressIndicator(
-                                progress = { completionPercent / 100f },
-                                modifier = Modifier.fillMaxWidth(),
-                                color = seasonalColors.primary,
-                                trackColor = seasonalColors.primary.copy(alpha = 0.2f)
+                            Text(
+                                text = "$completionPercent%",
+                                style = MaterialTheme.typography.labelLarge,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary
                             )
                         }
+
+                        LinearProgressIndicator(
+                            progress = { completionPercent / 100f },
+                            modifier = Modifier.fillMaxWidth(),
+                            color = MaterialTheme.colorScheme.primary,
+                            trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+                        )
                     }
                 }
-
-                // Challenge list
-                items(event.challenges, key = { it.day }) { challenge ->
-                    ChallengeItem(
-                        challenge = challenge,
-                        currentDay = currentDay,
-                        isCompleted = challenge.day <= (progress?.lastChallengeDay ?: 0),
-                        isActive = event.status is EventStatus.Active,
-                        seasonalColors = seasonalColors,
-                        onPlay = { /* Will be wired in Phase 5 */ }
-                    )
-                }
-
-                item { Spacer(modifier = Modifier.height(8.dp)) }
             }
+
+            // Challenge list
+            items(event.challenges, key = { it.day }) { challenge ->
+                ChallengeItem(
+                    challenge = challenge,
+                    currentDay = currentDay,
+                    isCompleted = challenge.day <= (progress?.lastChallengeDay ?: 0),
+                    isActive = event.status is EventStatus.Active,
+                    onPlay = { /* Will be wired when event gameplay is connected */ }
+                )
+            }
+
+            item { Spacer(modifier = Modifier.height(8.dp)) }
         }
     }
 }
@@ -189,25 +191,34 @@ private fun ChallengeItem(
     currentDay: Int,
     isCompleted: Boolean,
     isActive: Boolean,
-    seasonalColors: SeasonalColors,
     onPlay: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val isPlayable = isActive && challenge.day <= currentDay && !isCompleted
     val isLocked = challenge.day > currentDay && !isCompleted
 
+    val containerColor =
+        when {
+            isCompleted -> MaterialTheme.colorScheme.primaryContainer
+            isPlayable -> MaterialTheme.colorScheme.surfaceContainerHigh
+            else -> MaterialTheme.colorScheme.surfaceContainerLow
+        }
+    val contentColor =
+        when {
+            isCompleted -> MaterialTheme.colorScheme.onPrimaryContainer
+            else -> MaterialTheme.colorScheme.onSurface
+        }
+
     ElevatedCard(
         modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = when {
-                isCompleted -> MaterialTheme.colorScheme.primaryContainer
-                isPlayable -> MaterialTheme.colorScheme.surfaceContainerHigh
-                else -> MaterialTheme.colorScheme.surfaceContainerLow
-            }
+        colors =
+        CardDefaults.elevatedCardColors(
+            containerColor = containerColor
         )
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -215,11 +226,13 @@ private fun ChallengeItem(
         ) {
             // Day badge
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .size(40.dp)
                     .background(
-                        color = when {
-                            isCompleted -> seasonalColors.primary
+                        color =
+                        when {
+                            isCompleted -> MaterialTheme.colorScheme.primary
                             isPlayable -> MaterialTheme.colorScheme.primary
                             else -> MaterialTheme.colorScheme.outlineVariant
                         },
@@ -239,7 +252,8 @@ private fun ChallengeItem(
                         text = challenge.day.toString(),
                         style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Bold,
-                        color = if (isLocked) {
+                        color =
+                        if (isLocked) {
                             MaterialTheme.colorScheme.onSurfaceVariant
                         } else {
                             MaterialTheme.colorScheme.onPrimary
@@ -253,12 +267,13 @@ private fun ChallengeItem(
                 Text(
                     text = stringResource(R.string.seasonal_event_day, challenge.day),
                     style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    color = contentColor
                 )
                 Text(
                     text = stringResource(challenge.difficulty.resName),
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = contentColor.copy(alpha = 0.7f)
                 )
             }
 
@@ -275,6 +290,7 @@ private fun ChallengeItem(
                         Text(stringResource(R.string.seasonal_event_completed))
                     }
                 }
+
                 isPlayable -> {
                     Button(onClick = onPlay) {
                         Icon(
@@ -286,6 +302,7 @@ private fun ChallengeItem(
                         Text(stringResource(R.string.seasonal_event_play))
                     }
                 }
+
                 isLocked -> {
                     Icon(
                         imageVector = Icons.Rounded.Lock,

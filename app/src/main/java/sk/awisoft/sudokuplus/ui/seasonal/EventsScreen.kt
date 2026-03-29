@@ -70,7 +70,8 @@ fun EventsScreen(navigator: DestinationsNavigator, viewModel: EventsViewModel = 
                         Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = null)
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
+                colors =
+                TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             )
@@ -79,7 +80,8 @@ fun EventsScreen(navigator: DestinationsNavigator, viewModel: EventsViewModel = 
     ) { paddingValues ->
         if (isLoading && allEvents.isEmpty()) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxSize()
                     .padding(paddingValues),
                 contentAlignment = Alignment.Center
@@ -88,7 +90,8 @@ fun EventsScreen(navigator: DestinationsNavigator, viewModel: EventsViewModel = 
             }
         } else if (allEvents.isEmpty()) {
             Box(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxSize()
                     .padding(paddingValues),
                 contentAlignment = Alignment.Center
@@ -101,7 +104,8 @@ fun EventsScreen(navigator: DestinationsNavigator, viewModel: EventsViewModel = 
             }
         } else {
             LazyColumn(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .fillMaxSize()
                     .padding(paddingValues),
                 contentPadding = PaddingValues(16.dp),
@@ -116,7 +120,9 @@ fun EventsScreen(navigator: DestinationsNavigator, viewModel: EventsViewModel = 
                             event = event,
                             onClick = {
                                 viewModel.selectEvent(event)
-                                navigator.navigate(EventDetailScreenDestination(eventId = event.id))
+                                navigator.navigate(
+                                    EventDetailScreenDestination(eventId = event.id)
+                                )
                             }
                         )
                     }
@@ -131,7 +137,9 @@ fun EventsScreen(navigator: DestinationsNavigator, viewModel: EventsViewModel = 
                             event = event,
                             onClick = {
                                 viewModel.selectEvent(event)
-                                navigator.navigate(EventDetailScreenDestination(eventId = event.id))
+                                navigator.navigate(
+                                    EventDetailScreenDestination(eventId = event.id)
+                                )
                             }
                         )
                     }
@@ -147,7 +155,9 @@ fun EventsScreen(navigator: DestinationsNavigator, viewModel: EventsViewModel = 
                             event = event,
                             onClick = {
                                 viewModel.selectEvent(event)
-                                navigator.navigate(EventDetailScreenDestination(eventId = event.id))
+                                navigator.navigate(
+                                    EventDetailScreenDestination(eventId = event.id)
+                                )
                             }
                         )
                     }
@@ -163,25 +173,35 @@ private fun SectionHeader(title: String, modifier: Modifier = Modifier) {
         text = title,
         style = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.SemiBold,
+        color = MaterialTheme.colorScheme.onSurface,
         modifier = modifier.padding(vertical = 4.dp)
     )
 }
 
 @Composable
 fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    val seasonalColors = SeasonalColors.forEventType(event.eventType)
     val isActive = event.status is EventStatus.Active
     val isEnded = event.status is EventStatus.Ended
+
+    val containerColor =
+        if (isActive) {
+            MaterialTheme.colorScheme.primaryContainer
+        } else {
+            MaterialTheme.colorScheme.surfaceContainerHigh
+        }
+    val contentColor =
+        if (isActive) {
+            MaterialTheme.colorScheme.onPrimaryContainer
+        } else {
+            MaterialTheme.colorScheme.onSurface
+        }
 
     ElevatedCard(
         onClick = onClick,
         modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = if (isActive) {
-                MaterialTheme.colorScheme.primaryContainer
-            } else {
-                MaterialTheme.colorScheme.surfaceContainerHigh
-            }
+        colors =
+        CardDefaults.elevatedCardColors(
+            containerColor = containerColor
         )
     ) {
         Column(
@@ -200,12 +220,13 @@ fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Mo
                     Icon(
                         imageVector = Icons.Rounded.CalendarMonth,
                         contentDescription = null,
-                        tint = seasonalColors.primary
+                        tint = contentColor
                     )
                     Text(
                         text = event.title,
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        color = contentColor
                     )
                 }
 
@@ -215,26 +236,27 @@ fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Mo
             Text(
                 text = event.description,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = contentColor.copy(alpha = 0.7f)
             )
 
             if (isActive) {
                 val today = LocalDate.now()
                 val daysLeft = ChronoUnit.DAYS.between(today, event.endDate).toInt()
-                val progress = ChronoUnit.DAYS.between(event.startDate, today).toFloat() /
-                    ChronoUnit.DAYS.between(event.startDate, event.endDate).toFloat()
+                val progress =
+                    ChronoUnit.DAYS.between(event.startDate, today).toFloat() /
+                        ChronoUnit.DAYS.between(event.startDate, event.endDate).toFloat()
 
                 LinearProgressIndicator(
                     progress = { progress.coerceIn(0f, 1f) },
                     modifier = Modifier.fillMaxWidth(),
-                    color = seasonalColors.primary,
-                    trackColor = seasonalColors.primary.copy(alpha = 0.2f)
+                    color = MaterialTheme.colorScheme.primary,
+                    trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
                 )
 
                 Text(
                     text = stringResource(R.string.seasonal_event_ends_in, daysLeft),
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = contentColor.copy(alpha = 0.7f)
                 )
             } else if (!isEnded) {
                 val today = LocalDate.now()
@@ -262,14 +284,20 @@ fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Mo
 
 @Composable
 private fun EventStatusBadge(event: SeasonalEvent, modifier: Modifier = Modifier) {
-    val (text, color) = when (event.status) {
-        is EventStatus.Active -> stringResource(R.string.seasonal_event_active) to
-            MaterialTheme.colorScheme.primary
-        is EventStatus.Upcoming -> stringResource(R.string.seasonal_event_upcoming) to
-            MaterialTheme.colorScheme.tertiary
-        is EventStatus.Ended -> stringResource(R.string.seasonal_event_ended) to
-            MaterialTheme.colorScheme.outline
-    }
+    val (text, color) =
+        when (event.status) {
+            is EventStatus.Active ->
+                stringResource(R.string.seasonal_event_active) to
+                    MaterialTheme.colorScheme.primary
+
+            is EventStatus.Upcoming ->
+                stringResource(R.string.seasonal_event_upcoming) to
+                    MaterialTheme.colorScheme.tertiary
+
+            is EventStatus.Ended ->
+                stringResource(R.string.seasonal_event_ended) to
+                    MaterialTheme.colorScheme.outline
+        }
 
     Surface(
         modifier = modifier,

@@ -26,7 +26,6 @@ import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.seasonal.model.SeasonalEvent
-import sk.awisoft.sudokuplus.ui.seasonal.SeasonalColors
 
 @Composable
 fun SeasonalEventBanner(
@@ -34,16 +33,17 @@ fun SeasonalEventBanner(
     onViewEvent: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val seasonalColors = SeasonalColors.forEventType(event.eventType)
     val today = LocalDate.now()
     val daysLeft = ChronoUnit.DAYS.between(today, event.endDate).toInt()
-    val progress = ChronoUnit.DAYS.between(event.startDate, today).toFloat() /
-        ChronoUnit.DAYS.between(event.startDate, event.endDate).toFloat()
+    val progress =
+        ChronoUnit.DAYS.between(event.startDate, today).toFloat() /
+            ChronoUnit.DAYS.between(event.startDate, event.endDate).toFloat()
 
     ElevatedCard(
         onClick = onViewEvent,
         modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.elevatedCardColors(
+        colors =
+        CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         )
     ) {
@@ -63,18 +63,19 @@ fun SeasonalEventBanner(
                     Icon(
                         imageVector = Icons.Rounded.Celebration,
                         contentDescription = null,
-                        tint = seasonalColors.primary
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                     Column {
                         Text(
                             text = event.title,
                             style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.SemiBold
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                         Text(
                             text = stringResource(R.string.seasonal_event_ends_in, daysLeft),
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                         )
                     }
                 }
@@ -92,8 +93,8 @@ fun SeasonalEventBanner(
             LinearProgressIndicator(
                 progress = { progress.coerceIn(0f, 1f) },
                 modifier = Modifier.fillMaxWidth(),
-                color = seasonalColors.primary,
-                trackColor = seasonalColors.primary.copy(alpha = 0.2f)
+                color = MaterialTheme.colorScheme.primary,
+                trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
             )
         }
     }
