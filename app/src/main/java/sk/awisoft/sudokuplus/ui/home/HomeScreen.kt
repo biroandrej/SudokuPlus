@@ -80,6 +80,7 @@ import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.utils.toFormattedString
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.destinations.DailyChallengeCalendarScreenDestination
+import sk.awisoft.sudokuplus.destinations.EventsScreenDestination
 import sk.awisoft.sudokuplus.destinations.GameScreenDestination
 import sk.awisoft.sudokuplus.destinations.PlayGamesScreenDestination
 import sk.awisoft.sudokuplus.destinations.RewardCalendarScreenDestination
@@ -90,6 +91,7 @@ import sk.awisoft.sudokuplus.ui.gameshistory.ColorfulBadge
 import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
 import sk.awisoft.sudokuplus.ui.home.components.PlayGamesCard
 import sk.awisoft.sudokuplus.ui.home.components.RewardCalendarCard
+import sk.awisoft.sudokuplus.ui.home.components.SeasonalEventBanner
 import sk.awisoft.sudokuplus.ui.reward.RewardClaimDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -119,6 +121,9 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     // Reward Calendar
     val rewardCalendarState by viewModel.rewardCalendarState.collectAsStateWithLifecycle()
     val claimedReward by viewModel.claimedReward.collectAsStateWithLifecycle()
+
+    // Seasonal Events
+    val activeEvent by viewModel.activeEvent.collectAsStateWithLifecycle()
 
     // Play Games
     val isPlayGamesSignedIn by viewModel.isPlayGamesSignedIn.collectAsStateWithLifecycle()
@@ -233,6 +238,15 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                     onClaim = { viewModel.claimReward() },
                     onViewCalendar = { navigator.navigate(RewardCalendarScreenDestination) }
                 )
+            }
+
+            activeEvent?.let { event ->
+                item {
+                    SeasonalEventBanner(
+                        event = event,
+                        onViewEvent = { navigator.navigate(EventsScreenDestination) }
+                    )
+                }
             }
 
             item {

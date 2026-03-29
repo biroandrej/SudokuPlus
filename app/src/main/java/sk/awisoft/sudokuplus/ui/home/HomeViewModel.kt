@@ -33,6 +33,7 @@ import sk.awisoft.sudokuplus.core.reward.ClaimResult
 import sk.awisoft.sudokuplus.core.reward.DailyReward
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarState
+import sk.awisoft.sudokuplus.core.seasonal.model.SeasonalEvent
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
@@ -42,6 +43,7 @@ import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
 import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 
 @HiltViewModel
@@ -58,6 +60,7 @@ constructor(
     private val rewardCalendarManager: RewardCalendarManager,
     private val playGamesSettingsManager: PlayGamesSettingsManager,
     private val playGamesManager: PlayGamesManager,
+    seasonalEventRepository: SeasonalEventRepository,
     @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     val lastSavedGame =
@@ -101,6 +104,12 @@ constructor(
     val playGamesEnabled: StateFlow<Boolean> =
         playGamesSettingsManager.playGamesEnabled
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
+    // Seasonal Events
+    val activeEvent: StateFlow<SeasonalEvent?> =
+        seasonalEventRepository.getActiveEvents()
+            .map { it.firstOrNull() }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     val isPlayGamesPromptDismissed: StateFlow<Boolean> =
         playGamesSettingsManager.homePromptDismissed

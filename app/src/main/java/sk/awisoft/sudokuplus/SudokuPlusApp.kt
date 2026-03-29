@@ -7,6 +7,7 @@ import androidx.work.WorkManager
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 import sk.awisoft.sudokuplus.core.notification.NotificationInitializer
+import sk.awisoft.sudokuplus.core.seasonal.SeasonalEventSyncWorker
 import sk.awisoft.sudokuplus.core.startup.AdsInitWorker
 import sk.awisoft.sudokuplus.core.startup.RemoteConfigFetchWorker
 
@@ -48,6 +49,9 @@ class SudokuPlusApp : Application(), Configuration.Provider {
 
         // Initialize Mobile Ads SDK in background
         AdsInitWorker.enqueue(this)
+
+        // Sync seasonal events from Firestore periodically
+        SeasonalEventSyncWorker.enqueue(this)
 
         // Schedule notification workers based on user settings
         notificationInitializer.scheduleWorkersIfNeeded(this)
