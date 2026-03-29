@@ -21,7 +21,8 @@ class RemoteConfigProviderImpl @Inject constructor() : RemoteConfigProvider {
             )
             setDefaultsAsync(
                 mapOf(
-                    AIModelConfig.REMOTE_CONFIG_KEY to DEFAULT_AI_MODEL_CONFIG_JSON
+                    AIModelConfig.REMOTE_CONFIG_KEY to DEFAULT_AI_MODEL_CONFIG_JSON,
+                    SEASONAL_EVENTS_ENABLED_KEY to true
                 )
             )
         }
@@ -48,7 +49,17 @@ class RemoteConfigProviderImpl @Inject constructor() : RemoteConfigProvider {
         }
     }
 
+    override fun isSeasonalEventsEnabled(): Boolean {
+        return try {
+            remoteConfig.getBoolean(SEASONAL_EVENTS_ENABLED_KEY)
+        } catch (e: Exception) {
+            true
+        }
+    }
+
     companion object {
+        private const val SEASONAL_EVENTS_ENABLED_KEY = "seasonal_events_enabled"
+
         // Note: This JSON uses the constants from AIModelConfig for consistency
         private val DEFAULT_AI_MODEL_CONFIG_JSON = """
             {

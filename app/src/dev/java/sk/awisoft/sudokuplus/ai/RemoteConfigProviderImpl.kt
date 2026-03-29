@@ -17,4 +17,8 @@ class RemoteConfigProviderImpl @Inject constructor() : RemoteConfigProvider {
     override suspend fun fetchAndActivate(): Boolean {
         return true
     }
+
+    override fun isSeasonalEventsEnabled(): Boolean {
+        return true
+    }
 }

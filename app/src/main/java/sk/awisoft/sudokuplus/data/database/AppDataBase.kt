@@ -21,22 +21,25 @@ import sk.awisoft.sudokuplus.data.database.dao.LoginRewardDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
 import sk.awisoft.sudokuplus.data.database.dao.RewardBadgeDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
+import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
 import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
 import sk.awisoft.sudokuplus.data.database.dao.UserProgressDao
 import sk.awisoft.sudokuplus.data.database.model.ClaimedReward
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
+import sk.awisoft.sudokuplus.data.database.model.EventProgressEntity
 import sk.awisoft.sudokuplus.data.database.model.Folder
 import sk.awisoft.sudokuplus.data.database.model.LoginRewardStatus
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.RewardBadge
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
+import sk.awisoft.sudokuplus.data.database.model.SeasonalEventEntity
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.database.model.UserAchievement
 import sk.awisoft.sudokuplus.data.database.model.UserProgress
 
 @Database(
-    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class, UserAchievement::class, UserProgress::class, LoginRewardStatus::class, ClaimedReward::class, RewardBadge::class],
-    version = 7
+    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class, UserAchievement::class, UserProgress::class, LoginRewardStatus::class, ClaimedReward::class, RewardBadge::class, SeasonalEventEntity::class, EventProgressEntity::class],
+    version = 8
 )
 @TypeConverters(
     DurationConverter::class,
@@ -66,6 +69,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun loginRewardDao(): LoginRewardDao
 
     abstract fun rewardBadgeDao(): RewardBadgeDao
+
+    abstract fun seasonalEventDao(): SeasonalEventDao
 
     companion object {
         private var INSTANCE: AppDatabase? = null
@@ -183,6 +188,48 @@ abstract class AppDatabase : RoomDatabase() {
                 }
             }
 
+        private val MIGRATION_7_8 =
+            object : Migration(7, 8) {
+                override fun migrate(db: SupportSQLiteDatabase) {
+                    db.execSQL(
+                        """
+                        CREATE TABLE IF NOT EXISTS seasonal_events (
+                            id TEXT PRIMARY KEY NOT NULL,
+                            title TEXT NOT NULL,
+                            description TEXT NOT NULL,
+                            event_type TEXT NOT NULL,
+                            start_date INTEGER NOT NULL,
+                            end_date INTEGER NOT NULL,
+                            theme_primary_color INTEGER NOT NULL,
+                            theme_secondary_color INTEGER NOT NULL,
+                            theme_background_color INTEGER NOT NULL,
+                            theme_accent_color INTEGER NOT NULL,
+                            challenges_json TEXT NOT NULL,
+                            rewards_json TEXT NOT NULL,
+                            badge_id TEXT NOT NULL,
+                            synced_at INTEGER NOT NULL
+                        )
+                        """.trimIndent()
+                    )
+                    db.execSQL(
+                        """
+                        CREATE TABLE IF NOT EXISTS event_progress (
+                            event_id TEXT PRIMARY KEY NOT NULL,
+                            challenges_completed INTEGER NOT NULL DEFAULT 0,
+                            last_challenge_day INTEGER NOT NULL DEFAULT 0,
+                            badge_earned INTEGER NOT NULL DEFAULT 0,
+                            badge_earned_at INTEGER,
+                            total_xp_earned INTEGER NOT NULL DEFAULT 0,
+                            FOREIGN KEY (event_id) REFERENCES seasonal_events(id) ON DELETE CASCADE
+                        )
+                        """.trimIndent()
+                    )
+                    db.execSQL(
+                        "CREATE INDEX IF NOT EXISTS index_event_progress_event_id ON event_progress (event_id)"
+                    )
+                }
+            }
+
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE =
@@ -191,7 +238,7 @@ abstract class AppDatabase : RoomDatabase() {
                         AppDatabase::class.java,
                         "main_database"
                     )
-                        .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
+                        .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8)
                         .build()
             }
 
