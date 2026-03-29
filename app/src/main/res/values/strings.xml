@@ -507,6 +507,23 @@
     <string name="achievement_daily_streak_100">Daily Legend</string>
     <string name="achievement_daily_streak_100_desc">100-day daily challenge streak</string>
 
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Seasonal Events</string>
+    <string name="seasonal_event_active">Active</string>
+    <string name="seasonal_event_upcoming">Upcoming</string>
+    <string name="seasonal_event_ended">Ended</string>
+    <string name="seasonal_event_starts_in">Starts in %1$d days</string>
+    <string name="seasonal_event_ends_in">Ends in %1$d days</string>
+    <string name="seasonal_event_ended_ago">Ended %1$d days ago</string>
+    <string name="seasonal_event_progress">%1$d/%2$d challenges</string>
+    <string name="seasonal_event_play">Play Challenge</string>
+    <string name="seasonal_event_completed">Completed!</string>
+    <string name="seasonal_event_day">Day %1$d</string>
+    <string name="seasonal_event_no_events">No events available right now</string>
+    <string name="seasonal_event_reward_earned">Reward Earned!</string>
+    <string name="seasonal_event_badge_earned">Event Badge Earned!</string>
+    <string name="seasonal_event_view_all">View All Events</string>
+
     <!-- Seasonal Event Achievements -->
     <string name="achievement_seasonal_first">Event Explorer</string>
     <string name="achievement_seasonal_first_desc">Complete your first event challenge</string>
