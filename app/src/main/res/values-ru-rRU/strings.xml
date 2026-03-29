@@ -391,6 +391,7 @@
     <string name="achievement_category_variety">Разнообразие</string>
     <string name="achievement_category_mastery">Мастерство</string>
     <string name="achievement_category_daily">Ежедневные</string>
+    <string name="achievement_category_seasonal">Сезонные</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Бронзовый</string>
@@ -483,6 +484,18 @@
     <string name="achievement_daily_streak_30_desc">30-дневная серия ежедневных вызовов</string>
     <string name="achievement_daily_streak_100">Ежедневная легенда</string>
     <string name="achievement_daily_streak_100_desc">100-дневная серия ежедневных вызовов</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Исследователь событий</string>
+    <string name="achievement_seasonal_first_desc">Выполните своё первое испытание события</string>
+    <string name="achievement_seasonal_5">Любитель событий</string>
+    <string name="achievement_seasonal_5_desc">Выполните 5 испытаний событий</string>
+    <string name="achievement_seasonal_25">Ветеран событий</string>
+    <string name="achievement_seasonal_25_desc">Выполните 25 испытаний событий</string>
+    <string name="achievement_seasonal_events_3">Охотник за сезонами</string>
+    <string name="achievement_seasonal_events_3_desc">Примите участие в 3 сезонных событиях</string>
+    <string name="achievement_seasonal_events_10">Коллекционер событий</string>
+    <string name="achievement_seasonal_events_10_desc">Примите участие в 10 сезонных событиях</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Ежедневный вызов</string>
@@ -629,6 +642,18 @@
     <string name="badges_earned_count">Получено значков: %1$d</string>
     <string name="badge_earned">Значок получен!</string>
     <string name="badge_no_badges">Значков пока нет</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Пасхальный чемпион</string>
+    <string name="badge_event_easter_desc">Завершено пасхальное сезонное событие</string>
+    <string name="badge_event_summer_name">Летняя звезда</string>
+    <string name="badge_event_summer_desc">Завершено летнее сезонное событие</string>
+    <string name="badge_event_halloween_name">Жуткий решатель</string>
+    <string name="badge_event_halloween_desc">Завершено сезонное событие Хэллоуина</string>
+    <string name="badge_event_christmas_name">Праздничный герой</string>
+    <string name="badge_event_christmas_desc">Завершено рождественское сезонное событие</string>
+    <string name="badge_event_new_year_name">Новогодняя легенда</string>
+    <string name="badge_event_new_year_desc">Завершено новогоднее сезонное событие</string>
 
     <!-- Premium -->
     <string name="premium_title">Sudoku Plus Премиум</string>

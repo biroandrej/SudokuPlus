@@ -110,6 +110,7 @@
     <string name="achievement_category_variety">多様性</string>
     <string name="achievement_category_mastery">マスター</string>
     <string name="achievement_category_daily">デイリー</string>
+    <string name="achievement_category_seasonal">シーズン</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">ブロンズ</string>
@@ -202,6 +203,18 @@
     <string name="achievement_daily_streak_30_desc">30日連続デイリーチャレンジ</string>
     <string name="achievement_daily_streak_100">デイリーレジェンド</string>
     <string name="achievement_daily_streak_100_desc">100日連続デイリーチャレンジ</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">イベント探検家</string>
+    <string name="achievement_seasonal_first_desc">最初のイベントチャレンジを完了する</string>
+    <string name="achievement_seasonal_5">イベント愛好家</string>
+    <string name="achievement_seasonal_5_desc">イベントチャレンジを5つ完了する</string>
+    <string name="achievement_seasonal_25">イベントベテラン</string>
+    <string name="achievement_seasonal_25_desc">イベントチャレンジを25個完了する</string>
+    <string name="achievement_seasonal_events_3">シーズンハンター</string>
+    <string name="achievement_seasonal_events_3_desc">3つのシーズンイベントに参加する</string>
+    <string name="achievement_seasonal_events_10">イベントコレクター</string>
+    <string name="achievement_seasonal_events_10_desc">10のシーズンイベントに参加する</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">デイリーチャレンジ</string>
@@ -626,6 +639,18 @@
     <string name="badges_earned_count">%1$d個のバッジを獲得</string>
     <string name="badge_earned">バッジ獲得！</string>
     <string name="badge_no_badges">まだバッジを獲得していません</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">イースターチャンピオン</string>
+    <string name="badge_event_easter_desc">イースターのシーズンイベントを完了しました</string>
+    <string name="badge_event_summer_name">サマースター</string>
+    <string name="badge_event_summer_desc">夏のシーズンイベントを完了しました</string>
+    <string name="badge_event_halloween_name">スプーキーソルバー</string>
+    <string name="badge_event_halloween_desc">ハロウィンのシーズンイベントを完了しました</string>
+    <string name="badge_event_christmas_name">ホリデーヒーロー</string>
+    <string name="badge_event_christmas_desc">クリスマスのシーズンイベントを完了しました</string>
+    <string name="badge_event_new_year_name">新年のレジェンド</string>
+    <string name="badge_event_new_year_desc">新年のシーズンイベントを完了しました</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>

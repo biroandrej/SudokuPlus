@@ -395,6 +395,7 @@
     <string name="achievement_category_variety">Đa dạng</string>
     <string name="achievement_category_mastery">Thành thạo</string>
     <string name="achievement_category_daily">Hàng ngày</string>
+    <string name="achievement_category_seasonal">Theo mùa</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Đồng</string>
@@ -487,6 +488,18 @@
     <string name="achievement_daily_streak_30_desc">Chuỗi thử thách hàng ngày 30 ngày</string>
     <string name="achievement_daily_streak_100">Huyền thoại hàng ngày</string>
     <string name="achievement_daily_streak_100_desc">Chuỗi thử thách hàng ngày 100 ngày</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Nhà thám hiểm sự kiện</string>
+    <string name="achievement_seasonal_first_desc">Hoàn thành thử thách sự kiện đầu tiên</string>
+    <string name="achievement_seasonal_5">Người đam mê sự kiện</string>
+    <string name="achievement_seasonal_5_desc">Hoàn thành 5 thử thách sự kiện</string>
+    <string name="achievement_seasonal_25">Cựu binh sự kiện</string>
+    <string name="achievement_seasonal_25_desc">Hoàn thành 25 thử thách sự kiện</string>
+    <string name="achievement_seasonal_events_3">Thợ săn mùa</string>
+    <string name="achievement_seasonal_events_3_desc">Tham gia 3 sự kiện theo mùa</string>
+    <string name="achievement_seasonal_events_10">Nhà sưu tập sự kiện</string>
+    <string name="achievement_seasonal_events_10_desc">Tham gia 10 sự kiện theo mùa</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Thử thách hàng ngày</string>
@@ -581,6 +594,18 @@
     <string name="badges_earned_count">Đã nhận %1$d huy hiệu</string>
     <string name="badge_earned">Đã nhận huy hiệu!</string>
     <string name="badge_no_badges">Chưa nhận huy hiệu nào</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Nhà vô địch Phục Sinh</string>
+    <string name="badge_event_easter_desc">Đã hoàn thành sự kiện theo mùa Phục Sinh</string>
+    <string name="badge_event_summer_name">Ngôi sao mùa hè</string>
+    <string name="badge_event_summer_desc">Đã hoàn thành sự kiện theo mùa hè</string>
+    <string name="badge_event_halloween_name">Người giải ma quái</string>
+    <string name="badge_event_halloween_desc">Đã hoàn thành sự kiện theo mùa Halloween</string>
+    <string name="badge_event_christmas_name">Anh hùng ngày lễ</string>
+    <string name="badge_event_christmas_desc">Đã hoàn thành sự kiện theo mùa Giáng Sinh</string>
+    <string name="badge_event_new_year_name">Huyền thoại Năm Mới</string>
+    <string name="badge_event_new_year_desc">Đã hoàn thành sự kiện theo mùa Năm Mới</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Trò chơi</string>

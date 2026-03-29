@@ -410,6 +410,7 @@
     <string name="achievement_category_variety">Rozmanitost</string>
     <string name="achievement_category_mastery">Mistrovství</string>
     <string name="achievement_category_daily">Denní</string>
+    <string name="achievement_category_seasonal">Sezónní</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronzový</string>
@@ -502,6 +503,18 @@
     <string name="achievement_daily_streak_30_desc">30denní série denních výzev</string>
     <string name="achievement_daily_streak_100">Denní legenda</string>
     <string name="achievement_daily_streak_100_desc">100denní série denních výzev</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Průzkumník událostí</string>
+    <string name="achievement_seasonal_first_desc">Dokončete svou první výzvu události</string>
+    <string name="achievement_seasonal_5">Nadšenec událostí</string>
+    <string name="achievement_seasonal_5_desc">Dokončete 5 výzev událostí</string>
+    <string name="achievement_seasonal_25">Veterán událostí</string>
+    <string name="achievement_seasonal_25_desc">Dokončete 25 výzev událostí</string>
+    <string name="achievement_seasonal_events_3">Lovec sezón</string>
+    <string name="achievement_seasonal_events_3_desc">Zúčastněte se 3 sezónních událostí</string>
+    <string name="achievement_seasonal_events_10">Sběratel událostí</string>
+    <string name="achievement_seasonal_events_10_desc">Zúčastněte se 10 sezónních událostí</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Denní výzva</string>
@@ -596,6 +609,18 @@
     <string name="badges_earned_count">%1$d získaných odznaků</string>
     <string name="badge_earned">Odznak získán!</string>
     <string name="badge_no_badges">Zatím žádné získané odznaky</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Velikonoční šampion</string>
+    <string name="badge_event_easter_desc">Dokončena velikonoční sezónní událost</string>
+    <string name="badge_event_summer_name">Letní hvězda</string>
+    <string name="badge_event_summer_desc">Dokončena letní sezónní událost</string>
+    <string name="badge_event_halloween_name">Strašidelný řešitel</string>
+    <string name="badge_event_halloween_desc">Dokončena halloweenská sezónní událost</string>
+    <string name="badge_event_christmas_name">Sváteční hrdina</string>
+    <string name="badge_event_christmas_desc">Dokončena vánoční sezónní událost</string>
+    <string name="badge_event_new_year_name">Novoroční legenda</string>
+    <string name="badge_event_new_year_desc">Dokončena novoroční sezónní událost</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Hry</string>

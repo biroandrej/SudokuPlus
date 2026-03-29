@@ -400,6 +400,7 @@
     <string name="achievement_category_variety">Çeşitlilik</string>
     <string name="achievement_category_mastery">Ustalık</string>
     <string name="achievement_category_daily">Günlük</string>
+    <string name="achievement_category_seasonal">Sezonluk</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronz</string>
@@ -492,6 +493,18 @@
     <string name="achievement_daily_streak_30_desc">30 günlük günlük meydan okuma serisi</string>
     <string name="achievement_daily_streak_100">Günlük Efsane</string>
     <string name="achievement_daily_streak_100_desc">100 günlük günlük meydan okuma serisi</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Etkinlik Kaşifi</string>
+    <string name="achievement_seasonal_first_desc">İlk etkinlik görevini tamamla</string>
+    <string name="achievement_seasonal_5">Etkinlik Tutkunu</string>
+    <string name="achievement_seasonal_5_desc">5 etkinlik görevi tamamla</string>
+    <string name="achievement_seasonal_25">Etkinlik Gazisi</string>
+    <string name="achievement_seasonal_25_desc">25 etkinlik görevi tamamla</string>
+    <string name="achievement_seasonal_events_3">Sezon Avcısı</string>
+    <string name="achievement_seasonal_events_3_desc">3 sezonluk etkinliğe katıl</string>
+    <string name="achievement_seasonal_events_10">Etkinlik Koleksiyoncusu</string>
+    <string name="achievement_seasonal_events_10_desc">10 sezonluk etkinliğe katıl</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Günlük Meydan Okuma</string>
@@ -586,6 +599,18 @@
     <string name="badges_earned_count">%1$d rozet kazanıldı</string>
     <string name="badge_earned">Rozet Kazanıldı!</string>
     <string name="badge_no_badges">Henüz rozet kazanılmadı</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Paskalya Şampiyonu</string>
+    <string name="badge_event_easter_desc">Paskalya sezonluk etkinliği tamamlandı</string>
+    <string name="badge_event_summer_name">Yaz Yıldızı</string>
+    <string name="badge_event_summer_desc">Yaz sezonluk etkinliği tamamlandı</string>
+    <string name="badge_event_halloween_name">Ürkütücü Çözücü</string>
+    <string name="badge_event_halloween_desc">Cadılar Bayramı sezonluk etkinliği tamamlandı</string>
+    <string name="badge_event_christmas_name">Tatil Kahramanı</string>
+    <string name="badge_event_christmas_desc">Noel sezonluk etkinliği tamamlandı</string>
+    <string name="badge_event_new_year_name">Yılbaşı Efsanesi</string>
+    <string name="badge_event_new_year_desc">Yılbaşı sezonluk etkinliği tamamlandı</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Oyunlar</string>

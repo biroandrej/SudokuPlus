@@ -408,6 +408,7 @@
     <string name="achievement_category_variety">多样性</string>
     <string name="achievement_category_mastery">精通</string>
     <string name="achievement_category_daily">每日</string>
+    <string name="achievement_category_seasonal">季节性</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">铜牌</string>
@@ -501,6 +502,18 @@
     <string name="achievement_daily_streak_100">每日传奇</string>
     <string name="achievement_daily_streak_100_desc">每日挑战 100 天连胜</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">活动探索者</string>
+    <string name="achievement_seasonal_first_desc">完成你的第一个活动挑战</string>
+    <string name="achievement_seasonal_5">活动爱好者</string>
+    <string name="achievement_seasonal_5_desc">完成5个活动挑战</string>
+    <string name="achievement_seasonal_25">活动老手</string>
+    <string name="achievement_seasonal_25_desc">完成25个活动挑战</string>
+    <string name="achievement_seasonal_events_3">赛季追逐者</string>
+    <string name="achievement_seasonal_events_3_desc">参加3个季节性活动</string>
+    <string name="achievement_seasonal_events_10">活动收藏家</string>
+    <string name="achievement_seasonal_events_10_desc">参加10个季节性活动</string>
+
     <!-- Badge strings -->
     <string name="badge_rarity_common">普通</string>
     <string name="badge_rarity_rare">稀有</string>
@@ -521,6 +534,18 @@
     <string name="badges_earned_count">已获得 %1$d 个徽章</string>
     <string name="badge_earned">徽章已获得！</string>
     <string name="badge_no_badges">尚未获得徽章</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">复活节冠军</string>
+    <string name="badge_event_easter_desc">完成了复活节季节性活动</string>
+    <string name="badge_event_summer_name">夏日之星</string>
+    <string name="badge_event_summer_desc">完成了夏季季节性活动</string>
+    <string name="badge_event_halloween_name">恐怖解谜者</string>
+    <string name="badge_event_halloween_desc">完成了万圣节季节性活动</string>
+    <string name="badge_event_christmas_name">节日英雄</string>
+    <string name="badge_event_christmas_desc">完成了圣诞节季节性活动</string>
+    <string name="badge_event_new_year_name">新年传奇</string>
+    <string name="badge_event_new_year_desc">完成了新年季节性活动</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play 游戏</string>

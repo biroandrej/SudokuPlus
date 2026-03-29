@@ -395,6 +395,7 @@
     <string name="achievement_category_variety">多樣性</string>
     <string name="achievement_category_mastery">精通</string>
     <string name="achievement_category_daily">每日</string>
+    <string name="achievement_category_seasonal">季節性</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">銅牌</string>
@@ -487,6 +488,18 @@
     <string name="achievement_daily_streak_30_desc">每日挑戰連續 30 天</string>
     <string name="achievement_daily_streak_100">每日傳奇</string>
     <string name="achievement_daily_streak_100_desc">每日挑戰連續 100 天</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">活動探索者</string>
+    <string name="achievement_seasonal_first_desc">完成你的第一個活動挑戰</string>
+    <string name="achievement_seasonal_5">活動愛好者</string>
+    <string name="achievement_seasonal_5_desc">完成5個活動挑戰</string>
+    <string name="achievement_seasonal_25">活動老手</string>
+    <string name="achievement_seasonal_25_desc">完成25個活動挑戰</string>
+    <string name="achievement_seasonal_events_3">賽季追逐者</string>
+    <string name="achievement_seasonal_events_3_desc">參加3個季節性活動</string>
+    <string name="achievement_seasonal_events_10">活動收藏家</string>
+    <string name="achievement_seasonal_events_10_desc">參加10個季節性活動</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">每日挑戰</string>
@@ -581,6 +594,18 @@
     <string name="badges_earned_count">已獲得 %1$d 個徽章</string>
     <string name="badge_earned">徽章已獲得！</string>
     <string name="badge_no_badges">尚未獲得任何徽章</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">復活節冠軍</string>
+    <string name="badge_event_easter_desc">完成了復活節季節性活動</string>
+    <string name="badge_event_summer_name">夏日之星</string>
+    <string name="badge_event_summer_desc">完成了夏季季節性活動</string>
+    <string name="badge_event_halloween_name">恐怖解謎者</string>
+    <string name="badge_event_halloween_desc">完成了萬聖節季節性活動</string>
+    <string name="badge_event_christmas_name">節日英雄</string>
+    <string name="badge_event_christmas_desc">完成了聖誕節季節性活動</string>
+    <string name="badge_event_new_year_name">新年傳奇</string>
+    <string name="badge_event_new_year_desc">完成了新年季節性活動</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play 遊戲</string>

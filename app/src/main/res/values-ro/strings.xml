@@ -405,6 +405,7 @@
     <string name="achievement_category_variety">Varietate</string>
     <string name="achievement_category_mastery">Măiestrie</string>
     <string name="achievement_category_daily">Zilnic</string>
+    <string name="achievement_category_seasonal">Sezonier</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronz</string>
@@ -497,6 +498,18 @@
     <string name="achievement_daily_streak_30_desc">Serie de 30 de zile de provocări zilnice</string>
     <string name="achievement_daily_streak_100">Legendă Zilnică</string>
     <string name="achievement_daily_streak_100_desc">Serie de 100 de zile de provocări zilnice</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Explorator de evenimente</string>
+    <string name="achievement_seasonal_first_desc">Completează prima ta provocare de eveniment</string>
+    <string name="achievement_seasonal_5">Pasionat de evenimente</string>
+    <string name="achievement_seasonal_5_desc">Completează 5 provocări de evenimente</string>
+    <string name="achievement_seasonal_25">Veteran al evenimentelor</string>
+    <string name="achievement_seasonal_25_desc">Completează 25 de provocări de evenimente</string>
+    <string name="achievement_seasonal_events_3">Vânător de sezoane</string>
+    <string name="achievement_seasonal_events_3_desc">Participă la 3 evenimente sezoniere</string>
+    <string name="achievement_seasonal_events_10">Colecționar de evenimente</string>
+    <string name="achievement_seasonal_events_10_desc">Participă la 10 evenimente sezoniere</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Provocare Zilnică</string>
@@ -591,6 +604,18 @@
     <string name="badges_earned_count">%1$d insigne câștigate</string>
     <string name="badge_earned">Insignă Câștigată!</string>
     <string name="badge_no_badges">Nicio insignă câștigată încă</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Campion de Paște</string>
+    <string name="badge_event_easter_desc">Evenimentul sezonier de Paște completat</string>
+    <string name="badge_event_summer_name">Steaua verii</string>
+    <string name="badge_event_summer_desc">Evenimentul sezonier de vară completat</string>
+    <string name="badge_event_halloween_name">Rezolvitor înfricoșător</string>
+    <string name="badge_event_halloween_desc">Evenimentul sezonier de Halloween completat</string>
+    <string name="badge_event_christmas_name">Eroul sărbătorilor</string>
+    <string name="badge_event_christmas_desc">Evenimentul sezonier de Crăciun completat</string>
+    <string name="badge_event_new_year_name">Legenda Anului Nou</string>
+    <string name="badge_event_new_year_desc">Evenimentul sezonier de Anul Nou completat</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jocuri</string>

@@ -400,6 +400,7 @@
     <string name="achievement_category_variety">تنوع</string>
     <string name="achievement_category_mastery">تسلط</string>
     <string name="achievement_category_daily">روزانه</string>
+    <string name="achievement_category_seasonal">فصلی</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">برنز</string>
@@ -492,6 +493,18 @@
     <string name="achievement_daily_streak_30_desc">۳۰ روز پیوسته چالش روزانه</string>
     <string name="achievement_daily_streak_100">افسانه روزانه</string>
     <string name="achievement_daily_streak_100_desc">۱۰۰ روز پیوسته چالش روزانه</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">کاشف رویدادها</string>
+    <string name="achievement_seasonal_first_desc">اولین چالش رویداد خود را کامل کنید</string>
+    <string name="achievement_seasonal_5">علاقه‌مند به رویدادها</string>
+    <string name="achievement_seasonal_5_desc">۵ چالش رویداد را کامل کنید</string>
+    <string name="achievement_seasonal_25">کهنه‌کار رویدادها</string>
+    <string name="achievement_seasonal_25_desc">۲۵ چالش رویداد را کامل کنید</string>
+    <string name="achievement_seasonal_events_3">دنبال‌کننده فصل‌ها</string>
+    <string name="achievement_seasonal_events_3_desc">در ۳ رویداد فصلی شرکت کنید</string>
+    <string name="achievement_seasonal_events_10">گردآورنده رویدادها</string>
+    <string name="achievement_seasonal_events_10_desc">در ۱۰ رویداد فصلی شرکت کنید</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">چالش روزانه</string>
@@ -586,6 +599,18 @@
     <string name="badges_earned_count">%1$d نشان کسب شده</string>
     <string name="badge_earned">نشان کسب شد!</string>
     <string name="badge_no_badges">هنوز نشانی کسب نشده است</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">قهرمان عید پاک</string>
+    <string name="badge_event_easter_desc">رویداد فصلی عید پاک تکمیل شد</string>
+    <string name="badge_event_summer_name">ستاره تابستان</string>
+    <string name="badge_event_summer_desc">رویداد فصلی تابستان تکمیل شد</string>
+    <string name="badge_event_halloween_name">حل‌کننده ترسناک</string>
+    <string name="badge_event_halloween_desc">رویداد فصلی هالووین تکمیل شد</string>
+    <string name="badge_event_christmas_name">قهرمان تعطیلات</string>
+    <string name="badge_event_christmas_desc">رویداد فصلی کریسمس تکمیل شد</string>
+    <string name="badge_event_new_year_name">افسانه سال نو</string>
+    <string name="badge_event_new_year_desc">رویداد فصلی سال نو تکمیل شد</string>
 
     <!-- Play Games -->
     <string name="play_games_title">گوگل پلی گیمز</string>

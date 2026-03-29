@@ -400,6 +400,7 @@
     <string name="achievement_category_variety">Vaihtelu</string>
     <string name="achievement_category_mastery">Taitavuus</string>
     <string name="achievement_category_daily">Päivittäinen</string>
+    <string name="achievement_category_seasonal">Kausittainen</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Pronssi</string>
@@ -492,6 +493,18 @@
     <string name="achievement_daily_streak_30_desc">30 päivän päivittäinen haaste putki</string>
     <string name="achievement_daily_streak_100">Päivittäinen Legenda</string>
     <string name="achievement_daily_streak_100_desc">100 päivän päivittäinen haaste putki</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Tapahtumien tutkija</string>
+    <string name="achievement_seasonal_first_desc">Suorita ensimmäinen tapahtumahaaste</string>
+    <string name="achievement_seasonal_5">Tapahtumien intoilija</string>
+    <string name="achievement_seasonal_5_desc">Suorita 5 tapahtumahaastetta</string>
+    <string name="achievement_seasonal_25">Tapahtumien veteraani</string>
+    <string name="achievement_seasonal_25_desc">Suorita 25 tapahtumahaastetta</string>
+    <string name="achievement_seasonal_events_3">Kausien metsästäjä</string>
+    <string name="achievement_seasonal_events_3_desc">Osallistu 3 kausitapahtumaan</string>
+    <string name="achievement_seasonal_events_10">Tapahtumien kerääjä</string>
+    <string name="achievement_seasonal_events_10_desc">Osallistu 10 kausitapahtumaan</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Päivittäinen Haaste</string>
@@ -586,6 +599,18 @@
     <string name="badges_earned_count">%1$d merkkiä ansaittu</string>
     <string name="badge_earned">Merkki ansaittu!</string>
     <string name="badge_no_badges">Ei vielä ansaittuja merkkejä</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Pääsiäismestari</string>
+    <string name="badge_event_easter_desc">Pääsiäisen kausitapahtuma suoritettu</string>
+    <string name="badge_event_summer_name">Kesätähti</string>
+    <string name="badge_event_summer_desc">Kesän kausitapahtuma suoritettu</string>
+    <string name="badge_event_halloween_name">Pelottava ratkaisija</string>
+    <string name="badge_event_halloween_desc">Halloweenin kausitapahtuma suoritettu</string>
+    <string name="badge_event_christmas_name">Joulusankari</string>
+    <string name="badge_event_christmas_desc">Joulun kausitapahtuma suoritettu</string>
+    <string name="badge_event_new_year_name">Uudenvuoden legenda</string>
+    <string name="badge_event_new_year_desc">Uudenvuoden kausitapahtuma suoritettu</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Pelit</string>

@@ -410,6 +410,7 @@
     <string name="achievement_category_variety">Різноманіття</string>
     <string name="achievement_category_mastery">Майстерність</string>
     <string name="achievement_category_daily">Щоденні</string>
+    <string name="achievement_category_seasonal">Сезонні</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Бронза</string>
@@ -502,6 +503,18 @@
     <string name="achievement_daily_streak_30_desc">30-денна серія щоденних викликів</string>
     <string name="achievement_daily_streak_100">Легенда щоденних викликів</string>
     <string name="achievement_daily_streak_100_desc">100-денна серія щоденних викликів</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Дослідник подій</string>
+    <string name="achievement_seasonal_first_desc">Виконайте своє перше випробування події</string>
+    <string name="achievement_seasonal_5">Любитель подій</string>
+    <string name="achievement_seasonal_5_desc">Виконайте 5 випробувань подій</string>
+    <string name="achievement_seasonal_25">Ветеран подій</string>
+    <string name="achievement_seasonal_25_desc">Виконайте 25 випробувань подій</string>
+    <string name="achievement_seasonal_events_3">Мисливець за сезонами</string>
+    <string name="achievement_seasonal_events_3_desc">Візьміть участь у 3 сезонних подіях</string>
+    <string name="achievement_seasonal_events_10">Колекціонер подій</string>
+    <string name="achievement_seasonal_events_10_desc">Візьміть участь у 10 сезонних подіях</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Щоденний виклик</string>
@@ -596,6 +609,18 @@
     <string name="badges_earned_count">Отримано %1$d значків</string>
     <string name="badge_earned">Значок отримано!</string>
     <string name="badge_no_badges">Ще немає отриманих значків</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Великодній чемпіон</string>
+    <string name="badge_event_easter_desc">Завершено великодню сезонну подію</string>
+    <string name="badge_event_summer_name">Літня зірка</string>
+    <string name="badge_event_summer_desc">Завершено літню сезонну подію</string>
+    <string name="badge_event_halloween_name">Моторошний розв\'язувач</string>
+    <string name="badge_event_halloween_desc">Завершено сезонну подію Гелловіну</string>
+    <string name="badge_event_christmas_name">Святковий герой</string>
+    <string name="badge_event_christmas_desc">Завершено різдвяну сезонну подію</string>
+    <string name="badge_event_new_year_name">Новорічна легенда</string>
+    <string name="badge_event_new_year_desc">Завершено новорічну сезонну подію</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Ігри</string>

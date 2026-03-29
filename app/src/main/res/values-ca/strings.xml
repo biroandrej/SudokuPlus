@@ -401,6 +401,7 @@
     <string name="achievement_category_variety">Varietat</string>
     <string name="achievement_category_mastery">Mestratge</string>
     <string name="achievement_category_daily">Diari</string>
+    <string name="achievement_category_seasonal">Estacional</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronze</string>
@@ -493,6 +494,18 @@
     <string name="achievement_daily_streak_30_desc">Ratxa de 30 dies de repte diari</string>
     <string name="achievement_daily_streak_100">Llegenda Diària</string>
     <string name="achievement_daily_streak_100_desc">Ratxa de 100 dies de repte diari</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Explorador d\'esdeveniments</string>
+    <string name="achievement_seasonal_first_desc">Completa el teu primer repte d\'un esdeveniment</string>
+    <string name="achievement_seasonal_5">Entusiasta dels esdeveniments</string>
+    <string name="achievement_seasonal_5_desc">Completa 5 reptes d\'esdeveniments</string>
+    <string name="achievement_seasonal_25">Veterà dels esdeveniments</string>
+    <string name="achievement_seasonal_25_desc">Completa 25 reptes d\'esdeveniments</string>
+    <string name="achievement_seasonal_events_3">Caçador d\'estacions</string>
+    <string name="achievement_seasonal_events_3_desc">Participa en 3 esdeveniments estacionals</string>
+    <string name="achievement_seasonal_events_10">Col·leccionista d\'esdeveniments</string>
+    <string name="achievement_seasonal_events_10_desc">Participa en 10 esdeveniments estacionals</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Repte Diari</string>
@@ -587,6 +600,18 @@
     <string name="badges_earned_count">%1$d insígnies guanyades</string>
     <string name="badge_earned">Insígnia Guanyada!</string>
     <string name="badge_no_badges">Encara no has guanyat cap insígnia</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Campió de Pasqua</string>
+    <string name="badge_event_easter_desc">Has completat l\'esdeveniment estacional de Pasqua</string>
+    <string name="badge_event_summer_name">Estrella d\'estiu</string>
+    <string name="badge_event_summer_desc">Has completat l\'esdeveniment estacional d\'estiu</string>
+    <string name="badge_event_halloween_name">Resolutor sinistre</string>
+    <string name="badge_event_halloween_desc">Has completat l\'esdeveniment estacional de Halloween</string>
+    <string name="badge_event_christmas_name">Heroi nadalenc</string>
+    <string name="badge_event_christmas_desc">Has completat l\'esdeveniment estacional de Nadal</string>
+    <string name="badge_event_new_year_name">Llegenda d\'Any Nou</string>
+    <string name="badge_event_new_year_desc">Has completat l\'esdeveniment estacional d\'Any Nou</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jocs</string>

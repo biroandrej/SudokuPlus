@@ -371,6 +371,7 @@
     <string name="achievement_category_variety">Varietà</string>
     <string name="achievement_category_mastery">Maestria</string>
     <string name="achievement_category_daily">Giornaliera</string>
+    <string name="achievement_category_seasonal">Stagionale</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronzo</string>
@@ -463,6 +464,18 @@
     <string name="achievement_daily_streak_30_desc">Serie di 30 giorni di sfida giornaliera</string>
     <string name="achievement_daily_streak_100">Leggenda Giornaliera</string>
     <string name="achievement_daily_streak_100_desc">Serie di 100 giorni di sfida giornaliera</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Esploratore di eventi</string>
+    <string name="achievement_seasonal_first_desc">Completa la tua prima sfida evento</string>
+    <string name="achievement_seasonal_5">Appassionato di eventi</string>
+    <string name="achievement_seasonal_5_desc">Completa 5 sfide evento</string>
+    <string name="achievement_seasonal_25">Veterano degli eventi</string>
+    <string name="achievement_seasonal_25_desc">Completa 25 sfide evento</string>
+    <string name="achievement_seasonal_events_3">Cacciatore di stagioni</string>
+    <string name="achievement_seasonal_events_3_desc">Partecipa a 3 eventi stagionali</string>
+    <string name="achievement_seasonal_events_10">Collezionista di eventi</string>
+    <string name="achievement_seasonal_events_10_desc">Partecipa a 10 eventi stagionali</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Sfida Giornaliera</string>
@@ -603,6 +616,18 @@
     <string name="badges_earned_count">%1$d distintivi ottenuti</string>
     <string name="badge_earned">Distintivo ottenuto!</string>
     <string name="badge_no_badges">Nessun distintivo ottenuto</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Campione di Pasqua</string>
+    <string name="badge_event_easter_desc">Completato l\'evento stagionale di Pasqua</string>
+    <string name="badge_event_summer_name">Stella dell\'estate</string>
+    <string name="badge_event_summer_desc">Completato l\'evento stagionale estivo</string>
+    <string name="badge_event_halloween_name">Risolutore inquietante</string>
+    <string name="badge_event_halloween_desc">Completato l\'evento stagionale di Halloween</string>
+    <string name="badge_event_christmas_name">Eroe delle feste</string>
+    <string name="badge_event_christmas_desc">Completato l\'evento stagionale di Natale</string>
+    <string name="badge_event_new_year_name">Leggenda di Capodanno</string>
+    <string name="badge_event_new_year_desc">Completato l\'evento stagionale di Capodanno</string>
 
     <!-- Premium -->
     <string name="premium_title">Sudoku Plus Premium</string>

@@ -405,6 +405,7 @@
     <string name="achievement_category_variety">Variedade</string>
     <string name="achievement_category_mastery">Maestria</string>
     <string name="achievement_category_daily">Diario</string>
+    <string name="achievement_category_seasonal">Sazonal</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronze</string>
@@ -497,6 +498,18 @@
     <string name="achievement_daily_streak_30_desc">Sequencia de 30 dias de desafios diarios</string>
     <string name="achievement_daily_streak_100">Lenda Diaria</string>
     <string name="achievement_daily_streak_100_desc">Sequencia de 100 dias de desafios diarios</string>
+
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Explorador de eventos</string>
+    <string name="achievement_seasonal_first_desc">Complete seu primeiro desafio de evento</string>
+    <string name="achievement_seasonal_5">Entusiasta de eventos</string>
+    <string name="achievement_seasonal_5_desc">Complete 5 desafios de eventos</string>
+    <string name="achievement_seasonal_25">Veterano de eventos</string>
+    <string name="achievement_seasonal_25_desc">Complete 25 desafios de eventos</string>
+    <string name="achievement_seasonal_events_3">Caçador de temporadas</string>
+    <string name="achievement_seasonal_events_3_desc">Participe de 3 eventos sazonais</string>
+    <string name="achievement_seasonal_events_10">Colecionador de eventos</string>
+    <string name="achievement_seasonal_events_10_desc">Participe de 10 eventos sazonais</string>
 
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Desafio Diario</string>
@@ -591,6 +604,18 @@
     <string name="badges_earned_count">%1$d distintivos conquistados</string>
     <string name="badge_earned">Distintivo Conquistado!</string>
     <string name="badge_no_badges">Nenhum distintivo conquistado ainda</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Campeão da Páscoa</string>
+    <string name="badge_event_easter_desc">Completou o evento sazonal de Páscoa</string>
+    <string name="badge_event_summer_name">Estrela do verão</string>
+    <string name="badge_event_summer_desc">Completou o evento sazonal de verão</string>
+    <string name="badge_event_halloween_name">Solucionador assustador</string>
+    <string name="badge_event_halloween_desc">Completou o evento sazonal de Halloween</string>
+    <string name="badge_event_christmas_name">Herói natalino</string>
+    <string name="badge_event_christmas_desc">Completou o evento sazonal de Natal</string>
+    <string name="badge_event_new_year_name">Lenda do Ano Novo</string>
+    <string name="badge_event_new_year_desc">Completou o evento sazonal de Ano Novo</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jogos</string>
