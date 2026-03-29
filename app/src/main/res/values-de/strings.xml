@@ -510,6 +510,7 @@
     <string name="xp_bonus_no_mistakes">Perfektes Spiel</string>
     <string name="xp_bonus_no_hints">Keine Hinweise verwendet</string>
     <string name="xp_bonus_daily_challenge">Tägliche Herausforderung</string>
+    <string name="xp_bonus_event_challenge">Event-Herausforderung</string>
     <string name="xp_bonus_streak">%1$d Tage Serie</string>
     <string name="xp_bonus_reward_boost">Täglicher Belohnungsboost</string>
 

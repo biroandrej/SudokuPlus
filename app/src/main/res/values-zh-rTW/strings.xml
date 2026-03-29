@@ -568,6 +568,7 @@
     <string name="xp_bonus_no_mistakes">完美遊戲</string>
     <string name="xp_bonus_no_hints">未使用提示</string>
     <string name="xp_bonus_daily_challenge">每日挑戰</string>
+    <string name="xp_bonus_event_challenge">活動挑戰</string>
     <string name="xp_bonus_streak">%1$d 天連勝</string>
     <string name="xp_bonus_reward_boost">每日獎勵加成</string>
 

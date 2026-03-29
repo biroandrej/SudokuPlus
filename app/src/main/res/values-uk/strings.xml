@@ -583,6 +583,7 @@
     <string name="xp_bonus_no_mistakes">Ідеальна гра</string>
     <string name="xp_bonus_no_hints">Без підказок</string>
     <string name="xp_bonus_daily_challenge">Щоденний виклик</string>
+    <string name="xp_bonus_event_challenge">Виклик події</string>
     <string name="xp_bonus_streak">Серія %1$d днів</string>
     <string name="xp_bonus_reward_boost">Буст щоденної нагороди</string>
 

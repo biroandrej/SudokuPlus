@@ -544,6 +544,7 @@
     <string name="xp_bonus_no_mistakes">Partita perfetta</string>
     <string name="xp_bonus_no_hints">Nessun suggerimento</string>
     <string name="xp_bonus_daily_challenge">Sfida giornaliera</string>
+    <string name="xp_bonus_event_challenge">Sfida evento</string>
     <string name="xp_bonus_streak">Serie di %1$d giorni</string>
 
     <!-- Reward Calendar -->

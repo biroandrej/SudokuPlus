@@ -568,6 +568,7 @@
     <string name="xp_bonus_no_mistakes">Hoàn hảo</string>
     <string name="xp_bonus_no_hints">Không dùng gợi ý</string>
     <string name="xp_bonus_daily_challenge">Thử thách hàng ngày</string>
+    <string name="xp_bonus_event_challenge">Thử thách sự kiện</string>
     <string name="xp_bonus_streak">Chuỗi %1$d ngày</string>
     <string name="xp_bonus_reward_boost">Tăng thưởng hàng ngày</string>
 

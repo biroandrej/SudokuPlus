@@ -573,6 +573,7 @@
     <string name="xp_bonus_no_mistakes">பரிபூரண விளையாட்டு</string>
     <string name="xp_bonus_no_hints">உதவிகள் பயன்படுத்தப்படவில்லை</string>
     <string name="xp_bonus_daily_challenge">தினசரி சவால்</string>
+    <string name="xp_bonus_event_challenge">நிகழ்வு சவால்</string>
     <string name="xp_bonus_streak">%1$d நாள் தொடர்</string>
     <string name="xp_bonus_reward_boost">தினசரி வெகுமதி ஊக்கம்</string>
 

@@ -581,6 +581,7 @@
     <string name="xp_bonus_no_mistakes">Bezchybna hra</string>
     <string name="xp_bonus_no_hints">Bez napovedy</string>
     <string name="xp_bonus_daily_challenge">Denna vyzva</string>
+    <string name="xp_bonus_event_challenge">Vyzva udalosti</string>
     <string name="xp_bonus_streak">%1$d dnova seria</string>
     <string name="xp_bonus_reward_boost">Boost dennej odmeny</string>
 

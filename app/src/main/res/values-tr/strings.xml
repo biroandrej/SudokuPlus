@@ -573,6 +573,7 @@
     <string name="xp_bonus_no_mistakes">Mükemmel Oyun</string>
     <string name="xp_bonus_no_hints">İpucu Kullanılmadı</string>
     <string name="xp_bonus_daily_challenge">Günlük Meydan Okuma</string>
+    <string name="xp_bonus_event_challenge">Etkinlik Meydan Okuması</string>
     <string name="xp_bonus_streak">%1$d Günlük Seri</string>
     <string name="xp_bonus_reward_boost">Günlük Ödül Artışı</string>
 

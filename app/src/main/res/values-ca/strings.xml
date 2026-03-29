@@ -574,6 +574,7 @@
     <string name="xp_bonus_no_mistakes">Partida perfecta</string>
     <string name="xp_bonus_no_hints">Sense pistes</string>
     <string name="xp_bonus_daily_challenge">Repte diari</string>
+    <string name="xp_bonus_event_challenge">Repte d\'esdeveniment</string>
     <string name="xp_bonus_streak">Ratxa de %1$d dies</string>
     <string name="xp_bonus_reward_boost">Augment de recompensa diària</string>
 

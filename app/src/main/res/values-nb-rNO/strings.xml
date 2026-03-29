@@ -573,6 +573,7 @@
     <string name="xp_bonus_no_mistakes">Perfekt spill</string>
     <string name="xp_bonus_no_hints">Ingen hint brukt</string>
     <string name="xp_bonus_daily_challenge">Daglig utfordring</string>
+    <string name="xp_bonus_event_challenge">Arrangementsutfordring</string>
     <string name="xp_bonus_streak">%1$d dagers rekke</string>
     <string name="xp_bonus_reward_boost">Daglig belønningsboost</string>
 

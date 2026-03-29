@@ -568,6 +568,7 @@
     <string name="xp_bonus_no_mistakes">Permainan sempurna</string>
     <string name="xp_bonus_no_hints">Tanpa petunjuk</string>
     <string name="xp_bonus_daily_challenge">Tantangan harian</string>
+    <string name="xp_bonus_event_challenge">Tantangan acara</string>
     <string name="xp_bonus_streak">Streak %1$d hari</string>
     <string name="xp_bonus_reward_boost">Peningkatan Hadiah Harian</string>
 

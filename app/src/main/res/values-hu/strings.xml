@@ -573,6 +573,7 @@
     <string name="xp_bonus_no_mistakes">Tokeletes jatek</string>
     <string name="xp_bonus_no_hints">Nem hasznalt tippeket</string>
     <string name="xp_bonus_daily_challenge">Napi kihivas</string>
+    <string name="xp_bonus_event_challenge">Esemeny kihivas</string>
     <string name="xp_bonus_streak">%1$d napos seria</string>
     <string name="xp_bonus_reward_boost">Napi jutalom noveles</string>
 

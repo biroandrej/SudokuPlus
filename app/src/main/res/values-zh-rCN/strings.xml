@@ -656,6 +656,7 @@
     <string name="xp_bonus_no_mistakes">完美游戏</string>
     <string name="xp_bonus_no_hints">未使用提示</string>
     <string name="xp_bonus_daily_challenge">每日挑战</string>
+    <string name="xp_bonus_event_challenge">活动挑战</string>
     <string name="xp_bonus_streak">%1$d天连胜</string>
 
     <!-- Reward Calendar -->

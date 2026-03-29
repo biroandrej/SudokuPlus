@@ -592,6 +592,7 @@
     <string name="xp_bonus_no_mistakes">لعبة مثالية</string>
     <string name="xp_bonus_no_hints">لم يتم استخدام تلميحات</string>
     <string name="xp_bonus_daily_challenge">التحدي اليومي</string>
+    <string name="xp_bonus_event_challenge">تحدي الحدث</string>
     <string name="xp_bonus_streak">سلسلة %1$d يوم</string>
     <string name="xp_bonus_reward_boost">تعزيز المكافأة اليومية</string>
 

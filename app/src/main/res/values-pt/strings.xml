@@ -364,6 +364,7 @@
     <string name="xp_bonus_no_mistakes">Jogo perfeito</string>
     <string name="xp_bonus_no_hints">Sem dicas</string>
     <string name="xp_bonus_daily_challenge">Desafio diário</string>
+    <string name="xp_bonus_event_challenge">Desafio de evento</string>
     <string name="xp_bonus_streak">Sequência de %1$d dias</string>
 
     <!-- Reward Calendar -->

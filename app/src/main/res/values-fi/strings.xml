@@ -573,6 +573,7 @@
     <string name="xp_bonus_no_mistakes">Täydellinen peli</string>
     <string name="xp_bonus_no_hints">Ei vihjeitä käytetty</string>
     <string name="xp_bonus_daily_challenge">Päivittäinen haaste</string>
+    <string name="xp_bonus_event_challenge">Tapahtumahaaste</string>
     <string name="xp_bonus_streak">%1$d päivän putkeen</string>
     <string name="xp_bonus_reward_boost">Päivittäinen palkintoboosti</string>
 

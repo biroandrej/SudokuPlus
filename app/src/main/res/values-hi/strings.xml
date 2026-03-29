@@ -577,6 +577,7 @@
     <string name="xp_bonus_no_mistakes">परफेक्ट गेम</string>
     <string name="xp_bonus_no_hints">कोई संकेत नहीं</string>
     <string name="xp_bonus_daily_challenge">दैनिक चुनौती</string>
+    <string name="xp_bonus_event_challenge">इवेंट चुनौती</string>
     <string name="xp_bonus_streak">%1$d दिन की स्ट्रीक</string>
     <string name="xp_bonus_reward_boost">दैनिक पुरस्कार बूस्ट</string>
 

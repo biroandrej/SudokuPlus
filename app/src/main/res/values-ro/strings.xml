@@ -578,6 +578,7 @@
     <string name="xp_bonus_no_mistakes">Joc perfect</string>
     <string name="xp_bonus_no_hints">Fără indicii</string>
     <string name="xp_bonus_daily_challenge">Provocare zilnică</string>
+    <string name="xp_bonus_event_challenge">Provocare de eveniment</string>
     <string name="xp_bonus_streak">Serie de %1$d zile</string>
     <string name="xp_bonus_reward_boost">Amplificare Recompensă Zilnică</string>
 

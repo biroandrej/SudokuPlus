@@ -586,6 +586,7 @@
     <string name="xp_bonus_no_mistakes">Τέλειο παιχνίδι</string>
     <string name="xp_bonus_no_hints">Χωρίς βοήθεια</string>
     <string name="xp_bonus_daily_challenge">Ημερήσια πρόκληση</string>
+    <string name="xp_bonus_event_challenge">Πρόκληση εκδήλωσης</string>
     <string name="xp_bonus_streak">%1$d ημέρες σερί</string>
     <string name="xp_bonus_reward_boost">Ενίσχυση καθημερινής ανταμοιβής</string>
 

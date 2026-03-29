@@ -586,6 +586,7 @@
     <string name="xp_bonus_no_mistakes">Perfekt spil</string>
     <string name="xp_bonus_no_hints">Ingen hints brugt</string>
     <string name="xp_bonus_daily_challenge">Daglig udfordring</string>
+    <string name="xp_bonus_event_challenge">Begivenhedsudfordring</string>
     <string name="xp_bonus_streak">%1$d dages stime</string>
     <string name="xp_bonus_reward_boost">Daglig belønningsboost</string>
 
