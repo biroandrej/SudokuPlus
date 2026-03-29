@@ -195,56 +195,21 @@ constructor(
 
             val key = prefs[lastSelectedGameDifficultyTypeKey] ?: ""
             if (key.isNotEmpty() && key.contains(";")) {
-                gameDifficulty =
-                    when (key.substring(0, key.indexOf(";"))) {
-                        "0" -> GameDifficulty.Unspecified
-                        "1" -> GameDifficulty.Simple
-                        "2" -> GameDifficulty.Easy
-                        "3" -> GameDifficulty.Moderate
-                        "4" -> GameDifficulty.Hard
-                        "5" -> GameDifficulty.Challenge
-                        "6" -> GameDifficulty.Custom
-                        else -> GameDifficulty.Easy
-                    }
-                gameType =
-                    when (key.substring(key.indexOf(";") + 1)) {
-                        "0" -> GameType.Unspecified
-                        "1" -> GameType.Default9x9
-                        "2" -> GameType.Default12x12
-                        "3" -> GameType.Default6x6
-                        "4" -> GameType.Killer9x9
-                        "5" -> GameType.Killer12x12
-                        "6" -> GameType.Killer6x6
-                        else -> GameType.Default9x9
-                    }
+                val parts = key.split(";")
+                gameDifficulty = GameDifficulty.entries.getOrElse(
+                    parts[0].toIntOrNull() ?: 2
+                ) { GameDifficulty.Easy }
+                gameType = GameType.entries.getOrElse(
+                    parts[1].toIntOrNull() ?: 1
+                ) { GameType.Default9x9 }
             }
             Pair(gameDifficulty, gameType)
         }
 
     suspend fun setLastSelectedGameDifficultyType(difficulty: GameDifficulty, type: GameType) {
         dataStore.edit { settings ->
-            var difficultyAndType =
-                when (difficulty) {
-                    GameDifficulty.Unspecified -> "0"
-                    GameDifficulty.Simple -> "1"
-                    GameDifficulty.Easy -> "2"
-                    GameDifficulty.Moderate -> "3"
-                    GameDifficulty.Hard -> "4"
-                    GameDifficulty.Challenge -> "5"
-                    GameDifficulty.Custom -> "6"
-                }
-            difficultyAndType += ";"
-            difficultyAndType +=
-                when (type) {
-                    GameType.Unspecified -> "0"
-                    GameType.Default9x9 -> "1"
-                    GameType.Default12x12 -> "2"
-                    GameType.Default6x6 -> "3"
-                    GameType.Killer9x9 -> "4"
-                    GameType.Killer12x12 -> "5"
-                    GameType.Killer6x6 -> "6"
-                }
-            settings[lastSelectedGameDifficultyTypeKey] = difficultyAndType
+            settings[lastSelectedGameDifficultyTypeKey] =
+                "${difficulty.ordinal};${type.ordinal}"
         }
     }
 }
