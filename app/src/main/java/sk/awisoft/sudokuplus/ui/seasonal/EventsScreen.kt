@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +15,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.CalendarMonth
-import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -36,7 +34,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -56,10 +53,7 @@ import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination<RootGraph>(style = AnimatedNavigation::class)
 @Composable
-fun EventsScreen(
-    navigator: DestinationsNavigator,
-    viewModel: EventsViewModel = hiltViewModel()
-) {
+fun EventsScreen(navigator: DestinationsNavigator, viewModel: EventsViewModel = hiltViewModel()) {
     val activeEvents by viewModel.activeEvents.collectAsStateWithLifecycle()
     val upcomingEvents by viewModel.upcomingEvents.collectAsStateWithLifecycle()
     val allEvents by viewModel.allEvents.collectAsStateWithLifecycle()
@@ -174,11 +168,7 @@ private fun SectionHeader(title: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun EventCard(
-    event: SeasonalEvent,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
+fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Modifier) {
     val seasonalColors = SeasonalColors.forEventType(event.eventType)
     val isActive = event.status is EventStatus.Active
     val isEnded = event.status is EventStatus.Ended

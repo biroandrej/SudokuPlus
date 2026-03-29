@@ -1,7 +1,6 @@
 package sk.awisoft.sudokuplus.core.seasonal
 
 import java.time.LocalDate
-import java.time.ZonedDateTime
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -144,28 +143,26 @@ class SeasonalEventModelsTest {
         assertFalse(upcomingEvent.isActive)
     }
 
-    private fun createEvent(
-        startDate: LocalDate,
-        endDate: LocalDate
-    ): SeasonalEvent = SeasonalEvent(
-        id = "test_event",
-        title = "Test Event",
-        description = "A test seasonal event",
-        eventType = EventType.EASTER,
-        startDate = startDate,
-        endDate = endDate,
-        theme = EventTheme(
-            primaryColor = 0xFFFF5722,
-            secondaryColor = 0xFFFF9800,
-            backgroundColor = 0xFFFFF3E0,
-            accentColor = 0xFFE64A19
-        ),
-        challenges = listOf(
-            EventChallenge(day = 1, difficulty = GameDifficulty.Easy, xpMultiplier = 1.5)
-        ),
-        rewards = listOf(
-            EventReward(type = EventRewardType.HINTS, amount = 3)
-        ),
-        badgeId = "test_badge"
-    )
+    private fun createEvent(startDate: LocalDate, endDate: LocalDate): SeasonalEvent =
+        SeasonalEvent(
+            id = "test_event",
+            title = "Test Event",
+            description = "A test seasonal event",
+            eventType = EventType.EASTER,
+            startDate = startDate,
+            endDate = endDate,
+            theme = EventTheme(
+                primaryColor = 0xFFFF5722,
+                secondaryColor = 0xFFFF9800,
+                backgroundColor = 0xFFFFF3E0,
+                accentColor = 0xFFE64A19
+            ),
+            challenges = listOf(
+                EventChallenge(day = 1, difficulty = GameDifficulty.Easy, xpMultiplier = 1.5)
+            ),
+            rewards = listOf(
+                EventReward(type = EventRewardType.HINTS, amount = 3)
+            ),
+            badgeId = "test_badge"
+        )
 }

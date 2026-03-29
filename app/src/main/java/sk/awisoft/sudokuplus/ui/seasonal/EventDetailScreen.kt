@@ -77,7 +77,9 @@ fun EventDetailScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(eventWithProgress?.event?.title ?: stringResource(R.string.seasonal_events_title))
+                    Text(
+                        eventWithProgress?.event?.title ?: stringResource(R.string.seasonal_events_title)
+                    )
                 },
                 navigationIcon = {
                     IconButton(onClick = { navigator.navigateUp() }) {
@@ -264,14 +266,22 @@ private fun ChallengeItem(
             when {
                 isCompleted -> {
                     FilledTonalButton(onClick = {}, enabled = false) {
-                        Icon(Icons.Rounded.Check, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Icon(
+                            Icons.Rounded.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
                         Spacer(modifier = Modifier.size(4.dp))
                         Text(stringResource(R.string.seasonal_event_completed))
                     }
                 }
                 isPlayable -> {
                     Button(onClick = onPlay) {
-                        Icon(Icons.Rounded.PlayArrow, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Icon(
+                            Icons.Rounded.PlayArrow,
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
                         Spacer(modifier = Modifier.size(4.dp))
                         Text(stringResource(R.string.seasonal_event_play))
                     }

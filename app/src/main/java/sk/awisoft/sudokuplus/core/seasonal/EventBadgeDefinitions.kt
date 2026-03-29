@@ -46,6 +46,5 @@ object EventBadgeDefinitions {
     fun getByEventType(eventType: EventType): EventBadgeDefinition? =
         all.find { it.eventType == eventType }
 
-    fun getById(id: String): EventBadgeDefinition? =
-        all.find { it.id == id }
+    fun getById(id: String): EventBadgeDefinition? = all.find { it.id == id }
 }

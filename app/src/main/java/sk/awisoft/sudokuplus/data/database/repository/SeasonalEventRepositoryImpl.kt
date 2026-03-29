@@ -5,13 +5,13 @@ import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
+import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.core.seasonal.model.EventChallenge
 import sk.awisoft.sudokuplus.core.seasonal.model.EventReward
 import sk.awisoft.sudokuplus.core.seasonal.model.EventRewardType
 import sk.awisoft.sudokuplus.core.seasonal.model.EventTheme
 import sk.awisoft.sudokuplus.core.seasonal.model.EventType
 import sk.awisoft.sudokuplus.core.seasonal.model.SeasonalEvent
-import sk.awisoft.sudokuplus.core.qqwing.GameDifficulty
 import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
 import sk.awisoft.sudokuplus.data.database.model.EventProgressEntity
 import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
@@ -35,10 +35,9 @@ class SeasonalEventRepositoryImpl(
         }
     }
 
-    override fun getAllEvents(): Flow<List<SeasonalEvent>> =
-        dao.getAllEvents().map { entities ->
-            entities.map { SeasonalEventMapper.toDomain(it) }
-        }
+    override fun getAllEvents(): Flow<List<SeasonalEvent>> = dao.getAllEvents().map { entities ->
+        entities.map { SeasonalEventMapper.toDomain(it) }
+    }
 
     override suspend fun getEventById(id: String): SeasonalEvent? =
         dao.getEventById(id)?.let { SeasonalEventMapper.toDomain(it) }

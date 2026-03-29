@@ -9,9 +9,9 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import java.util.concurrent.TimeUnit
 import sk.awisoft.sudokuplus.ai.RemoteConfigProvider
 import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
-import java.util.concurrent.TimeUnit
 
 @HiltWorker
 class SeasonalEventSyncWorker @AssistedInject constructor(
@@ -45,7 +45,8 @@ class SeasonalEventSyncWorker @AssistedInject constructor(
 
         fun enqueue(context: Context) {
             val request = PeriodicWorkRequestBuilder<SeasonalEventSyncWorker>(
-                SYNC_INTERVAL_HOURS, TimeUnit.HOURS
+                SYNC_INTERVAL_HOURS,
+                TimeUnit.HOURS
             ).build()
 
             WorkManager.getInstance(context)
