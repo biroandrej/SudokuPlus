@@ -54,6 +54,7 @@ import sk.awisoft.sudokuplus.core.utils.UndoRedoManager
 import sk.awisoft.sudokuplus.core.utils.toFormattedString
 import sk.awisoft.sudokuplus.core.xp.XPEngine
 import sk.awisoft.sudokuplus.core.xp.XPResult
+import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
 import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
@@ -93,7 +94,8 @@ constructor(
     private val dailyChallengeRepository: DailyChallengeRepository,
     private val aiHintService: AIHintService,
     private val aiUsageManager: AIUsageManager,
-    private val billingManager: BillingManager
+    private val billingManager: BillingManager,
+    private val seasonalEventDao: SeasonalEventDao
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
@@ -878,6 +880,11 @@ constructor(
                     mistakes = mistakesMade,
                     hintsUsed = hintsUsed
                 )
+            }
+
+            // Mark event challenge as completed
+            seasonalEventDao.getChallengeGameByBoardUid(boardEntity.uid)?.let {
+                seasonalEventDao.markChallengeCompleted(boardEntity.uid)
             }
 
             // Check for newly unlocked achievements

@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
+import sk.awisoft.sudokuplus.data.database.model.EventChallengeGame
 import sk.awisoft.sudokuplus.data.database.model.EventProgressEntity
 import sk.awisoft.sudokuplus.data.database.model.SeasonalEventEntity
 
@@ -47,4 +48,20 @@ interface SeasonalEventDao {
 
     @Update
     suspend fun updateProgress(progress: EventProgressEntity)
+
+    // Event Challenge Games
+    @Insert
+    suspend fun insertChallengeGame(game: EventChallengeGame): Long
+
+    @Query("SELECT * FROM event_challenge_games WHERE event_id = :eventId")
+    suspend fun getChallengeGames(eventId: String): List<EventChallengeGame>
+
+    @Query("SELECT * FROM event_challenge_games WHERE event_id = :eventId")
+    fun getChallengeGamesFlow(eventId: String): Flow<List<EventChallengeGame>>
+
+    @Query("SELECT * FROM event_challenge_games WHERE board_uid = :boardUid LIMIT 1")
+    suspend fun getChallengeGameByBoardUid(boardUid: Long): EventChallengeGame?
+
+    @Query("UPDATE event_challenge_games SET completed = 1 WHERE board_uid = :boardUid")
+    suspend fun markChallengeCompleted(boardUid: Long)
 }

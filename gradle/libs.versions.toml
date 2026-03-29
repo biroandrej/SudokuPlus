@@ -48,6 +48,9 @@ firebaseAI = "17.7.0"
 # Billing
 playBilling = "7.1.1"
 
+# Animations
+lottie = "6.6.6"
+
 # Third-party
 aboutLibraries = "13.2.1"
 materialKolor = "4.0.5"
@@ -112,6 +115,9 @@ startupRuntime = { group = "androidx.startup", name = "startup-runtime", version
 
 # Serialization
 serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization-json" }
+
+# Animations
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
 
 # Third-party
 aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }

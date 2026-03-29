@@ -26,6 +26,7 @@ import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
 import sk.awisoft.sudokuplus.data.database.dao.UserProgressDao
 import sk.awisoft.sudokuplus.data.database.model.ClaimedReward
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
+import sk.awisoft.sudokuplus.data.database.model.EventChallengeGame
 import sk.awisoft.sudokuplus.data.database.model.EventProgressEntity
 import sk.awisoft.sudokuplus.data.database.model.Folder
 import sk.awisoft.sudokuplus.data.database.model.LoginRewardStatus
@@ -38,8 +39,8 @@ import sk.awisoft.sudokuplus.data.database.model.UserAchievement
 import sk.awisoft.sudokuplus.data.database.model.UserProgress
 
 @Database(
-    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class, UserAchievement::class, UserProgress::class, LoginRewardStatus::class, ClaimedReward::class, RewardBadge::class, SeasonalEventEntity::class, EventProgressEntity::class],
-    version = 8
+    entities = [Record::class, SudokuBoard::class, SavedGame::class, Folder::class, DailyChallenge::class, UserAchievement::class, UserProgress::class, LoginRewardStatus::class, ClaimedReward::class, RewardBadge::class, SeasonalEventEntity::class, EventProgressEntity::class, EventChallengeGame::class],
+    version = 9
 )
 @TypeConverters(
     DurationConverter::class,
@@ -230,6 +231,23 @@ abstract class AppDatabase : RoomDatabase() {
                 }
             }
 
+        private val MIGRATION_8_9 =
+            object : Migration(8, 9) {
+                override fun migrate(db: SupportSQLiteDatabase) {
+                    db.execSQL(
+                        """
+                        CREATE TABLE IF NOT EXISTS event_challenge_games (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                            event_id TEXT NOT NULL,
+                            challenge_day INTEGER NOT NULL,
+                            board_uid INTEGER NOT NULL,
+                            completed INTEGER NOT NULL DEFAULT 0
+                        )
+                        """.trimIndent()
+                    )
+                }
+            }
+
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE =
@@ -238,7 +256,7 @@ abstract class AppDatabase : RoomDatabase() {
                         AppDatabase::class.java,
                         "main_database"
                     )
-                        .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8)
+                        .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
                         .build()
             }
 

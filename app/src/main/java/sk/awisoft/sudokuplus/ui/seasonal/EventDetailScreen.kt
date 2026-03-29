@@ -51,7 +51,9 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.seasonal.model.EventChallenge
 import sk.awisoft.sudokuplus.core.seasonal.model.EventStatus
+import sk.awisoft.sudokuplus.destinations.GameScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
+import sk.awisoft.sudokuplus.ui.seasonal.celebrations.EventChallengeCompleteDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination<RootGraph>(style = AnimatedNavigation::class)
@@ -62,13 +64,42 @@ fun EventDetailScreen(
     viewModel: EventsViewModel = hiltViewModel()
 ) {
     val selectedEvent by viewModel.selectedEvent.collectAsStateWithLifecycle()
+    val gameReady by viewModel.gameReady.collectAsStateWithLifecycle()
+    val completedDays by viewModel.completedDays.collectAsStateWithLifecycle()
+    val celebration by viewModel.celebration.collectAsStateWithLifecycle()
 
     LaunchedEffect(eventId) {
         if (selectedEvent == null || selectedEvent?.event?.id != eventId) {
-            viewModel.allEvents.value.find { it.id == eventId }?.let {
-                viewModel.selectEvent(it)
-            }
+            viewModel.loadEvent(eventId)
         }
+    }
+
+    // Check for new completions when returning from game
+    LaunchedEffect(completedDays) {
+        viewModel.checkForNewCompletions()
+    }
+
+    LaunchedEffect(gameReady) {
+        gameReady?.let { boardUid ->
+            viewModel.consumeGameReady()
+            navigator.navigate(
+                GameScreenDestination(gameUid = boardUid, playedBefore = false)
+            )
+        }
+    }
+
+    // Celebration dialog
+    celebration?.let { celebrationData ->
+        EventChallengeCompleteDialog(
+            eventType = celebrationData.eventType,
+            eventTitle = celebrationData.eventTitle,
+            challengeDay = celebrationData.challengeDay,
+            completedCount = celebrationData.completedCount,
+            totalChallenges = celebrationData.totalChallenges,
+            isMilestone = celebrationData.milestoneLabel != null,
+            milestoneLabel = celebrationData.milestoneLabel,
+            onDismiss = { viewModel.dismissCelebration() }
+        )
     }
 
     val eventWithProgress = selectedEvent
@@ -109,9 +140,8 @@ fun EventDetailScreen(
         }
 
         val event = eventWithProgress.event
-        val progress = eventWithProgress.progress
         val currentDay = viewModel.getCurrentDay(event)
-        val challengesCompleted = progress?.challengesCompleted ?: 0
+        val challengesCompleted = completedDays.size
         val completionPercent = viewModel.getCompletionPercentage(event, challengesCompleted)
 
         LazyColumn(
@@ -174,9 +204,9 @@ fun EventDetailScreen(
                 ChallengeItem(
                     challenge = challenge,
                     currentDay = currentDay,
-                    isCompleted = challenge.day <= (progress?.lastChallengeDay ?: 0),
+                    isCompleted = challenge.day in completedDays,
                     isActive = event.status is EventStatus.Active,
-                    onPlay = { /* Will be wired when event gameplay is connected */ }
+                    onPlay = { viewModel.playChallenge(event, challenge) }
                 )
             }
 

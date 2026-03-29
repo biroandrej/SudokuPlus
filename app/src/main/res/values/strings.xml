@@ -523,6 +523,11 @@
     <string name="seasonal_event_reward_earned">Reward Earned!</string>
     <string name="seasonal_event_badge_earned">Event Badge Earned!</string>
     <string name="seasonal_event_view_all">View All Events</string>
+    <string name="seasonal_event_milestone_25">25% Complete!</string>
+    <string name="seasonal_event_milestone_50">Halfway There!</string>
+    <string name="seasonal_event_milestone_75">Almost Done!</string>
+    <string name="seasonal_event_milestone_100">Event Complete!</string>
+    <string name="seasonal_event_streak">%1$d day streak</string>
 
     <!-- Seasonal Event Achievements -->
     <string name="achievement_seasonal_first">Event Explorer</string>

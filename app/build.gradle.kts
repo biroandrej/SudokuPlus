@@ -226,6 +226,7 @@ dependencies {
     ksp(libs.hilt.common.compiler)
     ksp(libs.hilt.work)
     implementation(libs.materialKolor)
+    implementation(libs.lottie.compose)
 
     implementation(libs.composeMarkdown)
     implementation(libs.splash.screen)

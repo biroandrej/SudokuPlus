@@ -34,12 +34,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import sk.awisoft.sudokuplus.R
-import sk.awisoft.sudokuplus.ui.components.ConfettiEffect
+import sk.awisoft.sudokuplus.core.seasonal.model.EventType
+import sk.awisoft.sudokuplus.ui.seasonal.celebrations.ThemedCelebrationEffect
 
 @Composable
 fun EventRewardDialog(
     badgeName: String,
     eventTitle: String,
+    eventType: EventType,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -60,10 +62,11 @@ fun EventRewardDialog(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            ConfettiEffect(
-                modifier = Modifier.fillMaxSize(),
-                particleCount = 80,
-                durationMillis = 4000
+            // Full themed celebration for badge earned
+            ThemedCelebrationEffect(
+                eventType = eventType,
+                particleCount = 100,
+                durationMillis = 5000
             )
 
             Card(
