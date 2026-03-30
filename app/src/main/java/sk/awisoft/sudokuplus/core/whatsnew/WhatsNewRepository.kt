@@ -11,15 +11,18 @@ object WhatsNewRepository {
             pages = listOf(
                 WhatsNewPage(
                     titleRes = R.string.whats_new_v15_page1_title,
-                    descriptionRes = R.string.whats_new_v15_page1_desc
+                    descriptionRes = R.string.whats_new_v15_page1_desc,
+                    lottieRes = R.raw.whats_new_seasonal_events
                 ),
                 WhatsNewPage(
                     titleRes = R.string.whats_new_v15_page2_title,
-                    descriptionRes = R.string.whats_new_v15_page2_desc
+                    descriptionRes = R.string.whats_new_v15_page2_desc,
+                    lottieRes = R.raw.whats_new_event_challenges
                 ),
                 WhatsNewPage(
                     titleRes = R.string.whats_new_v15_page3_title,
-                    descriptionRes = R.string.whats_new_v15_page3_desc
+                    descriptionRes = R.string.whats_new_v15_page3_desc,
+                    lottieRes = R.raw.whats_new_celebrations
                 )
             )
         )

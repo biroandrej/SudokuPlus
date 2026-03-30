@@ -35,11 +35,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -186,15 +189,17 @@ private fun WhatsNewPageContent(page: WhatsNewPage, modifier: Modifier = Modifie
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Optional illustration
-        page.illustrationRes?.let { resId ->
-            Icon(
-                painter = painterResource(resId),
-                contentDescription = null,
-                modifier = Modifier.size(120.dp),
-                tint = MaterialTheme.colorScheme.primary
+        // Lottie animation (preferred) or static illustration
+        page.lottieRes?.let { rawRes ->
+            val composition by rememberLottieComposition(
+                LottieCompositionSpec.RawRes(rawRes)
             )
-            Spacer(modifier = Modifier.height(32.dp))
+            LottieAnimation(
+                composition = composition,
+                iterations = LottieConstants.IterateForever,
+                modifier = Modifier.size(200.dp)
+            )
+            Spacer(modifier = Modifier.height(24.dp))
         }
 
         Text(
