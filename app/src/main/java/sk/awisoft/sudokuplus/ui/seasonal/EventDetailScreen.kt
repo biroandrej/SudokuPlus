@@ -75,9 +75,11 @@ fun EventDetailScreen(
         }
     }
 
-    // Check for new completions when returning from game
+    // Check for new completions when completedDays changes (e.g. returning from game)
     LaunchedEffect(completedDays) {
-        viewModel.checkForNewCompletions()
+        if (completedDays.isNotEmpty()) {
+            viewModel.checkForNewCompletions()
+        }
     }
 
     LaunchedEffect(gameReady) {
@@ -324,10 +326,14 @@ private fun ChallengeItem(
                         Icon(
                             Icons.Rounded.Check,
                             contentDescription = null,
-                            modifier = Modifier.size(18.dp)
+                            modifier = Modifier.size(18.dp),
+                            tint = MaterialTheme.colorScheme.onPrimary
                         )
                         Spacer(modifier = Modifier.size(4.dp))
-                        Text(stringResource(R.string.seasonal_event_completed))
+                        Text(
+                            stringResource(R.string.seasonal_event_completed),
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
                     }
                 }
 

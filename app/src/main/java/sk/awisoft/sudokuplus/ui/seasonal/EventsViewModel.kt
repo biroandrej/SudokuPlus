@@ -96,6 +96,9 @@ class EventsViewModel @Inject constructor(
     private val _badgeCelebration = MutableStateFlow<BadgeEarnedCelebration?>(null)
     val badgeCelebration: StateFlow<BadgeEarnedCelebration?> = _badgeCelebration.asStateFlow()
 
+    // Snapshot of completed days before navigating to a game
+    private var knownCompletedDays: Set<Int>? = null
+
     fun dismissCelebration() {
         _celebration.value = null
     }
@@ -105,21 +108,21 @@ class EventsViewModel @Inject constructor(
     }
 
     fun checkForNewCompletions() {
+        val known = knownCompletedDays ?: return
         val eventId = _currentEventId.value ?: return
         viewModelScope.launch {
             val event = repository.getEventById(eventId) ?: return@launch
             val games = repository.getChallengeGames(eventId)
-            val newlyCompleted = games.filter { it.completed }
-            val completedCount = newlyCompleted.size
-            val total = event.challenges.size
-
-            // Find if there's a newly completed challenge (the latest one)
-            val previousCompleted = completedDays.value
-            val currentCompleted = newlyCompleted.map { it.challengeDay }.toSet()
-            val newDays = currentCompleted - previousCompleted
+            val currentCompleted = games.filter { it.completed }.map { it.challengeDay }.toSet()
+            val newDays = currentCompleted - known
 
             if (newDays.isNotEmpty()) {
+                // Update snapshot so we don't re-trigger
+                knownCompletedDays = currentCompleted
+
                 val newDay = newDays.first()
+                val completedCount = currentCompleted.size
+                val total = event.challenges.size
                 val milestoneResId = getMilestoneResId(completedCount, total)
                 _celebration.value = ChallengeCompleteCelebration(
                     eventType = event.eventType,
@@ -188,6 +191,8 @@ class EventsViewModel @Inject constructor(
     }
 
     fun playChallenge(event: SeasonalEvent, challenge: EventChallenge) {
+        // Snapshot current completions before navigating to game
+        knownCompletedDays = completedDays.value
         viewModelScope.launch {
             // Check if already started this challenge
             val existingGames = repository.getChallengeGames(event.id)
