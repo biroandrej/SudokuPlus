@@ -244,7 +244,7 @@ fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Mo
                     progress = { event.timeProgress },
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.primary,
-                    trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+                    trackColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.5f)
                 )
 
                 Text(
