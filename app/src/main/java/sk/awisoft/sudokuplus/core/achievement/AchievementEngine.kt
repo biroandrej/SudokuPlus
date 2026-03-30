@@ -14,6 +14,7 @@ import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
 
 data class GameCompletionData(
     val difficulty: GameDifficulty,
@@ -21,7 +22,9 @@ data class GameCompletionData(
     val completionTime: Duration,
     val mistakes: Int,
     val hintsUsed: Int,
-    val isDailyChallenge: Boolean = false
+    val isDailyChallenge: Boolean = false,
+    val isEventChallenge: Boolean = false,
+    val eventXpMultiplier: Double = 1.0
 )
 
 @Singleton
@@ -32,7 +35,8 @@ constructor(
     private val savedGameRepository: SavedGameRepository,
     private val recordRepository: RecordRepository,
     private val dailyChallengeRepository: DailyChallengeRepository,
-    private val dailyChallengeManager: DailyChallengeManager
+    private val dailyChallengeManager: DailyChallengeManager,
+    private val seasonalEventRepository: SeasonalEventRepository
 ) {
     /**
      * Check and unlock achievements after a game completion
@@ -144,6 +148,16 @@ constructor(
                 val streak = getPlayStreak()
                 streak to (streak >= requirement.days)
             }
+
+            is AchievementRequirement.EventChallengesCompleted -> {
+                val count = getEventChallengesCompletedCount()
+                count to (count >= requirement.count)
+            }
+
+            is AchievementRequirement.EventsParticipated -> {
+                val count = getEventsParticipatedCount()
+                count to (count >= requirement.count)
+            }
         }
     }
 
@@ -201,6 +215,16 @@ constructor(
                 val streak = getBestPlayStreak()
                 streak to (streak >= requirement.days)
             }
+
+            is AchievementRequirement.EventChallengesCompleted -> {
+                val count = getEventChallengesCompletedCount()
+                count to (count >= requirement.count)
+            }
+
+            is AchievementRequirement.EventsParticipated -> {
+                val count = getEventsParticipatedCount()
+                count to (count >= requirement.count)
+            }
         }
     }
 
@@ -247,6 +271,12 @@ constructor(
     private suspend fun getDailyChallengesCompletedCount(): Int {
         return dailyChallengeRepository.getCompleted().first().size
     }
+
+    private suspend fun getEventChallengesCompletedCount(): Int =
+        seasonalEventRepository.getCompletedChallengesCount()
+
+    private suspend fun getEventsParticipatedCount(): Int =
+        seasonalEventRepository.getParticipatedEventsCount()
 
     private suspend fun getTotalPlayTimeMinutes(): Int {
         val savedGames = savedGameRepository.getAll().first()

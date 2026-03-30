@@ -395,6 +395,24 @@
     <string name="achievement_category_variety">Variasi</string>
     <string name="achievement_category_mastery">Penguasaan</string>
     <string name="achievement_category_daily">Harian</string>
+    <string name="achievement_category_seasonal">Musiman</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Acara Musiman</string>
+    <string name="seasonal_event_active">Aktif</string>
+    <string name="seasonal_event_upcoming">Akan datang</string>
+    <string name="seasonal_event_ended">Berakhir</string>
+    <string name="seasonal_event_starts_in">Dimulai dalam %1$d hari</string>
+    <string name="seasonal_event_ends_in">Berakhir dalam %1$d hari</string>
+    <string name="seasonal_event_ended_ago">Berakhir %1$d hari lalu</string>
+    <string name="seasonal_event_progress">%1$d/%2$d tantangan</string>
+    <string name="seasonal_event_play">Main Tantangan</string>
+    <string name="seasonal_event_completed">Selesai!</string>
+    <string name="seasonal_event_day">Hari %1$d</string>
+    <string name="seasonal_event_no_events">Tidak ada acara yang tersedia saat ini</string>
+    <string name="seasonal_event_reward_earned">Hadiah Diperoleh!</string>
+    <string name="seasonal_event_badge_earned">Lencana Acara Diperoleh!</string>
+    <string name="seasonal_event_view_all">Lihat Semua Acara</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Perunggu</string>
@@ -488,6 +506,18 @@
     <string name="achievement_daily_streak_100">Legenda Harian</string>
     <string name="achievement_daily_streak_100_desc">100 hari tantangan harian berturut-turut</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Penjelajah Acara</string>
+    <string name="achievement_seasonal_first_desc">Selesaikan tantangan acara pertamamu</string>
+    <string name="achievement_seasonal_5">Penggemar Acara</string>
+    <string name="achievement_seasonal_5_desc">Selesaikan 5 tantangan acara</string>
+    <string name="achievement_seasonal_25">Veteran Acara</string>
+    <string name="achievement_seasonal_25_desc">Selesaikan 25 tantangan acara</string>
+    <string name="achievement_seasonal_events_3">Pemburu Musim</string>
+    <string name="achievement_seasonal_events_3_desc">Ikuti 3 acara musiman</string>
+    <string name="achievement_seasonal_events_10">Kolektor Acara</string>
+    <string name="achievement_seasonal_events_10_desc">Ikuti 10 acara musiman</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Tantangan Harian</string>
     <string name="notification_channel_daily_challenge_desc">Notifikasi untuk tantangan harian baru</string>
@@ -538,6 +568,7 @@
     <string name="xp_bonus_no_mistakes">Permainan sempurna</string>
     <string name="xp_bonus_no_hints">Tanpa petunjuk</string>
     <string name="xp_bonus_daily_challenge">Tantangan harian</string>
+    <string name="xp_bonus_event_challenge">Tantangan acara</string>
     <string name="xp_bonus_streak">Streak %1$d hari</string>
     <string name="xp_bonus_reward_boost">Peningkatan Hadiah Harian</string>
 
@@ -581,6 +612,25 @@
     <string name="badges_earned_count">%1$d lencana diperoleh</string>
     <string name="badge_earned">Lencana Diperoleh!</string>
     <string name="badge_no_badges">Belum ada lencana yang diperoleh</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Juara Paskah</string>
+    <string name="badge_event_easter_desc">Menyelesaikan acara musiman Paskah</string>
+    <string name="badge_event_summer_name">Bintang Musim Panas</string>
+    <string name="badge_event_summer_desc">Menyelesaikan acara musiman Musim Panas</string>
+    <string name="badge_event_halloween_name">Pemecah Seram</string>
+    <string name="badge_event_halloween_desc">Menyelesaikan acara musiman Halloween</string>
+    <string name="badge_event_christmas_name">Pahlawan Natal</string>
+    <string name="badge_event_christmas_desc">Menyelesaikan acara musiman Natal</string>
+    <string name="badge_event_new_year_name">Legenda Tahun Baru</string>
+    <string name="badge_event_new_year_desc">Menyelesaikan acara musiman Tahun Baru</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% Selesai!</string>
+    <string name="seasonal_event_milestone_50">Setengah Jalan!</string>
+    <string name="seasonal_event_milestone_75">Hampir Selesai!</string>
+    <string name="seasonal_event_milestone_100">Acara Selesai!</string>
+    <string name="seasonal_event_streak">Rekor %1$d hari</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>

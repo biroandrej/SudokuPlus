@@ -374,6 +374,52 @@ object AchievementDefinitions {
                 iconRes = R.drawable.ic_achievement_daily_streak,
                 requirement = AchievementRequirement.DailyStreak(100),
                 tier = AchievementTier.PLATINUM
+            ),
+            // ===== SEASONAL EVENT ACHIEVEMENTS =====
+            AchievementDefinition(
+                id = "seasonal_first",
+                category = AchievementCategory.SEASONAL,
+                nameRes = R.string.achievement_seasonal_first,
+                descriptionRes = R.string.achievement_seasonal_first_desc,
+                iconRes = R.drawable.ic_achievement_daily,
+                requirement = AchievementRequirement.EventChallengesCompleted(1),
+                tier = AchievementTier.BRONZE
+            ),
+            AchievementDefinition(
+                id = "seasonal_5",
+                category = AchievementCategory.SEASONAL,
+                nameRes = R.string.achievement_seasonal_5,
+                descriptionRes = R.string.achievement_seasonal_5_desc,
+                iconRes = R.drawable.ic_achievement_daily,
+                requirement = AchievementRequirement.EventChallengesCompleted(5),
+                tier = AchievementTier.SILVER
+            ),
+            AchievementDefinition(
+                id = "seasonal_25",
+                category = AchievementCategory.SEASONAL,
+                nameRes = R.string.achievement_seasonal_25,
+                descriptionRes = R.string.achievement_seasonal_25_desc,
+                iconRes = R.drawable.ic_achievement_daily,
+                requirement = AchievementRequirement.EventChallengesCompleted(25),
+                tier = AchievementTier.GOLD
+            ),
+            AchievementDefinition(
+                id = "seasonal_events_3",
+                category = AchievementCategory.SEASONAL,
+                nameRes = R.string.achievement_seasonal_events_3,
+                descriptionRes = R.string.achievement_seasonal_events_3_desc,
+                iconRes = R.drawable.ic_achievement_daily,
+                requirement = AchievementRequirement.EventsParticipated(3),
+                tier = AchievementTier.SILVER
+            ),
+            AchievementDefinition(
+                id = "seasonal_events_10",
+                category = AchievementCategory.SEASONAL,
+                nameRes = R.string.achievement_seasonal_events_10,
+                descriptionRes = R.string.achievement_seasonal_events_10_desc,
+                iconRes = R.drawable.ic_achievement_daily,
+                requirement = AchievementRequirement.EventsParticipated(10),
+                tier = AchievementTier.PLATINUM
             )
         )
 
@@ -390,5 +436,7 @@ object AchievementDefinitions {
         is AchievementRequirement.DailyChallengesCompleted -> requirement.count
         is AchievementRequirement.TotalPlayTime -> requirement.minutes
         is AchievementRequirement.PlayStreak -> requirement.days
+        is AchievementRequirement.EventChallengesCompleted -> requirement.count
+        is AchievementRequirement.EventsParticipated -> requirement.count
     }
 }

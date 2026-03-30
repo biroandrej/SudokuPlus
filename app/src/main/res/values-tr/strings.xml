@@ -400,6 +400,24 @@
     <string name="achievement_category_variety">Çeşitlilik</string>
     <string name="achievement_category_mastery">Ustalık</string>
     <string name="achievement_category_daily">Günlük</string>
+    <string name="achievement_category_seasonal">Sezonluk</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Sezon Etkinlikleri</string>
+    <string name="seasonal_event_active">Aktif</string>
+    <string name="seasonal_event_upcoming">Yaklaşan</string>
+    <string name="seasonal_event_ended">Sona erdi</string>
+    <string name="seasonal_event_starts_in">%1$d gün sonra başlıyor</string>
+    <string name="seasonal_event_ends_in">%1$d gün sonra bitiyor</string>
+    <string name="seasonal_event_ended_ago">%1$d gün önce sona erdi</string>
+    <string name="seasonal_event_progress">%1$d/%2$d görev</string>
+    <string name="seasonal_event_play">Görevi Oyna</string>
+    <string name="seasonal_event_completed">Tamamlandı!</string>
+    <string name="seasonal_event_day">Gün %1$d</string>
+    <string name="seasonal_event_no_events">Şu anda etkinlik bulunmuyor</string>
+    <string name="seasonal_event_reward_earned">Ödül Kazanıldı!</string>
+    <string name="seasonal_event_badge_earned">Etkinlik Rozeti Kazanıldı!</string>
+    <string name="seasonal_event_view_all">Tüm Etkinlikleri Gör</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronz</string>
@@ -493,6 +511,18 @@
     <string name="achievement_daily_streak_100">Günlük Efsane</string>
     <string name="achievement_daily_streak_100_desc">100 günlük günlük meydan okuma serisi</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Etkinlik Kaşifi</string>
+    <string name="achievement_seasonal_first_desc">İlk etkinlik görevini tamamla</string>
+    <string name="achievement_seasonal_5">Etkinlik Tutkunu</string>
+    <string name="achievement_seasonal_5_desc">5 etkinlik görevi tamamla</string>
+    <string name="achievement_seasonal_25">Etkinlik Gazisi</string>
+    <string name="achievement_seasonal_25_desc">25 etkinlik görevi tamamla</string>
+    <string name="achievement_seasonal_events_3">Sezon Avcısı</string>
+    <string name="achievement_seasonal_events_3_desc">3 sezonluk etkinliğe katıl</string>
+    <string name="achievement_seasonal_events_10">Etkinlik Koleksiyoncusu</string>
+    <string name="achievement_seasonal_events_10_desc">10 sezonluk etkinliğe katıl</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Günlük Meydan Okuma</string>
     <string name="notification_channel_daily_challenge_desc">Yeni günlük meydan okumalar için bildirimler</string>
@@ -543,6 +573,7 @@
     <string name="xp_bonus_no_mistakes">Mükemmel Oyun</string>
     <string name="xp_bonus_no_hints">İpucu Kullanılmadı</string>
     <string name="xp_bonus_daily_challenge">Günlük Meydan Okuma</string>
+    <string name="xp_bonus_event_challenge">Etkinlik Meydan Okuması</string>
     <string name="xp_bonus_streak">%1$d Günlük Seri</string>
     <string name="xp_bonus_reward_boost">Günlük Ödül Artışı</string>
 
@@ -586,6 +617,25 @@
     <string name="badges_earned_count">%1$d rozet kazanıldı</string>
     <string name="badge_earned">Rozet Kazanıldı!</string>
     <string name="badge_no_badges">Henüz rozet kazanılmadı</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Paskalya Şampiyonu</string>
+    <string name="badge_event_easter_desc">Paskalya sezonluk etkinliği tamamlandı</string>
+    <string name="badge_event_summer_name">Yaz Yıldızı</string>
+    <string name="badge_event_summer_desc">Yaz sezonluk etkinliği tamamlandı</string>
+    <string name="badge_event_halloween_name">Ürkütücü Çözücü</string>
+    <string name="badge_event_halloween_desc">Cadılar Bayramı sezonluk etkinliği tamamlandı</string>
+    <string name="badge_event_christmas_name">Tatil Kahramanı</string>
+    <string name="badge_event_christmas_desc">Noel sezonluk etkinliği tamamlandı</string>
+    <string name="badge_event_new_year_name">Yılbaşı Efsanesi</string>
+    <string name="badge_event_new_year_desc">Yılbaşı sezonluk etkinliği tamamlandı</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">%25 Tamamlandı!</string>
+    <string name="seasonal_event_milestone_50">Yarı Yoldasın!</string>
+    <string name="seasonal_event_milestone_75">Neredeyse Bitti!</string>
+    <string name="seasonal_event_milestone_100">Etkinlik Tamamlandı!</string>
+    <string name="seasonal_event_streak">%1$d günlük seri</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Oyunlar</string>

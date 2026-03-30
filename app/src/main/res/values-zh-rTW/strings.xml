@@ -395,6 +395,24 @@
     <string name="achievement_category_variety">多樣性</string>
     <string name="achievement_category_mastery">精通</string>
     <string name="achievement_category_daily">每日</string>
+    <string name="achievement_category_seasonal">季節性</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">季節活動</string>
+    <string name="seasonal_event_active">進行中</string>
+    <string name="seasonal_event_upcoming">即將開始</string>
+    <string name="seasonal_event_ended">已結束</string>
+    <string name="seasonal_event_starts_in">%1$d天後開始</string>
+    <string name="seasonal_event_ends_in">%1$d天後結束</string>
+    <string name="seasonal_event_ended_ago">%1$d天前結束</string>
+    <string name="seasonal_event_progress">%1$d/%2$d 挑戰</string>
+    <string name="seasonal_event_play">開始挑戰</string>
+    <string name="seasonal_event_completed">已完成！</string>
+    <string name="seasonal_event_day">第%1$d天</string>
+    <string name="seasonal_event_no_events">目前沒有可用的活動</string>
+    <string name="seasonal_event_reward_earned">獲得獎勵！</string>
+    <string name="seasonal_event_badge_earned">獲得活動徽章！</string>
+    <string name="seasonal_event_view_all">查看所有活動</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">銅牌</string>
@@ -488,6 +506,18 @@
     <string name="achievement_daily_streak_100">每日傳奇</string>
     <string name="achievement_daily_streak_100_desc">每日挑戰連續 100 天</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">活動探索者</string>
+    <string name="achievement_seasonal_first_desc">完成你的第一個活動挑戰</string>
+    <string name="achievement_seasonal_5">活動愛好者</string>
+    <string name="achievement_seasonal_5_desc">完成5個活動挑戰</string>
+    <string name="achievement_seasonal_25">活動老手</string>
+    <string name="achievement_seasonal_25_desc">完成25個活動挑戰</string>
+    <string name="achievement_seasonal_events_3">賽季追逐者</string>
+    <string name="achievement_seasonal_events_3_desc">參加3個季節性活動</string>
+    <string name="achievement_seasonal_events_10">活動收藏家</string>
+    <string name="achievement_seasonal_events_10_desc">參加10個季節性活動</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">每日挑戰</string>
     <string name="notification_channel_daily_challenge_desc">新每日挑戰通知</string>
@@ -538,6 +568,7 @@
     <string name="xp_bonus_no_mistakes">完美遊戲</string>
     <string name="xp_bonus_no_hints">未使用提示</string>
     <string name="xp_bonus_daily_challenge">每日挑戰</string>
+    <string name="xp_bonus_event_challenge">活動挑戰</string>
     <string name="xp_bonus_streak">%1$d 天連勝</string>
     <string name="xp_bonus_reward_boost">每日獎勵加成</string>
 
@@ -581,6 +612,25 @@
     <string name="badges_earned_count">已獲得 %1$d 個徽章</string>
     <string name="badge_earned">徽章已獲得！</string>
     <string name="badge_no_badges">尚未獲得任何徽章</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">復活節冠軍</string>
+    <string name="badge_event_easter_desc">完成了復活節季節性活動</string>
+    <string name="badge_event_summer_name">夏日之星</string>
+    <string name="badge_event_summer_desc">完成了夏季季節性活動</string>
+    <string name="badge_event_halloween_name">恐怖解謎者</string>
+    <string name="badge_event_halloween_desc">完成了萬聖節季節性活動</string>
+    <string name="badge_event_christmas_name">節日英雄</string>
+    <string name="badge_event_christmas_desc">完成了聖誕節季節性活動</string>
+    <string name="badge_event_new_year_name">新年傳奇</string>
+    <string name="badge_event_new_year_desc">完成了新年季節性活動</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">已完成 25%！</string>
+    <string name="seasonal_event_milestone_50">完成一半！</string>
+    <string name="seasonal_event_milestone_75">即將完成！</string>
+    <string name="seasonal_event_milestone_100">活動完成！</string>
+    <string name="seasonal_event_streak">%1$d 天連續記錄</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play 遊戲</string>

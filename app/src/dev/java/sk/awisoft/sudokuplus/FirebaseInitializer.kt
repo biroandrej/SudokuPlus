@@ -3,6 +3,7 @@ package sk.awisoft.sudokuplus
 import android.content.Context
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
+import com.google.firebase.firestore.FirebaseFirestore
 
 object FirebaseInitializer {
     fun init(context: Context) {
@@ -17,6 +18,16 @@ object FirebaseInitializer {
                 .setGcmSenderId(BuildConfig.FIREBASE_GCM_SENDER_ID)
                 .build()
             FirebaseApp.initializeApp(context, options)
+        }
+
+        // Connect to Firestore emulator for local development
+        // Use 10.0.2.2 for Android emulator (maps to host localhost)
+        if (BuildConfig.DEBUG) {
+            try {
+                FirebaseFirestore.getInstance().useEmulator("10.0.2.2", 8080)
+            } catch (e: IllegalStateException) {
+                // Already connected to emulator
+            }
         }
     }
 }

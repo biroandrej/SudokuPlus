@@ -413,6 +413,24 @@
     <string name="achievement_category_variety">Ποικιλία</string>
     <string name="achievement_category_mastery">Κυριαρχία</string>
     <string name="achievement_category_daily">Ημερήσια</string>
+    <string name="achievement_category_seasonal">Εποχιακό</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Εποχιακά Εβέντ</string>
+    <string name="seasonal_event_active">Ενεργό</string>
+    <string name="seasonal_event_upcoming">Επερχόμενο</string>
+    <string name="seasonal_event_ended">Ολοκληρώθηκε</string>
+    <string name="seasonal_event_starts_in">Ξεκινά σε %1$d ημέρες</string>
+    <string name="seasonal_event_ends_in">Τελειώνει σε %1$d ημέρες</string>
+    <string name="seasonal_event_ended_ago">Τελείωσε πριν %1$d ημέρες</string>
+    <string name="seasonal_event_progress">%1$d/%2$d προκλήσεις</string>
+    <string name="seasonal_event_play">Παίξε την πρόκληση</string>
+    <string name="seasonal_event_completed">Ολοκληρώθηκε!</string>
+    <string name="seasonal_event_day">Ημέρα %1$d</string>
+    <string name="seasonal_event_no_events">Δεν υπάρχουν διαθέσιμα εβέντ αυτή τη στιγμή</string>
+    <string name="seasonal_event_reward_earned">Κερδίσατε ανταμοιβή!</string>
+    <string name="seasonal_event_badge_earned">Κερδίσατε σήμα εβέντ!</string>
+    <string name="seasonal_event_view_all">Προβολή όλων των εβέντ</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Χάλκινο</string>
@@ -506,6 +524,18 @@
     <string name="achievement_daily_streak_100">Ημερήσιος Θρύλος</string>
     <string name="achievement_daily_streak_100_desc">Σερί 100 ημερών ημερήσιας πρόκλησης</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Εξερευνητής εκδηλώσεων</string>
+    <string name="achievement_seasonal_first_desc">Ολοκλήρωσε την πρώτη σου πρόκληση εκδήλωσης</string>
+    <string name="achievement_seasonal_5">Λάτρης εκδηλώσεων</string>
+    <string name="achievement_seasonal_5_desc">Ολοκλήρωσε 5 προκλήσεις εκδηλώσεων</string>
+    <string name="achievement_seasonal_25">Βετεράνος εκδηλώσεων</string>
+    <string name="achievement_seasonal_25_desc">Ολοκλήρωσε 25 προκλήσεις εκδηλώσεων</string>
+    <string name="achievement_seasonal_events_3">Κυνηγός εποχών</string>
+    <string name="achievement_seasonal_events_3_desc">Συμμετοχή σε 3 εποχιακές εκδηλώσεις</string>
+    <string name="achievement_seasonal_events_10">Συλλέκτης εκδηλώσεων</string>
+    <string name="achievement_seasonal_events_10_desc">Συμμετοχή σε 10 εποχιακές εκδηλώσεις</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Ημερήσια Πρόκληση</string>
     <string name="notification_channel_daily_challenge_desc">Ειδοποιήσεις για νέες ημερήσιες προκλήσεις</string>
@@ -556,6 +586,7 @@
     <string name="xp_bonus_no_mistakes">Τέλειο παιχνίδι</string>
     <string name="xp_bonus_no_hints">Χωρίς βοήθεια</string>
     <string name="xp_bonus_daily_challenge">Ημερήσια πρόκληση</string>
+    <string name="xp_bonus_event_challenge">Πρόκληση εκδήλωσης</string>
     <string name="xp_bonus_streak">%1$d ημέρες σερί</string>
     <string name="xp_bonus_reward_boost">Ενίσχυση καθημερινής ανταμοιβής</string>
 
@@ -599,6 +630,25 @@
     <string name="badges_earned_count">%1$d σήματα κερδήθηκαν</string>
     <string name="badge_earned">Σήμα Κερδήθηκε!</string>
     <string name="badge_no_badges">Δεν έχετε κερδίσει σήματα ακόμα</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Πρωταθλητής Πάσχα</string>
+    <string name="badge_event_easter_desc">Ολοκληρώθηκε η εποχιακή εκδήλωση του Πάσχα</string>
+    <string name="badge_event_summer_name">Αστέρι καλοκαιριού</string>
+    <string name="badge_event_summer_desc">Ολοκληρώθηκε η εποχιακή εκδήλωση του καλοκαιριού</string>
+    <string name="badge_event_halloween_name">Τρομακτικός λύτης</string>
+    <string name="badge_event_halloween_desc">Ολοκληρώθηκε η εποχιακή εκδήλωση του Halloween</string>
+    <string name="badge_event_christmas_name">Ήρωας γιορτών</string>
+    <string name="badge_event_christmas_desc">Ολοκληρώθηκε η εποχιακή εκδήλωση των Χριστουγέννων</string>
+    <string name="badge_event_new_year_name">Θρύλος Πρωτοχρονιάς</string>
+    <string name="badge_event_new_year_desc">Ολοκληρώθηκε η εποχιακή εκδήλωση της Πρωτοχρονιάς</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% ολοκληρώθηκε!</string>
+    <string name="seasonal_event_milestone_50">Στη μέση!</string>
+    <string name="seasonal_event_milestone_75">Σχεδόν έτοιμο!</string>
+    <string name="seasonal_event_milestone_100">Εκδήλωση ολοκληρώθηκε!</string>
+    <string name="seasonal_event_streak">Σερί %1$d ημερών</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Παιχνίδια</string>

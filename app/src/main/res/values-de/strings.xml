@@ -337,6 +337,24 @@
     <string name="achievement_category_variety">Vielfalt</string>
     <string name="achievement_category_mastery">Meisterschaft</string>
     <string name="achievement_category_daily">Täglich</string>
+    <string name="achievement_category_seasonal">Saisonal</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Saisonale Events</string>
+    <string name="seasonal_event_active">Aktiv</string>
+    <string name="seasonal_event_upcoming">Bevorstehend</string>
+    <string name="seasonal_event_ended">Beendet</string>
+    <string name="seasonal_event_starts_in">Beginnt in %1$d Tagen</string>
+    <string name="seasonal_event_ends_in">Endet in %1$d Tagen</string>
+    <string name="seasonal_event_ended_ago">Vor %1$d Tagen beendet</string>
+    <string name="seasonal_event_progress">%1$d/%2$d Herausforderungen</string>
+    <string name="seasonal_event_play">Herausforderung spielen</string>
+    <string name="seasonal_event_completed">Abgeschlossen!</string>
+    <string name="seasonal_event_day">Tag %1$d</string>
+    <string name="seasonal_event_no_events">Momentan keine Events verfügbar</string>
+    <string name="seasonal_event_reward_earned">Belohnung erhalten!</string>
+    <string name="seasonal_event_badge_earned">Event-Abzeichen erhalten!</string>
+    <string name="seasonal_event_view_all">Alle Events anzeigen</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronze</string>
@@ -430,6 +448,18 @@
     <string name="achievement_daily_streak_100">Tägliche Legende</string>
     <string name="achievement_daily_streak_100_desc">100-Tage tägliche Herausforderungs-Serie</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Event-Entdecker</string>
+    <string name="achievement_seasonal_first_desc">Schließe deine erste Event-Herausforderung ab</string>
+    <string name="achievement_seasonal_5">Event-Enthusiast</string>
+    <string name="achievement_seasonal_5_desc">Schließe 5 Event-Herausforderungen ab</string>
+    <string name="achievement_seasonal_25">Event-Veteran</string>
+    <string name="achievement_seasonal_25_desc">Schließe 25 Event-Herausforderungen ab</string>
+    <string name="achievement_seasonal_events_3">Saison-Jäger</string>
+    <string name="achievement_seasonal_events_3_desc">Nimm an 3 saisonalen Events teil</string>
+    <string name="achievement_seasonal_events_10">Event-Sammler</string>
+    <string name="achievement_seasonal_events_10_desc">Nimm an 10 saisonalen Events teil</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Tägliche Herausforderung</string>
     <string name="notification_channel_daily_challenge_desc">Benachrichtigungen für neue tägliche Herausforderungen</string>
@@ -480,6 +510,7 @@
     <string name="xp_bonus_no_mistakes">Perfektes Spiel</string>
     <string name="xp_bonus_no_hints">Keine Hinweise verwendet</string>
     <string name="xp_bonus_daily_challenge">Tägliche Herausforderung</string>
+    <string name="xp_bonus_event_challenge">Event-Herausforderung</string>
     <string name="xp_bonus_streak">%1$d Tage Serie</string>
     <string name="xp_bonus_reward_boost">Täglicher Belohnungsboost</string>
 
@@ -582,6 +613,25 @@
     <string name="badges_earned_count">%1$d Abzeichen verdient</string>
     <string name="badge_earned">Abzeichen verdient!</string>
     <string name="badge_no_badges">Noch keine Abzeichen verdient</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Oster-Champion</string>
+    <string name="badge_event_easter_desc">Das saisonale Oster-Event abgeschlossen</string>
+    <string name="badge_event_summer_name">Sommer-Star</string>
+    <string name="badge_event_summer_desc">Das saisonale Sommer-Event abgeschlossen</string>
+    <string name="badge_event_halloween_name">Gruseliger Löser</string>
+    <string name="badge_event_halloween_desc">Das saisonale Halloween-Event abgeschlossen</string>
+    <string name="badge_event_christmas_name">Weihnachtsheld</string>
+    <string name="badge_event_christmas_desc">Das saisonale Weihnachts-Event abgeschlossen</string>
+    <string name="badge_event_new_year_name">Neujahrslegende</string>
+    <string name="badge_event_new_year_desc">Das saisonale Neujahrs-Event abgeschlossen</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% geschafft!</string>
+    <string name="seasonal_event_milestone_50">Halbzeit!</string>
+    <string name="seasonal_event_milestone_75">Fast geschafft!</string>
+    <string name="seasonal_event_milestone_100">Event abgeschlossen!</string>
+    <string name="seasonal_event_streak">%1$d-Tage-Serie</string>
 
     <!-- Premium -->
     <string name="premium_title">Sudoku Plus Premium</string>

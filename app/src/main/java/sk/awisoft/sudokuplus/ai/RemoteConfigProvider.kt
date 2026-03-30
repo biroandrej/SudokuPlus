@@ -17,4 +17,9 @@ interface RemoteConfigProvider {
      * Should be called on app startup.
      */
     suspend fun fetchAndActivate(): Boolean
+
+    /**
+     * Checks if seasonal events feature is enabled.
+     */
+    fun isSeasonalEventsEnabled(): Boolean
 }

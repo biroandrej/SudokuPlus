@@ -404,6 +404,24 @@
     <string name="achievement_category_variety">विविधता</string>
     <string name="achievement_category_mastery">महारत</string>
     <string name="achievement_category_daily">दैनिक</string>
+    <string name="achievement_category_seasonal">मौसमी</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">मौसमी कार्यक्रम</string>
+    <string name="seasonal_event_active">सक्रिय</string>
+    <string name="seasonal_event_upcoming">आगामी</string>
+    <string name="seasonal_event_ended">समाप्त</string>
+    <string name="seasonal_event_starts_in">%1$d दिनों में शुरू होगा</string>
+    <string name="seasonal_event_ends_in">%1$d दिनों में समाप्त होगा</string>
+    <string name="seasonal_event_ended_ago">%1$d दिन पहले समाप्त हुआ</string>
+    <string name="seasonal_event_progress">%1$d/%2$d चुनौतियाँ</string>
+    <string name="seasonal_event_play">चुनौती खेलें</string>
+    <string name="seasonal_event_completed">पूर्ण!</string>
+    <string name="seasonal_event_day">दिन %1$d</string>
+    <string name="seasonal_event_no_events">अभी कोई कार्यक्रम उपलब्ध नहीं है</string>
+    <string name="seasonal_event_reward_earned">पुरस्कार अर्जित!</string>
+    <string name="seasonal_event_badge_earned">कार्यक्रम बैज अर्जित!</string>
+    <string name="seasonal_event_view_all">सभी कार्यक्रम देखें</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">कांस्य</string>
@@ -497,6 +515,18 @@
     <string name="achievement_daily_streak_100">दैनिक दिग्गज</string>
     <string name="achievement_daily_streak_100_desc">100-दिन की दैनिक चुनौती लकीर</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">इवेंट खोजकर्ता</string>
+    <string name="achievement_seasonal_first_desc">अपनी पहली इवेंट चुनौती पूरी करें</string>
+    <string name="achievement_seasonal_5">इवेंट उत्साही</string>
+    <string name="achievement_seasonal_5_desc">5 इवेंट चुनौतियां पूरी करें</string>
+    <string name="achievement_seasonal_25">इवेंट दिग्गज</string>
+    <string name="achievement_seasonal_25_desc">25 इवेंट चुनौतियां पूरी करें</string>
+    <string name="achievement_seasonal_events_3">मौसम का पीछा करने वाला</string>
+    <string name="achievement_seasonal_events_3_desc">3 मौसमी इवेंट में भाग लें</string>
+    <string name="achievement_seasonal_events_10">इवेंट संग्राहक</string>
+    <string name="achievement_seasonal_events_10_desc">10 मौसमी इवेंट में भाग लें</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">दैनिक चुनौती</string>
     <string name="notification_channel_daily_challenge_desc">नई दैनिक चुनौतियों के लिए सूचनाएं</string>
@@ -547,6 +577,7 @@
     <string name="xp_bonus_no_mistakes">परफेक्ट गेम</string>
     <string name="xp_bonus_no_hints">कोई संकेत नहीं</string>
     <string name="xp_bonus_daily_challenge">दैनिक चुनौती</string>
+    <string name="xp_bonus_event_challenge">इवेंट चुनौती</string>
     <string name="xp_bonus_streak">%1$d दिन की स्ट्रीक</string>
     <string name="xp_bonus_reward_boost">दैनिक पुरस्कार बूस्ट</string>
 
@@ -590,6 +621,25 @@
     <string name="badges_earned_count">%1$d बैज अर्जित</string>
     <string name="badge_earned">बैज अर्जित!</string>
     <string name="badge_no_badges">अभी तक कोई बैज अर्जित नहीं</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">ईस्टर चैंपियन</string>
+    <string name="badge_event_easter_desc">ईस्टर मौसमी इवेंट पूरा किया</string>
+    <string name="badge_event_summer_name">गर्मियों का सितारा</string>
+    <string name="badge_event_summer_desc">गर्मियों का मौसमी इवेंट पूरा किया</string>
+    <string name="badge_event_halloween_name">डरावना हल करने वाला</string>
+    <string name="badge_event_halloween_desc">हैलोवीन मौसमी इवेंट पूरा किया</string>
+    <string name="badge_event_christmas_name">छुट्टियों का हीरो</string>
+    <string name="badge_event_christmas_desc">क्रिसमस मौसमी इवेंट पूरा किया</string>
+    <string name="badge_event_new_year_name">नए साल की किंवदंती</string>
+    <string name="badge_event_new_year_desc">नए साल का मौसमी इवेंट पूरा किया</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% पूरा!</string>
+    <string name="seasonal_event_milestone_50">आधा रास्ता!</string>
+    <string name="seasonal_event_milestone_75">लगभग पूरा!</string>
+    <string name="seasonal_event_milestone_100">इवेंट पूरा!</string>
+    <string name="seasonal_event_streak">%1$d दिन की लय</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>

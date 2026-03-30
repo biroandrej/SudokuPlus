@@ -110,6 +110,24 @@
     <string name="achievement_category_variety">多様性</string>
     <string name="achievement_category_mastery">マスター</string>
     <string name="achievement_category_daily">デイリー</string>
+    <string name="achievement_category_seasonal">シーズン</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">シーズンイベント</string>
+    <string name="seasonal_event_active">開催中</string>
+    <string name="seasonal_event_upcoming">近日開催</string>
+    <string name="seasonal_event_ended">終了</string>
+    <string name="seasonal_event_starts_in">あと%1$d日で開始</string>
+    <string name="seasonal_event_ends_in">あと%1$d日で終了</string>
+    <string name="seasonal_event_ended_ago">%1$d日前に終了</string>
+    <string name="seasonal_event_progress">%1$d/%2$d チャレンジ</string>
+    <string name="seasonal_event_play">チャレンジをプレイ</string>
+    <string name="seasonal_event_completed">完了！</string>
+    <string name="seasonal_event_day">%1$d日目</string>
+    <string name="seasonal_event_no_events">現在利用可能なイベントはありません</string>
+    <string name="seasonal_event_reward_earned">報酬獲得！</string>
+    <string name="seasonal_event_badge_earned">イベントバッジ獲得！</string>
+    <string name="seasonal_event_view_all">すべてのイベントを表示</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">ブロンズ</string>
@@ -203,6 +221,18 @@
     <string name="achievement_daily_streak_100">デイリーレジェンド</string>
     <string name="achievement_daily_streak_100_desc">100日連続デイリーチャレンジ</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">イベント探検家</string>
+    <string name="achievement_seasonal_first_desc">最初のイベントチャレンジを完了する</string>
+    <string name="achievement_seasonal_5">イベント愛好家</string>
+    <string name="achievement_seasonal_5_desc">イベントチャレンジを5つ完了する</string>
+    <string name="achievement_seasonal_25">イベントベテラン</string>
+    <string name="achievement_seasonal_25_desc">イベントチャレンジを25個完了する</string>
+    <string name="achievement_seasonal_events_3">シーズンハンター</string>
+    <string name="achievement_seasonal_events_3_desc">3つのシーズンイベントに参加する</string>
+    <string name="achievement_seasonal_events_10">イベントコレクター</string>
+    <string name="achievement_seasonal_events_10_desc">10のシーズンイベントに参加する</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">デイリーチャレンジ</string>
     <string name="notification_channel_daily_challenge_desc">新しいデイリーチャレンジの通知</string>
@@ -253,6 +283,7 @@
     <string name="xp_bonus_no_mistakes">パーフェクトゲーム</string>
     <string name="xp_bonus_no_hints">ヒントなし</string>
     <string name="xp_bonus_daily_challenge">デイリーチャレンジ</string>
+    <string name="xp_bonus_event_challenge">イベントチャレンジ</string>
     <string name="xp_bonus_streak">%1$d日連続</string>
     <string name="xp_bonus_reward_boost">デイリー報酬ブースト</string>
 
@@ -626,6 +657,25 @@
     <string name="badges_earned_count">%1$d個のバッジを獲得</string>
     <string name="badge_earned">バッジ獲得！</string>
     <string name="badge_no_badges">まだバッジを獲得していません</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">イースターチャンピオン</string>
+    <string name="badge_event_easter_desc">イースターのシーズンイベントを完了しました</string>
+    <string name="badge_event_summer_name">サマースター</string>
+    <string name="badge_event_summer_desc">夏のシーズンイベントを完了しました</string>
+    <string name="badge_event_halloween_name">スプーキーソルバー</string>
+    <string name="badge_event_halloween_desc">ハロウィンのシーズンイベントを完了しました</string>
+    <string name="badge_event_christmas_name">ホリデーヒーロー</string>
+    <string name="badge_event_christmas_desc">クリスマスのシーズンイベントを完了しました</string>
+    <string name="badge_event_new_year_name">新年のレジェンド</string>
+    <string name="badge_event_new_year_desc">新年のシーズンイベントを完了しました</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% 完了！</string>
+    <string name="seasonal_event_milestone_50">折り返し地点！</string>
+    <string name="seasonal_event_milestone_75">もう少し！</string>
+    <string name="seasonal_event_milestone_100">イベント完了！</string>
+    <string name="seasonal_event_streak">%1$d日連続</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>

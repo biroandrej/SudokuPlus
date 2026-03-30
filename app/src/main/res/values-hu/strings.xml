@@ -400,6 +400,24 @@
     <string name="achievement_category_variety">Valtozatossag</string>
     <string name="achievement_category_mastery">Mesterfok</string>
     <string name="achievement_category_daily">Napi</string>
+    <string name="achievement_category_seasonal">Szezonális</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Szezonális események</string>
+    <string name="seasonal_event_active">Aktív</string>
+    <string name="seasonal_event_upcoming">Közelgő</string>
+    <string name="seasonal_event_ended">Véget ért</string>
+    <string name="seasonal_event_starts_in">%1$d nap múlva kezdődik</string>
+    <string name="seasonal_event_ends_in">%1$d nap múlva ér véget</string>
+    <string name="seasonal_event_ended_ago">%1$d napja ért véget</string>
+    <string name="seasonal_event_progress">%1$d/%2$d kihívás</string>
+    <string name="seasonal_event_play">Kihívás játszása</string>
+    <string name="seasonal_event_completed">Teljesítve!</string>
+    <string name="seasonal_event_day">%1$d. nap</string>
+    <string name="seasonal_event_no_events">Jelenleg nincsenek elérhető események</string>
+    <string name="seasonal_event_reward_earned">Jutalom megszerzve!</string>
+    <string name="seasonal_event_badge_earned">Eseményjelvény megszerzve!</string>
+    <string name="seasonal_event_view_all">Összes esemény megtekintése</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronz</string>
@@ -493,6 +511,18 @@
     <string name="achievement_daily_streak_100">Napi legenda</string>
     <string name="achievement_daily_streak_100_desc">100 napos napi kihivas sorozat</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Eseményfelfedező</string>
+    <string name="achievement_seasonal_first_desc">Teljesítsd az első eseménykihívásod</string>
+    <string name="achievement_seasonal_5">Eseményrajongó</string>
+    <string name="achievement_seasonal_5_desc">Teljesíts 5 eseménykihívást</string>
+    <string name="achievement_seasonal_25">Eseményveterán</string>
+    <string name="achievement_seasonal_25_desc">Teljesíts 25 eseménykihívást</string>
+    <string name="achievement_seasonal_events_3">Szezonvadász</string>
+    <string name="achievement_seasonal_events_3_desc">Vegyél részt 3 szezonális eseményen</string>
+    <string name="achievement_seasonal_events_10">Eseménygyűjtő</string>
+    <string name="achievement_seasonal_events_10_desc">Vegyél részt 10 szezonális eseményen</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Napi kihivas</string>
     <string name="notification_channel_daily_challenge_desc">Ertesitesek az uj napi kihivasokrol</string>
@@ -543,6 +573,7 @@
     <string name="xp_bonus_no_mistakes">Tokeletes jatek</string>
     <string name="xp_bonus_no_hints">Nem hasznalt tippeket</string>
     <string name="xp_bonus_daily_challenge">Napi kihivas</string>
+    <string name="xp_bonus_event_challenge">Esemeny kihivas</string>
     <string name="xp_bonus_streak">%1$d napos seria</string>
     <string name="xp_bonus_reward_boost">Napi jutalom noveles</string>
 
@@ -586,6 +617,25 @@
     <string name="badges_earned_count">%1$d jelveny szerezve</string>
     <string name="badge_earned">Jelveny szerezve!</string>
     <string name="badge_no_badges">Meg nincs szerzett jelveny</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Húsvéti bajnok</string>
+    <string name="badge_event_easter_desc">A húsvéti szezonális esemény teljesítve</string>
+    <string name="badge_event_summer_name">Nyári csillag</string>
+    <string name="badge_event_summer_desc">A nyári szezonális esemény teljesítve</string>
+    <string name="badge_event_halloween_name">Kísérteties megoldó</string>
+    <string name="badge_event_halloween_desc">A halloweeni szezonális esemény teljesítve</string>
+    <string name="badge_event_christmas_name">Ünnepi hős</string>
+    <string name="badge_event_christmas_desc">A karácsonyi szezonális esemény teljesítve</string>
+    <string name="badge_event_new_year_name">Újévi legenda</string>
+    <string name="badge_event_new_year_desc">Az újévi szezonális esemény teljesítve</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% kész!</string>
+    <string name="seasonal_event_milestone_50">Félúton!</string>
+    <string name="seasonal_event_milestone_75">Majdnem kész!</string>
+    <string name="seasonal_event_milestone_100">Esemény teljesítve!</string>
+    <string name="seasonal_event_streak">%1$d napos sorozat</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jatekok</string>

@@ -335,6 +335,24 @@
     <string name="achievement_category_variety">Variété</string>
     <string name="achievement_category_mastery">Maîtrise</string>
     <string name="achievement_category_daily">Quotidien</string>
+    <string name="achievement_category_seasonal">Saisonnier</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Événements saisonniers</string>
+    <string name="seasonal_event_active">Actif</string>
+    <string name="seasonal_event_upcoming">À venir</string>
+    <string name="seasonal_event_ended">Terminé</string>
+    <string name="seasonal_event_starts_in">Commence dans %1$d jours</string>
+    <string name="seasonal_event_ends_in">Se termine dans %1$d jours</string>
+    <string name="seasonal_event_ended_ago">Terminé il y a %1$d jours</string>
+    <string name="seasonal_event_progress">%1$d/%2$d défis</string>
+    <string name="seasonal_event_play">Jouer le défi</string>
+    <string name="seasonal_event_completed">Terminé !</string>
+    <string name="seasonal_event_day">Jour %1$d</string>
+    <string name="seasonal_event_no_events">Aucun événement disponible pour le moment</string>
+    <string name="seasonal_event_reward_earned">Récompense obtenue !</string>
+    <string name="seasonal_event_badge_earned">Badge d\'événement obtenu !</string>
+    <string name="seasonal_event_view_all">Voir tous les événements</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronze</string>
@@ -428,6 +446,18 @@
     <string name="achievement_daily_streak_100">Légende quotidienne</string>
     <string name="achievement_daily_streak_100_desc">Série de 100 jours de défis quotidiens</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Explorateur d\'événements</string>
+    <string name="achievement_seasonal_first_desc">Complétez votre premier défi d\'événement</string>
+    <string name="achievement_seasonal_5">Passionné d\'événements</string>
+    <string name="achievement_seasonal_5_desc">Complétez 5 défis d\'événements</string>
+    <string name="achievement_seasonal_25">Vétéran des événements</string>
+    <string name="achievement_seasonal_25_desc">Complétez 25 défis d\'événements</string>
+    <string name="achievement_seasonal_events_3">Chasseur de saisons</string>
+    <string name="achievement_seasonal_events_3_desc">Participez à 3 événements saisonniers</string>
+    <string name="achievement_seasonal_events_10">Collectionneur d\'événements</string>
+    <string name="achievement_seasonal_events_10_desc">Participez à 10 événements saisonniers</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Défi quotidien</string>
     <string name="notification_channel_daily_challenge_desc">Notifications pour les nouveaux défis quotidiens</string>
@@ -478,6 +508,7 @@
     <string name="xp_bonus_no_mistakes">Partie parfaite</string>
     <string name="xp_bonus_no_hints">Aucun indice utilisé</string>
     <string name="xp_bonus_daily_challenge">Défi quotidien</string>
+    <string name="xp_bonus_event_challenge">Défi d\'événement</string>
     <string name="xp_bonus_streak">Série de %1$d jours</string>
 
     <!-- Reward Calendar -->
@@ -580,6 +611,25 @@
     <string name="badges_earned_count">%1$d badges gagnés</string>
     <string name="badge_earned">Badge gagné !</string>
     <string name="badge_no_badges">Aucun badge gagné pour l\'instant</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Champion de Pâques</string>
+    <string name="badge_event_easter_desc">L\'événement saisonnier de Pâques est terminé</string>
+    <string name="badge_event_summer_name">Étoile de l\'été</string>
+    <string name="badge_event_summer_desc">L\'événement saisonnier d\'été est terminé</string>
+    <string name="badge_event_halloween_name">Solutionneur effrayant</string>
+    <string name="badge_event_halloween_desc">L\'événement saisonnier d\'Halloween est terminé</string>
+    <string name="badge_event_christmas_name">Héros des fêtes</string>
+    <string name="badge_event_christmas_desc">L\'événement saisonnier de Noël est terminé</string>
+    <string name="badge_event_new_year_name">Légende du Nouvel An</string>
+    <string name="badge_event_new_year_desc">L\'événement saisonnier du Nouvel An est terminé</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% terminé !</string>
+    <string name="seasonal_event_milestone_50">À mi-chemin !</string>
+    <string name="seasonal_event_milestone_75">Presque fini !</string>
+    <string name="seasonal_event_milestone_100">Événement terminé !</string>
+    <string name="seasonal_event_streak">Série de %1$d jours</string>
 
     <!-- Premium -->
     <string name="premium_title">Sudoku Plus Premium</string>

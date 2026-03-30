@@ -400,6 +400,24 @@
     <string name="achievement_category_variety">பன்முகத்தன்மை</string>
     <string name="achievement_category_mastery">தேர்ச்சி</string>
     <string name="achievement_category_daily">தினசரி</string>
+    <string name="achievement_category_seasonal">பருவகால</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">பருவகால நிகழ்வுகள்</string>
+    <string name="seasonal_event_active">செயலில்</string>
+    <string name="seasonal_event_upcoming">வரவிருக்கும்</string>
+    <string name="seasonal_event_ended">முடிந்தது</string>
+    <string name="seasonal_event_starts_in">%1$d நாட்களில் தொடங்கும்</string>
+    <string name="seasonal_event_ends_in">%1$d நாட்களில் முடியும்</string>
+    <string name="seasonal_event_ended_ago">%1$d நாட்களுக்கு முன் முடிந்தது</string>
+    <string name="seasonal_event_progress">%1$d/%2$d சவால்கள்</string>
+    <string name="seasonal_event_play">சவாலை விளையாடு</string>
+    <string name="seasonal_event_completed">நிறைவு!</string>
+    <string name="seasonal_event_day">நாள் %1$d</string>
+    <string name="seasonal_event_no_events">தற்போது நிகழ்வுகள் எதுவும் இல்லை</string>
+    <string name="seasonal_event_reward_earned">வெகுமதி பெறப்பட்டது!</string>
+    <string name="seasonal_event_badge_earned">நிகழ்வு பேட்ஜ் பெறப்பட்டது!</string>
+    <string name="seasonal_event_view_all">அனைத்து நிகழ்வுகளையும் காண்க</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">வெண்கலம்</string>
@@ -493,6 +511,18 @@
     <string name="achievement_daily_streak_100">தினசரி புகழ்</string>
     <string name="achievement_daily_streak_100_desc">100 நாள் தினசரி சவால் தொடர்</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">நிகழ்வு ஆய்வாளர்</string>
+    <string name="achievement_seasonal_first_desc">உங்கள் முதல் நிகழ்வு சவாலை நிறைவு செய்யுங்கள்</string>
+    <string name="achievement_seasonal_5">நிகழ்வு ஆர்வலர்</string>
+    <string name="achievement_seasonal_5_desc">5 நிகழ்வு சவால்களை நிறைவு செய்யுங்கள்</string>
+    <string name="achievement_seasonal_25">நிகழ்வு மூத்தவர்</string>
+    <string name="achievement_seasonal_25_desc">25 நிகழ்வு சவால்களை நிறைவு செய்யுங்கள்</string>
+    <string name="achievement_seasonal_events_3">பருவ வேட்டையாளர்</string>
+    <string name="achievement_seasonal_events_3_desc">3 பருவகால நிகழ்வுகளில் பங்கேற்கவும்</string>
+    <string name="achievement_seasonal_events_10">நிகழ்வு சேகரிப்பாளர்</string>
+    <string name="achievement_seasonal_events_10_desc">10 பருவகால நிகழ்வுகளில் பங்கேற்கவும்</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">தினசரி சவால்</string>
     <string name="notification_channel_daily_challenge_desc">புதிய தினசரி சவால்களுக்கான அறிவிப்புகள்</string>
@@ -543,6 +573,7 @@
     <string name="xp_bonus_no_mistakes">பரிபூரண விளையாட்டு</string>
     <string name="xp_bonus_no_hints">உதவிகள் பயன்படுத்தப்படவில்லை</string>
     <string name="xp_bonus_daily_challenge">தினசரி சவால்</string>
+    <string name="xp_bonus_event_challenge">நிகழ்வு சவால்</string>
     <string name="xp_bonus_streak">%1$d நாள் தொடர்</string>
     <string name="xp_bonus_reward_boost">தினசரி வெகுமதி ஊக்கம்</string>
 
@@ -586,6 +617,25 @@
     <string name="badges_earned_count">%1$d பதக்கங்கள் பெறப்பட்டன</string>
     <string name="badge_earned">பதக்கம் பெறப்பட்டது!</string>
     <string name="badge_no_badges">இன்னும் பதக்கங்கள் பெறப்படவில்லை</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">ஈஸ்டர் சாம்பியன்</string>
+    <string name="badge_event_easter_desc">ஈஸ்டர் பருவகால நிகழ்வை நிறைவு செய்தது</string>
+    <string name="badge_event_summer_name">கோடை நட்சத்திரம்</string>
+    <string name="badge_event_summer_desc">கோடை பருவகால நிகழ்வை நிறைவு செய்தது</string>
+    <string name="badge_event_halloween_name">பயங்கர தீர்வாளர்</string>
+    <string name="badge_event_halloween_desc">ஹாலோவீன் பருவகால நிகழ்வை நிறைவு செய்தது</string>
+    <string name="badge_event_christmas_name">விடுமுறை நாயகன்</string>
+    <string name="badge_event_christmas_desc">கிறிஸ்துமஸ் பருவகால நிகழ்வை நிறைவு செய்தது</string>
+    <string name="badge_event_new_year_name">புத்தாண்டு புகழ்</string>
+    <string name="badge_event_new_year_desc">புத்தாண்டு பருவகால நிகழ்வை நிறைவு செய்தது</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% முடிந்தது!</string>
+    <string name="seasonal_event_milestone_50">பாதி வழியில்!</string>
+    <string name="seasonal_event_milestone_75">கிட்டத்தட்ட முடிந்தது!</string>
+    <string name="seasonal_event_milestone_100">நிகழ்வு முடிந்தது!</string>
+    <string name="seasonal_event_streak">%1$d நாள் தொடர்</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>

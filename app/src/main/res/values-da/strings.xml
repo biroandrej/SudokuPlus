@@ -413,6 +413,24 @@
     <string name="achievement_category_variety">Variation</string>
     <string name="achievement_category_mastery">Mesterskab</string>
     <string name="achievement_category_daily">Daglig</string>
+    <string name="achievement_category_seasonal">Sæsonbestemt</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Sæsonbegivenheder</string>
+    <string name="seasonal_event_active">Aktiv</string>
+    <string name="seasonal_event_upcoming">Kommende</string>
+    <string name="seasonal_event_ended">Afsluttet</string>
+    <string name="seasonal_event_starts_in">Starter om %1$d dage</string>
+    <string name="seasonal_event_ends_in">Slutter om %1$d dage</string>
+    <string name="seasonal_event_ended_ago">Sluttede for %1$d dage siden</string>
+    <string name="seasonal_event_progress">%1$d/%2$d udfordringer</string>
+    <string name="seasonal_event_play">Spil udfordring</string>
+    <string name="seasonal_event_completed">Fuldført!</string>
+    <string name="seasonal_event_day">Dag %1$d</string>
+    <string name="seasonal_event_no_events">Ingen begivenheder tilgængelige lige nu</string>
+    <string name="seasonal_event_reward_earned">Belønning optjent!</string>
+    <string name="seasonal_event_badge_earned">Begivenhedsbadge optjent!</string>
+    <string name="seasonal_event_view_all">Se alle begivenheder</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronze</string>
@@ -506,6 +524,18 @@
     <string name="achievement_daily_streak_100">Daglig Legende</string>
     <string name="achievement_daily_streak_100_desc">100-dages daglig udfordrings streak</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Begivenhedsudforsker</string>
+    <string name="achievement_seasonal_first_desc">Gennemfør din første begivenhedsudfordring</string>
+    <string name="achievement_seasonal_5">Begivenhedsentusiast</string>
+    <string name="achievement_seasonal_5_desc">Gennemfør 5 begivenhedsudfordringer</string>
+    <string name="achievement_seasonal_25">Begivenhedsveteran</string>
+    <string name="achievement_seasonal_25_desc">Gennemfør 25 begivenhedsudfordringer</string>
+    <string name="achievement_seasonal_events_3">Sæsonjæger</string>
+    <string name="achievement_seasonal_events_3_desc">Deltag i 3 sæsonbegivenheder</string>
+    <string name="achievement_seasonal_events_10">Begivenhedssamler</string>
+    <string name="achievement_seasonal_events_10_desc">Deltag i 10 sæsonbegivenheder</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Daglig Udfordring</string>
     <string name="notification_channel_daily_challenge_desc">Notifikationer for nye daglige udfordringer</string>
@@ -556,6 +586,7 @@
     <string name="xp_bonus_no_mistakes">Perfekt spil</string>
     <string name="xp_bonus_no_hints">Ingen hints brugt</string>
     <string name="xp_bonus_daily_challenge">Daglig udfordring</string>
+    <string name="xp_bonus_event_challenge">Begivenhedsudfordring</string>
     <string name="xp_bonus_streak">%1$d dages stime</string>
     <string name="xp_bonus_reward_boost">Daglig belønningsboost</string>
 
@@ -599,6 +630,25 @@
     <string name="badges_earned_count">%1$d badges optjent</string>
     <string name="badge_earned">Badge Optjent!</string>
     <string name="badge_no_badges">Ingen badges optjent endnu</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Påskemester</string>
+    <string name="badge_event_easter_desc">Gennemførte påskens sæsonbegivenhed</string>
+    <string name="badge_event_summer_name">Sommerstjerne</string>
+    <string name="badge_event_summer_desc">Gennemførte sommerens sæsonbegivenhed</string>
+    <string name="badge_event_halloween_name">Uhyggelig løser</string>
+    <string name="badge_event_halloween_desc">Gennemførte halloweens sæsonbegivenhed</string>
+    <string name="badge_event_christmas_name">Julehelt</string>
+    <string name="badge_event_christmas_desc">Gennemførte julens sæsonbegivenhed</string>
+    <string name="badge_event_new_year_name">Nytårslegende</string>
+    <string name="badge_event_new_year_desc">Gennemførte nytårets sæsonbegivenhed</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% fuldført!</string>
+    <string name="seasonal_event_milestone_50">Halvvejs!</string>
+    <string name="seasonal_event_milestone_75">Næsten færdig!</string>
+    <string name="seasonal_event_milestone_100">Begivenhed fuldført!</string>
+    <string name="seasonal_event_streak">%1$d dages stime</string>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Spil</string>

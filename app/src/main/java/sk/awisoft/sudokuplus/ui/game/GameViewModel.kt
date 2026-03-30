@@ -64,6 +64,7 @@ import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
 import sk.awisoft.sudokuplus.domain.usecase.board.GetBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.board.UpdateBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.record.GetAllRecordsUseCase
@@ -93,7 +94,8 @@ constructor(
     private val dailyChallengeRepository: DailyChallengeRepository,
     private val aiHintService: AIHintService,
     private val aiUsageManager: AIUsageManager,
-    private val billingManager: BillingManager
+    private val billingManager: BillingManager,
+    private val seasonalEventRepository: SeasonalEventRepository
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
@@ -880,6 +882,20 @@ constructor(
                 )
             }
 
+            // Mark event challenge as completed and get XP multiplier
+            val eventChallengeGame =
+                seasonalEventRepository.getChallengeGameByBoardUid(boardEntity.uid)
+            var eventXpMultiplier = 1.0
+            if (eventChallengeGame != null) {
+                seasonalEventRepository.markChallengeCompleted(boardEntity.uid)
+                val event = seasonalEventRepository.getEventById(eventChallengeGame.eventId)
+                if (event != null) {
+                    eventXpMultiplier = event.challenges
+                        .find { it.day == eventChallengeGame.challengeDay }
+                        ?.xpMultiplier ?: 1.0
+                }
+            }
+
             // Check for newly unlocked achievements
             val completionData =
                 GameCompletionData(
@@ -888,7 +904,9 @@ constructor(
                     completionTime = duration.toJavaDuration(),
                     mistakes = mistakesMade,
                     hintsUsed = hintsUsed,
-                    isDailyChallenge = navArgs.isDailyChallenge
+                    isDailyChallenge = navArgs.isDailyChallenge,
+                    isEventChallenge = eventChallengeGame != null,
+                    eventXpMultiplier = eventXpMultiplier
                 )
             val unlockedAchievements = achievementEngine.checkAchievements(completionData)
             if (unlockedAchievements.isNotEmpty()) {

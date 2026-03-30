@@ -419,6 +419,24 @@
     <string name="achievement_category_variety">التنوع</string>
     <string name="achievement_category_mastery">الإتقان</string>
     <string name="achievement_category_daily">يومي</string>
+    <string name="achievement_category_seasonal">موسمي</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">الأحداث الموسمية</string>
+    <string name="seasonal_event_active">نشط</string>
+    <string name="seasonal_event_upcoming">قادم</string>
+    <string name="seasonal_event_ended">انتهى</string>
+    <string name="seasonal_event_starts_in">يبدأ خلال %1$d أيام</string>
+    <string name="seasonal_event_ends_in">ينتهي خلال %1$d أيام</string>
+    <string name="seasonal_event_ended_ago">انتهى منذ %1$d أيام</string>
+    <string name="seasonal_event_progress">%1$d/%2$d تحديات</string>
+    <string name="seasonal_event_play">العب التحدي</string>
+    <string name="seasonal_event_completed">مكتمل!</string>
+    <string name="seasonal_event_day">اليوم %1$d</string>
+    <string name="seasonal_event_no_events">لا توجد أحداث متاحة حالياً</string>
+    <string name="seasonal_event_reward_earned">تم الحصول على المكافأة!</string>
+    <string name="seasonal_event_badge_earned">تم الحصول على شارة الحدث!</string>
+    <string name="seasonal_event_view_all">عرض جميع الأحداث</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">برونزي</string>
@@ -512,6 +530,18 @@
     <string name="achievement_daily_streak_100">أسطورة التحدي اليومي</string>
     <string name="achievement_daily_streak_100_desc">سلسلة 100 يوم من التحدي اليومي</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">مستكشف الأحداث</string>
+    <string name="achievement_seasonal_first_desc">أكمل أول تحدٍّ في حدث</string>
+    <string name="achievement_seasonal_5">عاشق الأحداث</string>
+    <string name="achievement_seasonal_5_desc">أكمل 5 تحديات أحداث</string>
+    <string name="achievement_seasonal_25">خبير الأحداث</string>
+    <string name="achievement_seasonal_25_desc">أكمل 25 تحدي حدث</string>
+    <string name="achievement_seasonal_events_3">ملاحق المواسم</string>
+    <string name="achievement_seasonal_events_3_desc">شارك في 3 أحداث موسمية</string>
+    <string name="achievement_seasonal_events_10">جامع الأحداث</string>
+    <string name="achievement_seasonal_events_10_desc">شارك في 10 أحداث موسمية</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">التحدي اليومي</string>
     <string name="notification_channel_daily_challenge_desc">إشعارات للتحديات اليومية الجديدة</string>
@@ -562,6 +592,7 @@
     <string name="xp_bonus_no_mistakes">لعبة مثالية</string>
     <string name="xp_bonus_no_hints">لم يتم استخدام تلميحات</string>
     <string name="xp_bonus_daily_challenge">التحدي اليومي</string>
+    <string name="xp_bonus_event_challenge">تحدي الحدث</string>
     <string name="xp_bonus_streak">سلسلة %1$d يوم</string>
     <string name="xp_bonus_reward_boost">تعزيز المكافأة اليومية</string>
 
@@ -605,6 +636,25 @@
     <string name="badges_earned_count">%1$d شارات مكتسبة</string>
     <string name="badge_earned">تم الحصول على شارة!</string>
     <string name="badge_no_badges">لم يتم الحصول على شارات بعد</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">بطل عيد الفصح</string>
+    <string name="badge_event_easter_desc">أكمل حدث عيد الفصح الموسمي</string>
+    <string name="badge_event_summer_name">نجم الصيف</string>
+    <string name="badge_event_summer_desc">أكمل حدث الصيف الموسمي</string>
+    <string name="badge_event_halloween_name">حلّال الرعب</string>
+    <string name="badge_event_halloween_desc">أكمل حدث الهالوين الموسمي</string>
+    <string name="badge_event_christmas_name">بطل الأعياد</string>
+    <string name="badge_event_christmas_desc">أكمل حدث عيد الميلاد الموسمي</string>
+    <string name="badge_event_new_year_name">أسطورة رأس السنة</string>
+    <string name="badge_event_new_year_desc">أكمل حدث رأس السنة الموسمي</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">اكتمل 25%!</string>
+    <string name="seasonal_event_milestone_50">في منتصف الطريق!</string>
+    <string name="seasonal_event_milestone_75">أوشك على الانتهاء!</string>
+    <string name="seasonal_event_milestone_100">اكتمل الحدث!</string>
+    <string name="seasonal_event_streak">سلسلة %1$d يوم</string>
 
     <!-- Play Games -->
     <string name="play_games_title">ألعاب Google Play</string>

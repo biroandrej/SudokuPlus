@@ -30,6 +30,7 @@ enum class XPBonusType {
     NO_MISTAKES,
     NO_HINTS,
     DAILY_CHALLENGE,
+    EVENT_CHALLENGE,
     STREAK,
     REWARD_BOOST
 }
@@ -78,6 +79,18 @@ constructor(
                 )
             )
             multiplier *= XPConfig.NO_HINTS_BONUS
+        }
+
+        // Event challenge bonus
+        if (completionData.isEventChallenge && completionData.eventXpMultiplier > 1.0) {
+            val eventMultiplier = completionData.eventXpMultiplier.toFloat()
+            bonuses.add(
+                XPBonus(
+                    type = XPBonusType.EVENT_CHALLENGE,
+                    multiplier = eventMultiplier
+                )
+            )
+            multiplier *= eventMultiplier
         }
 
         // Daily challenge bonus
