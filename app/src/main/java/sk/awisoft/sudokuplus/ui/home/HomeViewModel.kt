@@ -35,6 +35,7 @@ import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarState
 import sk.awisoft.sudokuplus.core.seasonal.model.SeasonalEvent
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
+import sk.awisoft.sudokuplus.core.whatsnew.WhatsNewManager
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
@@ -61,6 +62,7 @@ constructor(
     private val playGamesSettingsManager: PlayGamesSettingsManager,
     private val playGamesManager: PlayGamesManager,
     private val seasonalEventRepository: SeasonalEventRepository,
+    private val whatsNewManager: WhatsNewManager,
     @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     val lastSavedGame =
@@ -114,9 +116,27 @@ constructor(
         playGamesSettingsManager.homePromptDismissed
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
+    // What's New
+    private val _showWhatsNew = MutableStateFlow(false)
+    val showWhatsNew: StateFlow<Boolean> = _showWhatsNew.asStateFlow()
+
     init {
         loadDailyChallenge()
         checkNotificationPermission()
+        checkWhatsNew()
+    }
+
+    private fun checkWhatsNew() {
+        viewModelScope.launch {
+            _showWhatsNew.value = whatsNewManager.shouldShow()
+        }
+    }
+
+    fun onWhatsNewShown() {
+        _showWhatsNew.value = false
+        viewModelScope.launch {
+            whatsNewManager.markSeen()
+        }
     }
 
     fun dismissPlayGamesPrompt() {

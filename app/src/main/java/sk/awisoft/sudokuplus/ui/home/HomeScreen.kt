@@ -84,6 +84,7 @@ import sk.awisoft.sudokuplus.destinations.EventsScreenDestination
 import sk.awisoft.sudokuplus.destinations.GameScreenDestination
 import sk.awisoft.sudokuplus.destinations.PlayGamesScreenDestination
 import sk.awisoft.sudokuplus.destinations.RewardCalendarScreenDestination
+import sk.awisoft.sudokuplus.destinations.WhatsNewScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
@@ -130,6 +131,16 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     val playerInfo by viewModel.playerInfo.collectAsStateWithLifecycle()
     val playGamesEnabled by viewModel.playGamesEnabled.collectAsStateWithLifecycle()
     val isPlayGamesPromptDismissed by viewModel.isPlayGamesPromptDismissed.collectAsStateWithLifecycle()
+
+    // What's New
+    val showWhatsNew by viewModel.showWhatsNew.collectAsStateWithLifecycle()
+
+    LaunchedEffect(showWhatsNew) {
+        if (showWhatsNew) {
+            viewModel.onWhatsNewShown()
+            navigator.navigate(WhatsNewScreenDestination())
+        }
+    }
 
     Notifications(viewModel = viewModel)
 
