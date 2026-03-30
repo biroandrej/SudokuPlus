@@ -679,4 +679,20 @@
     <string name="premium_current_plan">Paket Saat Ini: %s</string>
     <string name="premium_plan_free">Gratis</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Yang Baru</string>
+    <string name="whats_new_next">Berikutnya</string>
+    <string name="whats_new_done">Mengerti</string>
+    <string name="whats_new_skip">Lewati</string>
+    <string name="whats_new_settings">Yang Baru</string>
+    <string name="whats_new_settings_desc">Lihat apa yang berubah di pembaruan terbaru</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Acara Musiman</string>
+    <string name="whats_new_v15_page1_desc">Ikuti acara musiman terbatas waktu dengan teka-teki bertema dan hadiah eksklusif! Paskah, Musim Panas, Halloween, Natal, dan Tahun Baru dengan perayaan unik.</string>
+    <string name="whats_new_v15_page2_title">Tantangan Acara</string>
+    <string name="whats_new_v15_page2_desc">Setiap acara menampilkan tantangan harian dengan pengali XP khusus. Selesaikan semua tantangan untuk mendapatkan lencana dan pencapaian eksklusif.</string>
+    <string name="whats_new_v15_page3_title">Perayaan Bertema</string>
+    <string name="whats_new_v15_page3_desc">Nikmati animasi bertema saat menyelesaikan tantangan — telur untuk Paskah, kepingan salju untuk Natal, kembang api untuk Tahun Baru, dan banyak lagi!</string>
 </resources>

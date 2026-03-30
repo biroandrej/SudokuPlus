@@ -684,4 +684,20 @@
     <string name="premium_current_plan">தற்போதைய திட்டம்: %s</string>
     <string name="premium_plan_free">இலவசம்</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">புதியவை</string>
+    <string name="whats_new_next">அடுத்து</string>
+    <string name="whats_new_done">புரிந்தது</string>
+    <string name="whats_new_skip">தவிர்</string>
+    <string name="whats_new_settings">புதியவை</string>
+    <string name="whats_new_settings_desc">சமீபத்திய புதுப்பிப்பில் என்ன மாறியது என்று பாருங்கள்</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">பருவகால நிகழ்வுகள்</string>
+    <string name="whats_new_v15_page1_desc">கருப்பொருள் புதிர்கள் மற்றும் பிரத்யேக வெகுமதிகளுடன் நேர வரம்புள்ள பருவகால நிகழ்வுகளில் பங்கேற்கவும்! ஈஸ்டர், கோடை, ஹாலோவீன், கிறிஸ்மஸ் மற்றும் புத்தாண்டு தனித்துவமான கொண்டாட்டங்கள்.</string>
+    <string name="whats_new_v15_page2_title">நிகழ்வு சவால்கள்</string>
+    <string name="whats_new_v15_page2_desc">ஒவ்வொரு நிகழ்விலும் சிறப்பு XP பெருக்கிகளுடன் தினசரி சவால்கள் உள்ளன. பிரத்யேக பேட்ஜ்கள் மற்றும் சாதனைகளைப் பெற அனைத்து சவால்களையும் நிறைவு செய்யுங்கள்.</string>
+    <string name="whats_new_v15_page3_title">கருப்பொருள் கொண்டாட்டங்கள்</string>
+    <string name="whats_new_v15_page3_desc">சவால்களை நிறைவு செய்யும்போது கருப்பொருள் அனிமேஷன்களை அனுபவியுங்கள் — ஈஸ்டருக்கு முட்டைகள், கிறிஸ்மஸுக்கு பனித்துகள்கள், புத்தாண்டுக்கு பட்டாசுகள் மேலும் பல!</string>
 </resources>

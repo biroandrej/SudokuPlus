@@ -703,4 +703,20 @@
     <string name="premium_current_plan">الخطة الحالية: %s</string>
     <string name="premium_plan_free">مجاني</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">ما الجديد</string>
+    <string name="whats_new_next">التالي</string>
+    <string name="whats_new_done">فهمت</string>
+    <string name="whats_new_skip">تخطي</string>
+    <string name="whats_new_settings">ما الجديد</string>
+    <string name="whats_new_settings_desc">اطّلع على التغييرات في آخر تحديث</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">أحداث موسمية</string>
+    <string name="whats_new_v15_page1_desc">شارك في أحداث موسمية محدودة الوقت مع ألغاز ذات طابع خاص ومكافآت حصرية! أحداث عيد الفصح والصيف والهالوين وعيد الميلاد ورأس السنة مع احتفالات فريدة.</string>
+    <string name="whats_new_v15_page2_title">تحديات الأحداث</string>
+    <string name="whats_new_v15_page2_desc">يتضمن كل حدث تحديات يومية مع مضاعفات XP خاصة. أكمل جميع التحديات للحصول على شارات وإنجازات حصرية.</string>
+    <string name="whats_new_v15_page3_title">احتفالات ذات طابع خاص</string>
+    <string name="whats_new_v15_page3_desc">استمتع برسوم متحركة ذات طابع خاص عند إكمال تحديات الأحداث — بيض لعيد الفصح، رقاقات ثلج لعيد الميلاد، ألعاب نارية لرأس السنة، والمزيد!</string>
 </resources>

@@ -694,4 +694,20 @@
     <string name="premium_current_plan">Поточний план: %s</string>
     <string name="premium_plan_free">Безкоштовний</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Що нового</string>
+    <string name="whats_new_next">Далі</string>
+    <string name="whats_new_done">Зрозуміло</string>
+    <string name="whats_new_skip">Пропустити</string>
+    <string name="whats_new_settings">Що нового</string>
+    <string name="whats_new_settings_desc">Дізнайтеся, що змінилося в останньому оновленні</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Сезонні події</string>
+    <string name="whats_new_v15_page1_desc">Беріть участь в обмежених за часом сезонних подіях з тематичними головоломками та ексклюзивними нагородами! Великдень, літо, Гелловін, Різдво та Новий рік з унікальними святкуваннями.</string>
+    <string name="whats_new_v15_page2_title">Випробування подій</string>
+    <string name="whats_new_v15_page2_desc">Кожна подія містить щоденні випробування з особливими множниками XP. Виконайте всі випробування, щоб отримати ексклюзивні значки та досягнення.</string>
+    <string name="whats_new_v15_page3_title">Тематичні святкування</string>
+    <string name="whats_new_v15_page3_desc">Насолоджуйтесь тематичними анімаціями при виконанні випробувань — яйця на Великдень, сніжинки на Різдво, феєрверки на Новий рік та багато іншого!</string>
 </resources>

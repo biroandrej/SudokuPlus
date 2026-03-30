@@ -689,4 +689,20 @@
     <string name="premium_current_plan">Plan curent: %s</string>
     <string name="premium_plan_free">Gratuit</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Ce este nou</string>
+    <string name="whats_new_next">Următorul</string>
+    <string name="whats_new_done">Am înțeles</string>
+    <string name="whats_new_skip">Sari peste</string>
+    <string name="whats_new_settings">Ce este nou</string>
+    <string name="whats_new_settings_desc">Vezi ce s-a schimbat în ultima actualizare</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Evenimente sezoniere</string>
+    <string name="whats_new_v15_page1_desc">Participă la evenimente sezoniere cu durată limitată, cu puzzle-uri tematice și recompense exclusive! Paște, vară, Halloween, Crăciun și Anul Nou cu sărbători unice.</string>
+    <string name="whats_new_v15_page2_title">Provocări de evenimente</string>
+    <string name="whats_new_v15_page2_desc">Fiecare eveniment include provocări zilnice cu multiplicatori XP speciali. Completează toate provocările pentru a obține insigne și realizări exclusive.</string>
+    <string name="whats_new_v15_page3_title">Sărbători tematice</string>
+    <string name="whats_new_v15_page3_desc">Bucură-te de animații tematice la completarea provocărilor — ouă de Paște, fulgi de nea de Crăciun, artificii de Anul Nou și multe altele!</string>
 </resources>

@@ -707,4 +707,20 @@
     <string name="premium_feature_ad_free">Brak reklam</string>
     <string name="premium_feature_cloud_sync">Synchronizacja z chmurą</string>
     <string name="premium_feature_themes">Ekskluzywne motywy</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Co nowego</string>
+    <string name="whats_new_next">Dalej</string>
+    <string name="whats_new_done">Rozumiem</string>
+    <string name="whats_new_skip">Pomiń</string>
+    <string name="whats_new_settings">Co nowego</string>
+    <string name="whats_new_settings_desc">Zobacz, co się zmieniło w ostatniej aktualizacji</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Wydarzenie sezonowe</string>
+    <string name="whats_new_v15_page1_desc">Weź udział w ograniczonych czasowo wydarzeniach sezonowych z tematycznymi łamigłówkami i ekskluzywnymi nagrodami! Wielkanoc, lato, Halloween, Boże Narodzenie i Nowy Rok z wyjątkowymi świętowaniami.</string>
+    <string name="whats_new_v15_page2_title">Wyzwania wydarzeń</string>
+    <string name="whats_new_v15_page2_desc">Każde wydarzenie oferuje codzienne wyzwania ze specjalnymi mnożnikami XP. Ukończ wszystkie wyzwania, aby zdobyć ekskluzywne odznaki i osiągnięcia.</string>
+    <string name="whats_new_v15_page3_title">Tematyczne świętowania</string>
+    <string name="whats_new_v15_page3_desc">Ciesz się tematycznymi animacjami po ukończeniu wyzwań — jajka na Wielkanoc, płatki śniegu na Boże Narodzenie, fajerwerki na Nowy Rok i wiele więcej!</string>
 </resources>

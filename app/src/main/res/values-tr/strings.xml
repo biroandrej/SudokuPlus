@@ -684,4 +684,20 @@
     <string name="premium_current_plan">Mevcut Plan: %s</string>
     <string name="premium_plan_free">Ücretsiz</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Yenilikler</string>
+    <string name="whats_new_next">İleri</string>
+    <string name="whats_new_done">Anladım</string>
+    <string name="whats_new_skip">Atla</string>
+    <string name="whats_new_settings">Yenilikler</string>
+    <string name="whats_new_settings_desc">Son güncellemede nelerin değiştiğini görün</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Sezonluk Etkinlikler</string>
+    <string name="whats_new_v15_page1_desc">Temalı bulmacalar ve özel ödüllerle sınırlı süreli sezonluk etkinliklere katılın! Paskalya, yaz, Cadılar Bayramı, Noel ve Yılbaşı benzersiz kutlamalarla.</string>
+    <string name="whats_new_v15_page2_title">Etkinlik Görevleri</string>
+    <string name="whats_new_v15_page2_desc">Her etkinlikte özel XP çarpanlarıyla günlük görevler bulunur. Özel rozetler ve başarılar kazanmak için tüm görevleri tamamlayın.</string>
+    <string name="whats_new_v15_page3_title">Temalı Kutlamalar</string>
+    <string name="whats_new_v15_page3_desc">Görevleri tamamlarken temalı animasyonların keyfini çıkarın — Paskalya için yumurtalar, Noel için kar taneleri, Yılbaşı için havai fişekler ve dahası!</string>
 </resources>

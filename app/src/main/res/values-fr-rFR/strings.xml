@@ -647,4 +647,20 @@
     <string name="backup_failure_file_create">Échec de la création du fichier de sauvegarde. Vérifiez l\'espace de stockage disponible.</string>
     <string name="backup_failure_io_error">Une erreur temporaire s\'est produite. La sauvegarde sera réessayée automatiquement.</string>
     <string name="backup_failure_unknown">Une erreur inattendue s\'est produite. Veuillez réessayer.</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Nouveautés</string>
+    <string name="whats_new_next">Suivant</string>
+    <string name="whats_new_done">Compris</string>
+    <string name="whats_new_skip">Passer</string>
+    <string name="whats_new_settings">Nouveautés</string>
+    <string name="whats_new_settings_desc">Découvrez les changements de la dernière mise à jour</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Événements saisonniers</string>
+    <string name="whats_new_v15_page1_desc">Participez à des événements saisonniers à durée limitée avec des puzzles thématiques et des récompenses exclusives ! Pâques, été, Halloween, Noël et Nouvel An avec des célébrations uniques.</string>
+    <string name="whats_new_v15_page2_title">Défis d\'événements</string>
+    <string name="whats_new_v15_page2_desc">Chaque événement propose des défis quotidiens avec des multiplicateurs d\'XP spéciaux. Complétez tous les défis pour obtenir des badges et des succès exclusifs.</string>
+    <string name="whats_new_v15_page3_title">Célébrations thématiques</string>
+    <string name="whats_new_v15_page3_desc">Profitez d\'animations thématiques en complétant les défis — des œufs pour Pâques, des flocons de neige pour Noël, des feux d\'artifice pour le Nouvel An et bien plus !</string>
 </resources>

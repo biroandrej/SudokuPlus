@@ -700,4 +700,20 @@
     <string name="premium_feature_ad_free">Experiencia sin anuncios</string>
     <string name="premium_feature_cloud_sync">Sincronización en la nube</string>
     <string name="premium_feature_themes">Temas exclusivos</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Novedades</string>
+    <string name="whats_new_next">Siguiente</string>
+    <string name="whats_new_done">Entendido</string>
+    <string name="whats_new_skip">Omitir</string>
+    <string name="whats_new_settings">Novedades</string>
+    <string name="whats_new_settings_desc">Mira qué cambió en la última actualización</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Eventos de temporada</string>
+    <string name="whats_new_v15_page1_desc">Participa en eventos de temporada por tiempo limitado con puzles temáticos y recompensas exclusivas. Pascua, verano, Halloween, Navidad y Año Nuevo con celebraciones únicas.</string>
+    <string name="whats_new_v15_page2_title">Desafíos de eventos</string>
+    <string name="whats_new_v15_page2_desc">Cada evento incluye desafíos diarios con multiplicadores de XP especiales. Completa todos los desafíos para obtener insignias y logros exclusivos.</string>
+    <string name="whats_new_v15_page3_title">Celebraciones temáticas</string>
+    <string name="whats_new_v15_page3_desc">Disfruta de animaciones temáticas al completar desafíos — huevos en Pascua, copos de nieve en Navidad, fuegos artificiales en Año Nuevo y mucho más.</string>
 </resources>

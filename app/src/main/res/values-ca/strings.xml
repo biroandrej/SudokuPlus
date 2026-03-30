@@ -685,4 +685,20 @@
     <string name="premium_current_plan">Pla actual: %s</string>
     <string name="premium_plan_free">Gratuït</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Novetats</string>
+    <string name="whats_new_next">Següent</string>
+    <string name="whats_new_done">Entesos</string>
+    <string name="whats_new_skip">Omet</string>
+    <string name="whats_new_settings">Novetats</string>
+    <string name="whats_new_settings_desc">Mira què ha canviat en l\'última actualització</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Esdeveniments de temporada</string>
+    <string name="whats_new_v15_page1_desc">Participa en esdeveniments de temporada per temps limitat amb trencaclosques temàtics i recompenses exclusives! Pasqua, Estiu, Halloween, Nadal i Cap d\'Any amb celebracions úniques.</string>
+    <string name="whats_new_v15_page2_title">Reptes d\'esdeveniments</string>
+    <string name="whats_new_v15_page2_desc">Cada esdeveniment inclou reptes diaris amb multiplicadors d\'XP especials. Completa tots els reptes per obtenir insígnies i assoliments exclusius.</string>
+    <string name="whats_new_v15_page3_title">Celebracions temàtiques</string>
+    <string name="whats_new_v15_page3_desc">Gaudeix d\'animacions temàtiques en completar reptes — ous per Pasqua, flocs de neu per Nadal, focs artificials per Cap d\'Any i molt més!</string>
 </resources>

@@ -724,4 +724,20 @@
     <string name="premium_feature_ad_free">広告なし体験</string>
     <string name="premium_feature_cloud_sync">クラウド同期</string>
     <string name="premium_feature_themes">限定テーマ</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">新機能</string>
+    <string name="whats_new_next">次へ</string>
+    <string name="whats_new_done">了解</string>
+    <string name="whats_new_skip">スキップ</string>
+    <string name="whats_new_settings">新機能</string>
+    <string name="whats_new_settings_desc">最新アップデートの変更点を確認</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">季節イベント</string>
+    <string name="whats_new_v15_page1_desc">テーマパズルと限定報酬がある期間限定の季節イベントに参加しましょう！イースター、夏、ハロウィン、クリスマス、お正月のユニークなお祝い。</string>
+    <string name="whats_new_v15_page2_title">イベントチャレンジ</string>
+    <string name="whats_new_v15_page2_desc">各イベントには特別なXP倍率のデイリーチャレンジがあります。すべてのチャレンジを達成して限定バッジと実績を獲得しましょう。</string>
+    <string name="whats_new_v15_page3_title">テーマ別のお祝い</string>
+    <string name="whats_new_v15_page3_desc">チャレンジ達成時にテーマアニメーションをお楽しみください — イースターのたまご、クリスマスの雪の結晶、お正月の花火など！</string>
 </resources>

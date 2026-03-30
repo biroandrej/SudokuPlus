@@ -689,4 +689,20 @@
     <string name="premium_current_plan">Plano Atual: %s</string>
     <string name="premium_plan_free">Gratuito</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Novidades</string>
+    <string name="whats_new_next">Próximo</string>
+    <string name="whats_new_done">Entendi</string>
+    <string name="whats_new_skip">Pular</string>
+    <string name="whats_new_settings">Novidades</string>
+    <string name="whats_new_settings_desc">Veja o que mudou na última atualização</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Eventos sazonais</string>
+    <string name="whats_new_v15_page1_desc">Participe de eventos sazonais por tempo limitado com quebra-cabeças temáticos e recompensas exclusivas! Páscoa, verão, Halloween, Natal e Ano Novo com comemorações únicas.</string>
+    <string name="whats_new_v15_page2_title">Desafios de eventos</string>
+    <string name="whats_new_v15_page2_desc">Cada evento traz desafios diários com multiplicadores de XP especiais. Complete todos os desafios para ganhar insígnias e conquistas exclusivas.</string>
+    <string name="whats_new_v15_page3_title">Comemorações temáticas</string>
+    <string name="whats_new_v15_page3_desc">Aproveite animações temáticas ao completar desafios — ovos na Páscoa, flocos de neve no Natal, fogos de artifício no Ano Novo e muito mais!</string>
 </resources>
