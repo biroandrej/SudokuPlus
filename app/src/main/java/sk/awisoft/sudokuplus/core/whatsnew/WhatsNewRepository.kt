@@ -29,5 +29,4 @@ object WhatsNewRepository {
     ).sortedBy { it.versionCode }
 
     fun getLatestEntry(): WhatsNewEntry? = allEntries.lastOrNull()
-
 }
