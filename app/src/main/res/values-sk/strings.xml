@@ -415,9 +415,24 @@
     <string name="seasonal_event_active">Aktívne</string>
     <string name="seasonal_event_upcoming">Nadchádzajúce</string>
     <string name="seasonal_event_ended">Ukončené</string>
-    <string name="seasonal_event_starts_in">Začína o %1$d dní</string>
-    <string name="seasonal_event_ends_in">Končí o %1$d dní</string>
-    <string name="seasonal_event_ended_ago">Skončilo pred %1$d dňami</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Začína o %1$d deň</item>
+        <item quantity="few">Začína o %1$d dni</item>
+        <item quantity="many">Začína o %1$d dní</item>
+        <item quantity="other">Začína o %1$d dní</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Končí o %1$d deň</item>
+        <item quantity="few">Končí o %1$d dni</item>
+        <item quantity="many">Končí o %1$d dní</item>
+        <item quantity="other">Končí o %1$d dní</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Skončilo pred %1$d dňom</item>
+        <item quantity="few">Skončilo pred %1$d dňami</item>
+        <item quantity="many">Skončilo pred %1$d dňami</item>
+        <item quantity="other">Skončilo pred %1$d dňami</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d výziev</string>
     <string name="seasonal_event_play">Hrať výzvu</string>
     <string name="seasonal_event_completed">Dokončené!</string>
@@ -643,7 +658,12 @@
     <string name="seasonal_event_milestone_50">V polovici!</string>
     <string name="seasonal_event_milestone_75">Takmer hotovo!</string>
     <string name="seasonal_event_milestone_100">Udalosť dokončená!</string>
-    <string name="seasonal_event_streak">Séria %1$d dní</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">Séria %1$d dňa</item>
+        <item quantity="few">Séria %1$d dní</item>
+        <item quantity="many">Séria %1$d dní</item>
+        <item quantity="other">Séria %1$d dní</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>

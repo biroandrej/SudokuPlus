@@ -402,9 +402,18 @@
     <string name="seasonal_event_active">Đang diễn ra</string>
     <string name="seasonal_event_upcoming">Sắp tới</string>
     <string name="seasonal_event_ended">Đã kết thúc</string>
-    <string name="seasonal_event_starts_in">Bắt đầu sau %1$d ngày</string>
-    <string name="seasonal_event_ends_in">Kết thúc sau %1$d ngày</string>
-    <string name="seasonal_event_ended_ago">Đã kết thúc %1$d ngày trước</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Bắt đầu sau %1$d ngày</item>
+        <item quantity="other">Bắt đầu sau %1$d ngày</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Kết thúc sau %1$d ngày</item>
+        <item quantity="other">Kết thúc sau %1$d ngày</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Đã kết thúc %1$d ngày trước</item>
+        <item quantity="other">Đã kết thúc %1$d ngày trước</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d thử thách</string>
     <string name="seasonal_event_play">Chơi thử thách</string>
     <string name="seasonal_event_completed">Hoàn thành!</string>
@@ -630,7 +639,10 @@
     <string name="seasonal_event_milestone_50">Đã đi được nửa đường!</string>
     <string name="seasonal_event_milestone_75">Sắp xong rồi!</string>
     <string name="seasonal_event_milestone_100">Sự kiện hoàn thành!</string>
-    <string name="seasonal_event_streak">Chuỗi %1$d ngày</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">Chuỗi %1$d ngày</item>
+        <item quantity="other">Chuỗi %1$d ngày</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Trò chơi</string>

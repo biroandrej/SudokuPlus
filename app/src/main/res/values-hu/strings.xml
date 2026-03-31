@@ -407,9 +407,18 @@
     <string name="seasonal_event_active">Aktív</string>
     <string name="seasonal_event_upcoming">Közelgő</string>
     <string name="seasonal_event_ended">Véget ért</string>
-    <string name="seasonal_event_starts_in">%1$d nap múlva kezdődik</string>
-    <string name="seasonal_event_ends_in">%1$d nap múlva ér véget</string>
-    <string name="seasonal_event_ended_ago">%1$d napja ért véget</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">%1$d nap múlva kezdődik</item>
+        <item quantity="other">%1$d nap múlva kezdődik</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">%1$d nap múlva ér véget</item>
+        <item quantity="other">%1$d nap múlva ér véget</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">%1$d napja ért véget</item>
+        <item quantity="other">%1$d napja ért véget</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d kihívás</string>
     <string name="seasonal_event_play">Kihívás játszása</string>
     <string name="seasonal_event_completed">Teljesítve!</string>
@@ -635,7 +644,10 @@
     <string name="seasonal_event_milestone_50">Félúton!</string>
     <string name="seasonal_event_milestone_75">Majdnem kész!</string>
     <string name="seasonal_event_milestone_100">Esemény teljesítve!</string>
-    <string name="seasonal_event_streak">%1$d napos sorozat</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d napos sorozat</item>
+        <item quantity="other">%1$d napos sorozat</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jatekok</string>

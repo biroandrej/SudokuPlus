@@ -378,9 +378,18 @@
     <string name="seasonal_event_active">Attivo</string>
     <string name="seasonal_event_upcoming">In arrivo</string>
     <string name="seasonal_event_ended">Terminato</string>
-    <string name="seasonal_event_starts_in">Inizia tra %1$d giorni</string>
-    <string name="seasonal_event_ends_in">Termina tra %1$d giorni</string>
-    <string name="seasonal_event_ended_ago">Terminato %1$d giorni fa</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Inizia tra %1$d giorno</item>
+        <item quantity="other">Inizia tra %1$d giorni</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Termina tra %1$d giorno</item>
+        <item quantity="other">Termina tra %1$d giorni</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Terminato %1$d giorno fa</item>
+        <item quantity="other">Terminato %1$d giorni fa</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d sfide</string>
     <string name="seasonal_event_play">Gioca la sfida</string>
     <string name="seasonal_event_completed">Completato!</string>
@@ -652,7 +661,10 @@
     <string name="seasonal_event_milestone_50">A metà strada!</string>
     <string name="seasonal_event_milestone_75">Quasi finito!</string>
     <string name="seasonal_event_milestone_100">Evento completato!</string>
-    <string name="seasonal_event_streak">Serie di %1$d giorni</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">Serie di %1$d giorno</item>
+        <item quantity="other">Serie di %1$d giorni</item>
+    </plurals>
 
     <!-- Premium -->
     <string name="premium_title">Sudoku Plus Premium</string>

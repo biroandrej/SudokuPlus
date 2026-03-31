@@ -412,9 +412,21 @@
     <string name="seasonal_event_active">Activ</string>
     <string name="seasonal_event_upcoming">În curând</string>
     <string name="seasonal_event_ended">Încheiat</string>
-    <string name="seasonal_event_starts_in">Începe în %1$d zile</string>
-    <string name="seasonal_event_ends_in">Se termină în %1$d zile</string>
-    <string name="seasonal_event_ended_ago">S-a încheiat acum %1$d zile</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Începe în %1$d zi</item>
+        <item quantity="few">Începe în %1$d zile</item>
+        <item quantity="other">Începe în %1$d de zile</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Se termină în %1$d zi</item>
+        <item quantity="few">Se termină în %1$d zile</item>
+        <item quantity="other">Se termină în %1$d de zile</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">S-a încheiat acum %1$d zi</item>
+        <item quantity="few">S-a încheiat acum %1$d zile</item>
+        <item quantity="other">S-a încheiat acum %1$d de zile</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d provocări</string>
     <string name="seasonal_event_play">Joacă provocarea</string>
     <string name="seasonal_event_completed">Finalizat!</string>
@@ -640,7 +652,11 @@
     <string name="seasonal_event_milestone_50">La jumătatea drumului!</string>
     <string name="seasonal_event_milestone_75">Aproape gata!</string>
     <string name="seasonal_event_milestone_100">Eveniment completat!</string>
-    <string name="seasonal_event_streak">Serie de %1$d zile</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">Serie de %1$d zi</item>
+        <item quantity="few">Serie de %1$d zile</item>
+        <item quantity="other">Serie de %1$d de zile</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jocuri</string>

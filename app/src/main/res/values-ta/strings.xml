@@ -407,9 +407,18 @@
     <string name="seasonal_event_active">செயலில்</string>
     <string name="seasonal_event_upcoming">வரவிருக்கும்</string>
     <string name="seasonal_event_ended">முடிந்தது</string>
-    <string name="seasonal_event_starts_in">%1$d நாட்களில் தொடங்கும்</string>
-    <string name="seasonal_event_ends_in">%1$d நாட்களில் முடியும்</string>
-    <string name="seasonal_event_ended_ago">%1$d நாட்களுக்கு முன் முடிந்தது</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">%1$d நாளில் தொடங்கும்</item>
+        <item quantity="other">%1$d நாட்களில் தொடங்கும்</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">%1$d நாளில் முடியும்</item>
+        <item quantity="other">%1$d நாட்களில் முடியும்</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">%1$d நாளுக்கு முன் முடிந்தது</item>
+        <item quantity="other">%1$d நாட்களுக்கு முன் முடிந்தது</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d சவால்கள்</string>
     <string name="seasonal_event_play">சவாலை விளையாடு</string>
     <string name="seasonal_event_completed">நிறைவு!</string>
@@ -635,7 +644,10 @@
     <string name="seasonal_event_milestone_50">பாதி வழியில்!</string>
     <string name="seasonal_event_milestone_75">கிட்டத்தட்ட முடிந்தது!</string>
     <string name="seasonal_event_milestone_100">நிகழ்வு முடிந்தது!</string>
-    <string name="seasonal_event_streak">%1$d நாள் தொடர்</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d நாள் தொடர்</item>
+        <item quantity="other">%1$d நாள் தொடர்</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>

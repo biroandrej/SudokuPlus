@@ -407,9 +407,18 @@
     <string name="seasonal_event_active">Aktiivinen</string>
     <string name="seasonal_event_upcoming">Tuleva</string>
     <string name="seasonal_event_ended">Päättynyt</string>
-    <string name="seasonal_event_starts_in">Alkaa %1$d päivän kuluttua</string>
-    <string name="seasonal_event_ends_in">Päättyy %1$d päivän kuluttua</string>
-    <string name="seasonal_event_ended_ago">Päättyi %1$d päivää sitten</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Alkaa %1$d päivän kuluttua</item>
+        <item quantity="other">Alkaa %1$d päivän kuluttua</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Päättyy %1$d päivän kuluttua</item>
+        <item quantity="other">Päättyy %1$d päivän kuluttua</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Päättyi %1$d päivä sitten</item>
+        <item quantity="other">Päättyi %1$d päivää sitten</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d haastetta</string>
     <string name="seasonal_event_play">Pelaa haaste</string>
     <string name="seasonal_event_completed">Suoritettu!</string>
@@ -635,7 +644,10 @@
     <string name="seasonal_event_milestone_50">Puolivälissä!</string>
     <string name="seasonal_event_milestone_75">Melkein valmis!</string>
     <string name="seasonal_event_milestone_100">Tapahtuma valmis!</string>
-    <string name="seasonal_event_streak">%1$d päivän putki</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d päivän putki</item>
+        <item quantity="other">%1$d päivän putki</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Pelit</string>

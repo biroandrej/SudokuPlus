@@ -411,9 +411,18 @@
     <string name="seasonal_event_active">सक्रिय</string>
     <string name="seasonal_event_upcoming">आगामी</string>
     <string name="seasonal_event_ended">समाप्त</string>
-    <string name="seasonal_event_starts_in">%1$d दिनों में शुरू होगा</string>
-    <string name="seasonal_event_ends_in">%1$d दिनों में समाप्त होगा</string>
-    <string name="seasonal_event_ended_ago">%1$d दिन पहले समाप्त हुआ</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">%1$d दिन में शुरू होगा</item>
+        <item quantity="other">%1$d दिनों में शुरू होगा</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">%1$d दिन में समाप्त होगा</item>
+        <item quantity="other">%1$d दिनों में समाप्त होगा</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">%1$d दिन पहले समाप्त हुआ</item>
+        <item quantity="other">%1$d दिन पहले समाप्त हुआ</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d चुनौतियाँ</string>
     <string name="seasonal_event_play">चुनौती खेलें</string>
     <string name="seasonal_event_completed">पूर्ण!</string>
@@ -639,7 +648,10 @@
     <string name="seasonal_event_milestone_50">आधा रास्ता!</string>
     <string name="seasonal_event_milestone_75">लगभग पूरा!</string>
     <string name="seasonal_event_milestone_100">इवेंट पूरा!</string>
-    <string name="seasonal_event_streak">%1$d दिन की लय</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d दिन की लय</item>
+        <item quantity="other">%1$d दिन की लय</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>

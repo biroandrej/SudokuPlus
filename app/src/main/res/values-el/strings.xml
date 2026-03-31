@@ -420,9 +420,18 @@
     <string name="seasonal_event_active">Ενεργό</string>
     <string name="seasonal_event_upcoming">Επερχόμενο</string>
     <string name="seasonal_event_ended">Ολοκληρώθηκε</string>
-    <string name="seasonal_event_starts_in">Ξεκινά σε %1$d ημέρες</string>
-    <string name="seasonal_event_ends_in">Τελειώνει σε %1$d ημέρες</string>
-    <string name="seasonal_event_ended_ago">Τελείωσε πριν %1$d ημέρες</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Ξεκινά σε %1$d ημέρα</item>
+        <item quantity="other">Ξεκινά σε %1$d ημέρες</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Τελειώνει σε %1$d ημέρα</item>
+        <item quantity="other">Τελειώνει σε %1$d ημέρες</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Τελείωσε πριν %1$d ημέρα</item>
+        <item quantity="other">Τελείωσε πριν %1$d ημέρες</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d προκλήσεις</string>
     <string name="seasonal_event_play">Παίξε την πρόκληση</string>
     <string name="seasonal_event_completed">Ολοκληρώθηκε!</string>
@@ -648,7 +657,10 @@
     <string name="seasonal_event_milestone_50">Στη μέση!</string>
     <string name="seasonal_event_milestone_75">Σχεδόν έτοιμο!</string>
     <string name="seasonal_event_milestone_100">Εκδήλωση ολοκληρώθηκε!</string>
-    <string name="seasonal_event_streak">Σερί %1$d ημερών</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">Σερί %1$d ημέρας</item>
+        <item quantity="other">Σερί %1$d ημερών</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Παιχνίδια</string>

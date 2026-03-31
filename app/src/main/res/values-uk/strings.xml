@@ -417,9 +417,24 @@
     <string name="seasonal_event_active">Активна</string>
     <string name="seasonal_event_upcoming">Незабаром</string>
     <string name="seasonal_event_ended">Завершено</string>
-    <string name="seasonal_event_starts_in">Починається через %1$d днів</string>
-    <string name="seasonal_event_ends_in">Закінчується через %1$d днів</string>
-    <string name="seasonal_event_ended_ago">Завершилось %1$d днів тому</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Починається через %1$d день</item>
+        <item quantity="few">Починається через %1$d дні</item>
+        <item quantity="many">Починається через %1$d днів</item>
+        <item quantity="other">Починається через %1$d днів</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Закінчується через %1$d день</item>
+        <item quantity="few">Закінчується через %1$d дні</item>
+        <item quantity="many">Закінчується через %1$d днів</item>
+        <item quantity="other">Закінчується через %1$d днів</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Завершилось %1$d день тому</item>
+        <item quantity="few">Завершилось %1$d дні тому</item>
+        <item quantity="many">Завершилось %1$d днів тому</item>
+        <item quantity="other">Завершилось %1$d днів тому</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d випробувань</string>
     <string name="seasonal_event_play">Грати випробування</string>
     <string name="seasonal_event_completed">Завершено!</string>
@@ -645,7 +660,12 @@
     <string name="seasonal_event_milestone_50">На половині шляху!</string>
     <string name="seasonal_event_milestone_75">Майже готово!</string>
     <string name="seasonal_event_milestone_100">Подію завершено!</string>
-    <string name="seasonal_event_streak">Серія %1$d днів</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">Серія %1$d день</item>
+        <item quantity="few">Серія %1$d дні</item>
+        <item quantity="many">Серія %1$d днів</item>
+        <item quantity="other">Серія %1$d днів</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Ігри</string>

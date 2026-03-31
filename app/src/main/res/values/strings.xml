@@ -512,9 +512,18 @@
     <string name="seasonal_event_active">Active</string>
     <string name="seasonal_event_upcoming">Upcoming</string>
     <string name="seasonal_event_ended">Ended</string>
-    <string name="seasonal_event_starts_in">Starts in %1$d days</string>
-    <string name="seasonal_event_ends_in">Ends in %1$d days</string>
-    <string name="seasonal_event_ended_ago">Ended %1$d days ago</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Starts in %1$d day</item>
+        <item quantity="other">Starts in %1$d days</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Ends in %1$d day</item>
+        <item quantity="other">Ends in %1$d days</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Ended %1$d day ago</item>
+        <item quantity="other">Ended %1$d days ago</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d challenges</string>
     <string name="seasonal_event_play">Play Challenge</string>
     <string name="seasonal_event_completed">Completed!</string>
@@ -527,7 +536,10 @@
     <string name="seasonal_event_milestone_50">Halfway There!</string>
     <string name="seasonal_event_milestone_75">Almost Done!</string>
     <string name="seasonal_event_milestone_100">Event Complete!</string>
-    <string name="seasonal_event_streak">%1$d day streak</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d day streak</item>
+        <item quantity="other">%1$d day streak</item>
+    </plurals>
 
     <!-- Seasonal Event Achievements -->
     <string name="achievement_seasonal_first">Event Explorer</string>
