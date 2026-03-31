@@ -34,6 +34,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -248,7 +249,11 @@ fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Mo
                 )
 
                 Text(
-                    text = stringResource(R.string.seasonal_event_ends_in, event.daysLeft),
+                    text = pluralStringResource(
+                        R.plurals.seasonal_event_ends_in,
+                        event.daysLeft,
+                        event.daysLeft
+                    ),
                     style = MaterialTheme.typography.labelSmall,
                     color = contentColor.copy(alpha = 0.7f)
                 )
@@ -265,7 +270,11 @@ fun EventCard(event: SeasonalEvent, onClick: () -> Unit, modifier: Modifier = Mo
                         tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Text(
-                        text = stringResource(R.string.seasonal_event_starts_in, daysUntil),
+                        text = pluralStringResource(
+                            R.plurals.seasonal_event_starts_in,
+                            daysUntil,
+                            daysUntil
+                        ),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

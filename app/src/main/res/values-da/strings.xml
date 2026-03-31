@@ -420,9 +420,18 @@
     <string name="seasonal_event_active">Aktiv</string>
     <string name="seasonal_event_upcoming">Kommende</string>
     <string name="seasonal_event_ended">Afsluttet</string>
-    <string name="seasonal_event_starts_in">Starter om %1$d dage</string>
-    <string name="seasonal_event_ends_in">Slutter om %1$d dage</string>
-    <string name="seasonal_event_ended_ago">Sluttede for %1$d dage siden</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Starter om %1$d dag</item>
+        <item quantity="other">Starter om %1$d dage</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Slutter om %1$d dag</item>
+        <item quantity="other">Slutter om %1$d dage</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Sluttede for %1$d dag siden</item>
+        <item quantity="other">Sluttede for %1$d dage siden</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d udfordringer</string>
     <string name="seasonal_event_play">Spil udfordring</string>
     <string name="seasonal_event_completed">Fuldført!</string>
@@ -648,7 +657,10 @@
     <string name="seasonal_event_milestone_50">Halvvejs!</string>
     <string name="seasonal_event_milestone_75">Næsten færdig!</string>
     <string name="seasonal_event_milestone_100">Begivenhed fuldført!</string>
-    <string name="seasonal_event_streak">%1$d dages stime</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d dags stime</item>
+        <item quantity="other">%1$d dages stime</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Spil</string>

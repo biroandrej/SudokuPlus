@@ -398,9 +398,24 @@
     <string name="seasonal_event_active">Активно</string>
     <string name="seasonal_event_upcoming">Скоро</string>
     <string name="seasonal_event_ended">Завершено</string>
-    <string name="seasonal_event_starts_in">Начнётся через %1$d дней</string>
-    <string name="seasonal_event_ends_in">Закончится через %1$d дней</string>
-    <string name="seasonal_event_ended_ago">Закончилось %1$d дней назад</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Начнётся через %1$d день</item>
+        <item quantity="few">Начнётся через %1$d дня</item>
+        <item quantity="many">Начнётся через %1$d дней</item>
+        <item quantity="other">Начнётся через %1$d дней</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Закончится через %1$d день</item>
+        <item quantity="few">Закончится через %1$d дня</item>
+        <item quantity="many">Закончится через %1$d дней</item>
+        <item quantity="other">Закончится через %1$d дней</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Закончилось %1$d день назад</item>
+        <item quantity="few">Закончилось %1$d дня назад</item>
+        <item quantity="many">Закончилось %1$d дней назад</item>
+        <item quantity="other">Закончилось %1$d дней назад</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d испытаний</string>
     <string name="seasonal_event_play">Играть испытание</string>
     <string name="seasonal_event_completed">Завершено!</string>
@@ -678,7 +693,12 @@
     <string name="seasonal_event_milestone_50">Половина пути!</string>
     <string name="seasonal_event_milestone_75">Почти готово!</string>
     <string name="seasonal_event_milestone_100">Событие завершено!</string>
-    <string name="seasonal_event_streak">Серия %1$d дней</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">Серия %1$d день</item>
+        <item quantity="few">Серия %1$d дня</item>
+        <item quantity="many">Серия %1$d дней</item>
+        <item quantity="other">Серия %1$d дней</item>
+    </plurals>
 
     <!-- Premium -->
     <string name="premium_title">Sudoku Plus Премиум</string>

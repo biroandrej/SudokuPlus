@@ -402,9 +402,18 @@
     <string name="seasonal_event_active">Aktif</string>
     <string name="seasonal_event_upcoming">Akan datang</string>
     <string name="seasonal_event_ended">Berakhir</string>
-    <string name="seasonal_event_starts_in">Dimulai dalam %1$d hari</string>
-    <string name="seasonal_event_ends_in">Berakhir dalam %1$d hari</string>
-    <string name="seasonal_event_ended_ago">Berakhir %1$d hari lalu</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Dimulai dalam %1$d hari</item>
+        <item quantity="other">Dimulai dalam %1$d hari</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Berakhir dalam %1$d hari</item>
+        <item quantity="other">Berakhir dalam %1$d hari</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Berakhir %1$d hari lalu</item>
+        <item quantity="other">Berakhir %1$d hari lalu</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d tantangan</string>
     <string name="seasonal_event_play">Main Tantangan</string>
     <string name="seasonal_event_completed">Selesai!</string>
@@ -630,7 +639,10 @@
     <string name="seasonal_event_milestone_50">Setengah Jalan!</string>
     <string name="seasonal_event_milestone_75">Hampir Selesai!</string>
     <string name="seasonal_event_milestone_100">Acara Selesai!</string>
-    <string name="seasonal_event_streak">Rekor %1$d hari</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">Rekor %1$d hari</item>
+        <item quantity="other">Rekor %1$d hari</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>

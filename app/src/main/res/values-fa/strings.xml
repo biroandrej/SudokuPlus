@@ -407,9 +407,18 @@
     <string name="seasonal_event_active">فعال</string>
     <string name="seasonal_event_upcoming">آینده</string>
     <string name="seasonal_event_ended">پایان یافته</string>
-    <string name="seasonal_event_starts_in">شروع در %1$d روز</string>
-    <string name="seasonal_event_ends_in">پایان در %1$d روز</string>
-    <string name="seasonal_event_ended_ago">%1$d روز پیش پایان یافت</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">شروع در %1$d روز</item>
+        <item quantity="other">شروع در %1$d روز</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">پایان در %1$d روز</item>
+        <item quantity="other">پایان در %1$d روز</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">%1$d روز پیش پایان یافت</item>
+        <item quantity="other">%1$d روز پیش پایان یافت</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d چالش</string>
     <string name="seasonal_event_play">بازی چالش</string>
     <string name="seasonal_event_completed">تکمیل شد!</string>
@@ -635,7 +644,10 @@
     <string name="seasonal_event_milestone_50">نیمه راه!</string>
     <string name="seasonal_event_milestone_75">تقریباً تمام شد!</string>
     <string name="seasonal_event_milestone_100">رویداد تکمیل شد!</string>
-    <string name="seasonal_event_streak">رکورد %1$d روزه</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">رکورد %1$d روزه</item>
+        <item quantity="other">رکورد %1$d روزه</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">گوگل پلی گیمز</string>

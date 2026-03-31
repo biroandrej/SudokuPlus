@@ -412,9 +412,18 @@
     <string name="seasonal_event_active">Ativo</string>
     <string name="seasonal_event_upcoming">Em breve</string>
     <string name="seasonal_event_ended">Encerrado</string>
-    <string name="seasonal_event_starts_in">Começa em %1$d dias</string>
-    <string name="seasonal_event_ends_in">Termina em %1$d dias</string>
-    <string name="seasonal_event_ended_ago">Encerrado há %1$d dias</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Começa em %1$d dia</item>
+        <item quantity="other">Começa em %1$d dias</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Termina em %1$d dia</item>
+        <item quantity="other">Termina em %1$d dias</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Encerrado há %1$d dia</item>
+        <item quantity="other">Encerrado há %1$d dias</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d desafios</string>
     <string name="seasonal_event_play">Jogar desafio</string>
     <string name="seasonal_event_completed">Concluído!</string>
@@ -640,7 +649,10 @@
     <string name="seasonal_event_milestone_50">Na metade!</string>
     <string name="seasonal_event_milestone_75">Quase lá!</string>
     <string name="seasonal_event_milestone_100">Evento concluído!</string>
-    <string name="seasonal_event_streak">Sequência de %1$d dias</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">Sequência de %1$d dia</item>
+        <item quantity="other">Sequência de %1$d dias</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Jogos</string>

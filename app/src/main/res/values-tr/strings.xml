@@ -407,9 +407,18 @@
     <string name="seasonal_event_active">Aktif</string>
     <string name="seasonal_event_upcoming">Yaklaşan</string>
     <string name="seasonal_event_ended">Sona erdi</string>
-    <string name="seasonal_event_starts_in">%1$d gün sonra başlıyor</string>
-    <string name="seasonal_event_ends_in">%1$d gün sonra bitiyor</string>
-    <string name="seasonal_event_ended_ago">%1$d gün önce sona erdi</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">%1$d gün sonra başlıyor</item>
+        <item quantity="other">%1$d gün sonra başlıyor</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">%1$d gün sonra bitiyor</item>
+        <item quantity="other">%1$d gün sonra bitiyor</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">%1$d gün önce sona erdi</item>
+        <item quantity="other">%1$d gün önce sona erdi</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d görev</string>
     <string name="seasonal_event_play">Görevi Oyna</string>
     <string name="seasonal_event_completed">Tamamlandı!</string>
@@ -635,7 +644,10 @@
     <string name="seasonal_event_milestone_50">Yarı Yoldasın!</string>
     <string name="seasonal_event_milestone_75">Neredeyse Bitti!</string>
     <string name="seasonal_event_milestone_100">Etkinlik Tamamlandı!</string>
-    <string name="seasonal_event_streak">%1$d günlük seri</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d günlük seri</item>
+        <item quantity="other">%1$d günlük seri</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Oyunlar</string>

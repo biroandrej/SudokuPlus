@@ -20,6 +20,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -72,11 +73,19 @@ fun SeasonalEventBanner(
                         )
                         Text(
                             text = if (isActive) {
-                                stringResource(R.string.seasonal_event_ends_in, event.daysLeft)
+                                pluralStringResource(
+                                    R.plurals.seasonal_event_ends_in,
+                                    event.daysLeft,
+                                    event.daysLeft
+                                )
                             } else {
                                 val daysUntil = ChronoUnit.DAYS
                                     .between(LocalDate.now(), event.startDate).toInt()
-                                stringResource(R.string.seasonal_event_starts_in, daysUntil)
+                                pluralStringResource(
+                                    R.plurals.seasonal_event_starts_in,
+                                    daysUntil,
+                                    daysUntil
+                                )
                             },
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)

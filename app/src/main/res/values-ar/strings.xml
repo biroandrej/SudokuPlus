@@ -426,9 +426,30 @@
     <string name="seasonal_event_active">نشط</string>
     <string name="seasonal_event_upcoming">قادم</string>
     <string name="seasonal_event_ended">انتهى</string>
-    <string name="seasonal_event_starts_in">يبدأ خلال %1$d أيام</string>
-    <string name="seasonal_event_ends_in">ينتهي خلال %1$d أيام</string>
-    <string name="seasonal_event_ended_ago">انتهى منذ %1$d أيام</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="zero">يبدأ خلال %1$d يوم</item>
+        <item quantity="one">يبدأ خلال %1$d يوم</item>
+        <item quantity="two">يبدأ خلال %1$d يومين</item>
+        <item quantity="few">يبدأ خلال %1$d أيام</item>
+        <item quantity="many">يبدأ خلال %1$d يومًا</item>
+        <item quantity="other">يبدأ خلال %1$d يوم</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="zero">ينتهي خلال %1$d يوم</item>
+        <item quantity="one">ينتهي خلال %1$d يوم</item>
+        <item quantity="two">ينتهي خلال %1$d يومين</item>
+        <item quantity="few">ينتهي خلال %1$d أيام</item>
+        <item quantity="many">ينتهي خلال %1$d يومًا</item>
+        <item quantity="other">ينتهي خلال %1$d يوم</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="zero">انتهى منذ %1$d يوم</item>
+        <item quantity="one">انتهى منذ %1$d يوم</item>
+        <item quantity="two">انتهى منذ %1$d يومين</item>
+        <item quantity="few">انتهى منذ %1$d أيام</item>
+        <item quantity="many">انتهى منذ %1$d يومًا</item>
+        <item quantity="other">انتهى منذ %1$d يوم</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d تحديات</string>
     <string name="seasonal_event_play">العب التحدي</string>
     <string name="seasonal_event_completed">مكتمل!</string>
@@ -654,7 +675,14 @@
     <string name="seasonal_event_milestone_50">في منتصف الطريق!</string>
     <string name="seasonal_event_milestone_75">أوشك على الانتهاء!</string>
     <string name="seasonal_event_milestone_100">اكتمل الحدث!</string>
-    <string name="seasonal_event_streak">سلسلة %1$d يوم</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="zero">سلسلة %1$d يوم</item>
+        <item quantity="one">سلسلة %1$d يوم</item>
+        <item quantity="two">سلسلة %1$d يومين</item>
+        <item quantity="few">سلسلة %1$d أيام</item>
+        <item quantity="many">سلسلة %1$d يومًا</item>
+        <item quantity="other">سلسلة %1$d يوم</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">ألعاب Google Play</string>

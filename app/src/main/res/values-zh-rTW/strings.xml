@@ -402,9 +402,18 @@
     <string name="seasonal_event_active">進行中</string>
     <string name="seasonal_event_upcoming">即將開始</string>
     <string name="seasonal_event_ended">已結束</string>
-    <string name="seasonal_event_starts_in">%1$d天後開始</string>
-    <string name="seasonal_event_ends_in">%1$d天後結束</string>
-    <string name="seasonal_event_ended_ago">%1$d天前結束</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">%1$d天後開始</item>
+        <item quantity="other">%1$d天後開始</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">%1$d天後結束</item>
+        <item quantity="other">%1$d天後結束</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">%1$d天前結束</item>
+        <item quantity="other">%1$d天前結束</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d 挑戰</string>
     <string name="seasonal_event_play">開始挑戰</string>
     <string name="seasonal_event_completed">已完成！</string>
@@ -630,7 +639,10 @@
     <string name="seasonal_event_milestone_50">完成一半！</string>
     <string name="seasonal_event_milestone_75">即將完成！</string>
     <string name="seasonal_event_milestone_100">活動完成！</string>
-    <string name="seasonal_event_streak">%1$d 天連續記錄</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d 天連續記錄</item>
+        <item quantity="other">%1$d 天連續記錄</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play 遊戲</string>

@@ -117,9 +117,18 @@
     <string name="seasonal_event_active">開催中</string>
     <string name="seasonal_event_upcoming">近日開催</string>
     <string name="seasonal_event_ended">終了</string>
-    <string name="seasonal_event_starts_in">あと%1$d日で開始</string>
-    <string name="seasonal_event_ends_in">あと%1$d日で終了</string>
-    <string name="seasonal_event_ended_ago">%1$d日前に終了</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">あと%1$d日で開始</item>
+        <item quantity="other">あと%1$d日で開始</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">あと%1$d日で終了</item>
+        <item quantity="other">あと%1$d日で終了</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">%1$d日前に終了</item>
+        <item quantity="other">%1$d日前に終了</item>
+    </plurals>
     <string name="seasonal_event_progress">%1$d/%2$d チャレンジ</string>
     <string name="seasonal_event_play">チャレンジをプレイ</string>
     <string name="seasonal_event_completed">完了！</string>
@@ -675,7 +684,10 @@
     <string name="seasonal_event_milestone_50">折り返し地点！</string>
     <string name="seasonal_event_milestone_75">もう少し！</string>
     <string name="seasonal_event_milestone_100">イベント完了！</string>
-    <string name="seasonal_event_streak">%1$d日連続</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d日連続</item>
+        <item quantity="other">%1$d日連続</item>
+    </plurals>
 
     <!-- Play Games -->
     <string name="play_games_title">Google Play Games</string>
