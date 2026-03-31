@@ -107,8 +107,14 @@ constructor(
         playGamesSettingsManager.playGamesEnabled
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
+    // Seasonal Events — show active event, or next upcoming if none active
     val activeEvent: StateFlow<SeasonalEvent?> =
         seasonalEventRepository.getActiveEvents()
+            .map { it.firstOrNull() }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    val upcomingEvent: StateFlow<SeasonalEvent?> =
+        seasonalEventRepository.getUpcomingEvents()
             .map { it.firstOrNull() }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
@@ -122,7 +128,18 @@ constructor(
     init {
         loadDailyChallenge()
         checkNotificationPermission()
+        syncSeasonalEvents()
         checkWhatsNew()
+    }
+
+    private fun syncSeasonalEvents() {
+        viewModelScope.launch {
+            try {
+                seasonalEventRepository.syncEvents()
+            } catch (_: Exception) {
+                // Sync failure is non-critical
+            }
+        }
     }
 
     private fun checkWhatsNew() {

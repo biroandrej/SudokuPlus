@@ -125,6 +125,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
 
     // Seasonal Events
     val activeEvent by viewModel.activeEvent.collectAsStateWithLifecycle()
+    val upcomingEvent by viewModel.upcomingEvent.collectAsStateWithLifecycle()
+    val eventToShow = activeEvent ?: upcomingEvent
 
     // Play Games
     val isPlayGamesSignedIn by viewModel.isPlayGamesSignedIn.collectAsStateWithLifecycle()
@@ -250,7 +252,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                 )
             }
 
-            activeEvent?.let { event ->
+            eventToShow?.let { event ->
                 item {
                     SeasonalEventBanner(
                         event = event,
