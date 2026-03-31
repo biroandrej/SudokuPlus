@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.Celebration
-import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -37,21 +36,13 @@ fun SeasonalEventBanner(
     modifier: Modifier = Modifier
 ) {
     val isActive = event.status is EventStatus.Active
-    val containerColor = if (isActive) {
-        MaterialTheme.colorScheme.primaryContainer
-    } else {
-        MaterialTheme.colorScheme.secondaryContainer
-    }
-    val contentColor = if (isActive) {
-        MaterialTheme.colorScheme.onPrimaryContainer
-    } else {
-        MaterialTheme.colorScheme.onSecondaryContainer
-    }
 
     ElevatedCard(
         onClick = onViewEvent,
         modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.elevatedCardColors(containerColor = containerColor)
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        )
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -68,20 +59,16 @@ fun SeasonalEventBanner(
                     modifier = Modifier.weight(1f)
                 ) {
                     Icon(
-                        imageVector = if (isActive) {
-                            Icons.Rounded.Celebration
-                        } else {
-                            Icons.Rounded.Schedule
-                        },
+                        imageVector = Icons.Rounded.Celebration,
                         contentDescription = null,
-                        tint = contentColor
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                     Column {
                         Text(
                             text = event.title,
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.SemiBold,
-                            color = contentColor
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                         Text(
                             text = if (isActive) {
@@ -92,14 +79,16 @@ fun SeasonalEventBanner(
                                 stringResource(R.string.seasonal_event_starts_in, daysUntil)
                             },
                             style = MaterialTheme.typography.bodySmall,
-                            color = contentColor.copy(alpha = 0.7f)
+                            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                         )
                     }
                 }
 
                 TextButton(
                     onClick = onViewEvent,
-                    colors = ButtonDefaults.textButtonColors(contentColor = contentColor)
+                    colors = ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
                 ) {
                     Text(stringResource(R.string.seasonal_event_view_all))
                     Icon(
