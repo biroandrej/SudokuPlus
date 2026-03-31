@@ -695,4 +695,20 @@
     <string name="premium_current_plan">Current Plan: %s</string>
     <string name="premium_plan_free">Free</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What\'s New Screen -->
+    <string name="whats_new_title">What\'s New</string>
+    <string name="whats_new_next">Next</string>
+    <string name="whats_new_done">Got It</string>
+    <string name="whats_new_skip">Skip</string>
+    <string name="whats_new_settings">What\'s New</string>
+    <string name="whats_new_settings_desc">See what changed in the latest update</string>
+
+    <!-- What\'s New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Seasonal Events</string>
+    <string name="whats_new_v15_page1_desc">Participate in time-limited seasonal events with themed puzzles and exclusive rewards! Easter, Summer, Halloween, Christmas, and New Year events with unique celebrations.</string>
+    <string name="whats_new_v15_page2_title">Event Challenges</string>
+    <string name="whats_new_v15_page2_desc">Each event features daily challenges with special XP multipliers. Complete all challenges to earn exclusive event badges and achievements.</string>
+    <string name="whats_new_v15_page3_title">Themed Celebrations</string>
+    <string name="whats_new_v15_page3_desc">Enjoy themed particle animations when you complete event challenges — eggs for Easter, snowflakes for Christmas, fireworks for New Year, and more!</string>
 </resources>

@@ -697,4 +697,20 @@
     <string name="premium_current_plan">Τρέχον πλάνο: %s</string>
     <string name="premium_plan_free">Δωρεάν</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Τι νέο υπάρχει</string>
+    <string name="whats_new_next">Επόμενο</string>
+    <string name="whats_new_done">Κατάλαβα</string>
+    <string name="whats_new_skip">Παράλειψη</string>
+    <string name="whats_new_settings">Τι νέο υπάρχει</string>
+    <string name="whats_new_settings_desc">Δείτε τι άλλαξε στην τελευταία ενημέρωση</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Εποχιακά γεγονότα</string>
+    <string name="whats_new_v15_page1_desc">Συμμετέχετε σε περιορισμένα εποχιακά γεγονότα με θεματικά παζλ και αποκλειστικές ανταμοιβές! Πάσχα, Καλοκαίρι, Halloween, Χριστούγεννα και Πρωτοχρονιά με μοναδικές γιορτές.</string>
+    <string name="whats_new_v15_page2_title">Προκλήσεις γεγονότων</string>
+    <string name="whats_new_v15_page2_desc">Κάθε γεγονός περιλαμβάνει καθημερινές προκλήσεις με ειδικούς πολλαπλασιαστές XP. Ολοκληρώστε όλες τις προκλήσεις για να κερδίσετε αποκλειστικά σήματα και επιτεύγματα.</string>
+    <string name="whats_new_v15_page3_title">Θεματικές γιορτές</string>
+    <string name="whats_new_v15_page3_desc">Απολαύστε θεματικά εφέ κίνησης όταν ολοκληρώνετε προκλήσεις — αυγά για το Πάσχα, χιονονιφάδες για τα Χριστούγεννα, πυροτεχνήματα για την Πρωτοχρονιά και άλλα!</string>
 </resources>

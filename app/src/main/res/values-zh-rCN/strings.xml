@@ -696,4 +696,20 @@
     <string name="premium_feature_ad_free">无广告体验</string>
     <string name="premium_feature_cloud_sync">云同步</string>
     <string name="premium_feature_themes">专属主题</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">新功能</string>
+    <string name="whats_new_next">下一步</string>
+    <string name="whats_new_done">知道了</string>
+    <string name="whats_new_skip">跳过</string>
+    <string name="whats_new_settings">新功能</string>
+    <string name="whats_new_settings_desc">查看最新更新的变化</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">季节活动</string>
+    <string name="whats_new_v15_page1_desc">参加限时季节活动，体验主题谜题和专属奖励！复活节、夏日、万圣节、圣诞节和新年，每个都有独特的庆祝方式。</string>
+    <string name="whats_new_v15_page2_title">活动挑战</string>
+    <string name="whats_new_v15_page2_desc">每个活动都有带特殊经验倍率的每日挑战。完成所有挑战即可获得专属徽章和成就。</string>
+    <string name="whats_new_v15_page3_title">主题庆典</string>
+    <string name="whats_new_v15_page3_desc">完成挑战时享受主题动画效果——复活节的彩蛋、圣诞节的雪花、新年的烟花等等！</string>
 </resources>

@@ -693,4 +693,20 @@
     <string name="premium_current_plan">Noverande plan: %s</string>
     <string name="premium_plan_free">Gratis</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Kva er nytt</string>
+    <string name="whats_new_next">Neste</string>
+    <string name="whats_new_done">Forstått</string>
+    <string name="whats_new_skip">Hopp over</string>
+    <string name="whats_new_settings">Kva er nytt</string>
+    <string name="whats_new_settings_desc">Sjå kva som er endra i den siste oppdateringa</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Sesonghendigar</string>
+    <string name="whats_new_v15_page1_desc">Delta i tidsbegrensa sesonghendigar med temapuslespel og eksklusive løner! Påske, sommar, Halloween, jul og nyttår med unike feiringar.</string>
+    <string name="whats_new_v15_page2_title">Hendingsutfordringar</string>
+    <string name="whats_new_v15_page2_desc">Kvar hending har daglege utfordringar med spesielle XP-multiplikatorar. Fullfør alle utfordringar for å tene eksklusive merke og prestasjonar.</string>
+    <string name="whats_new_v15_page3_title">Temafeiringar</string>
+    <string name="whats_new_v15_page3_desc">Nyt temaanimasjonar når du fullfører utfordringar — egg til påske, snøfnugg til jul, fyrverkeri til nyttår og mykje meir!</string>
 </resources>

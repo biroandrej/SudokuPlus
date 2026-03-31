@@ -688,4 +688,20 @@
     <string name="premium_current_plan">वर्तमान योजना: %s</string>
     <string name="premium_plan_free">मुफ़्त</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">नया क्या है</string>
+    <string name="whats_new_next">अगला</string>
+    <string name="whats_new_done">समझ गया</string>
+    <string name="whats_new_skip">छोड़ें</string>
+    <string name="whats_new_settings">नया क्या है</string>
+    <string name="whats_new_settings_desc">देखें कि नवीनतम अपडेट में क्या बदला</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">मौसमी इवेंट</string>
+    <string name="whats_new_v15_page1_desc">थीम वाली पहेलियों और विशेष पुरस्कारों के साथ सीमित समय के मौसमी इवेंट में भाग लें! ईस्टर, गर्मी, हैलोवीन, क्रिसमस और नए साल के अनूठे उत्सव।</string>
+    <string name="whats_new_v15_page2_title">इवेंट चुनौतियाँ</string>
+    <string name="whats_new_v15_page2_desc">प्रत्येक इवेंट में विशेष XP गुणक के साथ दैनिक चुनौतियाँ होती हैं। विशेष बैज और उपलब्धियाँ अर्जित करने के लिए सभी चुनौतियाँ पूरी करें।</string>
+    <string name="whats_new_v15_page3_title">थीम वाले उत्सव</string>
+    <string name="whats_new_v15_page3_desc">चुनौतियाँ पूरी करते समय थीम वाले एनिमेशन का आनंद लें — ईस्टर के लिए अंडे, क्रिसमस के लिए बर्फ के टुकड़े, नए साल के लिए आतिशबाज़ी और भी बहुत कुछ!</string>
 </resources>

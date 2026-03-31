@@ -703,4 +703,20 @@
     <string name="premium_feature_ad_free">Без рекламы</string>
     <string name="premium_feature_cloud_sync">Облачная синхронизация</string>
     <string name="premium_feature_themes">Эксклюзивные темы</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Что нового</string>
+    <string name="whats_new_next">Далее</string>
+    <string name="whats_new_done">Понятно</string>
+    <string name="whats_new_skip">Пропустить</string>
+    <string name="whats_new_settings">Что нового</string>
+    <string name="whats_new_settings_desc">Узнайте, что изменилось в последнем обновлении</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Сезонные события</string>
+    <string name="whats_new_v15_page1_desc">Участвуйте в ограниченных по времени сезонных событиях с тематическими головоломками и эксклюзивными наградами! Пасха, лето, Хэллоуин, Рождество и Новый год с уникальными празднованиями.</string>
+    <string name="whats_new_v15_page2_title">Испытания событий</string>
+    <string name="whats_new_v15_page2_desc">Каждое событие включает ежедневные испытания с особыми множителями XP. Выполните все испытания, чтобы получить эксклюзивные значки и достижения.</string>
+    <string name="whats_new_v15_page3_title">Тематические празднования</string>
+    <string name="whats_new_v15_page3_desc">Наслаждайтесь тематическими анимациями при выполнении испытаний — яйца на Пасху, снежинки на Рождество, фейерверки на Новый год и многое другое!</string>
 </resources>

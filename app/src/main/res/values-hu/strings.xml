@@ -684,4 +684,20 @@
     <string name="premium_current_plan">Jelenlegi csomag: %s</string>
     <string name="premium_plan_free">Ingyenes</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Újdonságok</string>
+    <string name="whats_new_next">Következő</string>
+    <string name="whats_new_done">Értem</string>
+    <string name="whats_new_skip">Kihagyás</string>
+    <string name="whats_new_settings">Újdonságok</string>
+    <string name="whats_new_settings_desc">Nézd meg, mi változott a legutóbbi frissítésben</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Szezonális események</string>
+    <string name="whats_new_v15_page1_desc">Vegyél részt időkorlátos szezonális eseményeken tematikus rejtvényekkel és exkluzív jutalmakkal! Húsvét, nyár, Halloween, karácsony és újév egyedi ünnepségekkel.</string>
+    <string name="whats_new_v15_page2_title">Esemény kihívások</string>
+    <string name="whats_new_v15_page2_desc">Minden esemény napi kihívásokat kínál speciális XP-szorzókkal. Teljesítsd az összes kihívást exkluzív jelvények és eredmények megszerzéséhez.</string>
+    <string name="whats_new_v15_page3_title">Tematikus ünnepségek</string>
+    <string name="whats_new_v15_page3_desc">Élvezd a tematikus animációkat a kihívások teljesítésekor — tojások húsvétkor, hópelyhek karácsonykor, tűzijáték újévkor és még sok más!</string>
 </resources>

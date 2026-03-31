@@ -679,4 +679,20 @@
     <string name="premium_current_plan">Gói hiện tại: %s</string>
     <string name="premium_plan_free">Miễn phí</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Có gì mới</string>
+    <string name="whats_new_next">Tiếp</string>
+    <string name="whats_new_done">Đã hiểu</string>
+    <string name="whats_new_skip">Bỏ qua</string>
+    <string name="whats_new_settings">Có gì mới</string>
+    <string name="whats_new_settings_desc">Xem những thay đổi trong bản cập nhật mới nhất</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Sự kiện theo mùa</string>
+    <string name="whats_new_v15_page1_desc">Tham gia các sự kiện theo mùa có giới hạn thời gian với câu đố theo chủ đề và phần thưởng độc quyền! Lễ Phục Sinh, Mùa Hè, Halloween, Giáng Sinh và Năm Mới với các lễ kỷ niệm độc đáo.</string>
+    <string name="whats_new_v15_page2_title">Thử thách sự kiện</string>
+    <string name="whats_new_v15_page2_desc">Mỗi sự kiện có các thử thách hàng ngày với hệ số nhân XP đặc biệt. Hoàn thành tất cả thử thách để nhận huy hiệu và thành tích độc quyền.</string>
+    <string name="whats_new_v15_page3_title">Lễ kỷ niệm theo chủ đề</string>
+    <string name="whats_new_v15_page3_desc">Thưởng thức hiệu ứng theo chủ đề khi hoàn thành thử thách — trứng cho Lễ Phục Sinh, bông tuyết cho Giáng Sinh, pháo hoa cho Năm Mới và nhiều hơn nữa!</string>
 </resources>

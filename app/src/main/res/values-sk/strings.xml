@@ -692,4 +692,20 @@
     <string name="premium_current_plan">Aktualny plan: %s</string>
     <string name="premium_plan_free">Zadarmo</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Čo je nové</string>
+    <string name="whats_new_next">Ďalej</string>
+    <string name="whats_new_done">Rozumiem</string>
+    <string name="whats_new_skip">Preskočiť</string>
+    <string name="whats_new_settings">Čo je nové</string>
+    <string name="whats_new_settings_desc">Pozrite sa, čo sa zmenilo v poslednej aktualizácii</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Sezónne udalosti</string>
+    <string name="whats_new_v15_page1_desc">Zúčastnite sa časovo obmedzených sezónnych udalostí s tematickými hlavolamami a exkluzívnymi odmenami! Veľká noc, leto, Halloween, Vianoce a Nový rok s jedinečnými oslavami.</string>
+    <string name="whats_new_v15_page2_title">Výzvy udalostí</string>
+    <string name="whats_new_v15_page2_desc">Každá udalosť ponúka denné výzvy so špeciálnymi násobiteľmi XP. Splňte všetky výzvy a získajte exkluzívne odznaky a úspechy.</string>
+    <string name="whats_new_v15_page3_title">Tematické oslavy</string>
+    <string name="whats_new_v15_page3_desc">Užite si tematické animácie pri dokončení výziev — vajíčka na Veľkú noc, snehové vločky na Vianoce, ohňostroje na Nový rok a ďalšie!</string>
 </resources>

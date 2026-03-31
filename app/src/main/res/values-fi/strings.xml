@@ -684,4 +684,20 @@
     <string name="premium_current_plan">Nykyinen tilaus: %s</string>
     <string name="premium_plan_free">Ilmainen</string>
     <string name="premium_plan_premium">Premium</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Uutta</string>
+    <string name="whats_new_next">Seuraava</string>
+    <string name="whats_new_done">Selvä</string>
+    <string name="whats_new_skip">Ohita</string>
+    <string name="whats_new_settings">Uutta</string>
+    <string name="whats_new_settings_desc">Katso mitä muuttui viimeisimmässä päivityksessä</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Kausitapahtumat</string>
+    <string name="whats_new_v15_page1_desc">Osallistu aikarajoitettuihin kausitapahtumiin teemapulmilla ja yksinoikeuspalkinnoilla! Pääsiäinen, kesä, Halloween, joulu ja uusivuosi ainutlaatuisine juhlallisuuksineen.</string>
+    <string name="whats_new_v15_page2_title">Tapahtumien haasteet</string>
+    <string name="whats_new_v15_page2_desc">Jokaisessa tapahtumassa on päivittäisiä haasteita erityisillä XP-kertoimilla. Suorita kaikki haasteet ansaitaksesi yksinoikeusmerkkejä ja saavutuksia.</string>
+    <string name="whats_new_v15_page3_title">Teemajuhlat</string>
+    <string name="whats_new_v15_page3_desc">Nauti teema-animaatioista haasteiden suorittamisen yhteydessä — munia pääsiäisenä, lumihiutaleita jouluna, ilotulitteita uutenavuotena ja paljon muuta!</string>
 </resources>

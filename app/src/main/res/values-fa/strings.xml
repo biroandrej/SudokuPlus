@@ -684,4 +684,20 @@
     <string name="premium_current_plan">طرح فعلی: %s</string>
     <string name="premium_plan_free">رایگان</string>
     <string name="premium_plan_premium">پرمیوم</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">تازه‌ها</string>
+    <string name="whats_new_next">بعدی</string>
+    <string name="whats_new_done">متوجه شدم</string>
+    <string name="whats_new_skip">رد شدن</string>
+    <string name="whats_new_settings">تازه‌ها</string>
+    <string name="whats_new_settings_desc">ببینید چه چیزی در آخرین به‌روزرسانی تغییر کرده است</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">رویدادهای فصلی</string>
+    <string name="whats_new_v15_page1_desc">در رویدادهای فصلی محدود با پازل‌های موضوعی و جوایز انحصاری شرکت کنید! عید پاک، تابستان، هالووین، کریسمس و سال نو با جشن‌های منحصربه‌فرد.</string>
+    <string name="whats_new_v15_page2_title">چالش‌های رویداد</string>
+    <string name="whats_new_v15_page2_desc">هر رویداد شامل چالش‌های روزانه با ضریب‌های XP ویژه است. همه چالش‌ها را تکمیل کنید تا نشان‌ها و دستاوردهای انحصاری کسب کنید.</string>
+    <string name="whats_new_v15_page3_title">جشن‌های موضوعی</string>
+    <string name="whats_new_v15_page3_desc">از انیمیشن‌های موضوعی هنگام تکمیل چالش‌ها لذت ببرید — تخم‌مرغ برای عید پاک، دانه‌های برف برای کریسمس، آتش‌بازی برای سال نو و بیشتر!</string>
 </resources>

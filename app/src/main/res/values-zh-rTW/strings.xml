@@ -679,4 +679,20 @@
     <string name="premium_current_plan">目前方案：%s</string>
     <string name="premium_plan_free">免費版</string>
     <string name="premium_plan_premium">高級版</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">新功能</string>
+    <string name="whats_new_next">下一步</string>
+    <string name="whats_new_done">瞭解了</string>
+    <string name="whats_new_skip">略過</string>
+    <string name="whats_new_settings">新功能</string>
+    <string name="whats_new_settings_desc">查看最新更新的變化</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">季節活動</string>
+    <string name="whats_new_v15_page1_desc">參加限時季節活動，體驗主題謎題和專屬獎勵！復活節、夏日、萬聖節、聖誕節和新年，每個都有獨特的慶祝方式。</string>
+    <string name="whats_new_v15_page2_title">活動挑戰</string>
+    <string name="whats_new_v15_page2_desc">每個活動都有帶特殊經驗倍率的每日挑戰。完成所有挑戰即可獲得專屬徽章和成就。</string>
+    <string name="whats_new_v15_page3_title">主題慶典</string>
+    <string name="whats_new_v15_page3_desc">完成挑戰時享受主題動畫效果——復活節的彩蛋、聖誕節的雪花、新年的煙火等等！</string>
 </resources>
