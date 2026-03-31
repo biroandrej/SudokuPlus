@@ -33,14 +33,19 @@ import sk.awisoft.sudokuplus.core.reward.ClaimResult
 import sk.awisoft.sudokuplus.core.reward.DailyReward
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarState
+import sk.awisoft.sudokuplus.core.seasonal.model.SeasonalEvent
 import sk.awisoft.sudokuplus.core.utils.SudokuParser
+import sk.awisoft.sudokuplus.core.whatsnew.WhatsNewManager
 import sk.awisoft.sudokuplus.data.database.model.DailyChallenge
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.BoardRepository
 import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 
 @HiltViewModel
 class HomeViewModel
@@ -54,15 +59,20 @@ constructor(
     private val notificationSettingsManager: NotificationSettingsManager,
     private val notificationHelper: NotificationHelper,
     private val rewardCalendarManager: RewardCalendarManager,
+    private val playGamesSettingsManager: PlayGamesSettingsManager,
+    private val playGamesManager: PlayGamesManager,
+    private val seasonalEventRepository: SeasonalEventRepository,
+    private val whatsNewManager: WhatsNewManager,
     @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     val lastSavedGame =
         savedGameRepository.getLast()
             .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
-    // Daily Challenge StateO
-    private val _dailyChallenge = MutableStateFlow<DailyChallenge?>(null)
-    val dailyChallenge: StateFlow<DailyChallenge?> = _dailyChallenge.asStateFlow()
+    // Daily Challenge State - uses Flow to automatically update when challenge is completed
+    val dailyChallenge: StateFlow<DailyChallenge?> =
+        dailyChallengeRepository.getTodayFlow()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     private val _isDailyLoading = MutableStateFlow(false)
     val isDailyLoading: StateFlow<Boolean> = _isDailyLoading.asStateFlow()
@@ -89,9 +99,78 @@ constructor(
     private val _claimedReward = MutableStateFlow<DailyReward?>(null)
     val claimedReward: StateFlow<DailyReward?> = _claimedReward.asStateFlow()
 
+    // Play Games State
+    val isPlayGamesSignedIn = playGamesManager.isSignedIn
+    val playerInfo = playGamesManager.playerInfo
+
+    val playGamesEnabled: StateFlow<Boolean> =
+        playGamesSettingsManager.playGamesEnabled
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
+    // Seasonal Events — show active event, or next upcoming if none active
+    val activeEvent: StateFlow<SeasonalEvent?> =
+        seasonalEventRepository.getActiveEvents()
+            .map { it.firstOrNull() }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    val upcomingEvent: StateFlow<SeasonalEvent?> =
+        seasonalEventRepository.getUpcomingEvents()
+            .map { it.firstOrNull() }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    val isPlayGamesPromptDismissed: StateFlow<Boolean> =
+        playGamesSettingsManager.homePromptDismissed
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
+    private val _showWhatsNew = MutableStateFlow(false)
+    val showWhatsNew: StateFlow<Boolean> = _showWhatsNew.asStateFlow()
+
     init {
         loadDailyChallenge()
         checkNotificationPermission()
+        syncSeasonalEvents()
+        checkWhatsNew()
+    }
+
+    private fun syncSeasonalEvents() {
+        viewModelScope.launch {
+            try {
+                seasonalEventRepository.syncEvents()
+            } catch (_: Exception) {
+                // Sync failure is non-critical
+            }
+        }
+    }
+
+    private fun checkWhatsNew() {
+        viewModelScope.launch {
+            _showWhatsNew.value = whatsNewManager.shouldShow()
+        }
+    }
+
+    fun onWhatsNewShown() {
+        _showWhatsNew.value = false
+        viewModelScope.launch {
+            whatsNewManager.markSeen()
+        }
+    }
+
+    fun dismissPlayGamesPrompt() {
+        viewModelScope.launch(Dispatchers.IO) {
+            playGamesSettingsManager.setHomePromptDismissed(true)
+        }
+    }
+
+    fun showAchievements(activity: android.app.Activity) {
+        if (playGamesEnabled.value) {
+            playGamesManager.showAchievementsUI(activity)
+        }
+    }
+
+    fun showLeaderboards(activity: android.app.Activity) {
+        if (playGamesEnabled.value) {
+            playGamesManager.showAllLeaderboardsUI(activity)
+        }
     }
 
     private fun checkNotificationPermission() {
@@ -147,13 +226,14 @@ constructor(
     private fun loadDailyChallenge() {
         viewModelScope.launch(Dispatchers.IO) {
             _isDailyLoading.value = true
-            _dailyChallenge.value = dailyChallengeManager.getOrCreateTodayChallenge()
+            // Ensure today's challenge exists (creates if needed)
+            dailyChallengeManager.getOrCreateTodayChallenge()
             _isDailyLoading.value = false
         }
     }
 
     fun playDailyChallenge() {
-        val challenge = _dailyChallenge.value ?: return
+        val challenge = dailyChallenge.value ?: return
 
         viewModelScope.launch(Dispatchers.IO) {
             // Create a SudokuBoard from the DailyChallenge

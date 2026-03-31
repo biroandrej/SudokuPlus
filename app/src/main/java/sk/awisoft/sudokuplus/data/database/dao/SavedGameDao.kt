@@ -42,10 +42,10 @@ interface SavedGameDao {
     )
     fun getLastPlayable(limit: Int): Flow<Map<SavedGame, SudokuBoard>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(savedGame: SavedGame): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(savedGames: List<SavedGame>)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)

@@ -2,12 +2,21 @@ package sk.awisoft.sudokuplus.di
 
 import android.app.Application
 import android.content.Context
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import sk.awisoft.sudokuplus.ai.AIHintService
+import sk.awisoft.sudokuplus.ai.AIHintServiceImpl
+import sk.awisoft.sudokuplus.ai.FirebaseTimestampProvider
+import sk.awisoft.sudokuplus.ai.FirebaseTimestampProviderImpl
+import sk.awisoft.sudokuplus.ai.RemoteConfigProvider
+import sk.awisoft.sudokuplus.ai.RemoteConfigProviderImpl
+import sk.awisoft.sudokuplus.billing.BillingManager
+import sk.awisoft.sudokuplus.billing.BillingManagerImpl
 import sk.awisoft.sudokuplus.core.DailyChallengeManager
 import sk.awisoft.sudokuplus.core.achievement.AchievementEngine
 import sk.awisoft.sudokuplus.core.reward.RewardCalendarManager
@@ -20,6 +29,7 @@ import sk.awisoft.sudokuplus.data.database.dao.LoginRewardDao
 import sk.awisoft.sudokuplus.data.database.dao.RecordDao
 import sk.awisoft.sudokuplus.data.database.dao.RewardBadgeDao
 import sk.awisoft.sudokuplus.data.database.dao.SavedGameDao
+import sk.awisoft.sudokuplus.data.database.dao.SeasonalEventDao
 import sk.awisoft.sudokuplus.data.database.dao.UserAchievementDao
 import sk.awisoft.sudokuplus.data.database.dao.UserProgressDao
 import sk.awisoft.sudokuplus.data.database.repository.AchievementRepositoryImpl
@@ -30,12 +40,15 @@ import sk.awisoft.sudokuplus.data.database.repository.FolderRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.LoginRewardRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.RecordRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.SavedGameRepositoryImpl
+import sk.awisoft.sudokuplus.data.database.repository.SeasonalEventRepositoryImpl
 import sk.awisoft.sudokuplus.data.database.repository.UserProgressRepositoryImpl
+import sk.awisoft.sudokuplus.data.datastore.AIUsageManager
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.AssistanceSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.BackupSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.GameplaySettingsManager
 import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.data.datastore.PlayGamesSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.SettingsDataStore
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
 import sk.awisoft.sudokuplus.domain.repository.AchievementRepository
@@ -46,7 +59,10 @@ import sk.awisoft.sudokuplus.domain.repository.FolderRepository
 import sk.awisoft.sudokuplus.domain.repository.LoginRewardRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
 import sk.awisoft.sudokuplus.domain.repository.UserProgressRepository
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
+import sk.awisoft.sudokuplus.playgames.PlayGamesManagerImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -167,13 +183,15 @@ class AppModule {
         savedGameRepository: SavedGameRepository,
         recordRepository: RecordRepository,
         dailyChallengeRepository: DailyChallengeRepository,
-        dailyChallengeManager: DailyChallengeManager
+        dailyChallengeManager: DailyChallengeManager,
+        seasonalEventRepository: SeasonalEventRepository
     ): AchievementEngine = AchievementEngine(
         achievementRepository,
         savedGameRepository,
         recordRepository,
         dailyChallengeRepository,
-        dailyChallengeManager
+        dailyChallengeManager,
+        seasonalEventRepository
     )
 
     @Singleton
@@ -221,4 +239,55 @@ class AppModule {
         repository: LoginRewardRepository,
         badgeDao: RewardBadgeDao
     ): RewardCalendarManager = RewardCalendarManager(repository, badgeDao)
+
+    @Provides
+    @Singleton
+    fun providePlayGamesSettingsManager(settingsDataStore: SettingsDataStore) =
+        PlayGamesSettingsManager(settingsDataStore)
+
+    @Provides
+    @Singleton
+    fun providePlayGamesManager(): PlayGamesManager = PlayGamesManagerImpl
+
+    @Provides
+    @Singleton
+    fun provideRemoteConfigProvider(): RemoteConfigProvider = RemoteConfigProviderImpl()
+
+    @Provides
+    @Singleton
+    fun provideAIHintService(remoteConfigProvider: RemoteConfigProvider): AIHintService =
+        AIHintServiceImpl(remoteConfigProvider)
+
+    @Provides
+    @Singleton
+    fun provideFirebaseTimestampProvider(): FirebaseTimestampProvider =
+        FirebaseTimestampProviderImpl()
+
+    @Provides
+    @Singleton
+    fun provideAIUsageManager(
+        settingsDataStore: SettingsDataStore,
+        timestampProvider: FirebaseTimestampProvider
+    ): AIUsageManager = AIUsageManager(settingsDataStore, timestampProvider)
+
+    @Provides
+    @Singleton
+    fun provideBillingManager(@ApplicationContext context: Context): BillingManager =
+        BillingManagerImpl(context)
+
+    @Singleton
+    @Provides
+    fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    @Singleton
+    @Provides
+    fun provideSeasonalEventDao(appDatabase: AppDatabase): SeasonalEventDao =
+        appDatabase.seasonalEventDao()
+
+    @Singleton
+    @Provides
+    fun provideSeasonalEventRepository(
+        dao: SeasonalEventDao,
+        firestore: FirebaseFirestore
+    ): SeasonalEventRepository = SeasonalEventRepositoryImpl(dao, firestore)
 }

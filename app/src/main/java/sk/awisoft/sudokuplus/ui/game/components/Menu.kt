@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import sk.awisoft.sudokuplus.BuildConfig
 import sk.awisoft.sudokuplus.R
 
 @Composable
@@ -22,6 +23,7 @@ fun GameMenu(
     onGiveUpClick: () -> Unit,
     onSettingsClick: () -> Unit,
     onExportClick: () -> Unit,
+    onSolveClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = MaterialTheme.shapes.large)) {
@@ -51,6 +53,15 @@ fun GameMenu(
                     onDismiss()
                 }
             )
+            if (BuildConfig.DEBUG && onSolveClick != null) {
+                DropdownMenuItem(
+                    text = { Text("[DEBUG] Solve") },
+                    onClick = {
+                        onSolveClick()
+                        onDismiss()
+                    }
+                )
+            }
         }
     }
 }

@@ -22,8 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.materialkolor.ktx.blend
-import com.materialkolor.ktx.harmonize
 import sk.awisoft.sudokuplus.R
 import sk.awisoft.sudokuplus.core.qqwing.advanced_hint.AdvancedHintData
 
@@ -54,11 +52,7 @@ fun AdvancedHintContainer(
                         Modifier
                             .fillMaxWidth()
                             .clip(MaterialTheme.shapes.large)
-                            .background(
-                                with(MaterialTheme.colorScheme) {
-                                    primary.blend(secondaryContainer, 0.75f)
-                                }
-                            ),
+                            .background(MaterialTheme.colorScheme.primaryContainer),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
@@ -69,19 +63,13 @@ fun AdvancedHintContainer(
                                 imageVector = Icons.Rounded.AutoAwesome,
                                 contentDescription = null,
                                 modifier = Modifier.padding(horizontal = 12.dp),
-                                tint =
-                                with(MaterialTheme.colorScheme) {
-                                    onSecondaryContainer.harmonize(primary)
-                                }
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                             Text(
                                 text = stringResource(it.titleRes),
                                 style = MaterialTheme.typography.titleLarge,
                                 modifier = Modifier.padding(vertical = 12.dp),
-                                color =
-                                with(MaterialTheme.colorScheme) {
-                                    onSecondaryContainer.harmonize(primary)
-                                }
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                         }
                         IconButton(
@@ -90,7 +78,8 @@ fun AdvancedHintContainer(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.SettingsSuggest,
-                                contentDescription = null
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                         }
                     }

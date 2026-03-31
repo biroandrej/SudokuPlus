@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -141,6 +143,17 @@ class MainActivity : ComponentActivity() {
                         2 -> true
                         else -> isSystemInDarkTheme()
                     }
+
+                // Update status bar icons based on theme
+                SideEffect {
+                    val insetsController = WindowCompat.getInsetsController(
+                        window,
+                        window.decorView
+                    )
+                    insetsController.isAppearanceLightStatusBars = !resolvedDarkTheme
+                    insetsController.isAppearanceLightNavigationBars = !resolvedDarkTheme
+                }
+
                 val boardColors =
                     if (settings.monetSudokuBoard) {
                         SudokuBoardColorsImpl(

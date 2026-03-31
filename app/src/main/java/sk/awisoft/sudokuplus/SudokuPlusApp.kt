@@ -6,15 +6,10 @@ import androidx.work.Configuration
 import androidx.work.WorkManager
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import sk.awisoft.sudokuplus.core.notification.DailyChallengeNotificationWorker
-import sk.awisoft.sudokuplus.core.notification.NotificationHelper
-import sk.awisoft.sudokuplus.core.notification.StreakReminderWorker
-import sk.awisoft.sudokuplus.data.datastore.NotificationSettingsManager
+import sk.awisoft.sudokuplus.core.notification.NotificationInitializer
+import sk.awisoft.sudokuplus.core.seasonal.SeasonalEventSyncWorker
+import sk.awisoft.sudokuplus.core.startup.AdsInitWorker
+import sk.awisoft.sudokuplus.core.startup.RemoteConfigFetchWorker
 
 @HiltAndroidApp
 class SudokuPlusApp : Application(), Configuration.Provider {
@@ -22,12 +17,7 @@ class SudokuPlusApp : Application(), Configuration.Provider {
     lateinit var hiltWorkerFactory: HiltWorkerFactory
 
     @Inject
-    lateinit var notificationSettingsManager: NotificationSettingsManager
-
-    @Inject
-    lateinit var notificationHelper: NotificationHelper
-
-    private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    lateinit var notificationInitializer: NotificationInitializer
 
     override val workManagerConfiguration: Configuration
         get() =
@@ -37,34 +27,33 @@ class SudokuPlusApp : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+        FirebaseInitializer.init(this)
         initCrashlytics()
         WorkManager.initialize(this, workManagerConfiguration)
-        scheduleNotificationWorkersIfEnabled()
+
+        // Schedule background initialization tasks
+        scheduleStartupWorkers()
     }
 
     private fun initCrashlytics() {
         CrashlyticsInitializer.init()
     }
 
-    private fun scheduleNotificationWorkersIfEnabled() {
-        applicationScope.launch {
-            // Only schedule if we have notification permission
-            if (!notificationHelper.hasNotificationPermission()) return@launch
+    /**
+     * Schedules one-time workers for initialization tasks that don't need
+     * to block app startup. This improves cold start time.
+     */
+    private fun scheduleStartupWorkers() {
+        // Fetch latest Remote Config (AI model settings)
+        RemoteConfigFetchWorker.enqueue(this)
 
-            val dailyEnabled = notificationSettingsManager.dailyChallengeNotificationEnabled.first()
-            val streakEnabled = notificationSettingsManager.streakReminderEnabled.first()
+        // Initialize Mobile Ads SDK in background
+        AdsInitWorker.enqueue(this)
 
-            if (dailyEnabled) {
-                val hour = notificationSettingsManager.dailyChallengeNotificationHour.first()
-                val minute = notificationSettingsManager.dailyChallengeNotificationMinute.first()
-                DailyChallengeNotificationWorker.schedule(this@SudokuPlusApp, hour, minute)
-            }
+        // Sync seasonal events from Firestore periodically
+        SeasonalEventSyncWorker.enqueue(this)
 
-            if (streakEnabled) {
-                val hour = notificationSettingsManager.streakReminderHour.first()
-                val minute = notificationSettingsManager.streakReminderMinute.first()
-                StreakReminderWorker.schedule(this@SudokuPlusApp, hour, minute)
-            }
-        }
+        // Schedule notification workers based on user settings
+        notificationInitializer.scheduleWorkersIfNeeded(this)
     }
 }

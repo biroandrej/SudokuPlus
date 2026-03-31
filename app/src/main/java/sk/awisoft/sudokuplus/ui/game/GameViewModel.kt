@@ -31,6 +31,10 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import sk.awisoft.sudokuplus.ai.AIHintRequest
+import sk.awisoft.sudokuplus.ai.AIHintResponse
+import sk.awisoft.sudokuplus.ai.AIHintService
+import sk.awisoft.sudokuplus.billing.BillingManager
 import sk.awisoft.sudokuplus.core.Cell
 import sk.awisoft.sudokuplus.core.Note
 import sk.awisoft.sudokuplus.core.PreferencesConstants
@@ -54,15 +58,22 @@ import sk.awisoft.sudokuplus.data.database.model.AchievementDefinition
 import sk.awisoft.sudokuplus.data.database.model.Record
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.data.database.model.SudokuBoard
+import sk.awisoft.sudokuplus.data.datastore.AIUsageManager
 import sk.awisoft.sudokuplus.data.datastore.AppSettingsManager
 import sk.awisoft.sudokuplus.data.datastore.ThemeSettingsManager
+import sk.awisoft.sudokuplus.domain.repository.DailyChallengeRepository
 import sk.awisoft.sudokuplus.domain.repository.RecordRepository
 import sk.awisoft.sudokuplus.domain.repository.SavedGameRepository
+import sk.awisoft.sudokuplus.domain.repository.SeasonalEventRepository
 import sk.awisoft.sudokuplus.domain.usecase.board.GetBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.board.UpdateBoardUseCase
 import sk.awisoft.sudokuplus.domain.usecase.record.GetAllRecordsUseCase
 import sk.awisoft.sudokuplus.navArgs
+import sk.awisoft.sudokuplus.playgames.PlayGamesAchievementIds
+import sk.awisoft.sudokuplus.playgames.PlayGamesLeaderboardIds
+import sk.awisoft.sudokuplus.playgames.PlayGamesManager
 import sk.awisoft.sudokuplus.ui.game.components.ToolBarItem
+import sk.awisoft.sudokuplus.ui.util.getCurrentLocaleTag
 
 @HiltViewModel
 class GameViewModel
@@ -78,7 +89,13 @@ constructor(
     private val getAllRecordsUseCase: GetAllRecordsUseCase,
     private val achievementEngine: AchievementEngine,
     private val xpEngine: XPEngine,
-    private val rewardCalendarManager: RewardCalendarManager
+    private val rewardCalendarManager: RewardCalendarManager,
+    private val playGamesManager: PlayGamesManager,
+    private val dailyChallengeRepository: DailyChallengeRepository,
+    private val aiHintService: AIHintService,
+    private val aiUsageManager: AIUsageManager,
+    private val billingManager: BillingManager,
+    private val seasonalEventRepository: SeasonalEventRepository
 ) : ViewModel() {
     sealed interface UiEvent {
         data object NoHintsRemaining : UiEvent
@@ -92,6 +109,15 @@ constructor(
         data class XPEarned(val xpResult: XPResult) : UiEvent
 
         data class LevelUp(val newLevel: Int) : UiEvent
+
+        data class RequestReview(val completedGames: Int) : UiEvent
+
+        // AI Hint events
+        data object RequestAIHintUpsell : UiEvent
+
+        data class AIHintResult(val response: AIHintResponse.Success) : UiEvent
+
+        data class AIHintError(val message: String) : UiEvent
     }
 
     private val _uiEvents = MutableSharedFlow<UiEvent>(extraBufferCapacity = 1)
@@ -296,6 +322,18 @@ constructor(
 
     private var _advancedHintText = MutableStateFlow("")
     val advancedHintText = _advancedHintText.asStateFlow()
+
+    // AI Hint state
+    private val _aiHintState = MutableStateFlow<AIHintResponse?>(null)
+    val aiHintState = _aiHintState.asStateFlow()
+
+    val isPremium = billingManager.isPremium
+
+    val freeAIHintsRemaining = aiUsageManager.freeAIHintsRemaining.stateIn(
+        viewModelScope,
+        SharingStarted.Eagerly,
+        AIUsageManager.FREE_AI_HINTS_PER_DAY
+    )
 
     private fun clearNotesAtCell(
         notes: List<Note>,
@@ -563,18 +601,7 @@ constructor(
                 }
 
                 ToolBarItem.Hint -> {
-                    if (!canApplyHint()) return
-                    viewModelScope.launch {
-                        val consumed =
-                            withContext(Dispatchers.IO) {
-                                appSettingsManager.tryConsumeHint(gameUid)
-                            }
-                        if (consumed) {
-                            applyHint()
-                        } else {
-                            _uiEvents.emit(UiEvent.RequestRewardedHint)
-                        }
-                    }
+                    getSmartHint()
                 }
 
                 ToolBarItem.Note -> {
@@ -680,22 +707,7 @@ constructor(
                 }
             }
         }
-        viewModelScope.launch(Dispatchers.IO) {
-            val savedGame = savedGameRepository.get(boardEntity.uid)
-            if (savedGame != null) {
-                savedGameRepository.update(
-                    savedGame.copy(
-                        completed = true,
-                        giveUp = false,
-                        canContinue = false,
-                        finishedAt = ZonedDateTime.now()
-                    )
-                )
-            }
-            if (appSettingsManager.shouldShowInterstitialAfterGameComplete()) {
-                _uiEvents.emit(UiEvent.ShowInterstitial)
-            }
-        }
+        // Note: Database update is now handled in onGameComplete() to avoid race conditions
         return true
     }
 
@@ -799,13 +811,57 @@ constructor(
         }
     }
 
+    /**
+     * Debug-only function to instantly solve the puzzle.
+     * Fills in all empty cells with the correct values from the solution.
+     */
+    fun solvePuzzle() {
+        if (solvedBoard.isEmpty()) solveBoard()
+        if (solvedBoard.isEmpty()) return
+
+        val newBoard = getBoardNoRef()
+        for (i in solvedBoard.indices) {
+            for (j in solvedBoard[i].indices) {
+                if (!newBoard[i][j].locked) {
+                    newBoard[i][j].value = solvedBoard[i][j].value
+                }
+            }
+        }
+        gameBoard = newBoard
+        remainingUsesList = countRemainingUses(newBoard)
+        notes = emptyList()
+        gameCompleted = true
+    }
+
     fun onGameComplete() {
         if (endGame) return
 
         pauseTimer()
         currCell = Cell(-1, -1, 0)
         viewModelScope.launch(Dispatchers.IO) {
-            saveGame()
+            // Save game with completion status
+            val savedGame = savedGameRepository.get(boardEntity.uid)
+            val sudokuParser = SudokuParser()
+            if (savedGame != null) {
+                savedGameRepository.update(
+                    savedGame.copy(
+                        timer = java.time.Duration.ofSeconds(duration.inWholeSeconds),
+                        currentBoard = sudokuParser.boardToString(gameBoard),
+                        notes = sudokuParser.notesToString(notes),
+                        mistakes = mistakesCount,
+                        lastPlayed = ZonedDateTime.now(),
+                        completed = true,
+                        giveUp = false,
+                        canContinue = false,
+                        finishedAt = ZonedDateTime.now()
+                    )
+                )
+            }
+
+            if (appSettingsManager.shouldShowInterstitialAfterGameComplete()) {
+                _uiEvents.emit(UiEvent.ShowInterstitial)
+            }
+
             recordRepository.insert(
                 Record(
                     board_uid = boardEntity.uid,
@@ -816,6 +872,30 @@ constructor(
                 )
             )
 
+            // Mark daily challenge as completed
+            if (navArgs.isDailyChallenge) {
+                dailyChallengeRepository.complete(
+                    date = java.time.LocalDate.now(),
+                    completionTime = duration.toJavaDuration(),
+                    mistakes = mistakesMade,
+                    hintsUsed = hintsUsed
+                )
+            }
+
+            // Mark event challenge as completed and get XP multiplier
+            val eventChallengeGame =
+                seasonalEventRepository.getChallengeGameByBoardUid(boardEntity.uid)
+            var eventXpMultiplier = 1.0
+            if (eventChallengeGame != null) {
+                seasonalEventRepository.markChallengeCompleted(boardEntity.uid)
+                val event = seasonalEventRepository.getEventById(eventChallengeGame.eventId)
+                if (event != null) {
+                    eventXpMultiplier = event.challenges
+                        .find { it.day == eventChallengeGame.challengeDay }
+                        ?.xpMultiplier ?: 1.0
+                }
+            }
+
             // Check for newly unlocked achievements
             val completionData =
                 GameCompletionData(
@@ -824,7 +904,9 @@ constructor(
                     completionTime = duration.toJavaDuration(),
                     mistakes = mistakesMade,
                     hintsUsed = hintsUsed,
-                    isDailyChallenge = navArgs.isDailyChallenge
+                    isDailyChallenge = navArgs.isDailyChallenge,
+                    isEventChallenge = eventChallengeGame != null,
+                    eventXpMultiplier = eventXpMultiplier
                 )
             val unlockedAchievements = achievementEngine.checkAchievements(completionData)
             if (unlockedAchievements.isNotEmpty()) {
@@ -837,8 +919,98 @@ constructor(
             if (xpResult.leveledUp) {
                 _uiEvents.emit(UiEvent.LevelUp(xpResult.newLevel))
             }
+
+            // Request review at milestone completions
+            val completedGames = savedGameRepository.getAll().first()
+                .count { it.completed && !it.giveUp }
+            _uiEvents.emit(UiEvent.RequestReview(completedGames))
+
+            // Submit Play Games achievements and leaderboard scores
+            submitPlayGamesProgress(
+                completionData,
+                completedGames,
+                xpResult.updatedProgress.totalXP
+            )
         }
         endGame = true
+    }
+
+    private suspend fun submitPlayGamesProgress(
+        completionData: GameCompletionData,
+        totalGamesCompleted: Int,
+        totalXP: Long
+    ) {
+        if (!playGamesManager.isSignedIn.value) return
+
+        // Submit leaderboard score (time in milliseconds)
+        val leaderboardId = when (completionData.difficulty) {
+            GameDifficulty.Simple -> PlayGamesLeaderboardIds.BEST_TIME_SIMPLE
+            GameDifficulty.Easy -> PlayGamesLeaderboardIds.BEST_TIME_EASY
+            GameDifficulty.Moderate -> PlayGamesLeaderboardIds.BEST_TIME_MODERATE
+            GameDifficulty.Hard -> PlayGamesLeaderboardIds.BEST_TIME_HARD
+            GameDifficulty.Challenge -> PlayGamesLeaderboardIds.BEST_TIME_CHALLENGE
+            else -> null
+        }
+        leaderboardId?.let {
+            playGamesManager.submitScore(it, completionData.completionTime.toMillis())
+        }
+
+        // Submit total XP to leaderboard
+        playGamesManager.submitScore(PlayGamesLeaderboardIds.TOTAL_XP, totalXP)
+
+        // Unlock/increment achievements
+
+        // First win
+        if (totalGamesCompleted == 1) {
+            playGamesManager.unlockAchievement(PlayGamesAchievementIds.FIRST_WIN)
+        }
+
+        // Incremental games completed
+        playGamesManager.incrementAchievement(PlayGamesAchievementIds.GAMES_10, 1)
+        playGamesManager.incrementAchievement(PlayGamesAchievementIds.GAMES_100, 1)
+        playGamesManager.incrementAchievement(PlayGamesAchievementIds.GAMES_500, 1)
+
+        // Speed achievements
+        val completionSeconds = completionData.completionTime.seconds
+        when (completionData.difficulty) {
+            GameDifficulty.Easy -> {
+                if (completionSeconds <= 300) { // 5 minutes
+                    playGamesManager.unlockAchievement(PlayGamesAchievementIds.SPEED_EASY_5MIN)
+                }
+            }
+            GameDifficulty.Hard -> {
+                if (completionSeconds <= 900) { // 15 minutes
+                    playGamesManager.unlockAchievement(PlayGamesAchievementIds.SPEED_HARD_15MIN)
+                }
+            }
+            else -> { }
+        }
+
+        // Perfectionist (no mistakes)
+        if (completionData.mistakes == 0) {
+            playGamesManager.unlockAchievement(PlayGamesAchievementIds.PERFECTIONIST_1)
+            playGamesManager.incrementAchievement(PlayGamesAchievementIds.PERFECTIONIST_50, 1)
+        }
+
+        // No hints used
+        if (completionData.hintsUsed == 0) {
+            playGamesManager.incrementAchievement(PlayGamesAchievementIds.NO_HINTS_25, 1)
+        }
+
+        // Daily challenge achievements
+        if (completionData.isDailyChallenge) {
+            playGamesManager.unlockAchievement(PlayGamesAchievementIds.DAILY_FIRST)
+            playGamesManager.incrementAchievement(PlayGamesAchievementIds.DAILY_30, 1)
+        }
+
+        // Game type achievements
+        when (completionData.gameType) {
+            GameType.Killer9x9, GameType.Killer6x6, GameType.Killer12x12 -> {
+                playGamesManager.unlockAchievement(PlayGamesAchievementIds.TRY_KILLER)
+                playGamesManager.incrementAchievement(PlayGamesAchievementIds.KILLER_50, 1)
+            }
+            else -> { }
+        }
     }
 
     fun getFontSize(type: GameType = gameType, factor: Int): TextUnit {
@@ -926,21 +1098,185 @@ constructor(
         gameBoard = new
     }
 
-    fun getAdvancedHint() {
-        viewModelScope.launch(Dispatchers.Default) {
-            currCell = Cell(-1, -1, 0)
-            _advancedHintMode.emit(true)
-            val hintSettings = appSettingsManager.advancedHintSettings.first()
-            val advancedHint =
-                AdvancedHint(
-                    type = boardEntity.type,
-                    board = gameBoard,
-                    solvedBoard = solvedBoard,
-                    notes = notes,
-                    settings = hintSettings
-                )
+    /**
+     * Unified smart hint system:
+     * 1. Premium users → unlimited hints (algorithmic first, AI fallback)
+     * 2. Free users with per-game hints → consume hint, use smart hint
+     * 3. Free users with no per-game hints but AI quota → use AI only
+     * 4. All limits exhausted → show upsell
+     */
+    fun getSmartHint() {
+        viewModelScope.launch {
+            val isPremiumUser = isPremium.value
 
-            _advancedHintData.emit(advancedHint.getEasiestHint())
+            // Check limits for free users
+            if (!isPremiumUser) {
+                val hasPerGameHints = withContext(Dispatchers.IO) {
+                    appSettingsManager.tryConsumeHint(gameUid)
+                }
+
+                if (!hasPerGameHints) {
+                    // No per-game hints left, check AI daily quota
+                    val hasAIQuota = aiUsageManager.canUseFreeAIHint()
+                    if (!hasAIQuota) {
+                        // All limits exhausted - show upsell
+                        _uiEvents.emit(UiEvent.RequestAIHintUpsell)
+                        return@launch
+                    }
+                    // Has AI quota but no per-game hints - go straight to AI
+                    requestAIHintInternal(consumeQuota = true)
+                    return@launch
+                }
+            }
+
+            // Has hints available (premium or per-game) - use smart hint system
+            executeSmartHint()
+        }
+    }
+
+    private suspend fun executeSmartHint() {
+        currCell = Cell(-1, -1, 0)
+        _advancedHintMode.emit(true)
+
+        val hintSettings = appSettingsManager.advancedHintSettings.first()
+        val advancedHint = AdvancedHint(
+            type = boardEntity.type,
+            board = gameBoard,
+            solvedBoard = solvedBoard,
+            notes = notes,
+            settings = hintSettings
+        )
+
+        val algorithmicHint = withContext(Dispatchers.Default) {
+            advancedHint.getEasiestHint()
+        }
+
+        if (algorithmicHint != null) {
+            // Use algorithmic hint - already counted as hint used
+            _advancedHintData.emit(algorithmicHint)
+            hintsUsed++
+        } else {
+            // Fallback to AI hint
+            _advancedHintMode.emit(false)
+            // For premium users, don't consume AI quota (unlimited)
+            // For free users with per-game hints, AI is bonus (don't double-consume)
+            requestAIHintInternal(consumeQuota = false)
+        }
+    }
+
+    @Deprecated("Use getSmartHint() instead", ReplaceWith("getSmartHint()"))
+    fun getAdvancedHint() {
+        getSmartHint()
+    }
+
+    private suspend fun requestAIHintInternal(consumeQuota: Boolean) {
+        // Show loading state
+        _aiHintState.emit(AIHintResponse.Loading)
+
+        // Generate AI hint
+        val request = AIHintRequest(
+            currentBoard = gameBoard,
+            solvedBoard = solvedBoard,
+            notes = notes,
+            gameType = gameType,
+            difficulty = gameDifficulty,
+            languageTag = getCurrentLocaleTag().ifEmpty { "en" }
+        )
+
+        val response = withContext(Dispatchers.IO) {
+            aiHintService.generateHint(request)
+        }
+
+        when (response) {
+            is AIHintResponse.Success -> {
+                if (consumeQuota) {
+                    aiUsageManager.consumeFreeAIHint()
+                }
+                hintsUsed++
+                _aiHintState.emit(response)
+                _uiEvents.emit(UiEvent.AIHintResult(response))
+            }
+            is AIHintResponse.Error -> {
+                _aiHintState.emit(null)
+                _uiEvents.emit(UiEvent.AIHintError(response.message))
+            }
+            AIHintResponse.Loading -> {
+                // Already handled above
+            }
+        }
+    }
+
+    @Deprecated("Use getSmartHint() instead")
+    fun requestAIHint() {
+        viewModelScope.launch {
+            val isPremiumUser = isPremium.value
+
+            if (!isPremiumUser) {
+                val canUse = aiUsageManager.canUseFreeAIHint()
+                if (!canUse) {
+                    _uiEvents.emit(UiEvent.RequestAIHintUpsell)
+                    return@launch
+                }
+            }
+
+            requestAIHintInternal(consumeQuota = !isPremiumUser)
+        }
+    }
+
+    fun grantHintFromAd() {
+        viewModelScope.launch {
+            // Grant a per-game hint from watching ad
+            appSettingsManager.grantHints(gameUid, 1)
+            // Now use the smart hint system
+            getSmartHint()
+        }
+    }
+
+    fun applyAIHint(response: AIHintResponse.Success) {
+        viewModelScope.launch(Dispatchers.Main) {
+            val row = response.targetCell.row
+            val col = response.targetCell.col
+            val value = response.suggestedValue
+            val boardSize = gameBoard.size
+
+            // Validate bounds
+            if (row !in 0 until boardSize || col !in 0 until boardSize) {
+                _aiHintState.emit(null)
+                return@launch
+            }
+
+            // Validate value
+            if (value !in 1..boardSize) {
+                _aiHintState.emit(null)
+                return@launch
+            }
+
+            // Validate cell is not locked (original clue)
+            if (gameBoard[row][col].locked) {
+                _aiHintState.emit(null)
+                return@launch
+            }
+
+            // Select the target cell first
+            currCell = gameBoard[row][col]
+
+            // Place the value directly
+            processNumberInput(value)
+            undoRedoManager.addState(GameState(gameBoard, notes))
+            remainingUsesList = countRemainingUses(gameBoard)
+
+            // Add time penalty and track hint usage
+            duration = duration.plus(30.toDuration(DurationUnit.SECONDS))
+            timeText = duration.toFormattedString()
+            hintsUsed++
+
+            _aiHintState.emit(null)
+        }
+    }
+
+    fun dismissAIHint() {
+        viewModelScope.launch {
+            _aiHintState.emit(null)
         }
     }
 
@@ -952,14 +1288,37 @@ constructor(
     }
 
     fun applyAdvancedHint() {
-        viewModelScope.launch(Dispatchers.Default) {
-            val cell = _advancedHintData.value?.targetCell
-            if (cell != null) {
-                currCell = gameBoard[cell.row][cell.col]
-                digitFirstNumber = cell.value
-                processInput(cell, true)
+        viewModelScope.launch(Dispatchers.Main) {
+            val hintData = _advancedHintData.value ?: return@launch
+            val cell = hintData.targetCell
+            val value = cell.value
+
+            // Validate
+            if (cell.row < 0 || cell.col < 0 || value <= 0) {
                 cancelAdvancedHint()
+                return@launch
             }
+
+            // Select the target cell
+            currCell = gameBoard[cell.row][cell.col]
+
+            // Skip if cell is locked
+            if (currCell.locked) {
+                cancelAdvancedHint()
+                return@launch
+            }
+
+            // Place the value directly
+            processNumberInput(value)
+            undoRedoManager.addState(GameState(gameBoard, notes))
+            remainingUsesList = countRemainingUses(gameBoard)
+
+            // Track hint usage and add time penalty
+            hintsUsed++
+            duration = duration.plus(30.toDuration(DurationUnit.SECONDS))
+            timeText = duration.toFormattedString()
+
+            cancelAdvancedHint()
         }
     }
 }

@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Server timestamp collection for date validation
+    match /server_time/{document} {
+      allow create, read, delete: if true;
+    }
+
+    // Seasonal events — read-only for clients
+    match /seasonal_events/{eventId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

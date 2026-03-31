@@ -35,6 +35,7 @@ constructor(
     private val dataStore = settingsDataStore.dataStore
 
     private val firstLaunchKey = booleanPreferencesKey("first_launch")
+    private val lastSeenWhatsNewVersionKey = intPreferencesKey("last_seen_whats_new_version")
     private val fontSizeKey = intPreferencesKey("board_font_size")
     private val keepScreenOnKey = booleanPreferencesKey("keep_screen_on")
     private val dateFormatKey = stringPreferencesKey("date_format")
@@ -48,6 +49,17 @@ constructor(
     suspend fun setFirstLaunch(value: Boolean) {
         dataStore.edit { settings ->
             settings[firstLaunchKey] = value
+        }
+    }
+
+    val lastSeenWhatsNewVersion =
+        dataStore.data.map { preferences ->
+            preferences[lastSeenWhatsNewVersionKey] ?: 0
+        }
+
+    suspend fun setLastSeenWhatsNewVersion(versionCode: Int) {
+        dataStore.edit { settings ->
+            settings[lastSeenWhatsNewVersionKey] = versionCode
         }
     }
 

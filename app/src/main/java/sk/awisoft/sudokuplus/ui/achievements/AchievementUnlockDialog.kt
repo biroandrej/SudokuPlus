@@ -159,7 +159,10 @@ private fun AchievementUnlockItem(
                     Text(
                         text = stringResource(achievement.nameRes),
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f, fill = false)
                     )
                     Surface(
                         color = tierColor.copy(alpha = 0.2f),
@@ -169,7 +172,8 @@ private fun AchievementUnlockItem(
                             text = stringResource(achievement.tier.displayName),
                             modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
                             style = MaterialTheme.typography.labelSmall,
-                            color = tierColor
+                            color = tierColor,
+                            maxLines = 1
                         )
                     }
                 }

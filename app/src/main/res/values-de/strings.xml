@@ -64,6 +64,8 @@
     <string name="about_version">Version</string>
     <string name="about_contact_developer">Kontakt</string>
     <string name="about_contact_developer_summary">Funktionsanfragen, Feedback oder Fragen</string>
+    <string name="about_rate_app">App bewerten</string>
+    <string name="about_rate_app_summary">Gefällt dir die App? Hinterlasse eine Bewertung!</string>
     <string name="action_give_up">Aufgeben</string>
     <string name="action_reset_game">Spiel zurücksetzen</string>
     <string name="dialog_yes">Ja</string>
@@ -116,6 +118,8 @@
     <string name="page_next">Weiter</string>
     <string name="libraries_licenses_title">Open Source Lizenzen</string>
     <string name="can_continue_label">Kann fortgeführt werden</string>
+    <string name="game_completed_label">Abgeschlossen</string>
+    <string name="game_gave_up_label">Aufgegeben</string>
     <string name="custom_sudoku_title">Benutzerdefiniertes Sudoku</string>
     <string name="create_sudoku_title">Erstelle ein Sudoku</string>
     <string name="create_set_from_string">Aus Zeichenkette laden</string>
@@ -333,6 +337,33 @@
     <string name="achievement_category_variety">Vielfalt</string>
     <string name="achievement_category_mastery">Meisterschaft</string>
     <string name="achievement_category_daily">Täglich</string>
+    <string name="achievement_category_seasonal">Saisonal</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">Saisonale Events</string>
+    <string name="seasonal_event_active">Aktiv</string>
+    <string name="seasonal_event_upcoming">Bevorstehend</string>
+    <string name="seasonal_event_ended">Beendet</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">Beginnt in %1$d Tag</item>
+        <item quantity="other">Beginnt in %1$d Tagen</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">Endet in %1$d Tag</item>
+        <item quantity="other">Endet in %1$d Tagen</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">Vor %1$d Tag beendet</item>
+        <item quantity="other">Vor %1$d Tagen beendet</item>
+    </plurals>
+    <string name="seasonal_event_progress">%1$d/%2$d Herausforderungen</string>
+    <string name="seasonal_event_play">Herausforderung spielen</string>
+    <string name="seasonal_event_completed">Abgeschlossen!</string>
+    <string name="seasonal_event_day">Tag %1$d</string>
+    <string name="seasonal_event_no_events">Momentan keine Events verfügbar</string>
+    <string name="seasonal_event_reward_earned">Belohnung erhalten!</string>
+    <string name="seasonal_event_badge_earned">Event-Abzeichen erhalten!</string>
+    <string name="seasonal_event_view_all">Alle Events anzeigen</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">Bronze</string>
@@ -426,6 +457,18 @@
     <string name="achievement_daily_streak_100">Tägliche Legende</string>
     <string name="achievement_daily_streak_100_desc">100-Tage tägliche Herausforderungs-Serie</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">Event-Entdecker</string>
+    <string name="achievement_seasonal_first_desc">Schließe deine erste Event-Herausforderung ab</string>
+    <string name="achievement_seasonal_5">Event-Enthusiast</string>
+    <string name="achievement_seasonal_5_desc">Schließe 5 Event-Herausforderungen ab</string>
+    <string name="achievement_seasonal_25">Event-Veteran</string>
+    <string name="achievement_seasonal_25_desc">Schließe 25 Event-Herausforderungen ab</string>
+    <string name="achievement_seasonal_events_3">Saison-Jäger</string>
+    <string name="achievement_seasonal_events_3_desc">Nimm an 3 saisonalen Events teil</string>
+    <string name="achievement_seasonal_events_10">Event-Sammler</string>
+    <string name="achievement_seasonal_events_10_desc">Nimm an 10 saisonalen Events teil</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">Tägliche Herausforderung</string>
     <string name="notification_channel_daily_challenge_desc">Benachrichtigungen für neue tägliche Herausforderungen</string>
@@ -476,6 +519,7 @@
     <string name="xp_bonus_no_mistakes">Perfektes Spiel</string>
     <string name="xp_bonus_no_hints">Keine Hinweise verwendet</string>
     <string name="xp_bonus_daily_challenge">Tägliche Herausforderung</string>
+    <string name="xp_bonus_event_challenge">Event-Herausforderung</string>
     <string name="xp_bonus_streak">%1$d Tage Serie</string>
     <string name="xp_bonus_reward_boost">Täglicher Belohnungsboost</string>
 
@@ -498,4 +542,181 @@
     <string name="reward_xp_boost_amount">2x EP für %1$d Spiele</string>
     <string name="reward_bonus_hints_available">%1$d Bonus-Hinweise verfügbar</string>
     <string name="reward_xp_boost_active">EP-Boost: %1$d Spiele übrig</string>
+
+    <!-- Play Games -->
+    <string name="play_games_title">Google Play Spiele</string>
+    <string name="play_games_summary">Erfolge, Bestenlisten und Cloud-Synchronisierung</string>
+    <string name="play_games_enable">Play Spiele aktivieren</string>
+    <string name="play_games_enable_summary">Mit Google Play Spiele für Erfolge und Bestenlisten verbinden</string>
+    <string name="play_games_sign_in">Anmelden</string>
+    <string name="play_games_sign_in_summary">Melden Sie sich bei Ihrem Google Play Spiele-Konto an</string>
+    <string name="play_games_sign_out">Abmelden</string>
+    <string name="play_games_signed_in_as">Angemeldet als %1\$s</string>
+    <string name="play_games_not_signed_in">Nicht angemeldet</string>
+    <string name="play_games_achievements">Erfolge</string>
+    <string name="play_games_achievements_summary">Ihre Erfolge anzeigen</string>
+    <string name="play_games_leaderboards">Bestenlisten</string>
+    <string name="play_games_leaderboards_summary">Vergleichen Sie Ihre Punkte mit anderen Spielern</string>
+    <string name="play_games_sync">Fortschritt synchronisieren</string>
+    <string name="play_games_sync_summary">Synchronisieren Sie Ihren Spielfortschritt mit der Cloud</string>
+    <string name="play_games_sign_in_failed">Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.</string>
+    <string name="play_games_sign_in_required">Bitte melden Sie sich zuerst bei Play Spiele an</string>
+    <string name="play_games_home_prompt_title">Mit Play Spiele verbinden</string>
+    <string name="play_games_home_prompt_message">Melden Sie sich an, um Erfolge freizuschalten, in Bestenlisten zu konkurrieren und Ihren Fortschritt zu synchronisieren.</string>
+    <string name="play_games_home_prompt_action">Verbinden</string>
+    <string name="play_games_home_prompt_dismiss">Nicht jetzt</string>
+    <string name="play_games_promo_message">Aktivieren Sie Google Play Spiele, um Erfolge freizuschalten, in Bestenlisten zu konkurrieren und Ihren Fortschritt zu synchronisieren.</string>
+    <string name="play_games_promo_action">Einstellungen öffnen</string>
+
+    <!-- Actions -->
+    <string name="action_undo">Rückgängig</string>
+    <string name="action_hint">Hinweis</string>
+    <string name="action_notes">Notizen</string>
+    <string name="action_erase">Löschen</string>
+    <string name="action_advanced_hint">Erweiterter Hinweis</string>
+    <string name="action_previous">Zurück</string>
+    <string name="action_next">Weiter</string>
+    <string name="action_back">Zurück</string>
+    <string name="action_apply">Anwenden</string>
+    <string name="action_dismiss">Ablehnen</string>
+    <string name="action_retry">Erneut versuchen</string>
+    <string name="action_generate">Generieren</string>
+    <string name="action_restart_app">App neu starten</string>
+    <string name="action_share_crash_log">Absturzprotokoll teilen</string>
+    <string name="nav_back">Zurück</string>
+
+    <!-- Advanced Hints -->
+    <string name="advanced_hint_title">Erweiterter Hinweis</string>
+    <string name="advanced_hint_summary">Ein experimentelles Hinweissystem</string>
+    <string name="advanced_hint_in_development">Weitere Techniken in Entwicklung…</string>
+    <string name="advanced_hint_no_hint">Konnte keinen Hinweis finden. Vielleicht ist es im Moment zu schwer für uns</string>
+    <string name="advanced_hint_no_hint_title">Kein Hinweis</string>
+    <string name="hint_full_house_group_title">Volles Haus</string>
+    <string name="hint_full_house_group_detail">Die Zelle %1$s ist die letzte leere Zelle in diesem Block, also können Sie sie mit der %2$s füllen</string>
+    <string name="hint_naked_single_title">Nackter Einzelner</string>
+    <string name="hint_naked_single_detail">Die Zelle %1$s hat nur noch einen möglichen Wert, also können Sie die %2$s in diese Zelle setzen</string>
+    <string name="hint_hidden_single_title">Versteckter Einzelner</string>
+    <string name="hint_hidden_single_detail">Die Zelle %1$s ist die einzige Zelle in dieser Gruppe, in der %2$s stehen kann</string>
+    <string name="hint_wrong_value_title">Falscher Wert</string>
+    <string name="hint_wron_value_detail">Der Wert %1$s in Zelle %2$s ist falsch</string>
+    <string name="settings_advanced_hint_category_techniques">Techniken</string>
+    <string name="label_beta">Beta</string>
+
+    <!-- Badges -->
+    <string name="badge_rarity_common">Gewöhnlich</string>
+    <string name="badge_rarity_rare">Selten</string>
+    <string name="badge_rarity_epic">Episch</string>
+    <string name="badge_rarity_legendary">Legendär</string>
+    <string name="badge_week_1_name">Woche 1 Krieger</string>
+    <string name="badge_week_1_desc">7 Tage in Folge Belohnungen eingelöst</string>
+    <string name="badge_week_2_name">Woche 2 Krieger</string>
+    <string name="badge_week_2_desc">14 Tage in Folge Belohnungen eingelöst</string>
+    <string name="badge_week_3_name">Woche 3 Krieger</string>
+    <string name="badge_week_3_desc">21 Tage in Folge Belohnungen eingelöst</string>
+    <string name="badge_week_4_name">Woche 4 Krieger</string>
+    <string name="badge_week_4_desc">28 Tage in Folge Belohnungen eingelöst</string>
+    <string name="badge_monthly_name">Monatlicher Champion</string>
+    <string name="badge_monthly_desc">Einen vollen 30-Tage-Belohnungszyklus abgeschlossen</string>
+    <string name="badges_title">Abzeichen</string>
+    <string name="badges_earned">Verdiente Abzeichen</string>
+    <string name="badges_earned_count">%1$d Abzeichen verdient</string>
+    <string name="badge_earned">Abzeichen verdient!</string>
+    <string name="badge_no_badges">Noch keine Abzeichen verdient</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">Oster-Champion</string>
+    <string name="badge_event_easter_desc">Das saisonale Oster-Event abgeschlossen</string>
+    <string name="badge_event_summer_name">Sommer-Star</string>
+    <string name="badge_event_summer_desc">Das saisonale Sommer-Event abgeschlossen</string>
+    <string name="badge_event_halloween_name">Gruseliger Löser</string>
+    <string name="badge_event_halloween_desc">Das saisonale Halloween-Event abgeschlossen</string>
+    <string name="badge_event_christmas_name">Weihnachtsheld</string>
+    <string name="badge_event_christmas_desc">Das saisonale Weihnachts-Event abgeschlossen</string>
+    <string name="badge_event_new_year_name">Neujahrslegende</string>
+    <string name="badge_event_new_year_desc">Das saisonale Neujahrs-Event abgeschlossen</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% geschafft!</string>
+    <string name="seasonal_event_milestone_50">Halbzeit!</string>
+    <string name="seasonal_event_milestone_75">Fast geschafft!</string>
+    <string name="seasonal_event_milestone_100">Event abgeschlossen!</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d-Tag-Serie</item>
+        <item quantity="other">%1$d-Tage-Serie</item>
+    </plurals>
+
+    <!-- Premium -->
+    <string name="premium_title">Sudoku Plus Premium</string>
+    <string name="premium_upgrade">Auf Premium upgraden</string>
+    <string name="premium_restore_purchases">Käufe wiederherstellen</string>
+    <string name="premium_current_plan">Aktueller Plan: %s</string>
+    <string name="premium_plan_free">Kostenlos</string>
+    <string name="premium_plan_premium">Premium</string>
+
+    <!-- Backup Failures -->
+    <string name="backup_failed_title">Sicherung fehlgeschlagen</string>
+    <string name="backup_failure_no_directory">Kein Sicherungsordner ausgewählt. Bitte wählen Sie einen Ordner für automatische Sicherungen.</string>
+    <string name="backup_failure_permission_lost">Zugriff auf Sicherungsordner verloren. Bitte erneut Zugriff gewähren.</string>
+    <string name="backup_failure_directory_access">Kann nicht auf den Sicherungsordner zugreifen. Bitte wählen Sie einen anderen Ordner.</string>
+    <string name="backup_failure_file_create">Sicherungsdatei konnte nicht erstellt werden. Überprüfen Sie den verfügbaren Speicherplatz.</string>
+    <string name="backup_failure_io_error">Ein temporärer Fehler ist aufgetreten. Die Sicherung wird automatisch wiederholt.</string>
+    <string name="backup_failure_unknown">Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.</string>
+
+    <!-- Other missing -->
+    <string name="about_github_source_code">Quellcode auf GitHub</string>
+    <string name="app_version">Version %1$s (%2$s)</string>
+    <string name="color_picker_title">Farbe auswählen</string>
+    <string name="crash_screen_title">Hoppla, etwas ist schiefgelaufen</string>
+    <string name="export_empty_cell">Leere Zelle</string>
+    <string name="font_size_automatic">Automatisch</string>
+    <string name="game_mistakes">Fehler</string>
+    <string name="generating_number_of">Generiere %1$s/%2$s</string>
+    <string name="libraries_licenses">Lizenzen</string>
+    <string name="onboard_restore_backup">Sicherung wiederherstellen</string>
+    <string name="onboard_restore_backup_description">Haben Sie bereits eine Sicherung? Stellen Sie sie jetzt wieder her</string>
+    <string name="onboard_settings_description">Passen Sie die App nach Ihren Wünschen an</string>
+    <string name="parse_color_fail">Keine Farbe</string>
+    <string name="perf_appearance_summary">Dunkles Design, dynamische Farben, Brett-Design, Datumsformat…</string>
+    <string name="perf_assistance_summary">Fehlerprüfung, identische Werte hervorheben, verbleibende Verwendungen…</string>
+    <string name="perf_gameplay_summary">Eingabemethode, Fehlerlimit, Timer…</string>
+    <string name="perf_other_summary">Typ und Schwierigkeit merken, Bildschirm eingeschaltet lassen, Statistiken zurücksetzen…</string>
+    <string name="pref_board_theme_summary">Akzentfarben, Positionslinien, Schriftgröße anwenden…</string>
+    <string name="pref_dynamic_colors_title">Dynamische Farben</string>
+    <string name="pref_dynamic_colors_summary">Farben von Ihrem Hintergrundbild verwenden (Android 12+)</string>
+    <string name="play_games_sync_coming_soon">Cloud-Synchronisierung kommt bald!</string>
+    <string name="type_killer_9x9">Killer 9x9</string>
+    <string name="type_killer_6x6">Killer 6x6</string>
+    <string name="type_killer_12x12">Killer 12x12</string>
+    <string name="ai_watch_ad_for_hint">Werbung für 1 Hinweis ansehen</string>
+
+    <!-- AI Hints -->
+    <string name="ai_hint_title">KI-Hinweis</string>
+    <string name="ai_hint_loading">KI analysiert das Rätsel…</string>
+    <string name="ai_hint_apply">Hinweis anwenden</string>
+    <string name="ai_hint_error">Hinweis konnte nicht generiert werden. Bitte erneut versuchen.</string>
+    <string name="ai_hints_remaining">%d KI-Hinweis(e) heute verbleibend</string>
+    <string name="ai_hints_limit_reached">Hinweislimit erreicht</string>
+    <string name="ai_hints_limit_message">Sie haben alle Hinweise aufgebraucht. Schauen Sie eine Werbung für einen weiteren Hinweis oder upgraden Sie auf Premium für unbegrenzte Hinweise.</string>
+
+    <!-- Premium -->
+    <string name="premium_feature_unlimited_ai">Unbegrenzte Smart-Hinweise</string>
+    <string name="premium_feature_ad_free">Werbefreies Erlebnis</string>
+    <string name="premium_feature_cloud_sync">Cloud-Synchronisierung</string>
+    <string name="premium_feature_themes">Exklusive Designs</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">Was ist neu</string>
+    <string name="whats_new_next">Weiter</string>
+    <string name="whats_new_done">Verstanden</string>
+    <string name="whats_new_skip">Überspringen</string>
+    <string name="whats_new_settings">Was ist neu</string>
+    <string name="whats_new_settings_desc">Sieh dir an, was sich im letzten Update geändert hat</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">Saisonale Events</string>
+    <string name="whats_new_v15_page1_desc">Nimm an zeitlich begrenzten saisonalen Events mit thematischen Rätseln und exklusiven Belohnungen teil! Ostern, Sommer, Halloween, Weihnachten und Neujahr mit einzigartigen Feiern.</string>
+    <string name="whats_new_v15_page2_title">Event-Herausforderungen</string>
+    <string name="whats_new_v15_page2_desc">Jedes Event bietet tägliche Herausforderungen mit speziellen XP-Multiplikatoren. Schließe alle Herausforderungen ab, um exklusive Event-Abzeichen und Erfolge zu erhalten.</string>
+    <string name="whats_new_v15_page3_title">Thematische Feiern</string>
+    <string name="whats_new_v15_page3_desc">Genieße thematische Animationen beim Abschließen von Herausforderungen — Eier zu Ostern, Schneeflocken zu Weihnachten, Feuerwerk zu Neujahr und mehr!</string>
 </resources>

@@ -3,12 +3,16 @@ package sk.awisoft.sudokuplus.ui.home
 import android.Manifest
 import android.os.Build
 import android.text.format.DateUtils
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,7 +29,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
-import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -35,7 +38,6 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -78,25 +80,29 @@ import sk.awisoft.sudokuplus.core.qqwing.GameType
 import sk.awisoft.sudokuplus.core.utils.toFormattedString
 import sk.awisoft.sudokuplus.data.database.model.SavedGame
 import sk.awisoft.sudokuplus.destinations.DailyChallengeCalendarScreenDestination
+import sk.awisoft.sudokuplus.destinations.EventsScreenDestination
 import sk.awisoft.sudokuplus.destinations.GameScreenDestination
+import sk.awisoft.sudokuplus.destinations.PlayGamesScreenDestination
 import sk.awisoft.sudokuplus.destinations.RewardCalendarScreenDestination
+import sk.awisoft.sudokuplus.destinations.WhatsNewScreenDestination
 import sk.awisoft.sudokuplus.ui.components.AnimatedNavigation
 import sk.awisoft.sudokuplus.ui.components.ScrollbarLazyColumn
 import sk.awisoft.sudokuplus.ui.components.board.BoardPreview
+import sk.awisoft.sudokuplus.ui.gameshistory.ColorfulBadge
 import sk.awisoft.sudokuplus.ui.home.components.DailyChallengeCard
+import sk.awisoft.sudokuplus.ui.home.components.PlayGamesCard
 import sk.awisoft.sudokuplus.ui.home.components.RewardCalendarCard
+import sk.awisoft.sudokuplus.ui.home.components.SeasonalEventBanner
 import sk.awisoft.sudokuplus.ui.reward.RewardClaimDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination<RootGraph>(start = true, style = AnimatedNavigation::class)
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: DestinationsNavigator) {
-    var continueGameDialog by rememberSaveable { mutableStateOf(false) }
     var lastGamesBottomSheet by rememberSaveable {
         mutableStateOf(false)
     }
 
-    val lastGame by viewModel.lastSavedGame.collectAsStateWithLifecycle()
     val lastGames by viewModel.lastGames.collectAsStateWithLifecycle(initialValue = emptyMap())
     val saveSelectedGameDifficultyType by viewModel.saveSelectedGameDifficultyType.collectAsStateWithLifecycle(
         false
@@ -117,6 +123,26 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     val rewardCalendarState by viewModel.rewardCalendarState.collectAsStateWithLifecycle()
     val claimedReward by viewModel.claimedReward.collectAsStateWithLifecycle()
 
+    // Seasonal Events
+    val activeEvent by viewModel.activeEvent.collectAsStateWithLifecycle()
+    val upcomingEvent by viewModel.upcomingEvent.collectAsStateWithLifecycle()
+    val eventToShow = activeEvent ?: upcomingEvent
+
+    // Play Games
+    val isPlayGamesSignedIn by viewModel.isPlayGamesSignedIn.collectAsStateWithLifecycle()
+    val playerInfo by viewModel.playerInfo.collectAsStateWithLifecycle()
+    val playGamesEnabled by viewModel.playGamesEnabled.collectAsStateWithLifecycle()
+    val isPlayGamesPromptDismissed by viewModel.isPlayGamesPromptDismissed.collectAsStateWithLifecycle()
+
+    val showWhatsNew by viewModel.showWhatsNew.collectAsStateWithLifecycle()
+
+    LaunchedEffect(showWhatsNew) {
+        if (showWhatsNew) {
+            viewModel.onWhatsNewShown()
+            navigator.navigate(WhatsNewScreenDestination())
+        }
+    }
+
     Notifications(viewModel = viewModel)
 
     LaunchedEffect(saveSelectedGameDifficultyType) {
@@ -126,8 +152,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
             viewModel.selectedType = type
         }
     }
-
-    val hasGameInProgress = (lastGame != null && !lastGame!!.completed)
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
@@ -149,21 +173,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                 )
             )
         },
-        contentWindowInsets = WindowInsets(0),
-        floatingActionButton = {
-            if (hasGameInProgress) {
-                ExtendedFloatingActionButton(
-                    onClick = { continueGameDialog = true },
-                    icon = {
-                        Icon(
-                            imageVector = Icons.Rounded.Add,
-                            contentDescription = null
-                        )
-                    },
-                    text = { Text(stringResource(R.string.new_game)) }
-                )
-            }
-        }
+        contentWindowInsets = WindowInsets(0)
     ) { paddingValues ->
         // Navigate to new game when ready
         LaunchedEffect(viewModel.readyToPlay) {
@@ -192,6 +202,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
             }
         }
 
+        val activity = LocalActivity.current ?: return@Scaffold
+
         ScrollbarLazyColumn(
             modifier =
             Modifier
@@ -200,6 +212,24 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
             contentPadding = PaddingValues(all = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
+            item {
+                AnimatedVisibility(
+                    visible = (playGamesEnabled && isPlayGamesSignedIn) || !isPlayGamesPromptDismissed,
+                    enter = expandVertically() + fadeIn(),
+                    exit = shrinkVertically() + fadeOut()
+                ) {
+                    PlayGamesCard(
+                        isSignedIn = isPlayGamesSignedIn,
+                        isEnabled = playGamesEnabled,
+                        playerInfo = playerInfo,
+                        onSignIn = { navigator.navigate(PlayGamesScreenDestination) },
+                        onDismiss = { viewModel.dismissPlayGamesPrompt() },
+                        onAchievements = { viewModel.showAchievements(activity) },
+                        onLeaderboards = { viewModel.showLeaderboards(activity) }
+                    )
+                }
+            }
+
             item {
                 DailyChallengeCard(
                     challenge = dailyChallenge,
@@ -222,6 +252,15 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                 )
             }
 
+            eventToShow?.let { event ->
+                item {
+                    SeasonalEventBanner(
+                        event = event,
+                        onViewEvent = { navigator.navigate(EventsScreenDestination) }
+                    )
+                }
+            }
+
             item {
                 HomeHeroCard(
                     difficultyLabel = stringResource(viewModel.selectedDifficulty.resName),
@@ -230,21 +269,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                     onIncreaseDifficulty = { viewModel.changeDifficulty(1) },
                     onDecreaseType = { viewModel.changeType(-1) },
                     onIncreaseType = { viewModel.changeType(1) },
-                    canContinue = hasGameInProgress,
-                    onContinue = {
-                        if (lastGames.size <= 1) {
-                            lastGame?.let {
-                                navigator.navigate(
-                                    GameScreenDestination(
-                                        gameUid = it.uid,
-                                        playedBefore = true
-                                    )
-                                )
-                            }
-                        } else {
-                            lastGamesBottomSheet = true
-                        }
-                    },
                     onPlay = {
                         viewModel.giveUpLastGame()
                         viewModel.startGame()
@@ -292,30 +316,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                     viewModel.isGenerating -> stringResource(R.string.dialog_generating)
                     viewModel.isSolving -> stringResource(R.string.dialog_solving)
                     else -> ""
-                }
-            )
-        }
-
-        if (continueGameDialog) {
-            AlertDialog(
-                title = { Text(stringResource(R.string.dialog_new_game)) },
-                text = { Text(stringResource(R.string.dialog_new_game_text)) },
-                confirmButton = {
-                    TextButton(onClick = {
-                        continueGameDialog = false
-                        viewModel.giveUpLastGame()
-                        viewModel.startGame()
-                    }) {
-                        Text(stringResource(R.string.dialog_new_game_positive))
-                    }
-                },
-                dismissButton = {
-                    TextButton(onClick = { continueGameDialog = false }) {
-                        Text(stringResource(R.string.action_cancel))
-                    }
-                },
-                onDismissRequest = {
-                    continueGameDialog = false
                 }
             )
         }
@@ -445,8 +445,6 @@ private fun HomeHeroCard(
     onIncreaseDifficulty: () -> Unit,
     onDecreaseType: () -> Unit,
     onIncreaseType: () -> Unit,
-    canContinue: Boolean,
-    onContinue: () -> Unit,
     onPlay: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -489,42 +487,16 @@ private fun HomeHeroCard(
                 onNext = onIncreaseType
             )
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            Button(
+                onClick = onPlay,
+                modifier = Modifier.fillMaxWidth()
             ) {
-                if (canContinue) {
-                    Button(
-                        onClick = onContinue,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Icon(
-                            imageVector = Icons.Rounded.PlayArrow,
-                            contentDescription = null
-                        )
-                        Spacer(modifier = Modifier.size(8.dp))
-                        Text(stringResource(R.string.action_continue))
-                    }
-                } else {
-                    Button(
-                        onClick = onPlay,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Icon(
-                            imageVector = Icons.Rounded.PlayArrow,
-                            contentDescription = null
-                        )
-                        Spacer(modifier = Modifier.size(8.dp))
-                        Text(
-                            text =
-                            if (canContinue) {
-                                stringResource(R.string.action_continue)
-                            } else {
-                                stringResource(R.string.action_play)
-                            }
-                        )
-                    }
-                }
+                Icon(
+                    imageVector = Icons.Rounded.PlayArrow,
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.size(8.dp))
+                Text(stringResource(R.string.action_play))
             }
         }
     }
@@ -668,6 +640,28 @@ fun SavedSudokuPreview(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+                Spacer(modifier = Modifier.height(4.dp))
+                when {
+                    savedGame.completed && !savedGame.giveUp -> {
+                        ColorfulBadge(
+                            text = stringResource(R.string.game_completed_label),
+                            background = MaterialTheme.colorScheme.primaryContainer,
+                            foreground = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
+                    savedGame.giveUp -> {
+                        ColorfulBadge(
+                            text = stringResource(R.string.game_gave_up_label),
+                            background = MaterialTheme.colorScheme.errorContainer,
+                            foreground = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                    }
+                    savedGame.canContinue -> {
+                        ColorfulBadge(
+                            text = stringResource(R.string.can_continue_label)
+                        )
+                    }
+                }
             }
 
             Row(

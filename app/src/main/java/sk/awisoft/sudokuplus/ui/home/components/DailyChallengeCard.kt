@@ -169,7 +169,15 @@ fun DailyChallengeCard(
                                     contentDescription = null
                                 )
                                 Spacer(modifier = Modifier.size(8.dp))
-                                Text(stringResource(R.string.daily_completed))
+                                Column {
+                                    Text(stringResource(R.string.daily_completed))
+                                    challenge?.completionTime?.let { duration ->
+                                        Text(
+                                            text = formatDuration(duration),
+                                            style = MaterialTheme.typography.labelSmall
+                                        )
+                                    }
+                                }
                             }
                         }
                         isInProgress -> {
@@ -200,7 +208,16 @@ fun DailyChallengeCard(
                         }
                     }
 
-                    TextButton(onClick = onViewCalendar) {
+                    TextButton(
+                        onClick = onViewCalendar,
+                        colors = if (isCompleted) {
+                            ButtonDefaults.textButtonColors(
+                                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        } else {
+                            ButtonDefaults.textButtonColors()
+                        }
+                    ) {
                         Text(stringResource(R.string.view_calendar))
                         Icon(
                             imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
@@ -210,6 +227,18 @@ fun DailyChallengeCard(
                 }
             }
         }
+    }
+}
+
+private fun formatDuration(duration: java.time.Duration): String {
+    val totalSeconds = duration.seconds
+    val hours = totalSeconds / 3600
+    val minutes = (totalSeconds % 3600) / 60
+    val seconds = totalSeconds % 60
+    return if (hours > 0) {
+        String.format("%02d:%02d:%02d", hours, minutes, seconds)
+    } else {
+        String.format("%02d:%02d", minutes, seconds)
     }
 }
 

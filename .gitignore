@@ -28,9 +28,23 @@ render.experimental.xml
 keystore/
 keystore.properties
 
+# Firebase configuration
+firebase.properties
+
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
 # Android Profiling
 *.hprof
 .claude/settings.local.json
+
+# Build outputs
+app/prod/
+.firebaserc
+emulator-data/
+node_modules/
+package-lock.json
+CLAUDE.md
+conductor
+docs/product
+scripts

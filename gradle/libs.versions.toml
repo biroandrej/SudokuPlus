@@ -36,11 +36,20 @@ serialization-json = "1.9.0"
 # Google
 googleMaterial = "1.13.0"
 playServicesAds = "24.9.0"
+playReview = "2.0.2"
+playGamesServices = "20.1.2"
 
 # Firebase
 firebaseBom = "33.7.0"
 googleServices = "4.4.2"
 firebaseCrashlytics = "3.0.3"
+firebaseAI = "17.7.0"
+
+# Billing
+playBilling = "7.1.1"
+
+# Animations
+lottie = "6.6.6"
 
 # Third-party
 aboutLibraries = "13.2.1"
@@ -107,6 +116,9 @@ startupRuntime = { group = "androidx.startup", name = "startup-runtime", version
 # Serialization
 serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization-json" }
 
+# Animations
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
+
 # Third-party
 aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
 composeMarkdown = { group = "com.github.jeziellago", name = "compose-markdown", version.ref = "composeMarkdown" }
@@ -114,10 +126,21 @@ materialKolor = { group = "com.materialkolor", name = "material-kolor", version.
 
 # Google Services
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+play-review = { group = "com.google.android.play", name = "review-ktx", version.ref = "playReview" }
+play-games-services = { group = "com.google.android.gms", name = "play-services-games-v2", version.ref = "playGamesServices" }
+kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version = "1.8.1" }
 
 # Firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-common = { group = "com.google.firebase", name = "firebase-common" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-ai = { group = "com.google.firebase", name = "firebase-ai", version.ref = "firebaseAI" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+firebase-config = { group = "com.google.firebase", name = "firebase-config" }
+
+# Billing
+play-billing = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "playBilling" }
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -128,6 +151,7 @@ kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
+aboutLibrariesAndroid = { id = "com.mikepenz.aboutlibraries.plugin.android", version.ref = "aboutLibraries" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }

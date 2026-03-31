@@ -49,6 +49,8 @@
     <string name="about_title">アプリについて</string>
     <string name="about_contact_developer">連絡先</string>
     <string name="about_contact_developer_summary">機能リクエスト、フィードバック、質問</string>
+    <string name="about_rate_app">アプリを評価</string>
+    <string name="about_rate_app_summary">アプリを気に入りましたか？レビューを残してください！</string>
     <string name="pref_dark_theme_follow">システムのテーマに合わせる</string>
     <string name="nav_bar_more">メニュー</string>
     <string name="nav_bar_statistics">統計</string>
@@ -108,6 +110,33 @@
     <string name="achievement_category_variety">多様性</string>
     <string name="achievement_category_mastery">マスター</string>
     <string name="achievement_category_daily">デイリー</string>
+    <string name="achievement_category_seasonal">シーズン</string>
+
+    <!-- Seasonal Events UI -->
+    <string name="seasonal_events_title">シーズンイベント</string>
+    <string name="seasonal_event_active">開催中</string>
+    <string name="seasonal_event_upcoming">近日開催</string>
+    <string name="seasonal_event_ended">終了</string>
+    <plurals name="seasonal_event_starts_in">
+        <item quantity="one">あと%1$d日で開始</item>
+        <item quantity="other">あと%1$d日で開始</item>
+    </plurals>
+    <plurals name="seasonal_event_ends_in">
+        <item quantity="one">あと%1$d日で終了</item>
+        <item quantity="other">あと%1$d日で終了</item>
+    </plurals>
+    <plurals name="seasonal_event_ended_ago">
+        <item quantity="one">%1$d日前に終了</item>
+        <item quantity="other">%1$d日前に終了</item>
+    </plurals>
+    <string name="seasonal_event_progress">%1$d/%2$d チャレンジ</string>
+    <string name="seasonal_event_play">チャレンジをプレイ</string>
+    <string name="seasonal_event_completed">完了！</string>
+    <string name="seasonal_event_day">%1$d日目</string>
+    <string name="seasonal_event_no_events">現在利用可能なイベントはありません</string>
+    <string name="seasonal_event_reward_earned">報酬獲得！</string>
+    <string name="seasonal_event_badge_earned">イベントバッジ獲得！</string>
+    <string name="seasonal_event_view_all">すべてのイベントを表示</string>
 
     <!-- Achievement Tiers -->
     <string name="achievement_tier_bronze">ブロンズ</string>
@@ -201,6 +230,18 @@
     <string name="achievement_daily_streak_100">デイリーレジェンド</string>
     <string name="achievement_daily_streak_100_desc">100日連続デイリーチャレンジ</string>
 
+    <!-- Seasonal Event Achievements -->
+    <string name="achievement_seasonal_first">イベント探検家</string>
+    <string name="achievement_seasonal_first_desc">最初のイベントチャレンジを完了する</string>
+    <string name="achievement_seasonal_5">イベント愛好家</string>
+    <string name="achievement_seasonal_5_desc">イベントチャレンジを5つ完了する</string>
+    <string name="achievement_seasonal_25">イベントベテラン</string>
+    <string name="achievement_seasonal_25_desc">イベントチャレンジを25個完了する</string>
+    <string name="achievement_seasonal_events_3">シーズンハンター</string>
+    <string name="achievement_seasonal_events_3_desc">3つのシーズンイベントに参加する</string>
+    <string name="achievement_seasonal_events_10">イベントコレクター</string>
+    <string name="achievement_seasonal_events_10_desc">10のシーズンイベントに参加する</string>
+
     <!-- Notifications -->
     <string name="notification_channel_daily_challenge">デイリーチャレンジ</string>
     <string name="notification_channel_daily_challenge_desc">新しいデイリーチャレンジの通知</string>
@@ -251,6 +292,7 @@
     <string name="xp_bonus_no_mistakes">パーフェクトゲーム</string>
     <string name="xp_bonus_no_hints">ヒントなし</string>
     <string name="xp_bonus_daily_challenge">デイリーチャレンジ</string>
+    <string name="xp_bonus_event_challenge">イベントチャレンジ</string>
     <string name="xp_bonus_streak">%1$d日連続</string>
     <string name="xp_bonus_reward_boost">デイリー報酬ブースト</string>
 
@@ -274,4 +316,440 @@
     <string name="reward_bonus_hints_available">%1$dボーナスヒント利用可能</string>
     <string name="reward_xp_boost_active">XPブースト: 残り%1$dゲーム</string>
 
+    <string name="play_games_promo_message">Google Play Gamesを有効にして、実績のロック解除、リーダーボードでの競争、進捗の同期を行いましょう。</string>
+    <string name="play_games_promo_action">設定を開く</string>
+
+    <!-- Missing Action Strings -->
+    <string name="action_give_up">あきらめる</string>
+    <string name="action_reset_game">ゲームをリセット</string>
+    <string name="dialog_yes">はい</string>
+    <string name="dialog_no">いいえ</string>
+    <string name="action_show_notes">メモを表示</string>
+    <string name="action_clear_notes">メモをクリア</string>
+    <string name="action_compute_notes">メモを計算</string>
+    <string name="action_show_solution">解答を表示</string>
+    <string name="action_show_mine_sudoku">自分のを表示</string>
+    <string name="action_undo">元に戻す</string>
+    <string name="action_hint">ヒント</string>
+    <string name="action_notes">メモ</string>
+    <string name="action_erase">消す</string>
+    <string name="action_advanced_hint">高度なヒント</string>
+    <string name="action_previous">前へ</string>
+    <string name="action_next">次へ</string>
+    <string name="action_exit">終了</string>
+    <string name="action_stay">とどまる</string>
+    <string name="action_save">保存</string>
+    <string name="action_edit">編集</string>
+    <string name="action_move_selected">選択を移動</string>
+    <string name="action_share_crash_log">クラッシュログを共有</string>
+    <string name="action_restart_app">アプリを再起動</string>
+    <string name="action_generate">生成</string>
+    <string name="action_apply">適用</string>
+    <string name="action_back">戻る</string>
+    <string name="action_grant">許可</string>
+    <string name="action_create">作成</string>
+    <string name="action_retry">再試行</string>
+    <string name="action_dismiss">閉じる</string>
+
+    <!-- Toolbar Descriptions -->
+    <string name="toolbar_undo_description">元に戻す</string>
+    <string name="toolbar_notes_description">メモモード（鉛筆書き）を有効にする</string>
+    <string name="toolbar_hint_description">選択したマスに正しい値を入れる。設定で無効化可能</string>
+    <string name="toolbar_erase_description">選択したマスから値またはすべてのメモを削除</string>
+
+    <!-- First Game Dialog -->
+    <string name="first_game_dialog_title">クイックツアー</string>
+    <string name="first_game_dialog_got_it">了解</string>
+
+    <!-- Game Messages -->
+    <string name="mistakes_number_out_of">ミス %1$d/%2$d</string>
+    <string name="reset_game_text">現在のパズルをリセットしますか？</string>
+    <string name="give_up_text">あきらめますか？あきらめると、最終的な解答を見ることができます</string>
+    <string name="game_completed">ゲーム完了</string>
+    <string name="game_completed_text">ゲームを完了しました。ここに留まるか、メインメニューに戻ることができます</string>
+    <string name="game_over_mistakes">3回ミスをしました</string>
+    <string name="dialog_solving">解析中…</string>
+    <string name="game_mistakes">ミス</string>
+
+    <!-- Statistics -->
+    <string name="games_started">開始ゲーム数</string>
+    <string name="games_completed">完了ゲーム数</string>
+    <string name="current_streak">現在の連勝</string>
+    <string name="best_streak">最高連勝</string>
+    <string name="number_best_games">%1$d個のベストゲーム</string>
+    <string name="time">時間</string>
+    <string name="delete_question">削除しますか？</string>
+    <string name="delete_record_dialog">#%1$dの記録を削除しますか？元に戻せません</string>
+    <string name="statistics_difficulty_filter_all">すべて</string>
+    <string name="average_time">平均タイム</string>
+    <string name="best_time">ベストタイム</string>
+    <string name="tip_card_win_streak_summ">連勝は、負け（ミス上限到達）、あきらめる、または前のゲームを終わらせずに新しいゲームを始めるとリセットされます。ご注意ください</string>
+    <string name="tip_card_records_list_title">記録リスト</string>
+    <string name="tip_card_records_list_summ">このリストには最大5つのベスト記録が含まれています。エントリを長押しすると、気に入らない記録を削除できます</string>
+    <string name="statistics_no_records">まだ記録がありません</string>
+
+    <!-- History -->
+    <string name="history_no_games">まだプレイしていません</string>
+    <string name="history_item_time">時間: %1$s</string>
+    <string name="history_item_id">ゲームID: %1$d</string>
+    <string name="history_item_can_continue">このゲームは続けられます</string>
+    <string name="saved_game_current">現在</string>
+    <string name="saved_game_initial">初期</string>
+    <string name="saved_game_progress">進捗 %1$d/%2$d</string>
+    <string name="saved_game_progress_percentage">進捗 %1$d%%</string>
+    <string name="empty_screen_something_went_wrong">おっと、何か問題が発生しました…</string>
+    <string name="saved_game_type">タイプ: %1$s</string>
+    <string name="saved_game_time">時間: %1$s</string>
+    <string name="saved_game_completed">ゲームは完了しました</string>
+    <string name="saved_game_give_up">あきらめました</string>
+    <string name="saved_game_in_progress">進行中</string>
+    <string name="saved_game_mistakes_limit">ミス上限に達しました</string>
+
+    <!-- Learn Screen -->
+    <string name="learn_screen_title">学ぶ</string>
+    <string name="learn_app_toolbar">ツールバー</string>
+    <string name="learn_app_toolbar_desc">キーボードの下のパネル</string>
+    <string name="learn_app_toolbar_notes_menu">メモボタンを長押しすると、メモメニューが開き、メモのクリア、計算、表示/非表示を切り替えられます</string>
+    <string name="learn_sudoku_rules">数独のルール</string>
+    <string name="sudoku_rules_mistakes">ここにミスがあります。見つけられますか？2つかもしれません</string>
+    <string name="sudoku_rules_mistakes_highlight">ミスをハイライト</string>
+    <string name="sudoku_rules_mistakes_explanation">最初のミスは6番目のボックスに2つの2があることです。ボックス内に同じ値が2つあってはいけないルールを覚えていますか？2番目のミスは2行8列（R2C8）の数字6です。同じ列（R5C8）にすでに6があるからです</string>
+    <string name="naked_pairs_title">ネイキッドペア</string>
+    <string name="naked_pairs_explanation">同じ2つの候補を持つ2つのマスがあります。今は、どちらが2でどちらが3かわかりません。\nしかし、数独のルールにより、各ボックスには1つの「2」と1つの「3」しかないので、一方が2で他方が3と仮定できます</string>
+    <string name="naked_pairs_end">さて、そのボックスに他の「2」や「3」の候補がなければ、これは役に立ちません。しかしあるので、それらを削除できます！ボックス内の他のマスは2や3にはなれません</string>
+    <string name="learn_basic_title">基本</string>
+    <string name="learn_basic_1">7番目のボックスを選びましょう。すでに4つのマスが埋まっています</string>
+    <string name="learn_basic_2">次に数字8を見てみましょう。R4C3の数字8は、ボックス内の列全体をブロックしています。よってその列に8は入れられません</string>
+    <string name="learn_basic_3">また、R7C5の数字8はボックス内の行全体をブロックしています</string>
+    <string name="learn_basic_4">そして、数字8が入れられるマスは1つだけになりました</string>
+    <string name="learn_basic_5">同じロジックが行と列にも適用されます。最初の行を見てください。R7C3の数字4は3列目をブロックしています。R3C5の数字4は2列（4列目と6列目）を同時にブロックしています。同じボックス内に他の4があってはいけないからです。R6C7は7列目をブロックしています</string>
+    <string name="learn_basic_6">結果として、数字4が入れられるマスは1つだけになりました。R1C3です</string>
+    <string name="learn_hidden_pairs_title">ヒドゥンペア</string>
+    <string name="learn_hidden_pairs_1">ヒドゥンペアはネイキッドペアとほぼ同じで、唯一の違いは他の候補の中に隠れていることです。この2つのマスには共通点があります。数字6と9を保持でき、これらはここでしかそれらが入れられる2つのマスです</string>
+    <string name="learn_hidden_pairs_2">この2つのマスには、この2つの数字だけが含まれ、他は含まれないと結論付けられます。よってこれらのマスから不要な候補を削除できます。ネイキッドペアと同様に、列と行でも同じように機能します</string>
+
+    <!-- Preference Summaries -->
+    <string name="pref_dynamic_colors_title">ダイナミックカラー</string>
+    <string name="pref_dynamic_colors_summary">壁紙の色を使用する（Android 12以上）</string>
+    <string name="pref_mistakes_check">ミスチェック</string>
+    <string name="pref_mistakes_check_final">解答と照合</string>
+    <string name="pref_highlight_identical">同じ値をハイライト</string>
+    <string name="pref_highlight_identical_summ">ボード上の値を選択すると、同じ値のマスがハイライトされます</string>
+    <string name="pref_remaining_uses">残り使用回数</string>
+    <string name="pref_remaining_uses_summ">値の残り使用回数がキーボードに表示されます</string>
+    <string name="pref_position_lines">位置線</string>
+    <string name="pref_position_lines_summ">選択したマスの行と列がハイライトされます</string>
+    <string name="pref_auto_erase_notes">メモを自動消去</string>
+    <string name="pref_other">その他</string>
+    <string name="pref_keep_screen_on">画面を常時オン</string>
+    <string name="pref_reset_tipcards">すべてのヒントカードをリセット</string>
+    <string name="pref_tipcards_reset">ヒントカードがリセットされました！</string>
+    <string name="pref_app_language">アプリの言語</string>
+    <string name="label_default">デフォルト</string>
+    <string name="about_version">バージョン</string>
+    <string name="about_github_source_code">GitHubのソースコード</string>
+    <string name="perf_appearance_summary">ダークテーマ、ダイナミックカラー、ボードテーマ、日付形式…</string>
+    <string name="perf_gameplay_summary">入力方法、ミス上限、タイマー…</string>
+    <string name="perf_assistance_summary">ミスチェック、同じ値のハイライト、残り使用回数…</string>
+    <string name="perf_other_summary">タイプと難易度を記憶、画面を常時オン、統計をリセット…</string>
+    <string name="pref_board_theme_summary">アクセントカラー、位置線、フォントサイズ…</string>
+    <string name="pref_boardtheme_accent">アクセントカラーを適用</string>
+    <string name="pref_boardtheme_accent_subtitle">数独ボードをよりカラフルに</string>
+    <string name="pref_board_theme_title">数独ボードテーマ</string>
+    <string name="pref_board_theme_subtitle">数独ボードの見た目をカスタマイズ</string>
+    <string name="board_theme_title">ボードテーマ</string>
+    <string name="pref_cross_highlight">クロスハイライト</string>
+    <string name="pref_cross_highlight_subtitle">ボード上の一部のボックスをハイライト</string>
+    <string name="pref_crash_reporting">クラッシュレポート</string>
+    <string name="pref_crash_reporting_subtitle">バグ修正にご協力ください。アプリは自動的にログを送信しません。クラッシュレポートをメールで送信するよう求められます</string>
+    <string name="pref_fun_keyboard_over_num">機能パネルを値の上に</string>
+    <string name="pref_fun_keyboard_over_num_subtitle">機能パネルを値キーボードの上に配置</string>
+    <string name="pref_date_format">日付形式</string>
+    <string name="pref_save_last_diff_and_type">タイプと難易度を記憶</string>
+    <string name="pref_save_last_diff_and_type_subtitle">前回のゲームのタイプと難易度を記憶</string>
+    <string name="pref_date_format_custom">カスタム日付形式</string>
+    <string name="pref_date_format_custom_summ">Java DateTimeFormatterに従って日付パターンを入力</string>
+    <string name="pref_date_format_custom_textfield_label">パターン</string>
+    <string name="pref_date_format_custom_label">カスタム</string>
+
+    <!-- Hints and Mistakes Display -->
+    <string name="hints_used">ヒント: %1$d</string>
+    <string name="mistakes_made">ミス: %1$d</string>
+    <string name="notes_taken">メモ: %1$d</string>
+    <string name="stat_time_current">現在: %1$s</string>
+    <string name="stat_time_average">平均: %1$s</string>
+    <string name="stat_time_best">ベスト: %1$s</string>
+
+    <!-- Libraries and Licenses -->
+    <string name="libraries_licenses">ライセンス</string>
+    <string name="libraries_licenses_title">オープンソースライセンス</string>
+
+    <!-- Game Status Labels -->
+    <string name="can_continue_label">進行中</string>
+    <string name="game_completed_label">完了</string>
+    <string name="game_gave_up_label">あきらめた</string>
+    <string name="game_not_started">未開始</string>
+
+    <!-- Custom Sudoku -->
+    <string name="custom_sudoku_title">カスタム数独</string>
+    <string name="create_sudoku_title">数独を作成</string>
+    <string name="create_set_from_string">文字列から設定</string>
+    <string name="dialog_ok">OK</string>
+    <string name="create_from_string_text">パズルを文字列形式で入力してください。空のマスは「.」または「0」で示します</string>
+    <string name="create_from_string_hint">パズル</string>
+    <string name="create_incorrect_puzzle">正しくないパズル</string>
+    <string name="multiple_solution_text">このパズルには複数の解があります。正しい数独パズルには唯一の解が必要です</string>
+    <string name="no_solution_text">このパズルには解がありません</string>
+    <string name="create_import_set">設定</string>
+    <string name="custom_sudoku_no_added">まだ数独を追加していません</string>
+    <string name="custom_sudoku_delete_dialog_title">選択を削除</string>
+    <string name="custom_sudoku_delete_dialog_text">選択した数独を削除しますか？この操作は元に戻せません</string>
+
+    <!-- Export -->
+    <string name="export_string_text">テキストフィールドからテキストを選択するか、コピーボタンをクリックしてください</string>
+    <string name="export_string_title">文字列としてエクスポート</string>
+    <string name="export_string_copy">コピー</string>
+    <string name="export_string_state_copied">コピー完了</string>
+    <string name="export_string_state_error">エラー</string>
+    <string name="export">エクスポート</string>
+    <string name="export_empty_cell">空のマス</string>
+
+    <!-- Filters and Sorting -->
+    <string name="filter_all">すべて</string>
+    <string name="filter_completed">完了</string>
+    <string name="filter_in_progress">進行中</string>
+    <string name="filter_not_started">未開始</string>
+    <string name="sort_by_timer">タイマー</string>
+    <string name="sort_by_game_id">ID</string>
+    <string name="sort_label">並び替え</string>
+    <string name="filter_label">フィルター</string>
+
+    <!-- Folders -->
+    <string name="title_folders">フォルダ</string>
+    <string name="create_folder">フォルダを作成</string>
+    <string name="delete_folder">フォルダを削除</string>
+    <string name="folder_name">フォルダ: %1$s</string>
+    <string name="edit_name">名前を編集</string>
+    <string name="create_folder_name">フォルダ名</string>
+    <string name="folder_import">インポート</string>
+    <string name="dialog_delete_folder_text">%1$sという名前のフォルダが削除されます</string>
+    <string name="help">ヘルプ</string>
+    <string name="folders_help">ここでフォルダを管理し、ファイルから数独をインポートできます</string>
+    <string name="folder_import_supported_types">以下のファイルタイプがサポートされています：\n.sdm（または同じ構造の.txt）\n.opensudoku\n.1gsudoku</string>
+    <string name="import_from_file_fail">インポートに失敗しました</string>
+    <string name="import_from_file_title">ファイルから</string>
+    <string name="import_saving">保存中</string>
+    <string name="folder_empty_label">このフォルダは空です</string>
+    <string name="dialog_delete_selected">選択を削除</string>
+    <string name="explore_folder_add_sudoku">数独を追加</string>
+    <string name="edit_sudoku">数独を編集</string>
+    <string name="game_id">ゲーム #%1$d</string>
+    <string name="add_to_folder">フォルダに追加</string>
+    <string name="add_to_folder_create_new">新規作成</string>
+    <string name="add_to_folder_from_file">ファイルからインポート</string>
+    <string name="move_games_to_folder_subtitle">選択したゲームを移動するフォルダを選択</string>
+
+    <!-- Home Screen -->
+    <string name="last_played_section_title">最近プレイしたゲーム</string>
+
+    <!-- Crash Screen -->
+    <string name="dialog_crash_report_text">おっと、SudokuPlusがクラッシュしました。クラッシュレポートを開発者に送信しますか？</string>
+    <string name="crash_screen_title">おっと、何か問題が発生しました</string>
+
+    <!-- Generating -->
+    <string name="generating_number_of">生成中 %1$s/%2$s</string>
+
+    <!-- Onboarding -->
+    <string name="intro_what_is_sudoku">クラシックな数独は次のようになります</string>
+    <string name="intro_rules">ゲームの目標は、すべてのマスを1から9の数字で埋めることです。どの列、行、または小さなボックス（3x3）でも値が重複しないようにします</string>
+    <string name="onboard_recommendation_prefs">設定タブを見て、アプリをニーズに合わせてカスタマイズすることをお勧めします</string>
+    <string name="onboard_restore_backup">バックアップを復元</string>
+    <string name="onboard_restore_backup_description">すでにバックアップがありますか？今すぐ復元してください</string>
+    <string name="onboard_settings_description">お好みに合わせてアプリを調整</string>
+
+    <!-- Backup & Restore -->
+    <string name="backup_restore_title">バックアップと復元</string>
+    <string name="action_create_backup">バックアップ</string>
+    <string name="create_backup_description">バックアップファイルを作成</string>
+    <string name="action_restore">復元</string>
+    <string name="restore_description">ファイルからバックアップを復元</string>
+    <string name="creating_backup_error">バックアップに失敗しました</string>
+    <string name="save_backup_error">バックアップファイルの保存に失敗しました</string>
+    <string name="save_backup_success">バックアップを保存しました</string>
+    <string name="restoring_backup">復元中</string>
+    <string name="restore_backup_error">復元に失敗しました</string>
+    <string name="restore_backup_success">バックアップを復元しました</string>
+    <string name="backup_restore_settings">設定を復元</string>
+    <string name="auto_backups">自動バックアップ</string>
+    <string name="auto_backups_frequency">バックアップ頻度</string>
+    <string name="auto_backups_directory">バックアップディレクトリ</string>
+    <string name="auto_backups_max">最大自動バックアップ数</string>
+    <string name="backup_option_games">ゲームとフォルダ</string>
+    <string name="backup_option_settings">設定</string>
+    <string name="autobackup_never">しない</string>
+    <string name="every_2_days">2日ごと</string>
+    <string name="every_5_days">5日ごと</string>
+    <string name="auto_backup_folder_access">自動バックアップのフォルダアクセス</string>
+    <string name="auto_backup_folder_access_description">自動バックアップには、フォルダへのアクセスを許可する必要があります。アプリは選択したフォルダにバックアップを作成します</string>
+    <string name="restore_existing_data_alert">既存のデータは削除されます！</string>
+    <string name="last_backup_date">最新のバックアップ: %1$s</string>
+
+    <!-- Backup Failure Strings -->
+    <string name="backup_failed_title">バックアップ失敗</string>
+    <string name="backup_failure_no_directory">バックアップフォルダが選択されていません。自動バックアップ用のフォルダを選択してください。</string>
+    <string name="backup_failure_permission_lost">バックアップフォルダへのアクセスが失われました。再度アクセスを許可してください。</string>
+    <string name="backup_failure_directory_access">バックアップフォルダにアクセスできません。別のフォルダを選択してください。</string>
+    <string name="backup_failure_file_create">バックアップファイルの作成に失敗しました。利用可能なストレージ容量を確認してください。</string>
+    <string name="backup_failure_io_error">一時的なエラーが発生しました。バックアップは自動的に再試行されます。</string>
+    <string name="backup_failure_unknown">予期しないエラーが発生しました。もう一度お試しください。</string>
+
+    <!-- Dates -->
+    <string name="date_started">開始日</string>
+    <string name="date_last_played">最終プレイ日</string>
+
+    <!-- Color Picker -->
+    <string name="color_picker_title">色を選択</string>
+    <string name="parse_color_fail">色ではありません</string>
+
+    <!-- App Version -->
+    <string name="app_version">バージョン %1$s (%2$s)</string>
+
+    <!-- Font Size -->
+    <string name="font_size_automatic">自動</string>
+
+    <!-- Navigation -->
+    <string name="nav_back">戻る</string>
+
+    <!-- Labels -->
+    <string name="label_beta">ベータ</string>
+
+    <!-- Advanced Hints -->
+    <string name="advanced_hint_title">高度なヒント</string>
+    <string name="advanced_hint_summary">実験的なヒントシステム</string>
+    <string name="advanced_hint_in_development">さらなる技術を開発中…</string>
+    <string name="advanced_hint_no_hint">ヒントを取得できませんでした。現時点では難しすぎるかもしれません</string>
+    <string name="advanced_hint_no_hint_title">ヒントなし</string>
+    <string name="settings_advanced_hint_category_techniques">テクニック</string>
+
+    <!-- Hint Techniques -->
+    <string name="hint_full_house_group_detail">マス%1$sはこのボックスの最後の空きマスなので、%2$sで埋めることができます</string>
+    <string name="hint_full_house_group_title">フルハウス</string>
+    <string name="hint_naked_single_title">ネイキッドシングル</string>
+    <string name="hint_naked_single_detail">マス%1$sには可能な値が1つだけ残っているので、このマスに%2$sを置くことができます</string>
+    <string name="hint_hidden_single_title">ヒドゥンシングル</string>
+    <string name="hint_hidden_single_detail">マス%1$sはこのグループで%2$sが入れられる唯一のマスです</string>
+    <string name="hint_wrong_value_title">間違った値</string>
+    <string name="hint_wron_value_detail">マス%2$sの値%1$sは間違っています</string>
+
+    <!-- Killer Sudoku Types -->
+    <string name="type_killer_9x9">キラー 9×9</string>
+    <string name="type_killer_6x6">キラー 6×6</string>
+    <string name="type_killer_12x12">キラー 12×12</string>
+
+    <!-- Badges -->
+    <string name="badge_rarity_common">コモン</string>
+    <string name="badge_rarity_rare">レア</string>
+    <string name="badge_rarity_epic">エピック</string>
+    <string name="badge_rarity_legendary">レジェンダリー</string>
+    <string name="badge_week_1_name">1週目ウォリアー</string>
+    <string name="badge_week_1_desc">7日連続で報酬を受け取りました</string>
+    <string name="badge_week_2_name">2週目ウォリアー</string>
+    <string name="badge_week_2_desc">14日連続で報酬を受け取りました</string>
+    <string name="badge_week_3_name">3週目ウォリアー</string>
+    <string name="badge_week_3_desc">21日連続で報酬を受け取りました</string>
+    <string name="badge_week_4_name">4週目ウォリアー</string>
+    <string name="badge_week_4_desc">28日連続で報酬を受け取りました</string>
+    <string name="badge_monthly_name">マンスリーチャンピオン</string>
+    <string name="badge_monthly_desc">30日間の報酬サイクルを完了しました</string>
+    <string name="badges_title">バッジ</string>
+    <string name="badges_earned">獲得バッジ</string>
+    <string name="badges_earned_count">%1$d個のバッジを獲得</string>
+    <string name="badge_earned">バッジ獲得！</string>
+    <string name="badge_no_badges">まだバッジを獲得していません</string>
+
+    <!-- Seasonal Event Badges -->
+    <string name="badge_event_easter_name">イースターチャンピオン</string>
+    <string name="badge_event_easter_desc">イースターのシーズンイベントを完了しました</string>
+    <string name="badge_event_summer_name">サマースター</string>
+    <string name="badge_event_summer_desc">夏のシーズンイベントを完了しました</string>
+    <string name="badge_event_halloween_name">スプーキーソルバー</string>
+    <string name="badge_event_halloween_desc">ハロウィンのシーズンイベントを完了しました</string>
+    <string name="badge_event_christmas_name">ホリデーヒーロー</string>
+    <string name="badge_event_christmas_desc">クリスマスのシーズンイベントを完了しました</string>
+    <string name="badge_event_new_year_name">新年のレジェンド</string>
+    <string name="badge_event_new_year_desc">新年のシーズンイベントを完了しました</string>
+
+    <!-- Seasonal Event Milestones -->
+    <string name="seasonal_event_milestone_25">25% 完了！</string>
+    <string name="seasonal_event_milestone_50">折り返し地点！</string>
+    <string name="seasonal_event_milestone_75">もう少し！</string>
+    <string name="seasonal_event_milestone_100">イベント完了！</string>
+    <plurals name="seasonal_event_streak">
+        <item quantity="one">%1$d日連続</item>
+        <item quantity="other">%1$d日連続</item>
+    </plurals>
+
+    <!-- Play Games -->
+    <string name="play_games_title">Google Play Games</string>
+    <string name="play_games_summary">実績、リーダーボード、クラウド同期</string>
+    <string name="play_games_enable">Play Gamesを有効化</string>
+    <string name="play_games_enable_summary">実績とリーダーボードのためにGoogle Play Gamesに接続</string>
+    <string name="play_games_sign_in">サインイン</string>
+    <string name="play_games_sign_in_summary">Google Play Gamesアカウントにサインイン</string>
+    <string name="play_games_sign_out">サインアウト</string>
+    <string name="play_games_signed_in_as">%1$sとしてサインイン中</string>
+    <string name="play_games_not_signed_in">サインインしていません</string>
+    <string name="play_games_achievements">実績</string>
+    <string name="play_games_achievements_summary">実績を表示</string>
+    <string name="play_games_leaderboards">リーダーボード</string>
+    <string name="play_games_leaderboards_summary">他のプレイヤーとスコアを比較</string>
+    <string name="play_games_sync">進捗を同期</string>
+    <string name="play_games_sync_summary">ゲームの進捗をクラウドと同期</string>
+    <string name="play_games_sync_coming_soon">クラウド同期は近日公開！</string>
+    <string name="play_games_sign_in_failed">サインインに失敗しました。もう一度お試しください。</string>
+    <string name="play_games_sign_in_required">まずPlay Gamesにサインインしてください</string>
+    <string name="play_games_home_prompt_title">Play Gamesに接続</string>
+    <string name="play_games_home_prompt_message">サインインして実績を解除し、リーダーボードで競い、デバイス間で進捗を同期しましょう。</string>
+    <string name="play_games_home_prompt_action">接続</string>
+    <string name="play_games_home_prompt_dismiss">今はしない</string>
+
+    <!-- Premium -->
+    <string name="premium_title">Sudoku Plus Premium</string>
+    <string name="premium_upgrade">Premiumにアップグレード</string>
+    <string name="premium_restore_purchases">購入を復元</string>
+    <string name="premium_current_plan">現在のプラン: %s</string>
+    <string name="premium_plan_free">無料</string>
+    <string name="premium_plan_premium">Premium</string>
+    <string name="ai_watch_ad_for_hint">広告を見て1ヒント獲得</string>
+
+    <!-- AI Hints -->
+    <string name="ai_hint_title">AIヒント</string>
+    <string name="ai_hint_loading">AIがパズルを分析中…</string>
+    <string name="ai_hint_apply">ヒントを適用</string>
+    <string name="ai_hint_error">ヒントを生成できませんでした。もう一度お試しください。</string>
+    <string name="ai_hints_remaining">本日残り%dつのAIヒント</string>
+    <string name="ai_hints_limit_reached">ヒント上限に達しました</string>
+    <string name="ai_hints_limit_message">すべてのヒントを使い切りました。広告を見てヒントを追加するか、Premiumにアップグレードして無制限のヒントを取得してください。</string>
+
+    <!-- Premium Features -->
+    <string name="premium_feature_unlimited_ai">無制限のスマートヒント</string>
+    <string name="premium_feature_ad_free">広告なし体験</string>
+    <string name="premium_feature_cloud_sync">クラウド同期</string>
+    <string name="premium_feature_themes">限定テーマ</string>
+
+    <!-- What's New Screen -->
+    <string name="whats_new_title">新機能</string>
+    <string name="whats_new_next">次へ</string>
+    <string name="whats_new_done">了解</string>
+    <string name="whats_new_skip">スキップ</string>
+    <string name="whats_new_settings">新機能</string>
+    <string name="whats_new_settings_desc">最新アップデートの変更点を確認</string>
+
+    <!-- What's New v15 - Seasonal Events -->
+    <string name="whats_new_v15_page1_title">季節イベント</string>
+    <string name="whats_new_v15_page1_desc">テーマパズルと限定報酬がある期間限定の季節イベントに参加しましょう！イースター、夏、ハロウィン、クリスマス、お正月のユニークなお祝い。</string>
+    <string name="whats_new_v15_page2_title">イベントチャレンジ</string>
+    <string name="whats_new_v15_page2_desc">各イベントには特別なXP倍率のデイリーチャレンジがあります。すべてのチャレンジを達成して限定バッジと実績を獲得しましょう。</string>
+    <string name="whats_new_v15_page3_title">テーマ別のお祝い</string>
+    <string name="whats_new_v15_page3_desc">チャレンジ達成時にテーマアニメーションをお楽しみください — イースターのたまご、クリスマスの雪の結晶、お正月の花火など！</string>
 </resources>

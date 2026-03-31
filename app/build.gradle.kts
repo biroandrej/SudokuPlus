@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.aboutLibraries)
+    alias(libs.plugins.aboutLibrariesAndroid)
     alias(libs.plugins.hilt)
     alias(libs.plugins.serialization)
     alias(libs.plugins.compose.compiler)
@@ -22,6 +22,13 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(keystorePropertiesFile.inputStream())
 }
 
+// Load Firebase properties for dev builds (manual initialization)
+val firebasePropertiesFile = rootProject.file("firebase.properties")
+val firebaseProperties = Properties()
+if (firebasePropertiesFile.exists()) {
+    firebaseProperties.load(firebasePropertiesFile.inputStream())
+}
+
 android {
     namespace = "sk.awisoft.sudokuplus"
     compileSdk = 36
@@ -30,8 +37,8 @@ android {
         applicationId = "sk.awisoft.sudokuplus"
         minSdk = 28
         targetSdk = 36
-        versionCode = 10
-        versionName = "1.1.0"
+        versionCode = 15
+        versionName = "1.3.0-alpha01"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -110,6 +117,32 @@ android {
         create("dev") {
             dimension = "version"
             applicationIdSuffix = ".dev"
+            // Firebase config for manual initialization (since Google Services plugin is disabled for dev)
+            buildConfigField(
+                "String",
+                "FIREBASE_PROJECT_ID",
+                "\"${firebaseProperties.getProperty("firebaseProjectId", "")}\""
+            )
+            buildConfigField(
+                "String",
+                "FIREBASE_APPLICATION_ID",
+                "\"${firebaseProperties.getProperty("firebaseApplicationId", "")}\""
+            )
+            buildConfigField(
+                "String",
+                "FIREBASE_API_KEY",
+                "\"${firebaseProperties.getProperty("firebaseApiKey", "")}\""
+            )
+            buildConfigField(
+                "String",
+                "FIREBASE_STORAGE_BUCKET",
+                "\"${firebaseProperties.getProperty("firebaseStorageBucket", "")}\""
+            )
+            buildConfigField(
+                "String",
+                "FIREBASE_GCM_SENDER_ID",
+                "\"${firebaseProperties.getProperty("firebaseGcmSenderId", "")}\""
+            )
         }
         create("prod") {
             dimension = "version"
@@ -193,20 +226,36 @@ dependencies {
     ksp(libs.hilt.common.compiler)
     ksp(libs.hilt.work)
     implementation(libs.materialKolor)
+    implementation(libs.lottie.compose)
 
     implementation(libs.composeMarkdown)
     implementation(libs.splash.screen)
+    implementation(libs.play.games.services)
+    implementation(libs.kotlinx.coroutines.play.services)
 
     add("prodImplementation", libs.play.services.ads)
+    add("prodImplementation", libs.play.review)
 
     add("prodImplementation", platform(libs.firebase.bom))
     add("prodImplementation", libs.firebase.crashlytics)
+    add("prodImplementation", libs.firebase.analytics)
+    add("prodImplementation", libs.firebase.ai)
+    add("prodImplementation", libs.firebase.firestore)
+    add("prodImplementation", libs.firebase.config)
+    add("prodImplementation", libs.play.billing)
+
+    // Dev also uses real Firebase AI for testing
+    add("devImplementation", platform(libs.firebase.bom))
+    add("devImplementation", libs.firebase.ai)
+    add("devImplementation", libs.firebase.firestore)
+    add("devImplementation", libs.firebase.config)
+    add("devImplementation", libs.firebase.common)
 }
 
 // Disable Google Services and Crashlytics tasks for dev builds
+// Firebase is manually initialized in dev using FirebaseInitializer
 androidComponents {
     onVariants(selector().withFlavor("version" to "dev")) {
-        // Disable Google Services processing for dev builds
         tasks.configureEach {
             if (name.contains("Dev") && (name.contains("GoogleServices") || name.contains("Crashlytics"))) {
                 enabled = false
