@@ -132,7 +132,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     val playGamesEnabled by viewModel.playGamesEnabled.collectAsStateWithLifecycle()
     val isPlayGamesPromptDismissed by viewModel.isPlayGamesPromptDismissed.collectAsStateWithLifecycle()
 
-    // What's New
     val showWhatsNew by viewModel.showWhatsNew.collectAsStateWithLifecycle()
 
     LaunchedEffect(showWhatsNew) {

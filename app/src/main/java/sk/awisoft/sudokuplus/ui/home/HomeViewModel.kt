@@ -116,7 +116,6 @@ constructor(
         playGamesSettingsManager.homePromptDismissed
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
-    // What's New
     private val _showWhatsNew = MutableStateFlow(false)
     val showWhatsNew: StateFlow<Boolean> = _showWhatsNew.asStateFlow()
 

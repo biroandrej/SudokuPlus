@@ -97,7 +97,6 @@ fun WhatsNewScreen(navigator: DestinationsNavigator, forceShow: Boolean = false)
                 .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Version badge
             Text(
                 text = "v${entry.versionName}",
                 style = MaterialTheme.typography.labelMedium,
@@ -105,7 +104,6 @@ fun WhatsNewScreen(navigator: DestinationsNavigator, forceShow: Boolean = false)
                 modifier = Modifier.padding(top = 8.dp)
             )
 
-            // Pager
             HorizontalPager(
                 state = pagerState,
                 modifier = Modifier
@@ -115,7 +113,6 @@ fun WhatsNewScreen(navigator: DestinationsNavigator, forceShow: Boolean = false)
                 WhatsNewPageContent(pages[page])
             }
 
-            // Page indicators
             Row(
                 modifier = Modifier.padding(vertical = 16.dp),
                 horizontalArrangement = Arrangement.Center,
@@ -146,7 +143,6 @@ fun WhatsNewScreen(navigator: DestinationsNavigator, forceShow: Boolean = false)
                 }
             }
 
-            // Action button
             if (isLastPage) {
                 Button(
                     onClick = { navigator.navigateUp() },
@@ -189,7 +185,6 @@ private fun WhatsNewPageContent(page: WhatsNewPage, modifier: Modifier = Modifie
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Lottie animation (preferred) or static illustration
         page.lottieRes?.let { rawRes ->
             val composition by rememberLottieComposition(
                 LottieCompositionSpec.RawRes(rawRes)

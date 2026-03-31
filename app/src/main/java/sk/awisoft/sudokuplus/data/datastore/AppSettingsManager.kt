@@ -52,7 +52,6 @@ constructor(
         }
     }
 
-    // What's New version tracking
     val lastSeenWhatsNewVersion =
         dataStore.data.map { preferences ->
             preferences[lastSeenWhatsNewVersionKey] ?: 0

@@ -30,9 +30,4 @@ object WhatsNewRepository {
 
     fun getLatestEntry(): WhatsNewEntry? = allEntries.lastOrNull()
 
-    fun getEntryForVersion(versionCode: Int): WhatsNewEntry? =
-        allEntries.find { it.versionCode == versionCode }
-
-    fun getEntriesNewerThan(versionCode: Int): List<WhatsNewEntry> =
-        allEntries.filter { it.versionCode > versionCode }
 }
